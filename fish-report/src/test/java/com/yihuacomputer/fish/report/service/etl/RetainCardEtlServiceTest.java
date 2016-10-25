@@ -12,7 +12,7 @@ import org.springframework.test.annotation.DirtiesContext.ClassMode;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.yihuacomputer.fish.api.report.device.etl.IRetainCardEtlService;
+import com.yihuacomputer.fish.api.report.device.etl.IRetainCardExtractDataService;
 import com.yihuacomputer.fish.report.H2TestConfig;
 
 @DirtiesContext(classMode = ClassMode.AFTER_CLASS)
@@ -21,7 +21,7 @@ import com.yihuacomputer.fish.report.H2TestConfig;
 public class RetainCardEtlServiceTest {
 	
 	@Autowired
-	private IRetainCardEtlService retainCardEtlService;
+	private IRetainCardExtractDataService retainCardExtractDataService;
 	
 	@Before
 	public void setUp() throws Exception {
@@ -34,8 +34,8 @@ public class RetainCardEtlServiceTest {
 	@Test
 	public void testOpenRateEtl(){
 		Date date = new Date();
-		retainCardEtlService.extractByWeek(date);
-		retainCardEtlService.extractByMonth(date);
+		retainCardExtractDataService.extractByWeek(date);
+		retainCardExtractDataService.extractByMonth(date);
 	}
 	
 }

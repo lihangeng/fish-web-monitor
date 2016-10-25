@@ -14,7 +14,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.yihuacomputer.fish.api.monitor.business.ITransaction;
 import com.yihuacomputer.fish.api.monitor.business.ITransactionService;
-import com.yihuacomputer.fish.api.report.trans.etl.ITransTypeEtlService;
+import com.yihuacomputer.fish.api.report.trans.etl.ITransTypeExtractDataService;
 import com.yihuacomputer.fish.report.H2TestConfig;
 
 @DirtiesContext(classMode = ClassMode.AFTER_CLASS)
@@ -23,7 +23,7 @@ import com.yihuacomputer.fish.report.H2TestConfig;
 public class TransTypeEtlServiceTest {
 	
 	@Autowired
-	private ITransTypeEtlService transTypeEtlService;
+	private ITransTypeExtractDataService transTypeExtractDataService;
 	
 	@Autowired
 	private ITransactionService transService;
@@ -50,9 +50,9 @@ public class TransTypeEtlServiceTest {
 	@Test
 	public void testOpenRateEtl(){
 		Date date = new Date();
-		transTypeEtlService.extractByDay(date);
-		transTypeEtlService.extractByWeek(date);
-		transTypeEtlService.extractByMonth(date);
+		transTypeExtractDataService.extractByDay(date);
+		transTypeExtractDataService.extractByWeek(date);
+		transTypeExtractDataService.extractByMonth(date);
 	}
 	
 }

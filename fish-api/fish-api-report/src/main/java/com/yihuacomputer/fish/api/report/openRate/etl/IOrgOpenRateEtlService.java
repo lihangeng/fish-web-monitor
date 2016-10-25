@@ -3,7 +3,6 @@
  */
 package com.yihuacomputer.fish.api.report.openRate.etl;
 
-import java.util.Date;
 import java.util.List;
 
 
@@ -13,20 +12,6 @@ import java.util.List;
  * @since 2.1.1.1
  */
 public interface IOrgOpenRateEtlService {
-	
-	/**
-	 * 抽取每周的网点开机率
-	 * @param date 
-	 */
-	public void extractByWeek(Date date);
-	
-	/**
-	 * 抽取上周的网点统计数据
-	 * @param date
-	 */
-	public void extractByMonth(Date date);
-	
-	
 	
 	/**
 	 * 获取某周的统计，排名靠前的网点

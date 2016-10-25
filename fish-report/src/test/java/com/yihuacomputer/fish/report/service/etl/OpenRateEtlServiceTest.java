@@ -19,9 +19,10 @@ import com.yihuacomputer.fish.api.report.openRate.IDayOpenRate;
 import com.yihuacomputer.fish.api.report.openRate.IDayOpenRateService;
 import com.yihuacomputer.fish.api.report.openRate.etl.IAvgDayOpenRate;
 import com.yihuacomputer.fish.api.report.openRate.etl.IAvgOpenRateEtlService;
-import com.yihuacomputer.fish.api.report.openRate.etl.IDeviceOpenRateEtlService;
-import com.yihuacomputer.fish.api.report.openRate.etl.IDeviceTypeOpenRateEtlService;
-import com.yihuacomputer.fish.api.report.openRate.etl.IOrgOpenRateEtlService;
+import com.yihuacomputer.fish.api.report.openRate.etl.IAvgOpenRateExtractDataService;
+import com.yihuacomputer.fish.api.report.openRate.etl.IDeviceOpenRateExtractDataService;
+import com.yihuacomputer.fish.api.report.openRate.etl.IDeviceTypeOpenRateExtractDataService;
+import com.yihuacomputer.fish.api.report.openRate.etl.IOrgOpenRateExtractDataService;
 import com.yihuacomputer.fish.report.H2TestConfig;
 
 @DirtiesContext(classMode = ClassMode.AFTER_CLASS)
@@ -30,19 +31,22 @@ import com.yihuacomputer.fish.report.H2TestConfig;
 public class OpenRateEtlServiceTest {
 	
 	@Autowired
+	private IAvgOpenRateExtractDataService avgOpenRateExtractDataService;
+	
+	@Autowired
 	private IAvgOpenRateEtlService avgOpenRateEtlService;
 	
 	@Autowired
 	private IDayOpenRateService openRateService;
 	
 	@Autowired
-	private IDeviceOpenRateEtlService deviceOpenRateEtlService;
+	private IDeviceOpenRateExtractDataService deviceOpenRateExtractDataService;
 	
 	@Autowired
-	private IDeviceTypeOpenRateEtlService deviceTypeOpenRateEtlService;
+	private IDeviceTypeOpenRateExtractDataService deviceTypeOpenRateExtractDataService;
 	
 	@Autowired
-	private IOrgOpenRateEtlService orgOpenRateEtlService;
+	private IOrgOpenRateExtractDataService orgOpenRateExtractDataService;
 	
 	@Before
 	public void setUp() throws Exception {
@@ -63,18 +67,18 @@ public class OpenRateEtlServiceTest {
 	@Test
 	public void testOpenRateEtl(){
 		Date date = new Date();
-		avgOpenRateEtlService.extractByDay(date);
-		avgOpenRateEtlService.extractByWeek(date);
-		avgOpenRateEtlService.extractByMonth(date);
+		avgOpenRateExtractDataService.extractByDay(date);
+		avgOpenRateExtractDataService.extractByWeek(date);
+		avgOpenRateExtractDataService.extractByMonth(date);
 				
-		deviceOpenRateEtlService.extractByWeek(date);
-		deviceOpenRateEtlService.extractByMonth(date);
+		deviceOpenRateExtractDataService.extractByWeek(date);
+		deviceOpenRateExtractDataService.extractByMonth(date);
 		
-		deviceTypeOpenRateEtlService.extractByWeek(date);
-		deviceTypeOpenRateEtlService.extractByMonth(date);
+		deviceTypeOpenRateExtractDataService.extractByWeek(date);
+		deviceTypeOpenRateExtractDataService.extractByMonth(date);
 		
-		orgOpenRateEtlService.extractByWeek(date);
-		orgOpenRateEtlService.extractByMonth(date);
+		orgOpenRateExtractDataService.extractByWeek(date);
+		orgOpenRateExtractDataService.extractByMonth(date);
 	}
 	
 	@Test

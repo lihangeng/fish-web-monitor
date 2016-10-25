@@ -1,8 +1,6 @@
 package com.yihuacomputer.fish.report.service.device.etl;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,14 +13,11 @@ import org.springframework.transaction.annotation.Transactional;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.annotation.SaveMethodDescrible;
 import com.yihuacomputer.common.filter.Filter;
-import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.domain.spring.DataSource;
 import com.yihuacomputer.domain.spring.DataSources;
 import com.yihuacomputer.fish.api.report.device.etl.IDeviceCatalogSummaryMonth;
 import com.yihuacomputer.fish.api.report.device.etl.IDeviceCatalogSummaryMonthService;
-import com.yihuacomputer.fish.machine.entity.AtmCatalog;
-import com.yihuacomputer.fish.machine.entity.Device;
 import com.yihuacomputer.fish.report.entity.etl.DeviceCatalogSummaryMonth;
 
 @Service
@@ -38,51 +33,6 @@ public class DeviceCatalogSummaryMonthService implements IDeviceCatalogSummaryMo
 		return new DeviceCatalogSummaryMonth();
 	}
 
-	public void loadBaseData(Date date){
-		//yyyy-mm-dd
-		Calendar calendar = Calendar.getInstance();
-		calendar.setTimeInMillis(date.getTime());
-
-		calendar.set(Calendar.DAY_OF_MONTH, 1);
-		calendar.set(Calendar.HOUR, 0);
-		calendar.set(Calendar.MINUTE, 0);
-		calendar.set(Calendar.SECOND, 0);
-		calendar.set(Calendar.MILLISECOND, 0);
-		Date toDate = calendar.getTime();
-		//将时间定位至要汇总日期的上个月
-		calendar.add(Calendar.MONTH, -2);
-		//获取上次汇总日期
-		String lastDate = DateUtils.getYM(calendar.getTime());
-		calendar.add(Calendar.MONTH, 1);
-		//此次汇总时间点
-		Date fromDate = calendar.getTime();
-		String dateStr = DateUtils.getYM(fromDate);
-//		String dateStr = DateUtils.getDate(fromDate).substring(0,7);
-		Map<String,IDeviceCatalogSummaryMonth> lastInfoMap = this.get(lastDate);
-		StringBuffer hqlSb = new StringBuffer();
-		hqlSb.append("select device.devType.devCatalog,count(device.id), ");
-		hqlSb.append("sum(case when device.installDate>=? then 1 else 0 end)  ");
-		hqlSb.append("from ").append(Device.class.getSimpleName());
-		hqlSb.append(" device  where device.installDate<? group by device.devType.devCatalog.name ");
-		List<Object> list = dao.findByHQL(hqlSb.toString(), new Object[]{fromDate,toDate});
-		for(Object objectResult:list){
-			Object[] objects = (Object[])objectResult;
-			AtmCatalog atmlog = (AtmCatalog)objects[0];
-			int  all = Integer.parseInt(String.valueOf(objects[1]));
-			int  news = Integer.parseInt(String.valueOf(objects[2]));
-			IDeviceCatalogSummaryMonth idcsm = lastInfoMap.get(atmlog.getName());
-			IDeviceCatalogSummaryMonth idcsmNew = this.make();
-			idcsmNew.setCatalog(atmlog.getName());
-			idcsmNew.setAddDevNum(news);
-			idcsmNew.setAllAddDevNum(idcsm==null?news:idcsm.getAllAddDevNum()+news);
-			idcsmNew.setAllScrappedDevNum(0);
-			idcsmNew.setDate(dateStr);
-			idcsmNew.setNum(all);
-			idcsmNew.setScrappedDevNum(0);
-			this.save(idcsmNew);
-		}
-	}
-	
 	@Override
 	public IDeviceCatalogSummaryMonth update(IDeviceCatalogSummaryMonth dcsm) {
 		return dao.update(dcsm);

@@ -8,16 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.yihuacomputer.common.util.DateUtils;
-import com.yihuacomputer.fish.api.report.device.etl.IDeviceCatalogSummaryWeekService;
-import com.yihuacomputer.fish.api.report.device.etl.IDeviceTypeSummaryWeekService;
-import com.yihuacomputer.fish.api.report.device.etl.IRetainCardEtlService;
+import com.yihuacomputer.fish.api.report.device.etl.IDeviceExtractDataWeekService;
+import com.yihuacomputer.fish.api.report.device.etl.IRetainCardExtractDataService;
 import com.yihuacomputer.fish.api.report.engine.IWeekPdfReportService;
-import com.yihuacomputer.fish.api.report.fault.etl.IFaultEtlService;
-import com.yihuacomputer.fish.api.report.openRate.etl.IAvgOpenRateEtlService;
-import com.yihuacomputer.fish.api.report.openRate.etl.IDeviceOpenRateEtlService;
-import com.yihuacomputer.fish.api.report.openRate.etl.IDeviceTypeOpenRateEtlService;
-import com.yihuacomputer.fish.api.report.openRate.etl.IOrgOpenRateEtlService;
-import com.yihuacomputer.fish.api.report.trans.etl.ITransTypeEtlService;
+import com.yihuacomputer.fish.api.report.fault.etl.IFaultExtractDataService;
+import com.yihuacomputer.fish.api.report.openRate.etl.IAvgOpenRateExtractDataService;
+import com.yihuacomputer.fish.api.report.openRate.etl.IDeviceOpenRateExtractDataService;
+import com.yihuacomputer.fish.api.report.openRate.etl.IDeviceTypeOpenRateExtractDataService;
+import com.yihuacomputer.fish.api.report.openRate.etl.IOrgOpenRateExtractDataService;
+import com.yihuacomputer.fish.api.report.trans.etl.ITransTypeExtractDataService;
 
 /**
  * 每周报表数据生成
@@ -31,31 +30,28 @@ public class EveryWeekReportJob {
 	private static Log logger = LogFactory.getLog(EveryWeekReportJob.class);
 	
 	@Autowired
-	private IAvgOpenRateEtlService avgOpenRateEtlService;
+	private IAvgOpenRateExtractDataService avgOpenRateExtractDataService;
 	
 	@Autowired
-	private IDeviceOpenRateEtlService deviceOpenRateEtlService;
+	private IDeviceOpenRateExtractDataService deviceOpenRateExtractDataService;
 	
 	@Autowired
-	private IDeviceTypeOpenRateEtlService deviceTypeOpenRateEtlService;
+	private IDeviceTypeOpenRateExtractDataService deviceTypeOpenRateExtractDataService;
 	
 	@Autowired
-	private IOrgOpenRateEtlService orgOpenRateEtlService;
+	private IOrgOpenRateExtractDataService orgOpenRateExtractDataService;
 	
 	@Autowired
-	private ITransTypeEtlService transTypeEtlService;
+	private ITransTypeExtractDataService transTypeExtractDataService;
 	
 	@Autowired
-	private IRetainCardEtlService retainCardEtlService;
+	private IRetainCardExtractDataService retainCardExtractDataService;
 
 	@Autowired
-	private IFaultEtlService faultEtlService;
+	private IFaultExtractDataService faultExtractDataService;
 	
 	@Autowired
-	private IDeviceCatalogSummaryWeekService deviceCatalogSummaryWeekService;
-	
-	@Autowired
-	private IDeviceTypeSummaryWeekService deviceTypeSummaryWeekService;
+	private IDeviceExtractDataWeekService deviceExtractDataWeekService;
 	
 	@Autowired
 	private IWeekPdfReportService pdfReportService;
@@ -91,9 +87,9 @@ public class EveryWeekReportJob {
 		long start = System.currentTimeMillis();
 		//1.每周故障类型统计(2016年3季度需求综合报告之故障信息汇总)
 		Date lastWeek = DateUtils.getLastWeek();
-		faultEtlService.extractStatusByWeek(lastWeek);
-		faultEtlService.extractFaultClassifyByWeek(lastWeek);
-		faultEtlService.extractDurationByWeek(lastWeek);
+		faultExtractDataService.extractStatusByWeek(lastWeek);
+		faultExtractDataService.extractFaultClassifyByWeek(lastWeek);
+		faultExtractDataService.extractDurationByWeek(lastWeek);
 		logger.info(String.format("executeWeekFault SPEND [%s]ms",System.currentTimeMillis() - start));
 	}
 
@@ -104,7 +100,7 @@ public class EveryWeekReportJob {
 		long start = System.currentTimeMillis();
 		//1.每周交易类型统计(2016年3季度需求综合报告之交易信息汇总)
 		Date lastWeek = DateUtils.getLastWeek();
-		transTypeEtlService.extractByWeek(lastWeek);
+		transTypeExtractDataService.extractByWeek(lastWeek);
 		logger.info(String.format("executeWeekTrans SPEND [%s]ms",System.currentTimeMillis() - start));
 	}
 
@@ -115,13 +111,13 @@ public class EveryWeekReportJob {
 		long start = System.currentTimeMillis();
 		Date lastWeek = DateUtils.getLastWeek();
 		//1.每周开机率统计(2016年3季度需求综合报告之开机率信息汇总)
-		avgOpenRateEtlService.extractByWeek(lastWeek);
+		avgOpenRateExtractDataService.extractByWeek(lastWeek);
 		//2.每周设备开机率统计(2016年3季度需求综合报告之开机率信息汇总)
-		deviceOpenRateEtlService.extractByWeek(lastWeek);
+		deviceOpenRateExtractDataService.extractByWeek(lastWeek);
 		//3.每周设备型号开机率统计(2016年3季度需求综合报告之开机率信息汇总)
-		deviceTypeOpenRateEtlService.extractByWeek(lastWeek);
+		deviceTypeOpenRateExtractDataService.extractByWeek(lastWeek);
 		//4.每周机构开机率统计(2016年3季度需求综合报告之开机率信息汇总)
-		orgOpenRateEtlService.extractByWeek(lastWeek);
+		orgOpenRateExtractDataService.extractByWeek(lastWeek);
 		logger.info(String.format("executeWeekOpenRate SPEND [%s]ms",System.currentTimeMillis() - start));
 	}
 
@@ -133,12 +129,12 @@ public class EveryWeekReportJob {
 //		Date now = new Date();
 		Date lastWeek = DateUtils.getLastWeek();
 		//1.设备类型统计
-		deviceCatalogSummaryWeekService.loadBaseData(lastWeek);
+		deviceExtractDataWeekService.loadCatalogBaseData(lastWeek);
 		//2.设备型号统计
-		deviceTypeSummaryWeekService.loadBaseData(lastWeek);
+		deviceExtractDataWeekService.loadTypeBaseData(lastWeek);
 		//3.每周吞卡统计(2016年3季度需求综合报告之吞卡信息汇总)
 //		Date lastWeek = DateUtils.getLastWeek();
-		retainCardEtlService.extractByWeek(lastWeek);
+		retainCardExtractDataService.extractByWeek(lastWeek);
 		logger.info(String.format("executeWeekDevice SPEND [%s]ms",System.currentTimeMillis() - start));
 	}
 	

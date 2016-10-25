@@ -3,7 +3,6 @@
  */
 package com.yihuacomputer.fish.api.report.openRate.etl;
 
-import java.util.Date;
 import java.util.List;
 
 
@@ -13,17 +12,6 @@ import java.util.List;
  * @since 2.1.1.1
  */
 public interface IDeviceOpenRateEtlService {
-	/**
-	 * 根据每台设备的开机率数据抽取每月开机率
-	 * @param date yyyy-MM
-	 */
-	public void extractByMonth(Date date);
-	
-	/**
-	 * 抽过去上周的统计数据
-	 * @param date 统计周
-	 */
-	public void extractByWeek(Date Date);
 	
 	/**
 	 * 周数据：按照设备统计的开机率，较好设备Top10
