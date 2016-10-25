@@ -48,7 +48,6 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 			
 			//提取日志
 			'detail_ControllerInfo displayfield[name="logAction"]' : {
-//				click : this.onLogAction
 				afterrender : {
 					fn : function(field) {
 						var text = field.getEl().down('a.link');
@@ -62,7 +61,6 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 			},
 			//网络连接
 			'detail_ControllerInfo displayfield[name="netAction"]' : {
-//				click : this.onNetAction
 				afterrender : {
 					fn : function(field) {
 						var text = field.getEl().down('a.link');
@@ -76,7 +74,6 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 			},
 			//获取软件列表
 			'detail_ControllerInfo displayfield[name="softwareListAction"]' : {
-//				click : this.onSoftwareListAction
 				afterrender : {
 					fn : function(field) {
 						var text = field.getEl().down('a.link');
@@ -90,7 +87,6 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 			},
 			//逻辑开
 			'detail_ControllerInfo displayfield[name="logicOpenAction"]' : {
-//				click: this.onLogicOpenAction
 				afterrender : {
 					fn : function(field) {
 						var text = field.getEl().down('a.link');
@@ -104,7 +100,6 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 			},
 			// 逻辑关
 			'detail_ControllerInfo displayfield[name="logicCloseAction"]' : {
-//				click : this.onLogicCloseAction
 				afterrender : {
 					fn : function(field) {
 						var text = field.getEl().down('a.link');
@@ -118,7 +113,6 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 			},
 			//获取进程列表
 			'detail_ControllerInfo displayfield[name="processListAction"]' : {
-//				click : this.onProcessListAction
 				afterrender : {
 					fn : function(field) {
 						var text = field.getEl().down('a.link');
@@ -132,7 +126,6 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 			},
 			//远程浏览
 			'detail_ControllerInfo displayfield[name="remoteBrowserAction"]' : {
-//				click : this.onRemoteBrowserAction
 				afterrender : {
 					fn : function(field) {
 						var text = field.getEl().down('a.link');
@@ -146,7 +139,6 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 			},
 			//远程查看ATMC应用版本和监控客户端版本
 			'detail_ControllerInfo displayfield[name="remoteLookAction"]' : {
-//				click : this.onRemoteLookAction
 				afterrender : {
 					fn : function(field) {
 						var text = field.getEl().down('a.link');
@@ -160,7 +152,6 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 			},
 			//ATM体检
 			'detail_ControllerInfo displayfield[name="remoteCheckATMAction"]' : {
-//				click : this.onRemoteCheckATMAction
 				afterrender : {
 					fn : function(field) {
 						var text = field.getEl().down('a.link');
@@ -174,7 +165,6 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 			},
 			//屏幕录制
 			'detail_ControllerInfo displayfield[name="screenCameraAction"]' : {
-//				click : this.onScreenCameraAction
 				afterrender : {
 					fn : function(field) {
 						var text = field.getEl().down('a.link');
@@ -188,7 +178,6 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 			},
 			// 复位命令
 			'detail_ControllerInfo displayfield[name="resetAction"]' : {
-//				click : this.onResetAction
 				afterrender : {
 					fn : function(field) {
 						var text = field.getEl().down('a.link');
@@ -201,9 +190,7 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 				scope : this
 			},
 			//关机命令
-			'detail_ControllerInfo displayfield[name="closeAction"]' : {
-//				click : this.onCloseAction
-				
+			'detail_ControllerInfo displayfield[name="closeAction"]' : {			
 				afterrender : {
 					fn : function(field) {
 						var text = field.getEl().down('a.link');
@@ -217,7 +204,6 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 			},
 			//重启设备命令
 			'detail_ControllerInfo displayfield[name="restartAction"]' : {
-//				click : this.onRestartAction
 				afterrender : {
 					fn : function(field) {
 						var text = field.getEl().down('a.link');
@@ -237,6 +223,19 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 						var text = field.getEl().down('a.link');
 						if (text) {
 							text.on('click', this.onRemoteCommHist, this, field);
+						}
+					},
+					scope : this
+				},
+				scope : this
+			},
+			
+			'detail_basic_otherInfo displayfield[name="appRelease"]' : {
+				change : {
+					fn : function(field) {
+						var text = field.getEl().down('a.link');
+						if (text) {
+							text.on('click', this.showAppRelease, this, field);
 						}
 					},
 					scope : this
@@ -817,7 +816,6 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 		var controller = this.getController('agent.remote.RemoteLookVesion');
 		controller.display(code, ip);
 
-		//var columns = this.getVersionInfo().getColumns();
 		var win = controller.win;
 		var statusView = Ext.ComponentQuery.query('detail_ControllerInfo')[0];
 		var winEl = statusView.getEl();
@@ -912,6 +910,10 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 		win.on('beforedestroy', function() {
 			clearInterval(deviceStatusIntervalID);
 		}, this);
+	},
+	
+	showAppRelease : function(ev, target, field){
+		Ext.getCmp('appRelease').show();
 	}
 
 });
