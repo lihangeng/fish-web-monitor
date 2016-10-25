@@ -3,7 +3,7 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 	views : [ 'machine.detail.View' ,
 	          'machine.detail.ControllerInfo'],
 	          
-	          
+    stores: ['case.Fault','case.DevMod','case.FaultStatus','case.FaultClassify'],          
 	requires : ['Eway.view.monitor.device.remote.Grid'],
 	          
 	refs : [ {
