@@ -7,7 +7,7 @@
 		<Arg>
 			<New class="org.apache.commons.dbcp.BasicDataSource">
 				<Set name="driverClassName">com.mysql.jdbc.Driver</Set>
-				<Set name="url">jdbc:mysql://10.2.6.48:3306/cmbc1?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=UTF8</Set>
+				<Set name="url">jdbc:mysql://127.0.0.1:3306/atmv?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=UTF8</Set>
 				<Set name="username">root</Set>
 				<Set name="password">root</Set>
 				<Set name="testOnBorrow" >true</Set>
