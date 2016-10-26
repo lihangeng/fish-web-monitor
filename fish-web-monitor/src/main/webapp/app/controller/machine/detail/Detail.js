@@ -33,203 +33,17 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 			'#deviceDetail displayfield[name=deviceControllerInfo]' : {
 				click : this.onControllerInfo
 			},
-			'detail_ControllerInfo displayfield[name="remoteScreenAction"]' : {
-				afterrender : {
-					fn : function(field) {
-						var text = field.getEl().down('a.link');
-						if (text) {
-							text.on('click', this.onRemoteScreenAction, this, field);
-						}
-					},
-					scope : this
-				},
-				scope : this
-			},
 			
-			//提取日志
-			'detail_ControllerInfo displayfield[name="logAction"]' : {
-				afterrender : {
-					fn : function(field) {
-						var text = field.getEl().down('a.link');
-						if (text) {
-							text.on('click', this.onLogAction, this, field);
-						}
-					},
+			'detail_ControllerInfo displayfield' : {
+				afterrender : function(field){
+					var text = field.getEl().down('a.link');
+					//var name=text.el.dom.innerText;
+					var name=field.name;
+					this.controllerInfo(field,text,name);
 					scope : this
 				},
 				scope : this
 			},
-			//网络连接
-			'detail_ControllerInfo displayfield[name="netAction"]' : {
-				afterrender : {
-					fn : function(field) {
-						var text = field.getEl().down('a.link');
-						if (text) {
-							text.on('click', this.onNetAction, this, field);
-						}
-					},
-					scope : this
-				},
-				scope : this
-			},
-			//获取软件列表
-			'detail_ControllerInfo displayfield[name="softwareListAction"]' : {
-				afterrender : {
-					fn : function(field) {
-						var text = field.getEl().down('a.link');
-						if (text) {
-							text.on('click', this.onSoftwareListAction, this, field);
-						}
-					},
-					scope : this
-				},
-				scope : this
-			},
-			//逻辑开
-			'detail_ControllerInfo displayfield[name="logicOpenAction"]' : {
-				afterrender : {
-					fn : function(field) {
-						var text = field.getEl().down('a.link');
-						if (text) {
-							text.on('click', this.onLogicOpenAction, this, field);
-						}
-					},
-					scope : this
-				},
-				scope : this
-			},
-			// 逻辑关
-			'detail_ControllerInfo displayfield[name="logicCloseAction"]' : {
-				afterrender : {
-					fn : function(field) {
-						var text = field.getEl().down('a.link');
-						if (text) {
-							text.on('click', this.onLogicCloseAction, this, field);
-						}
-					},
-					scope : this
-				},
-				scope : this
-			},
-			//获取进程列表
-			'detail_ControllerInfo displayfield[name="processListAction"]' : {
-				afterrender : {
-					fn : function(field) {
-						var text = field.getEl().down('a.link');
-						if (text) {
-							text.on('click', this.onProcessListAction, this, field);
-						}
-					},
-					scope : this
-				},
-				scope : this
-			},
-			//远程浏览
-			'detail_ControllerInfo displayfield[name="remoteBrowserAction"]' : {
-				afterrender : {
-					fn : function(field) {
-						var text = field.getEl().down('a.link');
-						if (text) {
-							text.on('click', this.onRemoteBrowserAction, this, field);
-						}
-					},
-					scope : this
-				},
-				scope : this
-			},
-			//远程查看ATMC应用版本和监控客户端版本
-			'detail_ControllerInfo displayfield[name="remoteLookAction"]' : {
-				afterrender : {
-					fn : function(field) {
-						var text = field.getEl().down('a.link');
-						if (text) {
-							text.on('click', this.onRemoteLookAction, this, field);
-						}
-					},
-					scope : this
-				},
-				scope : this
-			},
-			//ATM体检
-			'detail_ControllerInfo displayfield[name="remoteCheckATMAction"]' : {
-				afterrender : {
-					fn : function(field) {
-						var text = field.getEl().down('a.link');
-						if (text) {
-							text.on('click', this.onRemoteCheckATMAction, this, field);
-						}
-					},
-					scope : this
-				},
-				scope : this
-			},
-			//屏幕录制
-			'detail_ControllerInfo displayfield[name="screenCameraAction"]' : {
-				afterrender : {
-					fn : function(field) {
-						var text = field.getEl().down('a.link');
-						if (text) {
-							text.on('click', this.onScreenCameraAction, this, field);
-						}
-					},
-					scope : this
-				},
-				scope : this
-			},
-			// 复位命令
-			'detail_ControllerInfo displayfield[name="resetAction"]' : {
-				afterrender : {
-					fn : function(field) {
-						var text = field.getEl().down('a.link');
-						if (text) {
-							text.on('click', this.onResetAction, this, field);
-						}
-					},
-					scope : this
-				},
-				scope : this
-			},
-			//关机命令
-			'detail_ControllerInfo displayfield[name="closeAction"]' : {			
-				afterrender : {
-					fn : function(field) {
-						var text = field.getEl().down('a.link');
-						if (text) {
-							text.on('click', this.onCloseAction, this, field);
-						}
-					},
-					scope : this
-				},
-				scope : this
-			},
-			//重启设备命令
-			'detail_ControllerInfo displayfield[name="restartAction"]' : {
-				afterrender : {
-					fn : function(field) {
-						var text = field.getEl().down('a.link');
-						if (text) {
-							text.on('click', this.onRestartAction, this, field);
-						}
-					},
-					scope : this
-				},
-				scope : this
-			},
-			
-			// 命令执行结果
-			'detail_ControllerInfo displayfield[name="remoteCommHist"]' : {
-				afterrender : {
-					fn : function(field) {
-						var text = field.getEl().down('a.link');
-						if (text) {
-							text.on('click', this.onRemoteCommHist, this, field);
-						}
-					},
-					scope : this
-				},
-				scope : this
-			},
-			
 			'detail_basic_otherInfo displayfield[name="appRelease"]' : {
 				change : {
 					fn : function(field) {
@@ -244,6 +58,41 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 			}
 		});
 	},
+	
+	controllerInfo : function(field,text,name) {
+		if (text&&name=="remoteCommHist") {
+			text.on('click', this.onRemoteCommHist, this, field);
+		}else if(text&&name=="remoteScreenAction") {
+			text.on('click', this.onRemoteScreenAction, this, field);
+		}else if(text&&name=="netAction") {
+			text.on('click', this.onNetAction, this, field);
+		}else if(text&&name=="remoteBrowserAction") {
+			text.on('click', this.onRemoteBrowserAction, this, field);
+		}else if(text&&name=="restartAction") {
+			text.on('click', this.onRestartAction, this, field);
+		}else if(text&&name=="logicOpenAction") {
+			text.on('click', this.onLogicOpenAction, this, field);
+		}else if(text&&name=="logicCloseAction") {
+			text.on('click', this.onLogicCloseAction, this, field);
+		}else if(text&&name=="resetAction") {
+			text.on('click', this.onResetAction, this, field);
+		}else if(text&&name=="softwareListAction") {
+			text.on('click', this.onSoftwareListAction, this, field);
+		}else if(text&&name=="processListAction") {
+			text.on('click', this.onProcessListAction, this, field);
+		}else if(text&&name=="remoteLookAction") {
+			text.on('click', this.onRemoteLookAction, this, field);
+		}else if(text&&name=="remoteCheckATMAction") {
+			text.on('click', this.onRemoteCheckATMAction, this, field);
+		}else if(text&&name=="closeAction") {
+			text.on('click', this.onCloseAction, this, field);
+		}else if(text&&name=="logAction") {
+			text.on('click', this.onLogAction, this, field);
+		}else if(text&&name=="screenCameraAction") {
+			text.on('click', this.onScreenCameraAction, this, field);
+		}
+	},
+	
 	onBasicInfo:function(){
 		var view = this.getEwayView();
 		view.getLayout().setActiveItem("detail_basicInfo");
@@ -261,11 +110,7 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 	
 	//查看远程命令结果
     onRemoteCommHist :  function(ev, target, field) {
-		
-	    var view = this.getDeviceInfo();
-	    var codes = view.down('displayfield[name="terminalId"]').getValue();
-		var code = Ext.util.Format.stripTags(codes);
-		
+    	var deviceInfo=this.getParam();
 		var win = Ext.create('Ext.window.Window',{
 			modal: true,
 			height: 520,
@@ -282,7 +127,7 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 		
 		var store = win.down('grid').getStore();
 		store.setUrlParamsByObject({
-			terminalId : code
+			terminalId : deviceInfo.code
 		});
 		store.loadPage(1);
 		
@@ -294,15 +139,7 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 	
 	//打开远程抓屏
 	onRemoteScreenAction : function(ev, target, field) {
-		var view = this.getDeviceInfo();
-		console.log(view);
-		var ip = view.down('displayfield[name="ip"]').getValue();
-		console.log(ip);
-		//var form = field.up('panel');
-		//var ip = form.down('displayfield[name="ip"]').getValue();
-		ip = Ext.util.Format.stripTags(ip);
-		var codes = view.down('displayfield[name="terminalId"]').getValue();
-		var code = Ext.util.Format.stripTags(codes);
+		var deviceInfo=this.getParam();
 		var store = Ext.create('Eway.store.agent.Image');
 		var imageTpl = new Ext.XTemplate(
 		    '<tpl for=".">',
@@ -332,7 +169,7 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 				    }]
 		}).show();
 		store.load({
-			params : {ip : ip ,code: code},
+			params : {ip : deviceInfo.ip ,code: deviceInfo.code},
 			callback: function(records, operation, success) {
 		        if(success == false){
 					Eway.alert(EwayLocale.monitor.devMonitor.remote.screenFailed);
@@ -342,20 +179,15 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 	},
 	//提取电子日志
 	onLogAction : function(ev, target, field){
-		var view = this.getDeviceInfo();
-		var ip =view.down('displayfield[name="ip"]').getValue();
-		var codes = view.down('displayfield[name="terminalId"]').getValue();
-		code = Ext.util.Format.stripTags(code);
-		ip = Ext.util.Format.stripTags(ip);
-		var win = Ext.ComponentQuery.query('detail_ControllerInfo')[0];
-		var winEl = win.getEl();
+		var deviceInfo=this.getParam();
+		var winEl=deviceInfo.winEl;
 		winEl.mask(EwayLocale.tip.nowLink);
 		Ext.Ajax.request({
 			method : 'POST',
 			url : 'api/agent/downLogs/download',
 			params : {
-				ip : ip,
-				code : code
+				ip : deviceInfo.ip,
+				code : deviceInfo.code
 			},
 			success : function(response) {
 				var object = Ext.decode(response.responseText);
@@ -388,18 +220,15 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 
 	//查看网络连接
 	onNetAction : function(ev, target, field){
-		var me = this;
-		var view = this.getDeviceInfo();
-		var ip =view.down('displayfield[name="ip"]').getValue();
-		ip = Ext.util.Format.stripTags(ip);
-		var win = Ext.ComponentQuery.query('detail_ControllerInfo')[0];
-		var winEl = win.getEl();
+		var deviceInfo=this.getParam();
+		var winEl=deviceInfo.winEl;
+		var me=this;
 		winEl.mask(EwayLocale.tip.nowLink);
 		Ext.Ajax.request({
 			method: 'POST',
 			url: 'api/agent/netWork/getNetWork',
 			params: {
-				ip : ip
+				ip : deviceInfo.ip
 			},
 			success: function(response) {
 				winEl.unmask();
@@ -408,7 +237,7 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 					var controller = me.getController('agent.remote.RemoteBrowseNetWork');
 					var netInfoObj = Ext.decode(response.responseText);
 					controller.init();
-					controller.display(ip,netInfoObj.sendByte,netInfoObj.receivedByte,netInfoObj.conenctRate);
+					controller.display(deviceInfo.ip,netInfoObj.sendByte,netInfoObj.receivedByte,netInfoObj.conenctRate);
 				} else {
 					Eway.alert(EwayLocale.tip.business.device.linkServerFail);
 				}
@@ -422,33 +251,26 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 
 	//获取软件列表
 	onSoftwareListAction : function(ev, target, field){
-		var view = this.getDeviceInfo();
-		var ip =view.down('displayfield[name="ip"]').getValue();
-		ip = Ext.util.Format.stripTags(ip);
+		var deviceInfo=this.getParam();
 		var controller = this.getController('agent.remote.RemoteBrowseInstation');
 		controller.init();
-		controller.display(ip);
+		controller.display(deviceInfo.ip);
 	},
 
 	//逻辑开
 	onLogicOpenAction : function(ev, target, field){
-		var view = this.getDeviceInfo();
+		var deviceInfo=this.getParam();
 		Ext.MessageBox.confirm(EwayLocale.tip.tips,EwayLocale.tip.business.device.logicOpen,
 			function(button,text){
 				if(button == 'yes'){					
-					var ip =view.down('displayfield[name="ip"]').getValue();
-					ip = Ext.util.Format.stripTags(ip);
-					var codes = view.down('displayfield[name="terminalId"]').getValue();
-					code = Ext.util.Format.stripTags(codes);
-					var win = Ext.ComponentQuery.query('detail_ControllerInfo')[0];
-					var winEl = win.getEl();
+					var winEl=deviceInfo.winEl;
 					winEl.mask(EwayLocale.tip.business.device.operating);
 					Ext.Ajax.request({
 						method : 'POST',
 						url : 'api/agent/logic/open',
 						params : {
-							ip : ip,
-							terminalId : code
+							ip : deviceInfo.ip,
+							terminalId : deviceInfo.code
 						},
 						success : function(response) {
 							winEl.unmask();
@@ -473,23 +295,18 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 
 	//逻辑关
 	onLogicCloseAction : function(ev, target, field){
-		var view = this.getDeviceInfo();
+		var deviceInfo=this.getParam();
 		Ext.MessageBox.confirm(EwayLocale.tip.tips,EwayLocale.tip.business.device.closeConfirm,
 			function(button,text){
 				if(button == 'yes'){
-					var ip =view.down('displayfield[name="ip"]').getValue();
-					ip = Ext.util.Format.stripTags(ip);
-					var codes = view.down('displayfield[name="terminalId"]').getValue();
-					code = Ext.util.Format.stripTags(codes);
-					var win = Ext.ComponentQuery.query('detail_ControllerInfo')[0];
-					var winEl = win.getEl();
+					var winEl=deviceInfo.winEl;
 					winEl.mask(EwayLocale.tip.business.device.operating);
 					Ext.Ajax.request({
 						method : 'POST',
 						url : 'api/agent/logic/close',
 						params : {
-							ip : ip,
-							terminalId : code
+							ip : deviceInfo.ip,
+							terminalId : deviceInfo.code
 						},
 						success : function(response) {
 							winEl.unmask();
@@ -514,25 +331,20 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 
 	//获取进程列表
 	onProcessListAction : function(ev, target, field){
-		var view = this.getDeviceInfo();
-		var ip =view.down('displayfield[name="ip"]').getValue();
-		ip = Ext.util.Format.stripTags(ip);
+		var deviceInfo=this.getParam();
 		var controller = this.getController('agent.remote.RemoteBrowseProcess');
-		controller.display(ip);
+		controller.display(deviceInfo.ip);
 	},
 
 	//打开远程浏览功能
 	onRemoteBrowserAction : function(ev, target, field){
-		var view = this.getDeviceInfo();
-		var ip =view.down('displayfield[name="ip"]').getValue();
-		ip = Ext.util.Format.stripTags(ip);
+		var deviceInfo=this.getParam();
 		var controller = this.getController('agent.remote.RemoteBrowse');
-		controller.display(ip);
+		controller.display(deviceInfo.ip);
 	},
 
 	//执行关机命令
 	onCloseAction : function(ev, target, field){
-		var view = this.getDeviceInfo();
 		var dialog = Ext.create('Ext.window.MessageBox', {
             buttons: [{
                 text: EwayLocale.tip.business.device.closeNormal,
@@ -541,20 +353,16 @@ Ext.define('Eway.controller.machine.detail.Detail', {
             		function callBack(id){
             			if(id == 'yes'){
             				dialog.close();
-		            		var ip =view.down('displayfield[name="ip"]').getValue();
-		            		var codes = view.down('displayfield[name="terminalId"]').getValue();
-		            		ip = Ext.util.Format.stripTags(ip);
-		            		terminalId = Ext.util.Format.stripTags(codes);
-		            		var win = Ext.ComponentQuery.query('detail_ControllerInfo')[0];
-		            		var winEl = win.getEl();
+            				var deviceInfo=this.getParam();
+            				var winEl=deviceInfo.winEl;
 							winEl.mask(EwayLocale.tip.business.device.closing);
 							Ext.Ajax.request({
 								method : 'POST',
 								url : 'api/agent/normalShutdown',
 								params : {
 									shutdownType : "OS",
-									ip : ip,
-									terminalId : terminalId
+									ip : deviceInfo.ip,
+									terminalId : deviceInfo.code
 								},
 								success : function(response) {
 									var object = Ext.decode(response.responseText);
@@ -582,21 +390,16 @@ Ext.define('Eway.controller.machine.detail.Detail', {
             		function callBack(id){
             			if(id == 'yes'){
             				dialog.close();
-		            		var view = this.getDeviceInfo();
-		            		var ip =view.down('displayfield[name="ip"]').getValue();
-		            		var codes = view.down('displayfield[name="terminalId"]').getValue();
-		            		terminalId = Ext.util.Format.stripTags(codes);
-		            		ip = Ext.util.Format.stripTags(ip);
-		            		var win = Ext.ComponentQuery.query('detail_ControllerInfo')[0];
-		            		var winEl = win.getEl();
+            				var deviceInfo=this.getParam();
+            				winE1=deviceInfo.winEl
 							winEl.mask(EwayLocale.tip.business.device.forceClosing);
 							Ext.Ajax.request({
 								method : 'POST',
 								url : 'api/agent/shutdown',
 								params : {
 									shutdownType : "OS",
-									ip : ip,
-									terminalId : terminalId
+									ip : deviceInfo.ip,
+									terminalId : deviceInfo.code
 								},
 								success : function(response) {
 									var object = Ext.decode(response.responseText);
@@ -634,7 +437,7 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 
 	//重启命令
 	onRestartAction : function(ev, target, field){
-		var view = this.getDeviceInfo();
+		var deviceInfo=this.getParam();
 		var dialog = Ext.create('Ext.window.MessageBox', {
             buttons: [{
                 text: EwayLocale.tip.business.device.reboot,
@@ -644,20 +447,15 @@ Ext.define('Eway.controller.machine.detail.Detail', {
                 	function callBack(id){
                 		if(id == 'yes'){
 		            		dialog.close();
-							var ip =view.down('displayfield[name="ip"]').getValue();
-							var codes = view.down('displayfield[name="terminalId"]').getValue();
-							terminalId = Ext.util.Format.stripTags(codes);
-							ip = Ext.util.Format.stripTags(ip);
-							var win = Ext.ComponentQuery.query('detail_ControllerInfo')[0];
-							var winEl = win.getEl();
-							winEl.mask(EwayLocale.tip.business.device.rebooting);
+		            		var winEl=deviceInfo.winEl;
+		            		deviceInfo.winEl.mask(EwayLocale.tip.business.device.rebooting);
 							Ext.Ajax.request({
 								method : 'POST',
 								url : 'api/agent/normalReboot',
 								params : {
 									restartType : "OS",
-									ip : ip,
-									terminalId : terminalId
+									ip : deviceInfo.ip,
+									terminalId : deviceInfo.code
 								},
 								success : function(response) {
 									winEl.unmask();
@@ -687,20 +485,15 @@ Ext.define('Eway.controller.machine.detail.Detail', {
             		function callBack(id){
             			if(id == 'yes'){
             				dialog.close();
-							var ip =view.down('displayfield[name="ip"]').getValue();
-							var codes = view.down('displayfield[name="terminalId"]').getValue();
-							terminalId = Ext.util.Format.stripTags(codes);
-							ip = Ext.util.Format.stripTags(ip);
-							var win = Ext.ComponentQuery.query('detail_ControllerInfo')[0];
-							var winEl = win.getEl();
+		            		var winEl=deviceInfo.winEl;
 							winEl.mask(EwayLocale.tip.business.device.forceReboot);
 							Ext.Ajax.request({
 								method : 'POST',
 								url : 'api/agent/reboot',
 								params : {
 									restartType : "OS",
-									ip : ip,
-									terminalId : terminalId
+									ip : deviceInfo.ip,
+									terminalId : deviceInfo.code
 								},
 								success : function(response) {
 									winEl.unmask();
@@ -740,29 +533,23 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 
 	//复位命令，需要C端配合
 	onResetAction : function(ev, target, field){
-		var view = this.getDeviceInfo();
+		var deviceInfo=this.getParam();
 		Ext.MessageBox.confirm(EwayLocale.tip.tips,EwayLocale.tip.business.device.resetConfirm,callBack);
 		function callBack(id){
 			if(id == 'yes'){
-				var ip =view.down('displayfield[name="ip"]').getValue();
-				ip = Ext.util.Format.stripTags(ip);
-				var codes = view.down('displayfield[name="terminalId"]').getValue();
-				code = Ext.util.Format.stripTags(codes);
-				var win = Ext.ComponentQuery.query('detail_ControllerInfo')[0];
-				var winEl = win.getEl();
+        		var winEl=deviceInfo.winEl;
 				winEl.mask(EwayLocale.tip.business.device.operating);
 				Ext.Ajax.timeout = 120000;
 				Ext.Ajax.request({
 					method : 'POST',
 					url : 'api/agent/logic/reset',
 					params : {
-						ip : ip,
-						terminalId : code
+						ip : deviceInfo.ip,
+						terminalId : deviceInfo.code
 					},
 					success : function(response) {
 						winEl.unmask();
 //						Eway.alert(EwayLocale.tip.business.device.remoteCommandMsg);
-						
 						var object = Ext.decode(response.responseText);
 						if (object.success && object.success == true) {
 							winEl.unmask();
@@ -783,69 +570,52 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 
 	//屏幕录像功能
 	onScreenCameraAction : function(ev, target, field){
-		var view = this.getDeviceInfo();
-		var codes = view.down('displayfield[name="terminalId"]').getValue();
-		var ip =view.down('displayfield[name="ip"]').getValue();
-		terminalId = Ext.util.Format.stripTags(codes);
-		ip = Ext.util.Format.stripTags(ip);
+		var deviceInfo=this.getParam();
 		var controller = this.getController('agent.remote.screen.Camera');
 		if (!this.cameaController) {
 			controller.init();
 			this.cameaController = controller;
 		}
-		controller.display(terminalId, ip);
+		controller.display(deviceInfo.code, deviceInfo.ip);
 	},
 
 	//设备体检功能
 	onRemoteCheckATMAction : function(ev, target, field){
-		var view = this.getDeviceInfo();
-		var codes = view.down('displayfield[name="terminalId"]').getValue();
-		var ip =view.down('displayfield[name="ip"]').getValue();
-		terminalId = Ext.util.Format.stripTags(codes);
-		ip = Ext.util.Format.stripTags(ip);
+		var deviceInfo=this.getParam();
 		var controller = this.getController('agent.remote.RemoteCheckInfo');
-		controller.display(ip,terminalId);
+		controller.display(deviceInfo.ip,deviceInfo.code);
 	},
 
 	// 查看应用版本
 	onRemoteLookAction : function(ev, target, field) {
-		var view = this.getDeviceInfo();
-		var ip = view.down('displayfield[name="ip"]').getValue();
-		var codes = view.down('displayfield[name="terminalId"]').getValue();
-		code = Ext.util.Format.stripTags(codes);
+		var deviceInfo=this.getParam();
 		var controller = this.getController('agent.remote.RemoteLookVesion');
-		controller.display(code, ip);
-
+		controller.display(deviceInfo.code,deviceInfo.ip);
 		var win = controller.win;
-		var statusView = Ext.ComponentQuery.query('detail_ControllerInfo')[0];
-		var winEl = statusView.getEl();
+		var winEl=deviceInfo.winEl;
 		winEl.mask(EwayLocale.tip.business.device.operating);
 
 		Ext.Ajax.request({
    			method : 'POST',
    			url : 'api/agent/atmVersion/versioninfo',
    			params :{
-   				terminalId: code,
-   				ip: ip
+   				terminalId: deviceInfo.code,
+   				ip: deviceInfo.ip
    			},
    			success : function(response){
    				winEl.unmask();
    				var object = Ext.decode(response.responseText);
    				if(object.success == true){
    					if(object.data != null){
-   	   					
    	   					if (object.data.currentPatches.length > 0) {
    	   						var formVersion = win.down('form');
-   	   						
 	   	   					for(var index=0; index<object.data.currentPatches.length; index++) {
 	   	   						var data = object.data.currentPatches[index];
-	   	   						
 	   	   						formVersion.add({
 	   	   							xtype : 'displayfield',
 									fieldLabel: data.typeName,
 									labelWidth: 150,
 									width: 380,
-									
 									value : data.versionNo,
 									margin : '0 0 0 10',
 									style : {
@@ -855,9 +625,7 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 	   	   						});
 	   	   					}
    	   					}
-   	   					
    	   					win.show();
-
    	   					//statusView.record.set('appRelease', object.data.atmcVersion);
    	   					form.down('displayfield[name="appRelease"]').setValue(object.data.atmcVersion);
 
@@ -881,15 +649,12 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 	//显示设备详情页面
 	displayWin : function(record) {
 		var win = Ext.widget('detail_ControllerInfo');
-		
 		win.setRecord(record);
-		
 		win.setTitle(EwayLocale.tip.business.device.term + "(" + record.data.code + ")" +EwayLocale.tip.business.device.detail);
 		win.on('afterrender',function(){
 			win.fillForm(record);
 		},this)
 		win.show();
-
 		var me = this; // 保留当前对象的作用域/
 		win.query('tool[action="refresh"]')[0].on('click', function() {
 			var el = win.getEl();
@@ -910,6 +675,21 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 		win.on('beforedestroy', function() {
 			clearInterval(deviceStatusIntervalID);
 		}, this);
+	},
+	
+	getParam:function(){
+		var view = this.getDeviceInfo();
+		var ip =view.down('displayfield[name="ip"]').getValue();
+		var codes = view.down('displayfield[name="terminalId"]').getValue();
+		code = Ext.util.Format.stripTags(codes);
+		ip = Ext.util.Format.stripTags(ip);
+		var win = Ext.ComponentQuery.query('detail_ControllerInfo')[0];
+		var winEl = win.getEl();
+		var deviceInfo={};
+		deviceInfo.ip = ip;
+		deviceInfo.code = code;
+		deviceInfo.winEl = winEl;
+		return deviceInfo;
 	},
 	
 	showAppRelease : function(ev, target, field){
