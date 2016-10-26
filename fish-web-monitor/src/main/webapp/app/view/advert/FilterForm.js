@@ -3,13 +3,13 @@ Ext.define('Eway.view.advert.FilterForm', {
 	alias : 'widget.advert_filterForm',
 
 	requires : [ 'Ext.ux.form.DateTimeField' ],
-	height : 35,
+	height : 65,
 	initComponent : function() {
 		var me = this;
 		Ext.apply(this, {
 			layout : 'column',
 			items : [ {
-				columnWidth : .4,
+				columnWidth : .3,
 				items : [ {
 					xtype : 'combobox',
 					fieldLabel : EwayLocale.advert.type,
@@ -20,7 +20,7 @@ Ext.define('Eway.view.advert.FilterForm', {
 					name : 'advertType',
 					labelWidth:80,
 					editable : false,
-					width : 320
+					width : 250
 				} ]
 			}, {
 
