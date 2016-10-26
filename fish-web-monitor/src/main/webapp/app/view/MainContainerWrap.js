@@ -29,7 +29,6 @@ Ext.define('Eway.view.MainContainerWrap', {
             // We use itemId/getComponent instead of "reference" because the initial
             // layout occurs too early for the reference to be resolved
             navTree = me.down('treelist');
-        console.log(navTree);
         me.minHeight = height;
 
         navTree.setStyle({
