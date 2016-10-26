@@ -10,6 +10,15 @@
 				<Set name="url">jdbc:mysql://127.0.0.1:3306/atmv?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=UTF8</Set>
 				<Set name="username">root</Set>
 				<Set name="password">root</Set>
+				<Set name="testOnBorrow" >true</Set>
+				<Set name="testOnReturn" >true</Set>
+				<Set name="testWhileIdle" >true</Set>
+				<Set name="validationQuery">SELECT 1</Set>
+<!-- 				检查无效连接的时间间隔 -->
+				<Set name="timeBetweenEvictionRunsMillis" >3600000</Set>
+<!-- 				连接闲置的时间 -->
+				<Set name="minEvictableIdleTimeMillis" >3600000</Set>
+				
 			</New>
 		</Arg>
 	</New>

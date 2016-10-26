@@ -105,7 +105,7 @@
 		show($("updatePasswordDiv"), false);
 	}
 
-	function textFocus() {
+	window.onload = function(){
 		$('username').focus();
 	}
 </script>
