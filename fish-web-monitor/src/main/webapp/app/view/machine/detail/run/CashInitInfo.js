@@ -12,7 +12,7 @@ Ext.define('Eway.view.machine.detail.run.CashInitInfo', {
 	    type:'refresh',
 	    tooltip: EwayLocale.button.refresh,
 	    handler: function(event, toolEl, panelHeader) {
-	     	this.up('faultTrend').down('cartesian').getStore().load();
+	     	this.up('cashInitInfo').down('cartesian').getStore().load();
 	    }
 	}],
 
