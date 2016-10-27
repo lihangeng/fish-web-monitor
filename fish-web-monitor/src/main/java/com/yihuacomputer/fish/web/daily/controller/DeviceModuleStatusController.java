@@ -222,6 +222,9 @@ public class DeviceModuleStatusController {
 	        idc.setHwCode(modStatus.getIdc().getHwCode());
         }
         else{
+        	StatusIdc idcStatus = new StatusIdc();
+        	idcStatus.setStatus(DeviceStatus.NoDevice);
+        	modStatus.setIdc(idcStatus);
         	idc.setStatus(DeviceStatus.NoDevice);
         }
         // JPR
@@ -232,6 +235,9 @@ public class DeviceModuleStatusController {
         jpr.setHwCode(modStatus.getJpr().getHwCode());
         }
         else{
+        	StatusJpr jprStatus = new StatusJpr();
+        	jprStatus.setStatus(DeviceStatus.NoDevice);
+        	modStatus.setJpr(jprStatus);
         	jpr.setStatus(DeviceStatus.NoDevice);
         }
         // RPR
@@ -248,6 +254,9 @@ public class DeviceModuleStatusController {
 	        cdm.setHwCode(modStatus.getCdm().getHwCode());
         }
         else{
+        	StatusCdm cdmStatus = new StatusCdm();
+        	cdmStatus.setStatus(DeviceStatus.NoDevice);
+        	modStatus.setCdm(cdmStatus);
         	cdm.setStatus(DeviceStatus.NoDevice);
         }
         // CIM
@@ -258,6 +267,9 @@ public class DeviceModuleStatusController {
 	        cim.setHwCode(modStatus.getCim().getHwCode());
         }
         else{
+        	StatusCim cimStatus = new StatusCim();
+        	cimStatus.setStatus(DeviceStatus.NoDevice);
+        	modStatus.setCim(cimStatus);
         	 cim.setStatus(DeviceStatus.NoDevice);
         }
         // SIU
@@ -268,6 +280,9 @@ public class DeviceModuleStatusController {
 	        siu.setHwCode(modStatus.getSiu().getHwCode());
         }
         else{
+        	StatusSiu siuStatus = new StatusSiu();
+        	siuStatus.setStatus(DeviceStatus.NoDevice);
+        	modStatus.setSiu(siuStatus);
         	siu.setStatus(DeviceStatus.NoDevice);
         }
         // PIN
@@ -278,6 +293,9 @@ public class DeviceModuleStatusController {
         pin.setHwCode(modStatus.getPin().getHwCode());
         }
         else{
+        	StatusPin pinStatus = new StatusPin();
+        	pinStatus.setStatus(DeviceStatus.NoDevice);
+        	modStatus.setPin(pinStatus);
         	pin.setStatus(DeviceStatus.NoDevice);
         }
         // TTU
@@ -288,6 +306,9 @@ public class DeviceModuleStatusController {
         ttu.setHwCode(modStatus.getTtu().getHwCode());
         }
         else{
+        	StatusTtu ttuStatus = new StatusTtu();
+        	ttuStatus.setStatus(DeviceStatus.NoDevice);
+        	modStatus.setTtu(ttuStatus);
         	ttu.setStatus(DeviceStatus.NoDevice);
         }
         // ISC
@@ -298,6 +319,9 @@ public class DeviceModuleStatusController {
         isc.setHwCode(modStatus.getIsc().getHwCode());
         }
         else{
+        	StatusIsc iscStatus = new StatusIsc();
+        	iscStatus.setStatus(DeviceStatus.NoDevice);
+        	modStatus.setIsc(iscStatus);
         	isc.setStatus(DeviceStatus.NoDevice);
         }
         // Icc
@@ -308,6 +332,9 @@ public class DeviceModuleStatusController {
         icc.setHwCode(modStatus.getIcc().getHwCode());
         }
         else{
+        	StatusIcc iccStatus = new StatusIcc();
+        	iccStatus.setStatus(DeviceStatus.NoDevice);
+        	modStatus.setIcc(iccStatus);
         	icc.setStatus(DeviceStatus.NoDevice);
         }
         // FGP
@@ -318,6 +345,9 @@ public class DeviceModuleStatusController {
         fgp.setHwCode(modStatus.getFgp().getHwCode());
         }
         else{
+        	StatusFgp fgpStatus = new StatusFgp();
+        	fgpStatus.setStatus(DeviceStatus.NoDevice);
+        	modStatus.setFgp(fgpStatus);
         	fgp.setStatus(DeviceStatus.NoDevice);
         }
         // TTU
@@ -328,6 +358,9 @@ public class DeviceModuleStatusController {
         pbk.setHwCode(modStatus.getPbk().getHwCode());
         }
         else{
+        	StatusPbk pbkStatus = new StatusPbk();
+        	pbkStatus.setStatus(DeviceStatus.NoDevice);
+        	modStatus.setPbk(pbkStatus);
         	pbk.setStatus(DeviceStatus.NoDevice);
         }
         
@@ -339,6 +372,9 @@ public class DeviceModuleStatusController {
         	cam.setHwCode(modStatus.getCam().getHwCode());
         }
         else{
+        	StatusCam camStatus = new StatusCam();
+        	camStatus.setStatus(DeviceStatus.NoDevice);
+        	modStatus.setCam(camStatus);
         	cam.setStatus(DeviceStatus.NoDevice);
         }
         
@@ -350,6 +386,9 @@ public class DeviceModuleStatusController {
         	bcr.setHwCode(modStatus.getBcr().getHwCode());
         }
         else{
+        	StatusBcr bcrStatus = new StatusBcr();
+        	bcrStatus.setStatus(DeviceStatus.NoDevice);
+        	modStatus.setBcr(bcrStatus);
         	bcr.setStatus(DeviceStatus.NoDevice);
         }
         
@@ -361,6 +400,9 @@ public class DeviceModuleStatusController {
         	nfc.setHwCode(modStatus.getNfc().getHwCode());
         }
         else{
+        	StatusRfc nfcStatus = new StatusRfc();
+        	nfcStatus.setStatus(DeviceStatus.NoDevice);
+        	modStatus.setNfc(nfcStatus);
         	nfc.setStatus(DeviceStatus.NoDevice);
         }
         xfsStatus.setStatusIdc(idc);
