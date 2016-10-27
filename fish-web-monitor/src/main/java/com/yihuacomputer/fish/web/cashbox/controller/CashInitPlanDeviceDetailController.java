@@ -306,7 +306,12 @@ public class CashInitPlanDeviceDetailController {
 			form.setFlag(cashInitPlanDevice.getFlag().getNo());
 			form.setId(cashInitPlanDevice.getId());
 			form.setLastAmt(cashInitPlanDevice.getLastAmt());
-			form.setLastDate(cashInitPlanDevice.getLastDate());
+			if(cashInitPlanDevice.getLastDate() != null){
+				form.setLastDate(cashInitPlanDevice.getLastDate());
+			}else {
+				form.setLastDate("");
+			}
+			
 			form.setOrgName(cashInitPlanDevice.getOrgName());
 			form.setTerminalId(cashInitPlanDevice.getTerminalId());
 			IDeviceBoxInfo deviceBoxInfo = deviceBoxInfoMap.get(cashInitPlanDevice.getTerminalId());
