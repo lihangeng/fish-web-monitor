@@ -65,7 +65,7 @@ public class ExcelViewUtils extends AbstractXlsxView {
 		}else{
 			sheet = workbook.createSheet();
 		}
-		List<Object> contextList = null;
+		List<Object> contextList = (List<Object>) contextObjects;
 		//没有设备列宽，列宽则为默认
 		if ( null != colWidthStrs) {
 			String[]colWidthArrays = colWidthStrs.split(",");
@@ -82,9 +82,8 @@ public class ExcelViewUtils extends AbstractXlsxView {
 			createSheetTitle(sheet, headerArgs.length, title);
 			createHeaderTitle(sheet, headerArgs);
 		}
-		if (contextObjects != null && null != colIndexStrs) {
+		if (contextList.size() != 0 && null != colIndexStrs) {
 			String []colIndexs =  colIndexStrs.split(",");
-			contextList = (List<Object>) contextObjects;
 			createContext(sheet, contextList, colIndexs);
 		}
 		if(fileName!=null&&!"".equals(fileName)){
