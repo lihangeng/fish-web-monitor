@@ -31,7 +31,6 @@ Ext.define('Eway.view.Header', {
     				        node : 'A'
     				    },
     				    success :function(data){
-    				    	debugger;
     				    	var isShow = Ext.decode(data.responseText); 
     				    	if(isShow){
     				    		_this.show();
@@ -57,7 +56,6 @@ Ext.define('Eway.view.Header', {
     				        node : 'A'
     				    },
     				    success :function(data){
-    				    	debugger;
     				    	var isShow = Ext.decode(data.responseText); 
     				    	if(isShow){
     				    		_this.show();
