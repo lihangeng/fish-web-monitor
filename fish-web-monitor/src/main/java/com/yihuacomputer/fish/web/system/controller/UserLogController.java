@@ -19,8 +19,6 @@ import org.springframework.web.context.request.WebRequest;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
-import com.yihuacomputer.common.annotation.ClassNameDescrible;
-import com.yihuacomputer.common.annotation.MethodNameDescrible;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.fish.api.person.IUserLog;
 import com.yihuacomputer.fish.api.person.IUserLogService;

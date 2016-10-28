@@ -99,7 +99,10 @@ Ext.apply(EwayLocale,{
 			operLogList:'Operate Logs List',//EwayLocale.person.user.operLogList
 			personDevice:'Link Device(Can Use Drag And Drop)',//EwayLocale.person.user.personDevice
 			rootUser:'Super User',//EwayLocale.person.user.rootUser
-			generalUser:'General User'//EwayLocale.person.user.generalUser
+			generalUser:'General User',//EwayLocale.person.user.generalUser
+			serverIp:'Server IP',//EwayLocale.person.user.serverIp
+			clientIP:'Explorer IP',//EwayLocale.person.user.clientIP
+			times:'Executing Time(ms)'//EwayLocale.person.user.times
 		}
 
 	},

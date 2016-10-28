@@ -98,7 +98,10 @@ Ext.apply(EwayLocale,{
 			operLogList:'操作日志列表',//EwayLocale.person.user.operLogList
 			personDevice:'关联设备（可使用拖拽的方式）',//EwayLocale.person.user.personDevice
 			rootUser:'超级用户',//EwayLocale.person.user.rootUser
-			generalUser:'普通用户'//EwayLocale.person.user.generalUser
+			generalUser:'普通用户',//EwayLocale.person.user.generalUser
+			serverIp:'服务器IP',//EwayLocale.person.user.serverIp
+			clientIP:'浏览器IP',//EwayLocale.person.user.clientIP
+			times:'执行时间(ms)'//EwayLocale.person.user.times
 		}
 
 	},

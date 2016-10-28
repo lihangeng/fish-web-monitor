@@ -33,6 +33,18 @@ Ext.define('Eway.view.person.user.UserLogGrid', {
 			},{
 				header : EwayLocale.person.user.operContent,
 				dataIndex : 'operContent',
+				width : 270
+			},{
+				header : EwayLocale.person.user.serverIp,
+				dataIndex : 'serverIp',
+				width : 150
+			},{
+				header : EwayLocale.person.user.clientIP,
+				dataIndex : 'clientIP',
+				width : 150
+			},{
+				header : EwayLocale.person.user.times,
+				dataIndex : 'times',
 				flex : 1
 			}],
 			bbar : Ext.create('Ext.PagingToolbar',{

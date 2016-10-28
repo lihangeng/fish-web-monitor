@@ -24,8 +24,38 @@ public class UserLogForm {
     private String operName;
 
     private String operResult;
+    
+    private String serverIp;
+    
+    private String clientIP;
+    
+    private long times;
 
-    public UserLogForm() {
+    public String getServerIp() {
+		return serverIp;
+	}
+
+	public void setServerIp(String serverIp) {
+		this.serverIp = serverIp;
+	}
+
+	public String getClientIP() {
+		return clientIP;
+	}
+
+	public void setClientIP(String clientIP) {
+		this.clientIP = clientIP;
+	}
+
+	public long getTimes() {
+		return times;
+	}
+
+	public void setTimes(long times) {
+		this.times = times;
+	}
+
+	public UserLogForm() {
     }
 
     public UserLogForm(IUserLog userLog) {
@@ -37,6 +67,9 @@ public class UserLogForm {
         this.operCode = userLog.getOperCode();
         this.operName = userLog.getOperName();
         this.operResult = userLog.getOperResult();
+        this.clientIP = userLog.getClientIP();
+        this.serverIp = userLog.getServerIp();
+        this.times = userLog.getTimes();
 
     }
 
