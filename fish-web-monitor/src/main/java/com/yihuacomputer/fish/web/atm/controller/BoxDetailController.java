@@ -139,15 +139,19 @@ public class BoxDetailController {
 							deviceBoxDetailInfoService.update(dbdi);
 						}
 					}
+					//默认取款箱与最新取款箱的最大取款值是否一致,如果不一致将更新最新的最大取款值和钞箱状态
 					if(deviceBoxInfo.getDefaultBill()!=boxTypeAmtMap.get(BoxType.BILLCASSETTE)){
 						deviceBoxInfo.setDefaultBill(boxTypeAmtMap.get(BoxType.BILLCASSETTE)==null?0:boxTypeAmtMap.get(BoxType.BILLCASSETTE));
 						deviceBoxInfo.setBoxChange(true);
 					}
+					//默认存款箱与最新存款箱的最大存款值是否一致,如果不一致将更新最新的最大存款值和钞箱状态
 					if(deviceBoxInfo.getDefaultCashIn()!=boxTypeAmtMap.get(BoxType.CASHINCASSETTE)){
 						deviceBoxInfo.setDefaultCashIn(boxTypeAmtMap.get(BoxType.CASHINCASSETTE)==null?0:boxTypeAmtMap.get(BoxType.CASHINCASSETTE));
 						deviceBoxInfo.setBoxChange(true);
 					}
+					//设置当前的取款金额
 					deviceBoxInfo.setBillValue(boxTypeAmtValueMap.get(BoxType.BILLCASSETTE)==null?0:boxTypeAmtValueMap.get(BoxType.BILLCASSETTE));
+					//设置当前的存款金额
 					deviceBoxInfo.setCashInValue(boxTypeAmtValueMap.get(BoxType.CASHINCASSETTE)==null?0:boxTypeAmtValueMap.get(BoxType.CASHINCASSETTE));
 					deviceBoxInfoService.update(deviceBoxInfo);
 				}
