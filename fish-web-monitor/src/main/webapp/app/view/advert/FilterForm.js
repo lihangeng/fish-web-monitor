@@ -61,8 +61,8 @@ Ext.define('Eway.view.advert.FilterForm', {
 //							 end : 'createdTimeEnd'
 //							 },
 							{
-								xtype : 'displayfield',
-								value : EwayLocale.advert.createdTimeStop
+								xtype : 'label',
+								text : EwayLocale.advert.createdTimeStop
 							}, {
 								fieldLabel : 'endDateTime',
 								width : 120,

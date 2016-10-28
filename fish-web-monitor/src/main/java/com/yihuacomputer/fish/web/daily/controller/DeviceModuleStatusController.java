@@ -32,6 +32,8 @@ import com.yihuacomputer.fish.api.monitor.xfs.status.IStatusPin;
 import com.yihuacomputer.fish.api.monitor.xfs.status.IStatusRpr;
 import com.yihuacomputer.fish.api.monitor.xfs.status.IStatusSiu;
 import com.yihuacomputer.fish.api.monitor.xfs.status.IStatusTtu;
+import com.yihuacomputer.fish.api.monitor.xfs.status.IStatusUkd;
+import com.yihuacomputer.fish.api.monitor.xfs.status.IStatusUkr;
 import com.yihuacomputer.fish.api.monitor.xfs.status.IXfsStatus;
 import com.yihuacomputer.fish.api.monitor.xfs.status.NetStatus;
 import com.yihuacomputer.fish.api.system.config.MonitorCfg;
@@ -213,25 +215,30 @@ public class DeviceModuleStatusController {
         xfsStatus.setBoxCurrentCount(histXfsStatus.getBoxCurrentCount());
 
         // IDC
-
     	IStatusIdc idc = xfsStatus.makeStatusIdc();
-        if(null!=modStatus.getIdc()){
+        if(null!=modStatus.getIdc().getStatus()){
 	        idc.setStatus(modStatus.getIdc().getStatus());
 	        idc.setCode(modStatus.getIdc().getCode());
 	        idc.setCards(modStatus.getIdc().getCards());
 	        idc.setHwCode(modStatus.getIdc().getHwCode());
         }
         else{
+        	StatusIdc idcStatus = new StatusIdc();
+        	idcStatus.setStatus(DeviceStatus.NoDevice);
+        	modStatus.setIdc(idcStatus);
         	idc.setStatus(DeviceStatus.NoDevice);
         }
         // JPR
         IStatusJpr jpr = xfsStatus.makeStatusJpr();
-        if(null!=modStatus.getJpr()){
+        if(null!=modStatus.getJpr().getStatus()){
         jpr.setStatus(modStatus.getJpr().getStatus());
         jpr.setCode(modStatus.getJpr().getCode());
         jpr.setHwCode(modStatus.getJpr().getHwCode());
         }
         else{
+        	StatusJpr jprStatus = new StatusJpr();
+        	jprStatus.setStatus(DeviceStatus.NoDevice);
+        	modStatus.setJpr(jprStatus);
         	jpr.setStatus(DeviceStatus.NoDevice);
         }
         // RPR
@@ -242,143 +249,210 @@ public class DeviceModuleStatusController {
 
         // CDM
         IStatusCdm cdm = xfsStatus.makeStatusCdm();
-        if(null!=modStatus.getCdm()){
+        if(null!=modStatus.getCdm().getStatus()){
 	        cdm.setStatus(modStatus.getCdm().getStatus());
 	        cdm.setCode(modStatus.getCdm().getCode());
 	        cdm.setHwCode(modStatus.getCdm().getHwCode());
         }
         else{
+        	StatusCdm cdmStatus = new StatusCdm();
+        	cdmStatus.setStatus(DeviceStatus.NoDevice);
+        	modStatus.setCdm(cdmStatus);
         	cdm.setStatus(DeviceStatus.NoDevice);
         }
         // CIM
         IStatusCim cim = xfsStatus.makeStatusCim();
-        if(null!=modStatus.getCim()){
+        if(null!=modStatus.getCim().getStatus()){
 	        cim.setStatus(modStatus.getCim().getStatus());
 	        cim.setCode(modStatus.getCim().getCode());
 	        cim.setHwCode(modStatus.getCim().getHwCode());
         }
         else{
+        	StatusCim cimStatus = new StatusCim();
+        	cimStatus.setStatus(DeviceStatus.NoDevice);
+        	modStatus.setCim(cimStatus);
         	 cim.setStatus(DeviceStatus.NoDevice);
         }
         // SIU
         IStatusSiu siu = xfsStatus.makeStatusSiu();
-        if(null!=modStatus.getSiu()){
+        if(null!=modStatus.getSiu().getStatus()){
 	        siu.setStatus(modStatus.getSiu().getStatus());
 	        siu.setCode(modStatus.getSiu().getCode());
 	        siu.setHwCode(modStatus.getSiu().getHwCode());
         }
         else{
+        	StatusSiu siuStatus = new StatusSiu();
+        	siuStatus.setStatus(DeviceStatus.NoDevice);
+        	modStatus.setSiu(siuStatus);
         	siu.setStatus(DeviceStatus.NoDevice);
         }
         // PIN
         IStatusPin pin = xfsStatus.makeStatusPin();
-        if(null!=modStatus.getPin()){
+        if(null!=modStatus.getPin().getStatus()){
         pin.setStatus(modStatus.getPin().getStatus());
         pin.setCode(modStatus.getPin().getCode());
         pin.setHwCode(modStatus.getPin().getHwCode());
         }
         else{
+        	StatusPin pinStatus = new StatusPin();
+        	pinStatus.setStatus(DeviceStatus.NoDevice);
+        	modStatus.setPin(pinStatus);
         	pin.setStatus(DeviceStatus.NoDevice);
         }
         // TTU
         IStatusTtu ttu = xfsStatus.makeStatusTtu();
-        if(null!=modStatus.getTtu()){
+        if(null!=modStatus.getTtu().getStatus()){
         ttu.setStatus(modStatus.getTtu().getStatus());
         ttu.setCode(modStatus.getTtu().getCode());
         ttu.setHwCode(modStatus.getTtu().getHwCode());
         }
         else{
+        	StatusTtu ttuStatus = new StatusTtu();
+        	ttuStatus.setStatus(DeviceStatus.NoDevice);
+        	modStatus.setTtu(ttuStatus);
         	ttu.setStatus(DeviceStatus.NoDevice);
         }
         // ISC
         IStatusIsc isc = xfsStatus.makeStatusIsc();
-        if(null!=modStatus.getIsc()){
+        if(null!=modStatus.getIsc().getStatus()){
         isc.setStatus(modStatus.getIsc().getStatus());
         isc.setCode(modStatus.getIsc().getCode());
         isc.setHwCode(modStatus.getIsc().getHwCode());
         }
         else{
+        	StatusIsc iscStatus = new StatusIsc();
+        	iscStatus.setStatus(DeviceStatus.NoDevice);
+        	modStatus.setIsc(iscStatus);
         	isc.setStatus(DeviceStatus.NoDevice);
         }
         // Icc
         IStatusIcc icc = xfsStatus.makeStatusIcc();
-        if(null!=modStatus.getIcc()){
+        if(null!=modStatus.getIcc().getStatus()){
         icc.setStatus(modStatus.getIcc().getStatus());
         icc.setCode(modStatus.getIcc().getCode());
         icc.setHwCode(modStatus.getIcc().getHwCode());
         }
         else{
+        	StatusIcc iccStatus = new StatusIcc();
+        	iccStatus.setStatus(DeviceStatus.NoDevice);
+        	modStatus.setIcc(iccStatus);
         	icc.setStatus(DeviceStatus.NoDevice);
         }
         // FGP
         IStatusFgp fgp = xfsStatus.makeStatusFgp();
-        if(null!=modStatus.getFgp()){
+        if(null!=modStatus.getFgp().getStatus()){
         fgp.setStatus(modStatus.getFgp().getStatus());
         fgp.setCode(modStatus.getFgp().getCode());
         fgp.setHwCode(modStatus.getFgp().getHwCode());
         }
         else{
+        	StatusFgp fgpStatus = new StatusFgp();
+        	fgpStatus.setStatus(DeviceStatus.NoDevice);
+        	modStatus.setFgp(fgpStatus);
         	fgp.setStatus(DeviceStatus.NoDevice);
         }
         // TTU
         IStatusPbk pbk = xfsStatus.makeStatusPbk();
-        if(null!=modStatus.getPbk()){
+        if(null!=modStatus.getPbk().getStatus()){
         pbk.setStatus(modStatus.getPbk().getStatus());
         pbk.setCode(modStatus.getPbk().getCode());
         pbk.setHwCode(modStatus.getPbk().getHwCode());
         }
         else{
+        	StatusPbk pbkStatus = new StatusPbk();
+        	pbkStatus.setStatus(DeviceStatus.NoDevice);
+        	modStatus.setPbk(pbkStatus);
         	pbk.setStatus(DeviceStatus.NoDevice);
         }
         
         // CAM
         IStatusCam cam = xfsStatus.makeStatusCam();
-        if(null!=modStatus.getCam()){
+        if(null!=modStatus.getCam().getStatus()){
         	cam.setStatus(modStatus.getCam().getStatus());
         	cam.setCode(modStatus.getCam().getCode());
         	cam.setHwCode(modStatus.getCam().getHwCode());
         }
         else{
+        	StatusCam camStatus = new StatusCam();
+        	camStatus.setStatus(DeviceStatus.NoDevice);
+        	modStatus.setCam(camStatus);
         	cam.setStatus(DeviceStatus.NoDevice);
         }
         
         // BCR
         IStatusBcr bcr = xfsStatus.makeStatusBcr();
-        if(null!=modStatus.getBcr()){
+        if(null!=modStatus.getBcr().getStatus()){
         	bcr.setStatus(modStatus.getBcr().getStatus());
         	bcr.setCode(modStatus.getBcr().getCode());
         	bcr.setHwCode(modStatus.getBcr().getHwCode());
         }
         else{
+        	StatusBcr bcrStatus = new StatusBcr();
+        	bcrStatus.setStatus(DeviceStatus.NoDevice);
+        	modStatus.setBcr(bcrStatus);
         	bcr.setStatus(DeviceStatus.NoDevice);
         }
         
         // NFC
         IStatusNfc nfc = xfsStatus.makeStatusNfc();
-        if(null!=modStatus.getNfc()){
+        if(null!=modStatus.getNfc().getStatus()){
         	nfc.setStatus(modStatus.getNfc().getStatus());
         	nfc.setCode(modStatus.getNfc().getCode());
         	nfc.setHwCode(modStatus.getNfc().getHwCode());
         }
         else{
+        	StatusRfc nfcStatus = new StatusRfc();
+        	nfcStatus.setStatus(DeviceStatus.NoDevice);
+        	modStatus.setNfc(nfcStatus);
         	nfc.setStatus(DeviceStatus.NoDevice);
         }
-        xfsStatus.setStatusIdc(idc);
-        xfsStatus.setStatusJpr(jpr);
-        xfsStatus.setStatusRpr(rpr);
+        
+        // ukd
+        IStatusUkd ukd = xfsStatus.makeStatusUkd();
+        if(null!=modStatus.getUkd().getStatus()){
+        	ukd.setStatus(modStatus.getUkd().getStatus());
+        	ukd.setCode(modStatus.getUkd().getCode());
+        	ukd.setHwCode(modStatus.getUkd().getHwCode());
+        }
+        else{
+        	StatusUkd ukdStatus = new StatusUkd();
+        	ukdStatus.setStatus(DeviceStatus.NoDevice);
+        	modStatus.setUkd(ukdStatus);
+        	ukd.setStatus(DeviceStatus.NoDevice);
+        }
+        
+
+        // ukr
+        IStatusUkr ukr = xfsStatus.makeStatusUkr();
+        if(null!=modStatus.getUkr().getStatus()){
+        	ukr.setStatus(modStatus.getUkr().getStatus());
+        	ukr.setCode(modStatus.getUkr().getCode());
+        	ukr.setHwCode(modStatus.getUkr().getHwCode());
+        }
+        else{
+        	StatusUkr ukrStatus = new StatusUkr();
+        	ukrStatus.setStatus(DeviceStatus.NoDevice);
+        	modStatus.setUkr(ukrStatus);
+        	ukr.setStatus(DeviceStatus.NoDevice);
+        }
+       
+        xfsStatus.setStatusBcr(bcr);
+        xfsStatus.setStatusCam(cam);
         xfsStatus.setStatusCdm(cdm);
         xfsStatus.setStatusCim(cim);
-        xfsStatus.setStatusSiu(siu);
-        xfsStatus.setStatusPin(pin);
-        xfsStatus.setStatusTtu(ttu);
-        
-        xfsStatus.setStatusIsc(isc);
-        xfsStatus.setStatusIcc(icc);
-        xfsStatus.setStatusPbk(pbk);
         xfsStatus.setStatusFgp(fgp);
-        xfsStatus.setStatusCam(cam);
-        xfsStatus.setStatusBcr(bcr);
+        xfsStatus.setStatusIcc(icc);
+        xfsStatus.setStatusIdc(idc);
+        xfsStatus.setStatusIsc(isc);
+        xfsStatus.setStatusJpr(jpr);
+        xfsStatus.setStatusPbk(pbk);
+        xfsStatus.setStatusPin(pin);
         xfsStatus.setStatusNfc(nfc);
+        xfsStatus.setStatusRpr(rpr);
+        xfsStatus.setStatusSiu(siu);
+        xfsStatus.setStatusTtu(ttu);
+        xfsStatus.setStatusUkd(ukd);
+        xfsStatus.setStatusUkr(ukr);
 
         xfsStatus.setModStatus(getModStatus(xfsStatus));
 
