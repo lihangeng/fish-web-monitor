@@ -19,11 +19,55 @@ Ext.define('Eway.view.Header', {
         	xtype:'textfield',
         	name:'terminalId',
         	enableKeyEvents :true,
-        	emptyText :'设备号'
+        	emptyText :'设备号',
+        	listeners: {
+        		beforerender:function( _this, eOpts ){
+        			var userId = Eway.user.getId();
+        			Ext.Ajax.request({
+        				method : 'GET',
+        				url : 'api/login/menu/deviceView',
+    					params: {
+    				        userId : userId,
+    				        node : 'A'
+    				    },
+    				    success :function(data){
+    				    	debugger;
+    				    	var isShow = Ext.decode(data.responseText); 
+    				    	if(isShow){
+    				    		_this.show();
+    				    	}else{
+    				    		_this.hide();
+    				    	}
+            			}
+        			});
+        		}
+        	}
         },{
         	tooltip:EwayLocale.button.search,
         	glyph : 0xf002,
-        	action:'signleQuery'
+        	action:'signleQuery',
+        	listeners: {
+        		beforerender:function( _this, eOpts ){
+        			var userId = Eway.user.getId();
+        			Ext.Ajax.request({
+        				method : 'GET',
+        				url : 'api/login/menu/deviceView',
+    					params: {
+    				        userId : userId,
+    				        node : 'A'
+    				    },
+    				    success :function(data){
+    				    	debugger;
+    				    	var isShow = Ext.decode(data.responseText); 
+    				    	if(isShow){
+    				    		_this.show();
+    				    	}else{
+    				    		_this.hide();
+    				    	}
+            			}
+        			});
+        		}
+        	}
         },{
         	xtype:'tbtext',
         	text: EwayLocale.welcome+Eway.user.getName(),

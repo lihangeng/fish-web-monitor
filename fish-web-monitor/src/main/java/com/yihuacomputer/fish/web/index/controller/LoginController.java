@@ -216,6 +216,9 @@ public class LoginController {
 		List<IPermission> permissions = userRoleRelation.findDirectChildPermissionsByUser(userId, node);
 		List<TreeMenu> forms = new ArrayList<TreeMenu>();
 		for (IPermission permission : permissions) {
+			if(permission.getCode().equals("deviceView")){
+				continue;
+			}
 			TreeMenu menu = new TreeMenu(permission);
 			// menu.setText(messageSource.getMessage("user.login.remark", null,
 			// FishCfg.locale));
@@ -224,6 +227,21 @@ public class LoginController {
 		return forms;
 	}
 
+	/**
+	 * 获取用户是否具有单击模式权限
+	 */
+	@RequestMapping(value = "/menu/deviceView",method = RequestMethod.GET)
+	public @ResponseBody boolean isRights(@RequestParam String node,@RequestParam long userId){
+		List<IPermission> permissions = userRoleRelation.findDirectChildPermissionsByUser(userId, node);
+		boolean isContains = false;
+		for(IPermission permission:permissions){
+			if(permission.getCode().equals("deviceView")){
+				isContains = true;
+			}
+		}
+		return isContains;
+	}
+	
 	@Autowired
 	private IPermissionService service;
 
