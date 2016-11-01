@@ -18,9 +18,10 @@ Ext.define('Eway.view.Header', {
         },"->",{
         	xtype:'textfield',
         	name:'terminalId',
+        	itemId:'deviceCode',
         	enableKeyEvents :true,
-        	emptyText :'设备号',
-        	listeners: {
+        	emptyText :'设备号'
+        	/*listeners: {
         		beforerender:function( _this, eOpts ){
         			var userId = Eway.user.getId();
         			Ext.Ajax.request({
@@ -40,32 +41,12 @@ Ext.define('Eway.view.Header', {
             			}
         			});
         		}
-        	}
+        	}*/
         },{
         	tooltip:EwayLocale.button.search,
         	glyph : 0xf002,
+        	itemId:'queryIcon',
         	action:'signleQuery',
-        	listeners: {
-        		beforerender:function( _this, eOpts ){
-        			var userId = Eway.user.getId();
-        			Ext.Ajax.request({
-        				method : 'GET',
-        				url : 'api/login/menu/deviceView',
-    					params: {
-    				        userId : userId,
-    				        node : 'A'
-    				    },
-    				    success :function(data){
-    				    	var isShow = Ext.decode(data.responseText); 
-    				    	if(isShow){
-    				    		_this.show();
-    				    	}else{
-    				    		_this.hide();
-    				    	}
-            			}
-        			});
-        		}
-        	}
         },{
         	xtype:'tbtext',
         	text: EwayLocale.welcome+Eway.user.getName(),
@@ -98,5 +79,27 @@ Ext.define('Eway.view.Header', {
     				});}
         		});
 			}
-         }]
+         }],
+         listeners: {
+     		beforerender:function( _this, eOpts ){
+     			Ext.Ajax.request({
+    				method : 'GET',
+    				url : 'api/login/menu/deviceView',
+					params: {
+				        userId : Eway.user.getId(),
+				        node : 'A'
+				    },
+				    success :function(data){
+				    	var isShow = Ext.decode(data.responseText); 
+				    	if(isShow){
+				    		_this.items.items[2].show();
+				    		_this.items.items[3].show();
+				    	}else{
+				    		_this.items.items[2].hide();
+				    		_this.items.items[3].hide();
+				    	}
+        			}
+    			});
+     		}
+     	}
 });
