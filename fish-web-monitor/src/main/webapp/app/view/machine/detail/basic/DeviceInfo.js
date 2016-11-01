@@ -2,6 +2,14 @@ Ext.define('Eway.view.machine.detail.basic.DeviceInfo', {
 	extend : 'Eway.view.base.Panel',
 	alias : 'widget.detail_basic_deviceInfo',
 
+	tools: [ {
+        itemId: 'refresh',
+        type: 'refresh',
+        tooltip: EwayLocale.button.refresh,
+        callback: function() {
+            // do refresh
+        }
+    }],
 	requires : [  ],
     layout: {
         type: 'column',

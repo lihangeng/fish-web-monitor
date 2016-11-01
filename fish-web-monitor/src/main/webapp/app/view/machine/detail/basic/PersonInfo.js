@@ -1,8 +1,15 @@
 Ext.define('Eway.view.machine.detail.basic.PersonInfo', {
 	extend : 'Ext.grid.Panel',
 	alias : 'widget.detail_personInfo',
-	title : '设备人员信息',
-    
+
+	tools: [ {
+        itemId: 'refresh',
+        type: 'refresh',
+        tooltip: EwayLocale.button.refresh,
+        callback: function() {
+            // do refresh
+        }
+    }],
     initComponent : function() {
     	var store = Ext.create("Eway.store.person.person.BankPerson")
 		Ext.apply(this, {

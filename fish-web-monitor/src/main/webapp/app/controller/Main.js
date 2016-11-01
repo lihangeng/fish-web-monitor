@@ -98,29 +98,36 @@ Ext.define('Eway.controller.Main', {
 						view.down("form").loadRecord(Ext.create('Eway.model.machine.Device',object.data.deviceForm));
 						view.down("form").loadRecord(Ext.create('Eway.model.monitor.device.DeviceMonitorList',object.data.statusReport));
 						view.down("detail_personInfo").getStore().removeAll();
-						view.down("detail_versionInfo").getStore().removeAll();
-						view.down("detail_appRelease").getStore().removeAll();
-						var displayfields = Ext.ComponentQuery.query("detail_basic_hardwareInfo displayfield");
+						//view.down("detail_versionInfo").getStore().removeAll();
+						//view.down("detail_appRelease").getStore().removeAll();
+						//debugger;
+						var displayfields = Ext.ComponentQuery.query("detail_basic_statusInfo displayfield");
 						Ext.Array.forEach(displayfields,function(displayfield,index,items){
-							displayfield.setHidden(!view.down("detail_basic_hardwareInfo").isHidden(displayfield));
-
+							//if(index<4){
+							displayfield.setHidden(!view.down("detail_basic_statusInfo").isHidden(displayfield));
+							/*}else{
+								displayfield.setHidden(true);
+							}*/
 						});
 						Ext.Array.forEach(object.data.personList,function(item,index,items){
 							view.down("detail_personInfo").getStore().add(Ext.create('Eway.model.person.person.BankPerson',item))
 						});
-						Ext.Array.forEach(object.data.versionDeviceList,function(item,index,items){
+						/*Ext.Array.forEach(object.data.versionDeviceList,function(item,index,items){
 							view.down("detail_versionInfo").getStore().add(Ext.create('Eway.model.version.DeviceVersionHistory',item))
-						});
-						Ext.Array.forEach(object.data.appReleaseList,function(item,index,items){
+						});*/
+						/*Ext.Array.forEach(object.data.appReleaseList,function(item,index,items){
 							view.down("detail_appRelease").getStore().add(Ext.create('Eway.model.version.AppReleaseList',item))
-						});
+						});*/
 
 						ewayView.unmask();	
 						//刷新运行页面信息
 						var panel = view.down('detail_runInfo');
 						panel.refreshInfo(panel);
 	
+						}else{
+							Eway.alert(object.errorMsg);
 						}
+						ewayView.unmask();
 					},
 					failure:function(){
 						ewayView.unmask();

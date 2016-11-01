@@ -6,7 +6,7 @@ Ext.define('Eway.controller.machine.detail.Detail', {
     stores: ['case.Fault','case.DevMod','case.FaultStatus','case.FaultClassify'],          
 	requires : ['Eway.view.monitor.device.remote.Grid'],
 	          
-	refs : [ {
+	refs : [{
 		ref : 'ewayView',
 		selector : '#detail',
 		autoCreate : true,
@@ -44,17 +44,23 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 				},
 				scope : this
 			},
-			'detail_basic_otherInfo displayfield[name="appRelease"]' : {
+			'detail_basic_appReleaseInfo displayfield[name="appRelease"]' : {
 				change : {
 					fn : function(field) {
 						var text = field.getEl().down('a.link');
 						if (text) {
-							text.on('click', this.showAppRelease, this, field);
+							//text.on('click', this.showAppRelease, this, field);
+							text.on('mouseenter', this.showAppRelease, this, field);
 						}
+						
 					},
 					scope : this
 				},
 				scope : this
+			},
+			'detail_basic_appReleaseInfo [itemId="appReleaseInfo"]' : {
+				//itemmouseenter : this.showAppRelease
+				mouseenter : this.showAppRelease
 			}
 		});
 	},
@@ -693,7 +699,36 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 	},
 	
 	showAppRelease : function(ev, target, field){
-		Ext.getCmp('appRelease').show();
+		
+		var view = this.getEwayView();
+		var veisionNo="21";
+		var termianlId = this.getDeviceInfo().down("displayfield[name=terminalId]").getValue();
+		Ext.Ajax.request({
+			method : 'GET',
+			url : 'api/machine/devicedetail/updateVersion',
+			params:{'termianlId':termianlId,'veisionNo':veisionNo},
+			success : function(response) {
+				var object = Ext.decode(response.responseText);
+				var params="";
+				Ext.Array.forEach(object.data,function(item,index,items){
+					var param=item.fullName+"</br>";
+				    params=params+param;
+				});
+				Ext.create("Ext.tip.ToolTip",{
+		            //style: 'display:inline-block;background:#A2C841;padding:7px;cursor:pointer;',
+					style: 'display:inline-block;background:#3892D4;padding:7px;cursor:pointer;',
+					showDelay: 0,
+		            width:200,
+		            height:'auto',
+		            dismissDelay: 0,
+		            target:field.id,
+		            hideDelay: 0,
+		            html:'<font color="white">可升级版本信息：</br>'+params+'</font>'
+				});
+				view.unmask();	
+			}
+	});
+		//Ext.getCmp('appRelease').show();
 	}
 
 });

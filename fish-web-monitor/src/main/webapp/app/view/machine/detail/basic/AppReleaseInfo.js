@@ -1,29 +1,48 @@
 Ext.define('Eway.view.machine.detail.basic.AppReleaseInfo', {
-	extend : 'Ext.grid.Panel',
-	alias : 'widget.detail_appRelease',
-	title : EwayLocale.deviceInfo.appReleaseInfo,
+	extend : 'Eway.view.base.Panel',
+	alias : 'widget.detail_basic_appReleaseInfo',
     
-    initComponent : function() {
-    	var store = Ext.create("Eway.store.version.AppReleaseList")
+    tools: [ {
+        itemId: 'refresh',
+        type: 'refresh',
+        tooltip: EwayLocale.button.refresh,
+        callback: function() {
+            // do refresh
+        }
+    }],
+	
+	requires : [  ],
+    layout: {
+        type: 'column',
+    },
+    closable:false,
+	initComponent : function() {
 		Ext.apply(this, {
-			store:store,
-			columns: [{
-			              text: EwayLocale.version.View.versionNo,
-			              dataIndex: 'versionNo',
-			              width: 200
-			          },{
-			              text: EwayLocale.version.View.dependVersion,
-			              dataIndex: 'dependVersion',
-			              width: 440
-			          },{
-			              text: EwayLocale.version.View.versionName,
-			              dataIndex: 'fullName',
-			              width: 440
-			          }
-			      ],
-			listeners : {
-				activate : function(panel) {}
-			}
+			defaults : {
+				labelAlign : 'left',
+				xtype : 'displayfield',
+				labelWidth : 100,
+				readOnly : true,
+				width : '50%'
+			},
+			items : [ {
+				columnWidth : .33,
+				fieldLabel : '当前版本',
+				name : 'appRelease',
+				   // a_link : true
+					//value:'<a href="#" class="link">'+value+'</a>'
+					renderer: function(value,meta,record) {
+						return '<a href="#" class="link">'+value+'</font></a>';
+					}
+			},{
+				columnWidth : .33,
+				fieldLabel : '上次升级时间',
+				name : 'ip'
+			},{
+				columnWidth : .33,
+				fieldLabel : '可升级版本',
+				name : 'statusName'
+			}]
 		});
 
 		this.callParent(arguments);
