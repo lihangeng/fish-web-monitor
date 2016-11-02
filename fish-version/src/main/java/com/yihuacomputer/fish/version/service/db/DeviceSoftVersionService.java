@@ -21,6 +21,7 @@ import com.yihuacomputer.fish.api.version.IDeviceSoftVersion;
 import com.yihuacomputer.fish.api.version.IVersion;
 import com.yihuacomputer.fish.api.version.IVersionType;
 import com.yihuacomputer.fish.api.version.IVersionTypeService;
+import com.yihuacomputer.fish.api.version.VersionCatalog;
 import com.yihuacomputer.fish.version.entity.DeviceSoftVersion;
 import com.yihuacomputer.fish.version.entity.Version;
 import com.yihuacomputer.fish.version.service.base.DomainDeviceSoftVersionService;
@@ -108,6 +109,18 @@ public class DeviceSoftVersionService extends DomainDeviceSoftVersionService imp
         return null;
 	}
 
+	  @Override
+		public IDeviceSoftVersion findVersionByCatlog(String terminalId,VersionCatalog versionCatalog) {
+	    	StringBuilder hql = new StringBuilder();
+	    	//VersionCatalog statu = Enum.valueOf(VersionCatalog.class, versionCatalog); 
+	        hql.append("from DeviceSoftVersion t  where t.terminalId=? and t.versionType.versionCatalog = ? ");
+	        List<IDeviceSoftVersion> lists = dao.findByHQL(hql.toString(),terminalId, versionCatalog);
+	        if (lists.size() > 0) {
+	            return lists.get(0);
+	        }
+	    	return null;
+		}
+	  
     @SuppressWarnings("unchecked")
     @Override
     public List<Object> findByTypeName(String typeName) {
