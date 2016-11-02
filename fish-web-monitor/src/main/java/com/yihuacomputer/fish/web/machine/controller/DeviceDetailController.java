@@ -35,9 +35,12 @@ import com.yihuacomputer.fish.api.monitor.xfs.status.IXfsStatus;
 import com.yihuacomputer.fish.api.person.IPerson;
 import com.yihuacomputer.fish.api.person.UserSession;
 import com.yihuacomputer.fish.api.relation.IDevicePersonRelation;
+import com.yihuacomputer.fish.api.version.IDeviceSoftVersion;
+import com.yihuacomputer.fish.api.version.IDeviceSoftVersionService;
 import com.yihuacomputer.fish.api.version.IVersion;
 import com.yihuacomputer.fish.api.version.IVersionService;
 import com.yihuacomputer.fish.api.version.IVersionTypeService;
+import com.yihuacomputer.fish.api.version.VersionCatalog;
 import com.yihuacomputer.fish.api.version.job.task.ITask;
 import com.yihuacomputer.fish.api.version.job.task.ITaskService;
 import com.yihuacomputer.fish.monitor.entity.business.DeviceRegister;
@@ -77,9 +80,10 @@ public class DeviceDetailController
     private IVersionService VersionService;  
     
     @Autowired
-    private IVersionTypeService VersionTypeService;   
+    private IVersionTypeService VersionTypeService;  
     
-    
+    @Autowired
+    private IDeviceSoftVersionService DeviceSoftVersionService; 
     
     @Autowired
     private  IDeviceBoxInfoService devcieBoxInfoService;
@@ -96,7 +100,7 @@ public class DeviceDetailController
     {
         logger.info(String.format("search device detail "));
         String terminalId = request.getParameter("termianlId");
-        String typeName="gump-professional";
+       // String typeName="gump-professional";
         IDevice device = deviceService.get(terminalId);
         ModelMap result = new ModelMap();
         if(null==device){
@@ -130,7 +134,7 @@ public class DeviceDetailController
 		statusReport.setStatusReport(deviceReport, messageSourceEnum);
         deviceDetailForm.setStatusReport(statusReport);
         deviceDetailForm.setDeviceForm(toFrom(device));
-        deviceDetailForm.setAppReleaseList(getVersionForm(typeName,terminalId));
+        //deviceDetailForm.setAppReleaseList(getVersionForm(typeName,terminalId));
         
         deviceDetailForm.setMaxAlarm(devcieBoxInfo==null?"未知":String.valueOf(devcieBoxInfo.getMaxAlarm()));
         deviceDetailForm.setMinAlarm(devcieBoxInfo==null?"未知":String.valueOf(devcieBoxInfo.getMinAlarm()));
@@ -139,6 +143,188 @@ public class DeviceDetailController
         result.addAttribute(FishConstant.DATA, deviceDetailForm);
         result.addAttribute(FishConstant.SUCCESS, true);
         return result;
+    }
+    
+    @RequestMapping(value = "updateVersion", method = RequestMethod.GET)
+    public @ResponseBody
+	 ModelMap getUpdateVersion( HttpServletRequest httpRequest, WebRequest request) {
+    	VersionCatalog versionCatalog=Enum.valueOf(VersionCatalog.class, "APP"); 
+    	String terminalId = request.getParameter("termianlId");
+    	String veisionNo = request.getParameter("veisionNo");
+    	List<VersionForm> appReleaseList=new ArrayList<VersionForm>();
+    	appReleaseList=getVersionForm(terminalId,versionCatalog,veisionNo);
+    	ModelMap result = new ModelMap();
+    	result.addAttribute(FishConstant.DATA, appReleaseList);
+        result.addAttribute(FishConstant.SUCCESS, true);
+    	return result;
+    }
+    
+    /**
+     * 查询设备基础信息
+     * @param httpRequest
+     * @param request
+     * @return
+     */
+    @RequestMapping(value="/basicInfo",method = RequestMethod.GET)
+	public @ResponseBody
+	ModelMap searchBasicInfo(HttpServletRequest httpRequest, WebRequest request){
+    	logger.info(String.format("search device basic information"));
+    	ModelMap result = new ModelMap();
+    	String terminalId = request.getParameter("termianlId");
+    	result= isExistAndCharge(httpRequest,terminalId);
+    	if(!(Boolean) result.get(FishConstant.SUCCESS)){
+    		return result;
+    	}
+    	IDevice device = deviceService.get(terminalId);
+        DeviceForm deviceForm = toFrom(device);
+        result.addAttribute(FishConstant.DATA,deviceForm);
+        result.addAttribute(FishConstant.SUCCESS, true);
+    	return result;
+    }
+    
+    /**
+     * 查看设备硬件状态
+     * @param httpRequest
+     * @param request
+     * @return
+     */
+    @RequestMapping(value="/hardwareInfo",method = RequestMethod.GET)
+   	public @ResponseBody
+   	ModelMap searchHardwareInfo(HttpServletRequest httpRequest, WebRequest request){
+    	logger.info(String.format("search device hardware status information"));
+    	ModelMap result = new ModelMap();
+        String terminalId = request.getParameter("termianlId");
+        IDevice device = deviceService.get(terminalId);
+        result= isExistAndCharge(httpRequest,terminalId);
+    	if(!(Boolean) result.get(FishConstant.SUCCESS)){
+    		return result;
+    	}
+        IXfsStatus xfsStatus = xfsService.loadXfsStatus(terminalId);
+    	DeviceDetailForm deviceDetailForm = new DeviceDetailForm();
+    	StatusReport statusReport = new StatusReport();
+        DeviceReport deviceReport = new DeviceReport();
+        IRunInfo runInfo = new RunInfo();
+		runInfo.setRunStatus(xfsStatus.getRunStatus());
+		deviceReport.setDeviceId(terminalId);
+		deviceReport.setXfsStatus(xfsStatus);
+    	deviceReport.setRunInfo(runInfo);
+		deviceReport.setDevice(device);
+    	statusReport.setStatusReport(deviceReport, messageSourceEnum);
+        deviceDetailForm.setStatusReport(statusReport);
+        return result;
+    }
+    
+    /**
+     *查询设备人员信息 
+     * @param httpRequest
+     * @param request
+     * @return
+     */
+    @RequestMapping(value="/personInfo",method = RequestMethod.GET)
+   	public @ResponseBody
+   	ModelMap searchPersonInfo(HttpServletRequest httpRequest, WebRequest request){
+    	logger.info(String.format("search device person information"));
+    	ModelMap result = new ModelMap();
+    	String terminalId = request.getParameter("termianlId");
+    	result= isExistAndCharge(httpRequest,terminalId);
+    	if(!(Boolean) result.get(FishConstant.SUCCESS)){
+    		return result;
+    	}
+    	List<IPerson> personList = devicePersonRelation.listPersonByDevice(terminalId);
+    	if(personList.size() != 0){
+    		List<PersonForm> data = PersonForm.convert(personList);
+        	result.addAttribute(FishConstant.SUCCESS, true);
+        	result.addAttribute(FishConstant.DATA, data);
+    	}else{
+    		result.addAttribute(FishConstant.SUCCESS, false);
+    	}
+    	return result;
+    }
+    
+    /**
+     * 查询设备版本信息
+     * @param httpRequest
+     * @param request
+     * @return
+     */
+    @RequestMapping(value="/versionInfo",method = RequestMethod.GET)
+   	public @ResponseBody
+   	ModelMap searchVersionInfo(HttpServletRequest httpRequest, WebRequest request){
+    	logger.info(String.format("search device person information"));
+    	ModelMap result = new ModelMap();
+    	String terminalId = request.getParameter("termianlId");
+    	IDevice device = deviceService.get(terminalId);
+    	VersionCatalog versionCatalog=Enum.valueOf(VersionCatalog.class, "APP"); 
+    	IDeviceSoftVersion deviceSoftVersion=DeviceSoftVersionService.findVersionByCatlog(terminalId, versionCatalog);
+    	result= isExistAndCharge(httpRequest,terminalId);
+    	if(!(Boolean) result.get(FishConstant.SUCCESS)){
+    		return result;
+    	}
+    	String versionNo = deviceSoftVersion.getVersionNo();
+    	List<ITask> lists = taskService.findTasks(device.getId()); 
+    	DeviceDetailForm deviceDetailForm = new DeviceDetailForm();
+    	deviceDetailForm.setVersionDeviceList(getHistoryForms(lists, device));
+    	deviceDetailForm.setAppReleaseList(getVersionForm(terminalId,versionCatalog,versionNo));
+    	result.addAttribute(FishConstant.DATA, deviceDetailForm);
+        result.addAttribute(FishConstant.SUCCESS, true);
+    	return result;
+    }
+    
+    /**
+     * 查询设备版本信息
+     * @param httpRequest
+     * @param request
+     * @return
+     */
+    @RequestMapping(value="/otherInfo",method = RequestMethod.GET)
+   	public @ResponseBody
+   	ModelMap searchOtherInfo(HttpServletRequest httpRequest, WebRequest request){
+    	logger.info(String.format("search device person information"));
+    	ModelMap result = new ModelMap();
+    	String terminalId = request.getParameter("termianlId");
+    	IDevice device = deviceService.get(terminalId);
+        result= isExistAndCharge(httpRequest,terminalId);
+    	if(!(Boolean) result.get(FishConstant.SUCCESS)){
+    		return result;
+    	}
+    	DeviceDetailForm deviceDetailForm = new DeviceDetailForm();
+    	IDeviceBoxInfo devcieBoxInfo = devcieBoxInfoService.findByDeviceId(device.getId());
+    	StatusReport statusReport = new StatusReport();
+    	DeviceReport deviceReport = new DeviceReport();
+    	IXfsStatus xfsStatus = xfsService.loadXfsStatus(terminalId);
+		deviceReport.setDeviceId(terminalId);
+		deviceReport.setXfsStatus(xfsStatus);
+		statusReport.setStatusReport(deviceReport, messageSourceEnum);
+        deviceDetailForm.setStatusReport(statusReport);
+    	deviceDetailForm.setMaxAlarm(devcieBoxInfo==null?"未知":String.valueOf(devcieBoxInfo.getMaxAlarm()));
+        deviceDetailForm.setMinAlarm(devcieBoxInfo==null?"未知":String.valueOf(devcieBoxInfo.getMinAlarm()));
+        result.addAttribute(FishConstant.DATA, deviceDetailForm);
+        result.addAttribute(FishConstant.SUCCESS, true);
+    	return result;
+    }
+    
+    /**
+     * 判断用户是否有权限查看设备信息及设备是否存在
+     * @return
+     */
+    private ModelMap isExistAndCharge(HttpServletRequest httpRequest,String terminalId){
+    	IDevice device = deviceService.get(terminalId);
+        ModelMap result = new ModelMap();
+        if(null==device){
+        	result.addAttribute(FishConstant.SUCCESS, false);
+        	result.addAttribute(FishConstant.ERROR_MSG, "设备:"+terminalId+"不存在");
+        	return result;
+        }
+        String deviceOrgFlag = device.getOrganization().getOrgFlag();
+        HttpSession session = httpRequest.getSession();
+        UserSession userSession = (UserSession) session.getAttribute("SESSION_USER");
+        String userOrgFlag = userSession.getOrgFlag();
+        if(!deviceOrgFlag.startsWith(userOrgFlag)){
+        	result.addAttribute(FishConstant.ERROR_MSG, "无权限查看设备"+terminalId);
+        	result.addAttribute(FishConstant.SUCCESS, false);
+        	return result;
+        }
+        return result.addAttribute(FishConstant.SUCCESS, true);
     }
     
     private List<DeviceVersionHistory> getHistoryForms(List<ITask> lists , IDevice device) {
@@ -179,19 +365,21 @@ public class DeviceDetailController
     	return messageSourceEnum.getMessage(enumText, null, FishCfg.locale);
     }
     
-    private List<VersionForm> getVersionForm(String typeName,String terminalId) {
-        List<VersionForm> appReleaseList = new ArrayList<VersionForm>();
-        String versionNo=registService.load(terminalId).getAtmcVersion();
+    private List<VersionForm> getVersionForm(String terminalId,VersionCatalog versionCatalog,String versionNo) {
+        List<VersionForm> appReleaseList = new ArrayList<VersionForm>();;
+        IDeviceSoftVersion deviceSoftVersion=DeviceSoftVersionService.findVersionByCatlog(terminalId, versionCatalog);
+        String typeName=deviceSoftVersion.getTypeName();
         IVersion currentVersion=VersionService.findVersion(typeName, versionNo);
+        if(currentVersion!=null){
+        long typeId=currentVersion.getVersionType().getId();
         IFilter filter=new Filter();
-        filter.eq("typeName", typeName);
-        long typeId=VersionTypeService.list(filter).get(0).getId();
-        IFilter filter2=new Filter();
-        filter2.descOrder("versionStr");
-        filter2.eq("versionType.id", typeId);
-        List<IVersion> maybeVersions=VersionService.list(filter2);
+        filter.descOrder("versionStr");
+        filter.eq("versionType.id", typeId);
+      //filter.lt("versionStr",currentVersion.getVersionStr());
+        List<IVersion> maybeVersions=VersionService.list(filter);
         List<IVersion> versions= VersionService.getUpdateVersion(maybeVersions,currentVersion);
         appReleaseList=toVersionForm(versions);
+        }
         return appReleaseList;
     }
     

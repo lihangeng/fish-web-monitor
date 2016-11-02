@@ -8,9 +8,12 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -20,6 +23,7 @@ import javax.persistence.Transient;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.version.IDeviceSoftVersion;
 import com.yihuacomputer.fish.api.version.IVersion;
+import com.yihuacomputer.fish.api.version.IVersionType;
 import com.yihuacomputer.fish.version.service.api.IDomainDeviceSoftVersionService;
 
 /**
@@ -40,6 +44,10 @@ public class DeviceSoftVersion implements IDeviceSoftVersion, Serializable {
 
 	@Transient
 	private IDevice device;
+
+    @ManyToOne(targetEntity = VersionType.class,fetch = FetchType.LAZY)
+	@JoinColumn(name = "VERSION_TYPE_ID", nullable = false)
+	private IVersionType versionType;
 
 	@Column(name = "TERMINAL_ID", nullable = false, updatable = false,length = 20)
 	private String terminalId;
@@ -172,6 +180,14 @@ public class DeviceSoftVersion implements IDeviceSoftVersion, Serializable {
 
 	public void setVersionStr(String versionStr) {
 		this.versionStr = versionStr;
+	}
+
+	public IVersionType getVersionType() {
+		return versionType;
+	}
+
+	public void setVersionType(IVersionType versionType) {
+		this.versionType = versionType;
 	}
 
 }

@@ -29,4 +29,12 @@ public interface IDeviceSoftVersionService {
 	public IDeviceSoftVersion get(String terminalId,String typeName);
 	
 	public List<Object> findByTypeName(String typeName);
+	
+	/**
+	 * 由versionCatalog和设备号唯一确定一个版本名称信息
+	 * @param terminalId 设备号
+	 * @param versionCatalog（APP）
+	 * @return
+	 */
+	public IDeviceSoftVersion findVersionByCatlog(String terminalId,VersionCatalog versionCatalog);
 }
