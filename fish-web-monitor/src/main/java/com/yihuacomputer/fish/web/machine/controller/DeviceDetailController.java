@@ -141,6 +141,171 @@ public class DeviceDetailController
         return result;
     }
     
+    /**
+     * 查询设备基础信息
+     * @param httpRequest
+     * @param request
+     * @return
+     */
+    @RequestMapping(value="/basicInfo",method = RequestMethod.GET)
+	public @ResponseBody
+	ModelMap searchBasicInfo(HttpServletRequest httpRequest, WebRequest request){
+    	logger.info(String.format("search device basic information"));
+    	ModelMap result = new ModelMap();
+    	String terminalId = request.getParameter("termianlId");
+    	result= isExistAndCharge(httpRequest,terminalId);
+    	if(!(Boolean) result.get(FishConstant.SUCCESS)){
+    		return result;
+    	}
+    	IDevice device = deviceService.get(terminalId);
+        DeviceForm deviceForm = toFrom(device);
+        result.addAttribute(FishConstant.DATA,deviceForm);
+        result.addAttribute(FishConstant.SUCCESS, true);
+    	return result;
+    }
+    
+    /**
+     * 查看设备硬件状态
+     * @param httpRequest
+     * @param request
+     * @return
+     */
+    @RequestMapping(value="/hardwareInfo",method = RequestMethod.GET)
+   	public @ResponseBody
+   	ModelMap searchHardwareInfo(HttpServletRequest httpRequest, WebRequest request){
+    	logger.info(String.format("search device hardware status information"));
+    	ModelMap result = new ModelMap();
+        String terminalId = request.getParameter("termianlId");
+        IDevice device = deviceService.get(terminalId);
+        result= isExistAndCharge(httpRequest,terminalId);
+    	if(!(Boolean) result.get(FishConstant.SUCCESS)){
+    		return result;
+    	}
+        IXfsStatus xfsStatus = xfsService.loadXfsStatus(terminalId);
+    	DeviceDetailForm deviceDetailForm = new DeviceDetailForm();
+    	StatusReport statusReport = new StatusReport();
+        DeviceReport deviceReport = new DeviceReport();
+        IRunInfo runInfo = new RunInfo();
+		runInfo.setRunStatus(xfsStatus.getRunStatus());
+		deviceReport.setDeviceId(terminalId);
+		deviceReport.setXfsStatus(xfsStatus);
+    	deviceReport.setRunInfo(runInfo);
+		deviceReport.setDevice(device);
+    	statusReport.setStatusReport(deviceReport, messageSourceEnum);
+        deviceDetailForm.setStatusReport(statusReport);
+        return result;
+    }
+    
+    /**
+     *查询设备人员信息 
+     * @param httpRequest
+     * @param request
+     * @return
+     */
+    @RequestMapping(value="/personInfo",method = RequestMethod.GET)
+   	public @ResponseBody
+   	ModelMap searchPersonInfo(HttpServletRequest httpRequest, WebRequest request){
+    	logger.info(String.format("search device person information"));
+    	ModelMap result = new ModelMap();
+    	String terminalId = request.getParameter("termianlId");
+    	result= isExistAndCharge(httpRequest,terminalId);
+    	if(!(Boolean) result.get(FishConstant.SUCCESS)){
+    		return result;
+    	}
+    	List<IPerson> personList = devicePersonRelation.listPersonByDevice(terminalId);
+    	if(personList.size() != 0){
+    		List<PersonForm> data = PersonForm.convert(personList);
+        	result.addAttribute(FishConstant.SUCCESS, true);
+        	result.addAttribute(FishConstant.DATA, data);
+    	}else{
+    		result.addAttribute(FishConstant.SUCCESS, false);
+    	}
+    	return result;
+    }
+    
+    /**
+     * 查询设备版本信息
+     * @param httpRequest
+     * @param request
+     * @return
+     */
+    @RequestMapping(value="/versionInfo",method = RequestMethod.GET)
+   	public @ResponseBody
+   	ModelMap searchVersionInfo(HttpServletRequest httpRequest, WebRequest request){
+    	logger.info(String.format("search device person information"));
+    	ModelMap result = new ModelMap();
+    	String terminalId = request.getParameter("termianlId");
+    	IDevice device = deviceService.get(terminalId);
+    	String typeName="gump-professional";
+    	result= isExistAndCharge(httpRequest,terminalId);
+    	if(!(Boolean) result.get(FishConstant.SUCCESS)){
+    		return result;
+    	}
+    	List<ITask> lists = taskService.findTasks(device.getId()); 
+    	DeviceDetailForm deviceDetailForm = new DeviceDetailForm();
+    	deviceDetailForm.setVersionDeviceList(getHistoryForms(lists, device));
+    	deviceDetailForm.setAppReleaseList(getVersionForm(typeName,terminalId));
+    	result.addAttribute(FishConstant.DATA, deviceDetailForm);
+        result.addAttribute(FishConstant.SUCCESS, true);
+    	return result;
+    }
+    
+    /**
+     * 查询设备版本信息
+     * @param httpRequest
+     * @param request
+     * @return
+     */
+    @RequestMapping(value="/otherInfo",method = RequestMethod.GET)
+   	public @ResponseBody
+   	ModelMap searchOtherInfo(HttpServletRequest httpRequest, WebRequest request){
+    	logger.info(String.format("search device person information"));
+    	ModelMap result = new ModelMap();
+    	String terminalId = request.getParameter("termianlId");
+    	IDevice device = deviceService.get(terminalId);
+        result= isExistAndCharge(httpRequest,terminalId);
+    	if(!(Boolean) result.get(FishConstant.SUCCESS)){
+    		return result;
+    	}
+    	DeviceDetailForm deviceDetailForm = new DeviceDetailForm();
+    	IDeviceBoxInfo devcieBoxInfo = devcieBoxInfoService.findByDeviceId(device.getId());
+    	
+    	DeviceReport deviceReport = new DeviceReport();
+    	StatusReport statusReport = new StatusReport();
+    	deviceReport.setDeviceRegister((DeviceRegister) registService.load(terminalId));
+    	DeviceForm deviceForm = toFrom(device);
+    	deviceDetailForm.setMaxAlarm(devcieBoxInfo==null?"未知":String.valueOf(devcieBoxInfo.getMaxAlarm()));
+        deviceDetailForm.setMinAlarm(devcieBoxInfo==null?"未知":String.valueOf(devcieBoxInfo.getMinAlarm()));
+        deviceDetailForm.setDeviceForm(deviceForm);
+        statusReport.setStatusReport(deviceReport, messageSourceEnum);
+        deviceDetailForm.setStatusReport(statusReport);
+    	return result;
+    }
+    
+    /**
+     * 判断用户是否有权限查看设备信息及设备是否存在
+     * @return
+     */
+    private ModelMap isExistAndCharge(HttpServletRequest httpRequest,String terminalId){
+    	IDevice device = deviceService.get(terminalId);
+        ModelMap result = new ModelMap();
+        if(null==device){
+        	result.addAttribute(FishConstant.SUCCESS, false);
+        	result.addAttribute(FishConstant.ERROR_MSG, "设备:"+terminalId+"不存在");
+        	return result;
+        }
+        String deviceOrgFlag = device.getOrganization().getOrgFlag();
+        HttpSession session = httpRequest.getSession();
+        UserSession userSession = (UserSession) session.getAttribute("SESSION_USER");
+        String userOrgFlag = userSession.getOrgFlag();
+        if(!deviceOrgFlag.startsWith(userOrgFlag)){
+        	result.addAttribute(FishConstant.ERROR_MSG, "无权限查看设备"+terminalId);
+        	result.addAttribute(FishConstant.SUCCESS, false);
+        	return result;
+        }
+        return result.addAttribute(FishConstant.SUCCESS, true);
+    }
+    
     private List<DeviceVersionHistory> getHistoryForms(List<ITask> lists , IDevice device) {
         List<DeviceVersionHistory> forms = new ArrayList<DeviceVersionHistory>();
 
