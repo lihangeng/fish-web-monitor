@@ -47,6 +47,7 @@ import com.yihuacomputer.fish.monitor.entity.business.DeviceRegister;
 import com.yihuacomputer.fish.monitor.entity.business.RunInfo;
 import com.yihuacomputer.fish.monitor.entity.report.DeviceReport;
 import com.yihuacomputer.fish.monitor.entity.report.StatusReport;
+import com.yihuacomputer.fish.web.machine.form.BoxAndRetainCardForm;
 import com.yihuacomputer.fish.web.machine.form.DeviceDetailForm;
 import com.yihuacomputer.fish.web.machine.form.DeviceForm;
 import com.yihuacomputer.fish.web.system.form.PersonForm;
@@ -276,9 +277,9 @@ public class DeviceDetailController
      * @param request
      * @return
      */
-    @RequestMapping(value="/otherInfo",method = RequestMethod.GET)
+    @RequestMapping(value="/boxAndRetainInfo",method = RequestMethod.GET)
    	public @ResponseBody
-   	ModelMap searchOtherInfo(HttpServletRequest httpRequest, WebRequest request){
+   	ModelMap searchBoxAndRetainInfo(HttpServletRequest httpRequest, WebRequest request){
     	logger.info(String.format("search device person information"));
     	ModelMap result = new ModelMap();
     	String terminalId = request.getParameter("termianlId");
@@ -287,18 +288,21 @@ public class DeviceDetailController
     	if(!(Boolean) result.get(FishConstant.SUCCESS)){
     		return result;
     	}
-    	DeviceDetailForm deviceDetailForm = new DeviceDetailForm();
     	IDeviceBoxInfo devcieBoxInfo = devcieBoxInfoService.findByDeviceId(device.getId());
     	StatusReport statusReport = new StatusReport();
     	DeviceReport deviceReport = new DeviceReport();
     	IXfsStatus xfsStatus = xfsService.loadXfsStatus(terminalId);
-		deviceReport.setDeviceId(terminalId);
 		deviceReport.setXfsStatus(xfsStatus);
 		statusReport.setStatusReport(deviceReport, messageSourceEnum);
-        deviceDetailForm.setStatusReport(statusReport);
-    	deviceDetailForm.setMaxAlarm(devcieBoxInfo==null?"未知":String.valueOf(devcieBoxInfo.getMaxAlarm()));
-        deviceDetailForm.setMinAlarm(devcieBoxInfo==null?"未知":String.valueOf(devcieBoxInfo.getMinAlarm()));
-        result.addAttribute(FishConstant.DATA, deviceDetailForm);
+        
+        BoxAndRetainCardForm boxAndRetainCardForm = new BoxAndRetainCardForm();
+        boxAndRetainCardForm.setBoxCurrentCount(statusReport.getBoxCurrentCount());
+        boxAndRetainCardForm.setBoxInitCount(statusReport.getBoxInitCount());
+        boxAndRetainCardForm.setRetainCardCount(statusReport.getRetainCardCount());
+        boxAndRetainCardForm.setMaxAlarm(devcieBoxInfo==null?"未知":String.valueOf(devcieBoxInfo.getMaxAlarm()));
+        boxAndRetainCardForm.setMinAlarm(devcieBoxInfo==null?"未知":String.valueOf(devcieBoxInfo.getMinAlarm()));
+        
+        result.addAttribute(FishConstant.DATA, boxAndRetainCardForm);
         result.addAttribute(FishConstant.SUCCESS, true);
     	return result;
     }
