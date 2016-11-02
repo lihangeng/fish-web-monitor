@@ -19,12 +19,10 @@ Ext.define('Eway.view.Header', {
         	xtype:'textfield',
         	name:'terminalId',
         	enableKeyEvents :true,
-        	hidden:true,
         	emptyText :'设备号'
         },{
         	tooltip:EwayLocale.button.search,
         	glyph : 0xf002,
-        	hidden:true,
         	action:'signleQuery'
         },{
         	xtype:'tbtext',
