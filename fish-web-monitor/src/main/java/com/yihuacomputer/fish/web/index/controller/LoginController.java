@@ -216,12 +216,7 @@ public class LoginController {
 		List<IPermission> permissions = userRoleRelation.findDirectChildPermissionsByUser(userId, node);
 		List<TreeMenu> forms = new ArrayList<TreeMenu>();
 		for (IPermission permission : permissions) {
-			if(permission.getCode().equals("deviceView")){
-				continue;
-			}
 			TreeMenu menu = new TreeMenu(permission);
-			// menu.setText(messageSource.getMessage("user.login.remark", null,
-			// FishCfg.locale));
 			forms.add(menu);
 		}
 		return forms;
@@ -276,6 +271,7 @@ class TreeMenu {
 	private String text;
 	private String iconCls;
 	private boolean leaf = true;
+	private boolean treeNode = true;
 
 	public TreeMenu(IPermission permission) {
 		this.id = permission.getId();
@@ -283,6 +279,7 @@ class TreeMenu {
 		this.text = permission.getDescription();
 		this.leaf = permission.isLeaf();
 		this.iconCls = permission.getIconCls();
+		this.treeNode = permission.isTreeNode();
 	}
 
 	public TreeMenu() {
@@ -327,4 +324,13 @@ class TreeMenu {
 	public void setIconCls(String iconCls) {
 		this.iconCls = iconCls;
 	}
+
+	public boolean isTreeNode() {
+		return treeNode;
+	}
+
+	public void setTreeNode(boolean treeNode) {
+		this.treeNode = treeNode;
+	}
+	
 }

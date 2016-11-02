@@ -113,5 +113,11 @@ public interface IPermission {
 	 */
 	public String getSelectCls();
 	public void setSelectCls(String selectCls);
-
+	
+	/**
+	 * 是否需要像树上的节点一样进行渲染(单机模式不需要再树上渲染)
+	 * @return
+	 */
+	public boolean isTreeNode();
+	public void setTreeNode(boolean isTreeNode);
 }

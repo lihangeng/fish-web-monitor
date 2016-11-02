@@ -70,6 +70,10 @@ public class Permission implements IPermission ,Serializable{
 	
 	@Column(name = "SELECT_CLS", length = 64)
 	private String selectCls;
+
+	@org.hibernate.annotations.Type(type = "com.yihuacomputer.domain.util.BooleanUserType")
+	@Column(name = "IS_TREE_NODE", columnDefinition="CHAR",length=1)
+	private boolean isTreeNode;
 	
 	@Transient
 	private IPermissionService service;
@@ -254,5 +258,16 @@ public class Permission implements IPermission ,Serializable{
 
 	public void setParentId(String parentId) {
 		this.parentId = parentId;
+	}
+
+
+	public boolean isTreeNode() {
+		return isTreeNode;
+	}
+
+
+	public void setTreeNode(boolean isTreeNode) {
+		this.isTreeNode = isTreeNode;
 	}	
+	
 }

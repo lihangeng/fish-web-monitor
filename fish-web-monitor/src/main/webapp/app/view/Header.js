@@ -19,10 +19,12 @@ Ext.define('Eway.view.Header', {
         	xtype:'textfield',
         	name:'terminalId',
         	enableKeyEvents :true,
+        	hidden:true,
         	emptyText :'设备号'
         },{
         	tooltip:EwayLocale.button.search,
         	glyph : 0xf002,
+        	hidden:true,
         	action:'signleQuery'
         },{
         	xtype:'tbtext',
@@ -59,24 +61,20 @@ Ext.define('Eway.view.Header', {
          }],
          listeners: {
      		beforerender:function( _this, eOpts ){
-     			Ext.Ajax.request({
-    				method : 'GET',
-    				url : 'api/login/menu/deviceView',
-					params: {
-				        userId : Eway.user.getId(),
-				        node : 'A'
-				    },
-				    success :function(data){
-				    	var isShow = Ext.decode(data.responseText); 
-				    	if(isShow){
-				    		_this.items.items[2].show();
-				    		_this.items.items[3].show();
-				    	}else{
-				    		_this.items.items[2].hide();
-				    		_this.items.items[3].hide();
-				    	}
-        			}
-    			});
+     			var store = _this.up("viewport").getOtherStore();
+     			var isShow = false;
+     			Ext.Array.forEach(store,function(item,index,store){
+     				if(item.get("code")=='deviceView'){
+     					isShow = true;
+     				}
+     			});
+		    	if(isShow){
+		    		_this.items.items[2].show();
+		    		_this.items.items[3].show();
+		    	}else{
+		    		_this.items.items[2].hide();
+		    		_this.items.items[3].hide();
+		    	}
      		}
      	}
 });

@@ -10,7 +10,33 @@ Ext.application({
 		launch : function(){
 			Ext.get('loading').destroy();
 			Ext.setGlyphFontFamily('FontAwesome');
-			Ext.create('Eway.view.Viewport');
+			
+			var store = Ext.create('Ext.data.TreeStore', {
+			    proxy: {
+			        type: 'ajax',
+			        url : 'api/login/mymenu/'+Eway.user.getId(),
+			        reader: {
+				        type: 'json',
+				        rootProperty: 'data'
+				    }
+			    },
+			    fields : [ 'id','code','text','leaf','iconCls','treeNode'],
+			    defaultRootId :'0',
+			    autoLoad: true,
+			    listeners:{
+			    	load:function(_this, records, successful, operation, node, eOpts ){
+			    		var array = new Array();
+			    		Ext.Array.forEach(records,function(item,index,allItems){
+			    			if(!item.get("treeNode")){
+			    				store.remove(item);
+			    				array.push(item);
+			    			}
+			    		});
+						Ext.create('Eway.view.Viewport',{treepanelStore:store,otherStore:array});
+			    	}
+			    }
+			});
+			
 			/**会话超时检测*/
 			Ext.Ajax.on('requestcomplete',function(connection,response,options){
 			try{

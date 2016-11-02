@@ -4,21 +4,12 @@ Ext.define('Eway.view.Viewport', {
 	requires : [ 'Eway.view.Header', 'Eway.view.Workspace','Ext.layout.container.Border' ],
 
 	layout : 'border',
-
+	config:{
+		treepanelStore:'',
+		otherStore:''
+	},
 	initComponent : function() {
-		var store = Ext.create('Ext.data.TreeStore', {
-		    proxy: {
-		        type: 'ajax',
-		        url : 'api/login/mymenu/'+Eway.user.getId(),
-		        reader: {
-			        type: 'json',
-			        rootProperty: 'data'
-			    }
-		    },
-		    fields : [ 'id','code','text','leaf','iconCls'],
-		    defaultRootId :'0',
-		    autoLoad: true
-		});
+		var me = this;
 		Ext.apply(this, {
 			items : [ {
 				region : 'north',
@@ -35,7 +26,7 @@ Ext.define('Eway.view.Viewport', {
 				rootVisible : false,
 				lines : false,
 				bufferedRenderer : false,
-				store : store,
+				store : me.getTreepanelStore(),
 				collapsible : true,
 				collapseMode : 'header',
 				split : false,
