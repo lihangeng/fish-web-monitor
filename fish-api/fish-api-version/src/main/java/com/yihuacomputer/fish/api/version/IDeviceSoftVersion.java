@@ -29,4 +29,6 @@ public interface IDeviceSoftVersion {
 	public String getDesc();
 	public String getVersionStr();
 	public void setVersionStr(String versionStr);
+	public IVersionType getVersionType();
+	public void setVersionType(IVersionType versionType);
 }

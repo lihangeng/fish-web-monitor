@@ -112,8 +112,7 @@ public class DeviceSoftVersionService extends DomainDeviceSoftVersionService imp
 	  @Override
 		public IDeviceSoftVersion findVersionByCatlog(String terminalId,VersionCatalog versionCatalog) {
 	    	StringBuilder hql = new StringBuilder();
-	    	//VersionCatalog statu = Enum.valueOf(VersionCatalog.class, versionCatalog); 
-	        hql.append("from DeviceSoftVersion t  where t.terminalId=? and t.versionType.versionCatalog = ? ");
+	        hql.append("from DeviceSoftVersion t  where t.terminalId=? and t.versionType.versionCatalog = ? group by t.createdTime desc");
 	        List<IDeviceSoftVersion> lists = dao.findByHQL(hql.toString(),terminalId, versionCatalog);
 	        if (lists.size() > 0) {
 	            return lists.get(0);
@@ -155,6 +154,7 @@ public class DeviceSoftVersionService extends DomainDeviceSoftVersionService imp
 			deviceSoftVersion.setTerminalId(device.getTerminalId());
 			deviceSoftVersion.setTypeName(versionType.getTypeName());
 			deviceSoftVersion.setCreatedTime(date);
+			deviceSoftVersion.setVersionType(versionType);
 			deviceSoftVersion.setLastUpdatedTime(date);
 			deviceSoftVersion.setVersionNo("0");
 			deviceSoftVersion.setVersionStr("0000000000000000000000000000000");

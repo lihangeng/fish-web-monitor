@@ -409,6 +409,7 @@ public class VersionService implements IDomainVersionService {
                 }
             } else {
                 dsv = deviceVersionService.make();
+                dsv.setVersionType(typeService.getByName(typeName));
                 dsv.setTerminalId(device.getTerminalId());
                 dsv.setTypeName(typeName);
                 dsv.setVersionNo(versionNo);
