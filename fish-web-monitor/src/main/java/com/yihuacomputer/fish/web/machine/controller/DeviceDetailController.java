@@ -35,9 +35,12 @@ import com.yihuacomputer.fish.api.monitor.xfs.status.IXfsStatus;
 import com.yihuacomputer.fish.api.person.IPerson;
 import com.yihuacomputer.fish.api.person.UserSession;
 import com.yihuacomputer.fish.api.relation.IDevicePersonRelation;
+import com.yihuacomputer.fish.api.version.IDeviceSoftVersion;
+import com.yihuacomputer.fish.api.version.IDeviceSoftVersionService;
 import com.yihuacomputer.fish.api.version.IVersion;
 import com.yihuacomputer.fish.api.version.IVersionService;
 import com.yihuacomputer.fish.api.version.IVersionTypeService;
+import com.yihuacomputer.fish.api.version.VersionCatalog;
 import com.yihuacomputer.fish.api.version.job.task.ITask;
 import com.yihuacomputer.fish.api.version.job.task.ITaskService;
 import com.yihuacomputer.fish.monitor.entity.business.DeviceRegister;
@@ -77,9 +80,10 @@ public class DeviceDetailController
     private IVersionService VersionService;  
     
     @Autowired
-    private IVersionTypeService VersionTypeService;   
+    private IVersionTypeService VersionTypeService;  
     
-    
+    @Autowired
+    private IDeviceSoftVersionService DeviceSoftVersionService; 
     
     @Autowired
     private  IDeviceBoxInfoService devcieBoxInfoService;
@@ -96,7 +100,7 @@ public class DeviceDetailController
     {
         logger.info(String.format("search device detail "));
         String terminalId = request.getParameter("termianlId");
-        String typeName="gump-professional";
+       // String typeName="gump-professional";
         IDevice device = deviceService.get(terminalId);
         ModelMap result = new ModelMap();
         if(null==device){
@@ -130,7 +134,7 @@ public class DeviceDetailController
 		statusReport.setStatusReport(deviceReport, messageSourceEnum);
         deviceDetailForm.setStatusReport(statusReport);
         deviceDetailForm.setDeviceForm(toFrom(device));
-        deviceDetailForm.setAppReleaseList(getVersionForm(typeName,terminalId));
+        //deviceDetailForm.setAppReleaseList(getVersionForm(typeName,terminalId));
         
         deviceDetailForm.setMaxAlarm(devcieBoxInfo==null?"未知":String.valueOf(devcieBoxInfo.getMaxAlarm()));
         deviceDetailForm.setMinAlarm(devcieBoxInfo==null?"未知":String.valueOf(devcieBoxInfo.getMinAlarm()));
@@ -139,6 +143,20 @@ public class DeviceDetailController
         result.addAttribute(FishConstant.DATA, deviceDetailForm);
         result.addAttribute(FishConstant.SUCCESS, true);
         return result;
+    }
+    
+    @RequestMapping(value = "updateVersion", method = RequestMethod.GET)
+    public @ResponseBody
+	 ModelMap getUpdateVersion( HttpServletRequest httpRequest, WebRequest request) {
+    	VersionCatalog versionCatalog=Enum.valueOf(VersionCatalog.class, "APP"); 
+    	String terminalId = request.getParameter("termianlId");
+    	String veisionNo = request.getParameter("veisionNo");
+    	List<VersionForm> appReleaseList=new ArrayList<VersionForm>();
+    	appReleaseList=getVersionForm(terminalId,versionCatalog,veisionNo);
+    	ModelMap result = new ModelMap();
+    	result.addAttribute(FishConstant.DATA, appReleaseList);
+        result.addAttribute(FishConstant.SUCCESS, true);
+    	return result;
     }
     
     private List<DeviceVersionHistory> getHistoryForms(List<ITask> lists , IDevice device) {
@@ -179,19 +197,21 @@ public class DeviceDetailController
     	return messageSourceEnum.getMessage(enumText, null, FishCfg.locale);
     }
     
-    private List<VersionForm> getVersionForm(String typeName,String terminalId) {
-        List<VersionForm> appReleaseList = new ArrayList<VersionForm>();
-        String versionNo=registService.load(terminalId).getAtmcVersion();
+    private List<VersionForm> getVersionForm(String terminalId,VersionCatalog versionCatalog,String versionNo) {
+        List<VersionForm> appReleaseList = new ArrayList<VersionForm>();;
+        IDeviceSoftVersion deviceSoftVersion=DeviceSoftVersionService.findVersionByCatlog(terminalId, versionCatalog);
+        String typeName=deviceSoftVersion.getTypeName();
         IVersion currentVersion=VersionService.findVersion(typeName, versionNo);
+        if(currentVersion!=null){
+        long typeId=currentVersion.getVersionType().getId();
         IFilter filter=new Filter();
-        filter.eq("typeName", typeName);
-        long typeId=VersionTypeService.list(filter).get(0).getId();
-        IFilter filter2=new Filter();
-        filter2.descOrder("versionStr");
-        filter2.eq("versionType.id", typeId);
-        List<IVersion> maybeVersions=VersionService.list(filter2);
+        filter.descOrder("versionStr");
+        filter.eq("versionType.id", typeId);
+      //filter.lt("versionStr",currentVersion.getVersionStr());
+        List<IVersion> maybeVersions=VersionService.list(filter);
         List<IVersion> versions= VersionService.getUpdateVersion(maybeVersions,currentVersion);
         appReleaseList=toVersionForm(versions);
+        }
         return appReleaseList;
     }
     
