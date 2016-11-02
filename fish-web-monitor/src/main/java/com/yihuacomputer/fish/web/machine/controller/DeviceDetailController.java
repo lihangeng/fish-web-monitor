@@ -254,15 +254,17 @@ public class DeviceDetailController
     	ModelMap result = new ModelMap();
     	String terminalId = request.getParameter("termianlId");
     	IDevice device = deviceService.get(terminalId);
-    	String typeName="gump-professional";
+    	VersionCatalog versionCatalog=Enum.valueOf(VersionCatalog.class, "APP"); 
+    	IDeviceSoftVersion deviceSoftVersion=DeviceSoftVersionService.findVersionByCatlog(terminalId, versionCatalog);
     	result= isExistAndCharge(httpRequest,terminalId);
     	if(!(Boolean) result.get(FishConstant.SUCCESS)){
     		return result;
     	}
+    	String versionNo = deviceSoftVersion.getVersionNo();
     	List<ITask> lists = taskService.findTasks(device.getId()); 
     	DeviceDetailForm deviceDetailForm = new DeviceDetailForm();
     	deviceDetailForm.setVersionDeviceList(getHistoryForms(lists, device));
-    	deviceDetailForm.setAppReleaseList(getVersionForm(typeName,terminalId));
+    	deviceDetailForm.setAppReleaseList(getVersionForm(terminalId,versionCatalog,versionNo));
     	result.addAttribute(FishConstant.DATA, deviceDetailForm);
         result.addAttribute(FishConstant.SUCCESS, true);
     	return result;
@@ -287,16 +289,17 @@ public class DeviceDetailController
     	}
     	DeviceDetailForm deviceDetailForm = new DeviceDetailForm();
     	IDeviceBoxInfo devcieBoxInfo = devcieBoxInfoService.findByDeviceId(device.getId());
-    	
-    	DeviceReport deviceReport = new DeviceReport();
     	StatusReport statusReport = new StatusReport();
-    	deviceReport.setDeviceRegister((DeviceRegister) registService.load(terminalId));
-    	DeviceForm deviceForm = toFrom(device);
+    	DeviceReport deviceReport = new DeviceReport();
+    	IXfsStatus xfsStatus = xfsService.loadXfsStatus(terminalId);
+		deviceReport.setDeviceId(terminalId);
+		deviceReport.setXfsStatus(xfsStatus);
+		statusReport.setStatusReport(deviceReport, messageSourceEnum);
+        deviceDetailForm.setStatusReport(statusReport);
     	deviceDetailForm.setMaxAlarm(devcieBoxInfo==null?"未知":String.valueOf(devcieBoxInfo.getMaxAlarm()));
         deviceDetailForm.setMinAlarm(devcieBoxInfo==null?"未知":String.valueOf(devcieBoxInfo.getMinAlarm()));
-        deviceDetailForm.setDeviceForm(deviceForm);
-        statusReport.setStatusReport(deviceReport, messageSourceEnum);
-        deviceDetailForm.setStatusReport(statusReport);
+        result.addAttribute(FishConstant.DATA, deviceDetailForm);
+        result.addAttribute(FishConstant.SUCCESS, true);
     	return result;
     }
     
