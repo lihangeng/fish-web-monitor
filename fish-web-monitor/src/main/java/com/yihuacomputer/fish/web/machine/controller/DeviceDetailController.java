@@ -119,8 +119,8 @@ public class DeviceDetailController
         	return result;
         }
         IXfsStatus xfsStatus = xfsService.loadXfsStatus(terminalId);
-        List<IPerson> personList = devicePersonRelation.listPersonByDevice(terminalId);
-        IDeviceBoxInfo devcieBoxInfo = devcieBoxInfoService.findByDeviceId(device.getId());
+//        List<IPerson> personList = devicePersonRelation.listPersonByDevice(terminalId);
+//        IDeviceBoxInfo devcieBoxInfo = devcieBoxInfoService.findByDeviceId(device.getId());
         List<ITask> lists = taskService.findTasks(device.getId());   
         DeviceDetailForm deviceDetailForm = new DeviceDetailForm();
         StatusReport statusReport = new StatusReport();
@@ -134,12 +134,12 @@ public class DeviceDetailController
 		deviceReport.setDeviceRegister((DeviceRegister) registService.load(terminalId));
 		statusReport.setStatusReport(deviceReport, messageSourceEnum);
         deviceDetailForm.setStatusReport(statusReport);
-        deviceDetailForm.setDeviceForm(toFrom(device));
+//        deviceDetailForm.setDeviceForm(toFrom(device));
         //deviceDetailForm.setAppReleaseList(getVersionForm(typeName,terminalId));
         
-        deviceDetailForm.setMaxAlarm(devcieBoxInfo==null?"未知":String.valueOf(devcieBoxInfo.getMaxAlarm()));
-        deviceDetailForm.setMinAlarm(devcieBoxInfo==null?"未知":String.valueOf(devcieBoxInfo.getMinAlarm()));
-        deviceDetailForm.setPersonList(PersonForm.convert(personList));
+//        deviceDetailForm.setMaxAlarm(devcieBoxInfo==null?"未知":String.valueOf(devcieBoxInfo.getMaxAlarm()));
+//        deviceDetailForm.setMinAlarm(devcieBoxInfo==null?"未知":String.valueOf(devcieBoxInfo.getMinAlarm()));
+//        deviceDetailForm.setPersonList(PersonForm.convert(personList));
         deviceDetailForm.setVersionDeviceList(getHistoryForms(lists, device));
         result.addAttribute(FishConstant.DATA, deviceDetailForm);
         result.addAttribute(FishConstant.SUCCESS, true);
@@ -301,7 +301,7 @@ public class DeviceDetailController
         boxAndRetainCardForm.setRetainCardCount(statusReport.getRetainCardCount());
         boxAndRetainCardForm.setMaxAlarm(devcieBoxInfo==null?"未知":String.valueOf(devcieBoxInfo.getMaxAlarm()));
         boxAndRetainCardForm.setMinAlarm(devcieBoxInfo==null?"未知":String.valueOf(devcieBoxInfo.getMinAlarm()));
-        
+        boxAndRetainCardForm.setRegisterStatus(statusReport.getRegisterStatus());
         result.addAttribute(FishConstant.DATA, boxAndRetainCardForm);
         result.addAttribute(FishConstant.SUCCESS, true);
     	return result;

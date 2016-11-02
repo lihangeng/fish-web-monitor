@@ -11,6 +11,16 @@ public class BoxAndRetainCardForm {
 	 private String minAlarm;
 	 
 	 private String retainCardCount;
+	 
+	 private String registerStatus;
+
+	public String getRegisterStatus() {
+		return registerStatus;
+	}
+
+	public void setRegisterStatus(String registerStatus) {
+		this.registerStatus = registerStatus;
+	}
 
 	public String getBoxInitCount() {
 		return boxInitCount;
