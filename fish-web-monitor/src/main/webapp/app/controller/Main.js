@@ -25,7 +25,8 @@ Ext.define('Eway.controller.Main', {
 				click : this.onOpenPersonalSettings
 			},/*F5刷新的功能，未完全实现,*/
 			'#workspace' : {
-	           tabchange : 'onTabChange'
+	           tabchange : 'onTabChange',
+	           afterrender:this.onAfterRender
 	        },
 	        '#appheader button[action=signleQuery]' :{
             	click:this.searchDeviceDetail
@@ -52,10 +53,12 @@ Ext.define('Eway.controller.Main', {
 			}
 		});
 	},
+	onAfterRender:function(){
+		Eway.lib.ButtonUtils.loadButtons(this);
+	},
 	// 系统启动时调用的方法
 	onLaunch : function() {
 		// 加载按钮数据
-		Eway.lib.ButtonUtils.loadButtons(this);
 		Ext.apply(Eway, {
 			alert : function(msg){
 				Ext.create('widget.uxNotification', {

@@ -4,13 +4,14 @@ Ext.application({
 		controllers : [
 			'Main'
 		],
+		firstload:true,
 		extend: 'Ext.app.Application',
 		requires: ['Eway.view.Viewport','Eway.lib.Util'],
 		autoCreateViewport: false,
 		launch : function(){
 			Ext.get('loading').destroy();
 			Ext.setGlyphFontFamily('FontAwesome');
-			
+			var me = this;
 			var store = Ext.create('Ext.data.TreeStore', {
 			    proxy: {
 			        type: 'ajax',
@@ -25,14 +26,17 @@ Ext.application({
 			    autoLoad: true,
 			    listeners:{
 			    	load:function(_this, records, successful, operation, node, eOpts ){
-			    		var array = new Array();
-			    		Ext.Array.forEach(records,function(item,index,allItems){
-			    			if(!item.get("treeNode")){
-			    				store.remove(item);
-			    				array.push(item);
-			    			}
-			    		});
-						Ext.create('Eway.view.Viewport',{treepanelStore:store,otherStore:array});
+			    		if(me.firstload){
+			    			me.firstload = false;
+				    		var array = new Array();
+				    		Ext.Array.forEach(records,function(item,index,allItems){
+				    			if(!item.get("treeNode")){
+				    				store.remove(item);
+				    				array.push(item);
+				    			}
+				    		});
+							Ext.create('Eway.view.Viewport',{treepanelStore:store,otherStore:array});
+			    		}
 			    	}
 			    }
 			});
