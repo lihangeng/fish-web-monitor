@@ -1,6 +1,6 @@
 Ext.define('Eway.view.machine.detail.basic.OftenDevicesInfo', {
 	extend : 'Ext.panel.Panel',
-	alias : 'widget.detail_basic_OftenDevicesInfo',
+	alias : 'widget.detail_basic_oftenDevicesInfo',
 	
 
 	requires : [],

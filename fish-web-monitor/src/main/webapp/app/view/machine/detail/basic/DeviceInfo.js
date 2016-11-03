@@ -26,7 +26,7 @@ Ext.define('Eway.view.machine.detail.basic.DeviceInfo', {
 	            panel.down('#collapse').show();
 	        }
 	    }],
-	requires : ['Eway.view.machine.detail.basic.DevicesInfo','Eway.view.machine.detail.basic.OftenDevicesInfo'  ],
+	requires : ['Eway.view.machine.detail.basic.HiddenDeviceInfo','Eway.view.machine.detail.basic.OftenDevicesInfo'  ],
     layout: {
         type: 'column',
     },
@@ -36,9 +36,9 @@ Ext.define('Eway.view.machine.detail.basic.DeviceInfo', {
 			items : [{
 				xtype:'form',
 				items:[{
-					xtype:'detail_basic_OftenDevicesInfo'
+					xtype:'detail_basic_oftenDevicesInfo'
 				},{
-					xtype:'detail_basic_DevicesInfo',
+					xtype:'detail_basic_hiddenDevicesInfo',
 					id:'deviceInfo',
 					hidden:true
 				}]
