@@ -37,18 +37,45 @@ Ext.define('Eway.view.machine.detail.basic.DeviceInfo', {
 	initComponent : function() {
 		Ext.apply(this, {
 			items : [{
-				xtype:'detail_basic_OftenDevicesInfo'
-			},{
-				xtype:'detail_basic_DevicesInfo',
-				id:'deviceInfo',
-				hidden:true
+				xtype:'form',
+				items:[{
+					xtype:'detail_basic_OftenDevicesInfo'
+				},{
+					xtype:'detail_basic_DevicesInfo',
+					id:'deviceInfo',
+					hidden:true
+				}]
 			}],
 			
 			listeners : {
-				activate : function(panel) {}
+				beforerender : function(panel) {
+//					this.refreshData();
+				}
 			}
 		});
 
 		this.callParent(arguments);
+	},
+	refreshData:function(){
+		var me = this;
+		var termianlId = me.up("tabpanel").getTerminalId();
+		Ext.Ajax.request({
+			method : 'GET',
+			url : 'api/machine/devicedetail/basicInfo',
+			params:{'termianlId':termianlId},
+			success : function(response) {
+				var object = Ext.decode(response.responseText);
+				if (object.success == true) {
+						me.down("form").loadRecord(Ext.create('Eway.model.machine.Device',object.data));
+					}else{
+						Eway.alert(object.errorMsg);
+					}
+					me.unmask();
+				},
+				failure:function(){
+					me.unmask();
+				}
+		});
 	}
+    
 });

@@ -76,70 +76,6 @@ Ext.define('Eway.controller.Main', {
 			this.searchDeviceDetail();
 		}
 	},
-	/*searchDeviceDetail:function(){
-		var ewayView = this.getEwayView();
-		var termianlId = this.getAppheader().down("textfield[name=terminalId]").getValue();
-		if(termianlId!=""){
-			var me = this;
-			ewayView.mask();
-			
-			Ext.Ajax.request({
-				method : 'GET',
-				url : 'api/machine/devicedetail',
-				params:{'termianlId':termianlId},
-				success : function(response) {
-					var object = Ext.decode(response.responseText);
-					if (object.success == true) {
-						var controller =  me.activeController('machine.detail.Detail');
-						var view = controller.getEwayView();
-						view.setTitle(termianlId+EwayLocale.deviceInfo.title);
-						view.setTerminalId(termianlId);
-						view.down("form").loadRecord(Ext.create('Eway.model.machine.Device',object.data.deviceForm));
-						view.down("form").loadRecord(Ext.create('Eway.model.monitor.device.DeviceMonitorList',object.data.statusReport));
-						view.down("detail_personInfo").getStore().removeAll();
-						//view.down("detail_versionInfo").getStore().removeAll();
-						//view.down("detail_appRelease").getStore().removeAll();
-						//debugger;
-						var displayfields = Ext.ComponentQuery.query("detail_basic_statusInfo displayfield");
-						Ext.Array.forEach(displayfields,function(displayfield,index,items){
-							//if(index<4){
-							displayfield.setHidden(!view.down("detail_basic_statusInfo").isHidden(displayfield));
-							}else{
-								displayfield.setHidden(true);
-							}
-						});
-						Ext.Array.forEach(object.data.personList,function(item,index,items){
-							view.down("detail_personInfo").getStore().add(Ext.create('Eway.model.person.person.BankPerson',item))
-						});
-						Ext.Array.forEach(object.data.versionDeviceList,function(item,index,items){
-							view.down("detail_versionInfo").getStore().add(Ext.create('Eway.model.version.DeviceVersionHistory',item))
-						});
-						Ext.Array.forEach(object.data.appReleaseList,function(item,index,items){
-							view.down("detail_appRelease").getStore().add(Ext.create('Eway.model.version.AppReleaseList',item))
-						});
-
-						ewayView.unmask();	
-						//刷新运行页面信息
-						var panel = view.down('detail_runInfo');
-						panel.refreshInfo(panel);
-	
-						}else{
-							Eway.alert(object.errorMsg);
-						}
-						ewayView.unmask();
-					},
-					failure:function(){
-						ewayView.unmask();
-					}
-			});
-		
-			
-			
-		}
-		else{
-			Eway.alert(EwayLocale.deviceInfo.importTerminalId);
-		}
-	},*/
 	
 	searchDeviceDetail:function(){
 		var ewayView = this.getEwayView();
@@ -147,26 +83,26 @@ Ext.define('Eway.controller.Main', {
 		if(termianlId!=""){
 			var me = this;
 			ewayView.mask();
-			Ext.Ajax.request({
-				method : 'GET',
-				url : 'api/machine/devicedetail/basicInfo',
-				params:{'termianlId':termianlId},
-				success : function(response) {
-					var object = Ext.decode(response.responseText);
-					if (object.success == true) {
+//			Ext.Ajax.request({
+//				method : 'GET',
+//				url : 'api/machine/devicedetail/querydevice',
+//				params:{'termianlId':termianlId},
+//				success : function(response) {
+//					var object = Ext.decode(response.responseText);
+//					if (object.success == true) {
 						var controller =  me.activeController('machine.detail.Detail');
 						var view = controller.getEwayView();
 						view.setTerminalId(termianlId);
-						view.down("form").loadRecord(Ext.create('Eway.model.machine.Device',object.data));
-						}else{
-							Eway.alert(object.errorMsg);
-						}
-						ewayView.unmask();
-					},
-					failure:function(){
-						ewayView.unmask();
-					}
-			});
+						view.down("detail_basicInfo detail_basic_deviceInfo").refreshData();
+//						}else{
+//							Eway.alert(object.errorMsg);
+//						}
+//						ewayView.unmask();
+//					},
+//					failure:function(){
+//						ewayView.unmask();
+//					}
+//			});
 		
 			Ext.Ajax.request({
 				method : 'GET',
