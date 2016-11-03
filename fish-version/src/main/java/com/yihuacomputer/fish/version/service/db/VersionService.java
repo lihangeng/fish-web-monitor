@@ -109,17 +109,21 @@ public class VersionService implements IDomainVersionService {
         if (version.getReleaseDate() == null) {
             version.setReleaseDate(new Date());
         }
-        VersionNo versionNo = new VersionNo(version.getVersionNo());
-        StringBuffer versionNoSb = new StringBuffer();
-        versionNoSb.append(StringUtils.preZeroStr(String.valueOf(versionNo.getMajor()), 8))
-                .append(StringUtils.preZeroStr(String.valueOf(versionNo.getMinor()), 8))
-                .append(StringUtils.preZeroStr(String.valueOf(versionNo.getIncremental()), 8))
-                .append(StringUtils.preZeroStr(String.valueOf(versionNo.getRevision()), 8));
-        entity.setVersionStr(versionNoSb.toString());
+        entity.setVersionStr(getVersionStrByVersionNo(version.getVersionNo()));
         dao.save(entity);
         return entity;
     }
 
+    public String getVersionStrByVersionNo(String versionNostr){
+    	VersionNo versionNo = new VersionNo(versionNostr);
+    	StringBuffer versionNoSb = new StringBuffer();
+        versionNoSb.append(StringUtils.preZeroStr(String.valueOf(versionNo.getMajor()), 8))
+                .append(StringUtils.preZeroStr(String.valueOf(versionNo.getMinor()), 8))
+                .append(StringUtils.preZeroStr(String.valueOf(versionNo.getIncremental()), 8))
+                .append(StringUtils.preZeroStr(String.valueOf(versionNo.getRevision()), 8));
+        return versionNoSb.toString();
+    }
+    
     private String getMD5CheckNum(String serverPath, String fileName) {
         File file = new File(serverPath, fileName);
         if (file.exists()) {
@@ -400,11 +404,11 @@ public class VersionService implements IDomainVersionService {
                 throw new AppException(exceptionMsg);
             }
             IDeviceSoftVersion dsv = deviceVersionService.get(device.getTerminalId(), typeName);
-            IVersion version = this.getVersion(typeName, versionNo);
             if (dsv != null) {
                 if (!versionNo.equals(dsv.getVersionNo())) {
                     dsv.setVersionNo(versionNo);
-                    dsv.setVersionStr(version.getVersionStr());
+                    dsv.setVersionStr(getVersionStrByVersionNo(versionNo));
+                    dsv.setLastUpdatedTime(new Date());
                     deviceVersionService.update(dsv);
                 }
             } else {
@@ -413,7 +417,7 @@ public class VersionService implements IDomainVersionService {
                 dsv.setTerminalId(device.getTerminalId());
                 dsv.setTypeName(typeName);
                 dsv.setVersionNo(versionNo);
-                dsv.setVersionStr(version.getVersionStr());
+                dsv.setVersionStr(getVersionStrByVersionNo(versionNo));
                 deviceVersionService.add(dsv);
             }
         }
