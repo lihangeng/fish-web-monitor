@@ -155,4 +155,11 @@ public interface IVersionService {
  * @return
  */
 public List<IVersion> getUpdateVersion(List<IVersion> maybeVersions,IVersion currentVersion);
+
+/**
+ * 将2.1.1.1 版本号转换为字符串 00000002000000010000000100000001
+ * @param versionNostr
+ * @return
+ */
+public String getVersionStrByVersionNo(String versionNostr);
 }
