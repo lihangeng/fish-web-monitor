@@ -14,7 +14,7 @@ Ext.define('Eway.view.machine.detail.ControllerInfo', {
         itemId: 'collapse',
         type: 'collapse',
         hidden: true,
-        tooltip: '收起',
+        tooltip: EwayLocale.deviceInfo.collapse,
         callback: function(panel) {
         	Ext.getCmp('controllerInfo').setHidden(true);
         	panel.down('#expand').show();
@@ -23,7 +23,7 @@ Ext.define('Eway.view.machine.detail.ControllerInfo', {
     }, {
         type: 'expand',
         itemId: 'expand',
-        tooltip: '展开',
+        tooltip: EwayLocale.deviceInfo.expand,
         callback: function (panel) {
         	Ext.getCmp('controllerInfo').show();
             panel.down('#collapse').show();

@@ -27,15 +27,15 @@ Ext.define('Eway.view.machine.detail.basic.AppReleaseInfo', {
 			},
 			items : [ {
 				columnWidth : .33,
-				fieldLabel : '当前版本',
+				fieldLabel : EwayLocale.version.View.nowVersionNo,
 				name : 'versionNo'
 			},{
 				columnWidth : .33,
-				fieldLabel : '上次升级时间',
+				fieldLabel : EwayLocale.deviceInfo.lastUpdateTime,
 				name : 'lastUpdateTime'
 			},{
 				columnWidth : .33,
-				fieldLabel : '可升级版本',
+				fieldLabel : EwayLocale.deviceInfo.maxUpdateVersion,
 				name : 'updateVersion',
 				renderer: function(value,meta,record) {
 					return '<a href="#" class="link">'+value+'</font></a>';

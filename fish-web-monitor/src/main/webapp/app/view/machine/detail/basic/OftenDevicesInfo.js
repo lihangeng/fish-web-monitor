@@ -25,7 +25,7 @@ Ext.define('Eway.view.machine.detail.basic.OftenDevicesInfo', {
 				name : 'terminalId'
 			},{
 				columnWidth : .25,
-				fieldLabel : 'IP地址',
+				fieldLabel : EwayLocale.machine.device.ipAddress,
 				name : 'ip'
 			},{
 				columnWidth : .25,
