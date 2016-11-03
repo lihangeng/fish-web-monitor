@@ -11,7 +11,7 @@ Ext.define('Eway.view.machine.detail.basic.OtherInfo', {
         }
     }],
 	requires : [  ],
-	title : '其他信息',
+	title : EwayLocale.deviceInfo.otherInfo,
     layout: {
         type: 'column',
     },
@@ -39,19 +39,19 @@ Ext.define('Eway.view.machine.detail.basic.OtherInfo', {
 				code : 'minAlarm'
 			},{
 				columnWidth : .25,
-				fieldLabel : '钱箱初始金额',
+				fieldLabel : EwayLocale.deviceInfo.boxInitAmt,
 				name : 'boxInitCount',
 				minHeight : 20,
 				code : 'boxInitCount'
 			},{
 				columnWidth : .25,
-				fieldLabel : '钱箱当前金额',
+				fieldLabel : EwayLocale.deviceInfo.boxCurrentAmt,
 				name : 'boxCurrentCount',
 				minHeight : 20,
 				code : 'boxCurrentCount'
 			},{
 				columnWidth : .25,
-				fieldLabel : '设备吞卡数量',
+				fieldLabel : EwayLocale.deviceInfo.deviceSwallowCardCount,
 				name : 'retainCardCount'
 			}],
 			listeners : {

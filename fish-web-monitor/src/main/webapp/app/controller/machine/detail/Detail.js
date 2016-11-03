@@ -750,7 +750,7 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 				    params=params+param;
 				});
 				}else{
-					params="当前无可升级版本"
+					params=EwayLocale.deviceInfo.noneUpdateVersion
 						}
 				if(tooltip!=null){
 					tooltip.destroy( );
@@ -765,7 +765,7 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 		            target:field.id,
 		            hideDelay: 0,
 		            id:'tooltip',
-		            html:'<font color="white">可升级版本信息：</br>'+params+'</font>'
+		            html:'<font color="white">'+EwayLocale.deviceInfo.appReleaseInfo+'</br>'+params+'</font>'
 				});
 				view.unmask();	
 			}
@@ -883,13 +883,13 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 				if (object.success == true) {
 					var versionInfo={};
 					if(object.data.maxVersion==undefined){
-						versionInfo.updateVersion="无";
+						versionInfo.updateVersion=EwayLocale.deviceInfo.none;
 					}
 					else{
 						versionInfo.updateVersion=object.data.maxVersion.versionNo;
 					}
 					if(object.data.currentVersion==undefined){
-						versionInfo.versionNo="无";
+						versionInfo.versionNo=EwayLocale.deviceInfo.none;
 					}
 					else{
 						versionInfo.versionNo=object.data.currentVersion.versionNo;

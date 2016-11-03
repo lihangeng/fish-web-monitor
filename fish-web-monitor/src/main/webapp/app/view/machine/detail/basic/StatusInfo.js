@@ -10,7 +10,7 @@ Ext.define('Eway.view.machine.detail.basic.StatusInfo', {
         itemId: 'collapse',
         type: 'collapse',
         hidden: true,
-        tooltip: '收起',
+        tooltip: EwayLocale.deviceInfo.collapse,
         callback: function(panel) {
         	panel.down("detail_basic_hiddenStatusInfo").setHidden(true);
 			panel.down('#expand').setHidden(false);
@@ -19,7 +19,7 @@ Ext.define('Eway.view.machine.detail.basic.StatusInfo', {
     }, {
         type: 'expand',
         itemId: 'expand',
-        tooltip: '展开',
+        tooltip: EwayLocale.deviceInfo.expand,
         callback: function (panel) {
         	 panel.down("detail_basic_hiddenStatusInfo").setHidden(false);
 			 panel.down('#collapse').show();

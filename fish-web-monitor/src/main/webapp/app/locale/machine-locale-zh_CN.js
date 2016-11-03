@@ -665,6 +665,21 @@ Ext.apply(EwayLocale,{
 		withdrawalCount:'取款次数',//EwayLocale.deviceInfo.withdrawalCount
 		depositCount:'存款次数',//EwayLocale.deviceInfo.depositCount
 		controllerInfo:'控制信息',//EwayLocale.deviceInfo.controllerInfo
+		boxInitAmt:'钱箱初始金额',//EwayLocale.deviceInfo.boxInitAmt
+		boxCurrentAmt:'钱箱当前金额',//EwayLocale.deviceInfo.boxCurrentAmt
+		deviceSwallowCardCount:'设备吞卡数量',//EwayLocale.deviceInfo.deviceSwallowCardCount
+		otherInfo:'其他信息',//EwayLocale.deviceInfo.otherInfo
+		lastUpdateTime:'上次升级时间',//EwayLocale.deviceInfo.lastUpdateTime
+		maxUpdateVersion:'可升级版本',//EwayLocale.deviceInfo.maxUpdateVersion
+		basicInfo:'基础信息',//EwayLocale.deviceInfo.basicInfo
+		deviceBasicInfo:'设备基础信息',//EwayLocale.deviceInfo.deviceBasicInfo
+		deviceDetailInfo:'设备信息明细',//EwayLocale.deviceInfo.deviceDetailInfo
+		statusInfo:'状态信息',//EwayLocale.deviceInfo.statusInfo
+		personInfo:'人员信息',//EwayLocale.deviceInfo.personInfo
+		collapse:'收起',//EwayLocale.deviceInfo.collapse
+		expand:'展开',//EwayLocale.deviceInfo.expand
+		none:'无',//EwayLocale.deviceInfo.none
+		noneUpdateVersion:'当前无可升级版本',//EwayLocale.deviceInfo.noneUpdateVersion
 		appReleaseInfo:'可升级版本信息'//EwayLocale.deviceInfo.appReleaseInfo
 	}
 	

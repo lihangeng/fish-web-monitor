@@ -21,11 +21,11 @@ Ext.define('Eway.view.machine.detail.basic.HiddenDeviceInfo', {
 			},
 			items : [{
 				columnWidth : .25,
-				fieldLabel : '序列号',
+				fieldLabel : EwayLocale.system.serialNum,
 				name : 'serial'
 			},{
 				columnWidth : .25,
-				fieldLabel :'维护商',
+				fieldLabel :EwayLocale.person.bankOrg.organizationType.serviceOrg,
 				name : 'devServiceName'
 			},{
 				columnWidth : .25,
@@ -33,7 +33,7 @@ Ext.define('Eway.view.machine.detail.basic.HiddenDeviceInfo', {
 				name : 'virtual'
 			},{
 				columnWidth : .25,
-				fieldLabel : '安装日期',
+				fieldLabel : EwayLocale.machine.atmGroup.installDate,
 				name : 'installDate'
 			},{
 				columnWidth : .25,
@@ -53,7 +53,7 @@ Ext.define('Eway.view.machine.detail.basic.HiddenDeviceInfo', {
 				name : 'workTypeName'
 			},{
 				columnWidth : .25,
-				fieldLabel : '注册状态',
+				fieldLabel : EwayLocale.monitor.devMonitor.registerStatus,
 				name : 'registerStatus'
 			},{
 				width : '37%',

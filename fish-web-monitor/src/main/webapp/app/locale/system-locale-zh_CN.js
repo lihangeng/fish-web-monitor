@@ -36,6 +36,9 @@ Ext.apply(EwayLocale,{
 		},
 		bankPer :{
 			title:'银行人员管理',//EwayLocale.person.bankPer.title
+			personType:'人员类型',//EwayLocale.person.bankPer.personType
+			bankPerson:'银行人员',//EwayLocale.person.bankPer.bankPerson
+			dealerPerson:'维护商人员',//EwayLocale.person.bankPer.dealerPerson
 			organizationName:'机构',//EwayLocale.person.bankPer.organizationName
 			orgNavi:'机构导航',//EwayLocale.person.bankPer.orgNavi
 			addBankPerTitle:'增加银行人员信息',//EwayLocale.person.bankPer.addBankPerTitle

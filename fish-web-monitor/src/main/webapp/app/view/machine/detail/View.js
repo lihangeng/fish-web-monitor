@@ -6,7 +6,7 @@ Ext.define('Eway.view.machine.detail.View', {
 	config:{
 		terminalId:''
 	},
-	title : '设备信息明细',
+	title : EwayLocale.deviceInfo.deviceDetailInfo,
 	layout : 'fit',
 	tabPosition: 'bottom',
 	isLoad : false,

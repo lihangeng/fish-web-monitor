@@ -15,7 +15,7 @@ Ext.define('Eway.view.machine.detail.basic.PersonInfo', {
 		Ext.apply(this, {
 			store:store,
 			columns: [{
-			              text: '姓名',
+			              text: EwayLocale.machine.device.name,
 			              dataIndex: 'name'
 			          },{
 			        	  header : EwayLocale.commen.gender,
@@ -30,30 +30,30 @@ Ext.define('Eway.view.machine.detail.basic.PersonInfo', {
 			                   }
 			        	  }
 			          },{
-			              text: '机构',
+			              text: EwayLocale.person.bankPer.organizationName,
 			              dataIndex: 'organizationName',
 			              flex:1
 			          },{
-			              text: '手机',
+			              text: EwayLocale.commen.mobil,
 			              dataIndex: 'mobile',
 			              width: 100
 			          },{
-			              text: '人员类型',
+			              text: EwayLocale.person.bankPer.personType,
 			              dataIndex: 'type',
 			              renderer: function(value,metadata,record){
 			            	  if(value==0){
-			            		  return "银行人员";
+			            		  return EwayLocale.person.bankPer.bankPerson;
 			            	  }
 			            	  else{
-			            		  return "维护商人员";
+			            		  return EwayLocale.person.bankPer.dealerPerson;
 			            	  }
 			              }
 			          },{
-			              text: '邮箱',
+			              text: EwayLocale.commen.email,
 			              dataIndex: 'email',
 			              width: 250
 			          },{
-			              text: '固定电话',
+			              text: EwayLocale.machine.device.phone,
 			              dataIndex: 'phone',
 			              width: 200
 			          }

@@ -665,6 +665,21 @@ Ext.apply(EwayLocale,{
 		clearAmt:'Clear Atm Sum Of Money',//EwayLocale.deviceInfo.clearAmt
 		withdrawalCount:'Withdrawal Count',//EwayLocale.deviceInfo.withdrawalCount
 		depositCount:'Deposit Count',//EwayLocale.deviceInfo.depositCount
+		boxInitAmt:'Box Init Amt',//EwayLocale.deviceInfo.boxInitAmt
+		boxCurrentAmt:'Box Current Amt',//EwayLocale.deviceInfo.boxCurrentAmt
+		deviceSwallowCardCount:'Device Swallow Card Count',//EwayLocale.deviceInfo.deviceSwallowCardCount
+		collapse:'Collapse',//EwayLocale.deviceInfo.collapse
+		expand:'Expand',//EwayLocale.deviceInfo.expand
+		lastUpdateTime:'Last Update Time',//EwayLocale.deviceInfo.lastUpdateTime
+		maxUpdateVersion:'Max Update Version',//EwayLocale.deviceInfo.maxUpdateVersion
+		otherInfo:'Other Info',//EwayLocale.deviceInfo.otherInfo
+		basicInfo:'Basic Info',//EwayLocale.deviceInfo.basicInfo
+		deviceBasicInfo:'Device Basic Info',//EwayLocale.deviceInfo.deviceBasicInfo
+		deviceDetailInfo:'Device Detail Info',//EwayLocale.deviceInfo.deviceDetailInfo
+		statusInfo:'Status Info',//EwayLocale.deviceInfo.statusInfo
+		personInfo:'Person Info',//EwayLocale.deviceInfo.personInfo
+		none:'none',//EwayLocale.deviceInfo.none
+		noneUpdateVersion:'Current None Update Version',//EwayLocale.deviceInfo.noneUpdateVersion
 		appReleaseInfo:'Approve Update Version Info'//EwayLocale.deviceInfo.appReleaseInfo
 	}	
 

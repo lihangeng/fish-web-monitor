@@ -36,6 +36,9 @@ Ext.apply(EwayLocale,{
 		},
 		bankPer :{
 			title:'Bankers',//EwayLocale.person.bankPer.title
+			personType:'Peron Type',//EwayLocale.person.bankPer.personType
+			bankPerson:'Bank Person',//EwayLocale.person.bankPer.bankPerson
+			dealerPerson:'Dealer Person',//EwayLocale.person.bankPer.dealerPerson
 			organizationName:'Bank',//EwayLocale.person.bankPer.organizationName
 			orgNavi:'All',//EwayLocale.person.bankPer.orgNavi
 			addBankPerTitle:'Add Banker Info',//EwayLocale.person.bankPer.addBankPerTitle
