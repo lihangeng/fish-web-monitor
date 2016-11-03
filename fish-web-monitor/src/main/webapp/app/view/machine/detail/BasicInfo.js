@@ -6,7 +6,6 @@ Ext.define('Eway.view.machine.detail.BasicInfo', {
 	            'Eway.view.machine.detail.basic.HardwareInfo',
 	            'Eway.view.machine.detail.basic.OtherInfo',
 	            'Eway.view.machine.detail.basic.PersonInfo',
-	            'Eway.view.machine.detail.basic.VersionInfo',
 	            'Eway.view.machine.detail.basic.AppReleaseInfo'
 	            ],
 	title : '设备基本信息',
