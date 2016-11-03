@@ -4,6 +4,8 @@ Ext.define('Eway.view.machine.detail.BasicInfo', {
 
 	requires : ['Eway.view.machine.detail.basic.DeviceInfo',
 	            'Eway.view.machine.detail.basic.StatusInfo',
+	            'Eway.view.machine.detail.basic.ControllerInfo',
+	            'Eway.view.machine.detail.basic.AllControllerInfo',
 	            'Eway.view.machine.detail.basic.OtherInfo',
 	            'Eway.view.machine.detail.basic.PersonInfo',
 	            'Eway.view.machine.detail.basic.AppReleaseInfo'
@@ -35,6 +37,9 @@ Ext.define('Eway.view.machine.detail.BasicInfo', {
 			            title: '状态信息',
 			            collapsible :false
 					},{
+						xtype : 'allControllerInfo',
+					    hidden:true
+					},{
 						name : 'deviceControllerInfo',
 						xtype : 'detail_ControllerInfo',
 						autoScroll :true,
@@ -56,17 +61,7 @@ Ext.define('Eway.view.machine.detail.BasicInfo', {
 			        margin: 10,
 			        collapsible :true,
 			        id:'personInfo'
-				}],
-
-			listeners : {
-				activate : function(panel) {
-//					var hisGrid = this.down('versionHistory_grid');
-//					var historyStore = hisGrid.getStore();
-//					historyStore.cleanUrlParam();
-//					historyStore.proxy.extraParams = {deviceId:this.up("viewport").down("appheader textfield[name=terminalId]").getValue()};
-//					historyStore.load();
-				}
-			}
+				}]
 		});
 
 		this.callParent(arguments);

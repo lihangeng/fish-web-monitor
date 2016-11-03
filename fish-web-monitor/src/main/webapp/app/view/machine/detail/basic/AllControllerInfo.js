@@ -1,15 +1,13 @@
-Ext.define('Eway.view.machine.detail.basic.controllerInfo', {
+Ext.define('Eway.view.machine.detail.basic.AllControllerInfo', {
 	extend : 'Ext.panel.Panel',
-	alias : 'widget.detail_basic_controllerInfo',
+	alias : 'widget.allControllerInfo',
 	
 
 	requires : [],
 	layout: {
-        type: 'column',
+        type: 'column'
     },
     closable:false,
-    //bodyPadding: 10,
-    
 
 	initComponent : function() {
 		Ext.apply(this, {
@@ -19,7 +17,43 @@ Ext.define('Eway.view.machine.detail.basic.controllerInfo', {
 				labelWidth : 115,
 				width : '25%'
 			},
-			items : [{
+			items : [ {
+				columnWidth : .24,
+				name : 'remoteScreenAction',
+				code : 'remoteScreen',
+				onlyText : true,
+				value : '<a href="#" class="link" >'+EwayLocale.monitor.devMonitor.remote.screen+'</a>',
+				listeners : {
+					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
+				}
+			},  {
+				columnWidth : .24,
+				name : 'logicOpenAction',
+				code : 'logicOpen',
+				onlyText : true,
+				value : '<a href="#" class="link" >'+EwayLocale.monitor.devMonitor.remote.logicOpen+'</a>',
+				listeners : {
+					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
+				}
+			}, {
+				columnWidth : .24,
+				name : 'logicCloseAction',
+				code : 'logicClose',
+				onlyText : true,
+				value : '<a href="#" class="link" >'+EwayLocale.monitor.devMonitor.remote.logicClose+'</a>',
+				listeners : {
+					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
+				}
+			}, {
+				columnWidth : .24,
+				name : 'resetAction',
+				code : 'reset',
+				onlyText : true,
+				value : '<a href="#" class="link" >'+EwayLocale.monitor.devMonitor.remote.reset+'</a>',
+				listeners : {
+					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
+				}
+			},{
 			    columnWidth : .25,
 				name : 'remoteCommHist',
 				onlyText : true,
@@ -98,7 +132,20 @@ Ext.define('Eway.view.machine.detail.basic.controllerInfo', {
 				listeners : {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
-			} ]
+			} ],
+			listeners:{
+				afterrender:function(_this){
+					var fields = _this.up("detail_basicInfo").down("allControllerInfo").query("displayfield[hidden=false]") ;
+					Ext.Array.forEach(fields,function(item,index,items){
+						if(index<4){
+							_this.up("detail_basicInfo").down("detail_basic_OftenControllerInfo").add(item);
+						}
+						else{
+							_this.up("detail_basicInfo").down("detail_basic_hiddenControllerInfo").add(item);
+						}
+					});
+				}
+			}
 		});
 		
 		this.callParent(arguments);

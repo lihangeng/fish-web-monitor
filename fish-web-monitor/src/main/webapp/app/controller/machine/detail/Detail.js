@@ -1,7 +1,6 @@
 Ext.define('Eway.controller.machine.detail.Detail', {
 	extend : 'Eway.controller.base.FishController',
-	views : [ 'machine.detail.View' ,
-	          'machine.detail.ControllerInfo'],
+	views : [ 'machine.detail.View'],
 	          
     stores: ['case.Fault','case.DevMod','case.FaultStatus','case.FaultClassify'],          
 	requires : ['Eway.view.monitor.device.remote.Grid'],
@@ -15,9 +14,9 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 	}, {
 		ref : 'deviceInfo',
 		selector : 'detail_basic_deviceInfo'
-	}, {
-		ref : 'versionInfo',
-		selector : 'detail_versionInfo'
+//	}, {
+//		ref : 'controllerInfo',
+//		selector : 'detail_ControllerInfo'
 	}, {
 		ref : 'appReleaseInfo',
 		selector : 'detail_basic_appReleaseInfo'
@@ -31,21 +30,16 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 			},
 			'#deviceDetail displayfield[name=deviceRunInfo]' : {
 				click : this.onRunInfo
-			}
-			,
-			'#deviceDetail displayfield[name=deviceControllerInfo]' : {
-				click : this.onControllerInfo
 			},
-			
-			'detail_ControllerInfo displayfield' : {
-				afterrender : function(field){
-					var text = field.getEl().down('a.link');
-					var name=field.name;
-					this.controllerInfo(field,text,name);
-					scope : this
-				},
-				scope : this
-			},
+//			'detail_ControllerInfo displayfield' : {
+//				afterrender : function(field){
+//					var text = field.getEl().down('a.link');
+//					var name=field.name;
+//					this.controllerInfo(field,text,name);
+//					scope : this
+//				},
+//				scope : this
+//			},
 			'detail_basic_appReleaseInfo displayfield[name="updateVersion"]' : {
 				change : {
 					fn : function(field) {
@@ -149,11 +143,6 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 	onRunInfo:function(){
 		var view = this.getEwayView();
 		view.getLayout().setActiveItem("detail_runInfo");
-		
-	},
-	onControllerInfo:function(){
-		var view = this.getEwayView();
-		view.getLayout().setActiveItem("detail_ControllerInfo");
 		
 	},
 	
@@ -696,50 +685,50 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 	},
 
 	//显示设备详情页面
-	displayWin : function(record) {
-		var win = Ext.widget('detail_ControllerInfo');
-		win.setRecord(record);
-		win.setTitle(EwayLocale.tip.business.device.term + "(" + record.data.code + ")" +EwayLocale.tip.business.device.detail);
-		win.on('afterrender',function(){
-			win.fillForm(record);
-		},this)
-		win.show();
-		var me = this; // 保留当前对象的作用域/
-		win.query('tool[action="refresh"]')[0].on('click', function() {
-			var el = win.getEl();
-			el.mask(EwayLocale.tip.business.device.refresh);
-			setTimeout(function() {
-				el.unmask();
-				me.refreshView(win, win.record.get('code'));
-			}, 100);
-		} );
-
-		var deviceStatusIntervalID = setInterval(function() {
-			// 判断设备状态详情页面是不是最前面，如果是最前面则刷新，否则不做操作
-			var indexStack = win.zIndexManager.getActive();
-			if (win === indexStack) {
-				me.refreshView(win, record.get('code'));
-			}
-		}, 120000);
-		win.on('beforedestroy', function() {
-			clearInterval(deviceStatusIntervalID);
-		}, this);
-	},
-	
-	getParam:function(){
-		var view = this.getDeviceInfo();
-		var ip =view.down('displayfield[name="ip"]').getValue();
-		var codes = view.down('displayfield[name="terminalId"]').getValue();
-		code = Ext.util.Format.stripTags(codes);
-		ip = Ext.util.Format.stripTags(ip);
-		var win = Ext.ComponentQuery.query('detail_ControllerInfo')[0];
-		var winEl = win.getEl();
-		var deviceInfo={};
-		deviceInfo.ip = ip;
-		deviceInfo.code = code;
-		deviceInfo.winEl = winEl;
-		return deviceInfo;
-	},
+//	displayWin : function(record) {
+//		var win = Ext.widget('detail_ControllerInfo');
+//		win.setRecord(record);
+//		win.setTitle(EwayLocale.tip.business.device.term + "(" + record.data.code + ")" +EwayLocale.tip.business.device.detail);
+//		win.on('afterrender',function(){
+//			win.fillForm(record);
+//		},this)
+//		win.show();
+//		var me = this; // 保留当前对象的作用域/
+//		win.query('tool[action="refresh"]')[0].on('click', function() {
+//			var el = win.getEl();
+//			el.mask(EwayLocale.tip.business.device.refresh);
+//			setTimeout(function() {
+//				el.unmask();
+//				me.refreshView(win, win.record.get('code'));
+//			}, 100);
+//		} );
+//
+//		var deviceStatusIntervalID = setInterval(function() {
+//			// 判断设备状态详情页面是不是最前面，如果是最前面则刷新，否则不做操作
+//			var indexStack = win.zIndexManager.getActive();
+//			if (win === indexStack) {
+//				me.refreshView(win, record.get('code'));
+//			}
+//		}, 120000);
+//		win.on('beforedestroy', function() {
+//			clearInterval(deviceStatusIntervalID);
+//		}, this);
+//	},
+//	
+//	getParam:function(){
+//		var view = this.getDeviceInfo();
+//		var ip =view.down('displayfield[name="ip"]').getValue();
+//		var codes = view.down('displayfield[name="terminalId"]').getValue();
+//		code = Ext.util.Format.stripTags(codes);
+//		ip = Ext.util.Format.stripTags(ip);
+//		var win = Ext.ComponentQuery.query('detail_ControllerInfo')[0];
+//		var winEl = win.getEl();
+//		var deviceInfo={};
+//		deviceInfo.ip = ip;
+//		deviceInfo.code = code;
+//		deviceInfo.winEl = winEl;
+//		return deviceInfo;
+//	},
 	
 	showAppRelease : function(ev, target, field){
 		if(Ext.getCmp('tooltip')!=null){

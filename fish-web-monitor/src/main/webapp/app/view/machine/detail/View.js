@@ -2,8 +2,7 @@ Ext.define('Eway.view.machine.detail.View', {
 	extend : 'Ext.tab.Panel',
 	alias : 'widget.detail.view',
 	requires : [ 'Eway.view.machine.detail.BasicInfo',
-	             'Eway.view.machine.detail.RunInfo',
-	             'Eway.view.machine.detail.ControllerInfo'],
+	             'Eway.view.machine.detail.RunInfo'],
 	config:{
 		terminalId:''
 	},

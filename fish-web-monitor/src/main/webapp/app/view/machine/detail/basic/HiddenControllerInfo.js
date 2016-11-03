@@ -1,6 +1,6 @@
-Ext.define('Eway.view.machine.detail.basic.OftenControllerInfo', {
+Ext.define('Eway.view.machine.detail.basic.HiddenControllerInfo', {
 	extend : 'Ext.panel.Panel',
-	alias : 'widget.detail_basic_OftenControllerInfo',
+	alias : 'widget.detail_basic_hiddenControllerInfo',
 	
 
 	requires : [],
@@ -8,13 +8,15 @@ Ext.define('Eway.view.machine.detail.basic.OftenControllerInfo', {
         type: 'column'
     },
     closable:false,
+    //bodyPadding: 10,
+    
 
 	initComponent : function() {
 		Ext.apply(this, {
 			layout : 'column',
 			defaults : {
 				xtype : 'displayfield',
-				labelWidth : 105,
+				labelWidth : 115,
 				width : '25%'
 			},
 			items : []
