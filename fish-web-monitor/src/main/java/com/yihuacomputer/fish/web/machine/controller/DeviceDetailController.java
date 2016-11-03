@@ -265,7 +265,7 @@ public class DeviceDetailController
     	VersionCatalog versionCatalog=Enum.valueOf(VersionCatalog.class, "APP"); 
     	IDeviceSoftVersion deviceSoftVersion=DeviceSoftVersionService.findVersionByCatlog(terminalId, versionCatalog);
     	Date lastUpdateTime = deviceSoftVersion.getLastUpdatedTime();
-    	IVersion version = deviceSoftVersion.getVersion();
+    	IVersion version = VersionService.getVersion(deviceSoftVersion.getTypeName(), deviceSoftVersion.getVersionNo());
     	String versionStr = version.getVersionStr();
     	IFilter filter = new Filter();
     	filter.ge("versionStr", versionStr);
