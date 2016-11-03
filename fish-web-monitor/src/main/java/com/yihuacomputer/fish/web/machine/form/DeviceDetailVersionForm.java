@@ -8,6 +8,8 @@ public class DeviceDetailVersionForm {
 	
 	private VersionForm currentVersion;
 	
+	private VersionForm maxVersion;
+
 	private List<VersionForm> updateVersion;
 
 	private String lastUpdateTime;
@@ -18,6 +20,14 @@ public class DeviceDetailVersionForm {
 
 	public void setCurrentVersion(VersionForm currentVersion) {
 		this.currentVersion = currentVersion;
+	}
+
+	public VersionForm getMaxVersion() {
+		return maxVersion;
+	}
+
+	public void setMaxVersion(VersionForm maxVersion) {
+		this.maxVersion = maxVersion;
 	}
 
 	public List<VersionForm> getUpdateVersion() {
