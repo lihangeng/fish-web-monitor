@@ -101,8 +101,8 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 				},
 				
 				//刷新按钮
-				'detail_basic_hardwareInfo [itemId="refreshHardwareInfo"]' : {
-					click : this.getHardwareInfo
+				'detail_basic_statusInfo [itemId="refreshStatusInfo"]' : {
+					click : this.getStatusInfo
 				},
 				
 		});
@@ -852,14 +852,14 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 		});
 	},
 
-	getHardwareInfo : function(){
+	getStatusInfo : function(){
 		var viewAll = this.getEwayView();
 		var terminalId = viewAll.getTerminalId();
-		var hardwareInfo = viewAll.down("detail_basic_hardwareInfo");
-		hardwareInfo.mask();
+		var statusInfo = viewAll.down("detail_basic_statusInfo");
+		statusInfo.mask();
 		Ext.Ajax.request({
 			method : 'GET',
-			url : 'api/machine/devicedetail/hardwareInfo',
+			url : 'api/machine/devicedetail/statusInfo',
 			params:{'termianlId':terminalId},
 			success : function(response) {
 				var object = Ext.decode(response.responseText);
@@ -867,15 +867,15 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 					viewAll.down("form").loadRecord(Ext.create('Eway.model.monitor.device.DeviceMonitorList',object.data.statusReport));
 					var displayfields = Ext.ComponentQuery.query("detail_basic_statusInfo displayfield");
 					Ext.Array.forEach(displayfields,function(displayfield,index,items){
-						displayfield.setHidden(!hardwareInfo.down("detail_basic_statusInfo").isHidden(displayfield));
+						displayfield.setHidden(!statusInfo.down("detail_basic_statusInfo").isHidden(displayfield));
 					});					
 					}else{
 						Eway.alert(object.errorMsg);
 					}
-				hardwareInfo.unmask();
+					statusInfo.unmask();
 				},
 				failure:function(){
-					hardwareInfo.unmask();
+					statusInfo.unmask();
 				}
 		});
 	},

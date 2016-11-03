@@ -5,10 +5,7 @@ Ext.define('Eway.view.machine.detail.basic.DeviceInfo', {
 	 tools: [ {
 	        itemId: 'refreshDeviceInfo',
 	        type: 'refresh',
-	        tooltip: EwayLocale.button.refresh,
-	        callback: function() {
-	            // do refresh
-	        }
+	        tooltip: EwayLocale.button.refresh
 	    },{
 	        itemId: 'collapse',
 	        type: 'collapse',
@@ -16,8 +13,8 @@ Ext.define('Eway.view.machine.detail.basic.DeviceInfo', {
 	        tooltip: '收起',
 	        callback: function(panel) {
 	        	Ext.getCmp('deviceInfo').setHidden(true);
-	        	panel.down('#expand').show();
 	        	panel.down('#collapse').setHidden(true);
+	        	panel.down('#expand').show();
 	        }
 	    }, {
 	        type: 'expand',
@@ -25,8 +22,8 @@ Ext.define('Eway.view.machine.detail.basic.DeviceInfo', {
 	        tooltip: '展开',
 	        callback: function (panel) {
 	        	Ext.getCmp('deviceInfo').show();
-	            panel.down('#collapse').show();
 	            panel.down('#expand').setHidden(true);
+	            panel.down('#collapse').show();
 	        }
 	    }],
 	requires : ['Eway.view.machine.detail.basic.DevicesInfo','Eway.view.machine.detail.basic.OftenDevicesInfo'  ],
@@ -45,37 +42,8 @@ Ext.define('Eway.view.machine.detail.basic.DeviceInfo', {
 					id:'deviceInfo',
 					hidden:true
 				}]
-			}],
-			
-			listeners : {
-				beforerender : function(panel) {
-//					this.refreshData();
-				}
-			}
+			}]
 		});
-
 		this.callParent(arguments);
-	},
-	refreshData:function(){
-		var me = this;
-		var termianlId = me.up("tabpanel").getTerminalId();
-		Ext.Ajax.request({
-			method : 'GET',
-			url : 'api/machine/devicedetail/basicInfo',
-			params:{'termianlId':termianlId},
-			success : function(response) {
-				var object = Ext.decode(response.responseText);
-				if (object.success == true) {
-						me.down("form").loadRecord(Ext.create('Eway.model.machine.Device',object.data));
-					}else{
-						Eway.alert(object.errorMsg);
-					}
-					me.unmask();
-				},
-				failure:function(){
-					me.unmask();
-				}
-		});
 	}
-    
 });

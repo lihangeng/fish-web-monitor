@@ -49,13 +49,13 @@ Ext.define('Eway.view.machine.detail.ControllerInfo', {
 				labelWidth : 150,
 				readOnly : true,
 			},
-				items : [{
-							xtype:'detail_basic_OftenControllerInfo'
-						},{
-					xtype:'detail_basic_controllerInfo',
-					id:'controllerInfo',
-					hidden:true
-				}]
+			items : [{
+						xtype:'detail_basic_OftenControllerInfo'
+					},{
+						xtype:'detail_basic_controllerInfo',
+						id:'controllerInfo',
+						hidden:true
+			}]
 				
 		});
 

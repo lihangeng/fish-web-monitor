@@ -94,7 +94,7 @@ Ext.define('Eway.controller.Main', {
 						var view = controller.getEwayView();
 						view.setTerminalId(terminalId);
 						controller.getDeviceDetailInfo();
-						controller.getHardwareInfo();
+						controller.getStatusInfo();
 						controller.getVersionInfo();
 						}else{
 							Eway.alert(object.errorMsg);

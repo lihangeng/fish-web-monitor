@@ -129,7 +129,7 @@ public class DeviceDetailController
      * @param request
      * @return
      */
-    @RequestMapping(value="/hardwareInfo",method = RequestMethod.GET)
+    @RequestMapping(value="/statusInfo",method = RequestMethod.GET)
    	public @ResponseBody
    	ModelMap searchHardwareInfo(HttpServletRequest httpRequest, WebRequest request){
     	logger.info(String.format("search device hardware status information"));

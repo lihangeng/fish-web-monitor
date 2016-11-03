@@ -3,7 +3,7 @@ Ext.define('Eway.view.machine.detail.BasicInfo', {
 	alias : 'widget.detail_basicInfo',
 
 	requires : ['Eway.view.machine.detail.basic.DeviceInfo',
-	            'Eway.view.machine.detail.basic.HardwareInfo',
+	            'Eway.view.machine.detail.basic.StatusInfo',
 	            'Eway.view.machine.detail.basic.OtherInfo',
 	            'Eway.view.machine.detail.basic.PersonInfo',
 	            'Eway.view.machine.detail.basic.AppReleaseInfo'
@@ -16,8 +16,6 @@ Ext.define('Eway.view.machine.detail.BasicInfo', {
     },
     closable:false,
     bodyPadding: 10,
-
-  
 
 	initComponent : function() {
 		Ext.apply(this, {
@@ -33,11 +31,7 @@ Ext.define('Eway.view.machine.detail.BasicInfo', {
 						collapsible :false,
 			            title: '基础信息',
 					},{
-						xtype: 'detail_basic_appReleaseInfo',
-			            title: '版本信息',
-			            collapsible :true
-					},{
-						xtype: 'detail_basic_hardwareInfo',
+						xtype: 'detail_basic_statusInfo',
 			            title: '状态信息',
 			            collapsible :false
 					},{
@@ -47,9 +41,12 @@ Ext.define('Eway.view.machine.detail.BasicInfo', {
 						collapsible :false,
 						title : EwayLocale.deviceInfo.controllerInfo		
 					},{
+						xtype: 'detail_basic_appReleaseInfo',
+			            title: '版本信息',
+			            collapsible :true
+					},{
 						xtype: 'detail_basic_otherInfo',
-						 collapsed: true 
-						//collapsible :false,
+						collapsed: true 
 					}
 				]},{
 					xtype: 'detail_personInfo',
