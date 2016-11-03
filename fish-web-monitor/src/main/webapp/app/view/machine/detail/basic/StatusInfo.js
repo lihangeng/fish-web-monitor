@@ -12,8 +12,8 @@ Ext.define('Eway.view.machine.detail.basic.StatusInfo', {
         hidden: true,
         tooltip: '收起',
         callback: function(panel) {
-        	Ext.getCmp('statusInfo').setHidden(true);
-			panel.down('#expand').show();
+        	panel.down("detail_basic_hiddenStatusInfo").setHidden(true);
+			panel.down('#expand').setHidden(false);
         	panel.down('#collapse').setHidden(true);
         }
     }, {
@@ -21,7 +21,7 @@ Ext.define('Eway.view.machine.detail.basic.StatusInfo', {
         itemId: 'expand',
         tooltip: '展开',
         callback: function (panel) {
-        	Ext.getCmp('statusInfo').show();
+        	 panel.down("detail_basic_hiddenStatusInfo").setHidden(false);
 			 panel.down('#collapse').show();
 	         panel.down('#expand').setHidden(true);
         }
@@ -42,12 +42,15 @@ Ext.define('Eway.view.machine.detail.basic.StatusInfo', {
 				labelWidth : 105,
 				width : '25%'
 			},
-			items : [{
-				xtype:'detail_basic_oftenStatusInfo'
-			},{
-				xtype:'detail_basic_hiddenStatusInfo',
-				id:'statusInfo',
-				hidden:true
+			items:[{
+				xtype:'form',
+				items : [{
+					xtype:'detail_basic_oftenStatusInfo',
+					hidden:false
+				},{
+					xtype:'detail_basic_hiddenStatusInfo',
+					hidden:true
+				}]
 			}]
 		});
 

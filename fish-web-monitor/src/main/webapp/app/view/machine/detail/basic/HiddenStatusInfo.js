@@ -178,7 +178,7 @@ Ext.define('Eway.view.machine.detail.basic.HiddenStatusInfo', {
 		this.callParent(arguments);
 	},
     isHidden : function(field) {
-		var type = field.up('form').down("displayfield[name='devTypeName']").getValue();
+		var type = field.up('detail_basicInfo').down("displayfield[name='devTypeName']").getValue();
 		var typeData = Ext.typeLinkModData;
 		var strs = typeData[type];
 		var has = false;

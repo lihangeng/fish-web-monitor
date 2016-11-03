@@ -78,32 +78,32 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 			'detail_basic_otherInfo' : {
 				 beforeexpand:function(){
 					   this.getOtherInfo();
-					 }
-				},
-				
-				//刷新按钮
-				'detail_basic_otherInfo [itemId="refreshOtherInfo"]' : {
-					afterrender : {
-						fn : function(field) {
-							field.on('click', this.getOtherInfo, this, field);
-						},
-						scope : this
+				 }
+			},
+			
+			//刷新按钮
+			'detail_basic_otherInfo [itemId="refreshOtherInfo"]' : {
+				afterrender : {
+					fn : function(field) {
+						field.on('click', this.getOtherInfo, this, field);
 					},
 					scope : this
 				},
-				//刷新按钮
-				'detail_basic_deviceInfo [itemId="refreshDeviceInfo"]' : {
-					click : this.getDeviceDetailInfo
-				},
-				
-				'detail_basic_appReleaseInfo [itemId="refreshVersion"]' : {
-					click : this.getVersionInfo
-				},
-				
-				//刷新按钮
-				'detail_basic_statusInfo [itemId="refreshStatusInfo"]' : {
-					click : this.getStatusInfo
-				},
+				scope : this
+			},
+			//刷新按钮
+			'detail_basic_deviceInfo [itemId="refreshDeviceInfo"]' : {
+				click : this.getDeviceDetailInfo
+			},
+			
+			'detail_basic_appReleaseInfo [itemId="refreshVersion"]' : {
+				click : this.getVersionInfo
+			},
+			
+			//刷新按钮
+			'detail_basic_statusInfo [itemId="refreshStatusInfo"]' : {
+				click : this.getStatusInfo
+			},
 				
 		});
 	},
@@ -864,11 +864,11 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 			success : function(response) {
 				var object = Ext.decode(response.responseText);
 				if (object.success == true) {
-					viewAll.down("form").loadRecord(Ext.create('Eway.model.monitor.device.DeviceMonitorList',object.data.statusReport));
-					var displayfields = Ext.ComponentQuery.query("detail_basic_statusInfo displayfield");
-					Ext.Array.forEach(displayfields,function(displayfield,index,items){
-						displayfield.setHidden(!statusInfo.down("detail_basic_statusInfo").isHidden(displayfield));
-					});					
+					statusInfo.down("form").loadRecord(Ext.create('Eway.model.monitor.device.DeviceMonitorList',object.data.statusReport));
+//					var displayfields = Ext.ComponentQuery.query("detail_basic_statusInfo displayfield");
+//					Ext.Array.forEach(displayfields,function(displayfield,index,items){
+//						displayfield.setHidden(!statusInfo.down("detail_basic_statusInfo").isHidden(displayfield));
+//					});					
 					}else{
 						Eway.alert(object.errorMsg);
 					}
