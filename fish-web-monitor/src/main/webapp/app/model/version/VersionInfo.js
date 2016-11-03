@@ -4,5 +4,5 @@
 Ext.define('Eway.model.version.VersionInfo', {
 	extend: 'Ext.data.Model',
 	idProperty : 'id',
-	fields: ['id', 'appRelease','lastTime','maxUpdateVersion'],
+	fields: ['id', 'versionNo','lastUpdateTime','updateVersion'],
 });

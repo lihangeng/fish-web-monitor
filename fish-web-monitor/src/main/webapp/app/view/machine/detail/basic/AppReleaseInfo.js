@@ -3,7 +3,7 @@ Ext.define('Eway.view.machine.detail.basic.AppReleaseInfo', {
 	alias : 'widget.detail_basic_appReleaseInfo',
     
     tools: [ {
-        itemId: 'refresh',
+        itemId: 'refreshVersion',
         type: 'refresh',
         tooltip: EwayLocale.button.refresh,
         callback: function() {
@@ -28,15 +28,15 @@ Ext.define('Eway.view.machine.detail.basic.AppReleaseInfo', {
 			items : [ {
 				columnWidth : .33,
 				fieldLabel : '当前版本',
-				name : 'appRelease'
+				name : 'versionNo'
 			},{
 				columnWidth : .33,
 				fieldLabel : '上次升级时间',
-				name : 'lastTime'
+				name : 'lastUpdateTime'
 			},{
 				columnWidth : .33,
 				fieldLabel : '可升级版本',
-				name : 'maxUpdateVersion',
+				name : 'updateVersion',
 				renderer: function(value,meta,record) {
 					return '<a href="#" class="link">'+value+'</font></a>';
 				}

@@ -79,42 +79,24 @@ Ext.define('Eway.controller.Main', {
 	
 	searchDeviceDetail:function(){
 		var ewayView = this.getEwayView();
-		var termianlId = this.getAppheader().down("textfield[name=terminalId]").getValue();
-		if(termianlId!=""){
+		var terminalId = this.getAppheader().down("textfield[name=terminalId]").getValue();
+		if(terminalId!=""){
 			var me = this;
 			ewayView.mask();
-//			Ext.Ajax.request({
-//				method : 'GET',
-//				url : 'api/machine/devicedetail/querydevice',
-//				params:{'termianlId':termianlId},
-//				success : function(response) {
-//					var object = Ext.decode(response.responseText);
-//					if (object.success == true) {
-						var controller =  me.activeController('machine.detail.Detail');
-						var view = controller.getEwayView();
-						view.setTerminalId(termianlId);
-						view.down("detail_basicInfo detail_basic_deviceInfo").refreshData();
-//						}else{
-//							Eway.alert(object.errorMsg);
-//						}
-//						ewayView.unmask();
-//					},
-//					failure:function(){
-//						ewayView.unmask();
-//					}
-//			});
-		
 			Ext.Ajax.request({
 				method : 'GET',
-				url : 'api/machine/devicedetail/versionInfo',
-				params:{'termianlId':termianlId},
+				url : 'api/machine/devicedetail/querydevice',
+				params:{'terminalId':terminalId},
 				success : function(response) {
+					debugger;
 					var object = Ext.decode(response.responseText);
 					if (object.success == true) {
 						var controller =  me.activeController('machine.detail.Detail');
 						var view = controller.getEwayView();
-						view.setTerminalId(termianlId);
-						view.down("form").loadRecord(Ext.create('Eway.model.version.VersionInfo',object.data));
+						view.setTerminalId(terminalId);
+						controller.getDeviceDetailInfo();
+						controller.getHardwareInfo();
+						controller.getVersionInfo();
 						}else{
 							Eway.alert(object.errorMsg);
 						}
@@ -124,32 +106,6 @@ Ext.define('Eway.controller.Main', {
 						ewayView.unmask();
 					}
 			});
-			
-			Ext.Ajax.request({
-				method : 'GET',
-				url : 'api/machine/devicedetail/hardwareInfo',
-				params:{'termianlId':termianlId},
-				success : function(response) {
-					var object = Ext.decode(response.responseText);
-					if (object.success == true) {
-						var controller =  me.activeController('machine.detail.Detail');
-						var view = controller.getEwayView();
-						view.setTerminalId(termianlId);
-						view.down("form").loadRecord(Ext.create('Eway.model.monitor.device.DeviceMonitorList',object.data.statusReport));
-						var displayfields = Ext.ComponentQuery.query("detail_basic_statusInfo displayfield");
-						Ext.Array.forEach(displayfields,function(displayfield,index,items){
-							displayfield.setHidden(!view.down("detail_basic_statusInfo").isHidden(displayfield));
-						});					
-						}else{
-							Eway.alert(object.errorMsg);
-						}
-						ewayView.unmask();
-					},
-					failure:function(){
-						ewayView.unmask();
-					}
-			});
-			
 		}
 		else{
 			Eway.alert(EwayLocale.deviceInfo.importTerminalId);
