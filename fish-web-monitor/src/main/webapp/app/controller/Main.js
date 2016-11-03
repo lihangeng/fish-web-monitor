@@ -76,7 +76,7 @@ Ext.define('Eway.controller.Main', {
 			this.searchDeviceDetail();
 		}
 	},
-	searchDeviceDetail:function(){
+	/*searchDeviceDetail:function(){
 		var ewayView = this.getEwayView();
 		var termianlId = this.getAppheader().down("textfield[name=terminalId]").getValue();
 		if(termianlId!=""){
@@ -90,7 +90,6 @@ Ext.define('Eway.controller.Main', {
 				success : function(response) {
 					var object = Ext.decode(response.responseText);
 					if (object.success == true) {
-
 						var controller =  me.activeController('machine.detail.Detail');
 						var view = controller.getEwayView();
 						view.setTitle(termianlId+EwayLocale.deviceInfo.title);
@@ -105,19 +104,19 @@ Ext.define('Eway.controller.Main', {
 						Ext.Array.forEach(displayfields,function(displayfield,index,items){
 							//if(index<4){
 							displayfield.setHidden(!view.down("detail_basic_statusInfo").isHidden(displayfield));
-							/*}else{
+							}else{
 								displayfield.setHidden(true);
-							}*/
+							}
 						});
 						Ext.Array.forEach(object.data.personList,function(item,index,items){
 							view.down("detail_personInfo").getStore().add(Ext.create('Eway.model.person.person.BankPerson',item))
 						});
-						/*Ext.Array.forEach(object.data.versionDeviceList,function(item,index,items){
+						Ext.Array.forEach(object.data.versionDeviceList,function(item,index,items){
 							view.down("detail_versionInfo").getStore().add(Ext.create('Eway.model.version.DeviceVersionHistory',item))
-						});*/
-						/*Ext.Array.forEach(object.data.appReleaseList,function(item,index,items){
+						});
+						Ext.Array.forEach(object.data.appReleaseList,function(item,index,items){
 							view.down("detail_appRelease").getStore().add(Ext.create('Eway.model.version.AppReleaseList',item))
-						});*/
+						});
 
 						ewayView.unmask();	
 						//刷新运行页面信息
@@ -140,7 +139,87 @@ Ext.define('Eway.controller.Main', {
 		else{
 			Eway.alert(EwayLocale.deviceInfo.importTerminalId);
 		}
+	},*/
+	
+	searchDeviceDetail:function(){
+		var ewayView = this.getEwayView();
+		var termianlId = this.getAppheader().down("textfield[name=terminalId]").getValue();
+		if(termianlId!=""){
+			var me = this;
+			ewayView.mask();
+			Ext.Ajax.request({
+				method : 'GET',
+				url : 'api/machine/devicedetail/basicInfo',
+				params:{'termianlId':termianlId},
+				success : function(response) {
+					var object = Ext.decode(response.responseText);
+					if (object.success == true) {
+						var controller =  me.activeController('machine.detail.Detail');
+						var view = controller.getEwayView();
+						view.setTerminalId(termianlId);
+						view.down("form").loadRecord(Ext.create('Eway.model.machine.Device',object.data));
+						}else{
+							Eway.alert(object.errorMsg);
+						}
+						ewayView.unmask();
+					},
+					failure:function(){
+						ewayView.unmask();
+					}
+			});
+		
+			Ext.Ajax.request({
+				method : 'GET',
+				url : 'api/machine/devicedetail/versionInfo',
+				params:{'termianlId':termianlId},
+				success : function(response) {
+					var object = Ext.decode(response.responseText);
+					if (object.success == true) {
+						var controller =  me.activeController('machine.detail.Detail');
+						var view = controller.getEwayView();
+						view.setTerminalId(termianlId);
+						view.down("form").loadRecord(Ext.create('Eway.model.version.VersionInfo',object.data));
+						}else{
+							Eway.alert(object.errorMsg);
+						}
+						ewayView.unmask();
+					},
+					failure:function(){
+						ewayView.unmask();
+					}
+			});
+			
+			Ext.Ajax.request({
+				method : 'GET',
+				url : 'api/machine/devicedetail/hardwareInfo',
+				params:{'termianlId':termianlId},
+				success : function(response) {
+					var object = Ext.decode(response.responseText);
+					if (object.success == true) {
+						var controller =  me.activeController('machine.detail.Detail');
+						var view = controller.getEwayView();
+						view.setTerminalId(termianlId);
+						view.down("form").loadRecord(Ext.create('Eway.model.monitor.device.DeviceMonitorList',object.data.statusReport));
+						var displayfields = Ext.ComponentQuery.query("detail_basic_statusInfo displayfield");
+						Ext.Array.forEach(displayfields,function(displayfield,index,items){
+							displayfield.setHidden(!view.down("detail_basic_statusInfo").isHidden(displayfield));
+						});					
+						}else{
+							Eway.alert(object.errorMsg);
+						}
+						ewayView.unmask();
+					},
+					failure:function(){
+						ewayView.unmask();
+					}
+			});
+			
+		}
+		else{
+			Eway.alert(EwayLocale.deviceInfo.importTerminalId);
+		}
 	},
+	
 	initTabPanel:function(){
 		// 从cookie中找到最后一次打开的页面，找不到则使用worspace中默认配置的首页
 		var lastEwayPage = Ext.util.Cookies.get("lastEwayPage");
@@ -533,3 +612,4 @@ Ext.define('Eway.controller.Main', {
 		Ext.TaskManager.start(task);*/
 	}
 });
+

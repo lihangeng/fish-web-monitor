@@ -3,7 +3,7 @@ Ext.define('Eway.view.machine.detail.basic.HardwareInfo', {
 	alias : 'widget.detail_basic_hardwareInfo',
 	
     tools: [ {
-        itemId: 'refresh',
+        itemId: 'refreshHardwareInfo',
         type: 'refresh',
         tooltip: EwayLocale.button.refresh,
         callback: function() {

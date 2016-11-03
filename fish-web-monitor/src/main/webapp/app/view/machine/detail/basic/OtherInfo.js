@@ -3,7 +3,7 @@ Ext.define('Eway.view.machine.detail.basic.OtherInfo', {
 	alias : 'widget.detail_basic_otherInfo',
 
 	tools: [ {
-        itemId: 'refresh',
+        itemId: 'refreshOtherInfo',
         type: 'refresh',
         tooltip: EwayLocale.button.refresh,
         callback: function() {
@@ -53,36 +53,7 @@ Ext.define('Eway.view.machine.detail.basic.OtherInfo', {
 				columnWidth : .25,
 				fieldLabel : '设备吞卡数量',
 				name : 'retainCardCount'
-			},{
-				columnWidth : .25,
-				fieldLabel : EwayLocale.machine.device.installStyle,
-				name : 'setupTypeName'
-			},{
-				columnWidth : .25,
-				fieldLabel : EwayLocale.machine.device.netType,
-				name : 'netTypeName'
-			},{
-				columnWidth : .25,
-				fieldLabel : EwayLocale.machine.device.onBankSignal,
-				name : 'awayFlagName'
-			},{
-				columnWidth : .25,
-				fieldLabel : EwayLocale.machine.device.operation,
-				name : 'workTypeName'
-			},{
-				columnWidth : .25,
-				fieldLabel : '注册状态',
-				name : 'registerStatus'
-			}/*,{
-				columnWidth : .25,
-				fieldLabel :'ATMC应用版本号',
-				name : 'appRelease',
-			   // a_link : true
-				//value:'<a href="#" class="link">'+value+'</a>'
-				renderer: function(value,meta,record) {
-					return '<a href="#" class="link">'+value+'</font></a>';
-				}
-			}*/],
+			}],
 			listeners : {
 				activate : function(panel) {}
 			}

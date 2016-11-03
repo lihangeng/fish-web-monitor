@@ -28,20 +28,18 @@ Ext.define('Eway.view.machine.detail.basic.AppReleaseInfo', {
 			items : [ {
 				columnWidth : .33,
 				fieldLabel : '当前版本',
-				name : 'appRelease',
-				   // a_link : true
-					//value:'<a href="#" class="link">'+value+'</a>'
-					renderer: function(value,meta,record) {
-						return '<a href="#" class="link">'+value+'</font></a>';
-					}
+				name : 'appRelease'
 			},{
 				columnWidth : .33,
 				fieldLabel : '上次升级时间',
-				name : 'ip'
+				name : 'lastTime'
 			},{
 				columnWidth : .33,
 				fieldLabel : '可升级版本',
-				name : 'statusName'
+				name : 'maxUpdateVersion',
+				renderer: function(value,meta,record) {
+					return '<a href="#" class="link">'+value+'</font></a>';
+				}
 			}]
 		});
 

@@ -20,10 +20,7 @@ Ext.define('Eway.view.machine.detail.basic.VersionInfo', {
 				header : EwayLocale.refs.ip,//'设备IP',
 				dataIndex : 'ip',
 				width:120
-			},/*{
-				header : '软件分类',
-				dataIndex : 'versionType'
-			},*/{
+			},{
 				header : EwayLocale.version.View.versionNo,//'版本号',
 				dataIndex : 'versionNo',
 				width:130
@@ -31,9 +28,6 @@ Ext.define('Eway.view.machine.detail.basic.VersionInfo', {
 				header: EwayLocale.version.View.versionFile,//'版本文件',
 				dataIndex:'fullName',
 				width:150
-//			},{
-//				header : EwayLocale.version.task.downloadUser,//'下发人',
-//				dataIndex : 'userName'
 			},{
 				header : EwayLocale.version.task.downloadTime,//'下发时间',
 				dataIndex : 'downTime',

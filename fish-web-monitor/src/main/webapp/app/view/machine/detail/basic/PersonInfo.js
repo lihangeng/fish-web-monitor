@@ -3,7 +3,7 @@ Ext.define('Eway.view.machine.detail.basic.PersonInfo', {
 	alias : 'widget.detail_personInfo',
 
 	tools: [ {
-        itemId: 'refresh',
+        itemId: 'refreshPersonInfo',
         type: 'refresh',
         tooltip: EwayLocale.button.refresh,
         callback: function() {

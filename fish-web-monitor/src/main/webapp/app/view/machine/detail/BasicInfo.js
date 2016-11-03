@@ -31,6 +31,7 @@ Ext.define('Eway.view.machine.detail.BasicInfo', {
 			    },
 				items:[{
 						xtype: 'detail_basic_deviceInfo',
+						collapsible :false,
 			            title: '基础信息',
 					},{
 						xtype: 'detail_basic_appReleaseInfo',
@@ -47,29 +48,19 @@ Ext.define('Eway.view.machine.detail.BasicInfo', {
 						collapsible :false,
 						title : EwayLocale.deviceInfo.controllerInfo		
 					},{
-						xtype: 'detail_basic_otherInfo'
+						xtype: 'detail_basic_otherInfo',
+						 collapsed: true 
+						//collapsible :false,
 					}
-				]}/*,{
-					xtype: 'detail_appRelease',
-		            title: '可升级版本信息',
+				]},{
+					xtype: 'detail_personInfo',
+		            title: '人员信息',
+		            collapsed: true ,
 			        frame: true,
 			        margin: 10,
 			        collapsible :true,
-			        hidden:true,
-			        id:'appRelease'
-				}*/,{
-					xtype: 'detail_personInfo',
-		            title: '人员信息',
-			        frame: true,
-			        margin: 10,
-			        collapsible :true
-				}/*,{
-					xtype: 'detail_versionInfo',
-		            title: '版本信息',
-			        frame: true,
-			        margin: 10,
-			        collapsible :true
-			}*/],
+			        id:'personInfo'
+				}],
 
 			listeners : {
 				activate : function(panel) {
