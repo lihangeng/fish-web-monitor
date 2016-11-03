@@ -1,6 +1,7 @@
 package com.yihuacomputer.fish.web.machine.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -49,6 +50,7 @@ import com.yihuacomputer.fish.monitor.entity.report.DeviceReport;
 import com.yihuacomputer.fish.monitor.entity.report.StatusReport;
 import com.yihuacomputer.fish.web.machine.form.BoxAndRetainCardForm;
 import com.yihuacomputer.fish.web.machine.form.DeviceDetailForm;
+import com.yihuacomputer.fish.web.machine.form.DeviceDetailVersionForm;
 import com.yihuacomputer.fish.web.machine.form.DeviceForm;
 import com.yihuacomputer.fish.web.system.form.PersonForm;
 import com.yihuacomputer.fish.web.version.form.DeviceVersionHistory;
@@ -212,6 +214,8 @@ public class DeviceDetailController
 		deviceReport.setDevice(device);
     	statusReport.setStatusReport(deviceReport, messageSourceEnum);
         deviceDetailForm.setStatusReport(statusReport);
+        result.addAttribute(FishConstant.DATA,deviceDetailForm);
+        result.addAttribute(FishConstant.SUCCESS, true);
         return result;
     }
     
@@ -254,25 +258,41 @@ public class DeviceDetailController
     	logger.info(String.format("search device person information"));
     	ModelMap result = new ModelMap();
     	String terminalId = request.getParameter("termianlId");
-    	IDevice device = deviceService.get(terminalId);
-    	VersionCatalog versionCatalog=Enum.valueOf(VersionCatalog.class, "APP"); 
-    	IDeviceSoftVersion deviceSoftVersion=DeviceSoftVersionService.findVersionByCatlog(terminalId, versionCatalog);
     	result= isExistAndCharge(httpRequest,terminalId);
     	if(!(Boolean) result.get(FishConstant.SUCCESS)){
     		return result;
     	}
-    	String versionNo = deviceSoftVersion.getVersionNo();
-    	List<ITask> lists = taskService.findTasks(device.getId()); 
-    	DeviceDetailForm deviceDetailForm = new DeviceDetailForm();
-    	deviceDetailForm.setVersionDeviceList(getHistoryForms(lists, device));
-    	deviceDetailForm.setAppReleaseList(getVersionForm(terminalId,versionCatalog,versionNo));
-    	result.addAttribute(FishConstant.DATA, deviceDetailForm);
+    	VersionCatalog versionCatalog=Enum.valueOf(VersionCatalog.class, "APP"); 
+    	IDeviceSoftVersion deviceSoftVersion=DeviceSoftVersionService.findVersionByCatlog(terminalId, versionCatalog);
+    	Date lastUpdateTime = deviceSoftVersion.getLastUpdatedTime();
+    	IVersion version = deviceSoftVersion.getVersion();
+    	String versionStr = version.getVersionStr();
+    	IFilter filter = new Filter();
+    	filter.ge("versionStr", versionStr);
+    	List<IVersion> versionList = VersionService.list(filter);
+    	List<VersionForm> form = new ArrayList<VersionForm>();
+    	for(IVersion ver:versionList){
+    		if(ver.getDependVersion() != null){
+    			if(ver.getDependVersion().getVersionStr().compareTo(versionStr)<=0){
+    				VersionForm versionForm = new VersionForm(ver);
+    				form.add(versionForm);
+    			}
+    		}else{
+    			VersionForm versionForm = new VersionForm(ver);
+    			form.add(versionForm);
+    		}
+    	}
+    	DeviceDetailVersionForm data = new DeviceDetailVersionForm();
+    	data.setCurrentVersion(new VersionForm(version));
+    	data.setUpdateVersion(form);
+    	data.setLastUpdateTime(DateUtils.get(lastUpdateTime, DateUtils.STANDARD_TIMESTAMP));
+    	result.addAttribute(FishConstant.DATA, data);
         result.addAttribute(FishConstant.SUCCESS, true);
     	return result;
     }
     
     /**
-     * 查询设备版本信息
+     * 查询设备钞箱和吞卡信息
      * @param httpRequest
      * @param request
      * @return
