@@ -40,7 +40,6 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 			'detail_ControllerInfo displayfield' : {
 				afterrender : function(field){
 					var text = field.getEl().down('a.link');
-					//var name=text.el.dom.innerText;
 					var name=field.name;
 					this.controllerInfo(field,text,name);
 					scope : this
@@ -52,7 +51,6 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 					fn : function(field) {
 						var  text= field.getEl().down('a.link');
 						if (text) {
-							//text.on('click', this.showAppRelease, this, field);
 							text.on('mouseenter', this.showAppRelease, this, field);
 						}
 						
@@ -61,14 +59,10 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 				},
 				scope : this
 			},
-			/*'detail_basic_appReleaseInfo [itemId="appReleaseInfo"]' : {
-				//itemmouseenter : this.showAppRelease
-				mouseenter : this.showAppRelease
-			},*/
 			'detail_personInfo' : {
-			 beforeexpand:function(){
+				beforeexpand:function(){
 				   this.getPersonInfo();
-				 }
+				}
 			},
 			//刷新按钮
 			'detail_personInfo [itemId="refreshPersonInfo"]' : {
@@ -749,9 +743,8 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 	
 	showAppRelease : function(ev, target, field){
 		if(Ext.getCmp('tooltip')!=null){
-		Ext.getCmp('tooltip').destroy( );
+			Ext.getCmp('tooltip').destroy( );
 		}
-		debugger;
 		var view = this.getEwayView();
 		var veisionNo=this.getAppReleaseInfo().down("displayfield[name=versionNo]").getValue();
 		var termianlId = this.getDeviceInfo().down("displayfield[name=terminalId]").getValue();
@@ -787,8 +780,7 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 				});
 				view.unmask();	
 			}
-	});
-		//Ext.getCmp('appRelease').show();
+		});
 	},
 	
 	getPersonInfo : function(){
@@ -804,11 +796,11 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 					var object = Ext.decode(response.responseText);
 					view.down("detail_personInfo").getStore().removeAll();
 					if(object.data!=null){
-					Ext.Array.forEach(object.data,function(item,index,items){
-						view.down("detail_personInfo").getStore().add(Ext.create('Eway.model.person.person.BankPerson',item))
-					});
-					personInfoView.unmask();
+						Ext.Array.forEach(object.data,function(item,index,items){
+							view.down("detail_personInfo").getStore().add(Ext.create('Eway.model.person.person.BankPerson',item))
+						});
 					}
+					personInfoView.unmask();
 				},
 				failure:function(){
 					personInfoView.unmask();
@@ -817,103 +809,112 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 	},
 	
 	getOtherInfo : function(){
-		var view = this.getEwayView();
-		var otherInfoView = view.down("detail_basic_otherInfo");
-		otherInfoView.mask();
-		var termianlId = this.getDeviceInfo().down("displayfield[name=terminalId]").getValue();
+			var view = this.getEwayView();
+			var otherInfoView = view.down("detail_basic_otherInfo");
+			otherInfoView.mask();
+			var termianlId = this.getDeviceInfo().down("displayfield[name=terminalId]").getValue();
+			Ext.Ajax.request({
+				method : 'GET',
+				url : 'api/machine/devicedetail/boxAndRetainInfo',
+				params:{'termianlId':termianlId},
+				success : function(response) {
+					var object = Ext.decode(response.responseText);
+					view.down("form").loadRecord(Ext.create('Eway.model.monitor.device.DeviceMonitorList',object.data));
+					otherInfoView.unmask();	
+				},
+				failure:function(){
+					otherInfoView.unmask();
+				}
+		});
+	},
+
+	getDeviceDetailInfo : function(){
+		var viewAll = this.getEwayView();
+		var terminalId = viewAll.getTerminalId();
+		var deviceView = viewAll.down("detail_basic_deviceInfo");
+		deviceView.mask();
 		Ext.Ajax.request({
 			method : 'GET',
-			url : 'api/machine/devicedetail/boxAndRetainInfo',
-			params:{'termianlId':termianlId},
+			url : 'api/machine/devicedetail/basicInfo',
+			params:{'termianlId':terminalId},
 			success : function(response) {
 				var object = Ext.decode(response.responseText);
-				view.down("form").loadRecord(Ext.create('Eway.model.monitor.device.DeviceMonitorList',object.data));
-				otherInfoView.unmask();	
-			},
-			failure:function(){
-				otherInfoView.unmask();
-			}
-	});
-},
-
-getDeviceDetailInfo : function(){
-	var viewAll = this.getEwayView();
-	var terminalId = viewAll.getTerminalId();
-	var deviceView = viewAll.down("detail_basic_deviceInfo");
-	deviceView.mask();
-	Ext.Ajax.request({
-		method : 'GET',
-		url : 'api/machine/devicedetail/basicInfo',
-		params:{'termianlId':terminalId},
-		success : function(response) {
-			var object = Ext.decode(response.responseText);
-			if (object.success == true) {
-				deviceView.down("form").loadRecord(Ext.create('Eway.model.machine.Device',object.data));
-				}else{
-					Eway.alert(object.errorMsg);
-				}
-			deviceView.unmask();
-			},
-			failure:function(){
+				if (object.success == true) {
+					deviceView.down("form").loadRecord(Ext.create('Eway.model.machine.Device',object.data));
+					}else{
+						Eway.alert(object.errorMsg);
+					}
 				deviceView.unmask();
-			}
-});
-},
-
-getHardwareInfo : function(){
-	var viewAll = this.getEwayView();
-	var terminalId = viewAll.getTerminalId();
-	var hardwareInfo = viewAll.down("detail_basic_hardwareInfo");
-	hardwareInfo.mask();
-	Ext.Ajax.request({
-		method : 'GET',
-		url : 'api/machine/devicedetail/hardwareInfo',
-		params:{'termianlId':terminalId},
-		success : function(response) {
-			var object = Ext.decode(response.responseText);
-			if (object.success == true) {
-				viewAll.down("form").loadRecord(Ext.create('Eway.model.monitor.device.DeviceMonitorList',object.data.statusReport));
-				var displayfields = Ext.ComponentQuery.query("detail_basic_statusInfo displayfield");
-				Ext.Array.forEach(displayfields,function(displayfield,index,items){
-					displayfield.setHidden(!hardwareInfo.down("detail_basic_statusInfo").isHidden(displayfield));
-				});					
-				}else{
-					Eway.alert(object.errorMsg);
+				},
+				failure:function(){
+					deviceView.unmask();
 				}
-			hardwareInfo.unmask();
-			},
-			failure:function(){
+		});
+	},
+
+	getHardwareInfo : function(){
+		var viewAll = this.getEwayView();
+		var terminalId = viewAll.getTerminalId();
+		var hardwareInfo = viewAll.down("detail_basic_hardwareInfo");
+		hardwareInfo.mask();
+		Ext.Ajax.request({
+			method : 'GET',
+			url : 'api/machine/devicedetail/hardwareInfo',
+			params:{'termianlId':terminalId},
+			success : function(response) {
+				var object = Ext.decode(response.responseText);
+				if (object.success == true) {
+					viewAll.down("form").loadRecord(Ext.create('Eway.model.monitor.device.DeviceMonitorList',object.data.statusReport));
+					var displayfields = Ext.ComponentQuery.query("detail_basic_statusInfo displayfield");
+					Ext.Array.forEach(displayfields,function(displayfield,index,items){
+						displayfield.setHidden(!hardwareInfo.down("detail_basic_statusInfo").isHidden(displayfield));
+					});					
+					}else{
+						Eway.alert(object.errorMsg);
+					}
 				hardwareInfo.unmask();
-			}
-	});
-},
-
-getVersionInfo : function(){
-	var viewAll = this.getEwayView();
-	var terminalId = viewAll.getTerminalId();
-	var versionInfoView = viewAll.down("detail_basic_appReleaseInfo");
-	versionInfoView.mask();
-	Ext.Ajax.request({
-		method : 'GET',
-		url : 'api/machine/devicedetail/versionInfo',
-		params:{'termianlId':terminalId},
-		success : function(response) {
-			debugger;
-			var object = Ext.decode(response.responseText);
-			if (object.success == true) {
-				var versionInfo={};
-				versionInfo.updateVersion=object.data.maxVersion.versionNo;
-				versionInfo.versionNo=object.data.currentVersion.versionNo;
-				versionInfo.lastUpdateTime=object.data.lastUpdateTime;
-				viewAll.down("form").loadRecord(Ext.create('Eway.model.version.VersionInfo',versionInfo));
-				}else{
-					Eway.alert(object.errorMsg);
+				},
+				failure:function(){
+					hardwareInfo.unmask();
 				}
-			versionInfoView.unmask();
-			},
-			failure:function(){
-				versionInfoView.unmask();
-			}
-	});
-}
+		});
+	},
+
+	getVersionInfo : function(){
+		var viewAll = this.getEwayView();
+		var terminalId = viewAll.getTerminalId();
+		var versionInfoView = viewAll.down("detail_basic_appReleaseInfo");
+		versionInfoView.mask();
+		Ext.Ajax.request({
+			method : 'GET',
+			url : 'api/machine/devicedetail/versionInfo',
+			params:{'termianlId':terminalId},
+			success : function(response) {
+				var object = Ext.decode(response.responseText);
+				if (object.success == true) {
+					var versionInfo={};
+					if(object.data.maxVersion==undefined){
+						versionInfo.updateVersion="无";
+					}
+					else{
+						versionInfo.updateVersion=object.data.maxVersion.versionNo;
+					}
+					if(object.data.currentVersion==undefined){
+						versionInfo.versionNo="无";
+					}
+					else{
+						versionInfo.versionNo=object.data.currentVersion.versionNo;
+					}
+					versionInfo.lastUpdateTime=object.data.lastUpdateTime;
+					viewAll.down("form").loadRecord(Ext.create('Eway.model.version.VersionInfo',versionInfo));
+					}else{
+						Eway.alert(object.errorMsg);
+					}
+					versionInfoView.unmask();
+				},
+				failure:function(){
+					versionInfoView.unmask();
+				}
+		});
+	}
 });

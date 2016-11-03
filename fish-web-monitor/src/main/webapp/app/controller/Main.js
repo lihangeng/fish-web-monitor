@@ -88,7 +88,6 @@ Ext.define('Eway.controller.Main', {
 				url : 'api/machine/devicedetail/querydevice',
 				params:{'terminalId':terminalId},
 				success : function(response) {
-					debugger;
 					var object = Ext.decode(response.responseText);
 					if (object.success == true) {
 						var controller =  me.activeController('machine.detail.Detail');
