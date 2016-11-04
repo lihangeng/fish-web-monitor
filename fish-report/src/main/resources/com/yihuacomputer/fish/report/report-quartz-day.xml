@@ -6,23 +6,23 @@
 		http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
 		
     <!-- quartz定时每天任务配置 -->
-	<bean id="dayDeportTime" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+	<bean id="dayReportTime" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
 		<property name="description" value="每日定时执行报表数据统计"/>
-		<property name="jobDetail" ref="dayDeportJobDetail"/>
+		<property name="jobDetail" ref="dayReportJobDetail"/>
 		<property name="cronExpression" value="${dayETLJobTime}"/>
 	</bean>
-	<bean id="dayDeportJobDetail" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+	<bean id="dayReportJobDetail" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
 			<property name="jobClass" value="com.yihuacomputer.fish.report.batch.DayReportJob" />
 			<property name="durability" value="true" />
   	</bean>
   	
   	<!-- quartz定时任务配置 -->
-	<bean id="weekDeportTime" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+	<bean id="weekReportTime" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
 		<property name="description" value="每周定时执行报表数据统计"/>
-		<property name="jobDetail" ref="weekDeportJobDetail"/>
+		<property name="jobDetail" ref="weekReportJobDetail"/>
 		<property name="cronExpression" value="${weekETLJobTime}"/>
 	</bean>
-	<bean id="weekDeportJobDetail" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+	<bean id="weekReportJobDetail" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
 			<property name="jobClass" value="com.yihuacomputer.fish.report.batch.WeekReportJob" />
 			<property name="durability" value="true" />
   	</bean>
@@ -30,10 +30,10 @@
   	<!-- 每月数据抽取 -->
   	<bean id="monthReportTime" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
 		<property name="description" value="每月定时执行报表数据统计"/>
-		<property name="jobDetail" ref="monthDeportJobDetail"/>
+		<property name="jobDetail" ref="monthReportJobDetail"/>
 		<property name="cronExpression" value="${monthETLJobTime}"/>
 	</bean>
-	<bean id="monthDeportJobDetail" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+	<bean id="monthReportJobDetail" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
 			<property name="jobClass" value="com.yihuacomputer.fish.report.batch.MonthReportJob" />
 			<property name="durability" value="true" />
   	</bean>
@@ -41,10 +41,10 @@
     <!-- 每年数据抽取 -->
     <bean id="yearReportTime" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
 		<property name="description" value="每年定时执行报表数据统计"/>
-		<property name="jobDetail" ref="yearDeportJobDetail"/>
+		<property name="jobDetail" ref="yearReportJobDetail"/>
 		<property name="cronExpression" value="${yearETLJobTime}"/>
 	</bean>
-	<bean id="yearDeportJobDetail" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+	<bean id="yearReportJobDetail" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
 			<property name="jobClass" value="com.yihuacomputer.fish.report.batch.YearReportJob" />
 			<property name="durability" value="true" />
   	</bean>

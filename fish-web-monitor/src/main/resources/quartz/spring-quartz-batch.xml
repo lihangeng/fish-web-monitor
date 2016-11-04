@@ -18,8 +18,8 @@
                 <ref bean="updateQuittingDevInfoTaskTime"/>
               	<ref bean="offlineTime" />
                 <ref bean="backupTime" />
-               	<ref bean="dayDeportTime" />
-                <ref bean="weekDeportTime" />
+               	<ref bean="dayReportTime" />
+                <ref bean="weekReportTime" />
                 <ref bean="monthReportTime" />
                 <ref bean="yearReportTime" />
             </list>
