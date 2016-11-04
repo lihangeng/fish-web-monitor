@@ -43,7 +43,7 @@ public class UserLogAopAspect {
 
 	private final Logger logger = org.slf4j.LoggerFactory.getLogger(UserLogAopAspect.class);
 
-	@Pointcut("@within(org.springframework.stereotype.Controller)")
+	@Pointcut("@within(com.yihuacomputer.common.annotation.ClassNameDescrible)")
 	public void controller() {
 	}
 
@@ -51,7 +51,7 @@ public class UserLogAopAspect {
 	public void methodPointcut() {
 	}
 
-	@Pointcut("@annotation(org.springframework.web.bind.annotation.RequestMapping)")
+	@Pointcut("@annotation(com.yihuacomputer.common.annotation.MethodNameDescrible)")
 	public void requestMapping() {
 	}
 
