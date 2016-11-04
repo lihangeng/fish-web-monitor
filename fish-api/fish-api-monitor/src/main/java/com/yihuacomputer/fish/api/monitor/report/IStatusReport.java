@@ -157,9 +157,9 @@ public interface IStatusReport {
 
 	public void setPbkStatus(DeviceStatus pbkStatus);
 
-	public DeviceStatus getNfcStauts();
+	public DeviceStatus getNfcStatus();
 
-	public void setNfcStauts(DeviceStatus nfcStauts);
+	public void setNfcStatus(DeviceStatus nfcStauts);
 
     public void setIccStatus(DeviceStatus iccStatus);
 

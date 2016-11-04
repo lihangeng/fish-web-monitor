@@ -291,7 +291,7 @@ public class XfsService implements IXfsService {
             statusReport.setTtuStatus(xfs.getStatusTtu()==null?DeviceStatus.Unknown:xfs.getStatusTtu().getStatus());
             statusReport.setPinStatus(xfs.getStatusPin()==null?DeviceStatus.Unknown:xfs.getStatusPin().getStatus());
             statusReport.setJprStatus(xfs.getStatusJpr()==null?DeviceStatus.Unknown:xfs.getStatusJpr().getStatus());
-            statusReport.setNfcStauts(xfs.getStatusNfc()==null?DeviceStatus.Unknown:xfs.getStatusNfc().getStatus());
+            statusReport.setNfcStatus(xfs.getStatusNfc()==null?DeviceStatus.Unknown:xfs.getStatusNfc().getStatus());
             statusReport.setPbkStatus(xfs.getStatusPbk()==null?DeviceStatus.Unknown:xfs.getStatusPbk().getStatus());
             
             statusReport.setIccStatus(xfs.getStatusIcc()==null?DeviceStatus.Unknown:xfs.getStatusIcc().getStatus()) ;

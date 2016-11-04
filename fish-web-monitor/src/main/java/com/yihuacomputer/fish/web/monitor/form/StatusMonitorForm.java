@@ -137,7 +137,7 @@ public class StatusMonitorForm {
         this.pinStatus = statusReport.getPinStatus();
         this.siuStatus = statusReport.getSiuStatus();
         this.ttuStatus = statusReport.getTtuStatus();
-        this.nfcStatus = statusReport.getNfcStauts();
+        this.nfcStatus = statusReport.getNfcStatus();
         this.pbkStatus = statusReport.getPbkStatus();
 
         this.iccStatus = statusReport.getIccStatus();

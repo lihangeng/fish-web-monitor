@@ -104,7 +104,7 @@ public class StatusReport implements IStatusReport {
     private DeviceStatus pbkStatus;
 
     /**射频读卡器状态*/
-    private DeviceStatus nfcStauts;
+    private DeviceStatus nfcStatus;
 
     /**发卡读卡器状态*/
     private DeviceStatus iccStatus;
@@ -428,7 +428,7 @@ public class StatusReport implements IStatusReport {
                 this.pinStatus = device.getXfsStatus().getStatusPin().getStatus()==null?DeviceStatus.Unknown:device.getXfsStatus().getStatusPin().getStatus();
                 this.ttuStatus = device.getXfsStatus().getStatusTtu().getStatus()==null?DeviceStatus.Unknown:device.getXfsStatus().getStatusTtu().getStatus();
                 this.siuStatus = device.getXfsStatus().getStatusSiu().getStatus()==null?DeviceStatus.Unknown:device.getXfsStatus().getStatusSiu().getStatus();
-                this.nfcStauts = device.getXfsStatus().getStatusNfc().getStatus()==null?DeviceStatus.Unknown:device.getXfsStatus().getStatusNfc().getStatus();
+                this.nfcStatus = device.getXfsStatus().getStatusNfc().getStatus()==null?DeviceStatus.Unknown:device.getXfsStatus().getStatusNfc().getStatus();
                 this.pbkStatus = device.getXfsStatus().getStatusPbk().getStatus()==null?DeviceStatus.Unknown:device.getXfsStatus().getStatusPbk().getStatus();
                 
                 this.boxInitCount = getInfo(device.getXfsStatus().getBoxInitCount());
@@ -507,12 +507,12 @@ public class StatusReport implements IStatusReport {
 		this.pbkStatus = pbkStatus;
 	}
 
-	public DeviceStatus getNfcStauts() {
-		return nfcStauts;
+	public DeviceStatus getNfcStatus() {
+		return nfcStatus;
 	}
 
-	public void setNfcStauts(DeviceStatus nfcStauts) {
-		this.nfcStauts = nfcStauts;
+	public void setNfcStatus(DeviceStatus nfcStauts) {
+		this.nfcStatus = nfcStauts;
 	}
 
 	@Override
