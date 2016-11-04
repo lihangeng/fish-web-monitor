@@ -10,36 +10,41 @@ Ext.define('Eway.view.machine.detail.basic.AppReleaseInfo', {
             // do refresh
         }
     }],
-	
+	firstload:true,
 	requires : [  ],
-    layout: {
-        type: 'column',
-    },
     closable:false,
 	initComponent : function() {
 		Ext.apply(this, {
-			defaults : {
-				labelAlign : 'left',
-				xtype : 'displayfield',
-				labelWidth : 100,
-				readOnly : true,
-				width : '50%'
-			},
 			items : [ {
-				columnWidth : .33,
-				fieldLabel : EwayLocale.version.View.nowVersionNo,
-				name : 'versionNo'
-			},{
-				columnWidth : .33,
-				fieldLabel : EwayLocale.deviceInfo.lastUpdateTime,
-				name : 'lastUpdateTime'
-			},{
-				columnWidth : .33,
-				fieldLabel : EwayLocale.deviceInfo.maxUpdateVersion,
-				name : 'updateVersion',
-				renderer: function(value,meta,record) {
-					return '<a href="#" class="link">'+value+'</font></a>';
-				}
+				xtype:'form',
+
+			    layout: {
+			        type: 'column'
+			    },
+				defaults : {
+					labelAlign : 'left',
+					xtype : 'displayfield',
+					labelWidth : 100,
+					readOnly : true,
+					width : '50%'
+				},
+				items:[{
+					columnWidth : .33,
+					fieldLabel : EwayLocale.version.View.nowVersionNo,
+					name : 'versionNo'
+				},{
+					columnWidth : .33,
+					fieldLabel : EwayLocale.deviceInfo.lastUpdateTime,
+					name : 'lastUpdateTime'
+				},{
+					columnWidth : .33,
+					fieldLabel : EwayLocale.deviceInfo.maxUpdateVersion,
+					id:'appReleaseInfoUpdateVersion',
+					name : 'updateVersion',
+					renderer: function(value,meta,record) {
+						return '<a href="#" class="link">'+value+'</font></a>';
+					}
+				}]
 			}]
 		});
 

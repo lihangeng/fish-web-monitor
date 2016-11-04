@@ -99,9 +99,15 @@ Ext.define('Eway.controller.Main', {
 						controller.getDeviceDetailInfo();
 						controller.getStatusInfo();
 						controller.getVersionInfo();
-						}else{
-							Eway.alert(object.errorMsg);
+						if(!view.down("detail_basic_otherInfo").collapsed){
+							controller.getOtherInfo();
 						}
+						if(!view.down("detail_personInfo").collapsed){
+							controller.getPersonInfo();
+						}
+					}else{
+						Eway.alert(object.errorMsg);
+					}
 						ewayView.unmask();
 					},
 					failure:function(){

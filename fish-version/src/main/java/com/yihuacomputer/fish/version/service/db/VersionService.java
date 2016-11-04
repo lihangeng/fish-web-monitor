@@ -115,6 +115,9 @@ public class VersionService implements IDomainVersionService {
     }
 
     public String getVersionStrByVersionNo(String versionNostr){
+    	if(versionNostr==null){
+    		versionNostr="0";
+    	}
     	VersionNo versionNo = new VersionNo(versionNostr);
     	StringBuffer versionNoSb = new StringBuffer();
         versionNoSb.append(StringUtils.preZeroStr(String.valueOf(versionNo.getMajor()), 8))

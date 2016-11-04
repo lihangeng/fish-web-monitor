@@ -189,5 +189,116 @@ Ext.define('Eway.view.machine.detail.basic.HiddenStatusInfo', {
 			}
 		});
 		return has;
-	}
+	},
+	fillForm : function(record) {
+		var me = this;
+		me.record = record;
+		var form = this.up('form').getForm();
+		var fields = form.getFields();
+
+		fields.each(function(item){
+			var name = item.getName();
+			var value = record.get(name);
+			if(item.a_link){
+				if(name=='idcStatus' || name=='jprStatus'
+					|| name=='cdmStatus' || name=='pinStatus'
+					|| name=='cimStatus' || name=='siuStatus'
+					|| name=='rprStatus' || name=='ttuStatus'
+					|| name=='iccStatus' || name=='iscStatus'
+					|| name=='fgpStatus' || name=='pbkStatus'|| name=='nfcStatus'
+						|| name=='camStatus' || name=='bcrStatus'
+							|| name=='ukrStatus' || name=='ukdStatus'){
+						var text = me._getText(value);
+						if(value == 'Warning'){
+							item.setValue('<a href="#" class="link warningHighLight">'+text+'</a>');
+						}else if(value == 'Fatal'){
+							item.setValue('<a href="#" class="link fatalHighLight">'+text+'</a>');
+						}else {
+							item.setValue(text);
+						}
+				}else if(name == "runStatus"){
+					var div = '<div class="monitor_minicon monitor-div-run-'+record.get("run")+'">&nbsp;&nbsp;</div>';
+					
+					var runFatals= [EwayLocale.monitor.devMonitor.remote.halfSer,EwayLocale.monitor.devMonitor.remote.staff,
+					                EwayLocale.monitor.devMonitor.remote.powerOff,EwayLocale.monitor.devMonitor.remote.restart,
+					                EwayLocale.monitor.devMonitor.remote.pFault,
+					                EwayLocale.monitor.devMonitor.remote.stop,EwayLocale.monitor.devMonitor.remote.pauseFault,
+					                EwayLocale.monitor.devMonitor.remote.pauseCash,EwayLocale.monitor.devMonitor.remote.pauseSer];
+					if(Ext.Array.contains(runFatals,value)){
+						item.setValue(div + "<span class='fatalHighLight'>"+ value + "</span>");
+					}else{
+						item.setValue(div + value);
+					}
+				}else if(name == "modStatus"){
+					var div = '<div class="monitor_minicon monitor-div-mod-'+record.get("mod")+'">&nbsp;&nbsp;</div>';
+					var className = 'link ';
+					if (value == EwayLocale.commen.noDevice) {
+						item.setValue(div + ' ' + value);
+					} else {
+						if(value == EwayLocale.commen.warn) {
+							className += ' warningHighLight ';
+						} else if(value == EwayLocale.commen.fatal) {
+							className += ' fatalHighLight ';
+						}
+						item.setValue(div + '<a href="#" class="'+className+'">' + value + '</a>');
+					}
+
+				}else if(name == "boxStatus"){
+					var div = '<div class="monitor_minicon monitor-div-box-'+record.get("box")+'">&nbsp;&nbsp;</div>';
+					var className = 'link';
+					var boxFatals= [EwayLocale.monitor.devMonitor.cash.cimFull,EwayLocale.monitor.devMonitor.cash.cdmEmpty,
+					                EwayLocale.monitor.devMonitor.cash.cimAFull,EwayLocale.monitor.devMonitor.cash.cashFault];
+					if (value == EwayLocale.commen.noDevice) {
+						item.setValue(div + ' ' + value);
+					} else {
+						if(Ext.Array.contains(boxFatals,value)){
+							className += ' fatalHighLight ';
+						} else if(value == EwayLocale.monitor.devMonitor.cash.cdmLow) {
+							className += ' warningHighLight ';
+						}
+						item.setValue(div + '<a href="#" class="'+className+'">'+value+'</a>');
+					}
+
+				}else if(name == "netStatus"){
+					var div = '<div class="monitor_minicon monitor-div-net-'+record.get("net")+'">&nbsp;&nbsp;</div>';
+					if(value ==EwayLocale.commen.fatal){
+						item.setValue(div + "<span class='fatalHighLight'>"+ value + "</span>");
+					}else if(value ==EwayLocale.commen.unStable){
+						item.setValue(div + "<span class='warningHighLight'>"+ value + "</span>");
+					}else{
+						item.setValue(div + value);
+					}
+				} else if (name == 'personnel') {
+					item.setValue('<a href="#" class="link">'+EwayLocale.monitor.devMonitor.remote.manaAndstaff+'</a>');
+				} else if (name == "modGraphic") {
+					item.setValue('<a href="#" class="link">'+EwayLocale.monitor.devMonitor.modGraphic+'</a>');
+				} else {
+					item.setValue('<a href="#" class="link">'+value+'</a>');
+				}
+			}
+			else {
+				if(!item.onlyText){
+					item.setValue(value);
+				}
+			}
+		});
+	},
+
+	_getText : function(value){
+		if(value=='Healthy'){
+			return EwayLocale.monitor.deviceStatus.Healthy;
+		}
+		if(value=='Warning'){
+			return EwayLocale.monitor.deviceStatus.Warning;
+		}
+		if(value=='Fatal'){
+			return EwayLocale.monitor.deviceStatus.Fatal;
+		}
+		if(value=='Unknown'){
+			return EwayLocale.monitor.deviceStatus.Unknown;
+		}
+		if(value=='NoDevice'){
+			return EwayLocale.monitor.deviceStatus.NoDevice;
+		}
+	},
 });

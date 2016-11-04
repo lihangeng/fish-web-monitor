@@ -14,14 +14,11 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 	}, {
 		ref : 'deviceInfo',
 		selector : 'detail_basic_deviceInfo'
-//	}, {
-//		ref : 'controllerInfo',
-//		selector : 'detail_ControllerInfo'
 	}, {
 		ref : 'appReleaseInfo',
 		selector : 'detail_basic_appReleaseInfo'
 	}],
-
+	updateVersionToolTip:'',
 
 	init : function() {
 		this.control({
@@ -31,25 +28,17 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 			'#deviceDetail displayfield[name=deviceRunInfo]' : {
 				click : this.onRunInfo
 			},
-//			'detail_ControllerInfo displayfield' : {
-//				afterrender : function(field){
-//					var text = field.getEl().down('a.link');
-//					var name=field.name;
-//					this.controllerInfo(field,text,name);
-//					scope : this
-//				},
-//				scope : this
-//			},
 			'detail_basic_appReleaseInfo displayfield[name="updateVersion"]' : {
-				change : {
+				afterrender : {
 					fn : function(field) {
-						var  text= field.getEl().down('a.link');
-						if (text) {
-							text.on('mouseenter', this.showAppRelease, this, field);
-						}
-						
+						field.getEl().on('mouseenter', this.showAppRelease, this, field);
 					},
 					scope : this
+				},
+				render:{
+					fn:function(filed){
+						this.createToopTip();
+					}
 				},
 				scope : this
 			},
@@ -100,6 +89,7 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 			},
 				
 		});
+
 	},
 	
 	controllerInfo : function(field,text,name) {
@@ -683,104 +673,18 @@ Ext.define('Eway.controller.machine.detail.Detail', {
    			}
 		});
 	},
-
-	//显示设备详情页面
-//	displayWin : function(record) {
-//		var win = Ext.widget('detail_ControllerInfo');
-//		win.setRecord(record);
-//		win.setTitle(EwayLocale.tip.business.device.term + "(" + record.data.code + ")" +EwayLocale.tip.business.device.detail);
-//		win.on('afterrender',function(){
-//			win.fillForm(record);
-//		},this)
-//		win.show();
-//		var me = this; // 保留当前对象的作用域/
-//		win.query('tool[action="refresh"]')[0].on('click', function() {
-//			var el = win.getEl();
-//			el.mask(EwayLocale.tip.business.device.refresh);
-//			setTimeout(function() {
-//				el.unmask();
-//				me.refreshView(win, win.record.get('code'));
-//			}, 100);
-//		} );
-//
-//		var deviceStatusIntervalID = setInterval(function() {
-//			// 判断设备状态详情页面是不是最前面，如果是最前面则刷新，否则不做操作
-//			var indexStack = win.zIndexManager.getActive();
-//			if (win === indexStack) {
-//				me.refreshView(win, record.get('code'));
-//			}
-//		}, 120000);
-//		win.on('beforedestroy', function() {
-//			clearInterval(deviceStatusIntervalID);
-//		}, this);
-//	},
-//	
-//	getParam:function(){
-//		var view = this.getDeviceInfo();
-//		var ip =view.down('displayfield[name="ip"]').getValue();
-//		var codes = view.down('displayfield[name="terminalId"]').getValue();
-//		code = Ext.util.Format.stripTags(codes);
-//		ip = Ext.util.Format.stripTags(ip);
-//		var win = Ext.ComponentQuery.query('detail_ControllerInfo')[0];
-//		var winEl = win.getEl();
-//		var deviceInfo={};
-//		deviceInfo.ip = ip;
-//		deviceInfo.code = code;
-//		deviceInfo.winEl = winEl;
-//		return deviceInfo;
-//	},
 	
-	showAppRelease : function(ev, target, field){
-		if(Ext.getCmp('tooltip')!=null){
-			Ext.getCmp('tooltip').destroy( );
-		}
-		var view = this.getEwayView();
-		var veisionNo=this.getAppReleaseInfo().down("displayfield[name=versionNo]").getValue();
-		var termianlId = this.getDeviceInfo().down("displayfield[name=terminalId]").getValue();
-		Ext.Ajax.request({
-			method : 'GET',
-			url : 'api/machine/devicedetail/updateVersion',
-			params:{'termianlId':termianlId,'veisionNo':veisionNo},
-			success : function(response) {
-				var object = Ext.decode(response.responseText);
-				var params="";
-				if(object.data.length>0){
-				Ext.Array.forEach(object.data,function(item,index,items){
-					var param=item.fullName+"</br>";
-				    params=params+param;
-				});
-				}else{
-					params=EwayLocale.deviceInfo.noneUpdateVersion
-						}
-				if(tooltip!=null){
-					tooltip.destroy( );
-				}
-				var tooltip=Ext.create("Ext.tip.ToolTip",{
-		            //style: 'display:inline-block;background:#A2C841;padding:7px;cursor:pointer;',
-					style: 'display:inline-block;background:#3892D4;padding:7px;cursor:pointer;',
-					showDelay: 0,
-		            width:200,
-		            height:'auto',
-		            dismissDelay: 0,
-		            target:field.id,
-		            hideDelay: 0,
-		            id:'tooltip',
-		            html:'<font color="white">'+EwayLocale.deviceInfo.appReleaseInfo+'</br>'+params+'</font>'
-				});
-				view.unmask();	
-			}
-		});
-	},
+	
 	
 	getPersonInfo : function(){
 			var view = this.getEwayView();
 			var personInfoView = view.down("detail_personInfo");
 			personInfoView.mask();
-			var termianlId = this.getDeviceInfo().down("displayfield[name=terminalId]").getValue();
+			var terminalId = view.getTerminalId();
 			Ext.Ajax.request({
 				method : 'GET',
 				url : 'api/machine/devicedetail/personInfo',
-				params:{'termianlId':termianlId},
+				params:{'termianlId':terminalId},
 				success : function(response) {
 					var object = Ext.decode(response.responseText);
 					view.down("detail_personInfo").getStore().removeAll();
@@ -801,14 +705,14 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 			var view = this.getEwayView();
 			var otherInfoView = view.down("detail_basic_otherInfo");
 			otherInfoView.mask();
-			var termianlId = this.getDeviceInfo().down("displayfield[name=terminalId]").getValue();
+			var terminalId = view.getTerminalId();
 			Ext.Ajax.request({
 				method : 'GET',
 				url : 'api/machine/devicedetail/boxAndRetainInfo',
-				params:{'termianlId':termianlId},
+				params:{'termianlId':terminalId},
 				success : function(response) {
 					var object = Ext.decode(response.responseText);
-					view.down("form").loadRecord(Ext.create('Eway.model.monitor.device.DeviceMonitorList',object.data));
+					otherInfoView.down("form").loadRecord(Ext.create('Eway.model.monitor.device.DeviceMonitorList',object.data));
 					otherInfoView.unmask();	
 				},
 				failure:function(){
@@ -853,11 +757,7 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 			success : function(response) {
 				var object = Ext.decode(response.responseText);
 				if (object.success == true) {
-					statusInfo.down("form").loadRecord(Ext.create('Eway.model.monitor.device.DeviceMonitorList',object.data.statusReport));
-//					var displayfields = Ext.ComponentQuery.query("detail_basic_statusInfo displayfield");
-//					Ext.Array.forEach(displayfields,function(displayfield,index,items){
-//						displayfield.setHidden(!statusInfo.down("detail_basic_statusInfo").isHidden(displayfield));
-//					});					
+						statusInfo.down("detail_basic_hiddenStatusInfo").fillForm(Ext.create('Eway.model.monitor.device.DeviceMonitorList',object.data.statusReport));
 					}else{
 						Eway.alert(object.errorMsg);
 					}
@@ -869,11 +769,53 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 		});
 	},
 
+	showAppRelease : function(ev, target, field){
+		var me = this;
+		var veisionNo=this.getAppReleaseInfo().down("displayfield[name=versionNo]").getValue();
+		var termianlId = this.getDeviceInfo().down("displayfield[name=terminalId]").getValue();
+		if(this.getAppReleaseInfo().firstload){
+			Ext.Ajax.request({
+				method : 'GET',
+				url : 'api/machine/devicedetail/updateVersion',
+				params:{'termianlId':termianlId,'veisionNo':veisionNo},
+				success : function(response) {
+					var object = Ext.decode(response.responseText);
+					var params="";
+					if(object.data.length>0){
+						Ext.Array.forEach(object.data,function(item,index,items){
+							var param=item.fullName+"</br>";
+						    params=params+param;
+						});
+					}else{
+						params=EwayLocale.deviceInfo.noneUpdateVersion;
+					}
+					me.updateVersionToolTip.update('<font color="white">'+EwayLocale.deviceInfo.appReleaseInfo+'</br>'+params+'</font>');
+				}
+			});
+			this.getAppReleaseInfo().firstload = false;
+		}
+	},
+	
+	createToopTip:function(){
+		if(this.updateVersionToolTip==undefined||this.updateVersionToolTip==''){
+			this.updateVersionToolTip=Ext.create("Ext.tip.ToolTip",{
+				style: 'display:inline-block;background:#3892D4;padding:7px;cursor:pointer;',
+				showDelay: 0,
+	            width:200,
+	            minHeight:30,
+	            dismissDelay: 0,
+	            target:'appReleaseInfoUpdateVersion',
+	            hideDelay: 0,
+	            html:''
+			});
+		}
+	},
 	getVersionInfo : function(){
 		var viewAll = this.getEwayView();
 		var terminalId = viewAll.getTerminalId();
 		var versionInfoView = viewAll.down("detail_basic_appReleaseInfo");
 		versionInfoView.mask();
+		this.getAppReleaseInfo().firstload = true;
 		Ext.Ajax.request({
 			method : 'GET',
 			url : 'api/machine/devicedetail/versionInfo',
@@ -881,25 +823,26 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 			success : function(response) {
 				var object = Ext.decode(response.responseText);
 				if (object.success == true) {
-					var versionInfo={};
-					if(object.data.maxVersion==undefined){
-						versionInfo.updateVersion=EwayLocale.deviceInfo.none;
-					}
-					else{
-						versionInfo.updateVersion=object.data.maxVersion.versionNo;
-					}
-					if(object.data.currentVersion==undefined){
-						versionInfo.versionNo=EwayLocale.deviceInfo.none;
-					}
-					else{
-						versionInfo.versionNo=object.data.currentVersion.versionNo;
-					}
-					versionInfo.lastUpdateTime=object.data.lastUpdateTime;
-					viewAll.down("form").loadRecord(Ext.create('Eway.model.version.VersionInfo',versionInfo));
+						var versionInfo={};
+						if(object.data.maxVersion==undefined){
+							versionInfo.updateVersion=EwayLocale.deviceInfo.noneUpdateVersion;
+						}
+						else{
+							versionInfo.updateVersion=object.data.maxVersion.versionNo;
+						}
+						if(object.data.currentVersion==undefined){
+							versionInfo.versionNo=EwayLocale.deviceInfo.none;
+						}
+						else{
+							versionInfo.versionNo=object.data.currentVersion;
+						}
 					}else{
 						Eway.alert(object.errorMsg);
 					}
 					versionInfoView.unmask();
+
+					versionInfo.lastUpdateTime=object.data.lastUpdateTime;
+					versionInfoView.down("form").loadRecord(Ext.create('Eway.model.version.VersionInfo',versionInfo));
 				},
 				failure:function(){
 					versionInfoView.unmask();

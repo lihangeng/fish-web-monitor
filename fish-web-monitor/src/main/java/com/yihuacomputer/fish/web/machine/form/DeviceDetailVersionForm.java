@@ -6,19 +6,19 @@ import com.yihuacomputer.fish.web.version.form.VersionForm;
 
 public class DeviceDetailVersionForm {
 	
-	private VersionForm currentVersion;
+	private String currentVersion;
 	
 	private VersionForm maxVersion;
 
-	private List<VersionForm> updateVersion;
+//	private List<VersionForm> updateVersion;
 
 	private String lastUpdateTime;
 
-	public VersionForm getCurrentVersion() {
+	public String getCurrentVersion() {
 		return currentVersion;
 	}
 
-	public void setCurrentVersion(VersionForm currentVersion) {
+	public void setCurrentVersion(String currentVersion) {
 		this.currentVersion = currentVersion;
 	}
 
@@ -30,13 +30,13 @@ public class DeviceDetailVersionForm {
 		this.maxVersion = maxVersion;
 	}
 
-	public List<VersionForm> getUpdateVersion() {
-		return updateVersion;
-	}
-
-	public void setUpdateVersion(List<VersionForm> updateVersion) {
-		this.updateVersion = updateVersion;
-	}
+//	public List<VersionForm> getUpdateVersion() {
+//		return updateVersion;
+//	}
+//
+//	public void setUpdateVersion(List<VersionForm> updateVersion) {
+//		this.updateVersion = updateVersion;
+//	}
 
 	public String getLastUpdateTime() {
 		return lastUpdateTime;

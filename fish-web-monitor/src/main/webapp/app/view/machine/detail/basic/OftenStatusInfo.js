@@ -21,18 +21,22 @@ Ext.define('Eway.view.machine.detail.basic.OftenStatusInfo', {
 			},
 			items : [{
 				columnWidth : .25,
+				a_link : true,
 				fieldLabel : EwayLocale.monitor.devMonitor.comboxStatus.runStatus,
 				name : 'runStatus'
 			},{
 				columnWidth : .25,
+				a_link : true,
 				fieldLabel : EwayLocale.monitor.devMonitor.comboxStatus.modStatus,
 				name : 'modStatus'
 			},{
 				columnWidth : .25,
+				a_link : true,
 				fieldLabel : EwayLocale.monitor.devMonitor.comboxStatus.boxStatus,
 				name : 'boxStatus'
 			},{
 				columnWidth : .25,
+				a_link : true,
 				fieldLabel : EwayLocale.monitor.devMonitor.comboxStatus.netStatus,
 				name : 'netStatus'
 			}]

@@ -45,11 +45,15 @@ Ext.define('Eway.view.machine.detail.basic.ControllerInfo', {
 				labelWidth : 150,
 				readOnly : true
 			},
-			items : [{
-						xtype:'detail_basic_OftenControllerInfo'
-					},{
-						xtype:'detail_basic_hiddenControllerInfo',
-						hidden:true
+
+			items : [ {
+				xtype:'form',
+				items : [{
+							xtype:'detail_basic_OftenControllerInfo'
+						},{
+							xtype:'detail_basic_hiddenControllerInfo',
+							hidden:true
+				}]
 			}]
 		});
 
