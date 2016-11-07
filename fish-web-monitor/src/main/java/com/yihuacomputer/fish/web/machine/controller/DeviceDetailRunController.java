@@ -35,6 +35,11 @@ import com.yihuacomputer.fish.api.report.openRate.IDayOpenRate;
 import com.yihuacomputer.fish.api.report.openRate.IDayOpenRateService;
 import com.yihuacomputer.fish.web.index.form.ChartForm;
 
+/**
+ * 单台设备一周的运行信息
+ * @author GQ
+ *
+ */
 @Controller
 @RequestMapping("/machine/devicedetailrun")
 public class DeviceDetailRunController {
