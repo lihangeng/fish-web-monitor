@@ -56,12 +56,7 @@ Ext.define('Eway.view.machine.detail.run.OpenRateInfo', {
                 grid: true,
                 renderer: function (axis, label, layoutContext) {
                     return layoutContext.renderer(label);
-                }/*,
-                label: {
-                    rotate: {
-                        degrees: -45
-                    }
-                }*/
+                }
             }],
             series: [{
                 type: 'line',
@@ -90,7 +85,7 @@ Ext.define('Eway.view.machine.detail.run.OpenRateInfo', {
                     dismissDelay: 0,
                     hideDelay: 0,
                     renderer: function(storeItem, item) {
-                    	storeItem.setHtml(item.get('data1'));
+                    	storeItem.setHtml(item.get('month') + EwayLocale.index.openRate + item.get('data1'));
                     }
                 }
             }]

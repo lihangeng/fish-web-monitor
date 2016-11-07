@@ -87,11 +87,70 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 			'detail_basic_statusInfo [itemId="refreshStatusInfo"]' : {
 				click : this.getStatusInfo
 			},
-				
+			'allControllerInfo ':{
+				afterrender:this.allControllerInfoRender
+			},
+			
+			'detail_basic_hiddenStatusInfo displayfield' : {
+				render : {
+					fn : function(field) {
+						var me =this;
+						if (field.getEl()) {
+							var text = field.getEl().down('a.link');
+							if (text) {
+								text.on('click', function(e, htmlEl) {
+									var deviceInfo = me.getParam();
+									var win = Ext.create('Eway.view.monitor.device.ModuleInfoWin');
+									win.display(deviceInfo.code, field.code);
+								}, this);
+							}
+						}
+					},
+					scope : this
+				},
+				scope : this
+			}	
 		});
 
 	},
-	
+	//控制信息分两个面板渲染，渲染完毕后对displayfield进行注册事件
+	allControllerInfoRender:function(_this){
+		var me = this;
+		var fields = _this.up("detail_basicInfo").down("allControllerInfo").query("displayfield[hidden=false]") ;
+		var basicInfo = _this.up("detail_basicInfo");
+		var oftenController = basicInfo.down("detail_basic_OftenControllerInfo");
+		var hiddenController = basicInfo.down("detail_basic_hiddenControllerInfo");
+		Ext.Array.forEach(fields,function(item,index,items){
+			if(index<4){
+				oftenController.add(item);
+			}
+			else{
+				hiddenController.add(item);
+			}
+		});
+		var controllerHiddeDispaly = basicInfo.down("detail_ControllerInfo").query("displayfield");
+		Ext.Array.forEach(controllerHiddeDispaly,function(item,index,items){
+			var text = item.getEl().down('a.link');
+			var name=item.name;
+			me.controllerInfo(item,text,name);
+		});
+	},
+	//获取单机模式的设备IP,和设备号
+	getParam:function(){
+		var view = this.getDeviceInfo();
+		var ip =view.down('displayfield[name="ip"]').getValue();
+		var codes = view.down('displayfield[name="terminalId"]').getValue();
+		code = Ext.util.Format.stripTags(codes);
+		ip = Ext.util.Format.stripTags(ip);
+		var win = Ext.ComponentQuery.query('detail_ControllerInfo')[0];
+		var winEl = win.getEl();
+		var deviceInfo={};
+		deviceInfo.ip = ip;
+		deviceInfo.code = code;
+		deviceInfo.winEl = winEl;
+		return deviceInfo;
+	},
+	//控制信息注册事件
 	controllerInfo : function(field,text,name) {
 		if (text&&name=="remoteCommHist") {
 			text.on('click', this.onRemoteCommHist, this, field);
@@ -125,17 +184,17 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 			text.on('click', this.onScreenCameraAction, this, field);
 		}
 	},
-	
+	//激活基础信息tab项
 	onBasicInfo:function(){
 		var view = this.getEwayView();
 		view.getLayout().setActiveItem("detail_basicInfo");
 	},
+	//激活运行信息tab项
 	onRunInfo:function(){
 		var view = this.getEwayView();
 		view.getLayout().setActiveItem("detail_runInfo");
 		
 	},
-	
 	//查看远程命令结果
     onRemoteCommHist :  function(ev, target, field) {
     	var deviceInfo=this.getParam();
@@ -144,27 +203,22 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 			height: 520,
 		    width: 850,
 		    title : EwayLocale.monitor.remoteCommand.titile,
-//		    autoScroll : true,
-//		    maximizable: true,
 		    layout : 'border',
 		    items:[ {
 		    	region : 'center',
 		    	xtype : 'monitor_device_remote_grid'
 		    } ]
 		}).show();
-		
 		var store = win.down('grid').getStore();
 		store.setUrlParamsByObject({
 			terminalId : deviceInfo.code
 		});
 		store.loadPage(1);
-		
 		win.down('button[action=query]').on('click', function() {
 			store.loadPage(1);
 		});
 	},
 
-	
 	//打开远程抓屏
 	onRemoteScreenAction : function(ev, target, field) {
 		var deviceInfo=this.getParam();
@@ -245,7 +299,6 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 			}
 		});
 	},
-
 	//查看网络连接
 	onNetAction : function(ev, target, field){
 		var deviceInfo=this.getParam();
@@ -302,7 +355,6 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 						},
 						success : function(response) {
 							winEl.unmask();
-//							Eway.alert(EwayLocale.tip.business.device.remoteCommandMsg);
 							var object = Ext.decode(response.responseText);
 							if (object.success && object.success == true) {
 								winEl.unmask();
@@ -338,7 +390,6 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 						},
 						success : function(response) {
 							winEl.unmask();
-//							Eway.alert(EwayLocale.tip.business.device.remoteCommandMsg);
 							var object = Ext.decode(response.responseText);
 							if (object.success && object.success == true) {
 								winEl.unmask();
@@ -487,7 +538,6 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 								},
 								success : function(response) {
 									winEl.unmask();
-//									Eway.alert(EwayLocale.tip.business.device.remoteCommandMsg);
 									var object = Ext.decode(response.responseText);
 									if (object.success && object.success == true) {
 										winEl.unmask();
@@ -525,7 +575,6 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 								},
 								success : function(response) {
 									winEl.unmask();
-//									Eway.alert(EwayLocale.tip.business.device.remoteCommandMsg);
 									var object = Ext.decode(response.responseText);
 									if (object.success && object.success == true) {
 										winEl.unmask();
@@ -577,7 +626,6 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 					},
 					success : function(response) {
 						winEl.unmask();
-//						Eway.alert(EwayLocale.tip.business.device.remoteCommandMsg);
 						var object = Ext.decode(response.responseText);
 						if (object.success && object.success == true) {
 							winEl.unmask();
@@ -674,8 +722,7 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 		});
 	},
 	
-	
-	
+	//刷新人员信息
 	getPersonInfo : function(){
 			var view = this.getEwayView();
 			var personInfoView = view.down("detail_personInfo");
@@ -700,7 +747,8 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 				}
 		});
 	},
-	
+
+	//刷新其他信息
 	getOtherInfo : function(){
 			var view = this.getEwayView();
 			var otherInfoView = view.down("detail_basic_otherInfo");
@@ -721,6 +769,7 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 		});
 	},
 
+	//刷新设备基本信息
 	getDeviceDetailInfo : function(){
 		var viewAll = this.getEwayView();
 		var terminalId = viewAll.getTerminalId();
@@ -745,6 +794,7 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 		});
 	},
 
+	//刷新设备状态信息
 	getStatusInfo : function(){
 		var viewAll = this.getEwayView();
 		var terminalId = viewAll.getTerminalId();
@@ -769,6 +819,7 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 		});
 	},
 
+	//刷新设备应用版本信息
 	showAppRelease : function(ev, target, field){
 		var me = this;
 		var veisionNo=this.getAppReleaseInfo().down("displayfield[name=versionNo]").getValue();
@@ -795,7 +846,8 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 			this.getAppReleaseInfo().firstload = false;
 		}
 	},
-	
+
+	//创建设备版本提示信息
 	createToopTip:function(){
 		if(this.updateVersionToolTip==undefined||this.updateVersionToolTip==''){
 			this.updateVersionToolTip=Ext.create("Ext.tip.ToolTip",{
@@ -810,6 +862,8 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 			});
 		}
 	},
+
+	//刷新设备版本信息
 	getVersionInfo : function(){
 		var viewAll = this.getEwayView();
 		var terminalId = viewAll.getTerminalId();
@@ -848,5 +902,10 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 					versionInfoView.unmask();
 				}
 		});
+	},
+	refreshRunInfo:function(){
+		var tabpanel = this.getEwayView();
+		var basicInfoPanel = tabpanel.down("detail_basicInfo");
+		tabpanel.setActiveTab(basicInfoPanel);
 	}
 });
