@@ -91,7 +91,7 @@ Ext.define('Eway.view.machine.detail.run.RetainCardInfo', {
                     dismissDelay: 0,
                     hideDelay: 0,
                     renderer: function(storeItem, item) {
-                    	storeItem.setHtml(item.get('data1'));
+                    	storeItem.setHtml(item.get('month') + EwayLocale.index.retainCardAmount + item.get('data1'));
                     }
                 }
             }]

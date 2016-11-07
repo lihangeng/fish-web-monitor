@@ -11,7 +11,8 @@ Ext.define('Eway.view.machine.detail.run.TradingInfo', {
 	    type:'refresh',
 	    tooltip: EwayLocale.button.refresh,
 	    handler: function(event, toolEl, panelHeader) {
-	     	this.up('tradingInfo').down('polar').getStore().load();
+	     	var store = this.up('tradingInfo').down('polar').getStore();
+	     	store.load();
 	    }
 	}],
     
@@ -56,7 +57,7 @@ Ext.define('Eway.view.machine.detail.run.TradingInfo', {
                 tooltip: {
                     trackMouse: true,
                     renderer: function(storeItem, item) {
-                    	storeItem.setHtml(item.get('transName') + '('+EwayLocale.deviceInfo.tradingCount + item.get('transCount')+EwayLocale.deviceInfo.tradingMoney+item.get('transAmt')+')');
+                    	storeItem.setHtml(item.get('transName') + '('+EwayLocale.deviceInfo.tradingCount + item.get('transCount')+EwayLocale.deviceInfo.tradingAmt+item.get('transAmt')+')');
                     }
                 }
             }]
