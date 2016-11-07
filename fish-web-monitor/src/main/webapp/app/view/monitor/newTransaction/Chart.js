@@ -44,7 +44,6 @@ Ext.define('Eway.view.monitor.newTransaction.Chart', {
                 axes: [ {
                     type: 'numeric',
                     minimum: 0,
-                    maximum: 40,
                     position: 'left',
                     fields: [ 'trans_total_tps', 'local_total_tps', 'other_total_tps' ]
                 }, {
