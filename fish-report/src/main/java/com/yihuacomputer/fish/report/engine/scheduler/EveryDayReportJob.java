@@ -8,12 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.yihuacomputer.common.util.DateUtils;
-import com.yihuacomputer.fish.api.monitor.box.ICashInitPlanInfoService;
-import com.yihuacomputer.fish.api.monitor.volume.IDayTradingVolumeService;
+import com.yihuacomputer.fish.api.monitor.box.ICashInitPlanInfoExtractDataService;
+import com.yihuacomputer.fish.api.monitor.volume.IDayTradingVolumeExtractDataService;
 import com.yihuacomputer.fish.api.person.IOrganization;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
 import com.yihuacomputer.fish.api.report.device.IDeviceOpenRateService;
 import com.yihuacomputer.fish.api.report.openRate.etl.IAvgOpenRateExtractDataService;
+import com.yihuacomputer.fish.api.report.trans.ITransactionDaysExtractDataService;
 import com.yihuacomputer.fish.api.report.trans.ITransactionDaysService;
 import com.yihuacomputer.fish.api.report.trans.etl.ITransTypeExtractDataService;
 
@@ -38,16 +39,19 @@ public class EveryDayReportJob {
 	private IAvgOpenRateExtractDataService avgOpenRateExtractDataService;
 
 	@Autowired
-	private ICashInitPlanInfoService cashInitPlanInfoService;
+	private ICashInitPlanInfoExtractDataService cashInitPlanInfoExtractDataService;
 	
 	@Autowired
 	private IOrganizationService orgService;
 	
 	@Autowired
-	private IDayTradingVolumeService dayTradingVolumeService;
+	private IDayTradingVolumeExtractDataService dayTradingVolumeExtractDataService;
 	
 	@Autowired
 	private ITransTypeExtractDataService transTypeExtractDataService;
+	
+	@Autowired
+	private ITransactionDaysExtractDataService transactionDaysExtractDataService;
 
 	/**
 	 * 每日抽取
@@ -68,7 +72,7 @@ public class EveryDayReportJob {
 		long start = System.currentTimeMillis();
 		//6.计算加钞设备(2016年3季度加钞计划)
 		IOrganization org = orgService.get("1");
-		cashInitPlanInfoService.generalCashInitPlan(org, DateUtils.getDateShort(new Date()));
+		cashInitPlanInfoExtractDataService.generalCashInitPlan(org, DateUtils.getDateShort(new Date()));
 		logger.info(String.format("executeDayCashes SPEND [%s]ms",System.currentTimeMillis() - start));
 	}
 
@@ -79,9 +83,9 @@ public class EveryDayReportJob {
 		long start = System.currentTimeMillis();
 		//3.每日交易信息统计
 		String shortYestory = DateUtils.getLastShortDate();
-		transactionDaysService.extractDate(shortYestory);
+		transactionDaysExtractDataService.extractDate(shortYestory);
 		//4.每台设备交易量统计(2016年3季度需求加钞设备应加金额的计算)
-		dayTradingVolumeService.generalDayTradingVolumeByDate(shortYestory);
+		dayTradingVolumeExtractDataService.generalDayTradingVolumeByDate(shortYestory);
 		//5.计算每日交易类型(2016年3季度需求综合报告之交易信息汇总)
 		transTypeExtractDataService.extractByDay(DateUtils.getDate(DateUtils.getLastDate()));
 		logger.info(String.format("executeDayTrans SPEND [%s]ms",System.currentTimeMillis() - start));

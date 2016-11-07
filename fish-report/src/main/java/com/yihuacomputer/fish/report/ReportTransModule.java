@@ -9,6 +9,7 @@ import com.yihuacomputer.fish.api.report.trans.ICashInRptService;
 import com.yihuacomputer.fish.api.report.trans.ISettlementCashInRptService;
 import com.yihuacomputer.fish.api.report.trans.ISettlementRptService;
 import com.yihuacomputer.fish.api.report.trans.ITransRptService;
+import com.yihuacomputer.fish.api.report.trans.ITransactionDaysExtractDataService;
 import com.yihuacomputer.fish.api.report.trans.ITransactionDaysService;
 import com.yihuacomputer.fish.api.report.trans.ITransactionMonthsService;
 import com.yihuacomputer.fish.api.report.trans.etl.ITransTypeEtlService;
@@ -19,6 +20,7 @@ import com.yihuacomputer.fish.report.service.trans.CashInRptService;
 import com.yihuacomputer.fish.report.service.trans.SettlementCashInRptService;
 import com.yihuacomputer.fish.report.service.trans.SettlementRptService;
 import com.yihuacomputer.fish.report.service.trans.TransRptService;
+import com.yihuacomputer.fish.report.service.trans.TransactionDaysExtractDataService;
 import com.yihuacomputer.fish.report.service.trans.TransactionDaysService;
 import com.yihuacomputer.fish.report.service.trans.TransactionMonthsService;
 import com.yihuacomputer.fish.report.service.trans.etl.TransTypeEtlService;
@@ -83,4 +85,10 @@ public class ReportTransModule {
 	public ITransTypeExtractDataService transTypeExtractDataService(){
 		return new TransTypeExtractDataService();
 	}
+	
+	@Bean
+	public ITransactionDaysExtractDataService transactionDaysExtractDataService(){
+		return new TransactionDaysExtractDataService();
+	}
+	
 }

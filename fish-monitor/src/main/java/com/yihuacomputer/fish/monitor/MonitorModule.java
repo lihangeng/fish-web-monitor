@@ -7,11 +7,12 @@ import com.yihuacomputer.fish.api.monitor.ICollectService;
 import com.yihuacomputer.fish.api.monitor.IMonitorService;
 import com.yihuacomputer.fish.api.monitor.alarm.IProcessService;
 import com.yihuacomputer.fish.api.monitor.box.ICashInitPlanDeviceInfoService;
+import com.yihuacomputer.fish.api.monitor.box.ICashInitPlanInfoExtractDataService;
 import com.yihuacomputer.fish.api.monitor.box.ICashInitPlanInfoService;
+import com.yihuacomputer.fish.api.monitor.box.ICashInitRuleService;
 import com.yihuacomputer.fish.api.monitor.box.ICashInitUniqueService;
 import com.yihuacomputer.fish.api.monitor.box.IDeviceBoxDetailInfoService;
 import com.yihuacomputer.fish.api.monitor.box.IDeviceBoxInfoService;
-import com.yihuacomputer.fish.api.monitor.box.ICashInitRuleService;
 import com.yihuacomputer.fish.api.monitor.business.IBlackListCardService;
 import com.yihuacomputer.fish.api.monitor.business.ICashInitService;
 import com.yihuacomputer.fish.api.monitor.business.ICounterFeitMoneyService;
@@ -30,23 +31,26 @@ import com.yihuacomputer.fish.api.monitor.filter.IFilterService;
 import com.yihuacomputer.fish.api.monitor.hardware.IHardwareService;
 import com.yihuacomputer.fish.api.monitor.software.IRuntimeParamService;
 import com.yihuacomputer.fish.api.monitor.software.ISoftwareService;
+import com.yihuacomputer.fish.api.monitor.volume.IDayTradingVolumeExtractDataService;
 import com.yihuacomputer.fish.api.monitor.volume.IDayTradingVolumeService;
 import com.yihuacomputer.fish.api.monitor.volume.IMonthDailyTradingVolumeService;
 import com.yihuacomputer.fish.api.monitor.xfs.IXfsChartService;
 //import com.yihuacomputer.fish.api.monitor.xfs.IStateCodeService;
 import com.yihuacomputer.fish.api.monitor.xfs.IXfsService;
+import com.yihuacomputer.fish.monitor.entity.volume.DayTradingVolumeExtractDataService;
 import com.yihuacomputer.fish.monitor.entity.volume.DayTradingVolumeService;
 import com.yihuacomputer.fish.monitor.entity.volume.MonthDailyTradingVolumeService;
 import com.yihuacomputer.fish.monitor.service.BlackListCardService;
 import com.yihuacomputer.fish.monitor.service.CashInitPlanDeviceInfoService;
+import com.yihuacomputer.fish.monitor.service.CashInitPlanInfoExtractDataService;
 import com.yihuacomputer.fish.monitor.service.CashInitPlanInfoService;
+import com.yihuacomputer.fish.monitor.service.CashInitRuleService;
 import com.yihuacomputer.fish.monitor.service.CashInitService;
 import com.yihuacomputer.fish.monitor.service.CashInitUniqueService;
 import com.yihuacomputer.fish.monitor.service.CollectService;
 import com.yihuacomputer.fish.monitor.service.CounterFeitMoneyService;
 import com.yihuacomputer.fish.monitor.service.DeviceBoxDetailInfoService;
 import com.yihuacomputer.fish.monitor.service.DeviceBoxInfoService;
-import com.yihuacomputer.fish.monitor.service.CashInitRuleService;
 import com.yihuacomputer.fish.monitor.service.DeviceOfflineCheck;
 import com.yihuacomputer.fish.monitor.service.FilterService;
 import com.yihuacomputer.fish.monitor.service.HardwareService;
@@ -234,5 +238,15 @@ public class MonitorModule {
 	@Bean
 	public IDayTradingVolumeService dayTradingVolumeService(){
 		return new DayTradingVolumeService();
+	}
+	
+	@Bean 
+	public IDayTradingVolumeExtractDataService dayTradingVolumeExtractDataService(){
+		return new DayTradingVolumeExtractDataService();
+	}
+	
+	@Bean
+	public ICashInitPlanInfoExtractDataService cashInitPlanInfoExtractDataService(){
+		return new CashInitPlanInfoExtractDataService();
 	}
 }

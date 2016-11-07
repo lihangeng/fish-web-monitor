@@ -25,6 +25,7 @@ import com.yihuacomputer.fish.api.monitor.business.ITransType;
 import com.yihuacomputer.fish.api.monitor.business.ITransTypeService;
 import com.yihuacomputer.fish.api.monitor.business.ITransaction;
 import com.yihuacomputer.fish.api.monitor.business.ITransactionService;
+import com.yihuacomputer.fish.api.monitor.volume.IDayTradingVolumeExtractDataService;
 import com.yihuacomputer.fish.api.monitor.volume.IDayTradingVolumeService;
 import com.yihuacomputer.fish.api.monitor.volume.IMonthDailyTradingVolumeService;
 import com.yihuacomputer.fish.monitor.H2TestConfig;
@@ -49,6 +50,9 @@ public class HistoryTransactionDataGeneralTest  extends BindSessionInTest2{
 	@Autowired
 	private IGenericDao dao;
 	
+	@Autowired
+	private IDayTradingVolumeExtractDataService dayTradingVolumeExtractDataService;
+	
 	
 	@Test
 	@Ignore
@@ -69,7 +73,7 @@ public class HistoryTransactionDataGeneralTest  extends BindSessionInTest2{
 		calendar.add(Calendar.DAY_OF_MONTH, -days);
 		for(int i=0;i<days;i++){
 			String dates = DateUtils.getDateShort(calendar.getTime());
-			dayTradingVolumeService.generalDayTradingVolumeByDate(dates);
+			dayTradingVolumeExtractDataService.generalDayTradingVolumeByDate(dates);
 			calendar.add(Calendar.DAY_OF_MONTH, 1);
 		}
 	}

@@ -14,11 +14,4 @@ public interface ITransactionDaysService {
 
 	public List<ITransaction> list2();
 
-	/**
-	 * @param date yyyyMMdd
-	 */
-	public void extractDate(String date);
-
-
-
 }
