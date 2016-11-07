@@ -561,7 +561,9 @@ Ext
 						normalDev : 'Healthy',// EwayLocale.index.normalDev
 						unknownDev : 'Unknow',// EwayLocale.index.unknownDev
 						exceptionDev : 'Fatal',// EwayLocale.index.exceptionDev
-						amount : '',// EwayLocale.index.amount
+						amount : 'Devices',// EwayLocale.index.amount
+						openRate:'Openrate',//EwayLocale.index.openRate
+						retainCardAmount:'RetainCards',//EwayLocale.index.retainCardAmount
 						versionDistributePie : 'Patch Distribution',// EwayLocale.index.versionDistributePie
 						retainCardTrendTitle : 'Retained Card Trend Chart'// EwayLocale.index.retainCardTrendTitle
 					},

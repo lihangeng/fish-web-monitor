@@ -573,6 +573,8 @@ Ext.apply(EwayLocale,{
 		unknownDev:'1.3.2.0',//EwayLocale.index.unknownDev
 		exceptionDev:'2.0.0.0',//EwayLocale.index.exceptionDev
 		amount:'台设备',//EwayLocale.index.amount
+		openRate:'开机率',//EwayLocale.index.openRate
+		retainCardAmount:'吞卡数量',//EwayLocale.index.retainCardAmount
 		versionDistributePie:'版本分布图',//EwayLocale.index.versionDistributePie
 		retainCardTrendTitle:'日均吞卡趋势图'//EwayLocale.index.retainCardTrendTitle
 	},
