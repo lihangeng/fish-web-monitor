@@ -20,7 +20,7 @@ public class EveryMonthFaultCountService implements IEveryMonthFaultCountService
 	@Autowired
 	private IGenericDao dao;
 
-	@SaveMethodDescrible(isUpdate=true,keyName={"devMod","faultDate"})
+	@SaveMethodDescrible(isUpdate=true,keyName={"devTypeId","devMod","classifyId","faultDate"})
 	@Override
 	public void add(IEveryMonthFaultCount everyMonthFaultCount) {
 		dao.save(everyMonthFaultCount);

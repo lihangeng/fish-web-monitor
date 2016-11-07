@@ -25,7 +25,7 @@ public class TransactionMonthsService implements ITransactionMonthsService {
 		return new TransactionMonths();
 	}
 
-	@SaveMethodDescrible(isUpdate=true,keyName={"vendorName","devType","transCode","cardType","transDate"})
+	@SaveMethodDescrible(isUpdate=true,keyName={"devTypeId","transCode","transDate"})
 	@Override
 	public void save(ITransactionMonths transactionMonths) {
 		dao.save(transactionMonths);

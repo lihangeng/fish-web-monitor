@@ -42,13 +42,13 @@ public class DeviceTypeOpenRateEtlService implements IDeviceTypeOpenRateEtlServi
 		return dao.findByFilter(filter, IDeviceTypeOpenRateMonth.class);
 	}
 
-	@SaveMethodDescrible(isUpdate=true,keyName={"date","devType"})
+	@SaveMethodDescrible(isUpdate=true,keyName={"date","typeId"})
 	@Override
 	public IDeviceTypeOpenRateWeek saveByWeek(IDeviceTypeOpenRateWeek deviceTypeOpenRateWeek) {
 		return dao.save(deviceTypeOpenRateWeek);
 	}
 
-	@SaveMethodDescrible(isUpdate=true,keyName={"date","devType"})
+	@SaveMethodDescrible(isUpdate=true,keyName={"date","typeId"})
 	@Override
 	public IDeviceTypeOpenRateMonth saveByMonth(IDeviceTypeOpenRateMonth deviceTypeOpenRateMonth) {
 		return dao.save(deviceTypeOpenRateMonth);
