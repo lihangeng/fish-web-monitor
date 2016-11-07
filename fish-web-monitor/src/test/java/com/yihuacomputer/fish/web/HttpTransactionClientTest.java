@@ -30,10 +30,10 @@ public class HttpTransactionClientTest {
 	public static void main(String[] args) {
 
 	 // 测试交易数据：0为无限次数,>0为指定次数
-        int count = 10;
+        int count = 10000;
         
         // 设备号
-        String termId = "13050004";
+        String termId = "13050003";
 
         // 发送交易数据间隔
         int sleep = 2;
@@ -59,7 +59,7 @@ public class HttpTransactionClientTest {
 				System.out.println(json);
 
 //				HttpPost httpPost = new HttpPost("http://172.18.30.38:8086/fish-web-monitor/atm/msg/transaction");
-				HttpPost httpPost = new HttpPost("http://localhost:8080/atmv/atm/msg/transaction");
+				HttpPost httpPost = new HttpPost("http://10.2.7.130:8080/atmv/atm/msg/transaction");
 
 				StringEntity entity = new StringEntity(json, "UTF-8");
 

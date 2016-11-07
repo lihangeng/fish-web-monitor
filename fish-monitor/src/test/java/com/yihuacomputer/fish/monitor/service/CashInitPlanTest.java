@@ -10,11 +10,10 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.yihuacomputer.domain.test.BindSessionInTest2;
-import com.yihuacomputer.fish.api.monitor.box.ICashInitPlanInfoService;
+import com.yihuacomputer.fish.api.monitor.box.ICashInitPlanInfoExtractDataService;
 import com.yihuacomputer.fish.api.person.IOrganization;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
 import com.yihuacomputer.fish.monitor.H2TestConfig;
-import com.yihuacomputer.fish.monitor.MySQLTestConfig;
 
 @DirtiesContext(classMode = ClassMode.AFTER_CLASS)
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -22,7 +21,7 @@ import com.yihuacomputer.fish.monitor.MySQLTestConfig;
 public class CashInitPlanTest extends BindSessionInTest2{
 
 	@Autowired
-	private ICashInitPlanInfoService caseCashInitPlanInfoService;
+	private ICashInitPlanInfoExtractDataService cashInitPlanInfoExtractDataService;
 	@Autowired
 	private IOrganizationService organizationService;
 	
@@ -30,6 +29,6 @@ public class CashInitPlanTest extends BindSessionInTest2{
 	@Ignore
 	public void test(){
 		IOrganization org =organizationService.get("1");
-		caseCashInitPlanInfoService.generalCashInitPlan(org,"20160731");
+		cashInitPlanInfoExtractDataService.generalCashInitPlan(org,"20160731");
 	}
 }/**/

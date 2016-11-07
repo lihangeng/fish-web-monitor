@@ -12,6 +12,7 @@ import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IFilterEntry;
 import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.common.Operator;
+import com.yihuacomputer.common.annotation.SaveMethodDescrible;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.common.util.PageResult;
@@ -55,6 +56,7 @@ public class DayOpenRateService implements IDayOpenRateService {
     @Autowired
 	private IDeviceService deviceService;
 
+    @SaveMethodDescrible(isUpdate=true,keyName={"terminalId","statDate"})
     @Override
     public void save(IDayOpenRate dayOpenRate) {
         dao.save(dayOpenRate);
