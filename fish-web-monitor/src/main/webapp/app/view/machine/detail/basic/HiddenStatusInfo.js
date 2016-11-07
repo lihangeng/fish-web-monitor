@@ -1,15 +1,11 @@
 Ext.define('Eway.view.machine.detail.basic.HiddenStatusInfo', {
 	extend : 'Ext.panel.Panel',
 	alias : 'widget.detail_basic_hiddenStatusInfo',
-	
 
-	requires : [],
 	layout: {
         type: 'column',
     },
     closable:false,
-    //bodyPadding: 10,
-    
 
 	initComponent : function() {
 		Ext.apply(this, {
@@ -231,7 +227,7 @@ Ext.define('Eway.view.machine.detail.basic.HiddenStatusInfo', {
 					}
 				}else if(name == "modStatus"){
 					var div = '<div class="monitor_minicon monitor-div-mod-'+record.get("mod")+'">&nbsp;&nbsp;</div>';
-					var className = 'link ';
+					var className = '';
 					if (value == EwayLocale.commen.noDevice) {
 						item.setValue(div + ' ' + value);
 					} else {
@@ -240,12 +236,12 @@ Ext.define('Eway.view.machine.detail.basic.HiddenStatusInfo', {
 						} else if(value == EwayLocale.commen.fatal) {
 							className += ' fatalHighLight ';
 						}
-						item.setValue(div + '<a href="#" class="'+className+'">' + value + '</a>');
+						item.setValue(div + '<span class="'+className+'">' + value + '</span>');
 					}
 
 				}else if(name == "boxStatus"){
 					var div = '<div class="monitor_minicon monitor-div-box-'+record.get("box")+'">&nbsp;&nbsp;</div>';
-					var className = 'link';
+					var className = '';
 					var boxFatals= [EwayLocale.monitor.devMonitor.cash.cimFull,EwayLocale.monitor.devMonitor.cash.cdmEmpty,
 					                EwayLocale.monitor.devMonitor.cash.cimAFull,EwayLocale.monitor.devMonitor.cash.cashFault];
 					if (value == EwayLocale.commen.noDevice) {
@@ -256,7 +252,7 @@ Ext.define('Eway.view.machine.detail.basic.HiddenStatusInfo', {
 						} else if(value == EwayLocale.monitor.devMonitor.cash.cdmLow) {
 							className += ' warningHighLight ';
 						}
-						item.setValue(div + '<a href="#" class="'+className+'">'+value+'</a>');
+						item.setValue(div + '<span class="'+className+'">'+value+'</span>');
 					}
 
 				}else if(name == "netStatus"){

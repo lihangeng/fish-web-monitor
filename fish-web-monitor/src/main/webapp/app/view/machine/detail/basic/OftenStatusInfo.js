@@ -1,16 +1,10 @@
 Ext.define('Eway.view.machine.detail.basic.OftenStatusInfo', {
 	extend : 'Ext.panel.Panel',
 	alias : 'widget.detail_basic_oftenStatusInfo',
-	
-
-	requires : [],
 	layout: {
         type: 'column',
     },
     closable:false,
-    //bodyPadding: 10,
-    
-
 	initComponent : function() {
 		Ext.apply(this, {
 			layout : 'column',
