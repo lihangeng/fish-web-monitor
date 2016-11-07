@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.yihuacomputer.common.CashInitPlanCfg;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.util.DateUtils;
@@ -35,6 +34,7 @@ import com.yihuacomputer.fish.api.monitor.volume.IMonthDailyTradingVolumeService
 import com.yihuacomputer.fish.api.person.IOrganization;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
 import com.yihuacomputer.fish.api.person.OrganizationLevel;
+import com.yihuacomputer.fish.monitor.common.CashInitPlanCfg;
 import com.yihuacomputer.fish.monitor.entity.cashplan.CashInitPlanInfo;
 
 @Service

@@ -2,10 +2,28 @@ package com.yihuacomputer.common.file;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+/**
+ * 计算文件MD5值
+ * @author GQ
+ *
+ */
 public class FileMD5 {
+
+	private static Logger logger = LoggerFactory.getLogger(FileMD5.class);
+    /**
+     * 计算文件MD5值
+     * @param file
+     * @return
+     */
     public static String getFileMD5(File file) {
         if (!file.isFile()) {
             return null;
@@ -22,17 +40,22 @@ public class FileMD5 {
             }
             in.close();
         }
-        catch (Exception e) {
-            e.printStackTrace();
+        catch (NoSuchAlgorithmException e) {
+        	logger.error(e.getMessage());
             return "0";
+        }
+        catch( FileNotFoundException e){
+        	logger.error(e.getMessage());
+        	return "0";
+        }
+        catch( IOException e){
+        	logger.error(e.getMessage());
+        	return "0";
         }
         BigInteger bigInt = new BigInteger(1, digest.digest());
         return bigInt.toString(16);
 
     }
     
-    public static void main(String ...args){
-     /*   File file = new File("d:/c3p0-0.9.1.1.jar");
-        System.out.println(FileMD5.getFileMD5(file));*/
-    }
+  
 }
