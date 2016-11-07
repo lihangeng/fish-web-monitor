@@ -176,7 +176,7 @@ public class SerialPortDetector {
 	}
 
 	public static void main(String args[]){
-		new SerialPortDetector().getComPorts();
+		SerialPortDetector.getComPorts();
 	}
 
 }

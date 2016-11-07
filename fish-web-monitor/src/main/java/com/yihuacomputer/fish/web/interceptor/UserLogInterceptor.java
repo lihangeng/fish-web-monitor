@@ -1,26 +1,14 @@
 package com.yihuacomputer.fish.web.interceptor;
 
-import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.MessageSource;
-import org.springframework.web.context.support.WebApplicationContextUtils;
-import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-import com.yihuacomputer.common.FishCfg;
-import com.yihuacomputer.common.annotation.ClassNameDescrible;
-import com.yihuacomputer.common.annotation.MethodNameDescrible;
-import com.yihuacomputer.fish.api.person.IUserLog;
-import com.yihuacomputer.fish.api.person.IUserLogService;
-import com.yihuacomputer.fish.api.person.UserSession;
-import com.yihuacomputer.fish.web.util.FishWebUtils;
 
 /**
  * @Title: UserLogFilter.java

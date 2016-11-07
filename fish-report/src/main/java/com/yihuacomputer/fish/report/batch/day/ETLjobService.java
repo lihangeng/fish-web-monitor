@@ -103,6 +103,7 @@ public class ETLjobService implements IETLjobService {
 		sql.append("select p.JOB_EXECUTION_ID from batch_job_execution_params p where p.STRING_VAL='"+tradeTime+"'");
 		SQLQuery query = dao.getSQLQuery(sql.toString());
 		query.addScalar("JOB_EXECUTION_ID", StandardBasicTypes.BIG_INTEGER);
+		@SuppressWarnings("unchecked")
 		List<Object> infos = query.list();
 		if(!infos.isEmpty()){
 			dao.getSQLQuery("delete from BATCH_STEP_EXECUTION_CONTEXT where step_execution_id="+infos.get(0)).executeUpdate();

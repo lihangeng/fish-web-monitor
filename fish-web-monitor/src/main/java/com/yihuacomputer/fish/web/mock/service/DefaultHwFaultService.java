@@ -15,7 +15,6 @@ import com.yihuacomputer.fish.api.fault.FaultStatus;
 import com.yihuacomputer.fish.api.fault.ICaseFault;
 import com.yihuacomputer.fish.api.fault.ICaseFaultFlowService;
 import com.yihuacomputer.fish.api.fault.ICaseFaultService;
-import com.yihuacomputer.fish.api.fault.ICaseNotifyService;
 import com.yihuacomputer.fish.api.fault.IFaultClassify;
 import com.yihuacomputer.fish.api.fault.IFaultClassifyService;
 import com.yihuacomputer.fish.api.monitor.business.RunStatus;

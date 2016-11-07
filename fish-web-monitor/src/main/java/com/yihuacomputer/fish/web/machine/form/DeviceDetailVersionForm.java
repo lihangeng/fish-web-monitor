@@ -1,7 +1,5 @@
 package com.yihuacomputer.fish.web.machine.form;
 
-import java.util.List;
-
 import com.yihuacomputer.fish.web.version.form.VersionForm;
 
 public class DeviceDetailVersionForm {
