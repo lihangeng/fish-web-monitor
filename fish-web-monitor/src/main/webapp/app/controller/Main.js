@@ -99,6 +99,7 @@ Ext.define('Eway.controller.Main', {
 						controller.getDeviceDetailInfo();
 						controller.getStatusInfo();
 						controller.getVersionInfo();
+						controller.refreshRunInfo();
 						if(!view.down("detail_basic_otherInfo").collapsed){
 							controller.getOtherInfo();
 						}

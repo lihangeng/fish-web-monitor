@@ -13,7 +13,6 @@ Ext.define('Eway.view.machine.detail.RunInfo', {
 	title : EwayLocale.deviceInfo.runInfo,
 	layout: 'responsivecolumn',
     scrollable : 'y',
-	isLoad : false,
 
 	initComponent : function() {
 		Ext.apply(this, {
@@ -34,14 +33,10 @@ Ext.define('Eway.view.machine.detail.RunInfo', {
 			}],
 			listeners : {
 				activate : function(panel) {
-					if(!panel.isLoad){
-//						this.refreshInfo(panel);
-						panel.isLoad = true;
-					}
+					this.refreshInfo(panel);
 				}
 			}
 		});
-
 		this.callParent(arguments);
 	},
 	refreshInfo:function(panel){
