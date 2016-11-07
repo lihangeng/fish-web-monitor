@@ -1,7 +1,9 @@
-package com.yihuacomputer.common;
+package com.yihuacomputer.fish.monitor.common;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.yihuacomputer.common.FishCfg;
 
 
 /**
@@ -11,6 +13,13 @@ import org.slf4j.LoggerFactory;
  */
 public class CashInitPlanCfg {
 
+	/**
+	 * 类内部全部是静态方法，可以将类的构造函数设为私有
+	 */
+	private CashInitPlanCfg(){
+		
+	}
+	
 	private static Logger logger = LoggerFactory.getLogger(CashInitPlanCfg.class);
 	/**
 	 * 获取规定的清机加钞周期
@@ -20,7 +29,7 @@ public class CashInitPlanCfg {
 		int days = 7;
 		try{
 			days = Integer.parseInt(FishCfg.getEntities().get("cashinit_days"));
-		}catch(Exception e){
+		}catch(NumberFormatException e){
 			logger.error(e.getMessage());
 		}
 		return days;
@@ -36,7 +45,7 @@ public class CashInitPlanCfg {
 		// 获取加钞计划机构单位(总分支行)
 		try {
 			orgLevel = Integer.parseInt(FishCfg.getEntities().get("cashinit_orglevel"));
-		} catch (Exception e) {
+		} catch (NumberFormatException e) {
 			logger.error(e.getMessage());
 		}
 		return orgLevel;
@@ -49,7 +58,7 @@ public class CashInitPlanCfg {
 		long tradingVolumeCashIn = 50000l;
 		try {
 			tradingVolumeCashIn = Long.parseLong(FishCfg.getEntities().get("trading_volume_in"));
-		} catch (Exception e) {
+		} catch (NumberFormatException e) {
 			logger.error(e.getMessage());
 		}
 		return tradingVolumeCashIn;
@@ -62,7 +71,7 @@ public class CashInitPlanCfg {
 		long tradingVolumeBill = 50000l;
 		try {
 			tradingVolumeBill = Long.parseLong(FishCfg.getEntities().get("trading_volume_out"));
-		} catch (Exception e) {
+		} catch (NumberFormatException e) {
 			logger.error(e.getMessage());
 		}
 		return tradingVolumeBill;
