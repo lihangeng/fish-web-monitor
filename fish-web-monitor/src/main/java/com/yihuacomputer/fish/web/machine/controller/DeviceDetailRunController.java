@@ -75,7 +75,7 @@ public class DeviceDetailRunController {
 			double healthy=(double)openRate.getHealthyTimeReal();
 			int all = openRate.getOpenTimes();
 	        DecimalFormat df = new DecimalFormat("#.0");
-			String openrate = df.format(all==0?0:healthy/all);
+			String openrate = df.format((all==0?0:healthy/all)*100);
 			form.setData1(openrate);
 			forms.add(form);
 		}
