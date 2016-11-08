@@ -12,7 +12,7 @@ import com.yihuacomputer.fish.api.monitor.volume.IMonthDailyTradingVolumeService
 import com.yihuacomputer.fish.api.report.device.etl.IDeviceExtractDataMonthService;
 import com.yihuacomputer.fish.api.report.device.etl.IRetainCardExtractDataService;
 import com.yihuacomputer.fish.api.report.engine.IMonthPdfReportService;
-import com.yihuacomputer.fish.api.report.fault.IEveryMonthFaultCountService;
+import com.yihuacomputer.fish.api.report.fault.IEveryMonthFaultCountExtractDataService;
 import com.yihuacomputer.fish.api.report.fault.etl.IFaultExtractDataService;
 import com.yihuacomputer.fish.api.report.openRate.etl.IAvgOpenRateExtractDataService;
 import com.yihuacomputer.fish.api.report.openRate.etl.IDeviceOpenRateExtractDataService;
@@ -37,7 +37,7 @@ public class EveryMonthReportJob {
 	private ITransactionMonthsService transactionMonthsService;
 	
 	@Autowired
-	private IEveryMonthFaultCountService everyMonthFaultCountService;
+	private IEveryMonthFaultCountExtractDataService everyMonthFaultCountExtractDataService;
 	
 	@Autowired
 	private IMonthDailyTradingVolumeService monthDailyTradingVolumeService;
@@ -100,7 +100,7 @@ public class EveryMonthReportJob {
 		long start = System.currentTimeMillis();
 		//1.（2016年2季度增加）计算设备故障率 CASE_FAULT_MONTH
 		String yestoday = DateUtils.getLastMonthShortDates();
-		everyMonthFaultCountService.extractMonthFault(yestoday);
+		everyMonthFaultCountExtractDataService.extractMonthFault(yestoday);
 		
 		//2.每月故障类型统计(2016年3季度需求综合报告之故障信息汇总)
 		Date lastMonth =DateUtils.getLastMonth();
