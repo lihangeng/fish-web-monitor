@@ -42,52 +42,52 @@ Ext.define('Eway.view.bsAdvert.BsAdvertFilterForm',
 											defaults : {
 												hideLabel : true
 											},
-								items : [{
-											fieldLabel : 'startDateTime',
-											xtype : 'datefield',
-											format : 'Y-m-d',
-											name : 'updateTimeStart',
-											vtype : 'daterange',
-											width : 120,
-											editable : false,
-											endDateField : 'updateTimeEnd',
-											listeners : {
-												blur : {
-													fn : function(This,options) {
-														var value = this.getValue();
-														if (!value) {
-															var endField = this.up('form').getForm().findField(this.endDateField);
-															endField.setMinValue(null);
+											items : [{
+														fieldLabel : 'startDateTime',
+														xtype : 'datefield',
+														format : 'Y-m-d',
+														name : 'updateTimeStart',
+														vtype : 'daterange',
+														width : 120,
+														editable : false,
+														endDateField : 'updateTimeEnd',
+														listeners : {
+															blur : {
+																fn : function(This,options) {
+																	var value = this.getValue();
+																	if (!value) {
+																		var endField = this.up('form').getForm().findField(this.endDateField);
+																		endField.setMinValue(null);
+																	}
+																}
+															}
 														}
-													}
-												}
-											}
-										},
-										{
-											xtype : 'displayfield',
-											value : EwayLocale.bsAdvert.createdTimeStop
-										},
-										{
-											fieldLabel : 'endDateTime',
-											width : 120,
-											xtype : 'datefield',
-											format : 'Y-m-d',
-											name : 'updateTimeEnd',
-											vtype : 'daterange',
-											editable : false,
-											startDateField : 'updateTimeStart',
-											listeners : {
-												blur : {
-													fn : function(This,options) {
-														var value = this.getValue();
-														if (!value) {
-															var startField = this.up('form').getForm().findField(this.startDateField);
-															startField.setMaxValue(null);
+													},
+													{
+														xtype : 'displayfield',
+														value : EwayLocale.bsAdvert.createdTimeStop
+													},
+													{
+														fieldLabel : 'endDateTime',
+														width : 120,
+														xtype : 'datefield',
+														format : 'Y-m-d',
+														name : 'updateTimeEnd',
+														vtype : 'daterange',
+														editable : false,
+														startDateField : 'updateTimeStart',
+														listeners : {
+															blur : {
+																fn : function(This,options) {
+																	var value = this.getValue();
+																	if (!value) {
+																		var startField = this.up('form').getForm().findField(this.startDateField);
+																		startField.setMaxValue(null);
+																	}
+																}
+															}
 														}
-													}
-												}
-											}
-										} ]
+													} ]
 									} ]
 								}]
 						});

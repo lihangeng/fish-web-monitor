@@ -10,7 +10,7 @@ Ext.define('Eway.view.cash.initPlan.AddDeviceWin', {
     minWidth: 600,
     minHeight: 400,
 	width : 900,
-	height : 630,
+	height : 450,
 	autoScroll : true,
 	layout: 'fit',
 

@@ -18,7 +18,7 @@ Ext.define('Eway.view.machine.detail.basic.AllControllerInfo', {
 				width : '25%'
 			},
 			items : [ {
-				columnWidth : .24,
+				columnWidth : .25,
 				name : 'remoteScreenAction',
 				code : 'remoteScreen',
 				onlyText : true,
@@ -27,7 +27,7 @@ Ext.define('Eway.view.machine.detail.basic.AllControllerInfo', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			},  {
-				columnWidth : .24,
+				columnWidth : .25,
 				name : 'logicOpenAction',
 				code : 'logicOpen',
 				onlyText : true,
@@ -36,7 +36,7 @@ Ext.define('Eway.view.machine.detail.basic.AllControllerInfo', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			}, {
-				columnWidth : .24,
+				columnWidth : .25,
 				name : 'logicCloseAction',
 				code : 'logicClose',
 				onlyText : true,
@@ -45,7 +45,7 @@ Ext.define('Eway.view.machine.detail.basic.AllControllerInfo', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			}, {
-				columnWidth : .24,
+				columnWidth : .25,
 				name : 'resetAction',
 				code : 'reset',
 				onlyText : true,

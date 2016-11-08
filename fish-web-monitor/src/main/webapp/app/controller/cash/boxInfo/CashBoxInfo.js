@@ -82,6 +82,7 @@ Ext.define('Eway.controller.cash.boxInfo.CashBoxInfo', {
 	},
 	
 	onUpdate:function(editor, context){
+		var me = this;
 		var defaultBill = context.record.get("defaultBill");
 		var defaultCashIn = context.record.get("defaultCashIn");
     	if(defaultBill<context.newValues.minAlarm){
@@ -102,14 +103,14 @@ Ext.define('Eway.controller.cash.boxInfo.CashBoxInfo', {
     	}
 		context.record.save({
 			 success: function(recordInDB) {
-					Eway.alert(EwayLocale.updateSuccess);
-				 },
-				 failure: function(record,operation){
-					store.rejectChanges();
-				 },
-				 scope : this
-			});
-		this.onQuery();
+				Eway.alert(EwayLocale.updateSuccess);
+				me.onQuery();
+			 },
+			 failure: function(record,operation){
+				 var obj = Ext.decode(operation._response.responseText);
+				 Eway.alert(obj.errorMsg);
+			 }
+		});
 	}
 	
 });

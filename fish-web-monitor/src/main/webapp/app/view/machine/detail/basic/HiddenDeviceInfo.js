@@ -56,12 +56,11 @@ Ext.define('Eway.view.machine.detail.basic.HiddenDeviceInfo', {
 				fieldLabel : EwayLocale.monitor.devMonitor.registerStatus,
 				name : 'registerStatus'
 			},{
-				width : '37%',
-				columnWidth : .5,
+				columnWidth : .25,
 				fieldLabel : EwayLocale.machine.atmGroup.orgName,
 				name : 'orgName'
 			},{
-				width : '38%',
+				align:'left',
 				columnWidth : .5,
 				fieldLabel : EwayLocale.machine.atmGroup.address,
 				name : 'address'

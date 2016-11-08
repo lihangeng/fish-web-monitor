@@ -15,7 +15,7 @@ Ext.define('Eway.view.machine.detail.basic.OftenControllerInfo', {
 			defaults : {
 				xtype : 'displayfield',
 				labelWidth : 105,
-				width : '25%'
+				columnWidth : .25
 			},
 			items : []
 		});

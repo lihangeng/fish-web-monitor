@@ -109,7 +109,7 @@ public class DeviceCashBoxInfoController {
 		} catch(Exception e) {
 			logger.error(String.format("add error : %s",e.getMessage()));
 			model.put(FishConstant.SUCCESS, false);
-			model.put("errorMsg", messageSource.getMessage("commen.error", null, FishCfg.locale));
+			model.put(FishConstant.ERROR_MSG, messageSource.getMessage("commen.error", null, FishCfg.locale));
 			return model;
 		}
 		model.addAttribute(FishConstant.SUCCESS, true);

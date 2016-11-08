@@ -42,7 +42,7 @@ Ext.define('Eway.view.machine.detail.RunInfo', {
 	refreshInfo:function(panel){
 		var terminalId = panel.up("tabpanel").getTerminalId();
 		
-		var store = panel.down("tradingInfo").myDataStore;
+		var tradingStore = panel.down("tradingInfo").myDataStore;
 		var retainStore = panel.down("retainCardInfo").myDataStore;
 		var faultStore = panel.down("faultTrend").myDataStore;
 		var openRateStore = panel.down("openRateInfo").myDataStore;
@@ -50,10 +50,15 @@ Ext.define('Eway.view.machine.detail.RunInfo', {
 		
 		faultStore.setBaseParam("terminalId",terminalId);
 		openRateStore.setBaseParam("terminalId",terminalId);
-		store.setBaseParam("terminalId",terminalId);
+		tradingStore.setBaseParam("terminalId",terminalId);
 		retainStore.setBaseParam("terminalId",terminalId);
 		cashInitStore.setBaseParam("terminalId",terminalId);
-		store.load();
+		tradingStore.removeAll();
+		retainStore.removeAll();
+		faultStore.removeAll();
+		openRateStore.removeAll();
+		cashInitStore.removeAll();
+		tradingStore.load();
 		retainStore.load();
 		faultStore.load();
 		openRateStore.load();

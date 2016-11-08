@@ -17,7 +17,7 @@ Ext.define('Eway.view.machine.detail.basic.HiddenControllerInfo', {
 			defaults : {
 				xtype : 'displayfield',
 				labelWidth : 115,
-				width : '25%'
+				columnWidth : .25
 			},
 			items : []
 		});
