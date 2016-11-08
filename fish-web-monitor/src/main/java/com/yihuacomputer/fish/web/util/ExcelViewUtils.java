@@ -220,7 +220,12 @@ public class ExcelViewUtils extends AbstractXlsxView {
 				//使得私有字段可反射
 				field.setAccessible(true);
 				cell.setCellStyle(cellStyle);
-				cell.setCellValue(String.valueOf(field.get(obj)));
+				if(field.get(obj)==null){
+					cell.setCellValue("");
+				}
+				else{
+					cell.setCellValue(String.valueOf(field.get(obj)));
+				}
 			} catch (SecurityException e) {
 				e.printStackTrace();
 			} catch (NoSuchFieldException e) {

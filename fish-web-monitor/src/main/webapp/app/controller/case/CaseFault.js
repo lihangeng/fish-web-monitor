@@ -65,7 +65,7 @@ Ext.define('Eway.controller.case.CaseFault', {
 	    var colIndex = new Array();
 	    var colWidth = new Array();
 	    Ext.Array.forEach(columns,function(item,index,opt){
-	    	if(item.cellWidth){
+	    	if(item.cellWidth&&item.xtype!='actioncolumn'){
 	    		headerName.push(item.text);
 				colWidth.push(item.cellWidth);
 				if(item.dataIndex=="devMod"){
