@@ -135,7 +135,7 @@ public class DeviceDetailRunController {
 			String transCode = threeTuple.frist;
 			ITransType transType = transTypeMap.get(threeTuple.frist);
 			TransInfoForm transInfoFrom = new TransInfoForm();
-			transInfoFrom.setTransName(transType==null?transCode:transType.getTransCode());
+			transInfoFrom.setTransName(transType==null?transCode:transType.getCodeDesc());
 			transInfoFrom.setTransCount(threeTuple.second);
 			transInfoFrom.setTransAmt(threeTuple.third);
 			transInfoFrom.setTransCode(transCode);
