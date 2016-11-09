@@ -559,7 +559,7 @@ Ext.define('Eway.controller.monitor.newTransaction.NewTransactionMonitor', {
             // "display" : "1分钟"
         	timeAxis.setStep([Ext.Date.MINUTE, 1]);
             timeAxis.setFromDate(date);
-            timeAxis.setToDate(Ext.Date.add(date, Ext.Date.MINUTE, 15));
+            timeAxis.setToDate(Ext.Date.add(date, Ext.Date.MINUTE, 14));
             
             intervalTime = 60;
             
@@ -567,7 +567,7 @@ Ext.define('Eway.controller.monitor.newTransaction.NewTransactionMonitor', {
             // "display" : "3分钟"
             timeAxis.setStep([Ext.Date.MINUTE, 3]);
             timeAxis.setFromDate(date);
-            timeAxis.setToDate(Ext.Date.add(date, Ext.Date.MINUTE, 45));
+            timeAxis.setToDate(Ext.Date.add(date, Ext.Date.MINUTE, 42));
             
             intervalTime = 180;
             
@@ -575,7 +575,7 @@ Ext.define('Eway.controller.monitor.newTransaction.NewTransactionMonitor', {
             // "display" : "5分钟"
         	timeAxis.setStep([Ext.Date.MINUTE, 5]);
             timeAxis.setFromDate(date);
-            timeAxis.setToDate(Ext.Date.add(date, Ext.Date.MINUTE, 75));
+            timeAxis.setToDate(Ext.Date.add(date, Ext.Date.MINUTE, 70));
             
             intervalTime = 300;
         }
