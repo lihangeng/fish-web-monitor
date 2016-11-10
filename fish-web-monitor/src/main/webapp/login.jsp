@@ -18,8 +18,9 @@
 
 <script type="text/javascript">
 	//添加键盘事件
-	document.onkeydown = function() {
-		if (event.keyCode == 13) {
+	document.onkeydown = function(event) {
+		e = event ? event : (window.event ? window.event : null);
+		if (e.keyCode == 13) {
 			//登录按钮获取焦点;如果是用户名获取焦点会导致第一次回车时候密码为空
 // 			$('loginButton').focus();
 			ajax();
