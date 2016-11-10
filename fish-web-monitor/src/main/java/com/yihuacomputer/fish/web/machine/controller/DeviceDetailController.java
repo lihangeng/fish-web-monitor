@@ -307,21 +307,23 @@ public class DeviceDetailController
     private List<VersionForm> getVersionForm(String terminalId,VersionCatalog versionCatalog,String versionNo) {
         List<VersionForm> appReleaseList = new ArrayList<VersionForm>();;
         IDeviceSoftVersion deviceSoftVersion=deviceSoftVersionService.findVersionByCatlog(terminalId, versionCatalog);
-        String typeName=deviceSoftVersion.getTypeName();
-        IVersion currentVersion=versionService.findVersion(typeName, versionNo);
-        if(currentVersion==null){
-        	currentVersion = new Version();
-        	currentVersion.setVersionNo(versionNo);
-        	currentVersion.setVersionType(versionTypeService.getByName(typeName));
-        	currentVersion.setVersionStr(versionService.getVersionStrByVersionNo(versionNo));
+        if(deviceSoftVersion !=null){
+        	 String typeName=deviceSoftVersion.getTypeName();
+             IVersion currentVersion=versionService.findVersion(typeName, versionNo);
+             if(currentVersion==null){
+             	currentVersion = new Version();
+             	currentVersion.setVersionNo(versionNo);
+             	currentVersion.setVersionType(versionTypeService.getByName(typeName));
+             	currentVersion.setVersionStr(versionService.getVersionStrByVersionNo(versionNo));
+             }
+             long typeId=currentVersion.getVersionType().getId();
+             IFilter filter=new Filter();
+ 	         filter.descOrder("versionStr");
+ 	         filter.eq("versionType.id", typeId);
+ 	         List<IVersion> maybeVersions=versionService.list(filter);
+ 	         List<IVersion> versions= versionService.getUpdateVersion(maybeVersions,currentVersion);
+ 	         appReleaseList=toVersionForm(versions);
         }
-	        long typeId=currentVersion.getVersionType().getId();
-	        IFilter filter=new Filter();
-	        filter.descOrder("versionStr");
-	        filter.eq("versionType.id", typeId);
-	        List<IVersion> maybeVersions=versionService.list(filter);
-	        List<IVersion> versions= versionService.getUpdateVersion(maybeVersions,currentVersion);
-	        appReleaseList=toVersionForm(versions);
         return appReleaseList;
     }
     

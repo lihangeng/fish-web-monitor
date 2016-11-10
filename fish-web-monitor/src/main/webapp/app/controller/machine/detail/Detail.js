@@ -876,8 +876,8 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 			params:{'termianlId':terminalId},
 			success : function(response) {
 				var object = Ext.decode(response.responseText);
+				var versionInfo={};
 				if (object.success == true) {
-						var versionInfo={};
 						if(object.data.maxVersion==undefined){
 							versionInfo.updateVersion=EwayLocale.deviceInfo.noneUpdateVersion;
 						}
@@ -890,12 +890,13 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 						else{
 							versionInfo.versionNo=object.data.currentVersion;
 						}
+						versionInfo.lastUpdateTime=object.data.lastUpdateTime;
 					}else{
-						Eway.alert(object.errorMsg);
+						versionInfo.updateVersion=EwayLocale.deviceInfo.noneUpdateVersion;
+						versionInfo.versionNo=EwayLocale.deviceInfo.none;
+						versionInfo.lastUpdateTime=EwayLocale.deviceInfo.none;
 					}
 					versionInfoView.unmask();
-
-					versionInfo.lastUpdateTime=object.data.lastUpdateTime;
 					versionInfoView.down("form").loadRecord(Ext.create('Eway.model.version.VersionInfo',versionInfo));
 				},
 				failure:function(){
