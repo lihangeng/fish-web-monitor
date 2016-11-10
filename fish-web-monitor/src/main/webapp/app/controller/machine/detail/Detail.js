@@ -840,7 +840,7 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 					}else{
 						params=EwayLocale.deviceInfo.noneUpdateVersion;
 					}
-					me.updateVersionToolTip.update('<font color="white">'+EwayLocale.deviceInfo.appReleaseInfo+'</br>'+params+'</font>');
+					me.updateVersionToolTip.update('<font color="blue">'+EwayLocale.deviceInfo.appReleaseInfo+'</br>'+params+'</font>');
 				}
 			});
 			this.getAppReleaseInfo().firstload = false;
@@ -851,7 +851,7 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 	createToopTip:function(){
 		if(this.updateVersionToolTip==undefined||this.updateVersionToolTip==''){
 			this.updateVersionToolTip=Ext.create("Ext.tip.ToolTip",{
-				style: 'display:inline-block;background:#3892D4;padding:7px;cursor:pointer;',
+				style: 'display:inline-block;background:#D1EEEE;padding:7px;cursor:pointer;',
 				showDelay: 0,
 	            width:200,
 	            minHeight:30,
