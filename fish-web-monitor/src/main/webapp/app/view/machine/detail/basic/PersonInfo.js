@@ -34,9 +34,9 @@ Ext.define('Eway.view.machine.detail.basic.PersonInfo', {
 			              dataIndex: 'organizationName',
 			              flex:1
 			          },{
-			              text: EwayLocale.commen.mobil,
+			              text: EwayLocale.commen.mobile,
 			              dataIndex: 'mobile',
-			              width: 100
+			              width: 110
 			          },{
 			              text: EwayLocale.person.bankPer.personType,
 			              dataIndex: 'type',
