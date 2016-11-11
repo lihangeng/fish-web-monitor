@@ -71,5 +71,13 @@ public enum OrganizationLevel {
         }
         throw new IllegalArgumentException(String.format("id=[%d] error", id));
     }
+    public static OrganizationLevel getByText(String text) {
+        for (OrganizationLevel each : OrganizationLevel.values()) {
+            if (each.getText().equals(text)) {
+                return each;
+            }
+        }
+        return null;
+    }
 
 }

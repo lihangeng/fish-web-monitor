@@ -133,7 +133,16 @@ public class ParamController {
 				if(value.indexOf("\\")>=0){
 					value = value.replace("\\", "\\\\");
 				}
-				filter.like(name, value);
+				if(value.contains("*")){
+					filter.eq("paramKey", "mail_password");
+				}else{
+					OrganizationLevel orgLevel = OrganizationLevel.getByText(getI18N(value));
+					if(orgLevel != null){
+						filter.eq(name, String.valueOf(orgLevel.getId()));
+					}else{
+						filter.like(name, value);
+					}
+				}
 			}
 		}
 
