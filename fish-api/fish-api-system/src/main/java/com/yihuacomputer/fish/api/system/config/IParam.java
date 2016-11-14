@@ -21,6 +21,18 @@ public interface IParam {
 	public void setParamValue(String paramValue);
 	
 	/**
+	 * 获取参数展示值
+	 * @return
+	 */
+	public String getParamDisplayValue();
+	
+	/**
+	 * 设置参数参数展示值
+	 * @param value
+	 */
+	public void setParamDisplayValue(String paramDisplayValue);
+	
+	/**
 	 * 获取参数值
 	 * @return
 	 */

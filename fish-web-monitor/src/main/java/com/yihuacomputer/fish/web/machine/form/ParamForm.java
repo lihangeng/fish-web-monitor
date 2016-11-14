@@ -11,6 +11,7 @@ public class ParamForm {
 	private String paramKey;
 
 	private String paramValue;
+	private String paramDisplayValue;
 
 	private String description;
 	
@@ -29,6 +30,7 @@ public class ParamForm {
 		setParamValue(param.getParamValue());
 		setClassify(param.getClassify());
 		setParamType(param.getParamType());
+		setParamDisplayValue(param.getParamDisplayValue());
 	}
 
 	public static List<ParamForm> convert1(List<IParam> list) {
@@ -45,6 +47,7 @@ public class ParamForm {
 		param.setParamValue(getParamValue());
 		param.setClassify(getClassify());
 		param.setParamType(getParamType());
+		param.setParamDisplayValue(getParamDisplayValue());
 	}
 
 	public long getId() {
@@ -95,5 +98,12 @@ public class ParamForm {
 		this.paramType = paramType;
 	}
 
+	public String getParamDisplayValue() {
+		return paramDisplayValue;
+	}
+
+	public void setParamDisplayValue(String paramDisplayValue) {
+		this.paramDisplayValue = paramDisplayValue;
+	}
 	
 }

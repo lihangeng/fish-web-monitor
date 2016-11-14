@@ -36,6 +36,11 @@ public class Param implements IParam,Serializable {
     @Column(name = "PARAM_VALUE",length = 128)
 	private String paramValue;
     /**
+     * 参数展示值
+     */
+    @Column(name = "PARAM_DIS_VALUE",length = 128)
+	private String paramDisplayValue;
+    /**
      * 参数类型:0-不可修改，1-可以修改
      */ 
     @Column(name = "PARAM_CLASSIFY")
@@ -108,6 +113,16 @@ public class Param implements IParam,Serializable {
 	@Override
 	public String getParamValue() {
 		return paramValue;
+	}
+
+	@Override
+	public String getParamDisplayValue() {
+		return this.paramDisplayValue;
+	}
+
+	@Override
+	public void setParamDisplayValue(String paramDisplayValue) {
+		this.paramDisplayValue = paramDisplayValue;
 	}
 
 }

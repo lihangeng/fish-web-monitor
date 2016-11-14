@@ -53,7 +53,7 @@ Ext.define('Eway.view.machine.param.ParamGrid', {
 	            header: EwayLocale.machine.param.paramValue,
 	            width: 280,
 	            sortable: true,
-	            dataIndex: 'paramValue',
+	            dataIndex: 'paramDisplayValue',
 	        }, {
 	            header: EwayLocale.machine.param.modifyFlag,
 	            width: 120,

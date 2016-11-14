@@ -49,18 +49,7 @@ public class ParamController {
 				start, limit));
 		IFilter filter = request2filter(request);
 		ModelMap result = new ModelMap();
-		IPageResult<IParam> pageResult = paramService
-				.page(start, limit, filter);
-		for (Iterator<IParam> iterator = pageResult.list().iterator(); iterator.hasNext();) {
-			IParam param = (IParam) iterator.next();
-			if(param.getParamKey().equals("mail_password")){
-				param.setParamValue("********");
-			}
-			else if(param.getParamKey().equals("cashinit_orglevel")){
-				param.setParamValue(getI18N(OrganizationLevel.getById(Integer.parseInt(param.getParamValue())).getText()));
-			}
-		}
-		
+		IPageResult<IParam> pageResult = paramService.page(start, limit, filter);
 		result.addAttribute(FishConstant.SUCCESS, true);
 		result.addAttribute("total", pageResult.getTotal());
 		logger.info("param size:" + pageResult.getTotal());
@@ -82,6 +71,16 @@ public class ParamController {
 		IParam param = paramService.get(id);
 		try {
 			request.translate(param);
+			if(param.getParamKey().toLowerCase().contains("password")){
+				
+			}
+			else if(param.getParamKey().toLowerCase().contains("orglevel")){
+				OrganizationLevel orgLevel = OrganizationLevel.getById(Integer.parseInt(param.getParamValue()));
+				param.setParamDisplayValue(getI18N(orgLevel.getText()));
+			}
+			else{
+				param.setParamDisplayValue(request.getParamValue());
+			}
 			paramService.update(param);
 			request.setId(id);
 			result.addAttribute(FishConstant.SUCCESS, true);
@@ -133,16 +132,10 @@ public class ParamController {
 				if(value.indexOf("\\")>=0){
 					value = value.replace("\\", "\\\\");
 				}
-				if(value.contains("*")){
-					filter.eq("paramKey", "mail_password");
-				}else{
-					OrganizationLevel orgLevel = OrganizationLevel.getByText(getI18N(value));
-					if(orgLevel != null){
-						filter.eq(name, String.valueOf(orgLevel.getId()));
-					}else{
+				else{
 						filter.like(name, value);
-					}
 				}
+				
 			}
 		}
 
