@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
-import com.yihuacomputer.common.annotation.SaveMethodDescrible;
 import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.api.monitor.box.ICashInitPlanInfo;
 import com.yihuacomputer.fish.api.monitor.box.ICashInitPlanInfoService;
@@ -26,7 +25,6 @@ public class CashInitPlanInfoService implements ICashInitPlanInfoService {
 		return new CashInitPlanInfo();
 	}
 
-	@SaveMethodDescrible(isUpdate=false)
 	@Override
 	public ICashInitPlanInfo save(ICashInitPlanInfo cashInitPlanInfo) {
 		return dao.save(cashInitPlanInfo);
