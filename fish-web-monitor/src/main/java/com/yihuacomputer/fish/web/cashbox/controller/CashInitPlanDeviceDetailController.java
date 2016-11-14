@@ -316,10 +316,12 @@ public class CashInitPlanDeviceDetailController {
 			form.setTerminalId(cashInitPlanDevice.getTerminalId());
 			IDeviceBoxInfo deviceBoxInfo = deviceBoxInfoMap.get(cashInitPlanDevice.getTerminalId());
 			if (null != deviceBoxInfo) {
+				form.setMaxAmt(deviceBoxInfo.getDefaultBill());
 				form.setStrMaxAmt(deviceBoxInfo.getDefaultBill()+"");
 				form.setBillAmt(deviceBoxInfo.getBillValue());
 				form.setCashInAmt(deviceBoxInfo.getCashInValue());
 			} else {
+				form.setMaxAmt(-1);
 				form.setStrMaxAmt(getEnumI18n("cashInitPlanDevice.unknown"));
 			}
 			formList.add(form);
