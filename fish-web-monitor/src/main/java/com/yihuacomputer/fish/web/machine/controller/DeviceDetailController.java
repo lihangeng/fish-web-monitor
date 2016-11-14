@@ -27,6 +27,7 @@ import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.device.IDeviceService;
 import com.yihuacomputer.fish.api.device.NetType;
+import com.yihuacomputer.fish.api.device.RegStatus;
 import com.yihuacomputer.fish.api.device.WorkType;
 import com.yihuacomputer.fish.api.monitor.box.IDeviceBoxInfo;
 import com.yihuacomputer.fish.api.monitor.box.IDeviceBoxInfoService;
@@ -45,6 +46,7 @@ import com.yihuacomputer.fish.api.version.IVersionService;
 import com.yihuacomputer.fish.api.version.IVersionTypeService;
 import com.yihuacomputer.fish.api.version.VersionCatalog;
 import com.yihuacomputer.fish.api.version.job.task.ITaskService;
+import com.yihuacomputer.fish.monitor.entity.business.DeviceRegister;
 import com.yihuacomputer.fish.monitor.entity.business.RunInfo;
 import com.yihuacomputer.fish.monitor.entity.report.DeviceReport;
 import com.yihuacomputer.fish.monitor.entity.report.StatusReport;
@@ -86,9 +88,11 @@ public class DeviceDetailController
     
     @Autowired
     private IVersionService versionService;  
-    
+
     @Autowired
     private IVersionTypeService versionTypeService;  
+    @Autowired
+    private IRegistService registerService;  
     
     @Autowired
     private IDeviceSoftVersionService deviceSoftVersionService; 
@@ -130,6 +134,12 @@ public class DeviceDetailController
     	logger.info(String.format("search device %s basic information",terminalId));
     	IDevice device = deviceService.get(terminalId);
         DeviceForm deviceForm = toFrom(device);
+        IDeviceRegister deviceRegister = registerService.load(terminalId);
+        RegStatus reg = RegStatus.UNKNOWN;
+        if(deviceRegister!=null&&deviceRegister.getRegStatus()!=null){
+        	reg = deviceRegister.getRegStatus();
+        }
+        deviceForm.setRegisterStatus(getEnumI18n(reg.getText()));
         result.addAttribute(FishConstant.DATA,deviceForm);
         result.addAttribute(FishConstant.SUCCESS, true);
     	return result;
@@ -257,7 +267,7 @@ public class DeviceDetailController
             boxAndRetainCardForm.setBoxCurrentCount(statusReport.getBoxCurrentCount());
             boxAndRetainCardForm.setBoxInitCount(statusReport.getBoxInitCount());
             boxAndRetainCardForm.setRetainCardCount(statusReport.getRetainCardCount());
-            boxAndRetainCardForm.setRegisterStatus(statusReport.getRegisterStatus());
+//            boxAndRetainCardForm.setRegisterStatus(statusReport.getRegisterStatus());
             
     	}
     	result.addAttribute(FishConstant.DATA, boxAndRetainCardForm);

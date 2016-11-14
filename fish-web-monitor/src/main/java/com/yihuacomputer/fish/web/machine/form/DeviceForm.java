@@ -110,6 +110,7 @@ public class DeviceForm {
 	 * 虚拟柜员号
 	 */
 	public String virtual;
+	private String registerStatus;	
 
 	/**
 	 * 设备安装日期 format(yyyy-MM-dd)
@@ -371,5 +372,14 @@ public class DeviceForm {
 
 	public void setWorkTypeName(String workTypeName) {
 		this.workTypeName = workTypeName;
+	}
+
+
+	public String getRegisterStatus() {
+		return registerStatus;
+	}
+
+	public void setRegisterStatus(String registerStatus) {
+		this.registerStatus = registerStatus;
 	}
 }
