@@ -27,9 +27,6 @@ Ext.define('Eway.view.machine.detail.run.CashInitInfo', {
                 type: 'itemhighlight',
                 zoomOnPanGesture: false
             },
-            legend: {
-                docked: 'bottom'
-            },
             store: this.myDataStore,
             insetPadding: 40,
             innerPadding: {
@@ -37,13 +34,6 @@ Ext.define('Eway.view.machine.detail.run.CashInitInfo', {
                 right: 40,
                 top : 30
             },
-            sprites: [{
-                type: 'text',
-                text: EwayLocale.index.dailyFaultPic,
-                fontSize: 10,
-                x: 230,
-                y: 485
-            }],
             axes: [{
                 type: 'numeric',
                 fields: ['initAmt','leftAmt', 'depositAmt', 'withdrawalAmt'],
@@ -68,52 +58,25 @@ Ext.define('Eway.view.machine.detail.run.CashInitInfo', {
                 }
             }],
             series: [{
-            	stacked:false,
-                type: 'bar',
-                width:0.64,
-                axis: 'left',
-                title:[EwayLocale.monitor.business.cashInit.amt,EwayLocale.deviceInfo.clearAmt,
-                       EwayLocale.monitor.business.settlement.cimAmt,EwayLocale.monitor.business.settlement.cdmAmt],
-                xField: 'date',
-                yField: ['initAmt','leftAmt','depositAmt','withdrawalAmt'],
-                marker: {
-                    radius: 4
-                },
-                highlight: {
-                    fillStyle: '#000',
-                    radius: 5,
-                    lineWidth: 2,
-                    strokeStyle: '#fff'
-                },
-                tooltip: {
-                    trackMouse: true,
-                    showDelay: 0,
-                    dismissDelay: 0,
-                    hideDelay: 0,
-                    renderer: function(storeItem,record, item) {
-                    	var fieldIndex = Ext.Array.indexOf(item.series.getYField(), item.field),
-                        brand = item.series.getTitle()[fieldIndex];
-                    	storeItem.setHtml(record.get('date') +brand+ record.get(item.field));
-                    }
-                }
-            },{
                 type: 'line',
                 title:EwayLocale.deviceInfo.withdrawalCount,
                 xField: 'date',
                 axis: 'right',
                 yField: 'withdrawal',
                 style: {
-                    lineWidth: 4
+                    opacity: 0.80
                 },
                 marker: {
-                    radius: 4
+                    type: 'cross',
+                    fx: {
+                        duration: 200
+                    }
                 },
-                highlight: {
-                    fillStyle: '#000',
-                    radius: 5,
-                    lineWidth: 2,
-                    strokeStyle: '#fff'
+                highlightCfg: {
+                    scaling: 2,
+                    rotationRads: Math.PI / 4
                 },
+
                 tooltip: {
                     trackMouse: true,
                     style: 'background: #fff',
@@ -132,16 +95,17 @@ Ext.define('Eway.view.machine.detail.run.CashInitInfo', {
                 xField: 'date',
                 yField: 'deposit',
                 style: {
-                    lineWidth: 4
+                    opacity: 0.80
                 },
                 marker: {
-                    radius: 4
+                    type: 'cross',
+                    fx: {
+                        duration: 200
+                    }
                 },
-                highlight: {
-                    fillStyle: '#000',
-                    radius: 5,
-                    lineWidth: 2,
-                    strokeStyle: '#fff'
+                highlightCfg: {
+                    scaling: 2,
+                    rotationRads: Math.PI / 4
                 },
                 tooltip: {
                     trackMouse: true,
@@ -155,7 +119,34 @@ Ext.define('Eway.view.machine.detail.run.CashInitInfo', {
                 }
             
             
-            }]
+            },{
+            	stacked:false,
+                type: 'bar',
+                title:[EwayLocale.monitor.business.cashInit.amt,EwayLocale.deviceInfo.clearAmt,
+                       EwayLocale.monitor.business.settlement.cimAmt,EwayLocale.monitor.business.settlement.cdmAmt],
+                xField: 'date',
+                yField: ['initAmt','leftAmt','depositAmt','withdrawalAmt'],
+                style: {
+                    opacity: 0.80
+                },
+                highlight: {
+                    fillStyle: 'rgba(204, 230, 73, 1.0)',
+                    strokeStyle: 'black'
+                },
+
+                tooltip: {
+                    trackMouse: true,
+                    showDelay: 0,
+                    dismissDelay: 0,
+                    hideDelay: 0,
+                    renderer: function(storeItem,record, item) {
+                    	var fieldIndex = Ext.Array.indexOf(item.series.getYField(), item.field),
+                        brand = item.series.getTitle()[fieldIndex];
+                    	storeItem.setHtml(record.get('date') +brand+ record.get(item.field));
+                    }
+                }
+            }
+            ]
         }];
 
         me.callParent();
