@@ -162,7 +162,7 @@ public class TransactionService implements ITransactionService {
 		StringBuffer hql = new StringBuffer();
 		hql.append("select transaction.transCode,count(transaction.id) as transCount,sum(transaction.amt) from TransactionView transaction");
 
-		hql.append(" where transaction.transDate >= ? and transaction.transDate <= ?");
+		hql.append(" where transaction.transDate >= ? and transaction.transDate < ?");
 		paramList.add(Integer.parseInt(startDate.getValue().toString())) ;
 		paramList.add(Integer.parseInt(endDate.getValue().toString())) ;
 		hql.append(" and transaction.terminalId= ?") ;

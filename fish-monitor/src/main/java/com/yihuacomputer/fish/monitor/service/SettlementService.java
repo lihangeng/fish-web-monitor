@@ -1,6 +1,7 @@
 package com.yihuacomputer.fish.monitor.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.criterion.Restrictions;
@@ -77,11 +78,12 @@ public class SettlementService implements ISettlementService {
     	sb.append("sum(settle.withdrawal),sum(settle.withdrawalAmt),settle.dates,init.dates from ")
     	.append(CashInit.class.getSimpleName()).append(" init,");
     	sb.append(Settlement.class.getSimpleName()).append(" settle ");
-    	sb.append("where settle.uuId = init.uuId and  init.dates>=? and ");
+    	sb.append("where settle.uuId = init.uuId and  init.dates>=? and init.dates<? and ");
     	sb.append("settle.terminalId=init.terminalId and init.terminalId=? ");
     	sb.append(" group by settle.dates");
-    	int date = Integer.parseInt(DateUtils.getDateShort(DateUtils.getLastWeek()));
-    	List<Object> list = dao.findByHQL(sb.toString(), date,terminalId);
+    	int lastWeekDate = Integer.parseInt(DateUtils.getDateShort(DateUtils.getLastWeek()));
+    	int today = Integer.parseInt(DateUtils.getDateShort(new Date()));
+    	List<Object> list = dao.findByHQL(sb.toString(), lastWeekDate,today,terminalId);
     	List<CashSettleInit> settleInitList = new ArrayList<CashSettleInit>();
     	for(Object obj:list){
     		Object objs[] = (Object[])obj;
@@ -92,7 +94,7 @@ public class SettlementService implements ISettlementService {
     		settleInit.setDeposit(objs[3]==null?0l:Long.parseLong(String.valueOf(objs[3])));
     		settleInit.setWithdrawal(objs[4]==null?0l:Long.parseLong(String.valueOf(objs[4])));
     		settleInit.setWithdrawalAmt(objs[5]==null?0l:Long.parseLong(String.valueOf(objs[5])));
-    		settleInit.setDate(objs[6]==null?String.valueOf(objs[7]):String.valueOf(objs[6]));
+    		settleInit.setDate(objs[7]==null?String.valueOf(objs[6]):String.valueOf(objs[7]));
     		settleInitList.add(settleInit);
     	}
     	return settleInitList;

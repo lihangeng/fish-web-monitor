@@ -331,10 +331,13 @@ public class RetaincardService implements IRetaincardService{
 		StringBuffer hql = new StringBuffer();
 		String timeStr = "CONCAT(CONCAT(CONCAT(YEAR(retaincard.cardRetainTime),'-'),CONCAT(MONTH(retaincard.cardRetainTime),'-')),DAY(retaincard.cardRetainTime))";
 		hql.append("select ").append(timeStr).append(" as retainTime,count(*) as cardCount from ").append(Retaincard.class.getName());
-		hql.append(" retaincard where retaincard.cardRetainTime > ? and ").append("retaincard.terminalId =? ");
+		hql.append(" retaincard where retaincard.retainDate >= ? and retaincard.retainDate < ? and ").append("retaincard.terminalId =? ");
 		hql.append(" group by ").append(timeStr);
-		hql.append(" order by ").append(timeStr);
-		return dao.findByHQL(hql.toString(),DateUtils.getLastWeek(),terminalId);
+		hql.append(" order by retaincard.retainDate");
+
+		Long startDate = Long.parseLong(DateUtils.get(DateUtils.getLastWeek(), DateUtils.STANDARD_DATE_SHORT));
+		Long endDate = Long.parseLong(DateUtils.get(new Date(), DateUtils.STANDARD_DATE_SHORT));
+		return dao.findByHQL(hql.toString(),startDate,endDate,terminalId);
 	}
 
 }
