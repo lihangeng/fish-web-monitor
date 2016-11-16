@@ -796,6 +796,7 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 
 	//刷新设备状态信息
 	getStatusInfo : function(){
+		var me = this;
 		var viewAll = this.getEwayView();
 		var terminalId = viewAll.getTerminalId();
 		var statusInfo = viewAll.down("detail_basic_statusInfo");
@@ -808,12 +809,26 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 				var object = Ext.decode(response.responseText);
 				if (object.success == true) {
 						statusInfo.down("detail_basic_hiddenStatusInfo").fillForm(Ext.create('Eway.model.monitor.device.DeviceMonitorList',object.data.statusReport));
-					}else{
+						var hiddenStatus = statusInfo.query("detail_basic_hiddenStatusInfo displayfield");
+						Ext.Array.forEach(hiddenStatus,function(field,index,stores,opt){
+							if (field.getEl()) {
+								var text = field.getEl().down('a.link');
+								if (text) {
+									text.on('click', function(e, htmlEl) {
+										var deviceInfo = me.getParam();
+										var win = Ext.create('Eway.view.monitor.device.ModuleInfoWin');
+										win.display(deviceInfo.code, field.code);
+									}, this);
+								}
+							}
+						});
+							
+				}else{
 						Eway.alert(object.errorMsg);
-					}
+				}
 					statusInfo.unmask();
-				},
-				failure:function(){
+			},
+			failure:function(){
 					statusInfo.unmask();
 				}
 		});
