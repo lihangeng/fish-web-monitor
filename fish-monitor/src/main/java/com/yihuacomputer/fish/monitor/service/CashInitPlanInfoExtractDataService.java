@@ -214,7 +214,7 @@ public class CashInitPlanInfoExtractDataService implements ICashInitPlanInfoExtr
 		Map<String, IDeviceBoxInfo> deviceBoxInfoMap = deviceBoxInfoService.getDeviceBoxInfo(org.getOrgFlag());
 		IFilter cashInitFilter = new Filter();
 		String date = DateUtils.getDate(DateUtils.getDate(-cashInitDays));
-		cashInitFilter.lt("date", date + " 00:0:00");
+		cashInitFilter.lt("date", date + " 00:00:00");
 		List<ICashInitUnique> cashInitList = cashInitUniqueService.getCashInitByOrg(org, cashInitDays);
 		for (ICashInitUnique cashInitUnique : cashInitList) {
 			// 如果己经加入到加钞计划中,则跳过不做处理
