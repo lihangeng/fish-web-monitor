@@ -49,7 +49,7 @@ public interface IUserRoleRelation {
 	public List<IPermission> listUserPermission(long userId);
 	
 	/**
-	 * 根据用户ID和父类菜单权限ID获取直接的子菜单权限
+	 * 根据用户ID和父类菜单权限ID获取直接的子菜单树权限
 	 * @param userId
 	 * @param parentPermissionId 父类菜单权限ID
 	 * @return
@@ -57,6 +57,13 @@ public interface IUserRoleRelation {
 	 */
 	public List<IPermission> findDirectChildPermissionsByUser(long userId,String parentPermissionId);
 	
+	/**
+	 * 根据用户ID和父类菜单权限ID获取直接非菜单树权限
+	 * @param userId
+	 * @param parentPermissionId
+	 * @return
+	 */
+	public List<IPermission> findDirectChildPermissionsByUserNotTree(long userId,String parentPermissionId);
 	/**
 	 * 根据用户ID和父类菜单权限ID获取所有子类的菜单权限
 	 * @param userId

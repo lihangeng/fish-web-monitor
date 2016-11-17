@@ -87,12 +87,20 @@ public class UserRoleRelation implements IUserRoleRelation {
 	 * @since 2.1.0.6
 	 */
     @Transactional(readOnly = true)
-	public List<IPermission> findDirectChildPermissionsByUser(long userId,String parentPermissionId) {
+    public List<IPermission> findDirectChildPermissionsByUser(long userId,String parentPermissionId) {
+    	return findDirectChildPermissionsByUser(userId,parentPermissionId,true);
+    }
+    
+    @Transactional(readOnly = true)
+    public List<IPermission> findDirectChildPermissionsByUserNotTree(long userId,String parentPermissionId) {
+    	return findDirectChildPermissionsByUser(userId,parentPermissionId,false);
+    }
+	private List<IPermission> findDirectChildPermissionsByUser(long userId,String parentPermissionId,boolean isTreeNode) {
         StringBuffer hql = new StringBuffer();
         hql.append("select distinct m from UserRoleObj ur,RolePermissionObj r,Permission m ");
         hql.append("where ur.userId=? and r.roleId=ur.roleId and m.isButton=? and m.id=r.permissionId ");
-        hql.append("and m.parentId = ? order by m.id");
-        List<IPermission> permission = dao.findByHQL(hql.toString(), userId, false,parentPermissionId);
+        hql.append("and m.parentId = ? and m.isTreeNode=? order by m.id");
+        List<IPermission> permission = dao.findByHQL(hql.toString(), userId, false,parentPermissionId,isTreeNode);
         return permission;
     }
     

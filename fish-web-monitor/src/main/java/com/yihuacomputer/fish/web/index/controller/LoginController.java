@@ -205,7 +205,7 @@ public class LoginController {
 	}
 
 	/**
-	 * 登录用户获取菜单权限
+	 * 登录用户获取菜单树权限
 	 * 
 	 * @param node
 	 * @param userId
@@ -222,6 +222,23 @@ public class LoginController {
 		return forms;
 	}
 
+	/**
+	 * 登录用户获取非树菜单权限
+	 * 
+	 * @param node
+	 * @param userId
+	 * @return
+	 */
+	@RequestMapping(value = "/mymenunottree/{userId}", method = RequestMethod.GET)
+	public @ResponseBody List<TreeMenu> notTree(@RequestParam String node, @PathVariable long userId) {
+		List<IPermission> permissions = userRoleRelation.findDirectChildPermissionsByUserNotTree(userId, node);
+		List<TreeMenu> forms = new ArrayList<TreeMenu>();
+		for (IPermission permission : permissions) {
+			TreeMenu menu = new TreeMenu(permission);
+			forms.add(menu);
+		}
+		return forms;
+	}
 	
 	@Autowired
 	private IPermissionService service;

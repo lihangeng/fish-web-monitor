@@ -30,7 +30,6 @@ Ext.define('Eway.view.Viewport', {
 				collapsible : true,
 				collapseMode : 'header',
 				split : false,
-				//useArrows: true,
 				singleExpand:true
 			}, {
 				region : 'center',
