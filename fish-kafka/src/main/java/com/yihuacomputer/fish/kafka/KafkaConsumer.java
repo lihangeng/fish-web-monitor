@@ -82,10 +82,10 @@ public class KafkaConsumer implements Runnable {
             	 LoginMessage loginMessage=JsonUtils.fromJson(msg, LoginMessage.class);
             	 sessionManage.logoutByNotice(loginMessage);
             }else{
-            	logger.warn("ignore message [%s]",msg);
+            	logger.warn(String.format("ignore message [%s]",msg));
             }
         } catch (Exception e) {
-            logger.error("mq handle error [%s]", e);
+            logger.error(String.format("mq handle error [%s]", e.getMessage()));
         }
 	}
 
