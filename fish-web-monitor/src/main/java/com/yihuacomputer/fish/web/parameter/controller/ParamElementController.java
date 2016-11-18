@@ -187,7 +187,7 @@ public class ParamElementController {
 
 
    @RequestMapping(method = RequestMethod.POST, value = "/import")
-	@MethodNameDescrible(describle="userlog.ParamElementController.importFile",hasArgs=true,argsContext="appSystem")
+	@MethodNameDescrible(describle="userlog.ParamElementController.importFile",hasFaceParam=true,faceParam="appSystemName")
 	public @ResponseBody
 	String importFile(@RequestParam long appSystem, HttpServletRequest request, HttpServletResponse response) {
 

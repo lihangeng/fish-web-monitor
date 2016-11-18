@@ -48,5 +48,13 @@ public @interface MethodNameDescrible{
 	 * @return
 	 */
 	boolean urlArgs() default false;
-
+	/**
+	 * 判断是否从前台获取参数
+	 */
+	boolean hasFaceParam() default false;
+	/**
+	 * 记录从前台获取的参数名
+	 * @return
+	 */
+	String faceParam() default "";
 }

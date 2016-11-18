@@ -3,6 +3,7 @@ package com.yihuacomputer.fish.web.interceptor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.Date;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -27,6 +28,7 @@ import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.annotation.ClassNameDescrible;
 import com.yihuacomputer.common.annotation.MethodNameDescrible;
+import com.yihuacomputer.common.jackson.JsonUtils;
 import com.yihuacomputer.fish.api.person.IUserLog;
 import com.yihuacomputer.fish.api.person.IUserLogService;
 import com.yihuacomputer.fish.api.person.UserSession;
@@ -88,6 +90,9 @@ public class UserLogAopAspect {
 			if (executResult instanceof ModelMap) {
 				ModelMap result = (ModelMap) executResult;
 				operResult = (null == result.get(FishConstant.SUCCESS)) ? operResult : (Boolean) result.get(FishConstant.SUCCESS);
+			}else if(executResult instanceof String){
+				String obj = JsonUtils.jsonValue(executResult.toString(), FishConstant.SUCCESS);
+				operResult = Boolean.parseBoolean(obj);
 			}
 			if (!operResult) {
 				operResultStr = getI18N("user.operate.fail");// "失败";
@@ -137,6 +142,24 @@ public class UserLogAopAspect {
 				e.printStackTrace();
 			}
 			operatorAction.append("->").append(reqBodyKey);
+		}
+		//要记录的关键字从前台传过来
+		if(methodDesc.hasFaceParam()){
+			Class<? extends Object> requestBodyclazz = methodArgs[1].getClass();
+			Field[] field = null;
+			field = requestBodyclazz.getDeclaredFields();
+			field[1].setAccessible(true);
+			Object obj;
+			try {
+				obj = field[1].get(methodArgs[1]);
+				HashMap<?, ?> map = (HashMap<?, ?>)obj;
+				String[] value = (String[])map.get(methodDesc.faceParam());
+				operatorAction.append("->").append(value[0]);
+			} catch (IllegalArgumentException e) {
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				e.printStackTrace();
+			}
 		}
 		return operatorAction.toString();
 	}

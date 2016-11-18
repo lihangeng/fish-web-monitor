@@ -87,12 +87,14 @@ Ext.define('Eway.controller.parameter.element.Element', {
 				var importForm = this.getImportWin().down("form").getForm();
 				var view = this.getEwayView();
 				var paramBelongs=this.getImportWin().down("field_paramElement_ParamBelongs").value;
+				var appSystemName = this.getImportWin().down("field_paramElement_ParamBelongs").rawValue;
 				if(importForm.isValid()){
 					Ext.Msg.wait(EwayLocale.cases.nowExportFile);
 					importForm.submit({
 						url : 'api/parameter/element/import',
 						params : {
-							appSystem : paramBelongs
+							appSystem : paramBelongs,
+							appSystemName : appSystemName
 						},
 						success : function(form, action){
 							Ext.Msg.hide();
