@@ -866,7 +866,7 @@ Ext.define('Eway.controller.machine.detail.Detail', {
 	createToopTip:function(){
 		if(this.updateVersionToolTip==undefined||this.updateVersionToolTip==''){
 			this.updateVersionToolTip=Ext.create("Ext.tip.ToolTip",{
-				style: 'display:inline-block;background:#D1EEEE;padding:7px;cursor:pointer;',
+				style: 'display:inline-block; background-color:#157fcc;padding:7px;cursor:pointer;',
 				showDelay: 0,
 	            width:200,
 	            minHeight:30,
