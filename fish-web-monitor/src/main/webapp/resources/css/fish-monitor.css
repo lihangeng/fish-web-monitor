@@ -106,7 +106,14 @@
 	background-image: none;
 	background-color: #1c396f;
 }
-
+.x-tip-default-tl,.x-tip-default-bl,
+.x-tip-default-tr,.x-tip-default-br,
+.x-tip-default-tc,.x-tip-default-bc,
+.x-tip-default-ml,.x-tip-default-mr,
+.x-tip-default-mc{
+	background-image: none;
+	background-color: #157fcc;
+}
 .x-btn-over .x-btn-default-small-tl, .x-btn-over .x-btn-default-small-bl,
 	.x-btn-over .x-btn-default-small-tr, .x-btn-over .x-btn-default-small-br,
 	.x-btn-over .x-btn-default-small-tc, .x-btn-over .x-btn-default-small-bc,
