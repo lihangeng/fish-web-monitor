@@ -43,7 +43,7 @@ public class SessionManage implements ISessionManage {
 				mqProducer.put(JsonUtils.toJson(loginMessage));
 			}else{//单机模式
 				try{
-					oldSession.invalidate();
+					oldSession.removeAttribute("SESSION_USER");
 				}catch(Exception e){
 					logger.error(e.getMessage());
 				}finally{
@@ -65,7 +65,7 @@ public class SessionManage implements ISessionManage {
 			HttpSession session = sessionInfo.getSession();
 			if (session != null) {
 				try{
-					session.invalidate();
+					session.removeAttribute("SESSION_USER");
 				}catch(Exception e){
 					logger.error(e.getMessage());
 				}finally{

@@ -8,10 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.fish.api.person.UserSession;
 import com.yihuacomputer.fish.api.session.ISessionManage;
 import com.yihuacomputer.fish.web.util.FishWebUtils;
@@ -61,14 +59,10 @@ public class TimeoutInterceptor extends HandlerInterceptorAdapter {
 		} else {// http超时处理
 			httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/login.jsp");
 		}
-		if(session != null){
+		if(session != null&&userSession!=null){
 		   //session.invalidate();  
 		   sessionManage.logout(userSession.getUserName());
 		}
-		
-		ModelMap map = new ModelMap();
-		map.addAttribute(FishConstant.SUCCESS, true);
-		
         return false;
 	}
 

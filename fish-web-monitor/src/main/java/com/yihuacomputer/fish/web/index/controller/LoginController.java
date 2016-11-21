@@ -118,6 +118,9 @@ public class LoginController {
 			}
 			userSession.setMapUrl(getMapUrl());
 			sessionManage.login(username, session);
+			if(null!=session.getAttribute(FishWebUtils.USER)){
+				session.removeAttribute(FishWebUtils.USER);
+			}
 			session.setAttribute(FishWebUtils.USER, userSession);
 		} catch (AppException app) {
 			result.addAttribute(FishConstant.SUCCESS, false);
