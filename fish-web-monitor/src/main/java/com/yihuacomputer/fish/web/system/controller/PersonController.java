@@ -216,17 +216,25 @@ public class PersonController {
      * @param deviceId
      * @return
      */
-    @MethodNameDescrible(describle="userlog.PersonController.unlink",hasArgs=true,argsContext="personId")
+    @MethodNameDescrible(describle="userlog.PersonController.unlink",hasLogKey=true)
     @RequestMapping(value = "/unlink", method = RequestMethod.POST)
     
     public @ResponseBody
     ModelMap unlink(@RequestParam String personId, @RequestParam String deviceId) {
         ModelMap result = new ModelMap();
         String[] ids = deviceId.split(",");
+        String str = "";
         try {
             for (String id : ids) {
-                devicePersonRelation.unlink(service.get(personId), deviceService.get(Long.valueOf(id)));
+            	IPerson person = service.get(personId);
+            	IDevice device = deviceService.get(Long.valueOf(id));
+            	str =str + device.getTerminalId();
+            	if(!id.equals(ids[ids.length-1])){
+            		str =str + "->";
+            	}
+                devicePersonRelation.unlink(person, device);
             }
+            result.addAttribute(FishConstant.LOG_KEY, str);
             result.addAttribute(FishConstant.SUCCESS, true);
         }
         catch (Exception ex) {
@@ -262,7 +270,7 @@ public class PersonController {
      * @param request
      * @return
      */
-    @MethodNameDescrible(describle="userlog.PersonController.link",hasReqBodyParam=true,reqBodyClass=PersonDeviceForm.class,bodyProperties="id")
+    @MethodNameDescrible(describle="userlog.PersonController.link",hasLogKey=true)
     @RequestMapping(value = "/link", method = RequestMethod.POST)
     public @ResponseBody
     ModelMap link(@RequestBody PersonDeviceForm request) {
@@ -270,6 +278,7 @@ public class PersonController {
         ModelMap result = new ModelMap();
         IPerson person = service.get(String.valueOf(request.getPersonId()));
         IDevice device = deviceService.get(request.getDeviceId());
+        result.addAttribute(FishConstant.LOG_KEY, device.getTerminalId());
         List<IDevice> list = devicePersonRelation.listDeviceByPerson(person);
         if (list.contains(device)) {
             result.put(FishConstant.SUCCESS, true);
@@ -355,13 +364,15 @@ public class PersonController {
      * @param guid
      * @return ModelMap<String, Object>
      */
-    @MethodNameDescrible(describle="userlog.PersonController.delete",hasArgs=false,urlArgs=true)
+    @MethodNameDescrible(describle="userlog.PersonController.delete",hasLogKey=true)
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public @ResponseBody
     ModelMap delete(@PathVariable String id) {
         logger.info(" delete person: person.guid = " + id);
         ModelMap result = new ModelMap();
-        if (service.get(id) != null) {
+        IPerson person = service.get(id);
+        if (person != null) {
+        	result.addAttribute(FishConstant.LOG_KEY, person.getName());
             IFilter filter = new Filter();
             filter.eq("personId", Long.valueOf(id));
             if (organizationService.list(filter).iterator().hasNext()) {
@@ -369,7 +380,7 @@ public class PersonController {
                 result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("person.delManager", null, FishCfg.locale));
                 return result;
             }
-            IPerson person = service.get(id);
+            
             List<IDevice> deviceList = devicePersonRelation.listDeviceByPerson(person);
             // 是否与人员有关联
             if (deviceList != null && !deviceList.isEmpty()) {

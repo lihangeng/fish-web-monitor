@@ -103,18 +103,20 @@ public class TransactionColorController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	@MethodNameDescrible(describle="userlog.TransactionColorController.delete",hasArgs=false,urlArgs=true)
+	@MethodNameDescrible(describle="userlog.TransactionColorController.delete",hasLogKey=true)
     public @ResponseBody ModelMap delete(@PathVariable long id) {
         logger.info(" delete transaction/color: transaction/color.id = " + id);
         ModelMap result = new ModelMap();
         result.addAttribute(FishConstant.SUCCESS, true);
-        if( transactionColorService.get(id) == null){
+        ITransactionColor transactionColor = transactionColorService.get(id);
+        if( transactionColor == null){
         	
         	 result.addAttribute(FishConstant.SUCCESS, true);
              result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("commen.delSucess", null, FishCfg.locale));
              return result;
         	
         }
+        result.addAttribute(FishConstant.LOG_KEY, transactionColor.getHostRet());
         try {
             transactionColorService.remove(id);
         }

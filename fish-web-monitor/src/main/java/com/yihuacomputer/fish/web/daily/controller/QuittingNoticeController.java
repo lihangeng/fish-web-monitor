@@ -176,7 +176,7 @@ public class QuittingNoticeController {
 	 * @return ModelMap<String, Object>
 	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	@MethodNameDescrible(describle="userlog.quittingNoticeController.delete",hasArgs=false,urlArgs=true)
+	@MethodNameDescrible(describle="userlog.quittingNoticeController.delete",hasLogKey=true)
 	public @ResponseBody
 	ModelMap delete(@PathVariable long id) {
 		logger.info(" delete QuittingNotice: quittingNotice.id = " + id);
@@ -187,6 +187,7 @@ public class QuittingNoticeController {
 				result.addAttribute(FishConstant.SUCCESS, true);
 				return result;
 			}
+			result.addAttribute(FishConstant.LOG_KEY, quittingNotice.getDeviceCode());
 			quittingNoticeService.remove(id);
 
 			/* 停机结束 */

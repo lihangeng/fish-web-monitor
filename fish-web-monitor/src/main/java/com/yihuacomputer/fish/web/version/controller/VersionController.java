@@ -156,7 +156,7 @@ public class VersionController {
 	 * @param model
 	 * @return
 	 */
-	@MethodNameDescrible(describle="userlog.VersionController.upload",hasArgs=true,argsContext="file")
+	@MethodNameDescrible(describle="userlog.VersionController.upload",hasFaceParam=true,faceParam="fileName")
 	@RequestMapping(value = "/upload", method = RequestMethod.POST)
 	public @ResponseBody String upload(@RequestParam(value = "file") MultipartFile file, HttpServletRequest request, HttpServletResponse response) {
 		response.setContentType("text/html;charset=utf-8");
@@ -311,11 +311,13 @@ public class VersionController {
 	}
 
 	// 删除
-	@MethodNameDescrible(describle="userlog.VersionController.delete",hasArgs=false,urlArgs=true)
+	@MethodNameDescrible(describle="userlog.VersionController.delete",hasLogKey=true)
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public @ResponseBody ModelMap delete(@PathVariable long id) {
 		logger.info(" delete version: version.id = " + id);
+		IVersion version = versionService.getById(id);
 		ModelMap result = new ModelMap();
+		result.addAttribute(FishConstant.LOG_KEY, version.getFullName());
 		try {
 			versionService.delete(id);
 			result.addAttribute(FishConstant.SUCCESS, true);

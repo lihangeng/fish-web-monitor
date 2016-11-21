@@ -239,7 +239,7 @@ public class BsAdvertGroupController {
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	@MethodNameDescrible(describle="userlog.bsAdvertGroupController.delete",hasArgs=false,urlArgs=true)
+	@MethodNameDescrible(describle="userlog.bsAdvertGroupController.delete",hasLogKey=true)
 	public @ResponseBody ModelMap delete(@PathVariable long id) {
 
 		logger.info(" delete bsAdvertGroup: bsAdvertGroup.id = " + id);
@@ -266,6 +266,7 @@ public class BsAdvertGroupController {
 		try {
 			IAdvertGroup group = advertGroupService.getById(id);
 			if (group != null) {
+				result.addAttribute(FishConstant.LOG_KEY, group.getGroupName());
 				// 如果是根节点默认广告组，则不允许删除
 				if (group.getOrgId() == 1 && (group.getGroupType().getId() == 1)) {
 					result.addAttribute(FishConstant.SUCCESS, false);
@@ -291,12 +292,13 @@ public class BsAdvertGroupController {
 	 * @return
 	 */
 	@RequestMapping(value = "/link", method = RequestMethod.POST)
-	@MethodNameDescrible(describle="userlog.bsAdvertGroupController.link",hasArgs=false)
+	@MethodNameDescrible(describle="userlog.bsAdvertGroupController.link",hasLogKey=true)
 	public @ResponseBody ModelMap link(@RequestBody BsAdvertGroupDeviceForm request) {
 		logger.info(String.format("device %s linked  %s", request.getGroupId(), request.getDeviceId()));
 		ModelMap result = new ModelMap();
 		IAdvertGroup advertGroup = advertGroupService.getById(request.getGroupId());
 		IDevice device = deviceService.get(request.getDeviceId());
+		result.addAttribute(FishConstant.LOG_KEY, device.getTerminalId());
 		List<IDevice> list = deviceAdvertRelation.listDeviceByAdvertGroup(advertGroup);
 		if (list.contains(device)) {
 			result.put(FishConstant.SUCCESS, true);

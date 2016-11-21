@@ -202,18 +202,21 @@ public class UserController {
 	 * @param id
 	 * @return ModelMap<String, Object>
 	 */
-	@MethodNameDescrible(describle="userlog.UserController.delete",hasArgs=false,urlArgs=true)
+	@MethodNameDescrible(describle="userlog.UserController.delete",hasLogKey=true)
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public @ResponseBody
 	ModelMap delete(@PathVariable long id) {
 		logger.info(" delete Master: Master.id = " + id);
 		ModelMap result = new ModelMap();
-		if (userService.get(id) == null) {
+		IUser user = userService.get(id);
+		if (user == null) {
 			result.addAttribute(FishConstant.SUCCESS, true);
 			return result;
 		}
+		result.addAttribute(FishConstant.LOG_KEY, user.getName());
 		try {
-			String code = userService.get(id).getCode();
+			result.addAttribute(FishConstant.LOG_KEY, user.getName());
+			String code = user.getCode();
 			System.out.println(code);
 			userService.remove(id);
 			logService.remove(code);

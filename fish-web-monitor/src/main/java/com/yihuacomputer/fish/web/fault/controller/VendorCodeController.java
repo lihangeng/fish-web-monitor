@@ -61,7 +61,7 @@ public class VendorCodeController {
 
 	@Autowired
 	protected MessageSource messageSource;
-
+	
 	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody
 	ModelMap search(@RequestParam int start, @RequestParam int limit, WebRequest request) {
@@ -145,20 +145,21 @@ public class VendorCodeController {
 	 */
 	@RequestMapping(value = "/remove", method = RequestMethod.POST)
 	public @ResponseBody
-	@MethodNameDescrible(describle="userlog.vendorCodeController.remove",hasArgs=true,argsContext="vendor")
+	@MethodNameDescrible(describle="userlog.vendorCodeController.remove",hasLogKey=true)
 	String remove(@RequestParam long vendor) {
 		logger.info(String.format("remove vendorCode by vendor"));
+		String vendorName = organizationService.get(String.valueOf(vendor)).getName();
 		List<IVendorCode> list = vendorCodeService.getByVendor(vendor);
 		if (list == null || list.isEmpty()) {
-			return "{'success':false,'content':'"+messageSource.getMessage("vendorCode.deleteFail", null, FishCfg.locale)+"'}";
+			return "{'success':false,'content':'"+messageSource.getMessage("vendorCode.deleteFail", null, FishCfg.locale)+"','logKey':'"+vendorName+"'}";
 		} else {
 			try {
 				vendorCodeService.deleteByVendor(vendor);
 			} catch (Exception e) {
-				return "{'success':false,'content'"+messageSource.getMessage("person.delError", null, FishCfg.locale)+"'}";
+				return "{'success':false,'content':'"+messageSource.getMessage("person.delError", null, FishCfg.locale)+"','logKey':'"+vendorName+"'}";
 			}
 		}
-		return "{'success':true}";
+		return "{'success':true,'logKey':'"+vendorName+"'}";
 	}
 
 	/**

@@ -318,11 +318,12 @@ public class AdvertController {
 	 */
 	@RequestMapping(method = RequestMethod.POST)
 	@ResponseBody
-	@MethodNameDescrible(describle="userlog.AdvertController.add",hasReqBodyParam=true,reqBodyClass=AdvertForm.class,bodyProperties="advertType")
+	@MethodNameDescrible(describle="userlog.AdvertController.add",hasLogKey=true)
 	public ModelMap add(@RequestBody AdvertForm form, HttpServletRequest request) {
 		logger.info(" add advert...");
 
 		ModelMap result = new ModelMap();
+		result.addAttribute(FishConstant.LOG_KEY, getEnumI18n("AdvertType."+form.getAdvertType()));
 		IAdvert advert = advertService.make(AdvertType.valueOf(form.getAdvertType()));
 		advert.setAdvertDownMethod(AdvertDownMethod.valueOf(form.getAdvertDownMethod()));
 		advert.setAdvertValidity(AdvertValidity.valueOf(form.getAdvertValidity()));

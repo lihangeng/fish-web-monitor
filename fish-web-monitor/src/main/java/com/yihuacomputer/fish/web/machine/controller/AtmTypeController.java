@@ -103,13 +103,14 @@ public class AtmTypeController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	@MethodNameDescrible(describle="userlog.atmTypeController.delete",hasArgs=false,urlArgs=true)
+	@MethodNameDescrible(describle="userlog.atmTypeController.delete",hasLogKey=true)
     public @ResponseBody ModelMap delete(@PathVariable long id) {
         logger.info(" delete AtmType: atmType.id = " + id);
         ModelMap result = new ModelMap();
         try {
             IAtmType type = atmTypeService.get(id);
             if (type != null) {
+            	result.addAttribute(FishConstant.LOG_KEY, type.getName());
                 List<IDevice> deviceList = deviceService.listDeviceByType(type);
                 if (deviceList.size() > 0) {
                     result.addAttribute(FishConstant.SUCCESS, false);

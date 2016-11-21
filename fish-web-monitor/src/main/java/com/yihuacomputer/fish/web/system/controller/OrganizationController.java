@@ -134,7 +134,7 @@ public class OrganizationController {
 	 * @param id
 	 * @return Map<String, Object>
 	 */
-	@MethodNameDescrible(describle="userlog.OrganizationController.delete",hasArgs=false,urlArgs=true)
+	@MethodNameDescrible(describle="userlog.OrganizationController.delete",hasLogKey=true)
 	@SuppressWarnings("incomplete-switch")
 	@RequestMapping(value = "/{guid}", method = RequestMethod.DELETE)
 	public @ResponseBody ModelMap delete(@PathVariable String guid) {
@@ -146,6 +146,7 @@ public class OrganizationController {
 			result.addAttribute(FishConstant.SUCCESS, true);
 			return result;
 		}
+		result.addAttribute(FishConstant.LOG_KEY, organization.getName());
 		List<Long> organizationIds = service.listSubOrgId(guid);
 		if (organizationIds.size() > 1) {
 			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("org.delHasChild", null, FishCfg.locale));
@@ -256,7 +257,7 @@ public class OrganizationController {
 	 * @param form
 	 * @return Map<String, Object>
 	 */
-	@MethodNameDescrible(describle="userlog.OrganizationController.move",hasArgs=true,argsContext="guid")
+	@MethodNameDescrible(describle="userlog.OrganizationController.move",hasLogKey=true)
 	@RequestMapping(value = "/move", method = RequestMethod.POST)
 	public @ResponseBody ModelMap move(@RequestParam String guid, @RequestParam String parentId, HttpServletRequest request, WebRequest webrequest) {
 		logger.info(" move org : org.guid = " + guid);
@@ -264,6 +265,7 @@ public class OrganizationController {
 		try {
 			IOrganization org = service.get(guid);
 			IOrganization parentOrg = service.get(parentId);
+			result.addAttribute(FishConstant.LOG_KEY, org.getName());
 			if (org.getGuid().equals(parentId)) {
 				result.addAttribute(FishConstant.SUCCESS, false);
 				result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("organization.move.failSelf", null, FishCfg.locale));

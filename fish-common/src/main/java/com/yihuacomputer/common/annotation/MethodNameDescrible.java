@@ -57,4 +57,8 @@ public @interface MethodNameDescrible{
 	 * @return
 	 */
 	String faceParam() default "";
+	/**
+	 * 判断被拦截方法执行完是否有需要记录字段
+	 */
+	boolean hasLogKey() default false;
 }

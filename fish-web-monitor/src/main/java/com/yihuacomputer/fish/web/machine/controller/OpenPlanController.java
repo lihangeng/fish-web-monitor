@@ -587,14 +587,16 @@ public class OpenPlanController {
 	 */
 	@RequestMapping(value = "/unlink", method = RequestMethod.POST)
 	public @ResponseBody
-	@MethodNameDescrible(describle="userlog.openPlanController.unlink",hasArgs=true,argsContext="deviceId")
+	@MethodNameDescrible(describle="userlog.openPlanController.unlink",hasLogKey=true)
 	ModelMap unlink(@RequestParam String planId, @RequestParam String deviceId) {
 		ModelMap result = new ModelMap();
 		String[] ids = deviceId.split(",");
 		int i = 0;
 		try {
 			for (String id : ids) {
-				relationService.unlink(openPlanService.getDeviceOpenPlanById(Long.parseLong(planId)), deviceService.get(Long.valueOf(id)));
+				IDeviceOpenPlan openPlan = openPlanService.getDeviceOpenPlanById(Long.parseLong(planId));
+				result.addAttribute(FishConstant.LOG_KEY, openPlan.getName());
+				relationService.unlink(openPlan, deviceService.get(Long.valueOf(id)));
 			}
 		} catch (Exception ex) {
 			i++;
@@ -615,13 +617,14 @@ public class OpenPlanController {
 	 * @return
 	 */
 	@RequestMapping(value = "/link", method = RequestMethod.POST)
-	@MethodNameDescrible(describle="userlog.openPlanController.link",hasArgs=true,argsContext="deviceId")
+	@MethodNameDescrible(describle="userlog.openPlanController.link",hasLogKey=true)
 	public @ResponseBody
 	ModelMap link(@RequestParam String planId, @RequestParam String deviceId) {
 		logger.info(String.format("device %s linked  %s", planId, deviceId));
 		ModelMap result = new ModelMap();
 		int i = 0;
 		IDeviceOpenPlan devicePlan = openPlanService.getDeviceOpenPlanById(Long.parseLong(planId));
+		result.addAttribute(FishConstant.LOG_KEY,devicePlan.getName());
 		String[] ids = deviceId.split(",");
 		for (String id : ids) {
 			try {

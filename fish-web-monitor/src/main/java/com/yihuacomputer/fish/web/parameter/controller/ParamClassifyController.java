@@ -80,14 +80,14 @@ public class ParamClassifyController {
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	@MethodNameDescrible(describle="userlog.ParamClassifyController.delete",hasArgs=false,urlArgs=true)
+	@MethodNameDescrible(describle="userlog.ParamClassifyController.delete",hasLogKey=true)
 	public @ResponseBody
 	ModelMap delete(@PathVariable long id) {
 		logger.info("delete classify: classify.id = " + id);
 		ModelMap result = new ModelMap();
-
-		if(classifyService.get(id)!=null){
-			IParamClassify paramClassify=classifyService.get(id);
+		IParamClassify paramClassify=classifyService.get(id);
+		result.addAttribute(FishConstant.LOG_KEY, paramClassify.getName());
+		if(paramClassify!=null){
 			List<IParamElement> list=elementService.listByClassify(paramClassify);
 			if(list.size()>0){
 				result.addAttribute(FishConstant.SUCCESS, false);
@@ -107,7 +107,6 @@ public class ParamClassifyController {
 				}
 			}
 		}
-
 		return result;
 	}
 

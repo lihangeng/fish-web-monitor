@@ -84,7 +84,7 @@ public class AtmGroupController {
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	@MethodNameDescrible(describle="userlog.atmGroupController.delete",hasArgs=false,urlArgs=true)
+	@MethodNameDescrible(describle="userlog.atmGroupController.delete",hasLogKey=true)
 	public @ResponseBody
 	ModelMap delete(@PathVariable long id) {
 		logger.info(" delete atmGroup: atmGroup.id = " + id);
@@ -93,6 +93,7 @@ public class AtmGroupController {
 			IAtmGroup group = null;
 			group = atmGroupService.get(id);
 			if (group != null) {
+				result.addAttribute(FishConstant.LOG_KEY, group.getName());
 				atmGroupService.remove(id);
 				result.addAttribute(FishConstant.SUCCESS, true);
 			} else {
@@ -170,12 +171,14 @@ public class AtmGroupController {
 	 * @return
 	 */
 	@RequestMapping(value = "/addDevice", method = RequestMethod.POST)
-	@MethodNameDescrible(describle="userlog.atmGroupController.link",hasReqBodyParam=true,reqBodyClass=GroupDeviceForm.class,bodyProperties="deviceId")
+	@MethodNameDescrible(describle="userlog.atmGroupController.link",hasLogKey=true)
 	public @ResponseBody
 	ModelMap link(@RequestBody GroupDeviceForm request) {
 		logger.info(String.format("device %s linked  %s", request.getGroupId(), request.getDeviceId()));
 		ModelMap result = new ModelMap();
-		deviceGroupRelation.link(atmGroupService.get(request.getGroupId()), deviceService.get(request.getDeviceId()));
+		IDevice device = deviceService.get(request.getDeviceId());
+		result.addAttribute(FishConstant.LOG_KEY, device.getTerminalId());
+		deviceGroupRelation.link(atmGroupService.get(request.getGroupId()), device);
 		result.put(FishConstant.SUCCESS, true);
 		result.put(FishConstant.DATA, request);
 		return result;
@@ -189,12 +192,13 @@ public class AtmGroupController {
 	 * @return
 	 */
 	@RequestMapping(value = "/unlink", method = RequestMethod.POST)
-	@MethodNameDescrible(describle="userlog.atmGroupController.unlink",hasArgs=true,argsContext="deviceId")
+	@MethodNameDescrible(describle="userlog.atmGroupController.unlink",hasLogKey=true)
 	public @ResponseBody
 	ModelMap unlink(@RequestParam String groupId, @RequestParam String deviceId) {
 		ModelMap result = new ModelMap();
-		deviceGroupRelation.unlink(atmGroupService.get(Long.valueOf(groupId)),
-				deviceService.get(Long.valueOf(deviceId)));
+		IDevice device = deviceService.get(Long.valueOf(deviceId));
+		result.addAttribute(FishConstant.LOG_KEY, device.getTerminalId());
+		deviceGroupRelation.unlink(atmGroupService.get(Long.valueOf(groupId)),device);
 		result.addAttribute(FishConstant.SUCCESS, true);
 		return result;
 	}

@@ -138,10 +138,12 @@ public class ParamTemplateController {
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	@MethodNameDescrible(describle="userlog.ParamTemplateController.delete",hasArgs=false,urlArgs=true)
+	@MethodNameDescrible(describle="userlog.ParamTemplateController.delete",hasLogKey=true)
 	public @ResponseBody ModelMap delete(@PathVariable long id) {
 		logger.info(" delete template: template.id = " + id);
 		ModelMap result = new ModelMap();
+		IParamTemplate paramTemplate = templateService.get(id);
+		result.addAttribute(FishConstant.LOG_KEY, paramTemplate.getName());
 		try {
 			templateService.unlinkAllBeforeDelete(id);
 			templateService.remove(id);
@@ -291,7 +293,7 @@ public class ParamTemplateController {
 	 * @param form
 	 * @return ModelMap<String, Object>
 	 */
-	@MethodNameDescrible(describle="userlog.ParamTemplateController.searchLinkedDevice",hasArgs=true,argsContext="guid")
+	@MethodNameDescrible(describle="userlog.ParamTemplateController.searchLinkedDevice",hasLogKey=true)
 	@RequestMapping(value = "/linkedDevice", method = RequestMethod.GET)
 	public @ResponseBody ModelMap searchLinkedDevice(@RequestParam int start,
 			@RequestParam int limit, @RequestParam int flag,
@@ -302,11 +304,14 @@ public class ParamTemplateController {
 		ModelMap result = new ModelMap();
 		UserSession userSession = (UserSession) req.getSession().getAttribute("SESSION_USER");
 		IPageResult<IDevice> pageResult = null;
-		if (templateService.get(Long.parseLong(guid)) == null) {
+		IParamTemplate paramTemplate = templateService.get(Long.parseLong(guid));
+		if (paramTemplate == null) {
 			result.addAttribute(FishConstant.SUCCESS, false);
 			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("param.template.notExist", null, FishCfg.locale));
+			return result;
 		}
-		else if (flag == 0) {
+		result.addAttribute(FishConstant.LOG_KEY, paramTemplate.getName());
+		if (flag == 0) {
 			// 已关联的设备
 			result.addAttribute(FishConstant.SUCCESS, true);
 			Filter filter = getFilterDevice(request);
@@ -337,7 +342,7 @@ public class ParamTemplateController {
 	 * @return
 	 */
 	@RequestMapping(value = "/link", method = RequestMethod.POST)
-	@MethodNameDescrible(describle="userlog.ParamTemplateController.link",hasReqBodyParam=true,reqBodyClass=ParamTemplateDeviceform.class,bodyProperties="deviceId")
+	@MethodNameDescrible(describle="userlog.ParamTemplateController.link",hasLogKey=true)
 	public @ResponseBody ModelMap link(@RequestBody ParamTemplateDeviceform request) {
 
 		logger.info(String.format("device %s linked  %s", request.getGroupId(),request.getDeviceId()));
@@ -345,6 +350,7 @@ public class ParamTemplateController {
 		ModelMap result = new ModelMap();
 		IParamTemplate template = templateService.get(request.getGroupId());
 		IDevice device = deviceService.get(request.getDeviceId());
+		result.addAttribute(FishConstant.LOG_KEY, device.getTerminalId());
 		if(template == null){
 			result.put(FishConstant.SUCCESS, true);
 			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("param.template.notExist", null, FishCfg.locale));

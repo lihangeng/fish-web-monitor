@@ -208,8 +208,16 @@ public class UserLogAopAspect {
 				if (str != null && str.length() > 0 && !"".equals(str)) {
 					IUserLog operLog = userLogService.make();
 					operLog.setOperTime(new Date());
-					operLog.setOperContent(str);
 					obj = pjp.proceed();
+					if(methodDesc.hasLogKey()){
+						if(obj instanceof ModelMap){
+							ModelMap data = (ModelMap)obj;
+							str=str+"->"+data.get(FishConstant.LOG_KEY);
+						}else if(obj instanceof String){
+							str = str +"->"+ JsonUtils.jsonValue((String)obj, FishConstant.LOG_KEY);
+						}
+					}
+					operLog.setOperContent(str);
 					UserSession userSession = (UserSession) session.getAttribute(FishWebUtils.USER);
 					operLog.setOperCode(userSession.getUserCode());
 					operLog.setOperName(userSession.getUserName());

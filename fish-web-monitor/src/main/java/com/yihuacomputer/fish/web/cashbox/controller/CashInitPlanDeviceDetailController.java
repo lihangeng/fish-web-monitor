@@ -149,13 +149,14 @@ public class CashInitPlanDeviceDetailController {
 	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	@ResponseBody
-	@MethodNameDescrible(describle="userlog.DeviceCashInitPlanDetailController.delete",hasArgs=false,urlArgs=true)
+	@MethodNameDescrible(describle="userlog.DeviceCashInitPlanDetailController.delete",hasLogKey=true)
 	public ModelMap delete(@PathVariable long id) {
 		logger.info(" delete cashInitPlanDeviceInfo with id = " + id);
 		ModelMap result = new ModelMap();
 		try {
 			ICashInitPlanDeviceInfo cashInitPlanDeviceInfo = cashInitPlanDeviceInfoService.get(id);
 			if(null!=cashInitPlanDeviceInfo){
+				result.addAttribute(FishConstant.LOG_KEY, cashInitPlanDeviceInfo.getTerminalId());
 				ICashInitPlanInfo cashInitPlanInfo = cashInitPlanDeviceInfo.getCashInitPlanInfo();
 				int nowDate = Integer.parseInt(DateUtils.getDateShort(new Date()));
 				if(cashInitPlanInfo.getDate()<nowDate){

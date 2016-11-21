@@ -194,7 +194,7 @@ public class VersionDownloadController {
 	}
 
 	// 增加
-	@MethodNameDescrible(describle="userlog.VersionDownloadController.add",hasReqBodyParam=true,reqBodyClass=JobForm.class,bodyProperties="jobName")
+	@MethodNameDescrible(describle="userlog.VersionDownloadController.add",hasLogKey=true)
 	@RequestMapping(method = RequestMethod.POST)
 	public @ResponseBody ModelMap add(@RequestBody JobForm form, HttpServletRequest request) {
 		logger.info(" add job...");
@@ -202,6 +202,7 @@ public class VersionDownloadController {
 		ModelMap result = new ModelMap();
 		UserSession userSession = (UserSession) request.getSession().getAttribute("SESSION_USER");
 		IVersion version = versionService.getById(form.getVersionId());
+		result.addAttribute(FishConstant.LOG_KEY, version.getVersionNo());
 		List<ITask> tasks = new ArrayList<ITask>();
 		long start1 = System.currentTimeMillis();
 		IFilter filter = new Filter();
@@ -279,11 +280,13 @@ public class VersionDownloadController {
 	}
 
 	// 撤销作业
-	@MethodNameDescrible(describle="userlog.VersionDownloadController.delete",hasArgs=false,urlArgs=true)
+	@MethodNameDescrible(describle="userlog.VersionDownloadController.delete",hasLogKey=true)
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public @ResponseBody ModelMap delete(@PathVariable long id) {
 		logger.info(" delete job: job.id = " + id);
 		ModelMap result = new ModelMap();
+		IJob job = jobService.getById(id);
+		result.addAttribute(FishConstant.LOG_KEY, job.getVersion().getVersionType().getTypeName() + "_" + job.getVersion().getVersionNo());
 		try {
 			jobManager.cancelJob(id);
 			result.addAttribute(FishConstant.SUCCESS, true);
@@ -324,13 +327,14 @@ public class VersionDownloadController {
 		return false;
 	}
 
-	@MethodNameDescrible(describle="userlog.VersionDownloadController.resetTaskStatus",hasArgs=true,argsContext="id")
+	@MethodNameDescrible(describle="userlog.VersionDownloadController.resetTaskStatus",hasLogKey=true)
 	@RequestMapping(value = "/resetTaskStatus", method = RequestMethod.POST)
 	public @ResponseBody ModelMap resetTaskStatus(@RequestParam long id) {
 		logger.info(String.format("reset taskStatus  : taskId = %s  ", id));
 		ModelMap result = new ModelMap();
+		ITask task = taskService.get(id);
+		result.addAttribute(FishConstant.LOG_KEY, task.getVersion().getVersionType().getTypeName()+"_"+task.getVersion().getVersionNo());
 		try {
-			ITask task = taskService.get(id);
 			if (canReset(task.getStatus())) {
 				taskService.resetTask(task);
 				result.addAttribute(FishConstant.SUCCESS, true);

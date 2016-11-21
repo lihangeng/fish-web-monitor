@@ -28,5 +28,9 @@ public class FishConstant {
 	 * 总数
 	 */
 	public static final String TOTAL = "total";
+	/**
+	 * 记录之日关键字
+	 */
+	public static final String LOG_KEY = "logKey";
 
 }

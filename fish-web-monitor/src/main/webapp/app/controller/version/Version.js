@@ -371,12 +371,16 @@ Ext.define('Eway.controller.version.Version', {
 		var record = Ext.create('Eway.model.version.Version',data);
 		var store = this.getVersionStore();
 		var fileField = win.down('form').down("filefield");
+		var uploadFile = fileField.value.split("\\");
 		if(addForm.isValid()){//isValid对markInvalid不起作用
 			//1.上传文件返回保存在服务器上的位置，并填充到隐藏字段中
 			var winEl = win.getEl();
 			winEl.mask(EwayLocale.version.View.versionFileUploadMsg);//'正在上传文件......');
 			addForm.submit({
 				 	url: 'api/version/version/upload',
+				 	params : {
+				 		fileName : uploadFile[uploadFile.length-1]
+				 	},
 //				 	waitMsg: '正在上传文件...',
 				    success: function(form, action) {
 			    		var serverPath = action.result.serverPath;

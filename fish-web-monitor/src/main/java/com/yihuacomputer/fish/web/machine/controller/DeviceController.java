@@ -153,14 +153,16 @@ public class DeviceController {
 	 * @return ModelMap<String, Object>
 	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	@MethodNameDescrible(describle="userlog.deviceController.delete",urlArgs=true)
+	@MethodNameDescrible(describle="userlog.deviceController.delete",hasLogKey=true)
 	public @ResponseBody
 	ModelMap delete(@PathVariable long id) {
 		logger.info(" delete device: device.id = " + id);
 		ModelMap result = new ModelMap();
 		result.addAttribute(FishConstant.SUCCESS, true);
+		IDevice device = deviceService.get(id);
 		try {
 			deviceService.remove(id);
+			result.addAttribute(FishConstant.LOG_KEY, device.getTerminalId());
 		} catch (ServiceException se) {
 
 			result.addAttribute(FishConstant.SUCCESS, false);

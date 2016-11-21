@@ -134,7 +134,7 @@ public class BsAdvertController {
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	@MethodNameDescrible(describle="userlog.BsAdvertController.delete",hasArgs=false,urlArgs=true)
+	@MethodNameDescrible(describle="userlog.BsAdvertController.delete",hasLogKey=true)
 	public @ResponseBody ModelMap deleteBsAdvert(@PathVariable long id, HttpServletRequest request, WebRequest webRequest) {
 		logger.info("deleteBsAdvert " + id);
 		ModelMap result = new ModelMap();
@@ -143,6 +143,7 @@ public class BsAdvertController {
 			result.addAttribute(FishConstant.SUCCESS, true);
 			return result;
 		}
+		result.addAttribute(FishConstant.LOG_KEY, bsAdvert.getAdvertName());
 		// bsadvert.delete.fail=激活状态的广告无法删除
 		if (bsAdvert.getBsAdvertStatus() != BsAdvertStatus.UNACTIVE) {
 			result.addAttribute(FishConstant.SUCCESS, false);
@@ -167,7 +168,7 @@ public class BsAdvertController {
 	 * @return
 	 */
 	@RequestMapping(value = "/actived", method = RequestMethod.POST)
-	@MethodNameDescrible(describle="userlog.BsAdvertController.active",hasArgs=true,argsContext="advertId")
+	@MethodNameDescrible(describle="userlog.BsAdvertController.active",hasLogKey=true)
 	public @ResponseBody ModelMap activedBsAdvert(@RequestParam long advertId, HttpServletRequest request, WebRequest webRequest) {
 		logger.info("activedBsAdvert " + advertId);
 		ModelMap result = new ModelMap();
@@ -181,9 +182,11 @@ public class BsAdvertController {
 		// bsadvert.active.actived=广告已激活。
 		else if (bsAdvert.getBsAdvertStatus().equals(BsAdvertStatus.ACTIVED)) {
 			result.addAttribute(FishConstant.SUCCESS, false);
+			result.addAttribute(FishConstant.LOG_KEY, bsAdvert.getAdvertName());
 			result.addAttribute(FishConstant.ERROR_MSG, getI18NResource("bsadvert.active.actived", null));
 			return result;
 		}
+		result.addAttribute(FishConstant.LOG_KEY, bsAdvert.getAdvertName());
 		try {
 			UserSession userSession = (UserSession) request.getSession().getAttribute(FishWebUtils.USER);
 			bsAdvert.setActiveUserId(userSession.getUserId());

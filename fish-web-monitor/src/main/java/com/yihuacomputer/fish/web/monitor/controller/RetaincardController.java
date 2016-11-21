@@ -139,7 +139,7 @@ public class RetaincardController {
 	 * @param id
 	 * @return
 	 */
-	@MethodNameDescrible(describle="userlog.RetaincardController.delete",hasArgs=false,urlArgs=true)
+	@MethodNameDescrible(describle="userlog.RetaincardController.delete",hasLogKey=true)
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public @ResponseBody
 	ModelMap delete(@PathVariable long id) {
@@ -148,6 +148,7 @@ public class RetaincardController {
 		ModelMap result = new ModelMap();
 		if(card != null)
 		{
+			result.addAttribute(FishConstant.LOG_KEY, card.getTerminalId());
 		if (card.getCardRetainType() == CardRetainType.AUTOMATIC_CARD) {
 			result.addAttribute(FishConstant.SUCCESS, false);
 			result.addAttribute("errorMsg", messageSource.getMessage("retaincard.delFailAuto", null, FishCfg.locale));

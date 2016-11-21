@@ -104,7 +104,7 @@ public class RoleController {
 	 * @param id
 	 * @return ModelMap<String, Object>
 	 */
-	@MethodNameDescrible(describle="userlog.RoleController.delete",hasArgs=false,urlArgs=true)
+	@MethodNameDescrible(describle="userlog.RoleController.delete",hasLogKey=true)
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public @ResponseBody
 	ModelMap delete(@PathVariable long id) {
@@ -116,6 +116,7 @@ public class RoleController {
 			if (role == null) {
 				result.addAttribute(FishConstant.SUCCESS, true);
 			} else {
+				result.addAttribute(FishConstant.LOG_KEY, role.getName());
 				List<IPermission> permissions = rolePermissionRelation.listPermissionByRole(role);
 				boolean isSystem = this.isSystem(id);
 				if (isSystem) {
