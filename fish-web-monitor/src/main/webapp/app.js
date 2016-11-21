@@ -42,13 +42,14 @@ Ext.application({
 			    			    listeners:{
 			    			    	load:function(_this, records, successful, operation, node, eOpts ){
 			    			    		if(me.firstload){
-			    			    			
 			    							Ext.create('Eway.view.Viewport',{treepanelStore:store,otherStore:records});
+			    				    		me.firstload = false;
 			    			    		}
 			    			    	}
 			    			    }
 			    			});
 			    		}
+
 			    	}
 			    }
 			});
