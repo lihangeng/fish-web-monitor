@@ -186,35 +186,35 @@ Ext.define('Eway.controller.person.BankPer', {
 		if(array != null) {
 			var info = '';
 			for(var i=0;i<array.length;i++){
-                    info += array[i] + ',';
+                Ext.Ajax.request({
+    				scope : this,
+    				method : 'POST',
+    				url : 'api/person/person/unlink',
+    				params : {personId :record.data.guid,deviceId: array[i]},
+    				success: function(){
+    					linkedDeviceGrid.getStore().load({
+    						params : {
+    							flag:0,
+    							guid:record.data.guid,
+    							organizationId:record.data.organizationId
+    						}
+    					});
+    					linkingDeviceGrid.getStore().cleanUrlParam();
+    					linkingDeviceGrid.getStore().load({
+    						params : {
+    							flag:1,
+    							guid:record.data.guid,
+    							organizationId:record.data.organizationId
+    						}
+    					});
+    				},
+    				failure: function(){
+    					Eway.alert(EwayLocale.tip.bankPer.link.unLinkDevFail);
+    				},
+    				scope:this
+    			});
             }
-			Ext.Ajax.request({
-				scope : this,
-				method : 'POST',
-				url : 'api/person/person/unlink',
-				params : {personId :record.data.guid,deviceId:info},
-				success: function(){
-					linkedDeviceGrid.getStore().load({
-						params : {
-							flag:0,
-							guid:record.data.guid,
-							organizationId:record.data.organizationId
-						}
-					});
-					linkingDeviceGrid.getStore().cleanUrlParam();
-					linkingDeviceGrid.getStore().load({
-						params : {
-							flag:1,
-							guid:record.data.guid,
-							organizationId:record.data.organizationId
-						}
-					});
-				},
-				failure: function(){
-					Eway.alert(EwayLocale.tip.bankPer.link.unLinkDevFail);
-				},
-				scope:this
-			});
+			
 		}else{
 			Eway.alert(EwayLocale.tip.bankPer.link.unlinkDev);
 		}

@@ -81,9 +81,6 @@ Ext.application({
 				     }}catch(e){}
 			}, this);
 
-			//删除背景图片
-//			var bd = Ext.dom.Query.select('body')[0];
-//			bd.style.background = "";
 		}
 	});
 
