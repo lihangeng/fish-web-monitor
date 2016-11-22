@@ -377,15 +377,16 @@ public class ParamTemplateController {
 	 * @return
 	 */
 	@RequestMapping(value = "/unlink", method = RequestMethod.POST)
-	@MethodNameDescrible(describle="userlog.ParamTemplateController.unlink",hasArgs=true,argsContext="deviceId")
+	@MethodNameDescrible(describle="userlog.ParamTemplateController.unlink",hasLogKey=true)
 	public @ResponseBody ModelMap unlink(@RequestParam String templateId,
 			@RequestParam String deviceId) {
 		ModelMap result = new ModelMap();
 		String[] ids = deviceId.split(",");
+		IParamTemplate paramTemplate = templateService.get(Long.parseLong(templateId));
+		result.addAttribute(FishConstant.LOG_KEY, paramTemplate.getName());
 		try {
 			for (String idd : ids) {
-				templateService.unlink(templateService.get(Long.parseLong(templateId)),deviceService.get(Long.valueOf(idd)));
-
+				templateService.unlink(paramTemplate,deviceService.get(Long.valueOf(idd)));
 			}
 			result.addAttribute(FishConstant.SUCCESS, true);
 		} catch (Exception ex) {
