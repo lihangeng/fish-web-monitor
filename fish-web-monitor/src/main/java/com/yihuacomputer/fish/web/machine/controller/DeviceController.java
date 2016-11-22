@@ -437,7 +437,6 @@ public class DeviceController {
 	 *            设备的ID
 	 * @return
 	 */
-	@MethodNameDescrible(describle="userlog.deviceController.devDetail",hasArgs=false)
 	@RequestMapping(value = "/queryAtmType", method = RequestMethod.GET)
 	public @ResponseBody
 	ModelMap queryAtmType(HttpServletRequest request) {

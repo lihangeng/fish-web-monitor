@@ -293,7 +293,6 @@ public class ParamTemplateController {
 	 * @param form
 	 * @return ModelMap<String, Object>
 	 */
-	@MethodNameDescrible(describle="userlog.ParamTemplateController.searchLinkedDevice",hasLogKey=true)
 	@RequestMapping(value = "/linkedDevice", method = RequestMethod.GET)
 	public @ResponseBody ModelMap searchLinkedDevice(@RequestParam int start,
 			@RequestParam int limit, @RequestParam int flag,
