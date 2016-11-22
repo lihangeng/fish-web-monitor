@@ -345,7 +345,8 @@ Ext.define('Eway.controller.Main', {
 		}else if(code =="reportSettlement"){
 			this.activeController('report.baseReport.SettlementReport',text);
 		}else if(code =="reportVendor"){
-			this.activeController('report.baseReport.DeviceTypeCountReport',text);
+			this.activeController('report.baseReport.DeviceTypeCountJReport',text);
+//			this.activeController('report.baseReport.DeviceTypeCountReport',text);
 		}else if(code =="reporDeviceHardWare"){
 			this.activeController('report.baseReport.DeviceHardWareReport',text);
 		}else if(code =="reportDeviceUseCount"){
