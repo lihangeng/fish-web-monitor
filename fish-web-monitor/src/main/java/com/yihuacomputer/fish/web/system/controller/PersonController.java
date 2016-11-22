@@ -221,18 +221,23 @@ public class PersonController {
     public @ResponseBody
     ModelMap unlink(@RequestParam String personId, @RequestParam String deviceId) {
         ModelMap result = new ModelMap();
+        String[] ids = deviceId.split(",");
+    	IPerson person = service.get(personId);
+        result.addAttribute(FishConstant.LOG_KEY, person.getName());
         String str = "";
         try {
-        	IPerson person = service.get(personId);
-        	IDevice device = deviceService.get(Long.valueOf(deviceId));
-        	str = device.getTerminalId();
-            devicePersonRelation.unlink(person, device);
-            result.addAttribute(FishConstant.LOG_KEY, str);
+            for (String id : ids) {
+            	IDevice device = deviceService.get(Long.valueOf(id));
+            	str =str + device.getTerminalId();
+            	if(!id.equals(ids[ids.length-1])){
+            		str =str + "->";
+            	}
+                devicePersonRelation.unlink(person, device);
+            }
             result.addAttribute(FishConstant.SUCCESS, true);
         }
         catch (Exception ex) {
             logger.info(ex.getMessage());
-            result.addAttribute(FishConstant.LOG_KEY, str);
             result.addAttribute(FishConstant.SUCCESS, false);
         }
         return result;
@@ -745,6 +750,7 @@ public class PersonController {
     }
     
 	@RequestMapping(value = "/devicePerson", method = RequestMethod.POST)
+//    @MethodNameDescrible(describle="userlog.PersonController.unlink",hasLogKey=true)
 	public @ResponseBody
 	ModelMap devicePerson(@RequestParam String terminalId, @RequestParam String personId, @RequestParam String type, @RequestParam String personType) {
 		ModelMap result = new ModelMap();
