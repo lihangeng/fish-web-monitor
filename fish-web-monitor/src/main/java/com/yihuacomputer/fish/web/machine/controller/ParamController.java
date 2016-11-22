@@ -83,6 +83,7 @@ public class ParamController {
 			}
 			paramService.update(param);
 			request.setId(id);
+			request.setParamDisplayValue(param.getParamDisplayValue());
 			result.addAttribute(FishConstant.SUCCESS, true);
 			result.addAttribute("data", request);
 		} catch (Exception e) {
