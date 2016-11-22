@@ -353,7 +353,7 @@ public class DevParameterController {
 	 * 下发设备参数
 	 */
 	@RequestMapping(value = "/paramInfo/release", method = RequestMethod.POST)
-	@MethodNameDescrible(describle="userlog.DevParameterController.releaseParam",hasLogKey=true)
+	@MethodNameDescrible(describle="userlog.DevParameterController.releaseParam")
 	public @ResponseBody ModelMap releaseParam(@RequestParam String arrayId, HttpServletRequest request) {
 		logger.info("release the parameters of devices");
 		ModelMap result = new ModelMap();
@@ -365,14 +365,6 @@ public class DevParameterController {
 		IFilter filter=new Filter();
 		filter.in("id", deviceIdList);
 		List<IDevice> device=deviceService.list(filter);
-		String logKey = "";
-		for(IDevice d:device){
-			logKey+=d.getTerminalId();
-			if(d.getId()!=device.get(device.size()-1).getId()){
-				logKey+="->";
-			}
-		}
-		result.addAttribute(FishConstant.LOG_KEY, logKey);
 		if(device.size()!=0){
 			UserSession userSession = (UserSession) request.getSession().getAttribute("SESSION_USER");
 			long jobId = paramPushService.paramPublishByDeviceIds(deviceIdList, Long.valueOf(userSession.getPersonId()));
