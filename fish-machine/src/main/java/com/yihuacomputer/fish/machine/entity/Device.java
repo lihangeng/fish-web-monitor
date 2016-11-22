@@ -132,7 +132,7 @@ public class Device implements IDevice, Serializable {
 	/**
 	 * 虚拟柜员号
 	 */
-	@Column(name = "VIRTUAL", length = 25)
+	@Column(name = "VIRTUAL_CODE", length = 25)
 	private String virtual;
 
 	/**
