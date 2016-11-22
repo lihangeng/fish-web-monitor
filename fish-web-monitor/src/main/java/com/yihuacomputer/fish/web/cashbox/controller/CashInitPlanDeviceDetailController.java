@@ -184,13 +184,14 @@ public class CashInitPlanDeviceDetailController {
 	 * @return
 	 */
 	@RequestMapping(value = "/addDevice", method = RequestMethod.POST)
-	@MethodNameDescrible(describle="userlog.DeviceCashInitPlanDetailController.add",hasArgs=false)
+	@MethodNameDescrible(describle="userlog.DeviceCashInitPlanDetailController.add",hasLogKey=true)
 	public @ResponseBody ModelMap addDevice(HttpServletRequest request, WebRequest webRequest) {
 		logger.info("addDevice device Info List");
 		ModelMap result = new ModelMap();
 		String terminalIds = request.getParameter("terminalIds").substring(1);
 		long cashInitPlanInfoId = Long.parseLong(request.getParameter("cashInitPlanInfoId"));
 		ICashInitPlanInfo planInfo = cashInitPlanInfoService.get(cashInitPlanInfoId);
+		result.put(FishConstant.LOG_KEY, planInfo.getCashInitCode());
 		//已过期的加钞计划无法再次增加内容
 		int nowDate = Integer.parseInt(DateUtils.getDateShort(new Date()));
 		if(planInfo.getDate()<nowDate){
