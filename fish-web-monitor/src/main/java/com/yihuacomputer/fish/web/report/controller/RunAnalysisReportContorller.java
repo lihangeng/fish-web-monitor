@@ -28,6 +28,7 @@ import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.common.annotation.ClassNameDescrible;
+import com.yihuacomputer.common.annotation.MethodNameDescrible;
 import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.common.util.PageResult;
 import com.yihuacomputer.fish.report.engine.pdf.PdfConfig;
@@ -93,6 +94,7 @@ public class RunAnalysisReportContorller {
 	 * @param response
 	 * @throws Exception
 	 */
+	@MethodNameDescrible(describle="userlog.RunAnalysisReportContorller.download",hasArgs=true,argsContext="fileName")
 	@RequestMapping(value = "/downloadFile", method = RequestMethod.GET)
 	public void download(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String filePath = null;
