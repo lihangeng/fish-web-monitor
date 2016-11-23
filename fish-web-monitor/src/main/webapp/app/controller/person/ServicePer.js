@@ -277,15 +277,13 @@ Ext.define('Eway.controller.person.ServicePer', {
 			var data = new Object();
 			linkingDeviceGrid.down('button[action="link"]').disable();
 			var record2 = Ext.create('Eway.model.person.person.PersonDevice',data);
-			for(var i=0;i<array.length-1;i++){
-            	record2.set('id',0);
-				record2.set('personId',record.data.guid);
-				record2.set('deviceId',array[i]);
-				record2.save();
+			var deviceIds = "";
+			for(var i=0;i<array.length;i++){
+				deviceIds+=array[i]+",";
             }
 			record2.set('id',0);
 			record2.set('personId',record.data.guid);
-			record2.set('deviceId',array[array.length-1]);
+			record2.set('deviceIds',deviceIds);
 			record2.save({
 				success: function(){
 					linkingDeviceGrid.getStore().load({

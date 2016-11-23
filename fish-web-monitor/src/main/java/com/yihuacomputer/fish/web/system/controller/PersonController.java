@@ -276,14 +276,21 @@ public class PersonController {
         logger.info(String.format("device %s linked  %s", request.getPersonId(), request.getDeviceId()));
         ModelMap result = new ModelMap();
         IPerson person = service.get(String.valueOf(request.getPersonId()));
-        IDevice device = deviceService.get(request.getDeviceId());
-        result.addAttribute(FishConstant.LOG_KEY, device.getTerminalId());
+        result.addAttribute(FishConstant.LOG_KEY, person.getName());
         List<IDevice> list = devicePersonRelation.listDeviceByPerson(person);
-        if (list.contains(device)) {
-            result.put(FishConstant.SUCCESS, true);
-            return result;
+        String deviceIds[] = request.getDeviceIds().split(",");
+        for(String deviceId :deviceIds){
+        	if(deviceId.isEmpty()){
+        		continue;
+        	}
+        	IDevice device = deviceService.get(Long.parseLong(deviceId));
+            if (list.contains(device)) {
+                result.put(FishConstant.SUCCESS, true);
+                return result;
+            }
+            devicePersonRelation.link(person, device);
         }
-        devicePersonRelation.link(person, device);
+        
         result.put(FishConstant.SUCCESS, true);
         result.put("data", request);
         return result;
@@ -416,7 +423,7 @@ public class PersonController {
      * @param request
      * @return ModelMap<String, Object>
      */
-	@MethodNameDescrible(describle="userlog.UserController.update",hasArgs=false,urlArgs=true)
+	@MethodNameDescrible(describle="userlog.UserController.update",hasLogKey=true)
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public @ResponseBody
     ModelMap update(@PathVariable String id, @RequestBody PersonForm form) {
@@ -429,6 +436,7 @@ public class PersonController {
             result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("person.updateNotExist", null, FishCfg.locale));
             return result;
         }
+        result.addAttribute(FishConstant.LOG_KEY,person.getName());
         try {
             if (form.getOrganizationId() != null) {
                 IOrganization oldOrganization = person.getOrganization();

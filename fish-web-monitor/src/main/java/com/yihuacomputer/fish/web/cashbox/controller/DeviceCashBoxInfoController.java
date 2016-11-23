@@ -117,14 +117,14 @@ public class DeviceCashBoxInfoController {
 		return model;
 	}
 	@RequestMapping(value = "/synchronizedBoxLimit", method = RequestMethod.POST)
-	@MethodNameDescrible(describle="userlog.CashBoxController.synchronizedBoxLimit",hasArgs=false,urlArgs=true )
+	@MethodNameDescrible(describle="userlog.CashBoxController.synchronizedBoxLimit",hasLogKey=true )
 	public @ResponseBody 
 	ModelMap synchronizedUpdate(HttpServletRequest request,WebRequest webRequest) {
 		ModelMap model = new ModelMap();
 		long deviceCashBoxId = Long.parseLong(request.getParameter("id"));
 		logger.info("synchronized CashBox Limit Info: CashBoxInfo.id = " + deviceCashBoxId);
 		IDeviceBoxInfo deviceBoxInfo = deviceBoxInfoService.get(deviceCashBoxId);
-		
+		model.addAttribute(FishConstant.LOG_KEY, deviceBoxInfo.getDeviceId().getTerminalId());
 		UserSession userSession = (UserSession) request.getSession().getAttribute("SESSION_USER");
 		String orgFlag = String.valueOf(userSession.getOrgFlag());
 		IFilter filter  = request2filter(webRequest);

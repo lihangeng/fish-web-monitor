@@ -6,6 +6,8 @@ public class PersonDeviceForm
     private Long personId;
     private Long deviceId;
     
+    private String deviceIds;
+    
     public PersonDeviceForm(){
         
     }
@@ -39,6 +41,14 @@ public class PersonDeviceForm
     {
         this.deviceId = deviceId;
     }
+
+	public String getDeviceIds() {
+		return deviceIds;
+	}
+
+	public void setDeviceIds(String deviceIds) {
+		this.deviceIds = deviceIds;
+	}
     
     
     

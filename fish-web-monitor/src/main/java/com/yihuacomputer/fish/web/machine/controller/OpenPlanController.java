@@ -81,14 +81,10 @@ public class OpenPlanController {
 	@Autowired
 	private IDeviceService deviceService;
 
-//	@Autowired
-//	private TempDeviceService tempDeviceService;
 
 	@Autowired
 	private IOpenPlanDeviceRelation relationService;
 
-//	@Autowired
-	//private ITempOpenPlanDevRelation tempOpenPlanDevRelation;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody
@@ -140,12 +136,11 @@ public class OpenPlanController {
 		return forms;
 	}
 	private String getEnumI18n(String enumText){
-//		 System.out.println(enumText);
-	    	if(null==enumText){
-	    		return "";
-	    	}
-	    	return messageSourceEnum.getMessage(enumText, null, FishCfg.locale);
-	    }
+    	if(null==enumText){
+    		return "";
+    	}
+    	return messageSourceEnum.getMessage(enumText, null, FishCfg.locale);
+    }
 	private List<OpenPlanForm> toPlanForm(List<IDeviceOpenPlan> plans, String deviceId, String terminalId) {
 		List<OpenPlanForm> forms = new ArrayList<OpenPlanForm>();
 		for (IDeviceOpenPlan plan : plans) {
@@ -157,75 +152,6 @@ public class OpenPlanController {
 		return forms;
 	}
 
-/*	@RequestMapping(value = "/exportPlan", method = RequestMethod.GET)
-	public @ResponseBody
-	void orgImportStat(WebRequest webRequest, HttpServletRequest request, HttpServletResponse response) {
-
-		IFilter filter = new Filter();
-		Iterator<String> iterator = webRequest.getParameterNames();
-		while (iterator.hasNext()) {
-			String name = iterator.next();
-			if (FishWebUtils.isIgnoreRequestName(name)) {
-				continue;
-			} else {
-				if (request.getParameter(name).isEmpty()) {
-					continue;
-				} else {
-					if ("sort".equals(name)) { // 去掉前端页面传来的sort排序字段
-						continue;
-					} else if ("name".equals(name)) {
-						filter.like("name", request.getParameter(name));
-					} else if ("startDate".equals(name)) {
-						filter.eq("startDate", DateUtils.getDate(request.getParameter(name)));
-					} else if ("endDate".equals(name)) {
-						filter.eq("endDate", DateUtils.getDate(request.getParameter(name)));
-					}
-				}
-			}
-		}
-
-		// 根据创建时间降序排列
-		filter.descOrder("planState");
-		filter.order("endDate");
-		List<IDeviceOpenPlan> deviceOpenPlanList = openPlanService.list(filter);
-		List<Long> plan_Dev = new ArrayList<Long>();
-		List<ExportOpenPlanForm> data = toExportPlanForm(deviceOpenPlanList, plan_Dev);
-
-		ExportOpenPlan excelExport = new ExportOpenPlan();
-//		excelExport.exportOpenPlan(data, plan_Dev, response);
-	}
-*/
-/*	private List<ExportOpenPlanForm> toExportPlanForm(List<IDeviceOpenPlan> plans, List<Long> plan_Dev) {
-		List<ExportOpenPlanForm> forms = new ArrayList<ExportOpenPlanForm>();
-		for (IDeviceOpenPlan plan : plans) {
-			long planDev_number = 0;
-			int deviceCount = openPlanService.deviceCount(plan.getId());
-			plan.setDeviceCount(deviceCount);
-			List<Object> devList = openPlanService.deviceInfo(plan.getId());
-			if (devList.size() == 0) {
-				planDev_number++;
-				List<IOpenPlanDetail> planDetails = new ArrayList<IOpenPlanDetail>();
-				planDetails = openPlanService.getOpenPlanDetialById(plan.getId());
-				ExportOpenPlanForm exportOpenPlanForm = new ExportOpenPlanForm(plan, null, planDetails);
-				forms.add(exportOpenPlanForm);
-				plan_Dev.add(planDev_number);
-				continue;
-
-			}
-			for (Object devInfo : devList) {
-				planDev_number++;
-				Object[] objDev = (Object[]) devInfo;
-				List<IOpenPlanDetail> planDetails = new ArrayList<IOpenPlanDetail>();
-				planDetails = openPlanService.getOpenPlanDetialById(plan.getId());
-				ExportOpenPlanForm exportOpenPlanForm = new ExportOpenPlanForm(plan, objDev, planDetails);
-				forms.add(exportOpenPlanForm);
-			}
-			plan_Dev.add(planDev_number);
-		}
-
-		return forms;
-
-	}*/
 
 	@RequestMapping(value = "/device", method = RequestMethod.GET)
 	public @ResponseBody
@@ -271,7 +197,6 @@ public class OpenPlanController {
 	 * @param request
 	 * @return
 	 */
-	@MethodNameDescrible(describle="userlog.openPlanController.details",hasArgs=false)
 	@RequestMapping(value = "/details", method = RequestMethod.GET)
 	public @ResponseBody
 	ModelMap searchPlanDetail(@RequestParam int start, @RequestParam int limit, WebRequest request) {
@@ -432,7 +357,7 @@ public class OpenPlanController {
 
 	// 删除方案
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	@MethodNameDescrible(describle="userlog.openPlanController.delete",hasArgs=false,urlArgs=true)
+	@MethodNameDescrible(describle="userlog.openPlanController.delete",hasLogKey=true)
 	public @ResponseBody
 	ModelMap delete(@PathVariable long id, HttpServletRequest req) {
 		logger.info(" delete plan with cascade: plan.id = " + id);
@@ -444,6 +369,7 @@ public class OpenPlanController {
 				result.addAttribute("success", true);
 				return result;
 			}
+			result.addAttribute(FishConstant.LOG_KEY, openPlan.getName());
 			IPageResult<IDevice> pageResult = relationService.pageDeviceByPlan(0, 25, openPlan, new Filter(), String.valueOf(userSession.getOrgId()));
 			// 是否与人员有关联
 			if (pageResult != null && !pageResult.list().isEmpty()) {
@@ -454,9 +380,9 @@ public class OpenPlanController {
 			}
 
 			openPlanService.deletePlan(id);
-			result.addAttribute("success", true);
+			result.addAttribute(FishConstant.SUCCESS, true);
 		} catch (Exception ex) {
-			result.addAttribute("success", false);
+			result.addAttribute(FishConstant.SUCCESS, false);
 			logger.error(ex.getMessage());
 			//删除失败
 			result.put(FishConstant.ERROR_MSG, messageSource.getMessage("servicePlan.deleteFail", null,FishCfg.locale) + ex.getMessage());
@@ -593,19 +519,19 @@ public class OpenPlanController {
 		String[] ids = deviceId.split(",");
 		int i = 0;
 		try {
+			IDeviceOpenPlan openPlan = openPlanService.getDeviceOpenPlanById(Long.parseLong(planId));
+			result.addAttribute(FishConstant.LOG_KEY, openPlan.getName());
 			for (String id : ids) {
-				IDeviceOpenPlan openPlan = openPlanService.getDeviceOpenPlanById(Long.parseLong(planId));
-				result.addAttribute(FishConstant.LOG_KEY, openPlan.getName());
 				relationService.unlink(openPlan, deviceService.get(Long.valueOf(id)));
 			}
 		} catch (Exception ex) {
 			i++;
 		}
 		if (i > 0) {
-			result.put("success", false);
+			result.put(FishConstant.SUCCESS, false);
 			result.put("errors", i);
 		} else {
-			result.put("success", true);
+			result.put(FishConstant.SUCCESS, true);
 		}
 		return result;
 	}
@@ -672,58 +598,14 @@ public class OpenPlanController {
 			}
 		}
 		if (i > 0) {
-			result.put("success", false);
+			result.put(FishConstant.SUCCESS, false);
 			result.put("errors", i);
 		} else {
-			result.put("success", true);
+			result.put(FishConstant.SUCCESS, true);
 		}
 		return result;
 	}
 
-//	@RequestMapping(value = "/tempdevlinkplan", method = RequestMethod.POST)
-//	public @ResponseBody
-//	ModelMap tempDevLinkPlan (@RequestParam String planId, @RequestParam String tempDeviceId)
-//	{
-//     logger.info(String.format("tempdevice %s linked  %s", planId, tempDeviceId));
-//     ModelMap result = new ModelMap();
-//     IDeviceOpenPlan devicePlan = openPlanService.getDeviceOpenPlanById(Long.parseLong(planId));
-//     TempDevice tempDev = tempDeviceService.get(Long.valueOf(tempDeviceId));
-//     try {
-//     if(tempDev != null && devicePlan != null)
-//        {
-//    	 tempOpenPlanDevRelation.link(devicePlan, tempDev.getId());
-//        }
-//     }
-//     catch (Exception e) {
-//			e.printStackTrace();
-//			result.put("success", false);
-//     }
-//     result.put("success", true);
-//     return result;
-//	}
-
-
-//	@RequestMapping(value = "/tempunlinkplan", method = RequestMethod.POST)
-//	public @ResponseBody
-//	ModelMap tempDevUnLinkPlan (@RequestParam String planId, @RequestParam String tempDeviceId)
-//	{
-//     logger.info(String.format("tempdevice %s linked  %s", planId, tempDeviceId));
-//     ModelMap result = new ModelMap();
-//     IDeviceOpenPlan devicePlan = openPlanService.getDeviceOpenPlanById(Long.parseLong(planId));
-//     TempDevice tempDev = tempDeviceService.get(Long.valueOf(tempDeviceId));
-//     try {
-//     if(tempDev != null && devicePlan != null)
-//        {
-//    	 tempOpenPlanDevRelation.unlink(devicePlan, tempDev.getId());
-//        }
-//     }
-//     catch (Exception e) {
-//			e.printStackTrace();
-//			result.put("success", false);
-//     }
-//     result.put("success", true);
-//     return result;
-//	}
 
 	private IFilter request2filter(WebRequest request) {
 		IFilter filter = new Filter();

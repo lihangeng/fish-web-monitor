@@ -36,9 +36,6 @@ Ext.define('Eway.controller.person.BankPer', {
 	}, {
 		ref: 'addWin',
 		selector: 'bank_person_add'
-//	},{
-//		ref :'organizationTree',
-//		selector:'treepanel'
 	},{
 		ref :'filterForm',
 		selector:'bank_person_filterform'
@@ -283,15 +280,13 @@ Ext.define('Eway.controller.person.BankPer', {
 			linkingDeviceGrid.down('button[action="link"]').disable();
 			var data = new Object();
 			var record2 = Ext.create('Eway.model.person.person.PersonDevice',data);
-			for(var i=0;i<array.length-1;i++){
-            	record2.set('id',0);
-				record2.set('personId',record.data.guid);
-				record2.set('deviceId',array[i]);
-				record2.save();
+			var deviceIds = "";
+			for(var i=0;i<array.length;i++){
+				deviceIds+=array[i]+",";
             }
 			record2.set('id',0);
 			record2.set('personId',record.data.guid);
-			record2.set('deviceId',array[array.length-1]);
+			record2.set('deviceIds',deviceIds);
 			record2.save({
 				success: function(){
 					linkingDeviceGrid.getStore().load({

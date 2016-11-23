@@ -82,12 +82,20 @@ public class UserController {
 	 * @param request
 	 * @return
 	 */
-	@MethodNameDescrible(describle="userlog.UserController.addRole",hasReqBodyParam=true,reqBodyClass=UserRoleForm.class,bodyProperties="roleId")
+	@MethodNameDescrible(describle="userlog.UserController.addRole",hasLogKey=true)
 	@RequestMapping(value = "/addRole", method = RequestMethod.POST)
 	public @ResponseBody
 	ModelMap addRole(@RequestBody UserRoleForm request) {
 		logger.info(String.format("device %s linked  %s", request.getUserId(), request.getRoleId()));
 		ModelMap result = new ModelMap();
+		IRole role = roleService.get(request.getRoleId());
+		//角色不存在
+		if(role == null){
+			result.addAttribute(FishConstant.SUCCESS, false);
+			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("user.processError", null, FishCfg.locale));
+			return result;
+		}
+		result.addAttribute(FishConstant.LOG_KEY, role.getName());
 		try {
 			IUser user = userService.get(request.getUserId());
 			if (user == null) {
@@ -95,8 +103,7 @@ public class UserController {
 				result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("user.notExist", null, FishCfg.locale));
 				return result;
 			}
-
-			userRoleRelation.link(user, roleService.get(request.getRoleId()));
+			userRoleRelation.link(user, role);
 			result.put(FishConstant.SUCCESS, true);
 			result.put(FishConstant.DATA, request);
 		} catch (Exception ex) {
@@ -110,25 +117,23 @@ public class UserController {
 	/**
 	 * 删除账户角色
 	 */
-	@MethodNameDescrible(describle="userlog.UserController.deleteRole",hasArgs=true,argsContext="uerId")
+	@MethodNameDescrible(describle="userlog.UserController.deleteRole",hasLogKey=true)
 	@RequestMapping(value = "/removeRole", method = RequestMethod.POST)
 	public @ResponseBody
 	ModelMap deleteRole(@RequestParam long userId, @RequestParam long roleId) {
 		ModelMap result = new ModelMap();
-		if (roleService.get(roleId) == null) {
+		IRole role = roleService.get(roleId);
+		if (role == null) {
 			result.addAttribute(FishConstant.SUCCESS, true);
 			return result;
 		}
+		result.addAttribute(FishConstant.LOG_KEY, role.getName());
 		try {
-			userRoleRelation.unlink(userService.get(userId), roleService.get(roleId));
+			userRoleRelation.unlink(userService.get(userId),role);
 			result.addAttribute(FishConstant.SUCCESS, true);
-			result.addAttribute("count", 0);
-		}
-
-		catch (Exception ex) {
+		}catch (Exception ex) {
 			logger.info(ex.getMessage());
 			result.addAttribute(FishConstant.SUCCESS, false);
-
 		}
 		return result;
 	}
@@ -215,7 +220,6 @@ public class UserController {
 		}
 		result.addAttribute(FishConstant.LOG_KEY, user.getName());
 		try {
-			result.addAttribute(FishConstant.LOG_KEY, user.getName());
 			String code = user.getCode();
 			System.out.println(code);
 			userService.remove(id);
@@ -254,7 +258,6 @@ public class UserController {
 					if (user.getState() == UserState.LOCK) {
 						user.setAccessTime(null);
 					}
-//					user.setUserType(UserType.getById(form.getUserType()));
 					user.setState(UserState.getById(Integer.valueOf(form.getUserState())));
 				} else {
 					form.setUserState(String.valueOf((user.getState().getId())));
@@ -318,6 +321,7 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping(value = "/lockUser", method = RequestMethod.POST)
+	@MethodNameDescrible(describle="userlog.UserController.unLock",hasArgs=true,argsContext="username")
 	public @ResponseBody
 	ModelMap lockUser(@RequestParam String username, HttpServletRequest request, WebRequest webrequest) {
 		ModelMap result = new ModelMap();
