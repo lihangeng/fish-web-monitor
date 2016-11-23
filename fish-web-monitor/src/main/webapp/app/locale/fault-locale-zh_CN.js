@@ -6,6 +6,7 @@ Ext.apply(EwayLocale,{
 		cancel:'取消',//EwayLocale.cases.cancel
 		concern:'请关注',//EwayLocale.cases.concern
 		SRCBView:'新监控发送',//EwayLocale.cases.SRCBView
+		standerMonitorSend:',标准化监控发送',//EwayLocale.cases.standerMonitorSend
 		nowExportFile:'正在导入文件',//EwayLocale.cases.nowExportFile
 		exportFaultInfo:'导入厂商故障信息成功.',//EwayLocale.cases.exportFaultInfo
 		caseFault:{

@@ -67,7 +67,7 @@ Ext.define('Eway.controller.case.NotifyMould', {
 		var updateForm = this.getUpdateWin().down('form').getForm();
 		var data = updateForm.getValues();
 		var start = EwayLocale.cases.concern;
-		var end = EwayLocale.cases.SRCBView;
+		var end = EwayLocale.cases.standerMonitorSend;
 		var checkboxgroup = win.down('checkboxgroup');
 		var checked = checkboxgroup.getChecked();
 		for ( var i = 0; i < checked.length; i++) {

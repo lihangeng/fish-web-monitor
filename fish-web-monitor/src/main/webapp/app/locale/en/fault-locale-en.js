@@ -6,6 +6,7 @@ Ext.apply(EwayLocale,{
 		cancel:'Cancel',//EwayLocale.cases.cancel
 		concern:'Attention Please',//EwayLocale.cases.concern
 		SRCBView:',Send By Monitor System',//EwayLocale.cases.SRCBView
+		standerMonitorSend:',Send By Standard Monitor System',//EwayLocale.cases.standerMonitorSend
 		nowExportFile:'Importing File',//EwayLocale.cases.nowExportFile
 		exportFaultInfo:'Import Fault Code Successfully',//EwayLocale.cases.exportFaultInfo
 		caseFault:{
