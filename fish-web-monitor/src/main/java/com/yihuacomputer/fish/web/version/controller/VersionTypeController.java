@@ -204,7 +204,7 @@ public class VersionTypeController {
 	 * @param id
 	 * @return
 	 */
-	@MethodNameDescrible(describle="userlog.VersionTypeController.delete",hasArgs=false,urlArgs=true)
+	@MethodNameDescrible(describle="userlog.VersionTypeController.delete",hasLogKey=true)
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public @ResponseBody ModelMap delete(@PathVariable long id) {
 		logger.info(" delete versionType: versionType.id = " + id);
@@ -214,6 +214,7 @@ public class VersionTypeController {
 		    result.addAttribute(FishConstant.SUCCESS, true);
             return result;
 		}
+		result.addAttribute(FishConstant.LOG_KEY, versionType.getTypeName());
 		try {
 			versionTypeService.delete(id);
 			result.addAttribute(FishConstant.SUCCESS, true);

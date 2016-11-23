@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
 
 import com.yihuacomputer.common.FishConstant;
+import com.yihuacomputer.common.annotation.ClassNameDescrible;
+import com.yihuacomputer.common.annotation.MethodNameDescrible;
 import com.yihuacomputer.common.http.HttpProxy;
 import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.fish.api.monitor.business.CommandResult;
@@ -25,6 +27,7 @@ import com.yihuacomputer.fish.api.system.config.MonitorCfg;
 import com.yihuacomputer.fish.web.command.format.RemoteCommand;
 import com.yihuacomputer.fish.web.util.FishWebUtils;
 
+@ClassNameDescrible(describle="userlog.LogicController")
 @Controller
 @RequestMapping("/agent/logic")
 public class LogicController {
@@ -32,6 +35,7 @@ public class LogicController {
     @Autowired
     private IRemoteCommHistService remoteCommHistService;
 
+    @MethodNameDescrible(describle="userlog.LogicController.open",hasArgs=true,argsContext="terminalId")
     @RequestMapping(method = RequestMethod.POST, value = "/open")
     public @ResponseBody ModelMap logicOpen(@RequestParam String terminalId, @RequestParam String ip,
             WebRequest webRequest, HttpServletRequest request) {
@@ -75,6 +79,7 @@ public class LogicController {
         return result;
     }
 
+    @MethodNameDescrible(describle="userlog.LogicController.close",hasArgs=true,argsContext="terminalId")
     @RequestMapping(method = RequestMethod.POST, value = "/close")
     public @ResponseBody ModelMap logicClose(@RequestParam String terminalId, @RequestParam String ip,
             WebRequest webRequest, HttpServletRequest request) {
@@ -119,6 +124,7 @@ public class LogicController {
 
     }
 
+    @MethodNameDescrible(describle="userlog.LogicController.reset",hasArgs=true,argsContext="terminalId")
     @RequestMapping(method = RequestMethod.POST, value = "/reset")
     public @ResponseBody ModelMap reset(@RequestParam String terminalId, @RequestParam String ip,
             WebRequest webRequest, HttpServletRequest request) {
