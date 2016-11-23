@@ -217,15 +217,17 @@ public class UserLogAopAspect {
 							str = str +"->"+ JsonUtils.jsonValue((String)obj, FishConstant.LOG_KEY);
 						}
 					}
-					operLog.setOperContent(str);
-					UserSession userSession = (UserSession) session.getAttribute(FishWebUtils.USER);
-					operLog.setOperCode(userSession.getUserCode());
-					operLog.setOperName(userSession.getUserName());
-					time = System.currentTimeMillis() - time;
-					operLog.setTimes(time);
-					operLog = setOperatorResult(obj, operLog);
-					operLog = setIpInfo(request, operLog);
-					userLogService.add(operLog);
+					if(str.indexOf("null")==-1){
+						operLog.setOperContent(str);
+						UserSession userSession = (UserSession) session.getAttribute(FishWebUtils.USER);
+						operLog.setOperCode(userSession.getUserCode());
+						operLog.setOperName(userSession.getUserName());
+						time = System.currentTimeMillis() - time;
+						operLog.setTimes(time);
+						operLog = setOperatorResult(obj, operLog);
+						operLog = setIpInfo(request, operLog);
+						userLogService.add(operLog);
+					}
 				}
 //			}
 		} catch (Exception e) {

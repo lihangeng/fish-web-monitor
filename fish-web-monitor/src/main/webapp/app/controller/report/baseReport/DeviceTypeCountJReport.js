@@ -61,7 +61,7 @@
                                                  style : 'overflow:auto;',
                                                  border : 0,
                                                      loader:{
-                                                         url:'api/report/deviceTypeCount/downloadFile?path='+ object.data + '&reportTitle=' + fileName,
+                                                         url:'api/report/downloadFile?path='+ object.data + '&reportTitle=' + fileName,
                                                          autoLoad :true,
                                                          scripts:true//如果你想在html中能执行js的话.就true
                                                      }
@@ -106,7 +106,7 @@
                          var text = response.responseText;
                          var object = Ext.decode(text);
                          if(object.success){
-                                 var url = 'api/report/deviceTypeCount/downloadFile?path='+ object.data + '&reportTitle=' + fileName;
+                                 var url = 'api/report/downloadFile?path='+ object.data + '&reportTitle=' + fileName +'&title=' + view.title;
                                  var iframe = document.getElementById('downloadFileFromWeb');
                                  iframe.src = url;
                          }else{
