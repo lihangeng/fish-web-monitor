@@ -102,7 +102,7 @@ Ext.define('Eway.controller.report.baseReport.TransactionCountReport', {
 					var object = Ext.decode(response.responseText);
 					if (object.success) {
 						var url = encodeURI('api/report/downloadFile?path=' + object.path
-								+ '&reportTitle=' + fileName);
+								+ '&reportTitle=' + fileName + '&title='+ view.title);
 						var iframe = document
 								.getElementById('downloadFileFromWeb');
 						iframe.src = url;

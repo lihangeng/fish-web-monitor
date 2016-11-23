@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.yihuacomputer.common.FishCfg;
+import com.yihuacomputer.common.annotation.ClassNameDescrible;
+import com.yihuacomputer.common.annotation.MethodNameDescrible;
 import com.yihuacomputer.fish.web.report.form.ReportTitle;
 
 /**
@@ -28,6 +30,7 @@ import com.yihuacomputer.fish.web.report.form.ReportTitle;
  */
 @Controller
 @RequestMapping(value = "/report/downloadFile")
+@ClassNameDescrible(describle="userlog.DownloadReportController")
 public class DownloadReportController {
 	
 	private Logger logger = LoggerFactory.getLogger(DownloadReportController.class);
@@ -43,6 +46,7 @@ public class DownloadReportController {
 	/**
 	 * 下载文件到浏览器端：
 	 */
+    @MethodNameDescrible(describle="userlog.DownloadReportController.Download",hasArgs=true,argsContext="title")
 	@RequestMapping(method = RequestMethod.GET)
 	public void download(@RequestParam String path, @RequestParam ReportTitle reportTitle, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
