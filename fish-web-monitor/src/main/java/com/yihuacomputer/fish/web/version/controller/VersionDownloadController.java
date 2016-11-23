@@ -202,7 +202,7 @@ public class VersionDownloadController {
 		ModelMap result = new ModelMap();
 		UserSession userSession = (UserSession) request.getSession().getAttribute("SESSION_USER");
 		IVersion version = versionService.getById(form.getVersionId());
-		result.addAttribute(FishConstant.LOG_KEY, version.getVersionNo());
+		result.addAttribute(FishConstant.LOG_KEY, version.getVersionType().getTypeName()+"_"+version.getVersionNo());
 		List<ITask> tasks = new ArrayList<ITask>();
 		long start1 = System.currentTimeMillis();
 		IFilter filter = new Filter();

@@ -349,13 +349,13 @@ public class ParamTemplateController {
 		ModelMap result = new ModelMap();
 		IParamTemplate template = templateService.get(request.getGroupId());
 		IDevice device = deviceService.get(request.getDeviceId());
-		result.addAttribute(FishConstant.LOG_KEY, device.getTerminalId());
 		if(template == null){
 			result.put(FishConstant.SUCCESS, true);
 			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("param.template.notExist", null, FishCfg.locale));
 			return result;
 			
 		}
+		result.addAttribute(FishConstant.LOG_KEY, template.getName()+"->"+device.getTerminalId());
 		List<IDevice> list = templateService.listDeviceByTemplate(template);
 		if (list.contains(device)) {
 			result.put(FishConstant.SUCCESS, true);
@@ -469,6 +469,7 @@ public class ParamTemplateController {
 	/**
 	 * 将设备当前所有参数覆盖为模板的参数
 	 */
+	@MethodNameDescrible(describle="userlog.ParamTemplateController.issue",hasLogKey=true)
 	@RequestMapping(value = "/issueParam", method = RequestMethod.POST)
 	public @ResponseBody ModelMap issueParam(@RequestParam long templateId,HttpServletRequest request) {
 
@@ -502,6 +503,7 @@ public class ParamTemplateController {
 
 
 			IParamTemplate template = templateService.get(templateId);
+			result.addAttribute(FishConstant.LOG_KEY, template.getName());
 			UserSession userSession = (UserSession)request.getSession().getAttribute(FishWebUtils.USER);
 			templateService.issueTemplate(template, timeStamp);
 			long jobId = paramPushService.paramPublishByTemplate(templateId, Long.parseLong(userSession.getPersonId()));

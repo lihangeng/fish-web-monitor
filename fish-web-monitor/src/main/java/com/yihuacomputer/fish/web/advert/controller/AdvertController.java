@@ -515,11 +515,13 @@ public class AdvertController {
 	// 删除广告
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	@ResponseBody
-	@MethodNameDescrible(describle="userlog.AdvertController.delete",hasArgs=false,urlArgs=true)
+	@MethodNameDescrible(describle="userlog.AdvertController.delete",hasLogKey=true)
 	public ModelMap delete(@PathVariable long id) {
 		logger.info(" delete advert with cascade: advert.id = " + id);
 		ModelMap result = new ModelMap();
 		try {
+			IAdvert advert = advertService.getById(id);
+			result.addAttribute(FishConstant.LOG_KEY, getEnumI18n(advert.getAdvertType().getText()));
 			// 如果广告已经被下发或者被配置在作业中
 			advertService.delete(id);
 			result.addAttribute(FishConstant.SUCCESS, true);

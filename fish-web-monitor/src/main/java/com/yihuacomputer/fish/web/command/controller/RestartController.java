@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
 
 import com.yihuacomputer.common.FishConstant;
+import com.yihuacomputer.common.annotation.ClassNameDescrible;
+import com.yihuacomputer.common.annotation.MethodNameDescrible;
 import com.yihuacomputer.common.http.HttpProxy;
 import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.fish.api.monitor.ICollectService;
@@ -36,6 +38,7 @@ import com.yihuacomputer.fish.web.util.FishWebUtils;
  * @author wangchao
  *
  */
+@ClassNameDescrible(describle="userlog.RestartController")
 @Controller
 @RequestMapping("agent")
 public class RestartController {
@@ -49,6 +52,7 @@ public class RestartController {
     @Autowired
     private IRemoteCommHistService remoteCommHistService;
 
+    @MethodNameDescrible(describle="userlog.RestartController.reboot",hasArgs=true,argsContext="terminalId")
     @RequestMapping(value = "/reboot", method = RequestMethod.POST)
     public @ResponseBody ModelMap restart(@RequestParam String terminalId, @RequestParam CommandLevel restartType,
             @RequestParam String ip, WebRequest webRequest, HttpServletRequest request) {
@@ -160,6 +164,7 @@ public class RestartController {
     // return result;
     // }
 
+    @MethodNameDescrible(describle="userlog.RestartController.normalReboot",hasArgs=true,argsContext="terminalId")
     @RequestMapping(value = "/normalReboot", method = RequestMethod.POST)
     public @ResponseBody ModelMap normalRestart(@RequestParam String terminalId,
             @RequestParam CommandLevel restartType, @RequestParam String ip, WebRequest webRequest,

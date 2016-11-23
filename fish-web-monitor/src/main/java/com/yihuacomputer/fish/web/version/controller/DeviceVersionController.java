@@ -89,14 +89,15 @@ public class DeviceVersionController {
      * @param deviceId
      * @return
      */
-	@MethodNameDescrible(describle="userlog.DeviceVersionController.history",hasArgs=true,argsContext="deviceId")
+	@MethodNameDescrible(describle="userlog.DeviceVersionController.history",hasLogKey=true)
     @RequestMapping(method = RequestMethod.GET, value = "/history")
     public @ResponseBody
     ModelMap history(@RequestParam int start, @RequestParam int limit, @RequestParam int deviceId) {
         logger.info(String.format("search Device Version history: start = %s ,limt = %s ", start, limit));
 
         ModelMap result = new ModelMap();
-
+        IDevice device = deviceService.get(deviceId);
+        result.addAttribute(FishConstant.LOG_KEY, device.getTerminalId());
         List<ITask> lists = taskService.findTasks(deviceId);     
              
         List<DeviceVersionHistory> forms = getHistoryForms(lists , deviceId);

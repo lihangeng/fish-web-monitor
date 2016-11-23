@@ -298,7 +298,7 @@ public class BsAdvertGroupController {
 		ModelMap result = new ModelMap();
 		IAdvertGroup advertGroup = advertGroupService.getById(request.getGroupId());
 		IDevice device = deviceService.get(request.getDeviceId());
-		result.addAttribute(FishConstant.LOG_KEY, device.getTerminalId());
+		result.addAttribute(FishConstant.LOG_KEY, advertGroup.getGroupName()+"->"+device.getTerminalId());
 		List<IDevice> list = deviceAdvertRelation.listDeviceByAdvertGroup(advertGroup);
 		if (list.contains(device)) {
 			result.put(FishConstant.SUCCESS, true);
