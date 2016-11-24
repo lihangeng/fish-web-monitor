@@ -37,6 +37,8 @@ import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
+import com.yihuacomputer.common.annotation.ClassNameDescrible;
+import com.yihuacomputer.common.annotation.MethodNameDescrible;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.fish.api.atmlog.DayBackupResult;
@@ -54,6 +56,7 @@ import com.yihuacomputer.fish.web.util.FishWebUtils;
 
 @Controller
 @RequestMapping("/machine/atmLogInfo")
+@ClassNameDescrible(describle="userlog.DaybackupInfoController")
 public class DaybackupInfoController {
 
 	@Autowired
@@ -104,6 +107,7 @@ public class DaybackupInfoController {
 		return map;
 	}
 
+	@MethodNameDescrible(describle="userlog.DaybackupInfoController.dayBackupExcuter",hasArgs=true,argsContext="date")
 	@RequestMapping(value = "/dayBackupExcuter", method = RequestMethod.POST)
 	public @ResponseBody
 	ModelMap dayBackupExcuter(WebRequest request) {

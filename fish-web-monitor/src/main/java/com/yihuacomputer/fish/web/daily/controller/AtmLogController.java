@@ -41,6 +41,8 @@ import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
+import com.yihuacomputer.common.annotation.ClassNameDescrible;
+import com.yihuacomputer.common.annotation.MethodNameDescrible;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.http.HttpFileCfg;
 import com.yihuacomputer.common.http.HttpFileClient;
@@ -62,6 +64,7 @@ import com.yihuacomputer.fish.web.daily.form.AtmLogTotal;
 
 @Controller
 @RequestMapping("/machine/atmLog")
+@ClassNameDescrible(describle="userlog.AtmLogController")
 public class AtmLogController {
 
 	@Autowired
@@ -155,6 +158,7 @@ public class AtmLogController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "/downloadFile", method = RequestMethod.GET)
+	@MethodNameDescrible(describle="userlog.AtmLogController.download",hasArgs=true,argsContext="deviceId")
 	public void download(@RequestParam String deviceId, @RequestParam String dateTime, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
@@ -453,6 +457,7 @@ public class AtmLogController {
      * @return
      */
 	@RequestMapping(value = "/fileDownError",method = RequestMethod.POST)
+	@MethodNameDescrible(describle="userlog.AtmLogController.fileDownError",hasArgs=true,argsContext="terminalId")
     public @ResponseBody
     ModelMap fileDownError(@RequestParam String terminalId, @RequestParam String dateTime,@RequestParam String flag,
             WebRequest request){
