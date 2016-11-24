@@ -188,6 +188,10 @@ public class CashInitPlanDeviceDetailController {
 	public @ResponseBody ModelMap addDevice(HttpServletRequest request, WebRequest webRequest) {
 		logger.info("addDevice device Info List");
 		ModelMap result = new ModelMap();
+		if(request.getParameter("terminalIds").equals("") || request.getParameter("terminalIds")==null){
+			result.addAttribute(FishConstant.ERROR_MSG, getEnumI18n("exception.versionCollection.deviceNotExist"));
+			return result.addAttribute(FishConstant.SUCCESS, false);
+		}
 		String terminalIds = request.getParameter("terminalIds").substring(1);
 		long cashInitPlanInfoId = Long.parseLong(request.getParameter("cashInitPlanInfoId"));
 		ICashInitPlanInfo planInfo = cashInitPlanInfoService.get(cashInitPlanInfoId);

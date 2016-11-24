@@ -25,6 +25,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
+import com.yihuacomputer.common.annotation.ClassNameDescrible;
+import com.yihuacomputer.common.annotation.MethodNameDescrible;
 import com.yihuacomputer.common.http.HttpFileCfg;
 import com.yihuacomputer.common.http.HttpFileClient;
 import com.yihuacomputer.common.http.HttpFileRet;
@@ -45,6 +47,7 @@ import com.yihuacomputer.fish.web.command.format.MyComputerForm;
  * @author huxiaobao
  *
  */
+@ClassNameDescrible(describle="userlog.ExploerController")
 @Controller
 @RequestMapping("/agent/remoteBrowse")
 public class ExploerController
@@ -118,6 +121,7 @@ public class ExploerController
      * @param request
      * @return
      */
+    @MethodNameDescrible(describle="userlog.ExploerController.Download")
     @RequestMapping(value = "/mergerDownload",method = RequestMethod.POST)
     public @ResponseBody
     ModelMap fileDown( @RequestParam String requestPath,@RequestParam String ip){
@@ -157,6 +161,7 @@ public class ExploerController
     }
     
     
+    @MethodNameDescrible(describle="userlog.ExploerController.Download")
     @RequestMapping(value = "/download",method = RequestMethod.POST)
     public @ResponseBody
     ModelMap fileDown(@RequestParam String requestName, @RequestParam String requestPath,@RequestParam String ip,@RequestParam String flag,
@@ -217,6 +222,7 @@ public class ExploerController
     /**
      * 下载文件到浏览器端：
      */
+    @MethodNameDescrible(describle="userlog.ExploerController.Download")
     @RequestMapping(value = "/downloadFile",method = RequestMethod.GET)
     public void download(@RequestParam String path, @RequestParam String fileName,HttpServletRequest request,HttpServletResponse response) throws Exception {
         File file = new File(path+System.getProperty("file.separator")+fileName);
@@ -268,6 +274,7 @@ public class ExploerController
      * @param model
      * @return
      */
+    @MethodNameDescrible(describle="userlog.ExploerController.Upload")
     @RequestMapping(value = "/upload",method = RequestMethod.POST)
     public @ResponseBody String upload(@RequestParam(value = "file")MultipartFile file, @RequestParam String desPath, @RequestParam String flag, @RequestParam String ip, HttpServletRequest request, ModelMap model,HttpServletResponse response) {
         String temDir = FishCfg.getTempDir()+System.getProperty("file.separator")+"romoteUp";

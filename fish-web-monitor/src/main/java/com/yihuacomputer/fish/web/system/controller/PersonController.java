@@ -423,7 +423,7 @@ public class PersonController {
      * @param request
      * @return ModelMap<String, Object>
      */
-	@MethodNameDescrible(describle="userlog.UserController.update",hasLogKey=true)
+	@MethodNameDescrible(describle="userlog.PersonController.update",hasLogKey=true)
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public @ResponseBody
     ModelMap update(@PathVariable String id, @RequestBody PersonForm form) {
