@@ -9,7 +9,22 @@ public class DownFileForm
     private String desPath;
     private String ret;
     private String flag;
-    public String getTermId()
+    private String md5;
+    private boolean compress;
+    
+    public String getMd5() {
+		return md5;
+	}
+	public void setMd5(String md5) {
+		this.md5 = md5;
+	}
+	public boolean isCompress() {
+		return compress;
+	}
+	public void setCompress(boolean compress) {
+		this.compress = compress;
+	}
+	public String getTermId()
     {
         return termId;
     }
