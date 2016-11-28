@@ -221,9 +221,9 @@ public class CollectService implements ICollectService, IDeviceListener,IMessage
 	 * @param histXfsStatus
 	 */
 	private void putToMq(IXfsStatus histXfsStatus){
-		MqXfsStatus mqXfsStatus = new MqXfsStatus();
-		mqXfsStatus.setXfsStatus(histXfsStatus);
-		mqProducer.put(JsonUtils.toJson(mqXfsStatus));
+		MqXfsStatus mq = new MqXfsStatus();
+		mq.setXfsStatus(histXfsStatus);
+		mqProducer.putStatus(JsonUtils.toJson(mq));
 	}
 
 	/**
@@ -243,9 +243,8 @@ public class CollectService implements ICollectService, IDeviceListener,IMessage
 	 */
 	public void pushStatusToWeb(String message) {
 		try{
-			MqXfsStatus mqXfsStatus = JsonUtils.fromJson(message, MqXfsStatus.class);
-			IXfsStatus histXfsStatus = mqXfsStatus.makeXfsStatus();
-			this.pushStatusToWeb(histXfsStatus);
+			MqXfsStatus histXfsStatus = JsonUtils.fromJson(message, MqXfsStatus.class);
+			this.pushStatusToWeb(histXfsStatus.makeXfsStatus());
 		}catch(Exception ex){
 			ex.printStackTrace();
 		}
@@ -413,9 +412,9 @@ public class CollectService implements ICollectService, IDeviceListener,IMessage
 	 */
     public void pushTransToWeb(String message){
     	try{
-	    	MqTransaction mqTransaction = JsonUtils.fromJson(message, MqTransaction.class);
-	  	  	ITransaction transaction = mqTransaction.makeTrans();
-	  	  	this.pushTransToWeb(transaction);
+
+    		MqTransaction transaction = JsonUtils.fromJson(message, MqTransaction.class);
+	  	  	this.pushTransToWeb(transaction.makeTrans());
     	}catch(Exception ex){
     		ex.printStackTrace();
     	}
@@ -493,8 +492,8 @@ public class CollectService implements ICollectService, IDeviceListener,IMessage
 		if (mqProducer == null) {
 			this.pushTransToWeb(transaction);
 		} else {
-			MqTransaction mqTransaction = new MqTransaction(transaction);
-			mqProducer.put(JsonUtils.toJson(mqTransaction));
+			MqTransaction mq = new MqTransaction(transaction);
+			mqProducer.putTransaction(JsonUtils.toJson(mq));
 		}
 	}
 

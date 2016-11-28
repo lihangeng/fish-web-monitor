@@ -2,11 +2,14 @@ package com.yihuacomputer.fish.monitor.mq;
 
 import java.io.Serializable;
 
+
 import com.yihuacomputer.fish.api.monitor.business.RunStatus;
 import com.yihuacomputer.fish.api.monitor.xfs.status.BoxStatus;
 import com.yihuacomputer.fish.api.monitor.xfs.status.DeviceStatus;
 import com.yihuacomputer.fish.api.monitor.xfs.status.IXfsStatus;
 import com.yihuacomputer.fish.api.monitor.xfs.status.NetStatus;
+import com.yihuacomputer.fish.monitor.entity.xfs.status.StatusBcr;
+import com.yihuacomputer.fish.monitor.entity.xfs.status.StatusCam;
 import com.yihuacomputer.fish.monitor.entity.xfs.status.StatusCdm;
 import com.yihuacomputer.fish.monitor.entity.xfs.status.StatusCim;
 import com.yihuacomputer.fish.monitor.entity.xfs.status.StatusFgp;
@@ -20,13 +23,13 @@ import com.yihuacomputer.fish.monitor.entity.xfs.status.StatusPin;
 import com.yihuacomputer.fish.monitor.entity.xfs.status.StatusRpr;
 import com.yihuacomputer.fish.monitor.entity.xfs.status.StatusSiu;
 import com.yihuacomputer.fish.monitor.entity.xfs.status.StatusTtu;
+import com.yihuacomputer.fish.monitor.entity.xfs.status.StatusUkd;
+import com.yihuacomputer.fish.monitor.entity.xfs.status.StatusUkr;
 import com.yihuacomputer.fish.monitor.entity.xfs.status.XfsStatus;
 
 public class MqXfsStatus implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-
-	private String mqType = "STATUS";
 
 	private String terminalId;
 
@@ -69,6 +72,14 @@ public class MqXfsStatus implements Serializable {
 	private StatusFgp fgp;
 
 	private StatusIsc isc;
+
+	private StatusBcr bcr;
+    
+    private StatusCam cam;
+
+    private StatusUkd ukd;
+    
+    private StatusUkr ukr;
 
 	private IXfsStatus hisXfsStatus;
 
@@ -116,6 +127,11 @@ public class MqXfsStatus implements Serializable {
 		this.setIcc((StatusIcc)xfsStatus.getStatusIcc());
 		this.setFgp((StatusFgp)xfsStatus.getStatusFgp());
 		this.setIsc((StatusIsc)xfsStatus.getStatusIsc());
+		this.setUkd((StatusUkd)xfsStatus.getStatusUkd());
+		this.setUkr((StatusUkr)xfsStatus.getStatusUkr());
+		this.setBcr((StatusBcr)xfsStatus.getStatusBcr());
+		this.setCam((StatusCam)xfsStatus.getStatusCam());
+		
 	}
 	
 	public XfsStatus makeXfsStatus(){
@@ -141,33 +157,41 @@ public class MqXfsStatus implements Serializable {
 		xfsStatus.setStatusIcc(this.getIcc());
 		xfsStatus.setStatusFgp(this.getFgp());
 		xfsStatus.setStatusIsc(this.getIsc());
+		xfsStatus.setStatusUkd(this.getUkd());
+		xfsStatus.setStatusUkr(this.getUkr());
+		xfsStatus.setStatusBcr(this.getBcr());
+		xfsStatus.setStatusCam(this.getCam());
 		return xfsStatus;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
-		int result = 1;
-		result = prime * result + (int) (boxCurrentCount ^ (boxCurrentCount >>> 32));
-		result = prime * result + (int) (boxInitCount ^ (boxInitCount >>> 32));
-		result = prime * result + ((boxStatus == null) ? 0 : boxStatus.hashCode());
-		result = prime * result + ((cdm == null) ? 0 : cdm.hashCode());
-		result = prime * result + ((cim == null) ? 0 : cim.hashCode());
-		result = prime * result + ((idc == null) ? 0 : idc.hashCode());
-		result = prime * result + ((nfc == null) ? 0 : nfc.hashCode());
-		result = prime * result + ((pbk == null) ? 0 : pbk.hashCode());
-		result = prime * result + ((jpr == null) ? 0 : jpr.hashCode());
-		result = prime * result + ((modStatus == null) ? 0 : modStatus.hashCode());
-		result = prime * result + ((netStatus == null) ? 0 : netStatus.hashCode());
-		result = prime * result + ((pin == null) ? 0 : pin.hashCode());
-		result = prime * result + ((rpr == null) ? 0 : rpr.hashCode());
-		result = prime * result + ((runStatus == null) ? 0 : runStatus.hashCode());
-		result = prime * result + ((siu == null) ? 0 : siu.hashCode());
-		result = prime * result + ((ttu == null) ? 0 : ttu.hashCode());
-		result = prime * result + ((icc == null) ? 0 : icc.hashCode());
-		result = prime * result + ((fgp == null) ? 0 : fgp.hashCode());
-		result = prime * result + ((isc == null) ? 0 : isc.hashCode());
-		return result;
+        int result = 1;
+        result = prime * result + (int) (boxCurrentCount ^ (boxCurrentCount >>> 32));
+        result = prime * result + (int) (boxInitCount ^ (boxInitCount >>> 32));
+        result = prime * result + ((boxStatus == null) ? 0 : boxStatus.hashCode());
+        result = prime * result + ((cdm == null) ? 0 : cdm.hashCode());
+        result = prime * result + ((cim == null) ? 0 : cim.hashCode());
+        result = prime * result + ((idc == null) ? 0 : idc.hashCode());
+        result = prime * result + ((nfc == null) ? 0 : nfc.hashCode());
+        result = prime * result + ((pbk == null) ? 0 : pbk.hashCode());
+        result = prime * result + ((jpr == null) ? 0 : jpr.hashCode());
+        result = prime * result + ((modStatus == null) ? 0 : modStatus.hashCode());
+        result = prime * result + ((netStatus == null) ? 0 : netStatus.hashCode());
+        result = prime * result + ((pin == null) ? 0 : pin.hashCode());
+        result = prime * result + ((rpr == null) ? 0 : rpr.hashCode());
+        result = prime * result + ((runStatus == null) ? 0 : runStatus.hashCode());
+        result = prime * result + ((siu == null) ? 0 : siu.hashCode());
+        result = prime * result + ((ttu == null) ? 0 : ttu.hashCode());
+        result = prime * result + ((icc == null) ? 0 : icc.hashCode());
+        result = prime * result + ((fgp == null) ? 0 : fgp.hashCode());
+        result = prime * result + ((isc == null) ? 0 : isc.hashCode());
+        result = prime * result + ((bcr == null) ? 0 : bcr.hashCode());
+        result = prime * result + ((cam == null) ? 0 : cam.hashCode());
+        result = prime * result + ((ukr == null) ? 0 : ukr.hashCode());
+        result = prime * result + ((ukd == null) ? 0 : ukd.hashCode());
+        return result;
 	}
 
 	@Override
@@ -274,14 +298,7 @@ public class MqXfsStatus implements Serializable {
 
 		return true;
 	}
-	public String getMqType() {
-		return mqType;
-	}
-
-	public void setMqType(String mqType) {
-		this.mqType = mqType;
-	}
-
+	
 	public String getTerminalId() {
 		return terminalId;
 	}
@@ -456,6 +473,38 @@ public class MqXfsStatus implements Serializable {
 
 	public void setHisXfsStatus(IXfsStatus hisXfsStatus) {
 		this.hisXfsStatus = hisXfsStatus;
+	}
+
+	public StatusBcr getBcr() {
+		return bcr;
+	}
+
+	public void setBcr(StatusBcr bcr) {
+		this.bcr = bcr;
+	}
+
+	public StatusCam getCam() {
+		return cam;
+	}
+
+	public void setCam(StatusCam cam) {
+		this.cam = cam;
+	}
+
+	public StatusUkd getUkd() {
+		return ukd;
+	}
+
+	public void setUkd(StatusUkd ukd) {
+		this.ukd = ukd;
+	}
+
+	public StatusUkr getUkr() {
+		return ukr;
+	}
+
+	public void setUkr(StatusUkr ukr) {
+		this.ukr = ukr;
 	}
 
 }

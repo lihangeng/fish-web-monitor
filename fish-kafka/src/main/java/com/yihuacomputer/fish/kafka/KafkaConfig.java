@@ -3,7 +3,6 @@ package com.yihuacomputer.fish.kafka;
 
 public class KafkaConfig {
 	/**公用配置**/
-	private String topic = "atmv";
 	/**
 	 * 生产者配置
 	 */
@@ -35,9 +34,6 @@ public class KafkaConfig {
 		this.groupId = groupId;
 	}
 
-	public String getTopic() {
-		return topic;
-	}
 
 	public String getZookeeperSessionTimeoutMs() {
 		return zookeeperSessionTimeoutMs;
@@ -61,10 +57,6 @@ public class KafkaConfig {
 
 	public void setAutoCommitIntervalMs(String autoCommitIntervalMs) {
 		this.autoCommitIntervalMs = autoCommitIntervalMs;
-	}
-
-	public void setTopic(String topic) {
-		this.topic = topic;
 	}
 
 	public String getMetadataBrokerList() {

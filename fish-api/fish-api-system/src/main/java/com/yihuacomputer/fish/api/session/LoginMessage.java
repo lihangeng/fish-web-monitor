@@ -2,7 +2,6 @@ package com.yihuacomputer.fish.api.session;
 
 
 public class LoginMessage {
-	private String messageType;
 	private String username;
 	private String sessionID;
 	
@@ -10,16 +9,9 @@ public class LoginMessage {
 	public LoginMessage() {
 		
 	}
-	public LoginMessage(String messageType, String username, String sessionID) {
-		this.messageType = messageType;
+	public LoginMessage(String username, String sessionID) {
 		this.username = username;
 		this.sessionID = sessionID;
-	}
-	public String getMessageType() {
-		return messageType;
-	}
-	public void setMessageType(String messageType) {
-		this.messageType = messageType;
 	}
 	public String getUsername() {
 		return username;

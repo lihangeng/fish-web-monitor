@@ -11,7 +11,6 @@
 	</context:component-scan>
 	
 	<bean name="kafkaConfig" class="com.yihuacomputer.fish.kafka.KafkaConfig">
-		<property name="topic" value="${topic}" />
 		<property name="metadataBrokerList" value="${metadataBrokerList}" />
 		<property name="serializerClass" value="${serializerClass}" />
 		<property name="requestRequiredAcks" value="${requestRequiredAcks}" />

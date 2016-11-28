@@ -51,8 +51,6 @@ public class KafkaProducer implements IMqProducer {
 	@Override
 	public void put(String message) {
 		logger.info(String.format("put msg is : [%s] " , message));
-		KeyedMessage<String, String> data = new KeyedMessage<String, String>(this.getKafkaConfig().getTopic(), "", message);
-		producer.send(data);
 	}
 
 	public KafkaConfig getKafkaConfig() {
@@ -61,6 +59,35 @@ public class KafkaProducer implements IMqProducer {
 
 	public void setKafkaConfig(KafkaConfig kafkaConfig) {
 		this.kafkaConfig = kafkaConfig;
+	}
+
+	@Override
+	public void putStatus(String statusMessage) {
+		logger.info(String.format("put statusMsg is : [%s] " , statusMessage));
+		KeyedMessage<String, String> data = new KeyedMessage<String, String>(TopicType.STATUS.toString(), "", statusMessage);
+		producer.send(data);
+	}
+
+	@Override
+	public void putTransaction(String transMessage) {
+		logger.info(String.format("put transMessage is : [%s] " , transMessage));
+		KeyedMessage<String, String> data = new KeyedMessage<String, String>(TopicType.TRANSACTION.toString(), "", transMessage);
+		producer.send(data);
+	}
+
+	@Override
+	public void putLogin(String loginMessage) {
+		logger.info(String.format("put loginMessage is : [%s] " , loginMessage));
+		KeyedMessage<String, String> data = new KeyedMessage<String, String>(TopicType.LOGIN.toString(), "", loginMessage);
+		producer.send(data);
+	}
+
+	@Override
+	public void putLogout(String logoutMessage) {
+		logger.info(String.format("put logoutMessage is : [%s] " , logoutMessage));
+		KeyedMessage<String, String> data = new KeyedMessage<String, String>(TopicType.LOGOUT.toString(), "", logoutMessage);
+		producer.send(data);
+		
 	}
 
 }

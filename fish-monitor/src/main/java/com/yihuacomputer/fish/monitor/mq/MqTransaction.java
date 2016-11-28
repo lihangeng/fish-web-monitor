@@ -1,16 +1,21 @@
 package com.yihuacomputer.fish.monitor.mq;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import com.yihuacomputer.fish.api.monitor.business.CardType;
 import com.yihuacomputer.fish.api.monitor.business.ITransaction;
 import com.yihuacomputer.fish.monitor.entity.business.Transaction;
 
-public class MqTransaction {
+public class MqTransaction  implements Serializable {
 
-    private String mqType = "TRANS";
 
-    private long id;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -184670579276969541L;
+
+	private long id;
 
     private String terminalId;
 
@@ -42,9 +47,6 @@ public class MqTransaction {
 
     private String orgName;
 
-    private String errorText;
-
-    private String localRetText;
 
     //交易耗时(毫秒)
     private long costTime ;
@@ -204,14 +206,6 @@ public class MqTransaction {
         this.transDate = transDate;
     }
 
-    public String getMqType() {
-        return mqType;
-    }
-
-    public void setMqType(String mqType) {
-        this.mqType = mqType;
-    }
-
     public CardType getCardType() {
         return cardType;
     }
@@ -236,22 +230,22 @@ public class MqTransaction {
         this.orgName = orgName;
     }
 
-	public String getErrorText() {
-		return errorText;
-	}
-
-	public void setErrorText(String errorText) {
-		this.errorText = errorText;
-	}
-
-	public String getLocalRetText() {
-		return localRetText;
-	}
-
-	public void setLocalRetText(String localRetText) {
-		this.localRetText = localRetText;
-
-	}
+//	public String getErrorText() {
+//		return errorText;
+//	}
+//
+//	public void setErrorText(String errorText) {
+//		this.errorText = errorText;
+//	}
+//
+//	public String getLocalRetText() {
+//		return localRetText;
+//	}
+//
+//	public void setLocalRetText(String localRetText) {
+//		this.localRetText = localRetText;
+//
+//	}
 
 	public long getCostTime() {
 		return costTime;

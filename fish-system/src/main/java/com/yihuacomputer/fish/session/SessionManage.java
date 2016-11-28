@@ -39,8 +39,8 @@ public class SessionManage implements ISessionManage {
 		if (sessionInfo != null) {
 			HttpSession oldSession = sessionInfo.getSession();
 			if (mqProducer != null) {//集群环境中，通知所有节点，包括自己
-				LoginMessage loginMessage = new LoginMessage("LOGIN_OUT", userCode, sessionInfo.getSessionId());
-				mqProducer.put(JsonUtils.toJson(loginMessage));
+				LoginMessage loginMessage = new LoginMessage(userCode, sessionInfo.getSessionId());
+				mqProducer.putLogout(JsonUtils.toJson(loginMessage));
 			}else{//单机模式
 				try{
 					oldSession.removeAttribute("SESSION_USER");
@@ -95,8 +95,8 @@ public class SessionManage implements ISessionManage {
 		SessionInfo sessionInfo = new SessionInfo(session.getId(), session);
 		sessions.put(userCode, sessionInfo);
 		if (mqProducer != null) {
-			LoginMessage loginMessage = new LoginMessage("LOGIN_IN", userCode, session.getId());
-			mqProducer.put(JsonUtils.toJson(loginMessage));
+			LoginMessage loginMessage = new LoginMessage(userCode, session.getId());
+			mqProducer.putLogin(JsonUtils.toJson(loginMessage));
 		}
 	}
 	

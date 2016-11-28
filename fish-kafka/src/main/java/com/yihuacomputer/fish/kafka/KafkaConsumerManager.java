@@ -15,6 +15,10 @@ import org.springframework.stereotype.Service;
 
 import com.yihuacomputer.fish.api.mq.IMessagePusher;
 import com.yihuacomputer.fish.api.session.ISessionManage;
+import com.yihuacomputer.fish.kafka.consumer.LoginKafkaConsumer;
+import com.yihuacomputer.fish.kafka.consumer.LogoutKafkaConsumer;
+import com.yihuacomputer.fish.kafka.consumer.StatusKafkaConsumer;
+import com.yihuacomputer.fish.kafka.consumer.TransactionKafkaConsumer;
 
 /**
  * @author xuxiang
@@ -33,16 +37,25 @@ public class KafkaConsumerManager {
 
 	@Autowired
 	private IMessagePusher messagePusher;
-	private KafkaConsumer kafkaConsumer = null;
+	private LoginKafkaConsumer loginKafkaConsumer = null;
+	private LogoutKafkaConsumer logoutKafkaConsumer = null;
+	private StatusKafkaConsumer statusKafkaConsumer = null;
+	private TransactionKafkaConsumer transactionKafkaConsumer = null;
 	
 	@Autowired
 	private ISessionManage sessionManage;
 
 	@PostConstruct
 	public void init() {
-		threadPool = Executors.newFixedThreadPool(1);
-		kafkaConsumer = new KafkaConsumer(this,sessionManage);
-		threadPool.submit(kafkaConsumer);
+		threadPool = Executors.newFixedThreadPool(4);
+		loginKafkaConsumer = new LoginKafkaConsumer(this,sessionManage);
+		logoutKafkaConsumer = new LogoutKafkaConsumer(this,sessionManage);
+		statusKafkaConsumer = new StatusKafkaConsumer(this);
+		transactionKafkaConsumer = new TransactionKafkaConsumer(this);
+		threadPool.execute(loginKafkaConsumer);
+		threadPool.execute(logoutKafkaConsumer);
+		threadPool.execute(statusKafkaConsumer);
+		threadPool.execute(transactionKafkaConsumer);
 	}
 
 	public KafkaConfig getKafkaConfig() {
@@ -63,9 +76,19 @@ public class KafkaConsumerManager {
 	
 	@PreDestroy
 	public void close(){
-		if(kafkaConsumer != null){
-			kafkaConsumer.shutdown();
+		if(loginKafkaConsumer != null){
+			loginKafkaConsumer.shutdown();
 		}
+		if(logoutKafkaConsumer != null){
+			logoutKafkaConsumer.shutdown();
+		}
+		if(transactionKafkaConsumer != null){
+			transactionKafkaConsumer.shutdown();
+		}
+		if(statusKafkaConsumer != null){
+			statusKafkaConsumer.shutdown();
+		}
+		threadPool.shutdown();
 	}
 
 }
