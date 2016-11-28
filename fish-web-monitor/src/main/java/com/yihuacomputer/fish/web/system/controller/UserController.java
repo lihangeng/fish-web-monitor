@@ -95,7 +95,6 @@ public class UserController {
 			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("user.processError", null, FishCfg.locale));
 			return result;
 		}
-		result.addAttribute(FishConstant.LOG_KEY, role.getName());
 		try {
 			IUser user = userService.get(request.getUserId());
 			if (user == null) {
@@ -103,6 +102,7 @@ public class UserController {
 				result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("user.notExist", null, FishCfg.locale));
 				return result;
 			}
+			result.addAttribute(FishConstant.LOG_KEY,user.getCode() + "->" + role.getName());
 			userRoleRelation.link(user, role);
 			result.put(FishConstant.SUCCESS, true);
 			result.put(FishConstant.DATA, request);
@@ -127,9 +127,10 @@ public class UserController {
 			result.addAttribute(FishConstant.SUCCESS, true);
 			return result;
 		}
-		result.addAttribute(FishConstant.LOG_KEY, role.getName());
 		try {
-			userRoleRelation.unlink(userService.get(userId),role);
+			IUser user = userService.get(userId);
+			userRoleRelation.unlink(user,role);
+			result.addAttribute(FishConstant.LOG_KEY,user.getCode() + "->" + role.getName());
 			result.addAttribute(FishConstant.SUCCESS, true);
 		}catch (Exception ex) {
 			logger.info(ex.getMessage());
@@ -145,7 +146,7 @@ public class UserController {
 	 * @param form
 	 * @return ModelMap<String, Object>
 	 */
-	@MethodNameDescrible(describle="userlog.UserController.add",hasReqBodyParam=true,reqBodyClass=UserForm.class,bodyProperties="name")
+	@MethodNameDescrible(describle="userlog.UserController.add",hasReqBodyParam=true,reqBodyClass=UserForm.class,bodyProperties="code")
 	@RequestMapping(method = RequestMethod.POST)
 	public @ResponseBody
 	ModelMap add(@RequestBody UserForm form) {
@@ -218,7 +219,7 @@ public class UserController {
 			result.addAttribute(FishConstant.SUCCESS, true);
 			return result;
 		}
-		result.addAttribute(FishConstant.LOG_KEY, user.getName());
+		result.addAttribute(FishConstant.LOG_KEY, user.getCode());
 		try {
 			String code = user.getCode();
 			System.out.println(code);
@@ -241,7 +242,7 @@ public class UserController {
 	 * @param request
 	 * @return ModelMap<String, Object>
 	 */
-	@MethodNameDescrible(describle="userlog.UserController.update",hasReqBodyParam=true,reqBodyClass=UserForm.class,bodyProperties="name")
+	@MethodNameDescrible(describle="userlog.UserController.update",hasReqBodyParam=true,reqBodyClass=UserForm.class,bodyProperties="code")
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	public @ResponseBody
 	ModelMap update(@PathVariable long id, @RequestBody UserForm form) {

@@ -177,8 +177,9 @@ public class AtmGroupController {
 		logger.info(String.format("device %s linked  %s", request.getGroupId(), request.getDeviceId()));
 		ModelMap result = new ModelMap();
 		IDevice device = deviceService.get(request.getDeviceId());
-		result.addAttribute(FishConstant.LOG_KEY, device.getTerminalId());
-		deviceGroupRelation.link(atmGroupService.get(request.getGroupId()), device);
+		IAtmGroup group = atmGroupService.get(request.getGroupId());
+		result.addAttribute(FishConstant.LOG_KEY,group.getName() +"->" + device.getTerminalId());
+		deviceGroupRelation.link(group, device);
 		result.put(FishConstant.SUCCESS, true);
 		result.put(FishConstant.DATA, request);
 		return result;
@@ -197,8 +198,9 @@ public class AtmGroupController {
 	ModelMap unlink(@RequestParam String groupId, @RequestParam String deviceId) {
 		ModelMap result = new ModelMap();
 		IDevice device = deviceService.get(Long.valueOf(deviceId));
-		result.addAttribute(FishConstant.LOG_KEY, device.getTerminalId());
-		deviceGroupRelation.unlink(atmGroupService.get(Long.valueOf(groupId)),device);
+		IAtmGroup group = atmGroupService.get(Long.valueOf(groupId));
+		result.addAttribute(FishConstant.LOG_KEY, group.getName() + "->" + device.getTerminalId());
+		deviceGroupRelation.unlink(group,device);
 		result.addAttribute(FishConstant.SUCCESS, true);
 		return result;
 	}
