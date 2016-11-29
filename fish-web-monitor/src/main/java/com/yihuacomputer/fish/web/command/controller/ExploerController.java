@@ -27,6 +27,7 @@ import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.annotation.ClassNameDescrible;
 import com.yihuacomputer.common.annotation.MethodNameDescrible;
+import com.yihuacomputer.common.file.FileMD5;
 import com.yihuacomputer.common.http.HttpFileCfg;
 import com.yihuacomputer.common.http.HttpFileClient;
 import com.yihuacomputer.common.http.HttpFileRet;
@@ -286,6 +287,7 @@ public class ExploerController
             return "{'success':false,'errors':'"+tips+"'}";//超过最大文件大小限制（最大200M）
         }
         File targetFile = new File(temDir + System.getProperty("file.separator") +fileName);
+        String md5 = FileMD5.getFileMD5(targetFile);
         if(!targetFile.exists()){
             targetFile.mkdirs();
         }
@@ -298,6 +300,8 @@ public class ExploerController
             form.setSrcPath(temDir);
             form.setTermId("");
             form.setFlag(flag);
+            form.setCompress(true);
+            form.setMd5(md5);
 
             String url = MonitorCfg.getHttpUrl(request.getParameter("ip"))+"/ctr/downfile";
             form = (DownFileForm) HttpProxy.httpPost(url,form,DownFileForm.class);
