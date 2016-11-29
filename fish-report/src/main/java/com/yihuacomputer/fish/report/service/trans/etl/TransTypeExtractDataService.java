@@ -34,7 +34,7 @@ public class TransTypeExtractDataService implements ITransTypeExtractDataService
 		long lDate = Long.parseLong(DateUtils.getDateShort(date)); 
 		StringBuilder sql = new StringBuilder();
 		sql.append("SELECT tr.TRANS_DATE,tr.TRANS_CODE,SUM(tr.AMT),COUNT(tr.TRANS_DATE) ");
-		sql.append("FROM atmc_transaction tr ");
+		sql.append("FROM ATMC_TRANSACTION tr ");
 		sql.append("WHERE tr.TRANS_DATE = ? ");
 		sql.append("GROUP BY tr.TRANS_CODE ");
 		
