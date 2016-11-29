@@ -46,7 +46,7 @@ public class StatusKafkaConsumer implements Runnable {
 	}
 
 	public void run() {
-		logger.warn(" StatusKafkaConsumer run");
+		logger.info(" StatusKafkaConsumer run");
 		//状态消费
 		TopicType topicType = TopicType.STATUS;
 
@@ -54,23 +54,21 @@ public class StatusKafkaConsumer implements Runnable {
 		topicCountMap.put(topicType.toString(), readThread);
 		Map<String, List<KafkaStream<byte[], byte[]>>> consumerMap = consumer.createMessageStreams(topicCountMap);
 		List<KafkaStream<byte[], byte[]>> streamsList = consumerMap.get(topicType.toString());
-		logger.warn(" StatusKafkaConsumer run streamsList &&&&&&&&&&&&&&&&&&&&7 size"+streamsList.size());
 		for(final KafkaStream<byte[], byte[]>streams:streamsList){
-
-			logger.warn("KafkaStream StatusKafkaConsumer run streamsList &&&&&&&&&&&&&&&&&&&&7 for");
 			 ConsumerIterator<byte[], byte[]> it = streams.iterator();
 			 while (it.hasNext()) {
-					logger.warn("it.hasNext() StatusKafkaConsumer run streamsList &&&&&&&&&&&&&&&&&&&&7 hasNext");
-					byte[] bytes = it.next().message();
-					String message = new String(bytes);
-					if (message != null && !"".equals(message.trim())) {
-						logger.info(String.format("mq info is will push to Web [%s]", message));
-						try {
-							kafkaConsumerManager.getMessagePusher().pushStatusToWeb(message);
-				        } catch (Exception e) {
-				            logger.error(String.format("mq handle error [%s]", e.getMessage()));
-				        }
+				byte[] bytes = it.next().message();
+				String message = new String(bytes);
+				if (message != null && !"".equals(message.trim())) {
+					if(logger.isDebugEnabled()){
+						logger.debug(String.format("mq info is will push to Web [%s]", message));
 					}
+					try {
+						kafkaConsumerManager.getMessagePusher().pushStatusToWeb(message);
+			        } catch (Exception e) {
+			            logger.error(String.format("mq handle error [%s]", e.getMessage()));
+			        }
+				}
 			}
 		}
 	}

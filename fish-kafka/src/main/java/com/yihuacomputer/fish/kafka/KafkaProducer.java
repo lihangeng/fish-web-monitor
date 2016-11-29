@@ -63,31 +63,38 @@ public class KafkaProducer implements IMqProducer {
 
 	@Override
 	public void putStatus(String statusMessage) {
-		logger.info(String.format("put statusMsg is : [%s] " , statusMessage));
+		if(logger.isDebugEnabled()){
+			logger.debug(String.format("put statusMsg is : [%s] " , statusMessage));
+		}
 		KeyedMessage<String, String> data = new KeyedMessage<String, String>(TopicType.STATUS.toString(), "", statusMessage);
 		producer.send(data);
 	}
 
 	@Override
 	public void putTransaction(String transMessage) {
-		logger.info(String.format("put transMessage is : [%s] " , transMessage));
+		if(logger.isDebugEnabled()){
+			logger.debug(String.format("put transMessage is : [%s] " , transMessage));
+		}
 		KeyedMessage<String, String> data = new KeyedMessage<String, String>(TopicType.TRANSACTION.toString(), "", transMessage);
 		producer.send(data);
 	}
 
 	@Override
 	public void putLogin(String loginMessage) {
-		logger.info(String.format("put loginMessage is : [%s] " , loginMessage));
+		if(logger.isDebugEnabled()){
+			logger.debug(String.format("put loginMessage is : [%s] " , loginMessage));
+		}
 		KeyedMessage<String, String> data = new KeyedMessage<String, String>(TopicType.LOGIN.toString(), "", loginMessage);
 		producer.send(data);
 	}
 
 	@Override
 	public void putLogout(String logoutMessage) {
-		logger.info(String.format("put logoutMessage is : [%s] " , logoutMessage));
+		if(logger.isDebugEnabled()){
+			logger.debug(String.format("put logoutMessage is : [%s] " , logoutMessage));
+		}
 		KeyedMessage<String, String> data = new KeyedMessage<String, String>(TopicType.LOGOUT.toString(), "", logoutMessage);
 		producer.send(data);
-		
 	}
 
 }

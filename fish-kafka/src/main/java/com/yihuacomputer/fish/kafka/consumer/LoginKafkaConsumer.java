@@ -45,7 +45,7 @@ public class LoginKafkaConsumer implements Runnable {
 	}
 
 	public void run() {
-		logger.warn(" LoginKafkaConsumer run");
+		logger.info(" LoginKafkaConsumer run");
 		TopicType topicType = TopicType.LOGIN;
 		List<KafkaStream<byte[], byte[]>> streamsList = getStreams(topicType);
 		for(KafkaStream<byte[], byte[]>streams:streamsList){
@@ -68,8 +68,10 @@ public class LoginKafkaConsumer implements Runnable {
 		return streams;
 	}
 	private void post(String msg) {
-		 logger.info(String.format("mq info [%s]", msg));
-		 try {
+		if(logger.isDebugEnabled()){
+		 logger.debug(String.format("mq info [%s]", msg));
+		}
+		try {
         	 LoginMessage loginMessage=JsonUtils.fromJson(msg, LoginMessage.class);
         	 sessionManage.loginByNotice(loginMessage);
         } catch (Exception e) {

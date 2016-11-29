@@ -40,19 +40,16 @@ public class TransactionKafkaConsumer implements Runnable {
 	}
 
 	public void run() {
-		logger.warn(" TransactionKafkaConsumer run");
+		logger.info(" TransactionKafkaConsumer run");
 		TopicType topicType = TopicType.TRANSACTION;
 		List<KafkaStream<byte[], byte[]>> streamsList = getStreams(topicType);
-		logger.warn(" TransactionKafkaConsumer run streamsList "+streamsList.size());
 		for(KafkaStream<byte[], byte[]>streams:streamsList){
 			ConsumerIterator<byte[], byte[]> it = streams.iterator();
 			 while (it.hasNext()) {
 					byte[] bytes = it.next().message();
 					String message = new String(bytes);
-					logger.warn(" TransactionKafkaConsumer run message "+message);
 					if (message != null && !"".equals(message.trim())) {
 						post(message);
-						logger.warn(" TransactionKafkaConsumer run post message");
 					}
 			}
 		}
@@ -68,7 +65,9 @@ public class TransactionKafkaConsumer implements Runnable {
 	}
 	
 	private void post(String msg) {
-		 logger.info(String.format("mq info [%s]", msg));
+		if(logger.isDebugEnabled()){
+			logger.debug(" TransactionKafkaConsumer run message "+msg);
+		}
 		try {
 			kafkaConsumerManager.getMessagePusher().pushTransToWeb(msg);
         } catch (Exception e) {

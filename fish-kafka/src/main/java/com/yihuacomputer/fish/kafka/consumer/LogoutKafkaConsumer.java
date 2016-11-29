@@ -46,7 +46,7 @@ public class LogoutKafkaConsumer implements Runnable {
 	}
 
 	public void run() {
-		logger.warn(" LogoutKafkaConsumer run");
+		logger.info(" LogoutKafkaConsumer run");
 		TopicType topicType = TopicType.LOGOUT;
 		List<KafkaStream<byte[], byte[]>> streamsList = getStreams(topicType);
 		for(KafkaStream<byte[], byte[]>streams:streamsList){
@@ -70,7 +70,9 @@ public class LogoutKafkaConsumer implements Runnable {
 	}
 
 	private void post(String msg) {
-		logger.info(String.format("mq info [%s]", msg));
+		if(logger.isDebugEnabled()){
+			logger.debug(String.format("mq info [%s]", msg));
+		}
 		try {
 			LoginMessage loginMessage = JsonUtils.fromJson(msg, LoginMessage.class);
 			sessionManage.logoutByNotice(loginMessage);
