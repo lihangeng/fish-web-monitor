@@ -25,9 +25,9 @@ CP=`ls $APP_LIB_PATH/*.jar | paste -s -d"$PATH_SEPARATOR" - `
 CLASSPATH=$CP:$APP_CLASSES_PATH:$APP_PATH/WEB-INF/classes
 export CLASSPATH
 
-JAVA_OPTS="-server -Xms1024m -Xmx1024m -XX:PermSize=512m -XX:MaxPermSize=1024m -verbosegc -Xloggc:logs/gc_log.log"
+JAVA_OPTS="-server -Xms2048m -Xmx2048m -XX:PermSize=1024m -XX:MaxPermSize=2048m -verbosegc -Xloggc:logs/gc_log.log"
 export JAVA_OPTS
 
 #java  $JAVA_OPTS -classpath $CLASSPATH -Dfile.encoding=utf-8 com.yihuacomputer.fish.web.FishConsole
-nohup java  $JAVA_OPTS -classpath $CLASSPATH -Dfile.encoding=utf-8 com.yihuacomputer.fish.web.FishConsole >/dev/null 2>1 &
+nohup java  $JAVA_OPTS -Dcom.sun.management.jmxremote.port=8999 -Dcom.sun.managent.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -classpath $CLASSPATH -Dfile.encoding=utf-8 com.yihuacomputer.fish.web.FishConsole >/dev/null 2>1 &
 echo "Web App is Starting"
