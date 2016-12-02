@@ -59,7 +59,7 @@ public class StatusKafkaConsumer implements Runnable {
 			 while (it.hasNext()) {
 				byte[] bytes = it.next().message();
 				String message = new String(bytes);
-				if (message != null && !"".equals(message.trim())) {
+				if ( !"".equals(message.trim())) {
 					if(logger.isDebugEnabled()){
 						logger.debug(String.format("mq info is will push to Web [%s]", message));
 					}

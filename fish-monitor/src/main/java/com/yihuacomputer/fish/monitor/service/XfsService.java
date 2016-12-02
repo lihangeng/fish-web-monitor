@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.hibernate.Query;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -84,6 +85,7 @@ public class XfsService implements IXfsService {
     }
 
     @Override
+	@Cacheable(value = "xfss", key = "#terminalId")
     @Transactional(readOnly=true)
     public IXfsStatus loadXfsStatus(String terminalId) {
         return this.dao.get(terminalId, XfsStatus.class);

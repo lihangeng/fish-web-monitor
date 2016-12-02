@@ -60,14 +60,14 @@ public class StatusController {
 	 */
 	@RequestMapping(method = RequestMethod.POST)
 	public @ResponseBody ModelMap acceptStatus(@RequestBody StatusMsg msg){
+		
+		long begin = System.currentTimeMillis();
+		
         ModelMap result = new ModelMap();
         result.addAttribute("TermId", msg.getTermId());
         result.addAttribute("ret", "RET_00");
 
         IXfsStatus xfsStatus = xfsService.makeXfsStatus();
-        xfsStatus.setTerminalId(msg.getTermId());
-        xfsStatus.setRunStatus(msg.getRunStatus());
-        xfsStatus.setNetStatus(NetStatus.Healthy);
         IStatusIdc idc = xfsStatus.makeStatusIdc();
         if(msg.getIdc() != null){
 	        idc.setStatus(msg.getIdc());
@@ -77,7 +77,6 @@ public class StatusController {
         }else{
         	idc.setStatus(DeviceStatus.NoDevice);
         }
-
         IStatusJpr jpr = xfsStatus.makeStatusJpr();
         if(msg.getJpr() != null){
 	        jpr.setStatus(msg.getJpr());
@@ -94,7 +93,6 @@ public class StatusController {
         }else{
         	rpr.setStatus(DeviceStatus.NoDevice);
         }
-
         IStatusCdm cdm = xfsStatus.makeStatusCdm();
         if(msg.getCdm() != null){
 	        cdm.setStatus(msg.getCdm());
@@ -103,7 +101,6 @@ public class StatusController {
         }else{
         	cdm.setStatus(DeviceStatus.NoDevice);
         }
-
         IStatusCim cim = xfsStatus.makeStatusCim();
         if(msg.getCim() != null){
 	        cim.setStatus(msg.getCim());
@@ -112,7 +109,6 @@ public class StatusController {
         }else{
         	cim.setStatus(DeviceStatus.NoDevice);
         }
-
         IStatusSiu siu = xfsStatus.makeStatusSiu();
         if(msg.getSiu() != null){
 	        siu.setStatus(msg.getSiu());
@@ -121,7 +117,6 @@ public class StatusController {
         }else{
         	siu.setStatus(DeviceStatus.NoDevice);
         }
-
         IStatusPin pin = xfsStatus.makeStatusPin();
         if(msg.getPin() != null){
 	        pin.setStatus(msg.getPin());
@@ -130,7 +125,6 @@ public class StatusController {
         }else{
         	pin.setStatus(DeviceStatus.NoDevice);
         }
-
         IStatusTtu ttu = xfsStatus.makeStatusTtu();
         if(msg.getTtu() != null){
 	        ttu.setStatus(msg.getTtu());
@@ -155,13 +149,6 @@ public class StatusController {
         }else{
         	pbk.setStatus(DeviceStatus.NoDevice);
         }
-        xfsStatus.setModStatus(msg.getModStatus());
-        
-        xfsStatus.setBoxStatus(msg.getBoxStatus());
-
-        xfsStatus.setBoxInitCount(msg.getBoxInitCount());
-        xfsStatus.setBoxCurrentCount(msg.getBoxCurrentCount());
-
         IStatusIcc icc = xfsStatus.makeStatusIcc();
         if(msg.getIcc() != null){
 	        icc.setStatus(msg.getIcc());
@@ -188,7 +175,6 @@ public class StatusController {
         }else{
         	isc.setStatus(DeviceStatus.NoDevice);
         }
-        
         IStatusBcr bcr = xfsStatus.makeStatusBcr() ;
         if(msg.getBcr() != null){
         	bcr.setStatus(msg.getBcr()) ;
@@ -197,7 +183,6 @@ public class StatusController {
         }else{
         	bcr.setStatus(DeviceStatus.NoDevice);
         }
-
         IStatusCam cam = xfsStatus.makeStatusCam() ;
         if(msg.getCam() != null){
         	cam.setStatus(msg.getCam()) ;
@@ -206,7 +191,6 @@ public class StatusController {
         }else{
         	cam.setStatus(DeviceStatus.NoDevice);
         }
-        
         IStatusUkr ukr = xfsStatus.makeStatusUkr() ;
         if(msg.getUkeyDispenser() != null){
         	ukr.setStatus(msg.getUkeyReader()) ;
@@ -225,6 +209,14 @@ public class StatusController {
         	ukd.setStatus(DeviceStatus.NoDevice);
         }
 
+        xfsStatus.setTerminalId(msg.getTermId());
+        xfsStatus.setRunStatus(msg.getRunStatus());
+        xfsStatus.setNetStatus(NetStatus.Healthy);
+        xfsStatus.setModStatus(msg.getModStatus());
+        xfsStatus.setBoxStatus(msg.getBoxStatus());
+        xfsStatus.setBoxInitCount(msg.getBoxInitCount());
+        xfsStatus.setBoxCurrentCount(msg.getBoxCurrentCount());
+        
         xfsStatus.setStatusIdc(idc);
         xfsStatus.setStatusJpr(jpr);
         xfsStatus.setStatusRpr(rpr);
@@ -250,6 +242,7 @@ public class StatusController {
         }catch(Exception e){
         	logger.error(String.format("collection xfsStatus exception![%s],xfsStatus is [%s]",e,JsonUtils.toJson(msg)));
         }
+        logger.error(String.valueOf(System.currentTimeMillis()-begin));
         return result;
 	}
 }
