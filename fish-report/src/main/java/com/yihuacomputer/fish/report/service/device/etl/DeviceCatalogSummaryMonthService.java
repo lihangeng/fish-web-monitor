@@ -94,7 +94,7 @@ public class DeviceCatalogSummaryMonthService implements IDeviceCatalogSummaryMo
 	public List<IDeviceCatalogSummaryMonth> getAddAndScrp(int month, int lastMonth) {
 		StringBuilder sql = new StringBuilder();
 		sql.append("select dev.SUMMARY_DATE,sum(dev.ADD_NUM),sum(dev.SCRAPPED_NUM)");
-		sql.append(" FROM dev_catalog_summary_month dev");
+		sql.append(" FROM DEV_CATALOG_SUMMARY_MONTH dev");
 		sql.append(" WHERE dev.SUMMARY_DATE <=").append(String.valueOf(month));
 		sql.append(" AND dev.SUMMARY_DATE >").append(String.valueOf(lastMonth)).append(" GROUP BY dev.SUMMARY_DATE ASC");
 		SQLQuery query = dao.getSQLQuery(sql.toString());

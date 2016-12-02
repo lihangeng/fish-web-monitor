@@ -35,7 +35,7 @@ public class TransTypeEtlService implements ITransTypeEtlService{
 	public Long[] getWeekTotal(long weekOfYear) {
 		StringBuilder sql = new StringBuilder();
 		sql.append("select sum(rc.TRANS_COUNT),sum(rc.TRANS_AMOUNT)");
-		sql.append(" from etl_trans_type_week rc");
+		sql.append(" from ETL_TRANS_TYPE_WEEK rc");
 		sql.append(" where rc.STAT_DATE = ?");
 		SQLQuery query = dao.getSQLQuery(sql.toString());
 		query.setLong(0, weekOfYear);
@@ -61,7 +61,7 @@ public class TransTypeEtlService implements ITransTypeEtlService{
 	public Long[] getMonthTotal(long month) {
 		StringBuilder sql = new StringBuilder();
 		sql.append("select sum(rc.TRANS_COUNT),sum(rc.TRANS_AMOUNT)");
-		sql.append(" from etl_trans_type_month rc");
+		sql.append(" from ETL_TRANS_TYPE_MONTH rc");
 		sql.append(" where rc.STAT_DATE = ?");
 		SQLQuery query = dao.getSQLQuery(sql.toString());
 		query.setLong(0, month);

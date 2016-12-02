@@ -278,8 +278,8 @@ public class DayOpenRateService implements IDayOpenRateService {
     public List<IDayOpenRate> listDev(IFilter filter) {
     	
     	StringBuffer sql=new StringBuffer();
-    	sql.append("select sum(HEALTHY_TIMEREAL)/sum(OPENTIMES)*100 from dev_open_rate,dev_info,sm_org ").append(
-    			" where dev_info.TERMINAL_ID=dev_open_rate.TERMINAL_ID and dev_info.ORG_ID=sm_org.ID");
+    	sql.append("select sum(HEALTHY_TIMEREAL)/sum(OPENTIMES)*100 from DEV_OPEN_RATE,DEV_INFO,SM_ORG ").append(
+    			" where DEV_INFO.TERMINAL_ID=DEV_OPEN_RATE.TERMINAL_ID and DEV_INFO.ORG_ID=SM_ORG.ID");
 
         String statType = (String) filter.getFilterEntry("startType").getValue();
 

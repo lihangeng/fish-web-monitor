@@ -88,7 +88,7 @@ public class DeviceCatalogSummaryWeekService implements IDeviceCatalogSummaryWee
 	public List<IDeviceCatalogSummaryWeek> getAddAndScrp(int weekOfYear,int lastWeek) {
 		StringBuilder sql = new StringBuilder();
 		sql.append("select dev.SUMMARY_DATE,sum(dev.ADD_NUM),sum(dev.SCRAPPED_NUM)");
-		sql.append(" FROM dev_catalog_summary_week dev");
+		sql.append(" FROM DEV_CATALOG_SUMMARY_WEEK dev");
 		sql.append(" WHERE dev.SUMMARY_DATE <=").append(String.valueOf(weekOfYear));
 		sql.append(" AND dev.SUMMARY_DATE >").append(String.valueOf(lastWeek)).append(" GROUP BY dev.SUMMARY_DATE ASC");
 		SQLQuery query = dao.getSQLQuery(sql.toString());

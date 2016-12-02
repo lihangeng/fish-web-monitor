@@ -63,7 +63,7 @@ public class DeviceOpenRateExtractDataService implements IDeviceOpenRateExtractD
 		StringBuilder sql = new StringBuilder();
 		sql.append("select dor.TERMINAL_ID tid,sum(dor.OPENTIMES) OPENTIMES,sum(dor.HEALTHY_TIMEREAL) HEALTHY_TIMEREAL,");
 		sql.append("org.CODE orgCode,org.NAME orgName,type.ID typeId,type.NAME typeName ");
-		sql.append("from dev_open_rate dor , dev_info dev,dev_type type ,sm_org org ");
+		sql.append("from DEV_OPEN_RATE dor , DEV_INFO dev,DEV_TYPE type ,SM_ORG org ");
 		sql.append("where dor.STAT_DATE > ?  and dor.STAT_DATE < ? and dor.TERMINAL_ID = dev.TERMINAL_ID ");
 		sql.append("and dev.DEV_TYPE_ID = type.ID and dev.ORG_ID = org.ID ");
 		sql.append("GROUP BY dor.TERMINAL_ID");

@@ -32,11 +32,11 @@ public class OrgOpenRateExtractDataService implements IOrgOpenRateExtractDataSer
 	public void extractByWeek(Date date) {
 		Long weekOfYear = DateUtils.getWeek(date);
 		StringBuilder sql = new StringBuilder();
-		sql.append("select org_code,org_name, sum(dor.OPENTIMES) OPENTIMES,");
-		sql.append("sum(dor.HEALTHY_TIMEREAL) HEALTHY_TIMEREAL,dor.start_date,dor.end_date ");
-		sql.append("from etl_device_open_rate_week dor ");
+		sql.append("select ORG_CODE,ORG_NAME, sum(dor.OPENTIMES) OPENTIMES,");
+		sql.append("sum(dor.HEALTHY_TIMEREAL) HEALTHY_TIMEREAL,dor.START_DATE,dor.END_DATE ");
+		sql.append("from ETL_DEVICE_OPEN_RATE_WEEK dor ");
 		sql.append("where dor.STAT_DATE = ? ");
-		sql.append("group by org_code");
+		sql.append("group by ORG_CODE");
 		
 		SQLQuery query = dao.getSQLQuery(sql.toString());
 		query.setLong(0, weekOfYear);
@@ -60,10 +60,10 @@ public class OrgOpenRateExtractDataService implements IOrgOpenRateExtractDataSer
 	public void extractByMonth(Date date) {
 		Long ym = DateUtils.getLongYM(date);
 		StringBuilder sql = new StringBuilder();
-		sql.append("select org_code,org_name, sum(dor.OPENTIMES) OPENTIMES,sum(dor.HEALTHY_TIMEREAL) HEALTHY_TIMEREAL ");
-		sql.append("from etl_device_open_rate_month dor ");
+		sql.append("select ORG_CODE,ORG_NAME, sum(dor.OPENTIMES) OPENTIMES,sum(dor.HEALTHY_TIMEREAL) HEALTHY_TIMEREAL ");
+		sql.append("from ETL_DEVICE_OPEN_RATE_MONTH dor ");
 		sql.append("where dor.STAT_DATE = ? ");
-		sql.append("group by org_code");
+		sql.append("group by ORG_CODE");
 		
 		SQLQuery query = dao.getSQLQuery(sql.toString());
 		query.setLong(0, ym);

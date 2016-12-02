@@ -32,11 +32,11 @@ public class DeviceTypeOpenRateExtractDataService implements IDeviceTypeOpenRate
 	public void extractByWeek(Date date) {
 		Long weekOfYear = DateUtils.getWeek(date);
 		StringBuilder sql = new StringBuilder();
-		sql.append("select dor.type_id,dor.dev_type_name, sum(dor.OPENTIMES) OPENTIMES,");
-		sql.append("sum(dor.HEALTHY_TIMEREAL) HEALTHY_TIMEREAL,dor.start_date,dor.end_date ");
-		sql.append("from etl_device_open_rate_week dor ");
+		sql.append("select dor.TYPE_ID,dor.DEV_TYPE_NAME, sum(dor.OPENTIMES) OPENTIMES,");
+		sql.append("sum(dor.HEALTHY_TIMEREAL) HEALTHY_TIMEREAL,dor.START_DATE,dor.END_DATE ");
+		sql.append("from ETL_DEVICE_OPEN_RATE_WEEK dor ");
 		sql.append("where dor.STAT_DATE = ? ");
-		sql.append("group by dor.type_id");
+		sql.append("group by dor.TYPE_ID");
 		
 		SQLQuery query = dao.getSQLQuery(sql.toString());
 		query.setLong(0,weekOfYear);
@@ -60,10 +60,10 @@ public class DeviceTypeOpenRateExtractDataService implements IDeviceTypeOpenRate
 	public void extractByMonth(Date date) {
 		Long ym = DateUtils.getLongYM(date);
 		StringBuilder sql = new StringBuilder();
-		sql.append("select dor.type_id,dor.dev_type_name, sum(dor.OPENTIMES) OPENTIMES,sum(dor.HEALTHY_TIMEREAL) HEALTHY_TIMEREAL ");
-		sql.append("from etl_device_open_rate_month dor ");
+		sql.append("select dor.TYPE_ID,dor.DEV_TYPE_NAME, sum(dor.OPENTIMES) OPENTIMES,sum(dor.HEALTHY_TIMEREAL) HEALTHY_TIMEREAL ");
+		sql.append("from ETL_DEVICE_OPEN_RATE_MONTH dor ");
 		sql.append("where dor.STAT_DATE = ? ");
-		sql.append("group by dor.type_id");
+		sql.append("group by dor.TYPE_ID");
 		
 		SQLQuery query = dao.getSQLQuery(sql.toString());
 		query.setLong(0, ym);

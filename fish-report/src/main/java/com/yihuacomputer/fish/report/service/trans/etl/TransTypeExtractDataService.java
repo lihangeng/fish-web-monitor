@@ -73,7 +73,7 @@ public class TransTypeExtractDataService implements ITransTypeExtractDataService
 	private String getTransTypeSql(){
 		StringBuilder sql = new StringBuilder();
 		sql.append("SELECT tr.TRANS_CODE,SUM(tr.TRANS_AMOUNT),SUM(tr.TRANS_COUNT) ");
-		sql.append("FROM etl_trans_type_day tr ");
+		sql.append("FROM ETL_TRANS_TYPE_DAY tr ");
 		sql.append("WHERE tr.STAT_DATE >= ?  and tr.STAT_DATE <= ? ");
 		sql.append("GROUP BY tr.TRANS_CODE");
 		return sql.toString();
