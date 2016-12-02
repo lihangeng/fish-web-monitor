@@ -38,9 +38,9 @@ public class ETLjobService implements IETLjobService {
 		StringBuffer sql = new StringBuffer();
 		IFilterEntry startTime = filter.getFilterEntry("startTime");
 		IFilterEntry endTime = filter.getFilterEntry("endTime");
-		sql.append("select * from (select i.JOB_INSTANCE_ID id,i.JOB_NAME jobName,e.START_TIME startTime,e.END_TIME endTime,p.string_val tradeTime,e.EXIT_CODE operaResult ");
-		sql.append("from batch_job_execution e,batch_job_instance i,BATCH_JOB_EXECUTION_PARAMS p ");
-		sql.append("where i.JOB_INSTANCE_ID=e.JOB_INSTANCE_ID and e.JOB_EXECUTION_ID=p.JOB_EXECUTION_ID and p.key_name='tradeTime' ");
+		sql.append("select * from (select i.JOB_INSTANCE_ID id,i.JOB_NAME jobName,e.START_TIME startTime,e.END_TIME endTime,p.STRING_VAL tradeTime,e.EXIT_CODE operaResult ");
+		sql.append("from BATCH_JOB_EXECUTION e,BATCH_JOB_INSTANCE i,BATCH_JOB_EXECUTION_PARAMS p ");
+		sql.append("where i.JOB_INSTANCE_ID=e.JOB_INSTANCE_ID and e.JOB_EXECUTION_ID=p.JOB_EXECUTION_ID and p.KEY_NAME='tradeTime' ");
 //		sql.append("select e.JOB_EXECUTION_ID id,i.JOB_NAME jobName,e.START_TIME startTime,e.END_TIME endTime,p.string_val tradeTime,e.EXIT_CODE operaResult ");
 //		sql.append("from batch_job_execution e,batch_job_instance i,BATCH_JOB_EXECUTION_PARAMS p ");
 //		sql.append("where i.JOB_INSTANCE_ID=e.JOB_INSTANCE_ID and e.JOB_INSTANCE_ID=p.JOB_EXECUTION_ID and p.key_name='tradeTime' ");
@@ -77,19 +77,19 @@ public class ETLjobService implements IETLjobService {
 
 	@Override
 	public void deteleDayOpera(String tradeTime) {
-		dao.getSQLQuery("delete from ATMC_TRANSACTION_DAYS where trans_date="+Integer.parseInt(tradeTime)).executeUpdate();
+		dao.getSQLQuery("delete from ATMC_TRANSACTION_DAYS where TRANS_DATE="+Integer.parseInt(tradeTime)).executeUpdate();
 	}
 
 	@Override
 	public void deteleMonthOpera(String tradeTime) {
-		dao.getSQLQuery("delete from ATMC_TRANSACTION_MONTHS where trans_date="+Integer.parseInt(tradeTime)).executeUpdate();
+		dao.getSQLQuery("delete from ATMC_TRANSACTION_MONTHS where TRANS_DATE="+Integer.parseInt(tradeTime)).executeUpdate();
 		
 	}
 
 	@Override
 	public String getErrorMsg(long id) {
 		StringBuffer sql = new StringBuffer();
-		sql.append("SELECT t.EXIT_MESSAGE from batch_step_execution t where t.JOB_EXECUTION_ID="+id);
+		sql.append("SELECT t.EXIT_MESSAGE from BATCH_STEP_EXECUTION t where t.JOB_EXECUTION_ID="+id);
 		SQLQuery query = dao.getSQLQuery(sql.toString());
 		query.addScalar("EXIT_MESSAGE", StandardBasicTypes.STRING);
 		@SuppressWarnings("unchecked")
@@ -100,18 +100,18 @@ public class ETLjobService implements IETLjobService {
 	@Override
 	public void reStartMonthOpera(String tradeTime) {
 		StringBuffer sql = new StringBuffer();
-		sql.append("select p.JOB_EXECUTION_ID from batch_job_execution_params p where p.STRING_VAL='"+tradeTime+"'");
+		sql.append("select p.JOB_EXECUTION_ID from BATCH_JOB_EXECUTION_PARAMS p where p.STRING_VAL='"+tradeTime+"'");
 		SQLQuery query = dao.getSQLQuery(sql.toString());
 		query.addScalar("JOB_EXECUTION_ID", StandardBasicTypes.BIG_INTEGER);
 		@SuppressWarnings("unchecked")
 		List<Object> infos = query.list();
 		if(!infos.isEmpty()){
-			dao.getSQLQuery("delete from BATCH_STEP_EXECUTION_CONTEXT where step_execution_id="+infos.get(0)).executeUpdate();
-			dao.getSQLQuery("delete from BATCH_JOB_EXECUTION_CONTEXT where job_execution_id="+infos.get(0)).executeUpdate();
-			dao.getSQLQuery("delete from BATCH_STEP_EXECUTION where step_execution_id="+infos.get(0)).executeUpdate();
-			dao.getSQLQuery("delete from BATCH_JOB_EXECUTION_PARAMS where job_execution_id="+infos.get(0)).executeUpdate();
-			dao.getSQLQuery("delete from BATCH_JOB_EXECUTION where job_execution_id="+infos.get(0)).executeUpdate();
-			dao.getSQLQuery("delete from BATCH_JOB_INSTANCE where job_instance_id="+infos.get(0)).executeUpdate();
+			dao.getSQLQuery("delete from BATCH_STEP_EXECUTION_CONTEXT where STEP_EXECUTION_ID="+infos.get(0)).executeUpdate();
+			dao.getSQLQuery("delete from BATCH_JOB_EXECUTION_CONTEXT where JOB_EXECUTION_ID="+infos.get(0)).executeUpdate();
+			dao.getSQLQuery("delete from BATCH_STEP_EXECUTION where STEP_EXECUTION_ID="+infos.get(0)).executeUpdate();
+			dao.getSQLQuery("delete from BATCH_JOB_EXECUTION_PARAMS where JOB_EXECUTION_ID="+infos.get(0)).executeUpdate();
+			dao.getSQLQuery("delete from BATCH_JOB_EXECUTION where JOB_EXECUTION_ID="+infos.get(0)).executeUpdate();
+			dao.getSQLQuery("delete from BATCH_JOB_INSTANCE where JOB_INSTANCE_ID="+infos.get(0)).executeUpdate();
 		}
 	}
 

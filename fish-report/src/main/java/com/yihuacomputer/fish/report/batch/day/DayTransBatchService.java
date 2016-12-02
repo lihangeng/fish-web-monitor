@@ -72,7 +72,7 @@ public class DayTransBatchService implements IETLjobDaysService {
 	public List<String> dateList(long oldstr,long xinstr) {
 		StringBuffer sql = new StringBuffer();
 
-		sql.append("select t.TRANS_DATE tradeTime from atmc_transaction_days t "
+		sql.append("select t.TRANS_DATE tradeTime from ATMC_TRANSACTION_DAYS t "
 				+ "where t.TRANS_DATE>="
 				+ oldstr
 				+ " and t.TRANS_DATE<="

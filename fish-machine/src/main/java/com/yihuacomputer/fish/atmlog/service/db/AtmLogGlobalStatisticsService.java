@@ -36,7 +36,7 @@ public class AtmLogGlobalStatisticsService implements IAtmLogGlobalStatisticsSer
 	public IPageResult<IAtmLogGlobalStatistics> pageList(int start, int limit, IFilter filter, long orgId) {
 		IOrganization org = orgService.get(String.valueOf(orgId));
 		StringBuffer sql = new StringBuffer();
-		sql.append("select org.id as id,org.CODE as orgCode,org.NAME as orgName,vendor.NAME as deviceVendor, ");
+		sql.append("select org.ID as id,org.CODE as orgCode,org.NAME as orgName,vendor.NAME as deviceVendor, ");
 		sql.append("SUM(case appLogs.BACKUP_RESULT ");
 		sql.append("when 'SUCCESS' then 1 ");
 		sql.append("else 0 ");
@@ -48,10 +48,10 @@ public class AtmLogGlobalStatisticsService implements IAtmLogGlobalStatisticsSer
 		sql.append(" when 'ERROR' then 1 ");
 		sql.append("else 0 ");
 		sql.append("end) as backupErrorNumber  ");
-		sql.append("from atmc_app_logs appLogs,dev_info device,sm_org org,dev_type type,dev_vendor vendor ");
+		sql.append("from ATMC_APP_LGS appLogs,DEV_INFO device,SM_ORG org,DEV_TYPE type,DEV_VENDOR vendor ");
 		sql.append("where appLogs.TERMINAL_ID = device.TERMINAL_ID and device.DEV_TYPE_ID = type.ID and type.DEV_VENDOR_ID = vendor.ID ");
 		sql.append(" and device.ORG_ID = org.ID ");
-		sql.append(" and org.org_flag like '%").append(org.getOrgFlag()).append("' ").append(" ${filters}");
+		sql.append(" and org.ORG_FLAG like '%").append(org.getOrgFlag()).append("' ").append(" ${filters}");
 		sql.append(" group by org.ID, vendor.ID");
 		String filterStr = getFilter(filter);
 		String realSql = sql.toString().replace("${filters}", filterStr);
@@ -119,7 +119,7 @@ public class AtmLogGlobalStatisticsService implements IAtmLogGlobalStatisticsSer
 	public List<IAtmLogGlobalStatistics> list(IFilter filter, long orgId) {
 		IOrganization org = orgService.get(String.valueOf(orgId));
 		StringBuffer sql = new StringBuffer();
-		sql.append("select org.id as id,org.NAME as orgName,org.CODE as orgCode, vendor.NAME as deviceVendor, ");
+		sql.append("select org.ID as id,org.NAME as orgName,org.CODE as orgCode, vendor.NAME as deviceVendor, ");
 		sql.append("SUM(case appLogs.BACKUP_RESULT ");
 		sql.append("when 'SUCCESS' then 1 ");
 		sql.append("else 0 ");
@@ -131,10 +131,10 @@ public class AtmLogGlobalStatisticsService implements IAtmLogGlobalStatisticsSer
 		sql.append(" when 'ERROR' then 1 ");
 		sql.append("else 0 ");
 		sql.append("end) as backupErrorNumber  ");
-		sql.append("from atmc_app_logs appLogs,dev_info device,sm_org org,dev_type type,dev_vendor vendor ");
+		sql.append("from ATMC_APP_LOGS appLogs,DEV_INFO device,SM_ORG org,DEV_TYPE type,DEV_VENDOR vendor ");
 		sql.append("where appLogs.TERMINAL_ID = device.TERMINAL_ID and device.DEV_TYPE_ID = type.ID and type.DEV_VENDOR_ID = vendor.ID ");
 		sql.append(" and device.ORG_ID = org.ID");
-		sql.append(" and org.org_flag like '%").append(org.getOrgFlag()).append("' ").append(" ${filters}");
+		sql.append(" and org.ORG_FLAG like '%").append(org.getOrgFlag()).append("' ").append(" ${filters}");
 		sql.append(" group by org.ID, vendor.ID");
 
 		String filterStr = getFilter(filter);
@@ -173,11 +173,11 @@ public class AtmLogGlobalStatisticsService implements IAtmLogGlobalStatisticsSer
 		sql.append("SELECT devInfo.TERMINAL_ID as terminalId, org.ID as orgId, org.NAME as orgName, ");
 		sql.append("devInfo.ADDRESS as address, appLogs.BACKUP_RESULT as backupResult, appLogs.DATE_TIME as dateTime,devExtend.INSTALL_DATE as installDate, ");
 		sql.append("devInfo.IP as ip ");
-		sql.append("from dev_info devInfo, atmc_app_logs appLogs, sm_org org ");
+		sql.append("from DEV_INFO devInfo, ATMC_APP_LOGS appLogs, SM_ORG org ");
 		sql.append("WHERE appLogs.TERMINAL_ID = devInfo.TERMINAL_ID ");
 		sql.append("and devInfo.ORG_ID = org.ID ");
 		sql.append("and appLogs.BACKUP_RESULT <> 'SUCCESS' ");
-		sql.append("and org.org_flag like '%").append(org.getOrgFlag()).append("' ");
+		sql.append("and org.ORG_FLAG like '%").append(org.getOrgFlag()).append("' ");
 		sql.append(" ${filters}");
 		sql.append(" group by devInfo.TERMINAL_ID, appLogs.DATE_TIME order by appLogs.DATE_TIME desc");
 

@@ -58,7 +58,7 @@ public class FaultExtractDataService implements IFaultExtractDataService {
 		StringBuilder sql = new StringBuilder();
 		sql.append("SELECT sum(case WHEN cf.FAULT_STATUS = 'OPEN' then 1 ELSE 0 END), ");
 		sql.append("sum(case WHEN cf.FAULT_STATUS = 'CLOSED' then 1 ELSE 0 END) ");
-		sql.append("FROM case_fault cf ");
+		sql.append("FROM CASE_FAULT cf ");
 		sql.append("where cf.FAULT_DATE >= ? and cf.FAULT_DATE <= ? ");
 		return sql.toString();
 	}
@@ -118,8 +118,8 @@ public class FaultExtractDataService implements IFaultExtractDataService {
 	
 	private String getFaultClassifySql(){
 		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT cf.CLASSIFY_ID,cfc.CLASSIFY_NAME,count(cf.id) ");
-		sql.append("FROM case_fault cf,case_fault_classify cfc ");
+		sql.append("SELECT cf.CLASSIFY_ID,cfc.CLASSIFY_NAME,count(cf.ID) ");
+		sql.append("FROM CASE_FAULT cf,CASE_FAULT_CLASSIFY cfc ");
 		sql.append("where cf.CLASSIFY_ID = cfc.ID and cf.FAULT_DATE >= ? and cf.FAULT_DATE <= ? ");
 		sql.append("group by cf.CLASSIFY_ID");
 		return sql.toString();
@@ -195,7 +195,7 @@ public class FaultExtractDataService implements IFaultExtractDataService {
 		sql.append("sum(case WHEN cf.DURATION <= 24 and cf.DURATION > 4 then 1 ELSE 0 END),");
 		sql.append("sum(case WHEN cf.DURATION <= 72 and cf.DURATION > 24 then 1 ELSE 0 END),");
 		sql.append("sum(case WHEN cf.DURATION > 72 then 1 ELSE 0 END)");
-		sql.append("FROM case_fault cf ");
+		sql.append("FROM CASE_FAULT cf ");
 		sql.append("where cf.FAULT_DATE >= ? and cf.FAULT_DATE <= ? ");
 		sql.append("and cf.FAULT_STATUS = 'CLOSED' AND cf.DURATION IS NOT NULL");
 		return sql.toString();

@@ -39,14 +39,14 @@ public class RetainCardExtractDataService implements IRetainCardExtractDataServi
 		
 		StringBuilder sql = new StringBuilder();
 		sql.append("select B.typeName,A.retainCount,B.deviceCount from  ");
-		sql.append("(select dev.DEV_TYPE_ID devTypeId,count(rc.id) retainCount ");
-		sql.append("from atmc_retain_card rc,dev_info dev ");
-		sql.append("where rc.TERMINAL_ID = dev.TERMINAL_ID AND rc.retain_date >= ? and rc.retain_date <= ? ");
+		sql.append("(select dev.DEV_TYPE_ID devTypeId,count(rc.ID) retainCount ");
+		sql.append("from ATMC_RETAIN_CARD rc,DEV_INFO dev ");
+		sql.append("where rc.TERMINAL_ID = dev.TERMINAL_ID AND rc.RETAIN_DATE >= ? and rc.RETAIN_DATE <= ? ");
 		sql.append("GROUP BY dev.DEV_TYPE_ID) A ");
 		sql.append("LEFT JOIN  ");
 		sql.append("(select dev.DEV_TYPE_ID devTypeId,devType.NAME typeName,count(dev.ID) deviceCount ");
-		sql.append("from dev_info dev,dev_type devType ");
-		sql.append("where devType.id = dev.DEV_TYPE_ID ");
+		sql.append("from DEV_INFO dev,DEV_TYPE devType ");
+		sql.append("where devType.ID = dev.DEV_TYPE_ID ");
 		sql.append("group by dev.DEV_TYPE_ID) B ");
 		sql.append("on A.devTypeId = B.devTypeId ");
 		
@@ -74,14 +74,14 @@ public class RetainCardExtractDataService implements IRetainCardExtractDataServi
 		
 		StringBuilder sql = new StringBuilder();
 		sql.append("select B.typeName,A.retainCount,B.deviceCount from  ");
-		sql.append("(select dev.DEV_TYPE_ID devTypeId,count(rc.id) retainCount ");
-		sql.append("from atmc_retain_card rc,dev_info dev ");
-		sql.append("where rc.TERMINAL_ID = dev.TERMINAL_ID AND rc.retain_date >= ? and rc.retain_date <= ? ");
+		sql.append("(select dev.DEV_TYPE_ID devTypeId,count(rc.ID) retainCount ");
+		sql.append("from ATMC_RETAIN_CARD rc,DEV_INFO dev ");
+		sql.append("where rc.TERMINAL_ID = dev.TERMINAL_ID AND rc.RETAIN_DATE >= ? and rc.RETAIN_DATE <= ? ");
 		sql.append("GROUP BY dev.DEV_TYPE_ID) A ");
 		sql.append("LEFT JOIN  ");
 		sql.append("(select dev.DEV_TYPE_ID devTypeId,devType.NAME typeName,count(dev.ID) deviceCount ");
-		sql.append("from dev_info dev,dev_type devType ");
-		sql.append("where devType.id = dev.DEV_TYPE_ID ");
+		sql.append("from DEV_INFO dev,DEV_TYPE devType ");
+		sql.append("where devType.ID = dev.DEV_TYPE_ID ");
 		sql.append("group by dev.DEV_TYPE_ID) B ");
 		sql.append("on A.devTypeId = B.devTypeId ");
 		

@@ -35,7 +35,7 @@ public class RetainCardEtlService implements IRetainCardEtlService {
 	public Long[] getWeekTotal(long weekOfYear) {
 		StringBuilder sql = new StringBuilder();
 		sql.append("select sum(rc.DEVICE_COUNT),sum(rc.RETAIN_COUNT),sum(rc.LAST_RETAIN_COUNT)");
-		sql.append(" from etl_retain_card_week rc");
+		sql.append(" from ETL_RETAIN_CARD_WEEK rc");
 		sql.append(" where rc.STAT_DATE = ?");
 		SQLQuery query = dao.getSQLQuery(sql.toString());
 		query.setLong(0, weekOfYear);
@@ -63,7 +63,7 @@ public class RetainCardEtlService implements IRetainCardEtlService {
 	public Long[] getMonthTotal(long month) {
 		StringBuilder sql = new StringBuilder();
 		sql.append("select sum(rc.DEVICE_COUNT),sum(rc.RETAIN_COUNT),sum(rc.LAST_RETAIN_COUNT)");
-		sql.append(" from etl_retain_card_month rc");
+		sql.append(" from ETL_RETAIN_CARD_MONTH rc");
 		sql.append(" where rc.STAT_DATE = ?");
 		SQLQuery query = dao.getSQLQuery(sql.toString());
 		query.setLong(0, month);
