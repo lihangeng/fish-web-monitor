@@ -174,7 +174,7 @@ public class MonitorFilterController {
      * @return
      */
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-	@MethodNameDescrible(describle="userlog.MonitorFilterController.monitorFilterAdd",hasArgs=true,argsContext="userId")
+	@MethodNameDescrible(describle="userlog.MonitorFilterController.monitorFilterAdd",hasArgs=true,argsContext="filterName")
     @ResponseBody
     public ModelMap monitorFilterAdd(@RequestParam String userId, WebRequest request) {
 
@@ -222,7 +222,7 @@ public class MonitorFilterController {
      * @return
      */
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-	@MethodNameDescrible(describle="userlog.MonitorFilterController.monitorFilterUpdate",hasArgs=true,argsContext="id")
+	@MethodNameDescrible(describle="userlog.MonitorFilterController.monitorFilterUpdate",hasLogKey=true)
     @ResponseBody
     public ModelMap monitorFilterUpdate(@RequestParam long id, WebRequest request) {
 
@@ -230,7 +230,7 @@ public class MonitorFilterController {
 
         try {
             IStatusFilter statusFilter = filterService.get(id);
-
+            result.addAttribute(FishConstant.LOG_KEY, statusFilter.getFilterName());
             this.getWebParams(request, statusFilter);
 
             /* 机构信息 */
@@ -274,12 +274,14 @@ public class MonitorFilterController {
      * @return
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	@MethodNameDescrible(describle="userlog.MonitorFilterController.delete",hasArgs=false,urlArgs=true)
+	@MethodNameDescrible(describle="userlog.MonitorFilterController.delete",hasLogKey=true)
     public @ResponseBody ModelMap delete(@PathVariable long id) {
         logger.info(" delete monitorFilter: monitorFilter.id = " + id);
         ModelMap result = new ModelMap();
         result.addAttribute(FishConstant.SUCCESS, true);
         try {
+        	IStatusFilter statusFilter = filterService.get(id);
+        	result.addAttribute(FishConstant.LOG_KEY, statusFilter.getFilterName());
             filterService.delete(id);
         }
         catch (ServiceException se) {
