@@ -1,7 +1,5 @@
 package com.yihuacomputer.fish.web.mock.service;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +14,6 @@ import com.yihuacomputer.fish.api.monitor.xfs.status.IXfsStatus;
 @Service
 public class DefaultDeviceCaseService  implements IDeviceCaseService{
 
-	private Logger logger = LoggerFactory.getLogger(DefaultDeviceCaseService.class);
 	@Autowired
 	private IDeviceService deviceService;
 
@@ -42,11 +39,8 @@ public class DefaultDeviceCaseService  implements IDeviceCaseService{
 
 	@Override
 	public void handleModStatus(IXfsStatus xfsStatus,IXfsStatus hisXfsStatus) {
-		long begin = System.currentTimeMillis();
 		/*处理故障*/
 		hwFaultService.handleModFualt(xfsStatus,hisXfsStatus);
-
-        logger.error(String.valueOf(System.currentTimeMillis()-begin));
 	}
 
 	@Override

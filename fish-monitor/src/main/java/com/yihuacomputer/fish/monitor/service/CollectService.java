@@ -167,7 +167,6 @@ public class CollectService implements ICollectService, IDeviceListener,IMessage
 	 * @param status
 	 */
 	public void collectModuleStatus(String terminalId, IXfsStatus xfsStatus) {
-		long begin = System.currentTimeMillis();
 		// 1.update Xfs Status
 		IXfsStatus histXfsStatus = xfsService.loadXfsStatus(terminalId);
 		if (histXfsStatus == null) {
@@ -177,35 +176,18 @@ public class CollectService implements ICollectService, IDeviceListener,IMessage
 			xfsStatus.setRunStatus(RunStatus.StopManmade);
 		}
 		String nowDate = DateUtils.getTimestamp(new Date());
-		//该段代码必须要放在状态数据库更新前
-//		IXfsStatus handleStatus = xfsService.makeXfsStatus();
-//		handleStatus.setXfsStatus(xfsStatus);
-//		IXfsStatus handleHistStatus = xfsService.makeXfsStatus();
-//		handleHistStatus.setXfsStatus(histXfsStatus);
-//		handleStatus.setHisXfsStatus(handleHistStatus);
 
 		histXfsStatus.setDateTime(nowDate);
 		histXfsStatus.setXfsStatus(xfsStatus);
 		xfsService.updateXfsStatus(histXfsStatus);
 
-		// 2.update atmc run info
-		// 如果状态不一致想设备运行状态表中插入数据
-//		if (!histXfsStatus.getRunStatus().equals(xfsStatus.getRunStatus())) {
-//			IRunInfo runInfo = new RunInfo();
-//			runInfo.setRunStatus(histXfsStatus.getRunStatus());
-//			runInfo.setTerminalId(terminalId);
-//			runInfo.setRunStatus(xfsStatus.getRunStatus());
-//			runInfo.setStatusTime(nowDate);
-//			this.runInfoService.save(runInfo);
-//		}
+		// 2.update atmc run info,单独处理运行状态，此处删除
 
 		// 3.发送到消息队列
 		if (mqProducer == null) {
 			this.pushStatusToWeb(histXfsStatus);
 		} else {
-			long begin1 = System.currentTimeMillis();
 			putToMq(histXfsStatus);
-	        logger.error(String.format("putToMq %s",System.currentTimeMillis()-begin1));
 		}
 		// 4.模块故障处理
         if (deviceCaseService != null) {
@@ -216,7 +198,6 @@ public class CollectService implements ICollectService, IDeviceListener,IMessage
         		return ;
         	}
         }
-        logger.error(String.valueOf(System.currentTimeMillis()-begin));
 	}
 
 	/**

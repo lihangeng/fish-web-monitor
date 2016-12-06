@@ -61,8 +61,6 @@ public class StatusController {
 	@RequestMapping(method = RequestMethod.POST)
 	public @ResponseBody ModelMap acceptStatus(@RequestBody StatusMsg msg){
 		
-		long begin = System.currentTimeMillis();
-		
         ModelMap result = new ModelMap();
         result.addAttribute("TermId", msg.getTermId());
         result.addAttribute("ret", "RET_00");
@@ -242,7 +240,6 @@ public class StatusController {
         }catch(Exception e){
         	logger.error(String.format("collection xfsStatus exception![%s],xfsStatus is [%s]",e,JsonUtils.toJson(msg)));
         }
-        logger.error(String.valueOf(System.currentTimeMillis()-begin));
         return result;
 	}
 }
