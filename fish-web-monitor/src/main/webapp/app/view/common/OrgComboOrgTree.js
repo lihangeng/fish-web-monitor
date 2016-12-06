@@ -38,12 +38,37 @@ Ext.define('Eway.view.common.OrgComboOrgTree',{
 	},
 	listeners:{
 		keydown:function( _this, e, eOpts){
-			//键盘事件触发显示机构列表查询并显示
-			if(e.keyCode==13){
-				this.matching = true;
-				this.onTrigger1Click()
-				if(this.editable&&!this.readOnly&&this.matching)
-					this.queryMsg(_this.getValue());
+			if((!e.isSpecialKey()||e.getKeyName()=='BACKSPACE'||e.getKeyName()=='ENTER'||e.getKeyName()=='SPACE'||e.getKeyName()=='DELETE')
+				&&e.getKeyName()!='F1'&&e.getKeyName()!='F2'&&e.getKeyName()!='F3'&&e.getKeyName()!='F4'
+					&&e.getKeyName()!='F5'&&e.getKeyName()!='F6'&&e.getKeyName()!='F7'&&e.getKeyName()!='F8'
+						&&e.getKeyName()!='F9'&&e.getKeyName()!='F10'&&e.getKeyName()!='F11'&&e.getKeyName()!='F12'){
+				console.debug(e.getKeyName());
+				//键盘事件触发显示机构列表查询并显示
+				if(e.keyCode==13){
+					this.matching = true;
+					this.onTrigger1Click()
+					if(this.editable&&!this.readOnly&&this.matching)
+						this.queryMsg(_this.getValue());
+				}
+				//当键盘敲击事件不是回车时候清空orgId的值
+				else if(_this.hiddenField.getValue()!=""){
+					_this.hiddenField.setValue("");
+				}
+			}
+		},
+		blur:function( field, event, eOpts ){
+			var gridpanel = field.getPicker();
+			//当机构失去焦点分情况处理
+			//1.机构下无任何picker
+			//2.机构picker是树
+			//3.机构picker是grid并且不是匹配查询
+			//以上3中情况判断orgId是否为空，如果为空则直接清除机构数据框中的数据
+			if(gridpanel==undefined||gridpanel.$className == 'Ext.tree.Panel'
+				||(gridpanel.$className != 'Ext.tree.Panel'&&!this.matching)){
+				if(field.hiddenField.getValue()==""){
+					field.setValue("");
+				}
+				return;
 			}
 		},
 		collapse:function(field,opts){
