@@ -108,7 +108,7 @@ public class JobService extends DomainJobService {
     @Transactional(readOnly = true)
     public List<IJob> findReloadJob() {
         IFilter filter = new Filter();
-        filter.eq("serverIp", FishCfg.hostIp);//只加载本机的版本任务
+        filter.eq("serverIp", FishCfg.getHostIp());//只加载本机的版本任务
         filter.ne("jobStatus", JobStatus.COMPLETE);
         filter.ne("jobStatus", JobStatus.FINISH);
         filter.descOrder("jobPriority");
@@ -136,7 +136,7 @@ public class JobService extends DomainJobService {
     @Override
     public Job cascadeAdd(IJob job,IFilter filter) {
         // 保存作业信息
-    	job.setServerIp(FishCfg.hostIp);//集群时设置执行的服务IP
+    	job.setServerIp(FishCfg.getHostIp());//集群时设置执行的服务IP
         Job entity = dao.save(this.interface2Entity(job, false));
         // 保存任务列表
         IVersion version = entity.getVersion();

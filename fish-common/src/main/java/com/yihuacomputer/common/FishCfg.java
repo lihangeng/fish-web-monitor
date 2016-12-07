@@ -30,14 +30,14 @@ public class FishCfg {
 
 	public static final String fileSep = System.getProperty("file.separator");
 
-	public static String hostIp = "127.0.0.1";
+	private static String hostIp = "127.0.0.1";
 	
 	public static Locale locale;
 
-	public FishCfg() {
-
+	
+	public static String getHostIp(){
+		return hostIp;
 	}
-
 	/**
 	 * 初始化文件夹目录
 	 */

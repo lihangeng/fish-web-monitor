@@ -7,6 +7,6 @@ public class IpAddressTest {
 	public static void main(String[] args){
 		
 		FishCfg.initDirs();
-		System.out.print(FishCfg.hostIp);
+		System.out.print(FishCfg.getHostIp());
 	}
 }

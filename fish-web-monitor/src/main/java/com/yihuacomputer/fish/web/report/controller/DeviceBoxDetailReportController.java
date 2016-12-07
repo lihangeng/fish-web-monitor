@@ -80,18 +80,18 @@ public class DeviceBoxDetailReportController {
         HashMap<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("title", getEnumI18n(ReportTitle.DeviceBox.getText()));
         parameters.put("reportDate", DateUtils.getTimestamp(new Date()));
-        parameters.put("orgName", messageSource.getMessage("runtimeInfo.orgName", null, FishCfg.locale));
-		parameters.put("terminalId", messageSource.getMessage("device.terminalId", null, FishCfg.locale));
+        parameters.put("orgName",getEnumI18n("runtimeInfo.orgName"));
+		parameters.put("terminalId", getEnumI18n("device.terminalId"));
 		
 		
-		parameters.put("vendorName", messageSource.getMessage("report.devTypeCount.vendorName", null, FishCfg.locale));
-		parameters.put("typeName", messageSource.getMessage("device.devType", null, FishCfg.locale));
-		parameters.put("setupType", messageSource.getMessage("report.devBoxDetail.setupType", null, FishCfg.locale));
-		parameters.put("termStatus", messageSource.getMessage("report.devBoxDetail.termStatus", null, FishCfg.locale));
-		parameters.put("boxLeft", messageSource.getMessage("report.devBoxDetail.boxLeft", null, FishCfg.locale));
+		parameters.put("vendorName", getEnumI18n("report.devTypeCount.vendorName"));
+		parameters.put("typeName", getEnumI18n("device.devType"));
+		parameters.put("setupType", getEnumI18n("report.devBoxDetail.setupType"));
+		parameters.put("termStatus", getEnumI18n("report.devBoxDetail.termStatus"));
+		parameters.put("boxLeft", getEnumI18n("report.devBoxDetail.boxLeft"));
         
 
-        List<IDeviceBoxDetailRpt> data = deviceBoxDetailRptService.listDeviceBoxDetail(filter);
+        List<IDeviceBoxDetailRpt> data = convertI18N(deviceBoxDetailRptService.listDeviceBoxDetail(filter));
 
         String path = getReport(parameters, resourcePath, request.getParameter("exportType"),
                 data == null ? new ArrayList<IDeviceBoxDetailRpt>() : data);
@@ -100,6 +100,34 @@ public class DeviceBoxDetailReportController {
         result.addAttribute("path", path);
 
         return result;
+    }
+    
+    private List<IDeviceBoxDetailRpt> convertI18N(List<IDeviceBoxDetailRpt> datas){
+    	List<IDeviceBoxDetailRpt> list = new ArrayList<IDeviceBoxDetailRpt>();
+    	for(IDeviceBoxDetailRpt deviceBoxDetail:datas){
+    		String setupType = deviceBoxDetail.getSetupType();
+			String status = deviceBoxDetail.getStatus();
+	    	 if (setupType.equals("WEAR_WALL")) {
+	             deviceBoxDetail.setSetupType(getEnumI18n("report.deviceBoxDetail.wareWall"));
+	         }
+	         if (setupType.equals("LOBBY")) {
+	             deviceBoxDetail.setSetupType(getEnumI18n("report.deviceBoxDetail.lobby"));
+	         }
+	         if (status.equals("OPEN")) {
+	             deviceBoxDetail.setStatus(getEnumI18n("report.deviceBoxDetail.opening"));
+	         }
+	         if (status.equals("DISABLED")) {
+	             deviceBoxDetail.setStatus(getEnumI18n("report.deviceBoxDetail.disabled"));
+	         }
+	         if (status.equals("UNOPEN")) {
+	             deviceBoxDetail.setStatus(getEnumI18n("report.deviceBoxDetail.unopen"));
+	         }
+	         if (status.equals("SCRAPPED")) {
+	             deviceBoxDetail.setStatus(getEnumI18n("report.deviceBoxDetail.scrapped"));
+	         }
+	         list.add(deviceBoxDetail);
+    	}
+    	return list;
     }
 
     /**

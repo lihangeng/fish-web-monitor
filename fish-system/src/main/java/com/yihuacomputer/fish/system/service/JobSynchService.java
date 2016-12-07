@@ -69,7 +69,7 @@ public class JobSynchService implements IJobSynchService{
 	
 	private void updateJobStatus(IJobSynchronous jobSynch,Date dateTime){
         jobSynch.setDateTime(dateTime);
-        jobSynch.setServerIp(FishCfg.hostIp);
+        jobSynch.setServerIp(FishCfg.getHostIp());
         
         dao.update(jobSynch);
 	}
