@@ -71,8 +71,8 @@
    		<property name="configLocation" value="classpath:ehcache.xml"/>
     </bean>
 
-    <!-- 分布式队列kafka的配置
-    <import resource="classpath:/com/yihuacomputer/fish/kafka/fish-kafka.xml" /> -->
+    <!-- 分布式队列kafka的配置-->
+    <import resource="classpath:/com/yihuacomputer/fish/kafka/fish-kafka.xml" /> 
     
     <!-- 定时任务配置 -->
  	<import resource="classpath:/quartz/spring-quartz-batch.xml" />
