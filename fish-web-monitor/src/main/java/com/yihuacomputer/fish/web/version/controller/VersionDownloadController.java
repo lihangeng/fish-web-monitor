@@ -239,7 +239,7 @@ public class VersionDownloadController {
 
 		int downloadCounter = version.getDownloadCounter() + 1;
 		IJob job = jobService.make();
-		job.setJobName(form.getJobName() + "_" + downloadCounter);
+		job.setJobName(versions.getVersionType().getTypeName()+"_"+versions.getVersionNo() + "_" + downloadCounter);
 		job.setVersion(versionService.getById(form.getVersionId()));
 		job.setJobType(form.getJobType());
 		job.setJobPriority(form.getJobPriority());
