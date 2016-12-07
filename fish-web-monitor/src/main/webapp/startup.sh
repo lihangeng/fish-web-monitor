@@ -3,13 +3,13 @@ APP_PATH=`pwd`
 export APP_PATH
 WEBPIDFILE=WEBPID.ini
 WEB_PIDFILE=$APP_PATH/$WEBPIDFILE
-#是否存在INI文件，不存在直接启动
+#Isn't exist PID file,don't exist will running
 if [ -f "$WEB_PIDFILE" ];then
-#存在INI文件,读取PID
+#Exist PID file,read PID config
 WEBPID=`awk -F "=" '{if($1=="WEB_PID")print $2}' $WEBPIDFILE`
-#检查进程中是否存在相应的PID
+#check pid from process
 checkReuslt=`ps -o pid |grep $WEBPID |awk '{if($1=='$WEBPID')print "ok"}'`
-#存在退出启动操作
+#pid in the process,goto end
 if [[ $checkReuslt = "ok" ]];then
         echo "Web App is started"
         exit;
@@ -29,5 +29,5 @@ JAVA_OPTS="-server -Xms2048m -Xmx2048m -XX:PermSize=1024m -XX:MaxPermSize=2048m 
 export JAVA_OPTS
 
 #java  $JAVA_OPTS -classpath $CLASSPATH -Dfile.encoding=utf-8 com.yihuacomputer.fish.web.FishConsole
-nohup java  $JAVA_OPTS -Dcom.sun.management.jmxremote.port=8999 -Dcom.sun.managent.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -classpath $CLASSPATH -Dfile.encoding=utf-8 com.yihuacomputer.fish.web.FishConsole >/dev/null 2>1 &
+nohup java  $JAVA_OPTS -classpath $CLASSPATH -Dfile.encoding=utf-8 com.yihuacomputer.fish.web.FishConsole >/dev/null 2>1 &
 echo "Web App is Starting"
