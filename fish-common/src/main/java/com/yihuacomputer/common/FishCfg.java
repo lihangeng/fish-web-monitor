@@ -53,7 +53,7 @@ public class FishCfg {
 		}
 		try {
 			FishCfg.hostIp=InetAddress.getLocalHost().getHostAddress();
-		} catch (UnknownHostException e) {
+		} catch (final UnknownHostException e) {
 			logger.error(e.getMessage());
 		}
 	}
@@ -82,11 +82,8 @@ public class FishCfg {
 	public static boolean isFishExpiry() {
 		String expiryDate = FishCfg.entities.get("expiry_date");
 		String today = DateUtils.getDate(new Date());
-		if (expiryDate != null && expiryDate.compareTo(today) > 0) {
-			return false;
-		} else {
-			return true;
-		}
+		boolean fishExpiry = (expiryDate != null && expiryDate.compareTo(today) > 0);
+		return !fishExpiry;
 	}
 
 	/**
@@ -105,7 +102,7 @@ public class FishCfg {
 	 * @param value
 	 */
 	public static void setFishCfg(String key, String value) {
-		if (key.equals("register_serial")) {
+		if ("register_serial".equals(key)) {
 			FishCfg.initFishExpiry(value);
 		}
 		FishCfg.entities.put(key, value);
