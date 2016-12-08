@@ -15,6 +15,8 @@ import org.apache.http.conn.HttpHostConnectException;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.HttpConnectionParams;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.yihuacomputer.common.jackson.JsonUtils;
 
@@ -27,6 +29,7 @@ import com.yihuacomputer.common.jackson.JsonUtils;
  * */
 public class HttpFileClient {
 
+	private static Logger logger = LoggerFactory.getLogger(HttpFileClient.class);
 	private static final int CONNECTION_TIMEOUT = 30 * 1000;
 
 	private static final int SO_TIMEOUT = 30 * 1000;
@@ -37,8 +40,8 @@ public class HttpFileClient {
 
 	private static final String ENCODING_DEFAULT = "UTF-8";
 
-	public HttpFileClient(){
-
+	private HttpFileClient(){
+		throw new IllegalAccessError("Utils Class");
 	}
 	/**
 	 * 通过HTTP方式下载文件
@@ -56,12 +59,14 @@ public class HttpFileClient {
 		HttpClient httpClient = new DefaultHttpClient();
 
 		HttpPost httpPost = new HttpPost();
-
+		StringBuffer stringBuffer = new StringBuffer();
+		stringBuffer.append("http://").append(fileCfg.getIpAdd()).append(":").append(fileCfg.getPort())
+		.append("/ctr/download");
 		URI uri = null;
 		try {
-			uri = new URI("http://" + fileCfg.getIpAdd() + ":" + fileCfg.getPort() + "/ctr/download");
+			uri = new URI(stringBuffer.toString());
 		} catch (URISyntaxException e) {
-			//e.printStackTrace();
+			logger.error(String.format("url %s URISyntaxException[%s]", stringBuffer.toString(),e));
 			return HttpFileRet.URL_ERROR;
 		}
 
@@ -105,6 +110,7 @@ public class HttpFileClient {
 			se = new StringEntity(JsonUtils.toJson(fileCfg), HttpFileClient.ENCODING_DEFAULT);
 			httpPost.setEntity(se);
 		} catch (UnsupportedEncodingException e) {
+			logger.error("UnsupportedEncodingException"+e.getMessage());
 			return HttpFileRet.ERROR;
 		}
 
@@ -135,23 +141,25 @@ public class HttpFileClient {
 				return ret;
 			}
 		}catch(HttpHostConnectException e){
+			logger.error("HttpHostConnectException "+e.getMessage());
 			return HttpFileRet.CONN_ERROR;
 		}
 		catch (Exception e) {
+			logger.error("Exception "+e.getMessage());
 			return HttpFileRet.ERROR;
 		} finally {
 			if (randomFile != null) {
 				try {
 					randomFile.close();
 				} catch (IOException e) {
-					return HttpFileRet.ERROR;
+					logger.error("randomFile close IOException "+e.getMessage());
 				}
 			}
 			if (is != null) {
 				try {
 					is.close();
 				} catch (IOException e) {
-					return HttpFileRet.ERROR;
+					logger.error("inputStream close IOException "+e.getMessage());
 				}
 			}
 		}
@@ -171,11 +179,14 @@ public class HttpFileClient {
 
 		HttpPost httpPost = new HttpPost();
 
+		StringBuffer stringBuffer = new StringBuffer();
+		stringBuffer.append("http://").append(fileCfg.getIpAdd()).append(":").append(fileCfg.getPort())
+		.append("/ctr/mergeDownload");
 		URI uri = null;
 		try {
-			uri = new URI("http://" + fileCfg.getIpAdd() + ":" + fileCfg.getPort() + "/ctr/mergeDownload");
+			uri = new URI(stringBuffer.toString());
 		} catch (URISyntaxException e) {
-			//e.printStackTrace();
+			logger.error(String.format("url %s URISyntaxException[%s]", stringBuffer.toString(),e));
 			return HttpFileRet.URL_ERROR;
 		}
 
@@ -219,6 +230,7 @@ public class HttpFileClient {
 			se = new StringEntity(JsonUtils.toJson(fileCfg), HttpFileClient.ENCODING_DEFAULT);
 			httpPost.setEntity(se);
 		} catch (UnsupportedEncodingException e) {
+			logger.error(String.format("UnsupportedEncodingException [%s]",e));
 			return HttpFileRet.ERROR;
 		}
 
@@ -249,6 +261,7 @@ public class HttpFileClient {
 				return ret;
 			}
 		}catch(HttpHostConnectException e){
+			logger.error(String.format("HttpHostConnectException [%s]",e));
 			return HttpFileRet.CONN_ERROR;
 		}
 		catch (Exception e) {
@@ -258,14 +271,14 @@ public class HttpFileClient {
 				try {
 					randomFile.close();
 				} catch (IOException e) {
-					return HttpFileRet.ERROR;
+					logger.error(String.format("randomFile close [%s]",e));
 				}
 			}
 			if (is != null) {
 				try {
 					is.close();
 				} catch (IOException e) {
-					return HttpFileRet.ERROR;
+					logger.error(String.format("inputStream close [%s]",e));
 				}
 			}
 		}
@@ -285,17 +298,4 @@ public class HttpFileClient {
 		return 0L;
 	}
 
-	public static void main(String[] args) {
-		HttpFileCfg cfg = new HttpFileCfg();
-
-		//cfg.setLocalName("fish1.log");
-		cfg.setIpAdd("192.168.0.170");
-		cfg.setPort("8080");
-		cfg.setRetry(false);
-		cfg.setRequestName("yihua.zip");
-//		cfg.setLocalPath(FishCfg.getAtmAppLogDir());
-		cfg.setRequestPath("C:\\");
-		cfg.setCompress(false);
-		HttpFileClient.downloadFile(cfg);
-	}
 }
