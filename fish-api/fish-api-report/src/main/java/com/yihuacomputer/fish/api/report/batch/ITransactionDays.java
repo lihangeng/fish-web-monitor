@@ -1,107 +1,117 @@
 package com.yihuacomputer.fish.api.report.batch;
 
-public interface ITransactionDays {
+/**
+ * @author GQ
+ *
+ */
+interface ITransactionDays {
 
-	public long getId();
+	/**
+	 * @return
+	 */
+	long getId();
 
-	public void setId(long id);
+	/**
+	 * @param id
+	 */
+	void setId(long id);
 
 	/**
 	 * 交易日期
 	 * @return
 	 */
-	public long getTransDate();
+	long getTransDate();
 	/**
 	 * 交易日期
 	 * @param transDate
 	 */
-	public void setTransDate(long transDate);
+	void setTransDate(long transDate);
 
 	/**
 	 * 交易次数
 	 * @return
 	 */
-	public long getTransCount();
+	long getTransCount();
 	/**
 	 * 交易次数
 	 * @param transCount
 	 */
-	public void setTransCount(long transCount);
+	void setTransCount(long transCount);
 
 	/**
 	 * 厂商名称
 	 * @return
 	 */
-	public String getVendorName();
+	String getVendorName();
 	/**
 	 * 厂商名称
 	 * @param vendorName
 	 */
-	public void setVendorName(String vendorName);
+	void setVendorName(String vendorName);
 
 	/**
 	 * 设备型号
 	 * @return
 	 */
-	public String getDevType();
+	String getDevType();
 	/**
 	 * 设备型号
 	 * @param devType
 	 */
-	public void setDevType(String devType);
+	void setDevType(String devType);
 
 	/**
 	 * 交易码
 	 * @return
 	 */
-	public String getTransCode();
+	String getTransCode();
 	/**
 	 * 交易码
 	 * @return
 	 */
-	public void setTransCode(String transCode);
+	void setTransCode(String transCode);
 	
 	/**
 	 * 卡类型
 	 * @return
 	 */
-	public String getCardType();
+	String getCardType();
 	/**
 	 * 卡类型
 	 * @return
 	 */
-	public void setCardType(String cardType);
+	void setCardType(String cardType);
 	
 	/**
 	 * 交易金额
 	 * @return
 	 */
-	public long getTransAmt();
+	long getTransAmt();
 	/**
 	 * 交易金额
 	 * @param transAmt
 	 */
-	public void setTransAmt(long transAmt);
+	void setTransAmt(long transAmt);
 	
 	/**
 	 * 品牌ID
 	 * @return
 	 */
-	public long getVendorId() ;
+	long getVendorId() ;
 	/**
 	 * 品牌ID
 	 * @param vendorId
 	 */
-	public void setVendorId(long vendorId);
+	void setVendorId(long vendorId);
 
 	/**
 	 * 型号ID
 	 * @return
 	 */
-	public long getDevTypeId();
+	long getDevTypeId();
 	/**
 	 * 型号ID
 	 * @param devTypeId
 	 */
-	public void setDevTypeId(long devTypeId);
+	void setDevTypeId(long devTypeId);
 }

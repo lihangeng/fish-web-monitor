@@ -60,7 +60,7 @@ public class ClearFileJob extends AbstractYihuaJob{
 		try {
 			FileUtils.deleteDirectory(tempDir);
 		} catch (IOException e) {
-			logger.error(String.format("FileUtils.deleteDirectory %s", tempDirStr));
+			logger.error(String.format("FileUtils.deleteDirectory %s,and error is %s", tempDirStr,e));
 		}
 		if (!tempDir.isDirectory()) {
 			tempDir.mkdir();
