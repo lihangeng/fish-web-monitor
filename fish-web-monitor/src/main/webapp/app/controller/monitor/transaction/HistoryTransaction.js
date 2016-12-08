@@ -47,6 +47,9 @@ Ext.define('Eway.controller.monitor.transaction.HistoryTransaction', {
 									store.removeAll();
 						    	}
 							}
+					        else{
+					        	Eway.alert(operation.error);
+					        }
 						}
 				    });
 			}else{

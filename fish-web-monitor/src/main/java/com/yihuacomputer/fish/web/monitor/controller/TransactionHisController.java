@@ -1,8 +1,6 @@
 package com.yihuacomputer.fish.web.monitor.controller;
 
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -107,8 +105,8 @@ public class TransactionHisController {
                 pageResultTransList = transactionViewService.pageNoBlackList(start,limit, request2filter(webRequest,"transaction."),Long.valueOf(request.getParameter("organizationId")));
             }
             result.put(FishConstant.SUCCESS, true);
-            result.put("total", pageResultTransList.getTotal());
-            result.put("data", TransactionForm.convertView(pageResultTransList.list()));
+            result.put(FishConstant.TOTAL, pageResultTransList.getTotal());
+            result.put(FishConstant.DATA, TransactionForm.convertView(pageResultTransList.list()));
             return result;
         }else{
         	return makeErrorPage(result,String.format(messageSource.getMessage("transactionHis.termRight", null, FishCfg.locale),terminalId));
@@ -118,13 +116,8 @@ public class TransactionHisController {
     }
 
     private ModelMap makeErrorPage(ModelMap result,String reasson){
-    	result.put(FishConstant.SUCCESS, true);
-        result.put("total", 1);
-        TransactionForm msg = new TransactionForm();
-        msg.setTermId(reasson);
-        List<TransactionForm> forms = new ArrayList<TransactionForm>();
-        forms.add(msg);
-        result.put("data", forms);
+    	result.put(FishConstant.SUCCESS, false);
+        result.put(FishConstant.ERROR_MSG, reasson);
     	return result;
     }
 
