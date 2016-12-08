@@ -35,13 +35,13 @@ public class GoogleMapUtils {
                 + axisY + "&z=" + zoomZ + "&s=G&style=api%7Csmartmaps";
         try{
 	
-	        String dirPath = mapPath + FishCfg.fileSep + zoomZ + FishCfg.fileSep + axisX;
+	        String dirPath = mapPath + FishCfg.FILESEP + zoomZ + FishCfg.FILESEP + axisX;
 	        File dirFile = new File(dirPath);
 	
 	        if (!dirFile.exists()) {
 	            dirFile.mkdirs();
 	        }
-	        File file = new File(dirPath + FishCfg.fileSep + axisY + ".png");
+	        File file = new File(dirPath + FishCfg.FILESEP + axisY + ".png");
 	        if(file.exists()){
 	        	return;
 	        }

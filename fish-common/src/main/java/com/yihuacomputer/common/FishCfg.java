@@ -28,7 +28,7 @@ public class FishCfg {
 	
 	private static Map<String, String> entities = new HashMap<String, String>();
 
-	public static final String fileSep = System.getProperty("file.separator");
+	public static final String FILESEP = System.getProperty("file.separator");
 
 	private static String hostIp = "127.0.0.1";
 	
@@ -67,6 +67,10 @@ public class FishCfg {
 		return FishCfg.entities.get(paramName);
 	}
 
+	/**
+	 * 初始化系统过期日期
+	 * @param registerSerial
+	 */
 	public static void initFishExpiry(String registerSerial) {
 
 		RegisterInfo reg = SystemRegisterUtil.analys(registerSerial);
@@ -82,7 +86,7 @@ public class FishCfg {
 	public static boolean isFishExpiry() {
 		String expiryDate = FishCfg.entities.get("expiry_date");
 		String today = DateUtils.getDate(new Date());
-		boolean fishExpiry = (expiryDate != null && expiryDate.compareTo(today) > 0);
+		boolean fishExpiry = expiryDate != null && expiryDate.compareTo(today) > 0;
 		return !fishExpiry;
 	}
 
@@ -92,7 +96,7 @@ public class FishCfg {
 	 * @return
 	 */
 	public static String getFishHelpDoc() {
-		return FishCfg.getFishHome() + FishCfg.fileSep + "help";
+		return FishCfg.getFishHome() + FishCfg.FILESEP + "help";
 	}
 
 	/**
@@ -118,7 +122,7 @@ public class FishCfg {
 		if (fileRoot != null) {
 			return fileRoot;
 		} else {
-			return "c:" + FishCfg.fileSep + "fish_home";
+			return "c:" + FishCfg.FILESEP + "fish_home";
 		}
 	}
 
@@ -128,7 +132,7 @@ public class FishCfg {
 	 * @return
 	 */
 	public static String getTempDir() {
-		return FishCfg.getFishHome() + FishCfg.fileSep + "temp";
+		return FishCfg.getFishHome() + FishCfg.FILESEP + "temp";
 	}
 
 	/**
@@ -137,11 +141,11 @@ public class FishCfg {
 	 * @return
 	 */
 	public static String getAnnouncementDir() {
-		return FishCfg.getFishHome() + FishCfg.fileSep + "announcement";
+		return FishCfg.getFishHome() + FishCfg.FILESEP + "announcement";
 	}
 
 	public static String getVersionDir() {
-		return FishCfg.getFishHome() + FishCfg.fileSep + "version";
+		return FishCfg.getFishHome() + FishCfg.FILESEP + "version";
 	}
 
 	public static Map<String, String> getEntities() {

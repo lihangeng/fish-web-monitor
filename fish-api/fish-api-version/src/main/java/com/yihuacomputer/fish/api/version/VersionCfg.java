@@ -8,7 +8,7 @@ public class VersionCfg {
 	 * 获得版本文件的存放路径
 	 */
 	public static String getVersionDir() {
-		return FishCfg.getFishHome() + FishCfg.fileSep + "version";
+		return FishCfg.getFishHome() + FishCfg.FILESEP + "version";
 	}
 
 	/**
@@ -17,7 +17,7 @@ public class VersionCfg {
 	 * @return
 	 */
 	public static String getAdvertDir() {
-		return FishCfg.getFishHome() + FishCfg.fileSep + "advert";
+		return FishCfg.getFishHome() + FishCfg.FILESEP + "advert";
 	}
 	
 	/**
@@ -26,7 +26,7 @@ public class VersionCfg {
 	 * @return
 	 */
 	public static String getBsAdvertDir() {
-		return FishCfg.getFishHome() + FishCfg.fileSep + "bsAdvert";
+		return FishCfg.getFishHome() + FishCfg.FILESEP + "bsAdvert";
 	}
 
 	/**
@@ -35,10 +35,10 @@ public class VersionCfg {
 	 * @return
 	 */
 	public static String getAtmParamDir() {
-		return FishCfg.getFishHome() + FishCfg.fileSep + "temp"+FishCfg.fileSep+"atmParam";
+		return FishCfg.getFishHome() + FishCfg.FILESEP + "temp"+FishCfg.FILESEP+"atmParam";
 	}
 	
 	public static void main(String[] args) {
-		System.out.println(FishCfg.getFishHome()+FishCfg.fileSep+"temp");
+		System.out.println(FishCfg.getFishHome()+FishCfg.FILESEP+"temp");
 	}
 }

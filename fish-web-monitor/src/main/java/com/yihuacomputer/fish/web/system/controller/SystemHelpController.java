@@ -39,7 +39,7 @@ public class SystemHelpController
 	@MethodNameDescrible(describle="userlog.SystemHelpController.download",hasArgs=true,argsContext="fileName")
     @RequestMapping(value = "/downloadFile",method = RequestMethod.GET)
     public void download(@RequestParam String fileName,HttpServletRequest request,HttpServletResponse response) throws Exception {
-    	String path = FishCfg.getFishHelpDoc()+FishCfg.fileSep+fileName;
+    	String path = FishCfg.getFishHelpDoc()+FishCfg.FILESEP+fileName;
     	File file = new File(path);
         response.setHeader("Content-Disposition", "attachment; filename=\"" + getFileName(request,fileName) + "\"");
         response.addHeader("Content-Length", "" + file.length());

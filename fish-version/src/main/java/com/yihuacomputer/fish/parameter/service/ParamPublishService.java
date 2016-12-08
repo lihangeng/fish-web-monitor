@@ -148,7 +148,7 @@ public class ParamPublishService implements IParamPublishService {
 		if (!generateParamFile(map, appVersionMap)) {
 			return 0;
 		}
-		String sourceFile = VersionCfg.getAtmParamDir() + FishCfg.fileSep + appVersionMap.get(MAX_VERSION_TIMESTAMP) + FishCfg.fileSep;
+		String sourceFile = VersionCfg.getAtmParamDir() + FishCfg.FILESEP + appVersionMap.get(MAX_VERSION_TIMESTAMP) + FishCfg.FILESEP;
 		String targetFile = sourceFile + "param.zip";
 		// 压缩包存在则不再进行压缩处理
 		if (!new File(targetFile).exists()) {
@@ -277,7 +277,7 @@ public class ParamPublishService implements IParamPublishService {
 		if (!generateParamFile(descriptionMap, appVersionMap)) {
 			return 0;
 		}
-		String sourceFile = VersionCfg.getAtmParamDir() + FishCfg.fileSep + appVersionMap.get(MAX_VERSION_TIMESTAMP) + FishCfg.fileSep;
+		String sourceFile = VersionCfg.getAtmParamDir() + FishCfg.FILESEP + appVersionMap.get(MAX_VERSION_TIMESTAMP) + FishCfg.FILESEP;
 		File file = new File(sourceFile + "param.zip");
 		if (!file.exists()) {
 			ZipUtils.zip(sourceFile, sourceFile + "param.zip", "utf-8");
@@ -294,7 +294,7 @@ public class ParamPublishService implements IParamPublishService {
 	private long noticeDeviceDownloadParamFileByTemplate(long templateId, long versionNo, long personId) {
 		try {
 			List<IDevice> templateDeviceRelationList = templateDeviceRelationService.listDeviceByTemplate(templateId);
-			String file = VersionCfg.getAtmParamDir() + FishCfg.fileSep + versionNo + FishCfg.fileSep;
+			String file = VersionCfg.getAtmParamDir() + FishCfg.FILESEP + versionNo + FishCfg.FILESEP;
 			ParamInfo paramInfo = new ParamInfo();
 			paramInfo.setVersionNo(versionNo);
 			paramInfo.setServerPath(file);
@@ -329,7 +329,7 @@ public class ParamPublishService implements IParamPublishService {
 			List<IDevice> deviceList = deviceService.list(filter);
 			List<ParamInfo> list = new ArrayList<ParamInfo>();
 			for (long versionNo : versionNoList) {
-				String file = VersionCfg.getAtmParamDir() + FishCfg.fileSep + versionNo + FishCfg.fileSep;
+				String file = VersionCfg.getAtmParamDir() + FishCfg.FILESEP + versionNo + FishCfg.FILESEP;
 				ParamInfo paramInfo = new ParamInfo();
 				paramInfo.setVersionNo(versionNo);
 				paramInfo.setServerPath(file);
@@ -467,7 +467,7 @@ public class ParamPublishService implements IParamPublishService {
 	 * @return
 	 */
 	private boolean wirteFile(Map<String, Map<String, String>> mapInfo, FileFormat fileFormat, long maxVersion, String fileName) {
-		String fileStr = VersionCfg.getAtmParamDir() + FishCfg.fileSep + maxVersion + FishCfg.fileSep + fileName;
+		String fileStr = VersionCfg.getAtmParamDir() + FishCfg.FILESEP + maxVersion + FishCfg.FILESEP + fileName;
 		File file = new File(fileStr);
 		if (file.exists()) {
 			return true;

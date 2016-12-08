@@ -85,7 +85,7 @@ public class MonitorCfg {
 	 * @return
 	 */
 	public static String getFishModelDoc() {
-	    return FishCfg.getFishHome() + FishCfg.fileSep + "model";
+	    return FishCfg.getFishHome() + FishCfg.FILESEP + "model";
 	}
 
 	/**
@@ -94,7 +94,7 @@ public class MonitorCfg {
 	 * @return
 	 */
 	public static String getFishNotifyDoc() {
-		return FishCfg.getFishHome() + FishCfg.fileSep + "notifySms";
+		return FishCfg.getFishHome() + FishCfg.FILESEP + "notifySms";
 	}
 
 

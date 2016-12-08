@@ -75,21 +75,21 @@ public class ExportReportService implements IExportReportService {
 
 		/* 设置生成的PDF文件名 */
 		if (params.isPdf()) {
-			String pdfFile = params.getReportFilepath() + FishCfg.fileSep + fileName + ".pdf";
+			String pdfFile = params.getReportFilepath() + FishCfg.FILESEP + fileName + ".pdf";
 			pdfHander.exportReport(pdfFile, jasperPrint);
 			result.setPdfFile(pdfFile.replace("\\", "/"));
 		}
 
 		/* 设置生成的HTML文件名 */
 		if (params.isHtml()) {
-			String htmlFile = params.getReportFilepath() + FishCfg.fileSep + fileName	+ ".html";
+			String htmlFile = params.getReportFilepath() + FishCfg.FILESEP + fileName	+ ".html";
 			htmlHander.exportReport(htmlFile, jasperPrint);
 			result.setHtmlFile(htmlFile.replace("\\", "/"));
 		}
 
 		/* 设置生成的XLS文件名 */
 		if (params.isXls()) {
-			String xlsFile = params.getReportFilepath() + FishCfg.fileSep + fileName + ".xls";
+			String xlsFile = params.getReportFilepath() + FishCfg.FILESEP + fileName + ".xls";
 			xlsHander.setXlsSheetNames(params.getSheetNames());	// 工作薄的名称
 			xlsHander.exportReport(xlsFile, jasperPrint);
 			result.setXlsFile(xlsFile.replace("\\", "/"));

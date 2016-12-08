@@ -180,8 +180,8 @@ public class AtmLogController {
 			month = calendar.get(Calendar.MONTH);
 			String monthString = "";
 			monthString = (month < 9) ? ("0" + String.valueOf(month + 1)) : (String.valueOf(month + 1));
-			path = AtmLogCfg.getAtmAppLogDir() + FishCfg.fileSep + String.valueOf(year) + FishCfg.fileSep + monthString
-					+ FishCfg.fileSep + deviceId + FishCfg.fileSep + fileName;
+			path = AtmLogCfg.getAtmAppLogDir() + FishCfg.FILESEP + String.valueOf(year) + FishCfg.FILESEP + monthString
+					+ FishCfg.FILESEP + deviceId + FishCfg.FILESEP + fileName;
 		} catch (ParseException e1) {
 			e1.printStackTrace();
 		}
@@ -470,9 +470,9 @@ public class AtmLogController {
 		ModelMap result = new ModelMap();        
         HttpFileCfg httpFileCfg = new HttpFileCfg();
         String localName = requestName;
-        String localPath = AtmLogCfg.getAtmAppLogDir() + FishCfg.fileSep
-				+ dateTime.substring(0, 4) + FishCfg.fileSep
-				+ dateTime.substring(5, 7) + FishCfg.fileSep
+        String localPath = AtmLogCfg.getAtmAppLogDir() + FishCfg.FILESEP
+				+ dateTime.substring(0, 4) + FishCfg.FILESEP
+				+ dateTime.substring(5, 7) + FishCfg.FILESEP
 				+ terminalId;
         httpFileCfg.setLocalName(localName);
         httpFileCfg.setLocalPath(localPath);
@@ -519,7 +519,7 @@ public class AtmLogController {
 	 * @return
 	 */
 	private long getLogSize(HttpFileCfg cfg){
-		File logFile = new File(cfg.getLocalPath()+FishCfg.fileSep+cfg.getLocalName());
+		File logFile = new File(cfg.getLocalPath()+FishCfg.FILESEP+cfg.getLocalName());
 
 		if(logFile.exists()){
 			return logFile.length();

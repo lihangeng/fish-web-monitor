@@ -13,9 +13,9 @@ public class BackupFileCfg implements IBackupFileCfg{
 
 	@Override
 	public String getServerFilePath(IBackupRule backupRule) {
-		return AtmLogCfg.getAtmAppLogDir() + FishCfg.fileSep
-				+ backupRule.getBackupDate().substring(0, 4) + FishCfg.fileSep
-				+ backupRule.getBackupDate().substring(5, 7) + FishCfg.fileSep
+		return AtmLogCfg.getAtmAppLogDir() + FishCfg.FILESEP
+				+ backupRule.getBackupDate().substring(0, 4) + FishCfg.FILESEP
+				+ backupRule.getBackupDate().substring(5, 7) + FishCfg.FILESEP
 				+ backupRule.getTerminalId();
 	}
 

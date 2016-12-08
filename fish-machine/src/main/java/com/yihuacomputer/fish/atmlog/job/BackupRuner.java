@@ -73,7 +73,7 @@ public class BackupRuner implements Runnable{
 	 * @return
 	 */
 	private long getLogSize(HttpFileCfg cfg){
-		File logFile = new File(cfg.getLocalPath()+FishCfg.fileSep+cfg.getLocalName());
+		File logFile = new File(cfg.getLocalPath()+FishCfg.FILESEP+cfg.getLocalName());
 
 		if(logFile.exists()){
 			return logFile.length();

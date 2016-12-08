@@ -38,7 +38,7 @@ public class AtmLogCfg {
 	 * @return
 	 */
 	public static String getAtmAppLogDir() {
-		return FishCfg.getFishHome() + FishCfg.fileSep + "atmc_log";
+		return FishCfg.getFishHome() + FishCfg.FILESEP + "atmc_log";
 	}
 
 }

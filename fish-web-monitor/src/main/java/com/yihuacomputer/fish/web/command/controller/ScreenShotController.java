@@ -115,7 +115,7 @@ public class ScreenShotController {
 				saveForm.setScreenShotTime(screenShotTime);
 				saveForm.setFileNameClient(httpFileCfg.getLocalName());
 				saveForm.setFilePathClient(httpFileCfg.getLocalPath());
-				String allPath = httpFileCfg.getLocalPath() + FishCfg.fileSep + httpFileCfg.getLocalName();
+				String allPath = httpFileCfg.getLocalPath() + FishCfg.FILESEP + httpFileCfg.getLocalName();
 				saveForm.setAllPath(allPath);
 				list.add(saveForm);
 			}

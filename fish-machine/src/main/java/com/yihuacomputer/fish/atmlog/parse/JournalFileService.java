@@ -37,7 +37,7 @@ public class JournalFileService implements IJournalFileService{
 	 * @return
 	 */
 	public File combineJournal(List<File> files) {
-		File journalFile = new File(FishCfg.getTempDir()+FishCfg.fileSep+UUID.randomUUID().toString());
+		File journalFile = new File(FishCfg.getTempDir()+FishCfg.FILESEP+UUID.randomUUID().toString());
 		FileChannel mFileChannel = null;
 		FileChannel inFileChannel = null;
 		try {

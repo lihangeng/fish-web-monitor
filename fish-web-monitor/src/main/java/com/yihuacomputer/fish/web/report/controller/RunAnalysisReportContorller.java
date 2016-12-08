@@ -107,7 +107,7 @@ public class RunAnalysisReportContorller {
 		String fileName = request.getParameter("fileName");
 		File file = null;
 		try {
-			String path = filePath + FishCfg.fileSep + fileName;
+			String path = filePath + FishCfg.FILESEP + fileName;
 			file = new File(path);
 			response.setHeader("Content-Disposition", "attachment; filename=\"" + getFileName(request, file.getName()) + "\"");
 			response.setContentType("application/x-msdownload;charset=UTF-8");

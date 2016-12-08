@@ -38,6 +38,7 @@ public class FishConsole {
 	private static String FILESEP = System.getProperty("file.separator");
 
 	private static String WEBHOME = System.getProperty("user.dir");
+	private static String DBCONFIG = "";
 	
 	static{
 		if(!new File(WEBHOME+FILESEP+"conf").exists()){
@@ -49,9 +50,11 @@ public class FishConsole {
 					break;
 				}
 			}
-//			WEBHOME = WEBHOME+FILESEP+"target"+FILESEP+"atmvs-abc-1.0.0.0-SNAPSHOT";
 		}
-		System.out.println(WEBHOME);
+		StringBuilder fileConfig = new StringBuilder();
+		fileConfig.append(WEBHOME).append(FILESEP).append("conf").append(FILESEP).append("jetty-mysql.xml");
+		DBCONFIG = fileConfig.toString();
+		logger.info(String.format("WebHome is %s.",WEBHOME));
 	}
 	public static void main(String[] args) throws Exception {
 		logger.info("Starting ATMVS Console……");
@@ -98,7 +101,7 @@ public class FishConsole {
 		context.setClassLoader(Thread.currentThread().getContextClassLoader());
 		context.setConfigurationDiscovered(true);
 		context.setParentLoaderPriority(true);
-		String[] configFiles = {WEBHOME+FILESEP+"conf"+FILESEP+"jetty-mysql.xml"};
+		String[] configFiles = {DBCONFIG};
 		for(String configFile : configFiles) {
 			  XmlConfiguration configuration = new XmlConfiguration(new File(configFile).toURI().toURL());
 			  configuration.configure(context);
@@ -115,7 +118,7 @@ public class FishConsole {
 		context.setClassLoader(Thread.currentThread().getContextClassLoader());  
 		context.setConfigurationDiscovered(true);  
 		context.setParentLoaderPriority(true);
-		String[] configFiles = {WEBHOME+FILESEP+"conf"+FILESEP+"jetty-mysql.xml"};
+		String[] configFiles = {DBCONFIG};
 		for(String configFile : configFiles) {
 			XmlConfiguration configuration = new XmlConfiguration(new File(configFile).toURI().toURL());
 			configuration.configure(context);
