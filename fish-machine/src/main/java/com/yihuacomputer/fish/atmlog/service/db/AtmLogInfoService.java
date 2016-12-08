@@ -83,7 +83,7 @@ public class AtmLogInfoService implements IAtmLogInfoService {
 
 	@SuppressWarnings("unchecked")
     @Transactional(readOnly=true)
-    private int getTotal(String sqlStr) {
+    public int getTotal(String sqlStr) {
 	    String sqlNoOrderBy = "";
 	    int orderByIndex = sqlStr.indexOf("order by");
 	    if(orderByIndex > 0){
@@ -169,7 +169,6 @@ public class AtmLogInfoService implements IAtmLogInfoService {
 	    String filterStr = getFilter(filter);
 	    String realSql = sql.toString().replace("${filters}",filterStr);
 
-//	    String realSql = sql.toString();
 	    SQLQuery query = dao.getSQLQuery(realSql);
 	    query.addScalar("id",StandardBasicTypes.INTEGER);
 	    query.addScalar("orgName",StandardBasicTypes.STRING);

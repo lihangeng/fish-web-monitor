@@ -18,9 +18,23 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 import java.util.zip.ZipOutputStream;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+/**
+ * 压缩工具
+ * @author GQ
+ *
+ */
 public class ZipUtils {
 
-	public static final int BUFFER = 1024;// 缓存大小
+	private static Logger logger = LoggerFactory.getLogger(ZipUtils.class);
+	private ZipUtils(){
+		throw new IllegalAccessError("Utils Class");
+	}
+	
+	// 缓存大小
+	public static final int BUFFER = 1024;
 
 	/**
 	 * 压缩文件
@@ -40,7 +54,7 @@ public class ZipUtils {
 			byte[] buf = new byte[BUFFER];
 			int readLen = 0;
 			for (int i = 0; i < fileList.size(); i++) {
-				File f = (File) fileList.get(i);
+				File f = fileList.get(i);
 				ze = new ZipEntry(getAbsFileName(sourceFile, f));
 				ze.setSize(f.length());
 				ze.setTime(f.lastModified());
@@ -53,7 +67,7 @@ public class ZipUtils {
 			}
 			zos.close();
 		}catch(Exception e){
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}finally{
 			try {
 				if (is!=null) {
@@ -63,7 +77,7 @@ public class ZipUtils {
 					zos.close();
 				}
 			} catch (Exception e2) {
-				e2.printStackTrace();
+				logger.error(e2.getMessage());
 			}
 		}
 	}
@@ -80,7 +94,7 @@ public class ZipUtils {
 	private static String getAbsFileName(String baseDir, File realFileName) {
 		File real = realFileName;
 		File base = new File(baseDir);
-		String ret = real.getName();
+		StringBuffer ret = new StringBuffer(real.getName());
 		while (true) {
 			real = real.getParentFile();
 			if (real == null){
@@ -89,10 +103,10 @@ public class ZipUtils {
 			if (real.equals(base)){
 				break;
 			}else{
-				ret = real.getName() + File.separator + ret;
+				ret .append(real.getName()).append(File.separator).append(ret);
 			}
 		}
-		return ret;
+		return ret.toString();
 	}
 
 	/**
@@ -125,8 +139,7 @@ public class ZipUtils {
 		OutputStream os=null;
 		InputStream is=null;
 		if (!file.isFile() || !file.getName().endsWith(".zip")) {
-//			System.out.println("该程序无法解压非zip文件");
-			System.out.println("The application only decompression zipFile");
+			logger.error("The application only decompression zipFile");
 		}else{
 			destDir = destDir.endsWith(File.separator) ? destDir : destDir + File.separator;
 			byte b[] = new byte[1024];  
@@ -137,13 +150,11 @@ public class ZipUtils {
 				Enumeration<? extends ZipEntry> enumeration =zipFile.entries();
 				ZipEntry zipEntry = null; 
 				while (enumeration.hasMoreElements()) {
-					zipEntry = (ZipEntry) enumeration.nextElement();
+					zipEntry = enumeration.nextElement();
 					File loadFile = new File(destDir + zipEntry.getName());
-					//判断压缩文件中的某个条目是文件夹还是文件
-					if (zipEntry.isDirectory()) {//如果是目录，那么判断该文件是否已存在并且不是一个文件夹,解决空文件夹解压后不存在的问题
-						if (!loadFile.exists()) {
-							loadFile.mkdirs();
-						}
+					//判断压缩文件中的某个条目是文件夹还是文件;如果是目录，那么判断该文件是否已存在并且不是一个文件夹,解决空文件夹解压后不存在的问题
+					if (zipEntry.isDirectory()&&!loadFile.exists()) {
+						loadFile.mkdirs();
 					}else{
 						if (!loadFile.getParentFile().exists()){  
 	                        loadFile.getParentFile().mkdirs();  
@@ -156,11 +167,12 @@ public class ZipUtils {
 	                     }
 						os.close();
 						is.close();
+						zipFile.close();
 					}
 				
 				}
 			} catch (Exception e) {
-				e.printStackTrace();
+				logger.error(e.getMessage());
 			}finally{
 				try {
 					if (os!=null) {
@@ -173,7 +185,7 @@ public class ZipUtils {
 						zipFile.close();
 					}
 				} catch (Exception e2) {
-					e2.printStackTrace();
+					logger.error(e2.getMessage());
 				}
 			}
 		}
@@ -211,11 +223,10 @@ public class ZipUtils {
 		try {
 			delAllFile(folderPath); // 删除完里面所有内容
 			String filePath = folderPath;
-			filePath = filePath.toString();
 			java.io.File myFilePath = new java.io.File(filePath);
 			myFilePath.delete(); // 删除空文件夹
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 	}
 
@@ -262,7 +273,7 @@ public class ZipUtils {
 	 * @param destDir
 	 *            提取出文件路径
 	 */
-	public static void UnZipByName(String sourcePath, String tempPath, String encoding, String name, String destDir) {
+	public static void unZipByName(String sourcePath, String tempPath, String encoding, String name, String destDir) {
 
 		unZip(sourcePath, tempPath, encoding);
 		File file = new File(tempPath);
@@ -295,14 +306,17 @@ public class ZipUtils {
 						br = new BufferedReader(reader);
 						bw = new BufferedWriter(writer);
 						while ((line = br.readLine()) != null) {
-							//System.out.println(line);
 							bw.write(line);
 							bw.newLine();
 							bw.flush();
 						}
+						bw.close();
+						br.close();
+						writer.close();
+						reader.close();
 						
 					} catch (Exception e) {
-						e.printStackTrace();
+						logger.error(e.getMessage());
 					}finally{
 						try {
 							if(bw!=null){
@@ -318,7 +332,7 @@ public class ZipUtils {
 								reader.close();
 							}
 						} catch (IOException e) {
-							e.printStackTrace();
+							logger.error(e.getMessage());
 						}
 					}
 				}
@@ -338,7 +352,7 @@ public class ZipUtils {
 	 * @param destDir
 	 *            提取出文件路径
 	 */
-	public static void UnZipByNameUnDel(String sourcePath, String tempPath, String encoding, String name, String destDir) {
+	public static void unZipByNameUnDel(String sourcePath, String tempPath, String encoding, String name, String destDir) {
 
 		unZip(sourcePath, tempPath, encoding);
 		File file = new File(tempPath);
@@ -351,22 +365,22 @@ public class ZipUtils {
 	 * @return
 	 */
 	public static boolean isZipFile(File zipFile) {
+		ZipFile zip = null;
 		try {
-			ZipFile zip = new ZipFile(zipFile);
+			zip = new ZipFile(zipFile);
 			zip.close();
 			return true;
 		} catch (IOException e) {
+			if(zip!=null){
+				try {
+					zip.close();
+				} catch (IOException e1) {
+					
+					logger.error(e1.getMessage());
+				}
+			}
+			logger.error(e.getMessage());
 			return false;
-		}
-	}
-	public static void main(String[] args) {
-		try {
-			// zipFile(ZIP_DIR,ZIP_FILENAME);
-//			GzipUtils.zip("d:\\LR_DB2","d:\\LR_DB2.zip","GBK");
-
-			ZipUtils.unZip("d:\\LR_DB2.zip","d:\\LR_DB2_UN","GBK");
-		} catch (Exception e) {
-			e.printStackTrace();
 		}
 	}
 }
