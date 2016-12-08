@@ -6,7 +6,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.UnsupportedEncodingException;
 import java.net.SocketException;
 
 import org.apache.commons.net.ftp.FTPClient;
@@ -23,10 +22,19 @@ import org.slf4j.LoggerFactory;
  */
 public class FtpUtils {
     
+	private FtpUtils(){
+		throw new IllegalAccessError("Utils Class");
+	}
+
+	private static final String ISOCHARSET="iso-8859-1";
+
+	private static final String UTF8CHARSET="UTF-8";
+	
+	
     public static final Logger logger = LoggerFactory.getLogger(FtpUtils.class);
 
     /**
-     * 向FTP服务器上传文件
+     * 指定编码向FTP服务器上传文件
      * 
      * @param ip
      *            FTP服务器hostname
@@ -55,8 +63,20 @@ public class FtpUtils {
         return uploadFile(ip, port, username, password, path, filename, input,encode);
     }
     
+    /**
+     * 未指定编码向FTP服务器上传文件
+     * @param ip
+     * @param port
+     * @param username
+     * @param password
+     * @param path
+     * @param filename
+     * @param localFilePath
+     * @return
+     * @throws IOException
+     */
     public static boolean uploadFile(String ip, int port, String username, String password, String path, String filename, String localFilePath) throws IOException {
-        return uploadFile(ip, port, username, password, path, filename, localFilePath,"UTF-8");
+        return uploadFile(ip, port, username, password, path, filename, localFilePath,UTF8CHARSET);
     }
 
 
@@ -81,8 +101,6 @@ public class FtpUtils {
      * @throws IOException
      */
     public static boolean uploadFile(String ip, int port, String username, String password, String path, String filename, InputStream input,String encode) throws IOException {
-        // 初始表示上传失败
-        boolean result = false;
         FTPClient ftp = login(ip, port, username, password);
         if (ftp == null)
             return false;
@@ -104,17 +122,16 @@ public class FtpUtils {
         ftp.enterLocalPassiveMode();
         ftp.changeWorkingDirectory(resultPath);
         // 将上传文件存储到指定目录
-        ftp.storeFile(UTFToiso8859(filename,encode), input);
+        ftp.storeFile(utfToiso8859(filename,encode), input);
         // 关闭输入流
         input.close();
         // 退出ftp
         ftp.logout();
         // 表示上传成功
-        result = true;
         if (ftp.isConnected()) {
             ftp.disconnect();
         }
-        return result;
+        return true;
     }
 
     /**
@@ -129,15 +146,19 @@ public class FtpUtils {
             return ftpClient.changeWorkingDirectory(path);
         }
         catch (Exception e) {
+        	logger.error(e.getMessage());
             return false;
         }
     }
 
     /**
      * 判断文件是否存在
-     * 
+     * @param ip
+     * @param port
+     * @param username
+     * @param password
      * @param path
-     * @param ftpClient
+     * @param name
      * @return
      */
     public static boolean isFileExist(String ip, int port, String username, String password, String path, String name) {
@@ -150,7 +171,7 @@ public class FtpUtils {
             FTPFile[] fs = ftp.listFiles();
             // 遍历所有文件，找到指定的文件
             for (FTPFile ff : fs) {
-                String filename = new String(ff.getName().toString().getBytes("iso-8859-1"), "UTF-8");
+                String filename = new String(ff.getName().getBytes(ISOCHARSET), UTF8CHARSET);
                 if (filename.equals(name)) {
                     return true;
                 }
@@ -162,14 +183,15 @@ public class FtpUtils {
         }
     }
 
-    private static String UTFToiso8859(Object obj,String encode) {
+    private static String utfToiso8859(Object obj,String encode) {
         try {
             if (obj == null)
                 return "";
             else
-                return new String(obj.toString().getBytes(encode), "iso-8859-1");
+                return new String(obj.toString().getBytes(encode), ISOCHARSET);
         }
         catch (Exception e) {
+        	logger.error("charset convert error:"+e.getMessage());
             return "";
         }
     }
@@ -231,14 +253,14 @@ public class FtpUtils {
                     ftp.disconnect();
                 }
                 catch (IOException ioe) {
-                    logger.error(String.format("when download file with IOException：[%s]", ioe));
+                    logger.error(String.format("when download file disconnect with IOException：[%s]", ioe));
                 }
             }
             if(is!=null){
             	try {
 					is.close();
 				} catch (IOException e) {
-					e.printStackTrace();
+					logger.error(String.format("when download file colse outputStream with IOException：[%s]", e));
 				}
             }
         }
@@ -266,7 +288,7 @@ public class FtpUtils {
             FTPFile[] fs = ftp.listFiles();
             // 遍历所有文件，找到指定的文件
             for (FTPFile ff : fs) {
-                String name = new String(ff.getName().toString().getBytes("iso-8859-1"), "UTF-8");
+                String name = new String(ff.getName().toString().getBytes(ISOCHARSET), UTF8CHARSET);
                 if (name.equals(fileName)) {
                     // 下载文件
                     ftp.retrieveFile(ff.getName(), is);
@@ -317,12 +339,12 @@ public class FtpUtils {
                 return ftp.listFiles();
             }
             else {
-                return null;
+                return new FTPFile[0];
             }
         }
         catch (IOException e) {
             logger.error(String.format("when list subFile with IOException [%s]", e));
-            return null;
+            return new FTPFile[0];
         }
         finally {
             disconnectFtp(ftp);
@@ -387,11 +409,4 @@ public class FtpUtils {
         }
     }
 
-    public static void main(String[] args) throws UnsupportedEncodingException {
-        FTPClient ftp = login("192.168.0.224", 21, "yihua", "yihua123");
-        FTPFile[] list = listFilesByPath(ftp, "/home/yihua");
-        for (FTPFile file : list) {
-            System.out.println(new String(file.getName().getBytes("ISO8859_1"), "utf8") + ":" + file.isDirectory());
-        }
-    }
 }
