@@ -170,6 +170,11 @@ public class Filter implements IFilter {
 	}
 
 	@Override
+	public int hashCode() {
+		return super.hashCode();
+	}
+
+	@Override
 	public IFilterEntry getFilterEntry(String key) {
 		for(IFilterEntry entry : this.entrySet()){
 			if(entry.getKey().equals(key)){
