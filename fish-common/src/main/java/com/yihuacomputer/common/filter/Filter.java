@@ -31,7 +31,7 @@ public class Filter implements IFilter {
 	private Set<IFilterEntry> entrySet = new HashSet<IFilterEntry>();
 	private Set<OrderBy> orderBys = new LinkedHashSet<OrderBy>();
 
-	private Filter filter = this;
+	private Filter filterTmp = this;
 
 	@Override
 	public void addFilterEntry(IFilterEntry entry) {
@@ -98,17 +98,13 @@ public class Filter implements IFilter {
 					if(value == entry.getValue()) {
 						continue;
 					}
-					else if(value == null) {
-						return false;
-					}else if(!value.toString().equals(entry.getValue().toString())){
+					else if(value == null||!value.toString().equals(entry.getValue().toString())){
 						return false;
 					}
 				}
 				else if(entry.getOperator().equals(Operator.LIKE)){
-					if(value instanceof String){
-						if(!StringUtils.contains(value.toString(), entry.getValue().toString())){
-							return false;
-						}
+					if(value instanceof String&&!StringUtils.contains(value.toString(), entry.getValue().toString())){
+						return false;
 					}
 				}
 				else if(entry.getOperator().equals(Operator.NE)) {
@@ -120,12 +116,11 @@ public class Filter implements IFilter {
 			return true;
 		}
 		catch (IllegalAccessException e) {
-			throw new AppException("Illegal interview" + e.getMessage());
+			throw new AppException("Illegal interview" + e.getMessage(),e);
 		} catch (InvocationTargetException e) {
-			e.printStackTrace();
-			throw new AppException("System error!" + e.getMessage());
+			throw new AppException("System error!" + e.getMessage(),e);
 		} catch (NoSuchMethodException e) {
-			throw new AppException("Can't find Method" + e.getMessage());
+			throw new AppException("Can't find Method" + e.getMessage(),e);
 		}
 	}
 
@@ -145,19 +140,19 @@ public class Filter implements IFilter {
 
 	@Override
 	public boolean equals(Object object) {
-		IFilter filter1 = null;
+		IFilter filter = null;
 		if(object instanceof IFilter){
-			filter1 = (IFilter)object;
+			filter = (IFilter)object;
 		}else{
 			return false;
 		}
 
-		if(this.getEntrySize() != filter1.getEntrySize()){
+		if(this.getEntrySize() != filter.getEntrySize()){
 			return false;
 		}
 
 		for (IFilterEntry entry : this.entrySet()) {
-			IFilterEntry each = filter1.getFilterEntry(entry.getKey());
+			IFilterEntry each = filter.getFilterEntry(entry.getKey());
 			if(each == null){
 				return false;
 			}else{
@@ -186,80 +181,80 @@ public class Filter implements IFilter {
 
 	@Override
 	public IFilter gt(String propertyName, Object value) {
-		filter.addFilterEntry(FilterFactory.gt(propertyName, value));
-		return filter;
+		filterTmp.addFilterEntry(FilterFactory.gt(propertyName, value));
+		return filterTmp;
 	}
 
 	@Override
 	public IFilter ge(String propertyName, Object value) {
-		filter.addFilterEntry(FilterFactory.ge(propertyName, value));
-		return filter;
+		filterTmp.addFilterEntry(FilterFactory.ge(propertyName, value));
+		return filterTmp;
 	}
 
 	@Override
 	public IFilter lt(String propertyName, Object value) {
-		filter.addFilterEntry(FilterFactory.lt(propertyName, value));
-		return filter;
+		filterTmp.addFilterEntry(FilterFactory.lt(propertyName, value));
+		return filterTmp;
 	}
 
 	@Override
 	public IFilter le(String propertyName, Object value) {
-		filter.addFilterEntry(FilterFactory.le(propertyName, value));
-		return filter;
+		filterTmp.addFilterEntry(FilterFactory.le(propertyName, value));
+		return filterTmp;
 	}
 
 	@Override
 	public IFilter ne(String propertyName, Object value) {
-		filter.addFilterEntry(FilterFactory.ne(propertyName, value));
-		return filter;
+		filterTmp.addFilterEntry(FilterFactory.ne(propertyName, value));
+		return filterTmp;
 	}
 
 	@Override
 	public IFilter eq(String propertyName, Object value) {
-		filter.addFilterEntry(FilterFactory.eq(propertyName, value));
-		return filter;
+		filterTmp.addFilterEntry(FilterFactory.eq(propertyName, value));
+		return filterTmp;
 	}
 
 	@Override
 	public IFilter like(String propertyName, String value) {
-		filter.addFilterEntry(FilterFactory.like(propertyName, value));
-		return filter;
+		filterTmp.addFilterEntry(FilterFactory.like(propertyName, value));
+		return filterTmp;
 	}
 
 	@Override
 	public IFilter rlike(String propertyName, String value) {
-		filter.addFilterEntry(FilterFactory.rlike(propertyName, value));
-		return filter;
+		filterTmp.addFilterEntry(FilterFactory.rlike(propertyName, value));
+		return filterTmp;
 	}
 
 	@Override
 	public IFilter llike(String propertyName, String value) {
-		filter.addFilterEntry(FilterFactory.llike(propertyName, value));
-		return filter;
+		filterTmp.addFilterEntry(FilterFactory.llike(propertyName, value));
+		return filterTmp;
 	}
 
 	@Override
 	public IFilter in(String propertyName, Collection<?> value) {
-		filter.addFilterEntry(FilterFactory.in(propertyName, value));
-		return filter;
+		filterTmp.addFilterEntry(FilterFactory.in(propertyName, value));
+		return filterTmp;
 	}
 
 	@Override
 	public IFilter or(String propertyName, Collection<?> value) {
-		filter.addFilterEntry(FilterFactory.or(propertyName, value));
-		return filter;
+		filterTmp.addFilterEntry(FilterFactory.or(propertyName, value));
+		return filterTmp;
 	}
 
 	@Override
 	public IFilter descOrder(String propertyName) {
-		filter.addOrder(new OrderBy(propertyName, OrderBy.DESC));
-		return filter;
+		filterTmp.addOrder(new OrderBy(propertyName, OrderBy.DESC));
+		return filterTmp;
 	}
 
 	@Override
 	public IFilter order(String propertyName) {
-		filter.addOrder(new OrderBy(propertyName, OrderBy.ASC));
-		return filter;
+		filterTmp.addOrder(new OrderBy(propertyName, OrderBy.ASC));
+		return filterTmp;
 	}
 
 
