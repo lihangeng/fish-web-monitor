@@ -209,7 +209,7 @@ public class ParamElementController {
 				ArrayList<IParamElement> paramElementList = new ArrayList<IParamElement>();
 				if (fileType.equals(".ini")) {
 					INIFileReader iniReader= new INIFileReader(readFile.getAbsolutePath());
-					 Map<String,Properties> sectionLevel = iniReader.sections;
+					 Map<String,Properties> sectionLevel = iniReader.getIniInfo();
 					 Iterator<String> elementTypeItertor = sectionLevel.keySet().iterator();
 					 while(elementTypeItertor.hasNext()){
 						 //获取参数分类

@@ -4,6 +4,11 @@ import java.io.File;
 
 import com.yihuacomputer.common.FishCfg;
 
+/**
+ * 删除文件目录工具
+ * @author GQ
+ *
+ */
 public class DeleteFileDirectory {
 
 	public static void deleteDir(String path){

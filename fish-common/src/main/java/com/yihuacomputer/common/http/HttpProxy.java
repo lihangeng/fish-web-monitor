@@ -3,6 +3,7 @@ package com.yihuacomputer.common.http;
 import java.io.IOException;
 import java.io.InputStream;
 
+import org.apache.commons.codec.Charsets;
 import org.apache.http.Header;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -17,11 +18,24 @@ import org.slf4j.LoggerFactory;
 import com.yihuacomputer.common.exception.ConnectionException;
 import com.yihuacomputer.common.jackson.JsonUtils;
 
+/**
+ * Http请求代理工具类
+ * @author GQ
+ *
+ */
 public class HttpProxy {
 	
-	private static int CONNECTION_TIMEOUT = 30000;
+	private static final int CONNECTION_TIMEOUT = 30000;
 	
 	private static Logger logger = LoggerFactory.getLogger(HttpProxy.class);
+
+	private static final String CONTENT_TYPE="Content-Type";
+
+	private static final String CONTENT_TYPE_VALUE="application/json;charset=UTF-8";
+	
+	private HttpProxy(){
+		throw new IllegalAccessError("Utils Class");
+	}
 	/**
 	 * 负责向客户端发送信息，并接受客户端的返回
 	 * 
@@ -45,23 +59,23 @@ public class HttpProxy {
 				return stream;
 			}
 		} catch (Exception e) {
-			throw new ConnectionException(String.format("Connect to ATM Failed[%s]",e.getMessage()));
+			throw new ConnectionException(String.format("Connect to ATM Failed[%s]",e.getMessage()),e);
 		} finally {
 			if (stream != null) {
 				try {
 					stream.close();
 				} catch (IOException e) {
-					throw new ConnectionException(String.format("Close Connection Failed[%s]",e));
+					logger.error(String.format("Close Connection Failed[%s]",e));
 				}
 			}
 		}
 	}
 
-	/**
+    /**
      * 负责向客户端发送信息，并接受客户端的返回
-     * 
      * @param url
      * @param classOfT
+     * @param connectionTimeout
      * @return
      */
     public static Object httpGet(String url, Class<?> classOfT, int connectionTimeout) {
@@ -83,18 +97,17 @@ public class HttpProxy {
                 return stream;
             }
         } catch (Exception e) {
-            throw new ConnectionException(String.format("Connect to ATM Failed[%s]",e.getMessage()));
+            throw new ConnectionException(String.format("Connect to ATM Failed[%s]",e.getMessage()),e);
         } finally {
             if (stream != null) {
                 try {
                     stream.close();
                 } catch (IOException e) {
-                    throw new ConnectionException(String.format("Close Connection Failed[%s]",e));
+                    logger.error(String.format("Close Connection Failed[%s]",e));
                 }
             }
         }
     }
-	
 	
 	
 	/**
@@ -115,9 +128,9 @@ public class HttpProxy {
 			client.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT, HttpProxy.CONNECTION_TIMEOUT);
 
 			post = new HttpPost(url);
-			entity = new StringEntity(JsonUtils.toJsonWithGson(msg), "UTF-8");
+			entity = new StringEntity(JsonUtils.toJsonWithGson(msg), Charsets.UTF_8.name());
 			
-			Header header = new BasicHeader("Content-Type", "application/json;charset=UTF-8");
+			Header header = new BasicHeader(CONTENT_TYPE, CONTENT_TYPE_VALUE);
 			entity.setContentType(header);
 			
 			post.setEntity(entity);
@@ -140,7 +153,6 @@ public class HttpProxy {
 			}
 		}
 	}
-	
 	/**
      * 负责向客户端发送信息，并接受客户端的返回
      * 
@@ -160,9 +172,9 @@ public class HttpProxy {
             client.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT, connectionTimeout);
             
             post = new HttpPost(url);
-            entity = new StringEntity(JsonUtils.toJsonWithGson(msg), "UTF-8");
+            entity = new StringEntity(JsonUtils.toJsonWithGson(msg), Charsets.UTF_8.name());
             
-            Header header = new BasicHeader("Content-Type", "application/json;charset=UTF-8");
+            Header header = new BasicHeader(CONTENT_TYPE, CONTENT_TYPE_VALUE);
             entity.setContentType(header);
             
             post.setEntity(entity);
@@ -210,9 +222,9 @@ public class HttpProxy {
         StringEntity entity = null;
         try {
             post = new HttpPost(url);
-            entity = new StringEntity(JsonUtils.toJsonWithGson(msg), "UTF-8");
+            entity = new StringEntity(JsonUtils.toJsonWithGson(msg), Charsets.UTF_8.name());
 
-            Header header = new BasicHeader("Content-Type", "application/json;charset=UTF-8");
+            Header header = new BasicHeader(CONTENT_TYPE, CONTENT_TYPE_VALUE);
             entity.setContentType(header);
 
             post.setEntity(entity);
@@ -224,7 +236,7 @@ public class HttpProxy {
                 return stream;
             }
         } catch (Exception e) {
-            throw new ConnectionException(String.format("连接ATM失败[%s]", e));
+            throw new ConnectionException(String.format("connectting ATM Fail[%s]", e),e);
         } finally {
             if (stream != null) {
                 try {

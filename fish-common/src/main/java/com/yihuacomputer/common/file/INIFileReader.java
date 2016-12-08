@@ -7,8 +7,13 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
+/**
+ * ini格式文件解析
+ * @author GQ
+ *
+ */
 public class INIFileReader {
-	public Map<String,Properties> sections = new HashMap<String,Properties>();
+	private Map<String,Properties> sections = new HashMap<String,Properties>();
 	private transient String currentSecion;
 	private transient Properties current;
 
@@ -16,6 +21,10 @@ public class INIFileReader {
 		return sections;
 	}
 
+	/**
+	 * @param filename
+	 * @throws IOException
+	 */
 	public INIFileReader(String filename) throws IOException {
 		BufferedReader reader = new BufferedReader(new FileReader(filename));
 		read(reader);
@@ -41,25 +50,7 @@ public class INIFileReader {
 
 			}
 
-			else if (line.matches(".*=.*")) {
-				if (current != null) {
-					int i = line.indexOf('=');
-					String name = line.substring(0, i);
-					String value = line.substring(i + 1);
-					current.setProperty(name, value);
-				}
-			}
-		}
-	}
-
-	protected void parseLine(String line) {
-		line = line.trim();
-		if (line.matches("\\[.*\\]")) {
-			currentSecion = line.replaceFirst("\\[(.*)\\]", "$1");
-			current = new Properties();
-			sections.put(currentSecion, current);
-		} else if (line.matches(".*=.*")) {
-			if (current != null) {
+			else if (line.matches(".*=.*")&&current != null) {
 				int i = line.indexOf('=');
 				String name = line.substring(0, i);
 				String value = line.substring(i + 1);
@@ -68,12 +59,33 @@ public class INIFileReader {
 		}
 	}
 
+	protected void parseLine(String line) {
+		String lineTmp = line;
+		lineTmp = lineTmp.trim();
+		if (lineTmp.matches("\\[.*\\]")) {
+			currentSecion = lineTmp.replaceFirst("\\[(.*)\\]", "$1");
+			current = new Properties();
+			sections.put(currentSecion, current);
+		} else if (lineTmp.matches(".*=.*")) {
+			if (current != null) {
+				int i = lineTmp.indexOf('=');
+				String name = lineTmp.substring(0, i);
+				String value = lineTmp.substring(i + 1);
+				current.setProperty(name, value);
+			}
+		}
+	}
+
+	/**
+	 * @param section
+	 * @param name
+	 * @return
+	 */
 	public String getValue(String section, String name) {
-		Properties p = (Properties) sections.get(section);
+		Properties p = sections.get(section);
 		if (p == null) {
 			return null;
 		}
-		String value = p.getProperty(name);
-		return value;
+		return p.getProperty(name);
 	}
 }
