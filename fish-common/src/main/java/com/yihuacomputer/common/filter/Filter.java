@@ -11,6 +11,8 @@ import java.util.Set;
 import org.apache.commons.beanutils.NestedNullException;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IFilterEntry;
@@ -18,8 +20,14 @@ import com.yihuacomputer.common.Operator;
 import com.yihuacomputer.common.OrderBy;
 import com.yihuacomputer.common.exception.AppException;
 
+/**
+ * 过滤器
+ * @author GQ
+ *
+ */
 public class Filter implements IFilter {
 
+	private static Logger logger = LoggerFactory.getLogger(Filter.class);
 	private Set<IFilterEntry> entrySet = new HashSet<IFilterEntry>();
 	private Set<OrderBy> orderBys = new LinkedHashSet<OrderBy>();
 
@@ -83,6 +91,7 @@ public class Filter implements IFilter {
 				try{
 					value = PropertyUtils.getProperty(object, entry.getKey());
 				}catch(NestedNullException ex){
+					logger.error("PropertyUtils.getProperty(object, entry.getKey()):["+ex+"]");
 					return false;
 				}
 				if (entry.getOperator().equals(Operator.EQ)) {
@@ -136,19 +145,19 @@ public class Filter implements IFilter {
 
 	@Override
 	public boolean equals(Object object) {
-		IFilter filter = null;
+		IFilter filter1 = null;
 		if(object instanceof IFilter){
-			filter = (IFilter)object;
+			filter1 = (IFilter)object;
 		}else{
 			return false;
 		}
 
-		if(this.getEntrySize() != filter.getEntrySize()){
+		if(this.getEntrySize() != filter1.getEntrySize()){
 			return false;
 		}
 
 		for (IFilterEntry entry : this.entrySet()) {
-			IFilterEntry each = filter.getFilterEntry(entry.getKey());
+			IFilterEntry each = filter1.getFilterEntry(entry.getKey());
 			if(each == null){
 				return false;
 			}else{
@@ -158,11 +167,6 @@ public class Filter implements IFilter {
 			}
 		}
 		return true;
-	}
-
-	@Override
-	public int hashCode() {
-		return super.hashCode();
 	}
 
 	@Override

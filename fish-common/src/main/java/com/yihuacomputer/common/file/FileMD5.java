@@ -19,6 +19,11 @@ import org.slf4j.LoggerFactory;
 public class FileMD5 {
 
 	private static Logger logger = LoggerFactory.getLogger(FileMD5.class);
+	
+	
+	private FileMD5(){
+		throw new IllegalAccessError("Utility class");
+	}
     /**
      * 计算文件MD5值
      * @param file

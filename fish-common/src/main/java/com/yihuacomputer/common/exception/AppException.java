@@ -12,10 +12,19 @@ public class AppException extends RuntimeException {
 	private String message;
 	private Throwable e;
 	
+	/**
+	 * 应用异常消息的构造
+	 * @param message
+	 */
 	public AppException(String message) {
 		this.message = message;
 	}
 	
+	/**
+	 * 应用异常消息和异常的构造
+	 * @param message
+	 * @param e
+	 */
 	public AppException(String message, Throwable e) {
 		this.message = message;
 		this.e = e;
