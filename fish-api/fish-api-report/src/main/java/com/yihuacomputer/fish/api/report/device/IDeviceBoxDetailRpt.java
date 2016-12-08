@@ -36,14 +36,14 @@ public interface IDeviceBoxDetailRpt {
 	 * @return
 	 */
 	public String getSetupType();
-	public String setSetupType(String setupType);
+	public void setSetupType(String setupType);
 	
 	/**
 	 * 终端状态
 	 * @return
 	 */
 	public String getStatus();
-	public String setStatus(String status);
+	public void setStatus(String status);
 	
 	/**
 	 * 钞箱余额
