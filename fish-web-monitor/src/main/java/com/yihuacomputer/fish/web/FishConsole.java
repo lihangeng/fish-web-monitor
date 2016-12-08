@@ -13,6 +13,7 @@ import org.eclipse.jetty.xml.XmlConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.fish.web.util.OsUtil;
 
 
@@ -33,29 +34,35 @@ public class FishConsole {
 	/** 服务器 **/
 	private Server server = null;
 	
-	private String CONTEXT = "/atmv";
+	/**
+	 * 配置jetty容器启动上下文的路径
+	 */
+	private static final String CONTEXT = "/atmv";
 	
-	private static String FILESEP = System.getProperty("file.separator");
-
-	private static String WEBHOME = System.getProperty("user.dir");
-	private static String DBCONFIG = "";
+	private static String webHome = System.getProperty("user.dir");
+	private static String dbConfig = "";
 	
 	static{
-		if(!new File(WEBHOME+FILESEP+"conf").exists()){
-			File file = new File(WEBHOME+FILESEP+"target");
+		if(!new File(webHome+FishCfg.FILESEP+"conf").exists()){
+			File file = new File(webHome+FishCfg.FILESEP+"target");
 			File[] files = file.listFiles();
 			for(File homeFile: files){
 				if(homeFile.getName().startsWith("atmvs-abc-")&&homeFile.isDirectory()){
-					WEBHOME=homeFile.getPath();
+					webHome=homeFile.getPath();
 					break;
 				}
 			}
 		}
 		StringBuilder fileConfig = new StringBuilder();
-		fileConfig.append(WEBHOME).append(FILESEP).append("conf").append(FILESEP).append("jetty-mysql.xml");
-		DBCONFIG = fileConfig.toString();
-		logger.info(String.format("WebHome is %s.",WEBHOME));
+		fileConfig.append(webHome).append(FishCfg.FILESEP).append("conf").append(FishCfg.FILESEP).append("jetty-mysql.xml");
+		dbConfig = fileConfig.toString();
+		logger.info(String.format("WebHome is %s.",webHome));
 	}
+	/**
+	 * jetty容器启动
+	 * @param args
+	 * @throws Exception
+	 */
 	public static void main(String[] args) throws Exception {
 		logger.info("Starting ATMVS Console……");
 		recordPid();
@@ -77,7 +84,7 @@ public class FishConsole {
 	public void startConsoleServer() {
 		try {
 			server = new Server();
-			String[] configFiles = {WEBHOME+FILESEP+"conf"+FILESEP+"jetty.xml"};
+			String[] configFiles = {webHome+FishCfg.FILESEP+"conf"+FishCfg.FILESEP+"jetty.xml"};
 			for(String configFile : configFiles) {
 				  XmlConfiguration configuration = new XmlConfiguration(new File(configFile).toURI().toURL());
 				  configuration.configure(server);
@@ -101,7 +108,7 @@ public class FishConsole {
 		context.setClassLoader(Thread.currentThread().getContextClassLoader());
 		context.setConfigurationDiscovered(true);
 		context.setParentLoaderPriority(true);
-		String[] configFiles = {DBCONFIG};
+		String[] configFiles = {dbConfig};
 		for(String configFile : configFiles) {
 			  XmlConfiguration configuration = new XmlConfiguration(new File(configFile).toURI().toURL());
 			  configuration.configure(context);
@@ -114,11 +121,11 @@ public class FishConsole {
 		context.setContextPath(CONTEXT);
 		context.setDescriptor("/WEB-INF/web.xml");  
 		context.setDisplayName("Yihua ATMVS console web application");  
-		context.setResourceBase(WEBHOME);  
+		context.setResourceBase(webHome);  
 		context.setClassLoader(Thread.currentThread().getContextClassLoader());  
 		context.setConfigurationDiscovered(true);  
 		context.setParentLoaderPriority(true);
-		String[] configFiles = {DBCONFIG};
+		String[] configFiles = {dbConfig};
 		for(String configFile : configFiles) {
 			XmlConfiguration configuration = new XmlConfiguration(new File(configFile).toURI().toURL());
 			configuration.configure(context);
@@ -154,11 +161,17 @@ public class FishConsole {
 			changeProValue(cfgFile,"WEB_PID", pid);
 			logger.info("WEB PID=["+pid+"]");
 		} catch (Exception e) {
-			logger.error("record java web pid info failer:["+e.getMessage()+"]");
+			logger.error("record java web pid info failer:["+e+"]");
 		}
 	}
 	
-	public static  void changeProValue(File file,String Key, Object value){
+	/**
+	 * 向指定文件中记录PID
+	 * @param file
+	 * @param key
+	 * @param value
+	 */
+	public static  void changeProValue(File file,String key, Object value){
 		Properties pro = new Properties();
 		FileInputStream  fis=null;
 		BufferedInputStream bis=null;
@@ -167,11 +180,11 @@ public class FishConsole {
 			bis=new BufferedInputStream(fis);
 			pro.load(bis);
             FileOutputStream fos = new FileOutputStream(file);
-            pro.setProperty(Key, String.valueOf(value));
+            pro.setProperty(key, String.valueOf(value));
             pro.store(fos, null);
             fos.close();
         }catch(Exception e){
-            e.printStackTrace();
+            logger.error(String.format("changeProValue exception %s",e));
         }
     }
 }
