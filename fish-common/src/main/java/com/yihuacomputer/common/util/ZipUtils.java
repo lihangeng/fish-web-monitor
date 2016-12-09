@@ -167,10 +167,10 @@ public class ZipUtils {
 	                     }
 						os.close();
 						is.close();
-						zipFile.close();
 					}
 				
 				}
+				zipFile.close();
 			} catch (Exception e) {
 				logger.error(e.getMessage());
 			}finally{

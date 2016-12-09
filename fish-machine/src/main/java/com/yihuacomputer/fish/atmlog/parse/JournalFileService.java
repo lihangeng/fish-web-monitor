@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,6 +33,8 @@ public class JournalFileService implements IJournalFileService{
 
 	@Autowired
 	private JournalParser journalParser = new JournalParser();
+	
+	private Logger logger = LoggerFactory.getLogger(JournalFileService.class);
 	/**
 	 * 将多个日志文件合并为一个日志文件进行处理
 	 * @param files
@@ -49,24 +53,23 @@ public class JournalFileService implements IJournalFileService{
 				inFileChannel.transferTo(0, inFileChannel.size(), mFileChannel);
 				inFileChannel.close();
 			}
+			mFileChannel.close();
 		} catch (Exception e) {
-			//e.printStackTrace();
+			logger.error(String.format("Exception is %s", e.getMessage()));
 			return null;
 		} finally {
 			if (mFileChannel != null) {
 				try {
 					mFileChannel.close();
 				} catch (IOException e) {
-					/*e.printStackTrace();*/
-					return null;
+					logger.error(String.format("IOException is %s", e.getMessage()));
 				}
 			}
 			if (inFileChannel != null) {
 				try {
 					inFileChannel.close();
 				} catch (IOException e) {
-					return null;
-					/*e.printStackTrace();*/
+					logger.error(String.format("IOException is %s", e.getMessage()));
 				}
 			}
 		}
@@ -155,14 +158,13 @@ public class JournalFileService implements IJournalFileService{
             } 
         }
         catch (Exception ex) {
-            /*ex.printStackTrace();*/
+        	logger.error(String.format("Exception is", ex.getMessage()));
         }finally{
         	if(bufferedReader!=null){
         		try {
 					bufferedReader.close();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
-				/*	e.printStackTrace();*/
+					logger.error(String.format("IOException is", e.getMessage()));
 				}
         	}            
         }

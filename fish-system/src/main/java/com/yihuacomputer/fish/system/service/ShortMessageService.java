@@ -61,10 +61,13 @@ public class ShortMessageService implements IShortMessageService {
 		DataOutputStream ds = new DataOutputStream(client.getOutputStream());
 		ds.write(msg);
 		ds.flush();
-
+		
 		byte[] head = new byte[7];
 		BufferedInputStream in = new BufferedInputStream(new DataInputStream(client.getInputStream()));
 		in.read(head);
+		ds.close();
+		in.close();
+		client.close();
 		if ((0xFF & head[0]) != 0x7E) {
 //			System.out.println("报文头错误");
 			return false;

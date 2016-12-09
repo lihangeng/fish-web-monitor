@@ -237,7 +237,6 @@ public class UserLogAopAspect {
 		return sra.getRequest();
 	}
 
-	@SuppressWarnings("finally")
 	@Around("controller() && methodPointcut() && requestMapping()")
 	public Object doAround(ProceedingJoinPoint pjp) throws Throwable {
 		long time = System.currentTimeMillis();
@@ -258,33 +257,31 @@ public class UserLogAopAspect {
 			// 获取切入方法参数
 			Object[] methodArgs = pjp.getArgs();
 			ClassNameDescrible classDesc = clazz.getAnnotation(ClassNameDescrible.class);
-//			if (userSession != null) {
-				String str = getOperatorContext(methodDesc, classDesc, methodArgs, request);
-				if (str != null && str.length() > 0 && !"".equals(str)) {
-					IUserLog operLog = userLogService.make();
-					operLog.setOperTime(new Date());
-					obj = pjp.proceed();
-					if(methodDesc.hasLogKey()){
-						if(obj instanceof ModelMap){
-							ModelMap data = (ModelMap)obj;
-							str=str+"->"+data.get(FishConstant.LOG_KEY);
-						}else if(obj instanceof String){
-							str = str +"->"+ JsonUtils.jsonValue((String)obj, FishConstant.LOG_KEY);
-						}
-					}
-					if(str.indexOf("null")==-1){
-						operLog.setOperContent(str);
-						UserSession userSession = (UserSession) session.getAttribute(FishWebUtils.USER);
-						operLog.setOperCode(userSession.getUserCode());
-						operLog.setOperName(userSession.getUserName());
-						time = System.currentTimeMillis() - time;
-						operLog.setTimes(time);
-						operLog = setOperatorResult(obj, operLog);
-						operLog = setIpInfo(request, operLog);
-						userLogService.add(operLog);
+			String str = getOperatorContext(methodDesc, classDesc, methodArgs, request);
+			if (str != null && str.length() > 0 && !"".equals(str)) {
+				IUserLog operLog = userLogService.make();
+				operLog.setOperTime(new Date());
+				obj = pjp.proceed();
+				if(methodDesc.hasLogKey()){
+					if(obj instanceof ModelMap){
+						ModelMap data = (ModelMap)obj;
+						str=str+"->"+data.get(FishConstant.LOG_KEY);
+					}else if(obj instanceof String){
+						str = str +"->"+ JsonUtils.jsonValue((String)obj, FishConstant.LOG_KEY);
 					}
 				}
-//			}
+				if(str.indexOf("null")==-1){
+					operLog.setOperContent(str);
+					UserSession userSession = (UserSession) session.getAttribute(FishWebUtils.USER);
+					operLog.setOperCode(userSession.getUserCode());
+					operLog.setOperName(userSession.getUserName());
+					time = System.currentTimeMillis() - time;
+					operLog.setTimes(time);
+					operLog = setOperatorResult(obj, operLog);
+					operLog = setIpInfo(request, operLog);
+					userLogService.add(operLog);
+				}
+			}
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 
@@ -293,10 +290,8 @@ public class UserLogAopAspect {
 			if(obj==null){
 				obj = pjp.proceed();
 			}
-			return obj;
 		}
-
-		// return obj;
+		 return obj;
 	}
 
 	@AfterThrowing(pointcut = "controller() && methodPointcut() && requestMapping()", throwing = "ex")

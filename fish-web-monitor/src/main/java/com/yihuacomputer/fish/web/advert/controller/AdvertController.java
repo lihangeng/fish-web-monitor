@@ -407,6 +407,8 @@ public class AdvertController {
 						bw.newLine();
 						bw.write("Gump-InstallEndDate: 2012-02-01 00:00:00");
 						bw.flush();
+						bw.close();
+						fw.close();
 					} catch (IOException e) {
 						logger.error("inputStream execption:" + e.getMessage());
 					} finally {

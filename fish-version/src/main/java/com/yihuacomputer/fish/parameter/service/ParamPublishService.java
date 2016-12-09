@@ -441,14 +441,16 @@ public class ParamPublishService implements IParamPublishService {
 				}
 				paramMap.put(paramTypeName, paramSectionMap);
 			}
-			IAppSystem appSystem = detaiList.get(0).getParamElement().getParamBelongs();
-			descSectionMap.put("Name", appSystem.getName());
-			descSectionMap.put("VersionNo", String.valueOf(appVersionMap.get(appSystem.getName())));
-			descSectionMap.put("Path", appSystem.getConfigPath());
-			// TODO 可扩展字段，是否重启
 			descSectionMap.put("Restart", "false");
-			descriptionMap.put(appSystem.getConfigName(), descSectionMap);
-			wirteFile(paramMap, appSystem.getConfigForm(), maxVersionNo, appSystem.getConfigName());
+			if(detaiList != null && detaiList.size()>0){
+				IAppSystem appSystem = detaiList.get(0).getParamElement().getParamBelongs();
+				descSectionMap.put("Name", appSystem.getName());
+				descSectionMap.put("VersionNo", String.valueOf(appVersionMap.get(appSystem.getName())));
+				descSectionMap.put("Path", appSystem.getConfigPath());
+				// TODO 可扩展字段，是否重启
+				descriptionMap.put(appSystem.getConfigName(), descSectionMap);
+				wirteFile(paramMap, appSystem.getConfigForm(), maxVersionNo, appSystem.getConfigName());
+			}
 		}
 		return wirteFile(descriptionMap, FileFormat.INI, maxVersionNo, "description.ini");
 	}

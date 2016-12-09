@@ -127,9 +127,10 @@ public class TaskService implements ITaskService {
                 version.setVersionStatus(VersionStatus.DOWNLOADED);
                 dao.update(version);
             }
-
-    		//修改
-    		dvService.saveOrUpdateDeviceVersionForList(entity.getDeviceId(), version.getId(), entity.getStatus(), entity.getReason());
+    		if(version !=null){
+    			//修改
+        		dvService.saveOrUpdateDeviceVersionForList(entity.getDeviceId(), version.getId(), entity.getStatus(), entity.getReason());
+    		}
 	    }
 	}
 

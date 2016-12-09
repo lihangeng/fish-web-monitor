@@ -321,6 +321,8 @@ public class BsAdvertController {
 				str = str.replaceAll("resourceId", "id");
 				screenAdvert = JsonUtils.fromJson(str, BsAdvertScreenForm.class);
 			}
+			br.close();
+			reader.close();
 		} catch (FileNotFoundException e) {
 			logger.error(e.getMessage());
 		} catch (IOException e) {

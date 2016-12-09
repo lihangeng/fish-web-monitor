@@ -164,7 +164,7 @@ public class DeviceBoxDetailInfo implements IDeviceBoxDetailInfo {
 
 	@Override
 	public boolean equals(IDeviceBoxDetailInfo idbdi) {
-		if(idbdi.getCashId().equals(this.getCashId())&&
+		if(idbdi!=null && idbdi.getCashId().equals(this.getCashId())&&
 				idbdi.getBoxType().equals(this.getBoxType())&&
 				idbdi.getCurrency().equals(this.getCurrency())&&
 				(idbdi.getMaxiNum()==this.getMaxiNum())&&

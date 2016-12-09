@@ -230,6 +230,10 @@ public class DayOpenRateService implements IDayOpenRateService {
         List<IDayOpenRate> dayOpenRateList = new ArrayList<IDayOpenRate>();
         IDayOpenRate openRate = null;
         int id = 0;
+        String statDateValue = null;
+        if(entry!=null){
+        	statDateValue =entry.getValue().toString();
+        }
         for (Object obj : result) {
             Object[] status = (Object[]) obj;
             int openTimes = valueToInteger(status[0]);
@@ -253,7 +257,7 @@ public class DayOpenRateService implements IDayOpenRateService {
         	}
             openRate = make();
             openRate.setId(id++);
-            openRate.setStatDate(entry.getValue().toString());
+            openRate.setStatDate(statDateValue);
             openRate.setHealthyTimeReal(healthyTimeReal);
             openRate.setOpenTimes(openTimes);
             openRate.setUnknownTimeReal(unknownTimeReal);
