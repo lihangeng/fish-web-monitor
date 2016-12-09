@@ -18,24 +18,18 @@ public class PdfReportService implements IPdfReportService {
 	}
 
 	protected String secondToDay(long second) {
-		double dayCount = (double) second / (60 * 60 * 24);
-		String day = new java.text.DecimalFormat("0.00").format(dayCount);
-		int dayIn = (int) Double.parseDouble(day);
+		long dayCount =  second / (60 * 60 * 24);
 
-		long bala = second - dayIn * 60 * 60 * 24;
+		long bala = second - dayCount * 60 * 60 * 24;
 
-		double hourCount = (double) bala / (60 * 60);
-		String hour = new java.text.DecimalFormat("0.00").format(hourCount);
-		int hourIn = (int) Double.parseDouble(hour);
+		long hourCount = bala / (60 * 60);
 
-		long balaM = second - dayIn * 60 * 60 * 24 - hourIn * 60 * 60;
+		long balaM = second - dayCount * 60 * 60 * 24 - hourCount * 60 * 60;
 
-		double minCount = (double) balaM / (60);
-		String min = new java.text.DecimalFormat("0.00").format(minCount);
-		int minIn = (int) Double.parseDouble(min);
+		long minCount = balaM / (60);
 
-		long balaS = second - dayIn * 60 * 60 * 24 - hourIn * 60 * 60 - minIn * 60;
-		String time = dayIn + "天" + hourIn + "时" + minIn + "分" + balaS + "秒";
+		long balaS = second - dayCount * 60 * 60 * 24 - hourCount * 60 * 60 - minCount * 60;
+		String time = dayCount + "天" + hourCount + "时" + minCount + "分" + balaS + "秒";
 		return time;
 	}
 
