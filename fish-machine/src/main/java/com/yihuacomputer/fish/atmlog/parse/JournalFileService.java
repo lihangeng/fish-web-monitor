@@ -158,13 +158,13 @@ public class JournalFileService implements IJournalFileService{
             } 
         }
         catch (Exception ex) {
-        	logger.error(String.format("Exception is", ex.getMessage()));
+        	logger.error(String.format("Exception is %s", ex.getMessage()));
         }finally{
         	if(bufferedReader!=null){
         		try {
 					bufferedReader.close();
 				} catch (IOException e) {
-					logger.error(String.format("IOException is", e.getMessage()));
+					logger.error(String.format("IOException is %s", e.getMessage()));
 				}
         	}            
         }
