@@ -708,7 +708,7 @@ public class BsAdvertController {
 	 * @return
 	 */
 	private String getTempWebDir(HttpServletRequest request, String screen, String saveFileName) {
-		return "tmp/bsAdvert/" + this.getSessionDir(request) + "/" + screen + "/" + saveFileName;
+		return "tmp" + File.separator + "bsAdvert" + File.separator + this.getSessionDir(request) + File.separator + screen + File.separator + saveFileName;
 	}
 
 	/**
@@ -733,7 +733,7 @@ public class BsAdvertController {
 	}
 
 	private String getRealPath(HttpServletRequest request) {
-		return FishWebUtils.getRealPathByTmp(request) + "/bsAdvert";
+		return FishWebUtils.getRealPathByTmp(request) + File.separator +"bsAdvert";
 	}
 
 	class ScreenFile {

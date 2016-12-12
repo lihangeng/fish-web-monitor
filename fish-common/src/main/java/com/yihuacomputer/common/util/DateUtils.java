@@ -326,12 +326,12 @@ public class DateUtils {
 	 */
 	public static int daysBetween(Date smdate, Date bdate) throws ParseException {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		smdate = sdf.parse(sdf.format(smdate));
-		bdate = sdf.parse(sdf.format(bdate));
+		Date smdateFormat = sdf.parse(sdf.format(smdate));
+		Date bdateFormat = sdf.parse(sdf.format(bdate));
 		Calendar cal = Calendar.getInstance();
-		cal.setTime(smdate);
+		cal.setTime(smdateFormat);
 		long time1 = cal.getTimeInMillis();
-		cal.setTime(bdate);
+		cal.setTime(bdateFormat);
 		long time2 = cal.getTimeInMillis();
 		long between_days = (time2 - time1) / (1000 * 3600 * 24);
 

@@ -22,10 +22,11 @@ public class IP implements ITypeIP {
 	 * @param stringValue
 	 */
 	public IP(String stringValue){
-		if(stringValue == null || "".equals(stringValue)) {
-			stringValue = "0.0.0.0";
+		String ipValue = stringValue;
+		if(ipValue == null || "".equals(ipValue)) {
+			ipValue = "0.0.0.0";
 		}
-		this.longValue = changeIpFromStringToLong(stringValue);
+		this.longValue = changeIpFromStringToLong(ipValue);
 	}
 	/**
 	 * 给定一个数字构建一个IP对象

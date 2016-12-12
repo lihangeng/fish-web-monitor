@@ -11,10 +11,11 @@ public class MAC implements ITypeMAC {
 	}
 	
 	public MAC(String stringValue){
-		if(stringValue == null || "".equals(stringValue)) {
-			stringValue = "0.0.0.0.0.0";
+		String macValue = stringValue;
+		if(macValue == null || "".equals(macValue)) {
+			macValue = "0.0.0.0.0.0";
 		}
-		this.longValue = changeIpFromStringToLong(stringValue);
+		this.longValue = changeIpFromStringToLong(macValue);
 	}
 	
 	public MAC(Long longValue){
