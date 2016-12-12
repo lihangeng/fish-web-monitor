@@ -46,6 +46,6 @@ public enum ParamPublishRet {
 				return each;
 			}
 		}
-		throw new IllegalArgumentException(String.format("id=[%d] error", code));
+		throw new IllegalArgumentException(String.format("id=[%s] error", code));
 	}
 }

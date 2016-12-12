@@ -80,7 +80,7 @@ public class JobThread implements Runnable {
 					}
 				}
 		} catch (Exception e) {
-			logger.error(String.format("execute job error [%]",e.getMessage()));
+			logger.error(String.format("execute job error [%s]",e.getMessage()));
 		}
 		while(true){
 		    try {
