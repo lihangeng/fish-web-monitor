@@ -27,7 +27,7 @@ public class RedoJob implements Runnable{
 	public void run() {
 		while(true){
 			try {
-				Thread.sleep(2*60*60*1000);
+				Thread.sleep(2l*60l*60l*1000l);
 			} catch (InterruptedException e) {
 				logger.error(String.format("redo daybackup sleep error！[%s]",e));
 				break;

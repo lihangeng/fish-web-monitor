@@ -37,27 +37,29 @@ public class StringUtils {
      * @return
      */
 	public static String preZeroStr(String srcStr,int length){
-		if(null==srcStr){
-			srcStr="0";
+		String srcValue = srcStr;
+		if(null==srcValue){
+			srcValue="0";
 		}
     	StringBuilder sb = new StringBuilder();
     	for(int index=0;index<length;index++){
     		sb.append("0");
     	}
-    	String descStr = sb.append(srcStr).toString();
+    	String descStr = sb.append(srcValue).toString();
     	return descStr.substring(descStr.length()-length);
     }
 
     /**
-     * 后置不空格
+     * 后置补空格
      * @return
      */
 	public static String subBlankStr(String srcStr,int length){
-		if(null==srcStr){
-			srcStr="null";
+		String srcValue = srcStr;
+		if(null == srcValue){
+			srcValue = "null";
 		}
-    	StringBuilder sb = new StringBuilder(srcStr);
-    	for(int index=srcStr.length();index<length;index++){
+    	StringBuilder sb = new StringBuilder(srcValue);
+    	for(int index=srcValue.length();index<length;index++){
     		sb.append(" ");
     	}
     	String descStr = sb.toString();

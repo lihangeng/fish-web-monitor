@@ -84,7 +84,7 @@ public class CaseFaultService implements ICaseFaultService {
 			return 0.0;
 		}
 		Date now = new Date();
-		double fault = 1000 * 60 * 60;
+		double fault = (double)1000 * 60 * 60;
 		java.text.DecimalFormat df = new java.text.DecimalFormat("#.##");
 		double date = (now.getTime() - faultTime.getTime()) / fault;
 		return Double.parseDouble(df.format(date));

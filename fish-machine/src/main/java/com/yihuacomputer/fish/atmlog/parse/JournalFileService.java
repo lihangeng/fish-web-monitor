@@ -45,14 +45,16 @@ public class JournalFileService implements IJournalFileService{
 		FileChannel mFileChannel = null;
 		FileChannel inFileChannel = null;
 		FileOutputStream fos = null;
+		FileInputStream fis = null;
 		try {
 			fos = new FileOutputStream(journalFile);
 			mFileChannel = fos.getChannel();
 
 			for (File dayFile : files) {
-
-				inFileChannel = new FileInputStream(dayFile).getChannel();
+				fis = new FileInputStream(dayFile);
+				inFileChannel = fis.getChannel();
 				inFileChannel.transferTo(0, inFileChannel.size(), mFileChannel);
+				fis.close();
 				inFileChannel.close();
 			}
 			fos.close();
@@ -65,21 +67,28 @@ public class JournalFileService implements IJournalFileService{
 				try {
 					fos.close();
 				} catch (IOException e) {
-					logger.error(String.format("IOException is %s", e.getMessage()));
+					logger.error(String.format("IOException is [%s]", e.getMessage()));
 				}
 			}
 			if (mFileChannel != null) {
 				try {
 					mFileChannel.close();
 				} catch (IOException e) {
-					logger.error(String.format("IOException is %s", e.getMessage()));
+					logger.error(String.format("IOException is [%s]", e.getMessage()));
+				}
+			}
+			if (fis != null) {
+				try {
+					fis.close();
+				} catch (IOException e) {
+					logger.error(String.format("IOException is [%s]", e.getMessage()));
 				}
 			}
 			if (inFileChannel != null) {
 				try {
 					inFileChannel.close();
 				} catch (IOException e) {
-					logger.error(String.format("IOException is %s", e.getMessage()));
+					logger.error(String.format("IOException is [%s]", e.getMessage()));
 				}
 			}
 		}
@@ -108,10 +117,14 @@ public class JournalFileService implements IJournalFileService{
         String content = null;
         StringBuffer contents = new StringBuffer();
         BizJournal lastJournal = null;
+        InputStreamReader isr = null;
+        FileInputStream fis = null;
         
         try {
             /* 读文件内容 */
-            bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(journalFile),"GBK"));
+        	fis = new FileInputStream(journalFile);
+        	isr = new InputStreamReader(fis,"GBK");
+            bufferedReader = new BufferedReader(isr);
 
             while ((content = bufferedReader.readLine()) != null) {
             	BizJournal journal = journalParser.readLineJournalLog(content);
@@ -165,18 +178,35 @@ public class JournalFileService implements IJournalFileService{
                     atmCycle = journalParser.readCashIn(contents.toString());
                     atmCycles.add(atmCycle);
                 }}
-            } 
+            }
+            fis.close();
+            isr.close();
+            bufferedReader.close();
         }
         catch (Exception ex) {
-        	logger.error(String.format("Exception is %s", ex.getMessage()));
+        	logger.error(String.format("Exception is [%s]", ex.getMessage()));
         }finally{
+        	if(fis!=null){
+        		try {
+        			fis.close();
+				} catch (IOException e) {
+					logger.error(String.format("IOException is [%s]", e.getMessage()));
+				}
+        	}
+        	if(isr!=null){
+        		try {
+        			isr.close();
+				} catch (IOException e) {
+					logger.error(String.format("IOException is [%s]", e.getMessage()));
+				}
+        	}
         	if(bufferedReader!=null){
         		try {
 					bufferedReader.close();
 				} catch (IOException e) {
-					logger.error(String.format("IOException is %s", e.getMessage()));
+					logger.error(String.format("IOException is [%s]", e.getMessage()));
 				}
-        	}            
+        	}
         }
 
 		return atmCycles;		

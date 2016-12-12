@@ -53,11 +53,12 @@ public class VersionNo{
 
     public VersionNo(String versionNo) {
         int index = versionNo.indexOf(this.link2);
+        String versionNoValue = versionNo;
         if (index > 0) {
-            this.desc = versionNo.substring(index + 1);
-            versionNo = versionNo.substring(0, index - 1);
+            this.desc = versionNoValue.substring(index + 1);
+            versionNoValue = versionNoValue.substring(0, index - 1);
         }
-        String[] parts = versionNo.split(this.link1);
+        String[] parts = versionNoValue.split(this.link1);
         for (int i = 0; i < parts.length; i++) {
             if (i == 0) {
                 this.major = Integer.parseInt(parts[i]);
@@ -80,11 +81,12 @@ public class VersionNo{
     
     public VersionNo(String versionNo,String link1 ,String link2){
         int index = versionNo.indexOf(link1);
+        String versionNoValue = versionNo;
         if (index > 0) {
-            this.desc = versionNo.substring(index + 1);
-            versionNo = versionNo.substring(0, index - 1);
+            this.desc = versionNoValue.substring(index + 1);
+            versionNoValue = versionNoValue.substring(0, index - 1);
         }
-        String[] parts = versionNo.split(link2);
+        String[] parts = versionNoValue.split(link2);
         for (int i = 0; i < parts.length; i++) {
             if (i == 0) {
                 this.major = Integer.parseInt(parts[i]);

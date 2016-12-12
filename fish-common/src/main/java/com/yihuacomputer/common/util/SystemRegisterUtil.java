@@ -16,8 +16,8 @@ public class SystemRegisterUtil {
 	//对key进行编码
 	public static String convertKey(String mac){
 		//去掉特殊字符
-		mac = mac.replaceAll("\\W", "").trim();
-		String k = SystemRegisterUtil.getkey(mac);
+		String macValue = mac.replaceAll("\\W", "").trim();
+		String k = SystemRegisterUtil.getkey(macValue);
 		k = SystemRegisterUtil.change(k);
 		return k;
 	}
@@ -25,15 +25,15 @@ public class SystemRegisterUtil {
 	//获得注册码
 	private static String getSerial(String key , Date endDate){
 		
-		key = SystemRegisterUtil.change(key); //先将key进行一次编码
-		key = SystemRegisterUtil.getkey(key); //保证key的长度在8位
+		String keyValue = SystemRegisterUtil.change(key); //先将key进行一次编码
+		keyValue = SystemRegisterUtil.getkey(keyValue); //保证key的长度在8位
 		
 		/*因为一开始key的长度为8位，后来发现必须要有12位才有唯一性，所以后来
 		 * 又增加到了12位，为了不影响原先的操作，这里先将后四位截取，等所有
 		 * 操作完成以后在加入序列号
 		 */
-		String otherKey = key.substring(8, 12);
-		key = key.substring(0,8);
+		String otherKey = keyValue.substring(8, 12);
+		keyValue = keyValue.substring(0,8);
 		
 		//获得当前时间
 		Calendar startCalendar = Calendar.getInstance();
@@ -62,7 +62,7 @@ public class SystemRegisterUtil {
 		int endDay = endCalendar.get(Calendar.DAY_OF_MONTH);
 		int index = Double.valueOf(Math.random()*10).intValue();
 		String need = new StringBuilder()
-						.append(key)
+						.append(keyValue)
 						.append(startYear)
 						.append(startMonth <10? ("0"+startMonth) : startMonth)
 						.append(startDay <10? ("0"+startDay) : startDay)
@@ -108,13 +108,13 @@ public class SystemRegisterUtil {
 		 * 不影响原先的操作，先将注册码中的后四位截取
 		 */
 		String otherKey = serial.substring(serial.length()-4, serial.length());
-		serial = serial.substring(0, serial.length()-4);
+		String serialValue = serial.substring(0, serial.length()-4);
 		RegisterInfo regInfo = new RegisterInfo();
 		try {
 			//先查看是按哪种组合排列的
-			int index = Integer.parseInt(SystemRegisterUtil.chars2Strings(serial.substring(serial.length()-1)));
+			int index = Integer.parseInt(SystemRegisterUtil.chars2Strings(serialValue.substring(serialValue.length()-1)));
 			String zuHe = SystemRegisterUtil.getZuHe(index);
-			String[] serials = serial.split("-");
+			String[] serials = serialValue.split("-");
 			String result = new StringBuilder()
 							.append(serials[zuHe.indexOf("1")].trim())
 							.append("-")
@@ -250,16 +250,16 @@ public class SystemRegisterUtil {
 		for(String v : keys){
 			result.append(v);
 		}
-		key = result.toString();
-		if(key.length()>keyLength){
-			key = key.substring(0,keyLength-1);
+		String keyValue = result.toString();
+		if(keyValue.length()>keyLength){
+			keyValue = keyValue.substring(0,keyLength-1);
 		}
-		if(key.length()<keyLength){
-			for(int i = key.length();i<keyLength;i++){
-				key = key + 0;
+		if(keyValue.length()<keyLength){
+			for(int i = keyValue.length();i<keyLength;i++){
+				keyValue = keyValue + 0;
 			}
 		}
-		return key;
+		return keyValue;
 	}
 	
 	

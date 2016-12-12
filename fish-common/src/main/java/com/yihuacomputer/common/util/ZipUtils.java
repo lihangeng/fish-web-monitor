@@ -161,7 +161,7 @@ public class ZipUtils {
 		if (!file.isFile() || !file.getName().endsWith(".zip")) {
 			logger.error("The application only decompression zipFile");
 		}else{
-			destDir = destDir.endsWith(File.separator) ? destDir : destDir + File.separator;
+			String destDirValue = destDir.endsWith(File.separator) ? destDir : destDir + File.separator;
 			byte b[] = new byte[1024];  
 	        int length;  
 	        ZipFile zipFile = null;
@@ -171,7 +171,7 @@ public class ZipUtils {
 				ZipEntry zipEntry = null; 
 				while (enumeration.hasMoreElements()) {
 					zipEntry = enumeration.nextElement();
-					File loadFile = new File(destDir + zipEntry.getName());
+					File loadFile = new File(destDirValue + zipEntry.getName());
 					//判断压缩文件中的某个条目是文件夹还是文件;如果是目录，那么判断该文件是否已存在并且不是一个文件夹,解决空文件夹解压后不存在的问题
 					if (zipEntry.isDirectory()&&!loadFile.exists()) {
 						loadFile.mkdirs();
