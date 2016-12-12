@@ -371,6 +371,8 @@ public class ZipUtils {
 			zip.close();
 			return true;
 		} catch (IOException e) {
+			logger.error(e.getMessage());
+		}finally{
 			if(zip!=null){
 				try {
 					zip.close();
@@ -379,8 +381,7 @@ public class ZipUtils {
 					logger.error(e1.getMessage());
 				}
 			}
-			logger.error(e.getMessage());
-			return false;
 		}
+		return false;
 	}
 }

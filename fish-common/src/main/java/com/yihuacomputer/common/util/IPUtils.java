@@ -6,10 +6,14 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.yihuacomputer.common.ITypeIP;
 
 public class IPUtils {
-    
+
+	private static Logger logger = LoggerFactory.getLogger(IPUtils.class);
     public static List<ITypeIP> listLocalIp(){
         List<ITypeIP> ipList = new ArrayList<ITypeIP>();
         Enumeration<NetworkInterface> netInterfaces = null;  
@@ -26,7 +30,7 @@ public class IPUtils {
                 }  
             }  
         } catch (Exception e) {  
-            e.printStackTrace();  
+        	logger.error(e.getMessage());
         }  
         return ipList;
     }

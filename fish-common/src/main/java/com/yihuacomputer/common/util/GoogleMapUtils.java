@@ -11,11 +11,14 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.yihuacomputer.common.FishCfg;
 
 public class GoogleMapUtils {
 	
+	private static Logger logger = LoggerFactory.getLogger(GoogleMapUtils.class);
 	/**
 	 * 从Google地图服务器下载地图文件
 	 * 
@@ -60,20 +63,20 @@ public class GoogleMapUtils {
 	        }
 	        get.abort();
         }catch(Exception e){
-        	e.printStackTrace();
+        	logger.error(e.getMessage());
         }finally{
         	if(is!=null){
         		try {
 					is.close();
 				} catch (IOException e) {
-					e.printStackTrace();
+		        	logger.error(e.getMessage());
 				}
         	}
         	if(out!=null){
         		try {
 					out.close();
 				} catch (IOException e) {
-					e.printStackTrace();
+		        	logger.error(e.getMessage());
 				}
         	}
         }

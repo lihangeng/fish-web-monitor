@@ -8,6 +8,9 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.yihuacomputer.common.exception.AppException;
 import com.yihuacomputer.common.util.IOUtils;
 import com.yihuacomputer.common.util.ZipUtils;
@@ -22,6 +25,8 @@ import com.yihuacomputer.fish.api.version.VersionCfg;
 public class AbstractAdvertZipGenerator implements IAdvertZipGenerator {
 	
 	private static final String ADVERT="advert";
+	
+	private static Logger logger = LoggerFactory.getLogger(AbstractAdvertZipGenerator.class);
 	
     @Override
     public void generateZipFile(IAdvert advert) {
@@ -126,20 +131,20 @@ public class AbstractAdvertZipGenerator implements IAdvertZipGenerator {
             bw.write("Gump-InstallEndDate: 2012-02-01 00:00:00");
             bw.flush();
         } catch (IOException e) {
-            e.printStackTrace();
+        	logger.error(e.getMessage());
         } finally {
         	if (bw != null) {
                 try {
                 	bw.close();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                	logger.error(e.getMessage());
                 }
             }
             if (fw != null) {
                 try {
                     fw.close();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                	logger.error(e.getMessage());
                 }
             }
         }

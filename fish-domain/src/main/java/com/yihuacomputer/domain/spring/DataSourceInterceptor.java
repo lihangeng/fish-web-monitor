@@ -10,13 +10,10 @@ import org.slf4j.LoggerFactory;
 public class DataSourceInterceptor {
 
 	private final Logger logger = LoggerFactory.getLogger(DataSourceInterceptor.class);
-	public void intercept(JoinPoint point) throws Exception {
+	public void intercept(JoinPoint point) {
 		Class<?> target = point.getTarget().getClass();
 		MethodSignature signature = (MethodSignature) point.getSignature();
 		// 默认使用目标类型的注解，如果没有则使用其实现接口的注解
-//		for (Class<?> clazz : target.getInterfaces()) {
-//			resolveDataSource(clazz, signature.getMethod());
-//		}
 		resolveDataSource(target, signature.getMethod());
 	}
 

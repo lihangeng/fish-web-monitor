@@ -26,6 +26,8 @@ import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
 import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.MessageSource;
 
 import com.yihuacomputer.common.FishCfg;
@@ -58,6 +60,9 @@ import com.yihuacomputer.fish.api.version.VersionCfg;
 @Entity
 @Table(name = "ADV_ADVERT")
 public class Advert implements IAdvert, Serializable {
+	
+	@Transient
+	private static Logger logger = LoggerFactory.getLogger(Advert.class);
 
     private static final long serialVersionUID = 1L;
 
@@ -274,20 +279,20 @@ public class Advert implements IAdvert, Serializable {
             bw.write("Gump-InstallEndDate: 2012-02-01 00:00:00");
             bw.flush();
         } catch (IOException e) {
-            e.printStackTrace();
+        	logger.error(e.getMessage());
         } finally {
         	if(bw!=null){
            	 	try {
            	 		bw.close();
 	            } catch (IOException e) {
-	                e.printStackTrace();
+	            	logger.error(e.getMessage());
 	            }
         	}
             if (fw != null) {
                 try {
                     fw.close();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                	logger.error(e.getMessage());
                 }
             }
             

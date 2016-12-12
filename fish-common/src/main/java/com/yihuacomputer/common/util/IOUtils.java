@@ -5,11 +5,14 @@ import java.io.IOException;
 import java.util.Date;
 
 import org.apache.commons.io.FileUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.yihuacomputer.common.exception.AppException;
 
 public class IOUtils {
 
+	private static Logger logger = LoggerFactory.getLogger(IOUtils.class);
     /**
      * 创建一个文件，如果目录不存在会自动创建
      * 
@@ -23,7 +26,7 @@ public class IOUtils {
             return file;
         }
         catch (IOException e) {
-            e.printStackTrace();
+        	logger.error(e.getMessage());
         }
         throw new AppException("Create Files Failed:" + fileName);
     }
@@ -54,7 +57,7 @@ public class IOUtils {
             FileUtils.writeStringToFile(createFile(fileName), data);
         }
         catch (IOException e) {
-            e.printStackTrace();
+        	logger.error(e.getMessage());
         }
     }
 
@@ -63,7 +66,7 @@ public class IOUtils {
             FileUtils.copyFileToDirectory(new File(srcFileName), new File(desDir));
         }
         catch (IOException e) {
-            e.printStackTrace();
+        	logger.error(e.getMessage());
         }
     }
 
@@ -83,7 +86,7 @@ public class IOUtils {
             FileUtils.copyDirectory(new File(srcDir), new File(destDir));
         }
         catch (IOException e) {
-            e.printStackTrace();
+        	logger.error(e.getMessage());
         }
     }
 
@@ -92,7 +95,7 @@ public class IOUtils {
             FileUtils.deleteDirectory(new File(dir));
         }
         catch (IOException e) {
-            e.printStackTrace();
+        	logger.error(e.getMessage());
         }
     }
     
@@ -106,7 +109,7 @@ public class IOUtils {
              return file;
          }
          catch (Exception e) {
-             e.printStackTrace();
+         	logger.error(e.getMessage());
          }
          throw new AppException("Create Files Failed:" + path);
     }
