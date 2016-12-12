@@ -55,7 +55,7 @@ public class ZipUtils {
 			int readLen = 0;
 			for (int i = 0; i < fileList.size(); i++) {
 				File f = fileList.get(i);
-				ze = new ZipEntry(getAbsFileName(sourceFile, f));
+				ze = new ZipEntry(getAbsFileNameStr(sourceFile, f));
 				ze.setSize(f.length());
 				ze.setTime(f.lastModified());
 				zos.putNextEntry(ze);
@@ -90,11 +90,13 @@ public class ZipUtils {
 	 * @param baseDir 根目录
 	 * @param realFileName 实际的文件名
 	 * @return 相对文件名
+	 * @since 2.1.1.11
+	 * @deprecated
 	 */
 	private static String getAbsFileName(String baseDir, File realFileName) {
 		File real = realFileName;
 		File base = new File(baseDir);
-		StringBuffer ret = new StringBuffer(real.getName());
+		String ret =real.getName();
 		while (true) {
 			real = real.getParentFile();
 			if (real == null){
@@ -103,12 +105,30 @@ public class ZipUtils {
 			if (real.equals(base)){
 				break;
 			}else{
-				ret .append(real.getName()).append(File.separator).append(ret);
+				ret=real.getName()+File.separator+ret;
 			}
 		}
-		return ret.toString();
+		return ret;
 	}
-
+	
+	/**
+	 * 给定根目录，返回另一个文件名的相对路径，用于zip文件中的路径.
+	 * @param baseDir
+	 * @param realFileName
+	 * @return
+	 */
+	private static String getAbsFileNameStr(String baseDir, File realFileName){
+		if(null!=realFileName&&!realFileName.exists()||null==baseDir){
+			return "";
+		}
+		String fixPath = realFileName.getPath();
+		boolean flag = fixPath.startsWith(baseDir);
+		if(!flag){
+			logger.error(String.format("%s parentFile is'n %s",fixPath,baseDir));
+			return "";
+		}
+		return fixPath.substring(baseDir.length()+1);
+	}
 	/**
 	 * 取得指定目录下的所有文件列表，包括子目录.
 	 * 
