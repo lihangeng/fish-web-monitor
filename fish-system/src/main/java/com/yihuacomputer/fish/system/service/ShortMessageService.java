@@ -6,6 +6,9 @@ import java.io.DataOutputStream;
 import java.net.Socket;
 import java.util.List;
 
+import org.apache.commons.codec.Charsets;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.yihuacomputer.common.FishCfg;
@@ -16,6 +19,7 @@ import com.yihuacomputer.fish.system.entity.ShortMessage;
 @Service
 public class ShortMessageService implements IShortMessageService {
 
+	private Logger logger = LoggerFactory.getLogger(ShortMessageService.class);
 	@Override
 	public ShortMessage make(){
 		ShortMessage msg = new ShortMessage(this);
@@ -34,8 +38,8 @@ public class ShortMessageService implements IShortMessageService {
 			}
 		}
 		String content = message.getContent(); // 短信内容
-		byte[] s1Arr = mobile.getBytes("UTF-8");
-		byte[] s2Arr = content.getBytes("UTF-8");
+		byte[] s1Arr = mobile.getBytes(Charsets.UTF_8.name());
+		byte[] s2Arr = content.getBytes(Charsets.UTF_8.name());
 		int lenMobile = s1Arr.length; // 手机号的长度
 		int lenContent = s2Arr.length; // 短信内容的长度
 		int len = 7 + lenMobile + lenContent + 1; // 报文的总长度
@@ -64,25 +68,32 @@ public class ShortMessageService implements IShortMessageService {
 		
 		byte[] head = new byte[7];
 		BufferedInputStream in = new BufferedInputStream(new DataInputStream(client.getInputStream()));
-		in.read(head);
+		int readerInt = in.read(head);
+		if(logger.isDebugEnabled()){
+			logger.debug(String.format("read Msg length is %d"),readerInt);
+		}
 		ds.close();
 		in.close();
 		client.close();
 		if ((0xFF & head[0]) != 0x7E) {
-//			System.out.println("报文头错误");
+//			报文头错误
+			logger.error("Msg Header Exctpion!");
 			return false;
 		}
 		if ((0xFF & head[1]) != 0xA1) {
-//			System.out.println("报文类型错误");
+//			报文类型错误
+			logger.error("Msg Type Exctpion!");
 			return false;
 		}
 		if ((0xFF & head[2]) != 0x52) {
-			// System.out.println("请求标识错误");
+			//请求标识错误
+			logger.error("Msg Flag Exctpion!");
 			return false;
 		}
 		int lenrev = (0xFF & (head[3])) | (0xFFFF & (head[4] << 8)); // 总长度
 		if (lenrev != 7) {
-			// System.out.println("报文总长度错误");
+			//报文总长度错误;
+			logger.error("Msg Length Exctpion!");
 			return false;
 		}
 		if ((0xFF & head[5]) != 0xE0) {
@@ -92,9 +103,9 @@ public class ShortMessageService implements IShortMessageService {
 		for (int i = 0; i < lenrev - 1; i++) {
 			cBackrev += (0xFF & head[i]);
 		}
-//		System.out.println("校验码 --- " + Integer.toBinaryString(0xFF & head[6]));
 		if ((0xFF & head[6]) != cBackrev) {
-			// System.out.println("校验码错误, 报文无效");
+			// 校验码错误, 报文无效
+			logger.error("Msg Check code Exctpion!");
 			return false;
 		}
 		return true;

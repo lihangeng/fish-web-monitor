@@ -44,8 +44,10 @@ public class JournalFileService implements IJournalFileService{
 		File journalFile = new File(FishCfg.getTempDir()+FishCfg.FILESEP+UUID.randomUUID().toString());
 		FileChannel mFileChannel = null;
 		FileChannel inFileChannel = null;
+		FileOutputStream fos = null;
 		try {
-			mFileChannel = new FileOutputStream(journalFile).getChannel();
+			fos = new FileOutputStream(journalFile);
+			mFileChannel = fos.getChannel();
 
 			for (File dayFile : files) {
 
@@ -53,11 +55,19 @@ public class JournalFileService implements IJournalFileService{
 				inFileChannel.transferTo(0, inFileChannel.size(), mFileChannel);
 				inFileChannel.close();
 			}
+			fos.close();
 			mFileChannel.close();
 		} catch (Exception e) {
 			logger.error(String.format("Exception is %s", e.getMessage()));
 			return null;
 		} finally {
+			if(fos!=null){
+				try {
+					fos.close();
+				} catch (IOException e) {
+					logger.error(String.format("IOException is %s", e.getMessage()));
+				}
+			}
 			if (mFileChannel != null) {
 				try {
 					mFileChannel.close();
