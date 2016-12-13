@@ -149,7 +149,7 @@ public class MonthPdfReportService extends PdfReportService implements IMonthPdf
 	private void generateTransMonth(Pdf pdf, int month) throws Exception {
 		pdf.addL1Chapter("三、交易数据汇总");
 		Long[] trans = transTypeEtlService.getMonthTotal(Long.valueOf(month));
-		Long[] lastTrans = transTypeEtlService.getMonthTotal(Long.valueOf(month - 1));
+		Long[] lastTrans = transTypeEtlService.getMonthTotal(Long.valueOf(month - 1l));
 		long remains = trans[0] - lastTrans[0];
 		String tranStr = "";
 		if (remains > 0) {
@@ -325,8 +325,8 @@ public class MonthPdfReportService extends PdfReportService implements IMonthPdf
 
 	private DefaultCategoryDataset createDatasetRateMonth(int month) {
 		DefaultCategoryDataset dataSet = new DefaultCategoryDataset();
-		long start = month * 100 + 1;
-		long end = month * 100 + 31;
+		long start = month * 100 + 1l;
+		long end = month * 100 + 31l;
 		List<IAvgDayOpenRate> rates = avgOpenRateEtlService.getAvgDays(start, end);
 		String day = "01";
 		for (IAvgDayOpenRate ia : rates) {

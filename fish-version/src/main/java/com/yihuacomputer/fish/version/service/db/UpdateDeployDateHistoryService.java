@@ -87,11 +87,12 @@ public class UpdateDeployDateHistoryService implements IUpdateDeployDateHistoryS
 
     @Override
     public IPageResult<IUpdateDeployDateHistory> page(int start, int offset, long jobId, Date deployStartDate, IFilter filter) {
-        if(filter == null){
-            filter = new Filter();
+    	IFilter filterValue = filter;
+        if(filterValue == null){
+        	filterValue = new Filter();
         }
-        filter.eq("jobId", jobId);
-        return page(start,offset,filter);
+        filterValue.eq("jobId", jobId);
+        return page(start,offset,filterValue);
     }
 
     @Override

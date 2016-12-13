@@ -120,7 +120,6 @@ public class UserRoleRelation implements IUserRoleRelation {
         return permission;
 	}
 
-    @Transactional(readOnly = true)
     private List<IRole> listRoleByUser(IUser user, IFilter filter) {
         StringBuffer hql = new StringBuffer();
         hql.append("select t from Role t ,UserRoleObj t1 ");
@@ -135,7 +134,6 @@ public class UserRoleRelation implements IUserRoleRelation {
         return result;
     }
 
-    @Transactional(readOnly = true)
     private List<IRole> listUnlinkRoleByUser(IUser user, IFilter filter) {
         StringBuffer hql = new StringBuffer();
         hql.append("from Role t where t.id not in ");

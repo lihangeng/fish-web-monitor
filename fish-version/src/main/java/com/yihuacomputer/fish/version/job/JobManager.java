@@ -124,10 +124,11 @@ public class JobManager implements IJobManager,IJobManangerStatus {
 
 	public IJob createJob(IJob job,IFilter filter) {
 		// 如果没有入库，则入库
-		if (job.getJobId() < 1) {
-			job = jobService.cascadeAdd(job,filter);
+		IJob jobValue = job;
+		if (jobValue.getJobId() < 1) {
+			jobValue = jobService.cascadeAdd(jobValue,filter);
 		}
-		Job entity = (Job)job;
+		Job entity = (Job)jobValue;
 		// 放到缓存队列
 		boolean success = this.jobQueue.addJob(entity);
 		// 放入缓存成功才调度作业

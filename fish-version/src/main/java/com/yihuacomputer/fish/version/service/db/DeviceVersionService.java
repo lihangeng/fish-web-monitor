@@ -76,7 +76,6 @@ public class DeviceVersionService implements IDomainDeviceVersionService {
                 .findUniqueByHql("from DeviceVersion t where t.deviceId = ? and t.versionId = ?", deviceId, versionId);
     }
 
-    @Transactional(readOnly = true)
     private List<IDeviceVersion> findDeviceVersionContainsRemovedList(long deviceId, long versionId) {
         return dao.findByHQL("from DeviceVersion t where t.deviceId = ? and t.versionId = ?", deviceId, versionId);
     }

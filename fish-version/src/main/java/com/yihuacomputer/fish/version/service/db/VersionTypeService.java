@@ -56,7 +56,7 @@ public class VersionTypeService implements IVersionTypeService {
 
 	@Override
 	public IVersionType add(IVersionType versionType) {
-		versionType = dao.save(this.interface2Entity(versionType, false));
+		IVersionType versionTypeValue = dao.save(this.interface2Entity(versionType, false));
 		 Date date = new Date();
      	StringBuffer sb = new StringBuffer();
      	sb.append("insert into VER_DEVICE_SOFT_VERSION (CREATED_TIME,LAST_UPDATED_TIME,TERMINAL_ID,TYPE_NAME,VERSION_NO,VERSION_STR,VERSION_TYPE_ID) ");
@@ -64,12 +64,12 @@ public class VersionTypeService implements IVersionTypeService {
      	Query query = dao.getSQLQuery(sb.toString());
      	query.setDate(0,date);
      	query.setDate(1, date);
-     	query.setString(2, versionType.getTypeName());
+     	query.setString(2, versionTypeValue.getTypeName());
      	query.setString(3, "");
      	query.setString(4, "000000000000000000000000000000");
-     	query.setLong(5, versionType.getId());
+     	query.setLong(5, versionTypeValue.getId());
      	query.executeUpdate();
-		return dao.save(this.interface2Entity(versionType, false));
+		return dao.save(this.interface2Entity(versionTypeValue, false));
 	}
 
 	@Override

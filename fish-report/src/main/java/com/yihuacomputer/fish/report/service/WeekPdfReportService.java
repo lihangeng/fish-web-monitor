@@ -148,7 +148,7 @@ public class WeekPdfReportService extends PdfReportService implements IWeekPdfRe
 	private void generateTrans(Pdf pdf, int weekOfYear) throws Exception {
 		pdf.addL1Chapter("三、交易数据汇总");
 		Long[] trans = transTypeEtlService.getWeekTotal(Long.valueOf(weekOfYear));
-		Long[] lastTrans = transTypeEtlService.getWeekTotal(Long.valueOf(weekOfYear - 1));
+		Long[] lastTrans = transTypeEtlService.getWeekTotal(Long.valueOf(weekOfYear - 1l));
 		long remains = trans[0] - lastTrans[0];
 		String tranStr = "";
 		if (remains > 0) {

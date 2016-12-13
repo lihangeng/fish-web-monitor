@@ -40,7 +40,7 @@ public class ShortMessage implements IShortMessage,Serializable {
 
 	@Override
 	public void addMobile(List<String> mobiles) {
-		mobiles.addAll(mobiles);
+		this.mobiles.addAll(mobiles);
 	}
 
 	@Override

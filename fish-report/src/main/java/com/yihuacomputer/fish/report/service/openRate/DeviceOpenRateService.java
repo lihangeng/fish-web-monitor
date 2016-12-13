@@ -222,11 +222,11 @@ public class DeviceOpenRateService implements IDeviceOpenRateService {
 
 		IDeviceOpenPlan result = null;
 
-		date = date + " 00:00:00";
+		String dateValue = date + " 00:00:00";
 
 		for (IDeviceOpenPlan plan : listDeviceOpenPlan) {
 
-			if (distanceTimes(DateUtils.getDate(plan.getStartDate()) + " 00:00:00", date) >= 0 && distanceTimes(date, DateUtils.getDate(plan.getEndDate()) + " 23:59:59") >= 0) {
+			if (distanceTimes(DateUtils.getDate(plan.getStartDate()) + " 00:00:00", dateValue) >= 0 && distanceTimes(dateValue, DateUtils.getDate(plan.getEndDate()) + " 23:59:59") >= 0) {
 				result = plan;
 				break;
 			}
@@ -238,7 +238,7 @@ public class DeviceOpenRateService implements IDeviceOpenRateService {
 	private IDayOpenRate statDayOpenRate(String currDate, String terminalId, List<IOpenPlanDetail> avaiListOpenPlanDetail, List<IRunInfo> listRunInfo, IRunInfo yestodayRunInfo) {
 		try {
 			IDayOpenRate dayOpenRate = dayOpenRateService.make();
-
+			IRunInfo runInfoValue = yestodayRunInfo;
 			/** 设备应开机时长 */
 			int openTimes = 0; // 设备应开机时长(单位：分钟)
 
@@ -254,7 +254,7 @@ public class DeviceOpenRateService implements IDeviceOpenRateService {
 				if (listRunInfo != null) {
 					for (IRunInfo runInfo : listRunInfo) {
 						if (!(distanceTimes(openDateTime, runInfo.getStatusTime()) > 0)) {
-							yestodayRunInfo = runInfo;
+							runInfoValue = runInfo;
 						} else {
 							resultRunInfo.add(runInfo);
 						}
@@ -265,10 +265,10 @@ public class DeviceOpenRateService implements IDeviceOpenRateService {
 				boolean isBreak = false;
 				// 如果当天没有变化
 				if (null == resultRunInfo || resultRunInfo.size() == 0) {
-					if (null != yestodayRunInfo) {
-						status = yestodayRunInfo.getRunStatus();
+					if (null != runInfoValue) {
+						status = runInfoValue.getRunStatus();
 					}
-					if(null == yestodayRunInfo)
+					if(null == runInfoValue)
 					{
 						status = RunStatus.Unknown;
 					}
@@ -282,8 +282,8 @@ public class DeviceOpenRateService implements IDeviceOpenRateService {
 						IRunInfo firstRunInfo = resultRunInfo.get(i);
 						if (i == 0) {
 							// 前一天的状态,刚上此系统前一天的数据可能为null
-							if (null != yestodayRunInfo) {
-								status = yestodayRunInfo.getRunStatus();
+							if (null != runInfoValue) {
+								status = runInfoValue.getRunStatus();
 							} 
 					     // modify by zxw  将开机方案默认状态改为未知							 
 							else{

@@ -69,7 +69,7 @@ public class TaskThread implements Runnable {
 			// 尝试等待20秒
 	        synchronized (this) {
 	            try {
-	                this.wait(20 * 1000);
+	                this.wait(20l * 1000l);
 	            }
 	            catch (InterruptedException e) {
 	                e.printStackTrace();
