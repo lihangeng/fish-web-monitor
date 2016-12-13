@@ -732,7 +732,7 @@ public class PersonController {
     @RequestMapping(value = "/queryPersonJob", method = RequestMethod.GET)
     public @ResponseBody
     ModelMap queryPersonJobList() {
-        logger.info(String.format("search personJob : queryPersonJobList"));
+        logger.info("search personJob : queryPersonJobList");
         ModelMap model = new ModelMap();
         List<IPersonJob> listPersonJob = personJobService.list();
         model.put("data", PersonJobForm.convert(listPersonJob));

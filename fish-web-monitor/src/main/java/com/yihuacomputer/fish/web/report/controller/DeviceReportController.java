@@ -176,6 +176,8 @@ public class DeviceReportController {
                 out.write(cache, 0, len);
                 contentLength += len;
             }
+            out.close();
+            randomFile.close();
         }
         catch (Exception ex) {
         	logger.error(ex.getMessage());

@@ -57,7 +57,7 @@ public class FaultRateReportController {
 	 */
 	@RequestMapping(value = "/faultByBrand", method = RequestMethod.GET)
 	public @ResponseBody ModelMap searchByBrand(HttpServletRequest req, WebRequest webRequest) {
-		logger.info(String.format("search faultByBrand : queryFaultByBrand"));
+		logger.info("search faultByBrand : queryFaultByBrand");
 		ModelMap result = new ModelMap();
 		String time = req.getParameter("dateTime");
 		List<FaultRateReport> list = faultRateReportService.listAllHql(time);
@@ -75,7 +75,7 @@ public class FaultRateReportController {
 	 */
 	@RequestMapping(value = "/faultByType", method = RequestMethod.GET)
 	public @ResponseBody ModelMap queryFaultByType(HttpServletRequest req, WebRequest request) {
-		logger.info(String.format("search faultByType : queryFaultByType"));
+		logger.info("search faultByType : queryFaultByType");
 		ModelMap result = new ModelMap();
 		String vendor = req.getParameter("vendorId");
 		Long vendorId = 1l;
@@ -98,7 +98,7 @@ public class FaultRateReportController {
 	 */
 	@RequestMapping(value = "/faultByModule", method = RequestMethod.GET)
 	public @ResponseBody ModelMap queryFaultByModule(HttpServletRequest req, WebRequest webRequest) {
-		logger.info(String.format("search faultByModule : queryFaultByModule"));
+		logger.info("search faultByModule : queryFaultByModule");
 		ModelMap result = new ModelMap();
 		String vendor = req.getParameter("vendorId");
 		Long vendorId = 1l;
@@ -127,18 +127,16 @@ public class FaultRateReportController {
 			set2.add(m.getName());
 		}
 		set2.removeAll(set1);
-		if(set2 != null){
-			Iterator<String> it=  set2.iterator();
-			while(it.hasNext()){
-				FaultRateReport f = new FaultRateReport();
-				f.setVendorId(vendorId);
-				f.setDevTypeId(devTypeId);
-				f.setName(it.next());
-				f.setTradeCount(transCount);
-				f.setFaultCount(0);
-				f.setRate("00.00");
-				list.add(f);
-			}
+		Iterator<String> it=  set2.iterator();
+		while(it.hasNext()){
+			FaultRateReport f = new FaultRateReport();
+			f.setVendorId(vendorId);
+			f.setDevTypeId(devTypeId);
+			f.setName(it.next());
+			f.setTradeCount(transCount);
+			f.setFaultCount(0);
+			f.setRate("00.00");
+			list.add(f);
 		}
 		result.addAttribute(FishConstant.SUCCESS, true);
 		result.addAttribute(FishConstant.TOTAL, list.size());

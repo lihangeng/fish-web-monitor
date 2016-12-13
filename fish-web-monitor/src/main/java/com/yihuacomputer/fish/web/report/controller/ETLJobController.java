@@ -248,7 +248,7 @@ public class ETLJobController {
 	@MethodNameDescrible(describle="userlog.ETLJobController.AllOpera",hasArgs=false)
 	@RequestMapping(value = "/AllOpera", method = RequestMethod.GET)
 	public @ResponseBody ModelMap AgainAll(WebRequest Request, HttpServletRequest req) {
-		logger.info(String.format("All opera!!"));
+		logger.info("All opera!!");
 		ModelMap result = new ModelMap();
 		try {
 			List<JobCountForm> forms = getDates();

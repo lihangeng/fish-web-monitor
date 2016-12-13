@@ -452,7 +452,7 @@ public class OrganizationController {
 	 */
 	@RequestMapping(value = "/queryServiceObject", method = RequestMethod.GET)
 	public @ResponseBody ModelMap queryServiceObject() {
-		logger.info(String.format("search organization : queryServiceObject"));
+		logger.info("search organization : queryServiceObject");
 		ModelMap model = new ModelMap();
 		List<IOrganization> organizationList = EntityUtils.convert(service.list());
 
@@ -490,7 +490,7 @@ public class OrganizationController {
 	@RequestMapping(value = "/queryMatching", method = RequestMethod.GET)
 	@MethodNameDescrible(describle = "模糊匹配", argsContext = "name", hasArgs = false)
 	public @ResponseBody ModelMap queryMatching(WebRequest request, HttpServletRequest req) {
-		logger.info(String.format("search organization : queryMatching"));
+		logger.info("search organization : queryMatching");
 		ModelMap result = new ModelMap();
 		IFilter filter = new Filter();
 		Iterator<String> iterator = request.getParameterNames();
