@@ -118,7 +118,7 @@ public class ZipUtils {
 	 * @return
 	 */
 	private static String getAbsFileNameStr(String baseDir, File realFileName){
-		if(null!=realFileName&&!realFileName.exists()||null==baseDir){
+		if(null == realFileName || !realFileName.exists() || null == baseDir){
 			return "";
 		}
 		String fixPath = realFileName.getPath();

@@ -70,7 +70,7 @@ public class ShortMessageService implements IShortMessageService {
 		BufferedInputStream in = new BufferedInputStream(new DataInputStream(client.getInputStream()));
 		int readerInt = in.read(head);
 		if(logger.isDebugEnabled()){
-			logger.debug(String.format("read Msg length is %d"),readerInt);
+			logger.debug(String.format("read Msg length is %d",readerInt));
 		}
 		ds.close();
 		in.close();
