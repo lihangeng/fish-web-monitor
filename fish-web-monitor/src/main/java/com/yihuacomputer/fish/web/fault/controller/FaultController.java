@@ -125,7 +125,7 @@ public class FaultController
     public @ResponseBody
     ModelMap searchById(@RequestParam long faultId, HttpServletRequest req)
     {
-        logger.info(String.format("search caseFault by Id"));
+        logger.info(String.format("search caseFault by Id %s",faultId));
         ModelMap result = new ModelMap();
         ICaseFault caseFault = service.getFault(faultId);
         result.addAttribute(FishConstant.SUCCESS, true);
@@ -259,6 +259,7 @@ public class FaultController
         }
         catch (Exception e)
         {
+        	logger.error(String.format("Exception is [%s]", e.getMessage()));
             result.addAttribute(FishConstant.SUCCESS, false);
             result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("param.updateError", null, FishCfg.locale));
         }

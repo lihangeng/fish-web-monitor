@@ -500,7 +500,7 @@ public class DeviceController {
 	@RequestMapping(value = "/queryPerson", method = RequestMethod.GET)
 	public @ResponseBody
 	ModelMap queryPerson(@RequestParam String terminalId, @RequestParam int type) {
-		logger.info(String.format("search device : validatorTerminalId"));
+		logger.info(String.format("search device : validator TerminalId is %s",terminalId));
 		ModelMap model = new ModelMap();
 		List<IPerson> personList = devicePersonRelation.listPersonByDevice(terminalId);
 		List<IPerson> newPersonList = new ArrayList<IPerson>();

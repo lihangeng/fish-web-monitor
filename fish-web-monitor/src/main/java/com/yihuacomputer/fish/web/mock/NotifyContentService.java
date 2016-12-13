@@ -44,19 +44,19 @@ public class NotifyContentService implements INotifyContentService{
 			INotifyMouldSet notifyMouldSet) {
 
 		String terminalId = notifyMouldSet.getTerminalId()==null?"":notifyMouldSet.getTerminalId();
-		notifyContent = StringUtils.replaceLogRule(notifyContent, "\\{terminalId\\}", terminalId);
-		notifyContent = StringUtils.replaceLogRule(notifyContent, "\\{hwCode\\}", notifyMouldSet.getAppStatus()==null?"":notifyMouldSet.getHwCode());
-		notifyContent = StringUtils.replaceLogRule(notifyContent, "\\{faultMod\\}", notifyMouldSet.getFaultMod()==null?"":getEnumI18n(notifyMouldSet.getFaultMod().getText()));
-		notifyContent = StringUtils.replaceLogRule(notifyContent, "\\{faultTime\\}", DateUtils.getTimestamp(new Date()));
-		notifyContent = StringUtils.replaceLogRule(notifyContent, "\\{faultClassify\\}", notifyMouldSet.getFaultClassify());
-		notifyContent = StringUtils.replaceLogRule(notifyContent, "\\{appStatus\\}", notifyMouldSet.getAppStatus()==null?"":getEnumI18n(notifyMouldSet.getAppStatus().getText()));
+		String notifyContentValue = StringUtils.replaceLogRule(notifyContent, "\\{terminalId\\}", terminalId);
+		notifyContentValue = StringUtils.replaceLogRule(notifyContentValue, "\\{hwCode\\}", notifyMouldSet.getAppStatus()==null?"":notifyMouldSet.getHwCode());
+		notifyContentValue = StringUtils.replaceLogRule(notifyContentValue, "\\{faultMod\\}", notifyMouldSet.getFaultMod()==null?"":getEnumI18n(notifyMouldSet.getFaultMod().getText()));
+		notifyContentValue = StringUtils.replaceLogRule(notifyContentValue, "\\{faultTime\\}", DateUtils.getTimestamp(new Date()));
+		notifyContentValue = StringUtils.replaceLogRule(notifyContentValue, "\\{faultClassify\\}", notifyMouldSet.getFaultClassify());
+		notifyContentValue = StringUtils.replaceLogRule(notifyContentValue, "\\{appStatus\\}", notifyMouldSet.getAppStatus()==null?"":getEnumI18n(notifyMouldSet.getAppStatus().getText()));
 		if(!terminalId.equals("")){
 			IDevice device = deviceService.get(terminalId);
-			notifyContent = StringUtils.replaceLogRule(notifyContent, "\\{orgName\\}", device.getOrganization().getName());
+			notifyContentValue = StringUtils.replaceLogRule(notifyContentValue, "\\{orgName\\}", device.getOrganization().getName());
 		}
 
 //		logger.info("短信内容:"+notifyContent);
-		logger.info("SMS content:"+notifyContent);
-		return notifyContent;
+		logger.info("SMS content:"+notifyContentValue);
+		return notifyContentValue;
 	}
 }

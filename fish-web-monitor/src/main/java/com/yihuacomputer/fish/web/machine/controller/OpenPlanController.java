@@ -493,6 +493,8 @@ public class OpenPlanController {
 				out.write(cache, 0, len);
 				contentLength += len;
 			}
+			out.close();
+			randomFile.close();
 		} catch (Exception ex) {
 			logger.error(ex.getMessage());
 		} finally {
@@ -525,6 +527,7 @@ public class OpenPlanController {
 				relationService.unlink(openPlan, deviceService.get(Long.valueOf(id)));
 			}
 		} catch (Exception ex) {
+			logger.error(String.format("Exception is %s", ex.getMessage()));
 			i++;
 		}
 		if (i > 0) {

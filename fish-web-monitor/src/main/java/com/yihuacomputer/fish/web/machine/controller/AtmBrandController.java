@@ -277,7 +277,7 @@ public class AtmBrandController {
 	 */
 	@RequestMapping(value = "/queryTypeByAtmVendor", method = RequestMethod.GET)
 	public @ResponseBody ModelMap queryAtmTypeByAtmBrand(@RequestParam long devVendorId) {
-		logger.info(String.format("search AtmType By AtmBrand : queryTypeByAtmVendor"));
+		logger.info(String.format("search AtmType By AtmBrand Id [%s] : queryTypeByAtmVendor",devVendorId));
 		ModelMap model = new ModelMap();
 		Iterable<IAtmType> typeLists = atmTypeService.list();
 		List<IAtmType> entities = new ArrayList<IAtmType>();

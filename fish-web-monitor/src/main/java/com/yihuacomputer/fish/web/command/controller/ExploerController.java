@@ -100,10 +100,11 @@ public class ExploerController
         ExplorerParamForm explorerParamForm = new ExplorerParamForm();
         explorerParamForm.setLimit(limit);
         explorerParamForm.setOffset(start);
-        if(path.endsWith(":")){
-            path=path+System.getProperty("file.separator");
+        String pathValue = path;
+        if(pathValue.endsWith(":")){
+        	pathValue = pathValue + System.getProperty("file.separator");
         }
-        explorerParamForm.setPath(path);
+        explorerParamForm.setPath(pathValue);
 		String url = MonitorCfg.getHttpUrl(request.getParameter("ip"))+"/ctr/explorer";
         ExplorerForm explorerForm = (ExplorerForm) HttpProxy.httpPost(url,explorerParamForm,ExplorerForm.class, 5000);
         if(explorerForm.getRet().equals(AgentRet.RET00)){
@@ -168,10 +169,11 @@ public class ExploerController
     ModelMap fileDown(@RequestParam String requestName, @RequestParam String requestPath,@RequestParam String ip,@RequestParam String flag,
             WebRequest request){
         ModelMap result = new ModelMap();
+        String requestPathValue = null;
         if(requestPath.lastIndexOf("\\")!=-1){
-        	requestPath = requestPath.substring(0, requestPath.lastIndexOf("\\"));
+        	requestPathValue = requestPath.substring(0, requestPath.lastIndexOf("\\"));
         }else{
-        	requestPath = requestPath.substring(0, requestPath.lastIndexOf("/"));
+        	requestPathValue = requestPath.substring(0, requestPath.lastIndexOf("/"));
         }
         HttpFileCfg httpFileCfg = new HttpFileCfg();
         String localName = requestName;
@@ -179,7 +181,7 @@ public class ExploerController
         httpFileCfg.setLocalName(localName);
         httpFileCfg.setLocalPath(localPath);
         httpFileCfg.setRequestName(requestName);
-        httpFileCfg.setRequestPath(requestPath);
+        httpFileCfg.setRequestPath(requestPathValue);
         httpFileCfg.setCompress(true);
         httpFileCfg.setIpAdd(ip);
         httpFileCfg.setPort(MonitorCfg.getRemotePort());
@@ -243,6 +245,8 @@ public class ExploerController
                 out.write(cache, 0, len);
                 contentLength += len;
             }
+            out.close();
+            randomFile.close();
         }catch(Exception ex){
         	logger.error(ex.getMessage());
         }finally{

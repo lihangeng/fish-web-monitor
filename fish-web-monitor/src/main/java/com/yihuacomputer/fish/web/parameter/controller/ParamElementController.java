@@ -158,7 +158,7 @@ public class ParamElementController {
 
 	@RequestMapping(value = "/elementClassify", method = RequestMethod.GET)
     public @ResponseBody ModelMap queryElementClassify() {
-        logger.info(String.format("search element : queryClassify"));
+        logger.info("search element : queryClassify");
         ModelMap model = new ModelMap();
         List<IParamClassify> cassifyList = EntityUtils.convert(classifyService.list());
         model.put(FishConstant.DATA, convert1(cassifyList));
@@ -168,7 +168,7 @@ public class ParamElementController {
 
    @RequestMapping(value= "/queryAppsystemRadioGroup",method=RequestMethod.GET)
    public @ResponseBody ModelMap queryAppSystem1(){
-	   logger.info(String.format("search appSystem : queryAppSystem"));
+	   logger.info("search appSystem : queryAppSystem");
 	   ModelMap model=new ModelMap();
 	   List<IAppSystem> appSystemList = appSystemService.listContainsApp(new Filter());
 	   model.put(FishConstant.DATA, appSystemList);
@@ -177,7 +177,7 @@ public class ParamElementController {
 
    @RequestMapping(value= "/queryAppsystem",method=RequestMethod.GET)
    public @ResponseBody ModelMap queryAppSystem2(){
-	   logger.info(String.format("search appSystem : queryAppSystem"));
+	   logger.info("search appSystem : queryAppSystem");
 	   ModelMap model=new ModelMap();
 	   List<IAppSystem> appSystemList =appSystemService.list();
 	   model.put(FishConstant.DATA, convert2(appSystemList));
@@ -370,6 +370,7 @@ public class ParamElementController {
 				return true;
 			}
 		}catch(Exception e){
+			logger.error(String.format("Exception is [%s]", e.getMessage()));
 			return false;
 		}
 

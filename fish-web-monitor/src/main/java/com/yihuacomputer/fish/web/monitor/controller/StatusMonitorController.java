@@ -132,14 +132,16 @@ public class StatusMonitorController {
     @ResponseBody
     public ModelMap mapviewDevice(@RequestParam int start, @RequestParam int limit, WebRequest webRequest,
             HttpServletRequest request) {
+    	int startValue = start;
+    	int limitValue = limit;
         if (StringUtils.isNotEmpty(request.getParameter("startP"))) {
-            start = Integer.parseInt(request.getParameter("startP"));
+        	startValue = Integer.parseInt(request.getParameter("startP"));
         }
         if (StringUtils.isNotEmpty(request.getParameter("limitP"))) {
-            limit = Integer.parseInt(request.getParameter("limitP"));
+        	limitValue = Integer.parseInt(request.getParameter("limitP"));
         }
 
-        IPageResult<IStatusReport> pageResult = xfsService.pageStatus(start, limit,
+        IPageResult<IStatusReport> pageResult = xfsService.pageStatus(startValue, limitValue,
                 getStatusFilter(webRequest, request), true);
 
         ModelMap map = new ModelMap();
@@ -161,17 +163,19 @@ public class StatusMonitorController {
     @ResponseBody
     public ModelMap mapviewOrg(@RequestParam int start, @RequestParam int limit, WebRequest request) {
         String orgId = "";
+        int startValue = start;
+        int limitValue = limit;
         if (StringUtils.isNotEmpty(request.getParameter("orgId"))) {
             orgId = request.getParameter("orgId");
         }
         if (StringUtils.isNotEmpty(request.getParameter("startP"))) {
-            start = Integer.parseInt(request.getParameter("startP"));
+        	startValue = Integer.parseInt(request.getParameter("startP"));
         }
         if (StringUtils.isNotEmpty(request.getParameter("limitP"))) {
-            limit = Integer.parseInt(request.getParameter("limitP"));
+        	limitValue = Integer.parseInt(request.getParameter("limitP"));
         }
 
-        IPageResult<IStatusMonitorMapOrg> pageResult = xfsService.pageStatusMapOrg(start, limit, orgId);
+        IPageResult<IStatusMonitorMapOrg> pageResult = xfsService.pageStatusMapOrg(startValue, limitValue, orgId);
 
         ModelMap map = new ModelMap();
         map.addAttribute(FishConstant.SUCCESS, true);

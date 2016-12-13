@@ -147,7 +147,7 @@ public class VendorCodeController {
 	public @ResponseBody
 	@MethodNameDescrible(describle="userlog.vendorCodeController.remove",hasLogKey=true)
 	String remove(@RequestParam long vendor) {
-		logger.info(String.format("remove vendorCode by vendor"));
+		logger.info(String.format("remove vendorCode by vendorId %s",vendor));
 		String vendorName = organizationService.get(String.valueOf(vendor)).getName();
 		List<IVendorCode> list = vendorCodeService.getByVendor(vendor);
 		if (list == null || list.isEmpty()) {
@@ -156,6 +156,7 @@ public class VendorCodeController {
 			try {
 				vendorCodeService.deleteByVendor(vendor);
 			} catch (Exception e) {
+				logger.error(String.format("Exception is [%s]", e.getMessage()));
 				return "{'success':false,'content':'"+messageSource.getMessage("person.delError", null, FishCfg.locale)+"','logKey':'"+vendorName+"'}";
 			}
 		}
@@ -318,6 +319,8 @@ public class VendorCodeController {
                 out.write(cache, 0, len);
                 contentLength += len;
             }
+            out.close();
+            randomFile.close();
         }catch(Exception ex){
             logger.error(ex.getMessage());
         }finally{

@@ -103,6 +103,7 @@ public class ParamClassifyController {
 					classifyService.remove(id);
 					result.addAttribute(FishConstant.SUCCESS, true);
 				} catch (Exception ex) {
+					logger.error(String.format("Exception is [%s]", ex.getMessage()));
 					result.addAttribute(FishConstant.SUCCESS, false);
 				}
 			}
@@ -163,6 +164,7 @@ public class ParamClassifyController {
 				return true;
 			}
 		} catch (Exception e) {
+			logger.error(String.format("Exception is [%s]", e.getMessage()));
 			return false;
 		}
 	}

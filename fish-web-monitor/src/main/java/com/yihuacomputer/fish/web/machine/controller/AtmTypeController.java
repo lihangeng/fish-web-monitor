@@ -337,6 +337,7 @@ public class AtmTypeController {
             }
         }
         catch (Exception e) {
+        	logger.error(String.format("Exception is [%s]", e.getMessage()));
             return false;
         }
     }

@@ -23,7 +23,7 @@ public class MonitorDataLoader {
         for (int i = 1; i <= 40; i++) {
             tran = transService.make();
             tran.setTerminalId("A#000" + i);
-            tran.setAmt(i * 1000);
+            tran.setAmt(i * 1000d);
             tran.setCreditAccount("0000 0000 0000 " + i);
             tran.setCurrency(i % 2 == 0 ? "美元" : "人民币");
             tran.setDateTime(new Date());
