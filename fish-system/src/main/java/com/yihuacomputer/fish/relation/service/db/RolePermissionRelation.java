@@ -50,7 +50,6 @@ public class RolePermissionRelation implements IRolePermissionRelation {
         }
     }
 
-    @Transactional(readOnly = true)
     private RolePermissionObj find(IRole role, IPermission permission) {
         Filter filter = new Filter();
         filter.addFilterEntry(FilterFactory.eq("roleId", role.getId()));

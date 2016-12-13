@@ -46,7 +46,6 @@ public class UserPermissionRelation implements IUserPermissionRelation {
         return false;
     }
 
-    @Transactional(readOnly = true)
     private UserPermissionObj find(IUser user, IPermission permission) {
         Filter filter = new Filter();
         filter.addFilterEntry(FilterFactory.eq("userId", user.getId()));

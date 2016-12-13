@@ -139,7 +139,6 @@ public class AdvertGroupService implements IAdvertGroupService {
 	}
 	
 	@SuppressWarnings("unchecked")
-    @Transactional(readOnly=true)
 	private int getTotal(String sqlStr) {
 		StringBuffer sql = new StringBuffer();
 		sql = sql.append("SELECT COUNT(A.ID) AS TOTAL FROM (").append(sqlStr).append(") A");

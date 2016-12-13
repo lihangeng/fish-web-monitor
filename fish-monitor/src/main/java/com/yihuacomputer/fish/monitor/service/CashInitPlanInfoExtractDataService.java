@@ -155,6 +155,7 @@ public class CashInitPlanInfoExtractDataService implements ICashInitPlanInfoExtr
 			Map<String,IDevice>initDeviceMap,ICashInitPlanInfo cashInitPlanInfo,IOrganization org,double amt,int cashInitDays,long tradingVolumeOut){
 
 		List<IDeviceBoxInfo> deviceBoxInfoList = deviceBoxInfoService.getCashLimitRuleDevice(org.getOrgFlag());
+		double amtValue = amt;
 		for (IDeviceBoxInfo deviceBoxInfo : deviceBoxInfoList) {
 			IDevice device = deviceBoxInfo.getDeviceId();
 			// 此机器上次加钞信息
@@ -164,11 +165,11 @@ public class CashInitPlanInfoExtractDataService implements ICashInitPlanInfoExtr
 			long dailyVolume = getDailyTradingVolume(monthDailyVolume,deviceBoxInfo,device.getTerminalId(),tradingVolumeOut);
 			//根据日均交易量推荐加钞金额
 			long adviceAmt = getAdviceAmt(dailyVolume,cashInitDays,deviceBoxInfo);
-			amt += adviceAmt;
+			amtValue = amtValue + adviceAmt;
 			initCashInitPlanDeviceInfo(BoxInitRuleType.CASHLIMIT,adviceAmt,cashInitPlanInfo,device,cashInitUnique);
 			initDeviceMap.put(device.getTerminalId(), device);
 		}
-		return amt;
+		return amtValue;
 	}
 
 	/**
@@ -216,6 +217,7 @@ public class CashInitPlanInfoExtractDataService implements ICashInitPlanInfoExtr
 		String date = DateUtils.getDate(DateUtils.getDate(-cashInitDays));
 		cashInitFilter.lt("date", date + " 00:00:00");
 		List<ICashInitUnique> cashInitList = cashInitUniqueService.getCashInitByOrg(org, cashInitDays);
+		double amtValue = amt;
 		for (ICashInitUnique cashInitUnique : cashInitList) {
 			// 如果己经加入到加钞计划中,则跳过不做处理
 			if (initDeviceMap.get(cashInitUnique.getTerminalId()) != null) {
@@ -237,11 +239,11 @@ public class CashInitPlanInfoExtractDataService implements ICashInitPlanInfoExtr
 			long dailyVolume = getDailyTradingVolume(monthDailyVolume,deviceBoxInfo,device.getTerminalId(),tradingVolumeOut);
 			//根据日均交易量推荐加钞金额
 			long adviceAmt = getAdviceAmt(dailyVolume,cashInitDays,deviceBoxInfo);
-			amt += adviceAmt;
+			amtValue += adviceAmt;
 			initCashInitPlanDeviceInfo(BoxInitRuleType.DAYSLIMIT,adviceAmt,cashInitPlanInfo,device,cashInitUnique);
 			initDeviceMap.put(device.getTerminalId(), device);
 		}
-		return amt;
+		return amtValue;
 	}
 	
 	/**
@@ -261,6 +263,7 @@ public class CashInitPlanInfoExtractDataService implements ICashInitPlanInfoExtr
 			Map<String,IDevice>initDeviceMap,ICashInitPlanInfo cashInitPlanInfo,IOrganization org,double amt,int cashInitDays,long tradingVolumeOut,long tradingVolumeIn){
 
 		Map<String, IDeviceBoxInfo> orgDeviceBoxInfoMap = deviceBoxInfoService.getDeviceBoxInfo(org.getOrgFlag());
+		double amtValue = amt;
 		for (Map.Entry<String, IDeviceBoxInfo> entry : orgDeviceBoxInfoMap.entrySet()) {
 			String terminalId = entry.getKey();
 			IDeviceBoxInfo deviceBoxInfo = entry.getValue();
@@ -274,7 +277,7 @@ public class CashInitPlanInfoExtractDataService implements ICashInitPlanInfoExtr
 			long dailyVolume = getDailyTradingVolume(monthDailyVolume,deviceBoxInfo,terminalId,tradingVolumeOut);
 			//根据日均交易量推荐加钞金额
 			long adviceAmt = getAdviceAmt(dailyVolume,cashInitDays,deviceBoxInfo);
-			amt += adviceAmt;
+			amtValue += adviceAmt;
 			//如果取款箱默认取款最大为0，不存在取款箱，不用考虑取款日均预警
 			if ((deviceBoxInfo.getDefaultBill()!=0&&
 					deviceBoxInfo.getBillValue() < dailyVolume)||
@@ -290,7 +293,7 @@ public class CashInitPlanInfoExtractDataService implements ICashInitPlanInfoExtr
 			}
 
 		}
-		return amt;
+		return amtValue;
 	}
 	
 	/**
