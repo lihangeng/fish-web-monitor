@@ -23,18 +23,10 @@ public enum TaskType {
 		return id;
 	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
-
 	public String getText() {
 		return text;
 	}
 
-	public void setText(String text) {
-		this.text = text;
-	}
-	
 	public static TaskType getById(int id){
         for (TaskType each : TaskType.values()){
             if (each.getId() == id){

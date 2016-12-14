@@ -685,10 +685,6 @@ enum AgentRet {
         return text;
     }
 
-    public void setText(String text) {
-        this.text = text;
-    }
-
     public static boolean isDownFail(AgentRet agentRet) {
         if (agentRet.name().startsWith("RET41")) {
             return true;

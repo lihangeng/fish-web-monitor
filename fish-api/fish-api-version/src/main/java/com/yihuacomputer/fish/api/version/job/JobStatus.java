@@ -30,16 +30,8 @@ public enum JobStatus {
 		return id;
 	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
-
 	public String getText() {
 		return text;
-	}
-
-	public void setText(String text) {
-		this.text = text;
 	}
 
 	//只有新建和计划中的作业在重启系统的时候自动加载到作业队列中

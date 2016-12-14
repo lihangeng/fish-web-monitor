@@ -58,10 +58,6 @@ public enum ReportTitle {
         return text;
     }
 
-    public void setText(String text) {
-        this.text = text;
-    }
-
     private String text;
 
     private ReportTitle(String text) {
