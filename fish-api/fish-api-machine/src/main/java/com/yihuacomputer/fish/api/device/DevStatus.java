@@ -10,10 +10,6 @@ public enum DevStatus {
 	OPEN(2, "DevStatus.OPEN"),
 	DISABLED(3, "DevStatus.DISABLED"),
 	SCRAPPED(4, "DevStatus.SCRAPPED");
-	
-	public String getText() {
-		return text;
-	}
 
 	private int id;
 
@@ -28,12 +24,8 @@ public enum DevStatus {
 		return id;
 	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public void setText(String text) {
-		this.text = text;
+	public String getText() {
+		return text;
 	}
 
 	public static DevStatus getById(int id) {

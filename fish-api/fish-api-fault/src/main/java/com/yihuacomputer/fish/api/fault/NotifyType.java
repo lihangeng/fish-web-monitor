@@ -12,9 +12,6 @@ public enum NotifyType {
 	UPDATE(2, "NotifyType.UPDATE"), // 升级通知
 	CLOSE(3, "NotifyType.CLOSE");// 关闭通知
 
-    public String getText(){
-		return text;
-    }
 	private int id;
 
 	private String text;
@@ -28,13 +25,9 @@ public enum NotifyType {
 		return id;
 	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public void setText(String text) {
-		this.text = text;
-	}
+	public String getText(){
+		return text;
+    }
 	
 	public static NotifyType getById(int id){
 		for(NotifyType each : NotifyType.values()){

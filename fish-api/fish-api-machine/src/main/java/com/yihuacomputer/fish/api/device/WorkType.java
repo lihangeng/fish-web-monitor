@@ -13,9 +13,6 @@ public enum WorkType
     FROM_OPERATING(1, "WorkType.FROM_OPERATING"), COOPERATION(2, "WorkType.FROM_OPERATING"), OUTSOURCING(3, "WorkType.FROM_OPERATING");
 //FROM_OPERATING(1, "自营"), COOPERATION(2, "合作"), OUTSOURCING(3, "外包");
 
-    public String getText(){
-		return text;
-    }
     private int id;
 
     private String text;
@@ -31,16 +28,10 @@ public enum WorkType
         return id;
     }
 
-    public void setId(int id)
-    {
-        this.id = id;
+    public String getText(){
+		return text;
     }
-
-    public void setText(String text)
-    {
-        this.text = text;
-    }
-
+    
     public static WorkType getById(int id)
     {
         for (WorkType each : WorkType.values())

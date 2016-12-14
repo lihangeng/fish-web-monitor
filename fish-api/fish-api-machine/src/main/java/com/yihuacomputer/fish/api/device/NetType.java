@@ -9,9 +9,6 @@ package com.yihuacomputer.fish.api.device;
 public enum NetType {
     CABLE(1, "NetType.CABLE"), WIRELESS(2, "NetType.WIRELESS"), CW(3, "NetType.CW");
 
-    public String getText(){
-		return text;
-    }
     private int id;
 
     private String text;
@@ -25,14 +22,10 @@ public enum NetType {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public String getText(){
+		return text;
     }
-
-    public void setText(String text) {
-        this.text = text;
-    }
-
+    
     public static NetType getById(int id) {
         for (NetType each : NetType.values()) {
             if (each.getId() == id) {

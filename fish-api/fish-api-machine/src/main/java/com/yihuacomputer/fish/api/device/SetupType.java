@@ -12,9 +12,7 @@ public enum SetupType
 {
     WEAR_WALL(1, "SetupType.WEAR_WALL"), LOBBY(2, "SetupType.LOBBY");
 //    WEAR_WALL(0, "穿墙"), LOBBY(1, "大堂");
-    public String getText(){
-		return text;
-    }
+   
     private int id;
 
     private String text;
@@ -30,16 +28,10 @@ public enum SetupType
         return id;
     }
 
-    public void setId(int id)
-    {
-        this.id = id;
+    public String getText(){
+		return text;
     }
-
-    public void setText(String text)
-    {
-        this.text = text;
-    }
-
+    
     public static SetupType getById(int id)
     {
         for (SetupType each : SetupType.values())

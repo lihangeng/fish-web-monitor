@@ -18,9 +18,6 @@ public enum IsNotify {
 	 */
 	NO(2,"IsNotify.NO");
 
-    public String getText(){
-		return text;
-    }
 	private int id;
 	
 	private String text;
@@ -32,15 +29,11 @@ public enum IsNotify {
 	public int getId() {
 		return id;
 	}
-
-
-	public void setId(int id) {
-		this.id = id;
-	}
 	
-	public void setText(String text) {
-		this.text = text;
-	}	
+	public String getText(){
+		return text;
+    }
+
 	public static IsNotify parsGender(String isNotify){
 		if(isNotify.equals("是")||isNotify.equals("YES")){
 			return IsNotify.YES;
