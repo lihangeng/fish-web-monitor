@@ -42,10 +42,6 @@ public enum VersionCatalog {
         return text;
     }
 
-    public void setText(String text) {
-        this.text = text;
-    }
-
     public static boolean isApp(VersionCatalog versionCatalog){
     	if(VersionCatalog.APP.equals(versionCatalog)){
     		return true;

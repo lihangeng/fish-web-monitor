@@ -23,18 +23,10 @@ public enum PersonType {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public String getText() {
         return text;
     }
 
-    public void setText(String text) {
-        this.text = text;
-    }
-    
     public static PersonType getById(int id){
         for(PersonType each : PersonType.values()){
             if(each.getId() == id){
