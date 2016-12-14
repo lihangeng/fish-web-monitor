@@ -243,7 +243,7 @@ public class DeviceController {
 	@MethodNameDescrible(describle="userlog.deviceController.export",hasArgs=false)
 	public @ResponseBody
 	ModelAndView export( WebRequest webRequest, HttpServletRequest request) {
-		logger.info(String.format("search device : "));
+		logger.info("search device : ");
 		UserSession userSession = (UserSession) request.getSession().getAttribute("SESSION_USER");
 		String organization = String.valueOf(userSession.getOrgId());
 
@@ -440,7 +440,7 @@ public class DeviceController {
 	@RequestMapping(value = "/queryAtmType", method = RequestMethod.GET)
 	public @ResponseBody
 	ModelMap queryAtmType(HttpServletRequest request) {
-		logger.info(String.format("search device : queryAtmType"));
+		logger.info("search device : queryAtmType");
 		//版本关联机型品牌信息
 		String versionId = request.getParameter("versionId");
 		List<Long> atmTypeIdList = null;

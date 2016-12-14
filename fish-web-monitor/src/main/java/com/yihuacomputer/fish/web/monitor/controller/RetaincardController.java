@@ -521,7 +521,7 @@ public class RetaincardController {
 	public @ResponseBody
 	ModelAndView poiExcel(WebRequest wRequest, HttpServletRequest request,
 			HttpServletResponse response) {
-		logger.info(String.format("Export Retain Card Information : "));
+		logger.info("Export Retain Card Information : ");
 		IFilter filter = request2filter(wRequest);
 		UserSession userSession = (UserSession) request.getSession().getAttribute(FishWebUtils.USER);
 		List<IRetaincard> entities = retaincardService.listCardByOrgId(userSession.getOrgId(), filter);

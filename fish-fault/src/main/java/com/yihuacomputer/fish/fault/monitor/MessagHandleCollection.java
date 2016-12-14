@@ -56,7 +56,7 @@ public class MessagHandleCollection implements IMessagHandleCollection{
 		try {
 			this.getfaultHandleQueue().put(xfsStatus);
 		} catch (InterruptedException e) {
-			e.printStackTrace();
+			logger.error(String.format("InterruptedException is [%s]", e.getMessage()));
 		}
 	}
 
@@ -65,7 +65,7 @@ public class MessagHandleCollection implements IMessagHandleCollection{
 		try {
 			return this.getfaultHandleQueue().take();
 		} catch (InterruptedException e) {
-			e.printStackTrace();
+			logger.error(String.format("InterruptedException is [%s]", e.getMessage()));
 			return null;
 		}
 	}

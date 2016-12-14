@@ -94,7 +94,7 @@ public class AtmTypeController {
 
     @RequestMapping(value = "/queryAtmType", method = RequestMethod.GET)
     public @ResponseBody ModelMap queryAtmType() {
-        logger.info(String.format("search AtmType : queryAtmType"));
+        logger.info("search AtmType : queryAtmType");
         ModelMap model = new ModelMap();
         List<IAtmType> atmTypeList = atmTypeService.list();
         model.put(FishConstant.DATA, AtmTypeForm.convert(atmTypeList));
@@ -234,7 +234,7 @@ public class AtmTypeController {
 
     @RequestMapping(value = "/queryAtmVendor", method = RequestMethod.GET)
     public @ResponseBody ModelMap queryAtmVendor() {
-        logger.info(String.format("search AtmType : queryAtmVendor"));
+        logger.info("search AtmType : queryAtmVendor");
         ModelMap model = new ModelMap();
         List<IAtmVendor> atmVendorList = EntityUtils.convert(atmBrandService.list());
         model.put(FishConstant.DATA, AtmBrandForm.convert(atmVendorList));
@@ -244,7 +244,7 @@ public class AtmTypeController {
 
     @RequestMapping(value = "/queryAtmCatalog", method = RequestMethod.GET)
     public @ResponseBody ModelMap queryAtmCatalog() {
-        logger.info(String.format("search AtmType : queryAtmCatalog"));
+        logger.info("search AtmType : queryAtmCatalog");
         ModelMap model = new ModelMap();
         List<IAtmCatalog> atmVendorList = EntityUtils.convert(atmCatalogService.list());
         model.put(FishConstant.DATA, AtmCatalogForm.convert(atmVendorList));
@@ -377,7 +377,7 @@ public class AtmTypeController {
      */
     @RequestMapping(method = RequestMethod.GET, value = "/atmLinkModule")
     public @ResponseBody ModelMap atmLinkModule() {
-        logger.info(String.format("atmLinkModule"));
+        logger.info("atmLinkModule");
         ModelMap result = new ModelMap();
 
         AtmTypeLinkModuleForm resultForm = new AtmTypeLinkModuleForm();

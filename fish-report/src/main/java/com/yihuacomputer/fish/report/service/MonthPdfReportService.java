@@ -8,6 +8,8 @@ import java.util.List;
 import org.jfree.chart.JFreeChart;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -54,6 +56,8 @@ import com.yihuacomputer.fish.report.engine.pdf.PdfConfig;
 @Service
 public class MonthPdfReportService extends PdfReportService implements IMonthPdfReportService {
 
+	private Logger logger = LoggerFactory.getLogger(MonthPdfReportService.class);
+	
 	@Autowired
 	private IDeviceCatalogSummaryMonthService deviceCatalogSummaryMonthService;
 	@Autowired
@@ -96,7 +100,7 @@ public class MonthPdfReportService extends PdfReportService implements IMonthPdf
 			generateFaultMonth(pdf, month);
 			pdf.close();
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(String.format("Exception is [%s]", e));
 		}
 
 		return file.getAbsolutePath();

@@ -262,7 +262,7 @@ public class AtmBrandController {
 	 */
 	@RequestMapping(value = "/queryAtmVendor", method = RequestMethod.GET)
 	public @ResponseBody ModelMap queryAtmVendor() {
-		logger.info(String.format("search AtmVendor : queryAtmVendor"));
+		logger.info("search AtmVendor : queryAtmVendor");
 		ModelMap model = new ModelMap();
 		List<IAtmVendor> atmVendorList = EntityUtils.convert(atmBrandService.list());
 		model.put(FishConstant.DATA, AtmBrandForm.convert(atmVendorList));

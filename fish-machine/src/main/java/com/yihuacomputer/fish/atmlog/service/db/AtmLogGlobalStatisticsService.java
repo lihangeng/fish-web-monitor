@@ -104,7 +104,6 @@ public class AtmLogGlobalStatisticsService implements IAtmLogGlobalStatisticsSer
 	}
 
 	@SuppressWarnings("unchecked")
-    @Transactional(readOnly=true)
 	private int getTotal(String sqlStr) {
 		StringBuffer sql = new StringBuffer();
 		sql = sql.append("select COUNT(a.id) as total from (").append(sqlStr).append(") a");

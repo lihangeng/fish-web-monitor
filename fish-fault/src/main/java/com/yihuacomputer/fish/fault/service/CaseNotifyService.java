@@ -6,6 +6,9 @@ import java.util.List;
 
 
 
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -41,6 +44,8 @@ import com.yihuacomputer.fish.fault.entity.NotifyContent;
 @Transactional
 public class CaseNotifyService implements ICaseNotifyService {
 
+	private Logger logger = LoggerFactory.getLogger(CaseNotifyService.class);
+	
 	@Autowired
 	private IGenericDao dao;
 
@@ -302,7 +307,7 @@ public class CaseNotifyService implements ICaseNotifyService {
 			
 		
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(String.format("Exception is [%s]", e.getMessage()));
 		}
 
 	}

@@ -78,7 +78,7 @@ public class PublishJobManager {
 		try {
 			this.queue.put(result) ;
 		} catch (InterruptedException e) {
-			e.printStackTrace();
+			logger.error(String.format("InterruptedException is [%s]", e.getMessage()));
 		}
 	}
 

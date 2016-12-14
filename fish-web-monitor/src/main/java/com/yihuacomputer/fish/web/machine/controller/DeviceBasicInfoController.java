@@ -107,7 +107,7 @@ public class DeviceBasicInfoController
     ModelMap getAll(@RequestParam int start, @RequestParam int limit,
             WebRequest request)
     {
-        logger.info(String.format("get all device basicInfo"));
+        logger.info("get all device basicInfo");
         
         ModelMap result = new ModelMap();
         
