@@ -112,7 +112,7 @@ public class RunAnalysisReportContorller {
 			response.setHeader("Content-Disposition", "attachment; filename=\"" + getFileName(request, file.getName()) + "\"");
 			response.setContentType("application/x-msdownload;charset=UTF-8");
 		} catch (ParseException e1) {
-			e1.printStackTrace();
+			logger.error(String.format("ParseException is [%s]", e1.getMessage()));
 		}
 		OutputStream os = null;
 		FileInputStream fis = null;
@@ -124,9 +124,10 @@ public class RunAnalysisReportContorller {
 			while ((read = fis.read(readarray)) != -1) {
 				os.write(readarray, 0, read);
 			}
+			fis.close();
 			os.flush();
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			logger.error(String.format("Exception is [%s]", e.getMessage()));
 		} finally {
 			if (fis != null) {
 				fis.close();

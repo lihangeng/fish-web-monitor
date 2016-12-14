@@ -183,7 +183,7 @@ public class AtmLogController {
 			path = AtmLogCfg.getAtmAppLogDir() + FishCfg.FILESEP + String.valueOf(year) + FishCfg.FILESEP + monthString
 					+ FishCfg.FILESEP + deviceId + FishCfg.FILESEP + fileName;
 		} catch (ParseException e1) {
-			e1.printStackTrace();
+			logger.error(String.format("Exception is [%s]", e1.getMessage()));
 		}
 		File file = new File(path);
 

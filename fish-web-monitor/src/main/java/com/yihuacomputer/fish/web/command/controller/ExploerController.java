@@ -314,7 +314,7 @@ public class ExploerController
                 return "{'success':false,'errors':'"+tips+"'}";
             }
         } catch (Exception e) {
-            e.printStackTrace();
+        	logger.error(String.format("Exception is [%s]", e.getMessage()));
         	String tips = messageSource.getMessage("exploer.fileUpload.fail", null, FishCfg.locale);
             return "{'success':false,'errors':'"+tips+"'}";
         }

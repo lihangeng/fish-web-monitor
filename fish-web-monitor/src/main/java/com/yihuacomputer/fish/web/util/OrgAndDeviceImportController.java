@@ -135,7 +135,7 @@ public class OrgAndDeviceImportController {
 			out.close();
 			randomFile.close();
 		} catch (Exception ex) {
-			ex.printStackTrace();
+			logger.error(String.format("Exception is [%s]", ex.getMessage()));
 		} finally {
 			if (out != null) {
 				out.close();

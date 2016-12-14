@@ -56,7 +56,7 @@ public class TaskCollection implements ITaskCollection{
 		try {
 			this.getTaskQueue().put(task);
 		} catch (InterruptedException e) {
-			e.printStackTrace();
+			logger.error(String.format("Exception is [%s]", e.getMessage()));
 		}
 	}
 	
@@ -69,7 +69,7 @@ public class TaskCollection implements ITaskCollection{
 		try {
 			return this.getTaskQueue().take();
 		} catch (InterruptedException e) {
-			e.printStackTrace();
+			logger.error(String.format("Exception is [%s]", e.getMessage()));
 			return null;
 		}
 	}

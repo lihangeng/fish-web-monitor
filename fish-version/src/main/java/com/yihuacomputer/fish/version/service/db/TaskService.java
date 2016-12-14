@@ -317,7 +317,7 @@ public class TaskService implements ITaskService {
                 NoticeForm notice = new NoticeForm(task);
                 HttpProxy.httpPost(getCancelUrl(device.getIp()), notice, NoticeForm.class);
             } catch (Exception ex) {
-                ex.printStackTrace();
+            	logger.error(String.format("Exception is [%s]", ex.getMessage()));
                 throw new AppException(messageSourceVersion.getMessage("exception.task.cancelFial", null, FishCfg.locale) + ex.getMessage());
             }
         }else{
@@ -341,7 +341,7 @@ public class TaskService implements ITaskService {
                 HttpProxy.httpPost(MonitorCfg.getHttpUrl(device.getIp().toString()) + "/ctr/patch/updateDeployDate", notice, NoticeForm.class);
                 updateDeployDateHistory.setNoticeStatus(NoticeStatus.SUCCESS);
             } catch (Exception ex) {
-                ex.printStackTrace();
+            	logger.error(String.format("Exception is [%s]", ex.getMessage()));
                 updateDeployDateHistory.setNoticeStatus(NoticeStatus.FAIL);
                 updateDeployDateHistory.setReason(messageSourceVersion.getMessage("exception.task.noticeFail", null, FishCfg.locale));
             }

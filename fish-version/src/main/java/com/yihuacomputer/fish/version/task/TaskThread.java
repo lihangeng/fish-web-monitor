@@ -72,7 +72,7 @@ public class TaskThread implements Runnable {
 	                this.wait(20l * 1000l);
 	            }
 	            catch (InterruptedException e) {
-	                e.printStackTrace();
+	            	logger.error(String.format("InterruptedException is [%s]", e.getMessage()));
 	            }
 	        }
 			logger.info(task.toString() + "notify finish!");

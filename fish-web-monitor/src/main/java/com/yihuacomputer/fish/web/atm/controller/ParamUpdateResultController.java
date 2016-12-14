@@ -111,7 +111,7 @@ public class ParamUpdateResultController {
 			try {
 				paramPublishResult = paramPublishResultService.update(paramPublishResult);
 			} catch (Exception e) {
-				e.printStackTrace();
+				logger.error(String.format("Exception is [%s]", e.getMessage()));
 			}
 		}
 		// 上报指定的应用参数

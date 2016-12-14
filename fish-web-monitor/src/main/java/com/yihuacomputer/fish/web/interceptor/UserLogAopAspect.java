@@ -188,13 +188,13 @@ public class UserLogAopAspect {
 					}
 				}
 			} catch (SecurityException e) {
-				e.printStackTrace();
+				logger.error(String.format("SecurityException is [%s]", e.getMessage()));
 			} catch (NoSuchFieldException e) {
-				e.printStackTrace();
+				logger.error(String.format("NoSuchFieldException is [%s]", e.getMessage()));
 			} catch (IllegalArgumentException e) {
-				e.printStackTrace();
+				logger.error(String.format("IllegalArgumentException is [%s]", e.getMessage()));
 			} catch (IllegalAccessException e) {
-				e.printStackTrace();
+				logger.error(String.format("IllegalAccessException is [%s]", e.getMessage()));
 			}
 			operatorAction.append("->").append(reqBodyKey);
 		}
@@ -211,9 +211,9 @@ public class UserLogAopAspect {
 				String[] value = (String[])map.get(methodDesc.faceParam());
 				operatorAction.append("->").append(value[0]);
 			} catch (IllegalArgumentException e) {
-				e.printStackTrace();
+				logger.error(String.format("IllegalArgumentException is [%s]", e.getMessage()));
 			} catch (IllegalAccessException e) {
-				e.printStackTrace();
+				logger.error(String.format("IllegalAccessException is [%s]", e.getMessage()));
 			}
 		}
 		return operatorAction.toString();
