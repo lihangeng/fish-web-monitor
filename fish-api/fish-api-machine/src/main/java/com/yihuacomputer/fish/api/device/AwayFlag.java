@@ -20,9 +20,7 @@ public enum AwayFlag
      * 单机离行自助服务点
      */
     STAND_ALONE(3, "AwayFlag.STAND_ALONE");
-    public String getText(){
-			return text;
-    }
+    
     private int id;
 
     private String text;
@@ -38,16 +36,10 @@ public enum AwayFlag
         return id;
     }
 
-    public void setId(int id)
-    {
-        this.id = id;
+    public String getText(){
+		return text;
     }
-
-    public void setText(String text)
-    {
-        this.text = text;
-    }
-
+    
     public static AwayFlag getById(int id)
     {
         for (AwayFlag each : AwayFlag.values())

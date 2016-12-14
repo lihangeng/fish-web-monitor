@@ -12,9 +12,6 @@ package com.yihuacomputer.fish.api.device;
 public enum CashType
 {
     CASH(1, "CashType.CASH"), NOT_CASH(2, "CashType.NOT_CASH");
-    public String getText(){
-			return text;
-    }
     
     private int id;
 
@@ -30,17 +27,11 @@ public enum CashType
     {
         return id;
     }
-
-    public void setId(int id)
-    {
-        this.id = id;
+    
+    public String getText(){
+		return text;
     }
-
-    public void setText(String text)
-    {
-        this.text = text;
-    }
-
+    
     public static CashType getById(int id)
     {
         for (CashType each : CashType.values())

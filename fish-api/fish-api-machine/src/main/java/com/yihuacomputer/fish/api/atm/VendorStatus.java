@@ -19,9 +19,6 @@ public enum VendorStatus
      */
     SERVE(3, "VendorStatus.SERVE");
 
-    public String getText(){
-		return text;
-    }
     private int id;
 
     private String text;
@@ -37,16 +34,10 @@ public enum VendorStatus
         return id;
     }
 
-    public void setId(int id)
-    {
-        this.id = id;
+    public String getText(){
+		return text;
     }
-
-    public void setText(String text)
-    {
-        this.text = text;
-    }
-
+    
     public static VendorStatus getById(int id)
     {
         for (VendorStatus each : VendorStatus.values())

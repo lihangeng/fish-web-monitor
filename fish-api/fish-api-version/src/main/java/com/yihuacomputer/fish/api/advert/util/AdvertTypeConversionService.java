@@ -54,10 +54,6 @@ public class AdvertTypeConversionService {
             return id;
         }
 
-        public void setId(int id) {
-            this.id = id;
-        }
-
         public static AdvertiseType get(int id){
             for(AdvertiseType type : AdvertiseType.values()){
                 if(type.getId() == id){
