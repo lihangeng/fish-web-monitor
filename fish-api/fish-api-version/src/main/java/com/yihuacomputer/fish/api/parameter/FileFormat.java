@@ -21,18 +21,10 @@ public enum FileFormat {
 		return id;
 	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
-
 	public String getText() {
 		return text;
 	}
 
-	public void setText(String text) {
-		this.text = text;
-	}
-	
 	public static FileFormat getById(int id){
 		for(FileFormat each : FileFormat.values()){
 			if(each.getId()==id){

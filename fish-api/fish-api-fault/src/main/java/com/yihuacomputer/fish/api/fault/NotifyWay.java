@@ -11,9 +11,7 @@ public enum NotifyWay {
 	MAIL(2,"NotifyWay.MAIL"),//邮件
 	BOTH(3,"NotifyWay.BOTH"),
 	NONE(4,"NotifyWay.NONE");//不发送
-    public String getText(){
-		return text;
-    }
+    
 	private int id;
 
 	private String text;
@@ -27,14 +25,10 @@ public enum NotifyWay {
 		return id;
 	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public void setText(String text) {
-		this.text = text;
-	}
-
+	public String getText(){
+		return text;
+    }
+	
 	public static NotifyWay getById(int id){
 		for(NotifyWay each : NotifyWay.values()){
 			if(each.getId() == id){

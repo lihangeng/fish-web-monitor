@@ -35,18 +35,10 @@ public enum RoleType {
 		return id;
 	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
-
 	public String getText() {
 		return text;
 	}
 
-	public void setText(String text) {
-		this.text = text;
-	}
-	
 	public boolean isEntityRole(RoleType type){
 		if(type.getId() == 1 || type.getId() == 3){
 			return true;

@@ -81,8 +81,4 @@ public enum DeviceMod {
 		return text;
 	}
 
-	public void setText(String text) {
-		this.text = text;
-	}
-
 }

@@ -11,9 +11,7 @@ public enum ResponsorType {
 	ADMIN(1, "ResponsorType.ADMIN"), // 管机员
 	MAINTAIN(2, "ResponsorType.MAINTAIN"), // 维护员
 	BOTH(3, "ResponsorType.BOTH");// 管机员与维护员
-    public String getText(){
-		return text;
-    }
+    
 	private int id;
 
 	private String text;
@@ -27,14 +25,10 @@ public enum ResponsorType {
 		return id;
 	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public void setText(String text) {
-		this.text = text;
-	}
-
+	public String getText(){
+		return text;
+    }
+	
 	public static ResponsorType getById(int id) {
 		for (ResponsorType each : ResponsorType.values()) {
 			if (each.getId() == id) {

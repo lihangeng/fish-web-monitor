@@ -42,15 +42,8 @@ public enum BoxStatus {
 		return text;
 	}
 
-	public void setText(String text) {
-		this.text = text;
-	}
-
 	public String getColor() {
 		return color;
 	}
 
-	public void setColor(String color) {
-		this.color = color;
-	}
 }
