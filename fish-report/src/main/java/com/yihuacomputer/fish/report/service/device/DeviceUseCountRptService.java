@@ -68,16 +68,16 @@ public class DeviceUseCountRptService implements IDeviceUseCountRptService {
             deviceUseCount.setCouneName(countName);
             deviceUseCount.setOrgName(objectToString(o[0]));
             deviceUseCount.setDevTypeName(objectToString(o[1]));
-            if (objectToString(o[2]).equals("OPEN")) {
+            if ("OPEN".equals(objectToString(o[2]))) {
             	deviceUseCount.setDevUseState(messageSource.getMessage("report.deviceBoxDetail.opening", null, FishCfg.locale));
             }
-            if (objectToString(o[2]).equals("DISABLED")) {
+            if ("DISABLED".equals(objectToString(o[2]))) {
             	deviceUseCount.setDevUseState(messageSource.getMessage("report.deviceBoxDetail.disabled", null, FishCfg.locale));
             }
-            if (objectToString(o[2]).equals("UNOPEN")) {
+            if ("UNOPEN".equals(objectToString(o[2]))) {
             	deviceUseCount.setDevUseState(messageSource.getMessage("report.deviceBoxDetail.unopen", null, FishCfg.locale));
             }
-            if (objectToString(o[2]).equals("SCRAPPED")) {
+            if ("SCRAPPED".equals(objectToString(o[2]))) {
             	deviceUseCount.setDevUseState(messageSource.getMessage("report.deviceBoxDetail.scrapped", null, FishCfg.locale));
             }
             deviceUseCount.setOrgNameColumn(messageSource.getMessage("runtimeInfo.orgName", null, FishCfg.locale));

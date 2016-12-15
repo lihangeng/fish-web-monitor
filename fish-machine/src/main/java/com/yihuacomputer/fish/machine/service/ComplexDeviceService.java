@@ -67,7 +67,7 @@ public class ComplexDeviceService implements IComplexDeviceService {
         }
         String orgId = null;
         for (IFilterEntry c : filter.entrySet()) {
-            if (c.getKey().equals("device.organization")) {
+            if ("device.organization".equals(c.getKey())) {
                 orgId = c.getValue().toString();
                 filter.entrySet().remove(c);
                 break;

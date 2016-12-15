@@ -39,7 +39,7 @@ public class IPUtils {
         if(ip.contains(":")){
             return false;
         }
-        if(ip.equals("127.0.0.1")){
+        if("127.0.0.1".equals(ip)){
             return false;
         }
         return true;

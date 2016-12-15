@@ -267,7 +267,7 @@ public class TaskService implements ITaskService {
                 IDevice device = task.getDevice();
                 NoticeForm notice = new NoticeForm(task);
                 notice = (NoticeForm)HttpProxy.httpPost(geNoticetUrl(device.getIp()), notice, NoticeForm.class, 10000, 30000);
-                if(notice.getRet().equals("RET0100")){
+                if("RET0100".equals(notice.getRet())){
                 	 retResult = 1 ;
                 	 task.setReason(messageSourceVersion.getMessage("exception.task.sameTaskRuningForAgentRefuse", null, FishCfg.locale));
                 }else{

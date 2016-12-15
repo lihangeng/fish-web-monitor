@@ -35,7 +35,7 @@ public enum IsNotify {
     }
 
 	public static IsNotify parsGender(String isNotify){
-		if(isNotify.equals("是")||isNotify.equals("YES")){
+		if("YES".equals(isNotify)){
 			return IsNotify.YES;
 		}else{
 			return IsNotify.NO;

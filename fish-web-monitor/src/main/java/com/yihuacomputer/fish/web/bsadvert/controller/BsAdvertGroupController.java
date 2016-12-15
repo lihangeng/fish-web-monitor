@@ -377,16 +377,16 @@ public class BsAdvertGroupController {
 				if (org.apache.commons.lang.StringUtils.isEmpty(value)) {
 					continue;
 				}
-				if (name.equals("orgId")) {
+				if ("orgId".equals(name)) {
 					filter.eq("orgId", Long.valueOf(value));
 				}
-				if (name.equals("orgLevel")) {
+				if ("orgLevel".equals(name)) {
 					filter.eq("orgLevel", OrganizationLevel.getById(Integer.parseInt(value)));
 				}
-				if (name.equals("groupName")) {
+				if ("groupName".equals(name)) {
 					filter.eq("groupName", value);
 				}
-				if (name.equals("groupType")) {
+				if ("groupType".equals(name)) {
 					filter.eq("groupType", GroupType.getGroupTypeById(Integer.parseInt(value)));
 				}
 			}
@@ -406,19 +406,19 @@ public class BsAdvertGroupController {
 				if (org.apache.commons.lang.StringUtils.isEmpty(value)) {
 					continue;
 				}
-				if (name.equals("orgId")) {
+				if ("orgId".equals(name)) {
 					IOrganization org = orgService.get(value);
 
 					filter.like("organization.orgFlag", org.getOrgFlag());
 				}
-				if (name.equals("ip")) {
+				if ("ip".equals(name)) {
 					ITypeIP ip = new IP(value);
 					filter.eq("ip", ip);
 				}
-				if (name.equals("terminalId")) {
+				if ("terminalId".equals(name)) {
 					filter.like("terminalId", value);
 				}
-				if (name.equals("devType")) {
+				if ("devType".equals(name)) {
 					filter.eq("devType.id", Long.parseLong(value));
 				}
 			}
@@ -473,7 +473,7 @@ public class BsAdvertGroupController {
 			}
 		}
 
-		if (!result.toString().equals("[")) {
+		if (!"[".equals(result.toString())) {
 			String r = result.toString().substring(0, result.toString().length() - 1);
 			return r + "]";
 		}

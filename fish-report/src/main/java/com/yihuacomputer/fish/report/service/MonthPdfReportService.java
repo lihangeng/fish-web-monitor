@@ -164,7 +164,7 @@ public class MonthPdfReportService extends PdfReportService implements IMonthPdf
 		Calendar c = Calendar.getInstance();
 		c.set(Calendar.YEAR, Integer.valueOf(String.valueOf(month).substring(0, 4)));
 		int mon = 0;
-		if (String.valueOf(month).substring(4, 5).equals("0")) {
+		if ("0".equals(String.valueOf(month).substring(4, 5))) {
 			mon = Integer.valueOf(String.valueOf(month).substring(5));
 		} else {
 			mon = Integer.valueOf(String.valueOf(month).substring(4));
@@ -366,7 +366,7 @@ public class MonthPdfReportService extends PdfReportService implements IMonthPdf
 	 */
 	private int getDaysByMonth(String month){
 		int mon =0;
-		if (String.valueOf(month).substring(4, 5).equals("0")) {
+		if ("0".equals(String.valueOf(month).substring(4, 5))) {
 			mon = Integer.valueOf(String.valueOf(month).substring(5));
 		} else {
 			mon = Integer.valueOf(String.valueOf(month).substring(4));

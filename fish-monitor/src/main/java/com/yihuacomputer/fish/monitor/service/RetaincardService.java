@@ -191,7 +191,7 @@ public class RetaincardService implements IRetaincardService{
 		StringBuffer f = new StringBuffer();
 		DBType dbType = new DBType(sf.getHibernateProperties());
 		for (IFilterEntry c : filter.entrySet()) {
-			if(c.getKey().equals("retaincard.cardRetainTime")){
+			if("retaincard.cardRetainTime".equals(c.getKey())){
 			    if(c.getOperator().equals(Operator.LE)){
 			        if(dbType.isOracle()){
 			            f.append(" and retaincard.CARD_RETAIN_TIME <= ").append("to_date('").append(DateUtils.getTimestamp((Date)c.getValue())).append("','yyyy-mm-dd hh24:mi:ss')");
@@ -207,31 +207,31 @@ public class RetaincardService implements IRetaincardService{
                 }
 				continue;
 			}
-			if(c.getKey().equals("device.devType.devVendor.id")){
+			if("device.devType.devVendor.id".equals(c.getKey())){
 				f.append(" and vendor.ID = ").append(c.getValue());
 				continue;
 			}
-			if(c.getKey().equals("device.devType.id")){
+			if("device.devType.id".equals(c.getKey())){
 				f.append(" and devType.ID = ").append(c.getValue());
 				continue;
 			}
-			if(c.getKey().equals("device.organization.orgFlag")){
+			if("device.organization.orgFlag".equals(c.getKey())){
 				f.append(" and org.ORG_FLAG like '").append(c.getValue()).append("%'");
 				continue;
 			}
-			if(c.getKey().equals("retaincard.status")){
+			if("retaincard.status".equals(c.getKey())){
 				f.append(" and retaincard.STATUS like '%").append(c.getValue()).append("%'");
 				continue;
 			}
-			if(c.getKey().equals("retaincard.accountNo")){
+			if("retaincard.accountNo".equals(c.getKey())){
 				f.append(" and retaincard.ACCOUNT_NO like '%").append(c.getValue()).append("%'");
 				continue;
 			}
-			if(c.getKey().equals("device.awayFlag")){
+			if("device.awayFlag".equals(c.getKey())){
 				f.append(" and device.AWAY_FLAG = '").append(((AwayFlag)c.getValue()).name()).append("'");
 				continue;
 			}
-			if(c.getKey().equals("retaincard.terminalId")){
+			if("retaincard.terminalId".equals(c.getKey())){
 				f.append(" and retaincard.TERMINAL_ID like '%").append(c.getValue()).append("%' ");
 				continue;
 			}

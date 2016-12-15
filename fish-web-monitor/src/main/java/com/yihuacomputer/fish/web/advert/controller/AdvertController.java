@@ -213,19 +213,19 @@ public class AdvertController {
 				if (org.apache.commons.lang.StringUtils.isEmpty(value)) {
 					continue;
 				}
-				if (name.equals("advertId")) {
+				if ("advertId".equals(name)) {
 					filter.eq("advert.id", Long.valueOf(value));
 				}
-				if (name.equals("advertType")) {
+				if ("advertType".equals(name)) {
 					filter.eq("advertType", AdvertType.valueOf(value));
 				}
-				if (name.equals("advertDownMethod")) {
+				if ("advertDownMethod".equals(name)) {
 					filter.eq("advertDownMethod", AdvertDownMethod.valueOf(value));
 				}
-				if (name.equals("createdTimeStart")) {
+				if ("createdTimeStart".equals(name)) {
 					filter.ge("createdTime", DateUtils.getTimestamp(value+" 00:00:00"));
 				}
-				if (name.equals("createdTimeEnd")) {
+				if ("createdTimeEnd".equals(name)) {
 					filter.le("createdTime", DateUtils.getTimestamp(value+" 23:59:59"));
 				}
 			}
@@ -637,7 +637,7 @@ public class AdvertController {
 			}
 		}
 
-		if (!result.toString().equals("[")) {
+		if (!"[".equals(result.toString())) {
 			String r = result.toString().substring(0, result.toString().length() - 1);
 			return r + "]";
 		}

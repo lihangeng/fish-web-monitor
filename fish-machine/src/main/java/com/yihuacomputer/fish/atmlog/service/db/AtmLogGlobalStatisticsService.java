@@ -88,14 +88,14 @@ public class AtmLogGlobalStatisticsService implements IAtmLogGlobalStatisticsSer
 	private String getFilter(IFilter filter) {
 		StringBuffer f = new StringBuffer();
 		for (IFilterEntry c : filter.entrySet()) {
-			if (c.getKey().equals("appLogs.backupDate")) {
+			if ("appLogs.backupDate".equals(c.getKey())) {
 				if (c.getOperator().equals(Operator.LE)) {
 					f.append(" and appLogs.DATE_TIME <= '").append(c.getValue().toString()).append("'");
 				} else {
 					f.append(" and appLogs.DATE_TIME >= '").append(c.getValue().toString()).append("'");
 				}
 			}
-			if (c.getKey().equals("device.organization.orgFlag")) {
+			if ("device.organization.orgFlag".equals(c.getKey())) {
 				f.append(" and org.org_flag like '").append(c.getValue()).append("%'");
 				continue;
 			}

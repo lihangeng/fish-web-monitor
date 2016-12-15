@@ -69,11 +69,11 @@ public class AtmLogInfoService implements IAtmLogInfoService {
 	private String getFilter(IFilter filter) {
 	    StringBuffer f = new StringBuffer();
         for (IFilterEntry c : filter.entrySet()) {
-            if(c.getKey().equals("appLogs.backupDate")){
+            if("appLogs.backupDate".equals(c.getKey())){
                 f.append(" and appLogs.DATE_TIME = '").append(c.getValue().toString()).append("'");
                 continue;
             }
-            if(c.getKey().equals("device.organization.orgFlag")){
+            if("device.organization.orgFlag".equals(c.getKey())){
             	f.append(" and org.ORG_FLAG like '").append(c.getValue()).append("%'");
                 continue;
             }
