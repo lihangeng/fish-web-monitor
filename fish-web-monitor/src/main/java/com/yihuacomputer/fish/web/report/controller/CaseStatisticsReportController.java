@@ -89,16 +89,16 @@ public class CaseStatisticsReportController {
 				continue;
 			}
 
-			if (name.equals("startDateTime")) {
+			if ("startDateTime".equals(name)) {
 				filter.eq("startDate", Integer.parseInt((request.getParameter("startDateTime")).replaceAll("-", ""))) ;
 
-			}else if (name.equals("endDateTime")) {
+			}else if ("endDateTime".equals(name)) {
 				filter.eq("endDate", Integer.parseInt((request.getParameter("endDateTime")).replaceAll("-", ""))) ;
 
-			}else if (name.equals("angle")) {
+			}else if ("angle".equals(name)) {
 				filter.eq("angle", value);
 
-			} else if (name.equals("rank")) {
+			} else if ("rank".equals(name)) {
 				filter.eq("rank", value);
 
 			}

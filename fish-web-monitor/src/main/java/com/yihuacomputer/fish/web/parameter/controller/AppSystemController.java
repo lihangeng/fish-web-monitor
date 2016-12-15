@@ -101,15 +101,15 @@ public class AppSystemController {
 			} else {
 				if (request.getParameter(name).isEmpty()) {
 					continue;
-				} else if (name.equals("sort")) {
+				} else if ("sort".equals(name)) {
 					continue;
-				} else if (name.equals("name")) {
+				} else if ("name".equals(name)) {
 					String value = request.getParameter(name);
 					filter.like(name, value.trim());
-				} else if (name.equals("configName")) {
+				} else if ("configName".equals(name)) {
 					String value = request.getParameter(name);
 					filter.like(name, value.trim());
-				}else if (name.equals("configForm")) {
+				}else if ("configForm".equals(name)) {
 					String value = request.getParameter(name);
 					filter.eq(name, FileFormat.getById(Integer.parseInt(value)));
 				}else {

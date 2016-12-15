@@ -118,13 +118,13 @@ public class DeviceReportController {
      */
     private String getReport(Map<String, Object> parameters, String resourcePath, String exportType, List<IDeviceRpt> data) {
         ReportParam reportParam = new ReportParam();
-        if (exportType.equals("pdf")) {
+        if ("pdf".equals(exportType)) {
             reportParam.setPdf(true);
         }
-        if (exportType.equals("html")) {
+        if ("html".equals(exportType)) {
             reportParam.setHtml(true);
         }
-        if (exportType.equals("xls")) {
+        if ("xls".equals(exportType)) {
             reportParam.setXls(true);
             reportParam.setSheetNames(new String[]{"" + parameters.get("title")});
         }
@@ -214,7 +214,7 @@ public class DeviceReportController {
                 String value = request.getParameter(name);
                 if (StringUtils.isEmpty(value)) {
                     continue;
-                } else if (name.equals("orgId")) {
+                } else if ("orgId".equals(name)) {
                     orgFlag = orgService.get(value).getOrgFlag();
                 }
             }

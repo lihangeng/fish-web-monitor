@@ -270,7 +270,7 @@ public class ParamTemplateController {
 				if (request.getParameter(name).isEmpty()) {
 					continue;
 				} else {
-					if (name.equals("sort")) {
+					if ("sort".equals(name)) {
 						continue;
 					} else {
 						filter.like(name, request.getParameter(name));
@@ -564,19 +564,19 @@ public class ParamTemplateController {
 				if (org.apache.commons.lang.StringUtils.isEmpty(value)) {
 					continue;
 				}
-				if (name.equals("orgId")) {
+				if ("orgId".equals(name)) {
 					IOrganization org = orgService.get(value);
 
 					filter.like("d.organization.orgFlag", org.getOrgFlag());
 				}
-				if (name.equals("ip")) {
+				if ("ip".equals(name)) {
 					ITypeIP ip = new IP(value);
 					filter.eq("d.ip", ip);
 				}
-				if (name.equals("terminalId")) {
+				if ("terminalId".equals(name)) {
 					filter.like("d.terminalId", value);
 				}
-				if (name.equals("devType")) {
+				if ("devType".equals(name)) {
 					filter.eq("d.devType.id", Long.parseLong(value));
 				}
 
