@@ -521,15 +521,13 @@ public class ParamPublishService implements IParamPublishService {
 				break;
 			}
 		} catch (IOException e1) {
-			logger.error(String.format("file %s writer failer,reason is %s", fileStr, e1.getMessage()));
-			e1.printStackTrace();
+			logger.error(String.format("file %s writer failer,reason is IOException of [%s]", fileStr, e1.getMessage()));
 		} finally {
 			if (fw != null) {
 				try {
 					fw.close();
 				} catch (IOException e) {
-					logger.error(String.format("fileWriter stream close failer,reason is %s", e.getMessage()));
-					e.printStackTrace();
+					logger.error(String.format("fileWriter stream close failer,reason is IOException of [%s]", e.getMessage()));
 				}
 			}
 		}

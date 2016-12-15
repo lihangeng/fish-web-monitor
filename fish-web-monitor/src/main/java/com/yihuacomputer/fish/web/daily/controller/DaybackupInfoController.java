@@ -265,13 +265,13 @@ public class DaybackupInfoController {
 			cell.setCellValue(cellValue(atmLog.getDateTime()));
 
 			cell = row.createCell(2);
-			if (atmLog.getBackupResult().toString().equals("UNDO")) {
+			if ("UNDO".equals(atmLog.getBackupResult().toString())) {
 				cell.setCellValue(messageSource.getMessage("dayBackupInfo.undo", null, FishCfg.locale));
-			} else if (atmLog.getBackupResult().toString().equals("ERROR_CONNECT")) {
+			} else if ("ERROR_CONNECT".equals(atmLog.getBackupResult().toString())) {
 				cell.setCellValue(messageSource.getMessage("dayBackupInfo.errorConnect", null, FishCfg.locale));
-			} else if (atmLog.getBackupResult().toString().equals("ERROR_NOLOG")) {
+			} else if ("ERROR_NOLOG".equals(atmLog.getBackupResult().toString())) {
 				cell.setCellValue(messageSource.getMessage("dayBackupInfo.errorNoLog", null, FishCfg.locale));
-			} else if (atmLog.getBackupResult().toString().equals("ERROR")) {
+			} else if ("ERROR".equals(atmLog.getBackupResult().toString())) {
 				cell.setCellValue(messageSource.getMessage("dayBackupInfo.errorUnknown", null, FishCfg.locale));
 			}
 		}

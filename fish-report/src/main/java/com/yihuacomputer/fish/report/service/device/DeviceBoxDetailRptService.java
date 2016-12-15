@@ -74,22 +74,22 @@ public class DeviceBoxDetailRptService implements IDeviceBoxDetailRptService {
             deviceBoxDetail.setDeviceNo(objectToString(o[1]));
             deviceBoxDetail.setVendorName(objectToString(o[2]));
             deviceBoxDetail.setTypeName(objectToString(o[3]));
-            if (objectToString(o[4]).equals("WEAR_WALL")) {
+            if ("WEAR_WALL".equals(objectToString(o[4]))) {
                 deviceBoxDetail.setSetupType(messageSource.getMessage("report.deviceBoxDetail.wareWall", null, FishCfg.locale));
             }
-            if (objectToString(o[4]).equals("LOBBY")) {
+            if ("LOBBY".equals(objectToString(o[4]))) {
                 deviceBoxDetail.setSetupType(messageSource.getMessage("report.deviceBoxDetail.lobby", null, FishCfg.locale));
             }
-            if (objectToString(o[5]).equals("OPEN")) {
+            if ("OPEN".equals(objectToString(o[5]))) {
                 deviceBoxDetail.setStatus(messageSource.getMessage("report.deviceBoxDetail.opening", null, FishCfg.locale));
             }
-            if (objectToString(o[5]).equals("DISABLED")) {
+            if ("DISABLED".equals(objectToString(o[5]))) {
                 deviceBoxDetail.setStatus(messageSource.getMessage("report.deviceBoxDetail.disabled", null, FishCfg.locale));
             }
-            if (objectToString(o[5]).equals("UNOPEN")) {
+            if ("UNOPEN".equals(objectToString(o[5]))) {
                 deviceBoxDetail.setStatus(messageSource.getMessage("report.deviceBoxDetail.unopen", null, FishCfg.locale));
             }
-            if (objectToString(o[5]).equals("SCRAPPED")) {
+            if ("SCRAPPED".equals(objectToString(o[5]))) {
                 deviceBoxDetail.setStatus(messageSource.getMessage("report.deviceBoxDetail.scrapped", null, FishCfg.locale));
             }
             deviceBoxDetail.setBoxLeft("-1".equals(objectToString(o[6]))?"":objectToString(o[6]));

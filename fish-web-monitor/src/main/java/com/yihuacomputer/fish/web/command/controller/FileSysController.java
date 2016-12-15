@@ -43,7 +43,7 @@ public class FileSysController {
         FileSysOperaterForm fsof = new FileSysOperaterForm();
         fsof.setFilePath(path);
         fsof.setFileName(file);
-        if(!isDirectory.isEmpty()&&isDirectory.equals("true")){
+        if(!isDirectory.isEmpty() && "true".equals(isDirectory)){
         	fsof.setFileSysOperatorType(FileSysOperatorType.MKDIR);
         }
         else{

@@ -118,14 +118,14 @@ public class DevParameterController {
 			} else {
 				if (request.getParameter(name).isEmpty()) {
 					continue;
-				} else if (name.equals("sort")) {
+				} else if ("sort".equals(name)) {
 					continue;
-				} else if (name.equals("terminalId")) {
+				} else if ("terminalId".equals(name)) {
 					String value = request.getParameter(name);
 					filter.like(name, value.trim());
-				} else if (name.equals("devTypeId")) {
+				} else if ("devTypeId".equals(name)) {
 					filter.eq("device.devType.id", Long.parseLong(request.getParameter(name)));
-				} else if (name.equals("ip")) {
+				} else if ("ip".equals(name)) {
 					ITypeIP ip = new IP(request.getParameter("ip"));
 					filter.eq("device.ip", ip);
 				}
@@ -257,12 +257,12 @@ public class DevParameterController {
 			} else {
 				if (request.getParameter(name).isEmpty()) {
 					continue;
-				} else if (name.equals("sort")) {
+				} else if ("sort".equals(name)) {
 					continue;
-				} else if (name.equals("paramName")) {
+				} else if ("paramName".equals(name)) {
 					String value = request.getParameter("paramName").trim();
 					filter.like(name, value);
-				} else if (name.equals("ClassifyId")) {
+				} else if ("ClassifyId".equals(name)) {
 					filter.eq(name, request.getParameter("ClassifyId"));
 				}
 			}

@@ -29,7 +29,7 @@ public enum Gender {
 	}
 
 	public static Gender parsGender(String gender){
-		if(gender.equals("男")||gender.equals("MALE")){
+		if("MALE".equals(gender)){
 			return Gender.MALE;
 		}else{
 			return Gender.FEMALE;

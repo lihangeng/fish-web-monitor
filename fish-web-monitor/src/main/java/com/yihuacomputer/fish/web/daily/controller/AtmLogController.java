@@ -102,11 +102,11 @@ public class AtmLogController {
 			filter.eq("dateTime", dateTime);
 		}
 		if (backupResult != null && !backupResult.isEmpty()) {
-			if(backupResult.equals("SUCCESS"))
+			if("SUCCESS".equals(backupResult))
 			{
 				filter.eq("backupResult", BackupResult.SUCCESS);
 			}
-			if(backupResult.equals("BackUpError"))
+			if("BackUpError".equals(backupResult))
 			{
 				filter.ne("backupResult", BackupResult.SUCCESS);
 			}
@@ -183,7 +183,7 @@ public class AtmLogController {
 			path = AtmLogCfg.getAtmAppLogDir() + FishCfg.FILESEP + String.valueOf(year) + FishCfg.FILESEP + monthString
 					+ FishCfg.FILESEP + deviceId + FishCfg.FILESEP + fileName;
 		} catch (ParseException e1) {
-			e1.printStackTrace();
+			logger.error(String.format("Exception is [%s]", e1.getMessage()));
 		}
 		File file = new File(path);
 
@@ -482,7 +482,7 @@ public class AtmLogController {
         httpFileCfg.setIpAdd(ip);
         httpFileCfg.setPort(MonitorCfg.getRemotePort());
         File file = new File(localPath+System.getProperty("file.separator")+localName);
-        if(flag.equals("false")){
+        if("false".equals(flag)){
             //不续传下载：
             httpFileCfg.setRetry(false);
             if(file.exists()){

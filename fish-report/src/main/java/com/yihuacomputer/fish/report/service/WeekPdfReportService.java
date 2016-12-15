@@ -7,6 +7,8 @@ import java.util.List;
 import org.jfree.chart.JFreeChart;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -53,6 +55,8 @@ import com.yihuacomputer.fish.report.engine.pdf.PdfConfig;
 @Service
 public class WeekPdfReportService extends PdfReportService implements IWeekPdfReportService {
 
+	private Logger logger = LoggerFactory.getLogger(WeekPdfReportService.class);
+			
 	@Autowired
 	private IDeviceCatalogSummaryWeekService deviceCatalogSummaryWeekService;
 	@Autowired
@@ -96,7 +100,7 @@ public class WeekPdfReportService extends PdfReportService implements IWeekPdfRe
 			generateFault(pdf, weekOfYear);
 			pdf.close();
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(String.format("Exception is [%s]", e.getMessage()));
 		}
 
 		return file.getAbsolutePath();

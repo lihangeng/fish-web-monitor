@@ -7,7 +7,13 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class DllManager {
+	
+	private static Logger logger = LoggerFactory.getLogger(DllManager.class);
+			
 	/**
 	 * @param libFullName
 	 *            文件名称
@@ -37,7 +43,7 @@ public class DllManager {
 					buffer = new byte[1024];
 				}
 			} catch (IOException e) {
-				e.printStackTrace();
+				logger.error(String.format("IOException is [%s]", e.getMessage()));
 			} finally {
 				if (in != null)
 					in.close();

@@ -3,6 +3,8 @@ package com.yihuacomputer.fish.report.service.trans;
 import java.util.List;
 
 import org.hibernate.SQLQuery;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,6 +19,8 @@ import com.yihuacomputer.fish.report.entity.TransactionMonths;
 @Transactional
 public class TransactionMonthsService implements ITransactionMonthsService {
 
+	private Logger logger = LoggerFactory.getLogger(TransactionMonthsService.class);
+			
 	@Autowired
 	private IGenericDao dao;
 
@@ -69,7 +73,7 @@ public class TransactionMonthsService implements ITransactionMonthsService {
 				save(tm);
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(String.format("Exception is [%s]", e.getMessage()));
 		}
 	}
 

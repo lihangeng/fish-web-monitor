@@ -125,7 +125,7 @@ public class ParamController {
 			} else {
 				if (request.getParameter(name).isEmpty()) {
 					continue;
-				} else if (name.equals("sort")) {
+				} else if ("sort".equals(name)) {
 					continue;
 				}
 				

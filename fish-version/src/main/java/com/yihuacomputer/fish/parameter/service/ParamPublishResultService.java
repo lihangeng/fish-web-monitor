@@ -102,7 +102,7 @@ public class ParamPublishResultService implements IParamPublishResultService {
 				publishResult.setDownloadStartTime(DateUtils.getTimestamp(new Date()));
 				msg = (NoticeForm) HttpProxy.httpPost(url, msg, NoticeForm.class, 30000);
 
-				if (msg.getRet().equals("RET0100")) {
+				if ("RET0100".equals(msg.getRet())) {
 					retResult = 1;
 				} else {
 					retResult = 2;

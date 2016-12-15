@@ -126,13 +126,13 @@ public class DeviceTypeCountReportController {
     private String getReport(Map<String, Object> parameters, String resourcePath, String exportType,
             List<IDeviceTypeCountJRpt> data) {
         ReportParam reportParam = new ReportParam();
-        if (exportType.equals("pdf")) {
+        if ("pdf".equals(exportType)) {
             reportParam.setPdf(true);
         }
-        if (exportType.equals("html")) {
+        if ("html".equals(exportType)) {
             reportParam.setHtml(true);
         }
-        if (exportType.equals("xls")) {
+        if ("xls".equals(exportType)) {
             reportParam.setXls(true);
             reportParam.setSheetNames(new String[]{"" + parameters.get("title")});
         }
@@ -172,13 +172,13 @@ public class DeviceTypeCountReportController {
                 String value = request.getParameter(name);
                 if (StringUtils.isEmpty(value)) {
                     continue;
-                } else if (name.equals("sort")) {
+                } else if ("sort".equals(name)) {
                     continue;
-                } else if (name.equals("orgId")) {
+                } else if ("orgId".equals(name)) {
                     orgFlag = orgService.get(value).getOrgFlag();
-                } else if (name.equals("devVendorId")) {
+                } else if ("devVendorId".equals(name)) {
                     filter.eq("devVendorId", Long.valueOf(value));
-                } else if (name.equals("devTypeId")) {
+                } else if ("devTypeId".equals(name)) {
                     filter.eq("devTypeId", Long.valueOf(value));
                 } else if ("orgLevel".equals(name)) {
                     filter.eq("orgLevel",

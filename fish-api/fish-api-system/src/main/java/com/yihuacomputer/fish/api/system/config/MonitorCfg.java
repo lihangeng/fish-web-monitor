@@ -72,7 +72,7 @@ public class MonitorCfg {
 	 * @return
 	 */
 	public static boolean getCheckTime() {
-		if (FishCfg.getParamValue("check_time") != null && FishCfg.getParamValue("check_time").equalsIgnoreCase("ON")) {
+		if (FishCfg.getParamValue("check_time") != null && "ON".equalsIgnoreCase(FishCfg.getParamValue("check_time"))) {
 			return true;
 		} else {
 			return false;

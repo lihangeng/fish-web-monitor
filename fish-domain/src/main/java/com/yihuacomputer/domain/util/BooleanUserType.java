@@ -61,7 +61,7 @@ public class BooleanUserType implements UserType {
         if (resultSet.wasNull()) {
             return null;
         }
-        return value.equals("1") ? true : false;
+        return "1".equals(value) ? true : false;
     }
 
     @Override

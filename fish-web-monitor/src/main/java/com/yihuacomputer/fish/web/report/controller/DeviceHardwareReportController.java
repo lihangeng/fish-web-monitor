@@ -99,10 +99,10 @@ public class DeviceHardwareReportController {
         if ("pdf".equals(request.getParameter("exportType"))) {
             reportParam.setPdf(true);
         }
-        if (request.getParameter("exportType").equals("html")) {
+        if ("html".equals(request.getParameter("exportType"))) {
             reportParam.setHtml(true);
         }
-        if (request.getParameter("exportType").equals("xls")) {
+        if ("xls".equals(request.getParameter("exportType"))) {
             reportParam.setSheetNames(new String[]{"" + parameters.get("title")});
             reportParam.setXls(true);
         }
@@ -142,11 +142,11 @@ public class DeviceHardwareReportController {
                 String value = request.getParameter(name);
                 if (StringUtils.isEmpty(value)) {
                     continue;
-                } else if (name.equals("sort")) {
+                } else if ("sort".equals(name)) {
                     continue;
-                } else if (name.equals("orgId")) {
+                } else if ("orgId".equals(name)) {
                     orgFlag = orgService.get(value).getOrgFlag();
-                } else if (name.equals("terminalId")) {
+                } else if ("terminalId".equals(name)) {
                     filter.eq("terminalId", value);
                 }
             }

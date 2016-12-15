@@ -94,10 +94,10 @@ public class TransactionHisController {
         if(device.getOrganization().getOrgFlag().contains(orgFlag)){
             IPageResult<ITransactionView> pageResultTransList = null;
             IFilter filter = request2filter(webRequest,"transactionView.");
-            if(request.getParameter("blacklist")==null || request.getParameter("blacklist").equals("0")){
+            if(request.getParameter("blacklist")==null || "0".equals(request.getParameter("blacklist"))){
             	filter.descOrder("dateTime");
                 pageResultTransList = transactionViewService.page(start,limit,filter);
-            }else if(request.getParameter("blacklist").equals("1")){
+            }else if("1".equals(request.getParameter("blacklist"))){
             	filter.descOrder("transaction.dateTime");
                 pageResultTransList = transactionViewService.pageBlackList(start,limit, request2filter(webRequest,"transaction."),Long.valueOf(request.getParameter("organizationId")));
             }else{

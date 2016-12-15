@@ -87,7 +87,7 @@ public class JobThread implements Runnable {
                 Thread.sleep(30000);
             }
             catch (InterruptedException e) {
-                e.printStackTrace();
+            	logger.error(String.format("InterruptedException is [%s]",e.getMessage()));
             }
 		    if(taskThreadPool.getTaskExecutor().getActiveCount()==0){
 		        break;

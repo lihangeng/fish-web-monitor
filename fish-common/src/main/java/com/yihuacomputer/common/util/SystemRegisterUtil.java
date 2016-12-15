@@ -467,7 +467,7 @@ public class SystemRegisterUtil {
 		
 		Date date = new Date();
 		
-		if(type.equals("1")){
+		if("1".equals(type)){
 				Calendar calendar  = Calendar.getInstance();
 				calendar.add(Calendar.DAY_OF_MONTH, 9999);
 				date = calendar.getTime();

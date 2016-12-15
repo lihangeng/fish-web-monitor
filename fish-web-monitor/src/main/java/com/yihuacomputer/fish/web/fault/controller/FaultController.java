@@ -185,7 +185,7 @@ public class FaultController
     public @ResponseBody
     ModelAndView poi(WebRequest request, HttpServletRequest req, HttpServletResponse response)
     {
-        logger.info(String.format("export caseFault"));
+        logger.info("export caseFault");
         Map<String,Object> map = new HashMap<String,Object>();
         UserSession userSession = (UserSession) req.getSession().getAttribute("SESSION_USER");
         long orgId = userSession.getOrgId();

@@ -285,7 +285,7 @@ public class ETLJobController {
 			result.addAttribute(FishConstant.SUCCESS, true);
 			result.addAttribute(FishConstant.ERROR_MSG, null);
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(String.format("Exception is [%s]", e.getMessage()));
 			result.addAttribute(FishConstant.SUCCESS, false);
 			result.addAttribute(FishConstant.ERROR_MSG, null);
 		}

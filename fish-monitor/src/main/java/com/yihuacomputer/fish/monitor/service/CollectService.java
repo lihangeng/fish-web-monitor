@@ -230,7 +230,7 @@ public class CollectService implements ICollectService, IDeviceListener,IMessage
 			MqXfsStatus histXfsStatus = JsonUtils.fromJson(message, MqXfsStatus.class);
 			this.pushStatusToWeb(histXfsStatus.makeXfsStatus());
 		}catch(Exception ex){
-			ex.printStackTrace();
+			logger.error(String.format("Exception is [%s]", ex.getMessage()));
 		}
 	}
 
@@ -400,7 +400,7 @@ public class CollectService implements ICollectService, IDeviceListener,IMessage
     		MqTransaction transaction = JsonUtils.fromJson(message, MqTransaction.class);
 	  	  	this.pushTransToWeb(transaction.makeTrans());
     	}catch(Exception ex){
-    		ex.printStackTrace();
+    		logger.error(String.format("Exception is [%s]", ex.getMessage()));
     	}
     }
 

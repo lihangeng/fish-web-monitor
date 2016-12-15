@@ -308,9 +308,9 @@ public class AtmGroupController {
 			if (value == null || value.isEmpty()) {
 				continue;
 			}
-			if (name.equals("sort")) {
+			if ("sort".equals(name)) {
 				continue;
-			} else if (name.equals("groupId")) {
+			} else if ("groupId".equals(name)) {
 				continue;
 			} else if ("startCashboxLimit".equals(name)) {
 				filter.eq("startCashboxLimit", Integer.valueOf(value));
@@ -358,9 +358,9 @@ public class AtmGroupController {
 				if (request.getParameter(name).isEmpty()) {
 					continue;
 				} else {
-					if (name.equals("sort")) {
+					if ("sort".equals(name)) {
 						continue;
-					} else if (name.equals("groupId")) {
+					} else if ("groupId".equals(name)) {
 						continue;
 					} else {
 						filter.like(name, request.getParameter(name));

@@ -186,7 +186,7 @@ public class ExploerController
         httpFileCfg.setIpAdd(ip);
         httpFileCfg.setPort(MonitorCfg.getRemotePort());
         File file = new File(localPath+System.getProperty("file.separator")+localName);
-        if(flag.equals("false")){
+        if("false".equals(flag)){
             //不续传下载：
             httpFileCfg.setRetry(false);
             if(file.exists()){
@@ -314,7 +314,7 @@ public class ExploerController
                 return "{'success':false,'errors':'"+tips+"'}";
             }
         } catch (Exception e) {
-            e.printStackTrace();
+        	logger.error(String.format("Exception is [%s]", e.getMessage()));
         	String tips = messageSource.getMessage("exploer.fileUpload.fail", null, FishCfg.locale);
             return "{'success':false,'errors':'"+tips+"'}";
         }

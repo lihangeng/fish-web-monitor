@@ -345,7 +345,7 @@ public class DeviceOpenRateService implements IDeviceOpenRateService {
 			dayOpenRate.setTerminalId(terminalId);
 			return dayOpenRate;
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(String.format("Exception is [%s]", e.getMessage()));
 			return null;
 		}
 	}

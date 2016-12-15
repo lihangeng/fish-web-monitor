@@ -177,7 +177,7 @@ public class DefaultHwFaultService {
 				&& DeviceStatus.Fatal.equals(hisXfsStatus.getStatusCim().getStatus())){
 			IDevice device = deviceService.get(cim.getTerminalId()) ;
 			IFaultClassify faultClassify = faultClassifyService.getFaultClassifyById(F_MOD);
-			if(device.getDevType().getDevCatalog().getNo().equals("02") && caseFaultService.hasModCaseFault(openCaseList,DeviceMod.CDM,faultClassify)){
+			if("02".equals(device.getDevType().getDevCatalog().getNo()) && caseFaultService.hasModCaseFault(openCaseList,DeviceMod.CDM,faultClassify)){
 				logger.info("设备为存取款机，且取款模块已有故障，存款模块不创建故障");
 				return ;
 			}

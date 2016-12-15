@@ -77,7 +77,7 @@ public class ParamElementController {
 		logger.info(String.format("search element : start = %s ,limt = %s ", start, limit));
 
 		IFilter filter = request2filter(request);
-		if(request.getParameter("appSystem") ==null || request.getParameter("appSystem").equals("")){
+		if(request.getParameter("appSystem") ==null || "".equals(request.getParameter("appSystem"))){
 			IAppSystem appSystem = appSystemService.get(1);
 			filter.eq("paramBelongs",appSystem);
 		}
@@ -207,7 +207,7 @@ public class ParamElementController {
 				file.transferTo(readFile);
 				/* 读文件内容 */
 				ArrayList<IParamElement> paramElementList = new ArrayList<IParamElement>();
-				if (fileType.equals(".ini")) {
+				if (".ini".equals(fileType)) {
 					INIFileReader iniReader= new INIFileReader(readFile.getAbsolutePath());
 					 Map<String,Properties> sectionLevel = iniReader.getIniInfo();
 					 Iterator<String> elementTypeItertor = sectionLevel.keySet().iterator();
@@ -318,13 +318,13 @@ public class ParamElementController {
 				if (request.getParameter(name).isEmpty()) {
 					continue;
 				} else {
-					if (name.equals("sort")) {
+					if ("sort".equals(name)) {
 						continue;
-					} else if(name.equals("appSystem")){
+					} else if("appSystem".equals(name)){
 						IAppSystem appSystem = appSystemService.get(Long.parseLong(request.getParameter(name)));
 						filter.eq("paramBelongs",appSystem);
 					}
-					else if(name.equals("classifyId")) {
+					else if("classifyId".equals(name)) {
 						IParamClassify classify = classifyService.get(Long.parseLong(request.getParameter(name)));
 						filter.eq("paramClassify", classify);
 					} else {

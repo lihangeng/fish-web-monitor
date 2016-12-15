@@ -8,6 +8,9 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import gnu.io.CommPortIdentifier;
 import gnu.io.PortInUseException;
 import gnu.io.SerialPort;
@@ -15,6 +18,9 @@ import gnu.io.SerialPort;
 
 
 public class LevelFinalSerial {
+	
+	private static Logger logger = LoggerFactory.getLogger(LevelFinalSerial.class);
+			
 	/**
 	 * 数据包长度
 	 */
@@ -106,9 +112,9 @@ public class LevelFinalSerial {
 				}
 			}
 		} catch (PortInUseException e) {
-			e.printStackTrace();
+			logger.error(String.format("PortInUseException is [%s]", e.getMessage()));
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(String.format("Exception is [%s]", e.getMessage()));
 		}
 
 		return rsBool;
@@ -171,7 +177,7 @@ public class LevelFinalSerial {
 				out = null;
 				in = null;
 			} catch (IOException e) {
-				e.printStackTrace();
+				logger.error(String.format("IOException is [%s]", e.getMessage()));
 			}
 		}
 		if (serialPort != null) {

@@ -92,12 +92,12 @@ public class ParamDownloadMonitorController {
 			} else {
 				if (request.getParameter(name).isEmpty()) {
 					continue;
-				} else if (name.equals("sort")) {
+				} else if ("sort".equals(name)) {
 					continue;
-				} else if(name.equals("startTime")){
+				} else if("startTime".equals(name)){
 					String value=request.getParameter(name);
 					filter.ge("date", value+" 00:00:00");
-				} else if(name.equals("finishTime")){
+				} else if("finishTime".equals(name)){
 					String value=request.getParameter(name);
 					filter.le("date", value+" 23:59:59");
 				}/* else if(name.equals("publisher")){
@@ -162,12 +162,12 @@ public class ParamDownloadMonitorController {
 			} else {
 				if (request.getParameter(name).isEmpty()) {
 					continue;
-				} else if (name.equals("sort")) {
+				} else if ("sort".equals(name)) {
 					continue;
-				} else if (name.equals("id")) {
+				} else if ("id".equals(name)) {
 					String value = request.getParameter(name);
 					filter.eq("ppr.id", Long.valueOf(value.trim()));
-				}else if (name.equals("terminalId")) {
+				}else if ("terminalId".equals(name)) {
 					String value = request.getParameter(name).trim();
 					filter.like("device.terminalId", value);
 				} /*else if(name.equals("downloadStartTime")){
@@ -200,14 +200,14 @@ public class ParamDownloadMonitorController {
 		String nextRecord = request.getParameter("nextRecord");
 		long displayJobId = jobId;
 		// 前一页
-		if (nextRecord.equals("-1")) {
+		if ("-1".equals(nextRecord)) {
 			filter.lt("id", jobId);
 			filter.descOrder("id");
 			List<IParamPublish> paramPublishList = paramPublishService.list(filter);
 			displayJobId = paramPublishList.size() > 0 ? paramPublishList.get(0).getId() : jobId;
 		}
 		// 后一页
-		else if (nextRecord.equals("1")) {
+		else if ("1".equals(nextRecord)) {
 			filter.gt("id", jobId);
 			filter.order("id");
 			List<IParamPublish> paramPublishList = paramPublishService.list(filter);

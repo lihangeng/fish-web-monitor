@@ -75,11 +75,11 @@ public class TransMonitorCometd {
 	 		List<String> blackCardNoList = new ArrayList<String>();
 	 		
 	 		if(map.get("blacklist")!=null){
-	 			if(!((String)map.get("blacklist")).equals("0")){
+	 			if(!"0".equals((String)map.get("blacklist"))){
 	 				for(IBlackListCard blackCard : blackListCardservice.list()){
 	 		              blackCardNoList.add(blackCard.getCardNo());
 	 		           }
-	 		 		   if(((String)map.get("blacklist")).equals("1")){
+	 		 		   if("1".equals((String)map.get("blacklist"))){
 	 		 		      transactionFilter.setIsBlackCardList(true);
 	 		 		   }else{
 	 		 		      transactionFilter.setIsBlackCardList(false); 

@@ -227,13 +227,13 @@ public class ExcelViewUtils extends AbstractXlsxView {
 					cell.setCellValue(String.valueOf(field.get(obj)));
 				}
 			} catch (SecurityException e) {
-				e.printStackTrace();
+				logger.error(String.format("SecurityException is [%s]", e.getMessage()));
 			} catch (NoSuchFieldException e) {
-				e.printStackTrace();
+				logger.error(String.format("NoSuchFieldException is [%s]", e.getMessage()));
 			} catch (IllegalArgumentException e) {
-				e.printStackTrace();
+				logger.error(String.format("IllegalArgumentException is [%s]", e.getMessage()));
 			} catch (IllegalAccessException e) {
-				e.printStackTrace();
+				logger.error(String.format("IllegalAccessException is [%s]", e.getMessage()));
 			}
 			cellNumber++;
 		}

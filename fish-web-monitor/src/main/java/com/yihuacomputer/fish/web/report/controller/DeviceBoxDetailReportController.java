@@ -107,22 +107,22 @@ public class DeviceBoxDetailReportController {
     	for(IDeviceBoxDetailRpt deviceBoxDetail:datas){
     		String setupType = deviceBoxDetail.getSetupType();
 			String status = deviceBoxDetail.getStatus();
-	    	 if (setupType.equals("WEAR_WALL")) {
+	    	 if ("WEAR_WALL".equals(setupType)) {
 	             deviceBoxDetail.setSetupType(getEnumI18n("report.deviceBoxDetail.wareWall"));
 	         }
-	         if (setupType.equals("LOBBY")) {
+	         if ("LOBBY".equals(setupType)) {
 	             deviceBoxDetail.setSetupType(getEnumI18n("report.deviceBoxDetail.lobby"));
 	         }
-	         if (status.equals("OPEN")) {
+	         if ("OPEN".equals(status)) {
 	             deviceBoxDetail.setStatus(getEnumI18n("report.deviceBoxDetail.opening"));
 	         }
-	         if (status.equals("DISABLED")) {
+	         if ("DISABLED".equals(status)) {
 	             deviceBoxDetail.setStatus(getEnumI18n("report.deviceBoxDetail.disabled"));
 	         }
-	         if (status.equals("UNOPEN")) {
+	         if ("UNOPEN".equals(status)) {
 	             deviceBoxDetail.setStatus(getEnumI18n("report.deviceBoxDetail.unopen"));
 	         }
-	         if (status.equals("SCRAPPED")) {
+	         if ("SCRAPPED".equals(status)) {
 	             deviceBoxDetail.setStatus(getEnumI18n("report.deviceBoxDetail.scrapped"));
 	         }
 	         list.add(deviceBoxDetail);
@@ -142,13 +142,13 @@ public class DeviceBoxDetailReportController {
     private String getReport(Map<String, Object> parameters, String resourcePath, String exportType,
             List<IDeviceBoxDetailRpt> data) {
         ReportParam reportParam = new ReportParam();
-        if (exportType.equals("pdf")) {
+        if ("pdf".equals(exportType)) {
             reportParam.setPdf(true);
         }
-        if (exportType.equals("html")) {
+        if ("html".equals(exportType)) {
             reportParam.setHtml(true);
         }
-        if (exportType.equals("xls")) {
+        if ("xls".equals(exportType)) {
             reportParam.setXls(true);
             reportParam.setSheetNames(new String[]{"" + parameters.get("title")});
         }
@@ -238,17 +238,17 @@ public class DeviceBoxDetailReportController {
                 String value = request.getParameter(name);
                 if (StringUtils.isEmpty(value)) {
                     continue;
-                } else if (name.equals("orgId")) {
+                } else if ("orgId".equals(name)) {
                     orgFlag = orgService.get(value).getOrgFlag();
-                } else if (name.equals("terminalId")) {
+                } else if ("terminalId".equals(name)) {
                     filter.eq("terminalId", value);
-                } else if (name.equals("devVendorId")) {
+                } else if ("devVendorId".equals(name)) {
                     filter.eq("devVendorId", Long.valueOf(value));
-                } else if (name.equals("devTypeId")) {
+                } else if ("devTypeId".equals(name)) {
                     filter.eq("devTypeId", Long.valueOf(value));
-                } else if (name.equals("deviceStatusId")) {
+                } else if ("deviceStatusId".equals(name)) {
                     filter.eq("deviceStatusId", Long.valueOf((value)));
-                } else if (name.equals("setupId")) {
+                } else if ("setupId".equals(name)) {
                     filter.eq("setupId", Long.valueOf(value));
                 }
             }

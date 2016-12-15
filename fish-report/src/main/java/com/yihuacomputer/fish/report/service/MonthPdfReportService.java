@@ -8,6 +8,8 @@ import java.util.List;
 import org.jfree.chart.JFreeChart;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -54,6 +56,8 @@ import com.yihuacomputer.fish.report.engine.pdf.PdfConfig;
 @Service
 public class MonthPdfReportService extends PdfReportService implements IMonthPdfReportService {
 
+	private Logger logger = LoggerFactory.getLogger(MonthPdfReportService.class);
+	
 	@Autowired
 	private IDeviceCatalogSummaryMonthService deviceCatalogSummaryMonthService;
 	@Autowired
@@ -96,7 +100,7 @@ public class MonthPdfReportService extends PdfReportService implements IMonthPdf
 			generateFaultMonth(pdf, month);
 			pdf.close();
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(String.format("Exception is [%s]", e));
 		}
 
 		return file.getAbsolutePath();
@@ -160,7 +164,7 @@ public class MonthPdfReportService extends PdfReportService implements IMonthPdf
 		Calendar c = Calendar.getInstance();
 		c.set(Calendar.YEAR, Integer.valueOf(String.valueOf(month).substring(0, 4)));
 		int mon = 0;
-		if (String.valueOf(month).substring(4, 5).equals("0")) {
+		if ("0".equals(String.valueOf(month).substring(4, 5))) {
 			mon = Integer.valueOf(String.valueOf(month).substring(5));
 		} else {
 			mon = Integer.valueOf(String.valueOf(month).substring(4));
@@ -362,7 +366,7 @@ public class MonthPdfReportService extends PdfReportService implements IMonthPdf
 	 */
 	private int getDaysByMonth(String month){
 		int mon =0;
-		if (String.valueOf(month).substring(4, 5).equals("0")) {
+		if ("0".equals(String.valueOf(month).substring(4, 5))) {
 			mon = Integer.valueOf(String.valueOf(month).substring(5));
 		} else {
 			mon = Integer.valueOf(String.valueOf(month).substring(4));

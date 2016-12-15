@@ -44,8 +44,7 @@ public class SMSLibMessageService implements ISMSLibMessageService {
 			}
 
 		} catch (IOException e) {
-			e.printStackTrace();
-			logger.error(e.getMessage());
+			logger.error(String.format("IOException is [%s]", e.getMessage()));
 		}
 	}
 
@@ -114,9 +113,8 @@ public class SMSLibMessageService implements ISMSLibMessageService {
 			Service.getInstance().startService();// 启动服务，进入短信发送就绪状态
 			logger.info("启动短信猫服务成功");
 		} catch (Exception e) {
-			e.printStackTrace();
 			System.out.println("启动短信猫服务失败:" + e.getMessage());
-			logger.error("启动短信猫服务失败:" + e.getMessage());
+			logger.error("启动短信猫服务失败:Exception is [%s]" + e.getMessage());
 			return false;
 		}
 		return true;
@@ -132,7 +130,7 @@ public class SMSLibMessageService implements ISMSLibMessageService {
 			logger.info("services destory ok");
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
-			logger.error(e.getMessage());
+			logger.error(String.format("Exception is [%s]", e.getMessage()));
 		}
 	}
 

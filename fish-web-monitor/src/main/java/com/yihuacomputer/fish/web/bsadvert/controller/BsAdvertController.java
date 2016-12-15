@@ -371,7 +371,7 @@ public class BsAdvertController {
 			}
 		}
 
-		if (!result.toString().equals("[")) {
+		if (!"[".equals(result.toString())) {
 			String r = result.toString().substring(0, result.toString().length() - 1);
 			return r + "]";
 		}

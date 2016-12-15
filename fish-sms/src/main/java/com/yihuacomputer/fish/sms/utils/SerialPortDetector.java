@@ -6,12 +6,17 @@ import gnu.io.SerialPort;
 
 import java.util.Enumeration;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * 串口检测器
  * @author guoqiang
  *
  */
 public class SerialPortDetector {
+	
+	private static Logger logger = LoggerFactory.getLogger(SerialPortDetector.class);
 
 	public static SerialPortDetector sms_serial;
 	public static LevelFinalSerial final_Level;
@@ -165,7 +170,7 @@ public class SerialPortDetector {
 						return portIdRs.getName();
 					}
 				} catch (Exception e) {
-					e.printStackTrace();
+					logger.error(String.format("Exception is [%s]", e.getMessage()));
 				}finally{
 					// ④ 关闭串口
 					serialPortDetector.closePort();

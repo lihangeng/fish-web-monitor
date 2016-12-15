@@ -111,7 +111,7 @@ public class ParamAutoUpdateController {
 				msg.setAutoUpdatePatches(patchMsgList);
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(String.format("Exception is [%s]", e.getMessage()));
 		}
 		return msg;
 	}

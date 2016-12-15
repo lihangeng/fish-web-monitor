@@ -81,9 +81,9 @@ public class DeviceRptService implements IDeviceRptService {
             	deviceRpt.setAwayFlag(messageSource.getMessage("report.device.standAlone", null, FishCfg.locale));
             }
             
-            if (objectToString(o[7]).equals("WEAR_WALL")) {
+            if ("WEAR_WALL".equals(objectToString(o[7]))) {
                 deviceRpt.setSetupType(messageSource.getMessage("report.deviceBoxDetail.wareWall", null, FishCfg.locale));
-            } else if (objectToString(o[7]).equals("LOBBY")) {
+            } else if ("LOBBY".equals(objectToString(o[7]))) {
                 deviceRpt.setSetupType(messageSource.getMessage("report.deviceBoxDetail.lobby", null, FishCfg.locale));
             }
             deviceRpt.setMantainOrg(objectToString(o[8]));
