@@ -106,7 +106,7 @@ public class ETLJobController {
 	public @ResponseBody ModelMap retry(@RequestParam int id, @RequestParam String tradeTime, @RequestParam String jobName, HttpServletRequest request, WebRequest webrequest) {
 		ModelMap result = new ModelMap();
 		try {
-			if (jobName.equals("Month_Trans_job")) {
+			if ("Month_Trans_job".equals(jobName)) {
 //				eService.reStartMonthOpera(tradeTime);
 				eService.deteleMonthOpera(tradeTime);
 				iMonthService.extractDate(tradeTime);
