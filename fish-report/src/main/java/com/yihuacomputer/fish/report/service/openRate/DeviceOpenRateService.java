@@ -226,7 +226,7 @@ public class DeviceOpenRateService implements IDeviceOpenRateService {
 
 		for (IDeviceOpenPlan plan : listDeviceOpenPlan) {
 
-			if (distanceTimes(DateUtils.getDate(plan.getStartDate()) + " 00:00:00", dateValue) >= 0 && distanceTimes(dateValue, DateUtils.getDate(plan.getEndDate()) + " 23:59:59") >= 0) {
+			if (getDistanceTimes(DateUtils.getDate(plan.getStartDate()) + " 00:00:00", dateValue) >= 0 && getDistanceTimes(dateValue, DateUtils.getDate(plan.getEndDate()) + " 23:59:59") > 0) {
 				result = plan;
 				break;
 			}
@@ -253,14 +253,14 @@ public class DeviceOpenRateService implements IDeviceOpenRateService {
 				List<IRunInfo> resultRunInfo = new ArrayList<IRunInfo>();
 				if (listRunInfo != null) {
 					for (IRunInfo runInfo : listRunInfo) {
-						if (!(distanceTimes(openDateTime, runInfo.getStatusTime()) > 0)) {
+						if (!(getDistanceTimes(openDateTime, runInfo.getStatusTime()) > 0)) {
 							runInfoValue = runInfo;
 						} else {
 							resultRunInfo.add(runInfo);
 						}
 					}
 				}
-				openTimes += distanceTimes(openDateTime, closeDateTime);
+				openTimes += getDistanceTimes(openDateTime, closeDateTime);
 				// 当状态时间大于设备关机时间，计算最后一次后，直接跳出循环
 				boolean isBreak = false;
 				// 如果当天没有变化
@@ -272,7 +272,7 @@ public class DeviceOpenRateService implements IDeviceOpenRateService {
 					{
 						status = RunStatus.Unknown;
 					}
-					long constant = distanceTimes(openDateTime, closeDateTime);
+					long constant = getDistanceTimes(openDateTime, closeDateTime);
 					dayOpenRate = sumAllTimes(dayOpenRate, status, (int) constant);
 				} else {
 					for (; i < resultRunInfo.size();) {
@@ -306,20 +306,20 @@ public class DeviceOpenRateService implements IDeviceOpenRateService {
 							s1 = openDateTime;
 						} else {
 							String lastStatusTime = resultRunInfo.get(i - 1).getStatusTime();
-							if (distanceTimes(openDateTime, lastStatusTime) > 0 && distanceTimes(closeDateTime, lastStatusTime) < 0) {
+							if (getDistanceTimes(openDateTime, lastStatusTime) > 0 && getDistanceTimes(closeDateTime, lastStatusTime) < 0) {
 								s1 = lastStatusTime;
 							} else {
 								s1 = openDateTime;
 							}
 						}
 						// 如果状态切换时间点小于等于方案开机时间，取下一个状态切换
-						if (!(distanceTimes(openDateTime, firststatusTime) > 0)) {
+						if (!(getDistanceTimes(openDateTime, firststatusTime) > 0)) {
 
 							i++;
 							continue;
 						}
 						// 如果状态在方案明细时间内
-						else if (distanceTimes(openDateTime, firststatusTime) > 0 && distanceTimes(closeDateTime, firststatusTime) < 0) {
+						else if (getDistanceTimes(openDateTime, firststatusTime) > 0 && getDistanceTimes(closeDateTime, firststatusTime) < 0) {
 							i++;
 							s2 = firststatusTime;
 						}
@@ -329,13 +329,13 @@ public class DeviceOpenRateService implements IDeviceOpenRateService {
 							s2 = closeDateTime;
 							isBreak = true;
 						}
-						long constant = distanceTimes(s1, s2);
+						long constant = getDistanceTimes(s1, s2);
 
 						dayOpenRate = sumAllTimes(dayOpenRate, status, (int) constant);
 						// 当状态表里最后一个时间，小于方案设置的时间，则最后时间至方案结束时间也要计算
-						if (i == resultRunInfo.size() && distanceTimes(firststatusTime, closeDateTime) > 0) {
+						if (i == resultRunInfo.size() && getDistanceTimes(firststatusTime, closeDateTime) > 0) {
 							status = firstRunInfo.getRunStatus();
-							constant = distanceTimes(s2, closeDateTime);
+							constant = getDistanceTimes(s2, closeDateTime);
 							dayOpenRate = sumAllTimes(dayOpenRate, status, (int) constant);
 						}
 					}
@@ -383,18 +383,18 @@ public class DeviceOpenRateService implements IDeviceOpenRateService {
 	 *            结束日期时间
 	 * @return long 分钟数
 	 */
-	private int distanceTimes(String startStr, String endStr) {
-		long result = 0L;
+	private int getDistanceTimes(String startStr, String endStr) {
+		long distanceTimes = 0L;
 
-		long time1 = DateUtils.getTimestamp(startStr).getTime();
-		long time2 = DateUtils.getTimestamp(endStr).getTime();
+		long startTimes = DateUtils.getTimestamp(startStr).getTime();
+		long endTimes = DateUtils.getTimestamp(endStr).getTime();
 
 		if (endStr.endsWith("23:59:59")) {
-			time2 += 1000l;
+			endTimes += 1000l;
 		}
 
-		result = (time2 - time1) / 1000;
-		return (int) result;
+		distanceTimes = (endTimes - startTimes) / 1000;
+		return (int) distanceTimes;
 	}
 
 	/**
