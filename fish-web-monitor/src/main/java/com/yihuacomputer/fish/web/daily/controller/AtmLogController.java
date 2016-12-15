@@ -102,11 +102,11 @@ public class AtmLogController {
 			filter.eq("dateTime", dateTime);
 		}
 		if (backupResult != null && !backupResult.isEmpty()) {
-			if(backupResult.equals("SUCCESS"))
+			if("SUCCESS".equals(backupResult))
 			{
 				filter.eq("backupResult", BackupResult.SUCCESS);
 			}
-			if(backupResult.equals("BackUpError"))
+			if("BackUpError".equals(backupResult))
 			{
 				filter.ne("backupResult", BackupResult.SUCCESS);
 			}
@@ -482,7 +482,7 @@ public class AtmLogController {
         httpFileCfg.setIpAdd(ip);
         httpFileCfg.setPort(MonitorCfg.getRemotePort());
         File file = new File(localPath+System.getProperty("file.separator")+localName);
-        if(flag.equals("false")){
+        if("false".equals(flag)){
             //不续传下载：
             httpFileCfg.setRetry(false);
             if(file.exists()){

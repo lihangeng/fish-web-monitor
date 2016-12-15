@@ -188,7 +188,7 @@ public class CashInitPlanDeviceDetailController {
 	public @ResponseBody ModelMap addDevice(HttpServletRequest request, WebRequest webRequest) {
 		logger.info("addDevice device Info List");
 		ModelMap result = new ModelMap();
-		if(request.getParameter("terminalIds").equals("") || request.getParameter("terminalIds")==null){
+		if("".equals(request.getParameter("terminalIds")) || request.getParameter("terminalIds")==null){
 			result.addAttribute(FishConstant.ERROR_MSG, getEnumI18n("exception.versionCollection.deviceNotExist"));
 			return result.addAttribute(FishConstant.SUCCESS, false);
 		}

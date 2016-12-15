@@ -53,7 +53,7 @@ public class TimeoutInterceptor extends HandlerInterceptorAdapter {
 		}
 		
 		if (httpServletRequest.getHeader("x-requested-with") != null &&
-				httpServletRequest.getHeader("x-requested-with").equalsIgnoreCase("XMLHttpRequest")) {
+				"XMLHttpRequest".equalsIgnoreCase(httpServletRequest.getHeader("x-requested-with"))) {
 			// ajax超时处理
 			httpServletResponse.addHeader("sessionStatus", "timeout");
 		} else {// http超时处理

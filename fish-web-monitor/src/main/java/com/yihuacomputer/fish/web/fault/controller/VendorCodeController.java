@@ -104,10 +104,10 @@ public class VendorCodeController {
 				file.transferTo(readFile);
 				/* 读文件内容 */
 				ArrayList<IVendorCode> vendorCodeList = null;
-				if (fileType.equals(".xls")) {
+				if (".xls".equals(fileType)) {
 					vendorCodeList = this.readExl(readFile, "0");// 从excel
 																	// 2003文件解析数据：
-				} else if (fileType.equals(".xlsx")) {
+				} else if (".xlsx".equals(fileType)) {
 					vendorCodeList = this.readExl(readFile, "1");// 从excel
 																	// 2007文件解析数据：
 				} else {
@@ -277,12 +277,12 @@ public class VendorCodeController {
 				String value = request.getParameter(name);
 				if (value.isEmpty()) {
 					continue;
-				} else if (name.equals("sort")) {
+				} else if ("sort".equals(name)) {
 					continue;
-				} else if (name.equals("vendor")) {
+				} else if ("vendor".equals(name)) {
 					filter.eq(name, Long.parseLong(value));
 				}
-				else if(name.equals("code"))
+				else if("code".equals(name))
 				{
 					filter.like(name, value);
 				}

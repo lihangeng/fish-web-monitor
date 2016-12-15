@@ -65,7 +65,7 @@ public class RuntimeInfoController {
 		FileOutputStream fout = null;
 		try {
 			RuntimeInfoListForm form = (RuntimeInfoListForm) HttpProxy.httpPost(url, msg, RuntimeInfoListForm.class);
-			if (form.getAppRet().equals("01")) {
+			if ("01".equals(form.getAppRet())) {
 				HSSFWorkbook wb = new HSSFWorkbook();
 				HSSFSheet sheet = wb.createSheet(messageSource.getMessage("runtimeInfo.excleTitle", null, FishCfg.locale));
 
@@ -481,7 +481,7 @@ public class RuntimeInfoController {
 		FileOutputStream fout = null;
 		try {
 			RuntimeInfoForm runtimeInfoForm = (RuntimeInfoForm) HttpProxy.httpGet(url, RuntimeInfoForm.class);
-			if (runtimeInfoForm.getAppRet().equals("01")) {
+			if ("01".equals(runtimeInfoForm.getAppRet())) {
 				HSSFWorkbook wb = new HSSFWorkbook();
 				HSSFSheet sheet = wb.createSheet(messageSource.getMessage("runtimeInfo.excle30DaysTitle", null, FishCfg.locale));
 				HSSFRow row = sheet.createRow(0);

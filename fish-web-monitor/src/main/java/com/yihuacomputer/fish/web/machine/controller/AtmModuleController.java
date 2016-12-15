@@ -68,7 +68,7 @@ public class AtmModuleController {
 				if (request.getParameter(name).isEmpty()) {
 					continue;
 				} else {
-					if (name.equals("sort")) {
+					if ("sort".equals(name)) {
 						continue;
 					} else {
 						filter.like(name, request.getParameter(name));

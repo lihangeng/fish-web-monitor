@@ -263,9 +263,9 @@ public class DeviceDetailController
     	if(xfsStatus != null){
     		deviceReport.setXfsStatus(xfsStatus);
     		statusReport.setStatusReport(deviceReport, messageSourceEnum);
-            boxAndRetainCardForm.setBoxCurrentCount(statusReport.getBoxCurrentCount().equals("-1")?"0":statusReport.getBoxCurrentCount());
-            boxAndRetainCardForm.setBoxInitCount(statusReport.getBoxInitCount().equals("-1")?"0":statusReport.getBoxInitCount());
-            boxAndRetainCardForm.setRetainCardCount(statusReport.getRetainCardCount().equals("-1")?"0":statusReport.getRetainCardCount());
+            boxAndRetainCardForm.setBoxCurrentCount("-1".equals(statusReport.getBoxCurrentCount())?"0":statusReport.getBoxCurrentCount());
+            boxAndRetainCardForm.setBoxInitCount("-1".equals(statusReport.getBoxInitCount())?"0":statusReport.getBoxInitCount());
+            boxAndRetainCardForm.setRetainCardCount("-1".equals(statusReport.getRetainCardCount())?"0":statusReport.getRetainCardCount());
 //            boxAndRetainCardForm.setRegisterStatus(statusReport.getRegisterStatus());
             
     	}

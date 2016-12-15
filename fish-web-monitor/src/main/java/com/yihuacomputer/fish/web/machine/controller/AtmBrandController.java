@@ -70,7 +70,7 @@ public class AtmBrandController {
 		String brand = request.getParameter("brand");
 		List<IAtmType> atmTypes = null;
 		boolean flag = false;
-		if (brand == null || brand.trim().isEmpty() || brand.trim().equals("0")) {
+		if (brand == null || brand.trim().isEmpty() || "0".equals(brand.trim())) {
 			atmTypes = atmTypeService.list();
 			flag = true;
 		} else {
@@ -94,7 +94,7 @@ public class AtmBrandController {
 		String brand = request.getParameter("brand");
 		List<IAtmType> list = new ArrayList<IAtmType>();
 		Iterable<IAtmType> atmTypes = null;
-		if (brand == null || brand.trim().isEmpty() || brand.trim().equals("0")) {
+		if (brand == null || brand.trim().isEmpty() || "0".equals(brand.trim())) {
 			atmTypes = atmTypeService.list();
 		} else {
 			IFilter filter = new Filter();
@@ -237,9 +237,9 @@ public class AtmBrandController {
 			} else {
 				if (request.getParameter(name).isEmpty()) {
 					continue;
-				} else if (name.equals("sort")) {
+				} else if ("sort".equals(name)) {
 					continue;
-				} else if (name.equals("status")) {
+				} else if ("status".equals(name)) {
 					String value = request.getParameter(name);
 					filter.eq(name, VendorStatus.getById(Long.valueOf(value).intValue()));
 				} else {

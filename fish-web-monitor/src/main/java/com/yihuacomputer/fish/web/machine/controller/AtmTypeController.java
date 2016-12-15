@@ -352,9 +352,9 @@ public class AtmTypeController {
             } else {
                 if (request.getParameter(name).isEmpty()) {
                     continue;
-                } else if (name.equals("sort")) {
+                } else if ("sort".equals(name)) {
                     continue;
-                } else if (name.equals("cashtype")) {
+                } else if ("cashtype".equals(name)) {
                     String value = request.getParameter(name);
                     filter.eq(name, CashType.getById(Long.valueOf(value).intValue()));
                 } else {

@@ -635,33 +635,27 @@ public class RetaincardController {
 				if (StringUtils.isEmpty(value)) {
 					continue;
 				}
-				if (name.equals("sort")) {
+				if ("sort".equals(name)) {
 					continue;
 				}
-				if (name.equals("endDate")) {
-					filter.le("retaincard.cardRetainTime",
-							DateUtils.getTimestamp(value +" 23:5:59"));
-				} else if (name.equals("startDate")) {
-					filter.ge("retaincard.cardRetainTime",
-							DateUtils.getTimestamp(value + " 00:00:00"));
-				} else if (name.equals("devVendorId")) {
-					filter.eq("device.devType.devVendor.id",
-							Long.valueOf(value));
-				} else if (name.equals("devTypeId")) {
-					filter.eq("device.devType.id",
-							Long.valueOf(value));
-				} else if (name.equals("orgId")) {
+				if ("endDate".equals(name)) {
+					filter.le("retaincard.cardRetainTime",DateUtils.getTimestamp(value +" 23:5:59"));
+				} else if ("startDate".equals(name)) {
+					filter.ge("retaincard.cardRetainTime",DateUtils.getTimestamp(value + " 00:00:00"));
+				} else if ("devVendorId".equals(name)) {
+					filter.eq("device.devType.devVendor.id",Long.valueOf(value));
+				} else if ("devTypeId".equals(name)) {
+					filter.eq("device.devType.id",Long.valueOf(value));
+				} else if ("orgId".equals(name)) {
 					String orgFlag = orgService.get(value).getOrgFlag();
 					filter.like("device.organization.orgFlag", orgFlag);
-				} else if (name.equals("status")) {
-					filter.eq("retaincard.status",
-							CardStatus.getById(Long.valueOf(value).intValue()));
-				} else if (name.equals("accountNo")) {
+				} else if ("status".equals(name)) {
+					filter.eq("retaincard.status",CardStatus.getById(Long.valueOf(value).intValue()));
+				} else if ("accountNo".equals(name)) {
 					filter.like("retaincard.accountNo", value);
-				} else if (name.equals("inOut")) {
-					filter.eq("device.awayFlag",
-							AwayFlag.getById(Long.valueOf(value).intValue()));
-				} else if (name.equals("terminalId")) {
+				} else if ("inOut".equals(name)) {
+					filter.eq("device.awayFlag",AwayFlag.getById(Long.valueOf(value).intValue()));
+				} else if ("terminalId".equals(name)) {
 					filter.like("retaincard.terminalId", value);
 
 				}
