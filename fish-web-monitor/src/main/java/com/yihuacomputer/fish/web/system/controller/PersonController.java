@@ -775,7 +775,7 @@ public class PersonController {
 				i++;
 				continue;
 			}
-			if (type.equals("add")) {
+			if ("add".equals(type)) {
 				devicePersonRelation.link(person, device);
 			} else {
 				IPerson p = new Person();

@@ -337,7 +337,7 @@ public class RoleController {
 		ModelMap result = new ModelMap();
 		// 如果左侧没有选择任何节点,传入的值为0,此时不需要在右侧显示任何内容
 
-		if (!parentId.equals("0")) {
+		if (!"0".equals(parentId)) {
 			IFilter filter = new Filter();
 			filter.eq("type", roleType);
 			filter.eq("organizationCode", parentId);
@@ -485,7 +485,7 @@ public class RoleController {
 			} else {
 				if (request.getParameter(name).isEmpty()) {
 					continue;
-				} else if (name.equals("sort")) {
+				} else if ("sort".equals(name)) {
 					continue;
 				} else {
 					filter.like(name, request.getParameter(name));

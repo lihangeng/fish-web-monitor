@@ -1,7 +1,7 @@
 Ext.define('Eway.controller.version.Version', {
 	extend : 'Eway.controller.base.Controller',
 	stores : [ 'version.Version','version.ComboVersionType','version.VersionCharts','machine.DeviceAtmType','version.VersionStatus','version.AutoUpdate',
-			   'version.JobType','version.JobStatus','version.JobPriority','version.VersionCatalog'],
+			   'version.JobType','version.JobStatus','version.JobPriority','version.VersionCatalog','machine.DeviceAtmTypeToVersion'],
 	models : [ 'version.Version','version.VersionType','version.VersionCharts'],
 	views : [ 'version.View','version.Add','version.AddJob','version.ChartsGrid'],
 
@@ -151,7 +151,7 @@ Ext.define('Eway.controller.version.Version', {
 				form.findField("serverPath").setValue(record.get("serverPath"));
 				form.findField("jobName").setValue(record.get("desc"));
 				
-				var atmTypeStore = win.down("field_device_deviceatmtype[name=atmTypeId]").getStore();
+				var atmTypeStore = win.down("field_device_DeviceAtmTypeToVersion[name=atmTypeId]").getStore();
 				atmTypeStore.proxy.extraParams={versionId:record.get("id")};
 				atmTypeStore.load({
 					callback: function(records, operation, success) {

@@ -108,13 +108,13 @@ public class DeviceUseCountReportController {
             List<IDeviceUseCountRpt> data) {
         ReportParam reportParam = new ReportParam();
         
-        if (exportType.equals("pdf")) {
+        if ("pdf".equals(exportType)) {
             reportParam.setPdf(true);
         }
-        if (exportType.equals("html")) {
+        if ("html".equals(exportType)) {
             reportParam.setHtml(true);
         }
-        if (exportType.equals("xls")) {
+        if ("xls".equals(exportType)) {
             reportParam.setXls(true);
             reportParam.setSheetNames(new String[]{"" + parameters.get("title")});
         }

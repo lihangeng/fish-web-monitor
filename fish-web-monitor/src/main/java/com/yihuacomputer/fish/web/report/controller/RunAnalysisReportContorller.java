@@ -99,7 +99,7 @@ public class RunAnalysisReportContorller {
 	public void download(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String filePath = null;
 		String reportType = request.getParameter("reportType");
-		if (reportType.equals("week")) {
+		if ("week".equals(reportType)) {
 			filePath =PdfConfig.getWeekReportDir();
 		} else {
 			filePath = PdfConfig.getMonthReportDir();

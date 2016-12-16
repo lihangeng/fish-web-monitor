@@ -314,7 +314,7 @@ public class DeviceDetailController
     }
     
     private List<VersionForm> getVersionForm(String terminalId,VersionCatalog versionCatalog,String versionNo) {
-        List<VersionForm> appReleaseList = new ArrayList<VersionForm>();;
+        List<VersionForm> appReleaseList = new ArrayList<VersionForm>();
         IDeviceSoftVersion deviceSoftVersion=deviceSoftVersionService.findVersionByCatlog(terminalId, versionCatalog);
         if(deviceSoftVersion !=null){
         	 String typeName=deviceSoftVersion.getTypeName();
