@@ -89,7 +89,7 @@ public class ParamClassifyController {
 		result.addAttribute(FishConstant.LOG_KEY, paramClassify.getName());
 		if(paramClassify!=null){
 			List<IParamElement> list=elementService.listByClassify(paramClassify);
-			if(list.size()>0){
+			if(!list.isEmpty()){
 				result.addAttribute(FishConstant.SUCCESS, false);
 				result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("parameter.classify.deleteFailureRelated", null, FishCfg.locale));
 				return result;

@@ -188,7 +188,7 @@ public class DeviceDetailController
     	String terminalId = request.getParameter("termianlId");
     	logger.info(String.format("search device %s person information",terminalId));
     	List<IPerson> personList = devicePersonRelation.listPersonByDevice(terminalId);
-    	if(personList.size() != 0){
+    	if(!personList.isEmpty()){
     		List<PersonForm> data = PersonForm.convert(personList);
         	result.addAttribute(FishConstant.SUCCESS, true);
         	result.addAttribute(FishConstant.DATA, data);
@@ -221,7 +221,7 @@ public class DeviceDetailController
         	IFilter filter = new Filter();
         	filter.gt("versionStr", versionStr);
         	List<VersionForm> versionFromList = getVersionForm(terminalId, VersionCatalog.APP, versionNo);
-        	if(versionFromList.size()>0){
+        	if(!versionFromList.isEmpty()){
         		data.setMaxVersion(versionFromList.get(0));
         	}
         	data.setCurrentVersion(versionNo);

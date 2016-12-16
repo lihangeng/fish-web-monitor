@@ -153,7 +153,7 @@ public class AtmBrandController {
 		if (atmVendor != null) {
 			List<IAtmType> list = atmTypeService.listByBrand(atmVendor);
 			result.addAttribute(FishConstant.LOG_KEY, atmVendor.getName());
-			if (list.size() > 0) {
+			if (!list.isEmpty()) {
 				result.addAttribute(FishConstant.SUCCESS, false);
 				result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("atmBrand.bindAlready", null, FishCfg.locale));
 			} else {

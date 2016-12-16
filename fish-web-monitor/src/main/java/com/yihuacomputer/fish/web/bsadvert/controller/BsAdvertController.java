@@ -468,7 +468,7 @@ public class BsAdvertController {
 
 	private boolean exsitSameAdvert(long id, String advertName, long advertId) {
 		List<IBsAdvert> bsAdvertList = bsAdvertService.getBsAdvertByNameAndOrgId(id, advertName, advertId);
-		return bsAdvertList.size() > 0;
+		return !bsAdvertList.isEmpty();
 	}
 
 	/**

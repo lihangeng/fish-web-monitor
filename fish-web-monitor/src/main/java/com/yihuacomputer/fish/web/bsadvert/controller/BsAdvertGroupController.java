@@ -249,7 +249,7 @@ public class BsAdvertGroupController {
 		filter.eq("groupId", id);
 		List<IBsAdvert> listBsAdvert = bsAdvertService.list(filter);
 
-		if (listBsAdvert.size() != 0) {
+		if (!listBsAdvert.isEmpty()) {
 			result.addAttribute(FishConstant.SUCCESS, false);
 			result.addAttribute(FishConstant.ERROR_MSG, messageSourceVersion.getMessage("bsadvertGroup.delete.hasAdvert", null, FishCfg.locale));
 			return result;
@@ -258,7 +258,7 @@ public class BsAdvertGroupController {
 
 		List<IAdvertGroup> listAdvertGroup = deviceAdvertRelation.listAdvertGroupByGroupId(id);
 
-		if (listAdvertGroup.size() != 0) {
+		if (!listAdvertGroup.isEmpty()) {
 			result.addAttribute(FishConstant.SUCCESS, false);
 			result.addAttribute(FishConstant.ERROR_MSG, messageSourceVersion.getMessage("bsadvertGroup.delete.hasLinkedDevice", null, FishCfg.locale));
 			return result;

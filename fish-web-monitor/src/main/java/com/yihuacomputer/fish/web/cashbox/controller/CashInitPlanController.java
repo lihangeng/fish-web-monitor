@@ -97,7 +97,7 @@ public class CashInitPlanController {
 		filter.gt("cashInitCode", cashInitPlanInfo.getCashInitCode());
 		filter.order("cashInitCode");
 		List<ICashInitPlanInfo> list =  cashInitPlanInfoService.list(filter);
-		if(list.size()>0){
+		if(!list.isEmpty()){
 			result.put(FishConstant.SUCCESS, true);
 			result.put(FishConstant.DATA, convert(list.get(0)));
 		}
@@ -127,7 +127,7 @@ public class CashInitPlanController {
 		filter.lt("cashInitCode", cashInitPlanInfo.getCashInitCode());
 		filter.descOrder("cashInitCode");
 		List<ICashInitPlanInfo> list =  cashInitPlanInfoService.list(filter);
-		if(list.size()>0){
+		if(!list.isEmpty()){
 			result.put(FishConstant.SUCCESS, true);
 			result.put(FishConstant.DATA, convert(list.get(0)));
 		}

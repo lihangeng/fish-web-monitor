@@ -222,7 +222,7 @@ public class OpenPlanController {
 		}
 
 		long openPlanId = 0;
-		if (list != null && list.size() > 0) {
+		if (list != null && !list.isEmpty()) {
 			openPlanId = list.get(0).getId();
 		}
 		result.addAttribute("success", true);
@@ -450,7 +450,7 @@ public class OpenPlanController {
 
 		}
 		String data = dataJson.substring(0, dataJson.length() - 1) + "]";
-		if (linkDeviceList.size() != 0) {
+		if (!linkDeviceList.isEmpty()) {
 			return "{'success':true," + "'total':'" + linkDeviceList.size()
 					+ "','message':" + message.toString() + "," + data + "}";
 		} else {

@@ -112,7 +112,7 @@ public class AtmTypeController {
             if (type != null) {
             	result.addAttribute(FishConstant.LOG_KEY, type.getName());
                 List<IDevice> deviceList = deviceService.listDeviceByType(type);
-                if (deviceList.size() > 0) {
+                if (!deviceList.isEmpty()) {
                     result.addAttribute(FishConstant.SUCCESS, false);
                     result.addAttribute(FishConstant.ERROR_MSG,
                             messageSource.getMessage("atmType.bindAlready", null, FishCfg.locale));

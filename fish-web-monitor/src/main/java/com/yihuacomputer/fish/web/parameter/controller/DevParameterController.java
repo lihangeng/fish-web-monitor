@@ -365,7 +365,7 @@ public class DevParameterController {
 		IFilter filter=new Filter();
 		filter.in("id", deviceIdList);
 		List<IDevice> device=deviceService.list(filter);
-		if(device.size()!=0){
+		if(!device.isEmpty()){
 			UserSession userSession = (UserSession) request.getSession().getAttribute("SESSION_USER");
 			long jobId = paramPushService.paramPublishByDeviceIds(deviceIdList, Long.valueOf(userSession.getPersonId()));
 			if (jobId != Long.MIN_VALUE) {

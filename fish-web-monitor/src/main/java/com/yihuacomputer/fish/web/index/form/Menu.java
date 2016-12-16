@@ -69,7 +69,7 @@ public class Menu {
 		if(StringUtils.isNotEmpty(this.getAction())){
 			hql.append(",action:'").append(this.getAction()).append("'");
 		}
-		if(this.menu.size() > 0){
+		if(!this.menu.isEmpty()){
 			hql.append(",menu:{items:[");
 			for(Menu each : menu){
 				hql.append(each.toConfig()).append(",");

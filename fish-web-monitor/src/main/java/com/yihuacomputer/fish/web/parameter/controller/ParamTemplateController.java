@@ -488,14 +488,14 @@ public class ParamTemplateController {
 				
 			}
 			
-			if(null!=deviceList&&deviceList.size()==0){
+			if(null!=deviceList&&deviceList.isEmpty()){
 				result.addAttribute(FishConstant.SUCCESS, false);
 				result.addAttribute(FishConstant.ERROR_MSG, getI18N("parameter.template.deviceUnlinked"));
 				return result;
 			}
 
 			List<IParamTemplate> elementList = paramTemplateDetailService.listParamByTemplate(templateId);
-			if(null!=elementList&&elementList.size()==0){
+			if(null!=elementList&&elementList.isEmpty()){
 				result.addAttribute(FishConstant.SUCCESS, false);
 				result.addAttribute(FishConstant.ERROR_MSG, getI18N("parameter.template.hasNoParams"));
 				return result;

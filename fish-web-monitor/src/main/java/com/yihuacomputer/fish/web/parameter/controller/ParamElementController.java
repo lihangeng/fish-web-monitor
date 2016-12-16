@@ -290,7 +290,7 @@ public class ParamElementController {
 	private boolean check(List<IParamElement> list, long appSystem) {
 		boolean flag = false;
 		List<IParamElement> paramElementList = elementService.getByAppSystem(appSystemService.get(appSystem));
-		if (paramElementList.size() == 0) {
+		if (paramElementList.isEmpty()) {
 			flag = false;
 		} else {
 			for (IParamElement item : list) {

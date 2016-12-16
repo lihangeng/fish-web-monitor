@@ -452,7 +452,7 @@ public class DeviceController {
 		if(null==atmTypeIdList){
 			atmTypeList = typeService.list();
 		}
-		else if(atmTypeIdList.size()==0){
+		else if(atmTypeIdList.isEmpty()){
 			model.put(FishConstant.SUCCESS, true);
 			model.put(FishConstant.DATA, new AtmTypeForm());
 			return model;

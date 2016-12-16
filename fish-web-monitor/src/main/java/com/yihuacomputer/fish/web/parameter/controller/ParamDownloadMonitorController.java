@@ -204,14 +204,14 @@ public class ParamDownloadMonitorController {
 			filter.lt("id", jobId);
 			filter.descOrder("id");
 			List<IParamPublish> paramPublishList = paramPublishService.list(filter);
-			displayJobId = paramPublishList.size() > 0 ? paramPublishList.get(0).getId() : jobId;
+			displayJobId = !paramPublishList.isEmpty() ? paramPublishList.get(0).getId() : jobId;
 		}
 		// 后一页
 		else if ("1".equals(nextRecord)) {
 			filter.gt("id", jobId);
 			filter.order("id");
 			List<IParamPublish> paramPublishList = paramPublishService.list(filter);
-			displayJobId = paramPublishList.size() > 0 ? paramPublishList.get(0).getId() : jobId;
+			displayJobId = !paramPublishList.isEmpty() ? paramPublishList.get(0).getId() : jobId;
 		}
 		result.addAttribute(FishConstant.SUCCESS, true);
 		result.addAttribute("total", "");

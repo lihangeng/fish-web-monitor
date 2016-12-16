@@ -69,7 +69,7 @@ public class EnableDownloadSourceController {
 		canPushFilter.eq("version.id",task.getVersion().getId());
 		canPushFilter.in("deviceId", deviceId);
 		List<ITask> taskList = taskService.list(canPushFilter);
-		if(null!=taskList&&taskList.size()>0){
+		if(null!=taskList && !taskList.isEmpty()){
 			for(ITask successTask:taskList){
 				IDevice successDevice = successTask.getDevice();
 				if(null!=successDevice){

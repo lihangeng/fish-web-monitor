@@ -62,7 +62,7 @@ public class SummaryChartsRunInfoController {
         filter.eq("orgFlag", session.getOrgFlag());
         filter = getFilterByRequest(request,filter);
         IPageResult<Object> result = xfsChartService.getXfsChartsDetailInfo(start,limit,filter);
-        if(result.list().size()==0){
+        if(result.list().isEmpty()){
             model.put(FishConstant.ERROR_MSG, messageSource.getMessage("monitor.summary.noDate=", null, FishCfg.locale));
             model.put(FishConstant.SUCCESS,false);
             return model;

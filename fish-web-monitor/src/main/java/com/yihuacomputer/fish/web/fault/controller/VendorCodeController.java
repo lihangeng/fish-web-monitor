@@ -173,7 +173,7 @@ public class VendorCodeController {
 	private boolean check(List<IVendorCode> list, long vendor) {
 		boolean flag = false;
 		List<IVendorCode> vendorCodeList = vendorCodeService.getByVendor(vendor);
-		if (vendorCodeList.size() == 0) {
+		if (vendorCodeList.isEmpty()) {
 			flag = false;
 		} else {
 			for (IVendorCode item : list) {
