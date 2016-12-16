@@ -148,7 +148,7 @@ public class GroupController {
 		filter.eq("organizationCode", organizationCode);
 		List<IGroup> listGroup = service.list(filter);
 
-		if (listGroup.size() > 0) {
+		if (!listGroup.isEmpty()) {
 			if (listGroup.size() == 1) {
 				if (listGroup.get(0).getId() == id) {
 					result.addAttribute(FishConstant.SUCCESS, true);

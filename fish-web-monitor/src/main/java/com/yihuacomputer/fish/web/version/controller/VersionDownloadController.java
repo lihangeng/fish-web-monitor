@@ -128,14 +128,14 @@ public class VersionDownloadController {
 			filter.lt("id", jobId);
 			filter.descOrder("id");
 			List<IJob> jobList = jobService.list(filter);
-			displayJobId = jobList.size() > 0 ? jobList.get(0).getJobId() : jobId;
+			displayJobId = !jobList.isEmpty() ? jobList.get(0).getJobId() : jobId;
 		}
 		// 后一页
 		else if ("1".equals(nextRecord)) {
 			filter.gt("id", jobId);
 			filter.order("id");
 			List<IJob> jobList = jobService.list(filter);
-			displayJobId = jobList.size() > 0 ? jobList.get(0).getJobId() : jobId;
+			displayJobId = !jobList.isEmpty() ? jobList.get(0).getJobId() : jobId;
 		}
 		UserSession userSession = (UserSession) request.getSession().getAttribute("SESSION_USER");
 		IJob job = jobService.getById(displayJobId);

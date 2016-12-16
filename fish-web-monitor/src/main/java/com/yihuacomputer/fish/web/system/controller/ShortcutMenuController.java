@@ -101,7 +101,7 @@ public class ShortcutMenuController {
 			}
 		}
 		// 删除共同的元素
-		if (commons.size() > 0) {
+		if (!commons.isEmpty()) {
 			codesInDB.removeAll(commons);
 			codesInPage.removeAll(commons);
 		}

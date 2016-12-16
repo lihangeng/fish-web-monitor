@@ -82,7 +82,7 @@ public class ExcelViewUtils extends AbstractXlsxView {
 			createSheetTitle(sheet, headerArgs.length, title);
 			createHeaderTitle(sheet, headerArgs);
 		}
-		if (contextList.size() != 0 && null != colIndexStrs) {
+		if (!contextList.isEmpty() && null != colIndexStrs) {
 			String []colIndexs =  colIndexStrs.split(",");
 			createContext(sheet, contextList, colIndexs);
 		}

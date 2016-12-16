@@ -474,7 +474,7 @@ public class VersionController {
 		String versionTypeName = version.getVersionType().getTypeName();
 		filter.eq("versionTypeName", versionTypeName);
 		List<Long> devTypeList = versionTypeAtmTypeRelationService.findAtmTypeIds(versionTypeId);
-		if (null != devTypeList && devTypeList.size() != 0) {
+		if (null != devTypeList && !devTypeList.isEmpty()) {
 			filter.in("devType", devTypeList);
 		}
 		// TODO 如果版本类型没有选取设备型号，可以下发所有设备型号，在此处添加

@@ -151,7 +151,7 @@ public class RoleController {
 		boolean flag = false;
 		IRole role = service.get(id);
 		List<IUser> userList = userRoleRelation.listUserByRole(role);
-		if (userList.size() > 0) {
+		if (!userList.isEmpty()) {
 			flag = true;
 		}
 		return flag;
@@ -225,7 +225,7 @@ public class RoleController {
 			}
 
 			// 删除共同的元素
-			if (commons.size() > 0) {
+			if (!commons.isEmpty()) {
 				codesInDB.removeAll(commons);
 				codesInPage.removeAll(commons);
 			}
@@ -389,7 +389,7 @@ public class RoleController {
 		filter.eq("name", name);
 		filter.eq("organizationCode", organizationCode);
 		List<IRole> listRole = service.list(filter);
-		if (listRole.size() > 0) {
+		if (!listRole.isEmpty()) {
 			if (listRole.size() == 1) {
 				if (listRole.get(0).getId() == id) {
 					result.addAttribute(FishConstant.SUCCESS, true);

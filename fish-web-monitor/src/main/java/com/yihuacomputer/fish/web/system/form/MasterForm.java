@@ -211,7 +211,7 @@ public class MasterForm {
 		    filter1.eq("type", RoleType.PERMISSION);
 
 		    List<IRole> roles = roleService.list(filter1);
-		    if(roles!=null&&roles.size()>0){
+		    if(roles!=null && !roles.isEmpty()){
 		        masterRoleRelation.link(master, roles.get(0));
 		    }
 		}

@@ -414,7 +414,7 @@ public class OrganizationController {
 			IFilter filter = new Filter();
 			filter.eq("code", code);
 			List<IOrganization> list = (List<IOrganization>) service.list(filter);
-			if (list.size() == 0) {
+			if (list.isEmpty()) {
 				return false;
 			} else if (id == null || id.isEmpty()) {
 				if (list.size() == 2) {
