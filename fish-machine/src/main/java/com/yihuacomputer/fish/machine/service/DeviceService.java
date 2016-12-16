@@ -239,7 +239,7 @@ public class DeviceService implements IDeviceService {
 
 		// 解决初始化ip地址重复报错的问题
 		List<IDevice> list = dao.findByHQL("from Device device where device.ip = ?", new IP(ip));
-		if (list.size() > 0) {
+		if (!list.isEmpty()) {
 			return list.get(0);
 		} else {
 			return null;

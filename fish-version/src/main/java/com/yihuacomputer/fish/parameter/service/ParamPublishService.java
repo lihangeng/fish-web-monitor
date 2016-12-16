@@ -114,7 +114,7 @@ public class ParamPublishService implements IParamPublishService {
 			return 0;
 		}
 		List<IDevice> deviceList = templateService.listDeviceByTemplate(template);
-		if (deviceList == null || deviceList.size() == 0) {
+		if (deviceList == null || deviceList.isEmpty()) {
 			logger.error("The template don't link device,can't generate file");
 			return 0;
 		}
@@ -193,7 +193,7 @@ public class ParamPublishService implements IParamPublishService {
 		}
 		Map<String, Map<String, List<IParamTemplateDetail>>> descriptionMap = new HashMap<String, Map<String, List<IParamTemplateDetail>>>();
 		// 如果设备未关联模板，则直接获取元数据
-		if (tempDeviceRelationList.size() == 0) {
+		if (tempDeviceRelationList.isEmpty()) {
 			// 元数据中参数
 			List<IParamElement> elementList = elementService.list();
 			// 将元数据转为IParamTemplateDetail内容并存入descriptionMap
@@ -205,7 +205,7 @@ public class ParamPublishService implements IParamPublishService {
 					appMap = new HashMap<String, List<IParamTemplateDetail>>();
 				}
 				List<IParamTemplateDetail> detailList = appMap.get(paramTypeName);
-				if (detailList == null || detailList.size() == 0) {
+				if (detailList == null || detailList.isEmpty()) {
 					detailList = new ArrayList<IParamTemplateDetail>();
 				}
 				IParamTemplateDetail paramDetail = new ParamTemplateDetail();
@@ -253,7 +253,7 @@ public class ParamPublishService implements IParamPublishService {
 					appMap = new HashMap<String, List<IParamTemplateDetail>>();
 				}
 				List<IParamTemplateDetail> detailList = appMap.get(paramTypeName);
-				if (detailList == null || detailList.size() == 0) {
+				if (detailList == null || detailList.isEmpty()) {
 					detailList = new ArrayList<IParamTemplateDetail>();
 				}
 				if (null != paramDeviceDetailMap.get(appName) && null != paramDeviceDetailMap.get(appName).get(paramTypeName)) {
@@ -379,7 +379,7 @@ public class ParamPublishService implements IParamPublishService {
 		StringBuffer elementHql = new StringBuffer();
 		// 查找元数据中的参数名称和版本号
 		elementHql.append("select element.paramBelongs.name,max(element.paramTimestamp) from ").append(ParamElement.class.getSimpleName()).append(" element ");
-		if (elementIdList.size() > 0) {
+		if (!elementIdList.isEmpty()) {
 			elementHql.append(" where element.id in ( ");
 			int index = 0;
 			for (Object obj : elementIdList) {
@@ -442,7 +442,7 @@ public class ParamPublishService implements IParamPublishService {
 				paramMap.put(paramTypeName, paramSectionMap);
 			}
 			descSectionMap.put("Restart", "false");
-			if(detaiList != null && detaiList.size()>0){
+			if(detaiList != null && !detaiList.isEmpty()){
 				IAppSystem appSystem = detaiList.get(0).getParamElement().getParamBelongs();
 				descSectionMap.put("Name", appSystem.getName());
 				descSectionMap.put("VersionNo", String.valueOf(appVersionMap.get(appSystem.getName())));

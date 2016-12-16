@@ -83,7 +83,7 @@ public class MessageService implements IMessageService {
 
 	@Override
 	public long getLastId() {
-		if (this.entities.size() != 0) {
+		if (!this.entities.isEmpty()) {
 			IMessage msg = this.entities.get(this.entities.size());
 			return msg.getId();
 		} else {

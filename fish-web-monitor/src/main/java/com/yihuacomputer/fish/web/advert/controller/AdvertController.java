@@ -605,7 +605,7 @@ public class AdvertController {
 			IOUtils.copyFileToDirectory(sourceFilePath, targetDir.getAbsolutePath());
 			images.add(resource.getContent());
 		}
-		if (images.size() > 0) {
+		if (!images.isEmpty()) {
 			request.setAttribute("tempPath", "/advert/" + id);
 			request.setAttribute("images", images);
 			return "preview";

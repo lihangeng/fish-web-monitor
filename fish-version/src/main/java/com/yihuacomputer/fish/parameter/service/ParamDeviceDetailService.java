@@ -96,7 +96,7 @@ public class ParamDeviceDetailService implements IParamDeviceDetailService {
 		hql2.append("select pdd from ParamDeviceDetail pdd where pdd.device.id = ");
 		hql2.append(id);
 		List<IParamDeviceDetail> resultList = dao.findByHQL(hql2.toString());
-		if(result.size()==0){
+		if(result.isEmpty()){
 			return null;
 		}else{
 			return resultList;

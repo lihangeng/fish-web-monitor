@@ -31,7 +31,7 @@ public class FaultEtlService implements IFaultEtlService {
 	@Override
 	public IFaultWeek getWeek(long weekOfYear) {
 		List<IFaultWeek> weekList = dao.findByHQL("from FaultWeek where date = ?", weekOfYear);
-		if(weekList.size()>0){
+		if(!weekList.isEmpty()){
 			return weekList.get(0);
 		}
 		return null;

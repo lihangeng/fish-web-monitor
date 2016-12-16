@@ -103,7 +103,7 @@ public class DeviceSoftVersionService extends DomainDeviceSoftVersionService imp
 		StringBuffer hql = new StringBuffer();
         hql.append("from Version t  where t.versionType.typeName = ? and t.versionNo = ?");
         List<Version> lists = dao.findByHQL(hql.toString(),typeName,versionNo);
-        if(lists.size() > 0){
+        if(!lists.isEmpty()){
             return lists.get(0);
         }
         return null;
@@ -114,7 +114,7 @@ public class DeviceSoftVersionService extends DomainDeviceSoftVersionService imp
 	    	StringBuilder hql = new StringBuilder();
 	        hql.append("from DeviceSoftVersion t  where t.terminalId=? and t.versionType.versionCatalog = ? order by t.createdTime,t.versionStr desc");
 	        List<IDeviceSoftVersion> lists = dao.findByHQL(hql.toString(),terminalId, versionCatalog);
-	        if (lists.size() > 0) {
+	        if (!lists.isEmpty()) {
 	            return lists.get(0);
 	        }
 	    	return null;

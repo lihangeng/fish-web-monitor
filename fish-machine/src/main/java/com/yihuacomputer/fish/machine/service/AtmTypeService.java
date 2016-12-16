@@ -94,7 +94,7 @@ public class AtmTypeService implements IAtmTypeService {
 	public List<String> getByVendor(long vendorId) {
 
 		List<IAtmType> typeList = dao.findByHQL("from AtmType atmType where atmType.devVendor.id = ? ", vendorId);
-		if (typeList.size() == 0) {
+		if (typeList.isEmpty()) {
 			return null;
 		} else {
 			List<Long> typeIdList = new ArrayList<Long>();
@@ -105,7 +105,7 @@ public class AtmTypeService implements IAtmTypeService {
 			IFilter filter = new Filter();
 			filter.in("devType.id", typeIdList);
 			List<IDevice> deviceList = dao.findByFilter(filter, IDevice.class);
-			if (deviceList.size() == 0) {
+			if (deviceList.isEmpty()) {
 				return null;
 			} else {
 				for (IDevice d : deviceList) {

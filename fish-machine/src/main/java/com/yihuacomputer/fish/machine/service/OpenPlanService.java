@@ -110,7 +110,7 @@ public class OpenPlanService implements IOpenPlanService {
 	public int deviceCount(Long id) {
 		String hql = "select count(*) from Device device ,DevicePlanRelation r where device.id = r.deviceId and r.openPlanId = ? ";
 		List<Object> count = dao.findByHQL(hql, id);
-		if(count.size()>0){
+		if(!count.isEmpty()){
 			return Integer.parseInt(count.get(0)+"");
 		}else{
 			return 0;

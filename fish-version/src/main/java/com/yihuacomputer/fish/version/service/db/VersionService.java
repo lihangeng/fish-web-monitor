@@ -156,7 +156,7 @@ public class VersionService implements IDomainVersionService {
             // throw new AppException("删除失败：删除的记录不存在，请刷新列表。");
             return;
         }
-        if (findByDependVersion(id).size() > 0) {
+        if (!findByDependVersion(id).isEmpty()) {
             String exceptionMsg = messageSourceVersion.getMessage("exception.delete.exsitDepend", null, FishCfg.locale);
             // throw new DependException("删除失败:该版本被其它版本依赖,无法删除.");
             throw new DependException(exceptionMsg);
@@ -226,7 +226,7 @@ public class VersionService implements IDomainVersionService {
         StringBuffer hql = new StringBuffer();
         hql.append("from Version t  where t.versionType.typeName = ? and t.versionNo = ?");
         List<Version> lists = dao.findByHQL(hql.toString(), typeName, versionNo);
-        if (lists.size() > 0) {
+        if (!lists.isEmpty()) {
             return lists.get(0);
         }
         return null;
@@ -439,7 +439,7 @@ public class VersionService implements IDomainVersionService {
         filter.addOrder(new OrderBy("id", OrderBy.DESC));
         List<IVersion> versions = this.list(filter);
         IVersion result = null;
-        if (versions.size() > 0) {
+        if (!versions.isEmpty()) {
             result = versions.get(0);
         }
         if (result == null) {

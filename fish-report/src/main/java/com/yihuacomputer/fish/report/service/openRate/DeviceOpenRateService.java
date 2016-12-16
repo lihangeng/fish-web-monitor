@@ -103,7 +103,7 @@ public class DeviceOpenRateService implements IDeviceOpenRateService {
 			yestodayFilter.descOrder("id");
 			yestodayFilter.eq("terminalId", device.getTerminalId());
 			List<IRunInfo> yestodayRunInfoList = runInfoService.list(yestodayFilter);
-			if (null != yestodayRunInfoList && yestodayRunInfoList.size() > 0) {
+			if (null != yestodayRunInfoList && !yestodayRunInfoList.isEmpty()) {
 				yestodayRunInfo = yestodayRunInfoList.get(0);
 			}
 			// 找到所有关联的方案
@@ -264,7 +264,7 @@ public class DeviceOpenRateService implements IDeviceOpenRateService {
 				// 当状态时间大于设备关机时间，计算最后一次后，直接跳出循环
 				boolean isBreak = false;
 				// 如果当天没有变化
-				if (null == resultRunInfo || resultRunInfo.size() == 0) {
+				if (null == resultRunInfo || resultRunInfo.isEmpty()) {
 					if (null != runInfoValue) {
 						status = runInfoValue.getRunStatus();
 					}

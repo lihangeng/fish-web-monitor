@@ -95,7 +95,7 @@ public class AdvertUrlController {
 					filter.eq("groupId", group.getId());
 					filter.eq("bsAdvertStatus", BsAdvertStatus.ACTIVED);
 					List<IBsAdvert> advertList = bsAdvertService.list(filter);
-					if(advertList.size()>0){
+					if(!advertList.isEmpty()){
 						defaultGroup = group;
 					}
 				}

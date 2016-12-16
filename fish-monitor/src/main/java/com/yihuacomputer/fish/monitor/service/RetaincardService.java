@@ -155,7 +155,7 @@ public class RetaincardService implements IRetaincardService{
 		int total = getTotal(sql.toString(),filterStr,orgFlag);
 
 		Set<OrderBy> orderBySet = filter.getOrders();
-		if (orderBySet != null && orderBySet.size() > 0) {
+		if (orderBySet != null && !orderBySet.isEmpty()) {
 			sql.append(" order by ");
 		
 		int index = 0;

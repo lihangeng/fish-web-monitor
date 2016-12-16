@@ -87,7 +87,7 @@ public class VersionTypeService implements IVersionTypeService {
 	    IFilter filter = new Filter();
 	    filter.eq("versionType.id", id);
 	    List<IVersion> versions = dao.findByFilter(filter, IVersion.class);
-	    if(versions.size() > 0){
+	    if(!versions.isEmpty()){
 	        throw new AppException(String.format("该软件分类下存在 %s 个版本信息,不能删除",versions.size()));
 	    }else{
 	    	IVersionType versionType = this.getById(id);

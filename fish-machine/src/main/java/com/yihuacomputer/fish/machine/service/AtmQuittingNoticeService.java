@@ -168,7 +168,7 @@ public class AtmQuittingNoticeService implements IQuittingNoticeService
     	valueObj.add(openTime);
     	List<IQuittingNotice> quittingNoticeList = dao.findByHQL(hql.toString(), valueObj.toArray());
     	IQuittingNotice quittingNotice  = null;
-    	if(quittingNoticeList.size() != 0)
+    	if(!quittingNoticeList.isEmpty())
     	{
     		quittingNotice = quittingNoticeList.get(0);
     	}

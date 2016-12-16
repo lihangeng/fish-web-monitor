@@ -338,7 +338,7 @@ public class CashInitPlanInfoExtractDataService implements ICashInitPlanInfoExtr
 		StringBuffer sb = new StringBuffer();
 		sb.append("select cashInitCode from ").append(CashInitPlanInfo.class.getSimpleName()).append(" where date=? order by cashInitCode desc");
 		List<String> list = dao.findByHQL(sb.toString(), new Object[] { Integer.parseInt(cashInitDate) });
-		if (null == list || list.size() == 0) {
+		if (null == list || list.isEmpty()) {
 			return cashInitDate + "0000";
 		}
 		long nowCode = Long.parseLong(list.get(0));

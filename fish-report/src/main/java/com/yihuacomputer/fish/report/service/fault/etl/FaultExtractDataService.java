@@ -90,7 +90,7 @@ public class FaultExtractDataService implements IFaultExtractDataService {
 		StringBuilder sb = new StringBuilder();
 		sb.append(" from ").append(FaultMonth.class.getSimpleName()).append( " faultMonth where faultMonth.date = ?");
 		List<IFaultMonth> list = dao.findByHQL(sb.toString(), month);
-		if(list.size()>0){
+		if(!list.isEmpty()){
 			return list.get(0);
 		}
 		return null;
