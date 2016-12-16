@@ -43,4 +43,10 @@ public interface IMqProducer {
 	 * @since 2.1.1.11
 	 */
 	public void putLogout(String logoutMessage);
+	
+	/**
+	 * 把故障信息放入对列
+	 * @param caseFault
+	 */
+	public void putCaseFault(String caseFault);
 }

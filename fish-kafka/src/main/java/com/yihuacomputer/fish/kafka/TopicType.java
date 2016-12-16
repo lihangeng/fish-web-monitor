@@ -9,5 +9,6 @@ public enum TopicType {
 	TRANSACTION,
 	STATUS,
 	LOGIN,
-	LOGOUT;
+	LOGOUT,
+	CASEFAULT;
 }

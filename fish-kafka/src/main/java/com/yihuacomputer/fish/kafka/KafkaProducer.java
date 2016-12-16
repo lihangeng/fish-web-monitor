@@ -96,5 +96,14 @@ public class KafkaProducer implements IMqProducer {
 		KeyedMessage<String, String> data = new KeyedMessage<String, String>(TopicType.LOGOUT.toString(), "", logoutMessage);
 		producer.send(data);
 	}
+	
+	@Override
+	public void putCaseFault(String caseFault) {
+		if(logger.isDebugEnabled()){
+			logger.debug(String.format("put caseFaultMsg is : [%s] " , caseFault));
+		}
+		KeyedMessage<String, String> data = new KeyedMessage<String, String>(TopicType.CASEFAULT.toString(), "", caseFault);
+		producer.send(data);
+	}
 
 }

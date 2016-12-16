@@ -47,6 +47,7 @@ public class KafkaConsumerManager {
 
 	@PostConstruct
 	public void init() {
+//		KafkaConsumerConfig.class.
 		threadPool = Executors.newFixedThreadPool(4);
 		loginKafkaConsumer = new LoginKafkaConsumer(this,sessionManage);
 		logoutKafkaConsumer = new LogoutKafkaConsumer(this,sessionManage);
