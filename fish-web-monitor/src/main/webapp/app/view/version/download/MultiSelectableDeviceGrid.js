@@ -3,7 +3,7 @@ Ext.define('Eway.view.version.download.MultiSelectableDeviceGrid', {
 	extend : 'Ext.grid.Panel',
 
 	requires : [ 'Eway.lib.Util','Eway.model.version.SelectableDevice','Ext.selection.CheckboxModel',
-				 'Eway.view.field.device.DeviceAtmType','Eway.view.common.OrgComboOrgTree'],
+				 'Eway.view.field.device.DeviceAtmTypeToVersion','Eway.view.common.OrgComboOrgTree'],
 	viewConfig : {
 		forceFit : true,
 		loadMask : false,
@@ -142,11 +142,10 @@ Ext.define('Eway.view.version.download.MultiSelectableDeviceGrid', {
 					this.up('grid').down("hiddenfield[name=orgId]").setValue('');
 				}
 			},{
-				xtype:'field_device_deviceatmtype',
+				xtype:'field_device_DeviceAtmTypeToVersion',
 				fieldLabel :  EwayLocale.refs.devType,
 				name: 'atmTypeId',
 				editable  : false,
-				store: 'machine.DeviceAtmType',
 				emptyText : EwayLocale.combox.select,//'--请选择--',
 				mode : 'local',
 				triggerAction: 'all',

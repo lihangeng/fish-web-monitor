@@ -3,7 +3,7 @@ Ext.define('Eway.controller.advert.Advert', {
 
 	stores : [  'advert.Advert','advert.AdvertResource','advert.AdvertType','machine.DeviceAtmType',
 				'advert.AdvertDownMethod','advert.AdvertDownMethodSearch',
-				'advert.AdvertValidity','Hour','Minute',
+				'advert.AdvertValidity','Hour','Minute','machine.DeviceAtmTypeToVersion',
 				'version.JobType','version.JobStatus','version.JobPriority'],
 	models : [ 'advert.Advert','advert.AdvertResource' ],
 	views : [ 'advert.View','advert.AddTrans','advert.AddText','advert.AddWait'],
@@ -402,6 +402,9 @@ Ext.define('Eway.controller.advert.Advert', {
 				form.findField("versionType").setValue(record.get("versionType"));
 				form.findField("versionNo").setValue(record.get("versionNo"));
 				form.findField("serverPath").setValue(record.get("versionFile"));
+				
+				var atmTypeStore = win.down("field_device_DeviceAtmTypeToVersion[name=atmTypeId]").getStore();
+				atmTypeStore.proxy.extraParams={versionId:record.get("versionId")};
 				win.down("radiogroup").on({change:this.setCheckBoxModel, scope: this});
 			}else{
 				Eway.alert(EwayLocale.msg.downloadFailForNoVersion);
