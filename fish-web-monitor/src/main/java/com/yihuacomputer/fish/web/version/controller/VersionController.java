@@ -352,20 +352,20 @@ public class VersionController {
 		Iterator<String> iterator = request.getParameterNames();
 		while (iterator.hasNext()) {
 			String name = iterator.next();
-			if (FishWebUtils.isIgnoreRequestName(name) || name.equals("sort")) {
+			if (FishWebUtils.isIgnoreRequestName(name) || "sort".equals(name)) {
 				continue;
 			} else {
 				String value = request.getParameter(name);
 				if (StringUtils.isEmpty(value)) {
 					continue;
 				} else {
-					if (name.equals("versionTypeId")) {
-						if (!value.equals("0")) {
+					if ("versionTypeId".equals(name)) {
+						if (!"0".equals(value)) {
 							filter.eq("versionType.id", Long.valueOf(value));
 						}
-					} else if (name.equals("versionStatus")) {
+					} else if ("versionStatus".equals(name)) {
 						filter.eq("versionStatus", VersionStatus.valueOf(value));
-					} else if (name.equals("autoUpdate")) {
+					} else if ("autoUpdate".equals(name)) {
 						filter.eq("autoDown", Boolean.valueOf(value));
 					} else {
 						filter.like(name, request.getParameter(name));

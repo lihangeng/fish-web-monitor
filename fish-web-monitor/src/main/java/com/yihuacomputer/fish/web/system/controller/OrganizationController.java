@@ -375,7 +375,7 @@ public class OrganizationController {
 			for (IOrganization item : childs) {
 				result.add(new OrganizationTreeForm(item));
 			}
-		} else if (!request.getParameter("type").equals("null")) {
+		} else if (!"null".equals(request.getParameter("type"))) {
 			OrganizationType orgType = OrganizationType.getById(Integer.valueOf(request.getParameter("type")));
 			String org = request.getParameter("orgId");
 			String bcOrg = request.getParameter("bcOrg");

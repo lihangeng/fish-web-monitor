@@ -71,7 +71,7 @@ public class ShortcutMenuController {
 			}
 		}
 		List<IPermission> permissionList = new ArrayList<IPermission>();
-		if (StringUtils.isNotEmpty(userId) && !userId.equalsIgnoreCase("0")) {
+		if (StringUtils.isNotEmpty(userId) && !"0".equalsIgnoreCase(userId)) {
 
 			permissionList = userPermissionRelation.listShortMenuByUser(user);
 		}

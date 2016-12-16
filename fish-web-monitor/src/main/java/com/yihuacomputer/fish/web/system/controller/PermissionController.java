@@ -207,7 +207,7 @@ public class PermissionController {
 			}
 		});
 		List<IPermission> permissions = new ArrayList<IPermission>();
-		if (StringUtils.isNotEmpty(roleId) && !roleId.equalsIgnoreCase("0")) {
+		if (StringUtils.isNotEmpty(roleId) && !"0".equalsIgnoreCase(roleId)) {
 			permissions = rolePermissionRelation.listPermissionByRole(roleService.get(new Integer(roleId)));
 		}
 		return PermissionCheckedTreeForm.convert(datalist, permissions);

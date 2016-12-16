@@ -137,13 +137,13 @@ public class TransactionResultCountReportController {
 	private String getReport(Map<String, Object> parameters, String resourcePath, String exportType, List<?> data) {
 		ReportParam reportParam = new ReportParam();
 
-		if (exportType.equals("pdf")) {
+		if ("pdf".equals(exportType)) {
 			reportParam.setPdf(true);
 		}
-		if (exportType.equals("html")) {
+		if ("html".equals(exportType)) {
 			reportParam.setHtml(true);
 		}
-		if (exportType.equals("xls")) {
+		if ("xls".equals(exportType)) {
 			reportParam.setXls(true);
 			reportParam.setSheetNames(new String[] { "" + parameters.get("title") });
 		}
@@ -191,55 +191,55 @@ public class TransactionResultCountReportController {
 				continue;
 			}
 
-			if (name.equals("endDataTime")) {
+			if ("endDataTime".equals(name)) {
 				filter.eq("endData", DateUtils.getTimestamp(value));
 
-			} else if (name.equals("startDataTime")) {
+			} else if ("startDataTime".equals(name)) {
 				filter.eq("startData", DateUtils.getTimestamp(value));
 
-			} else if (name.equals("endDate")) {
+			} else if ("endDate".equals(name)) {
 				filter.eq("endDate", value);
 
-			} else if (name.equals("startDate")) {
+			} else if ("startDate".equals(name)) {
 				filter.eq("startDate", value);
 
-			} else if (name.equals("endAmt")) {
+			} else if ("endAmt".equals(name)) {
 				filter.eq("endAmt", Long.valueOf(value));
 
-			} else if (name.equals("startAmt")) {
+			} else if ("startAmt".equals(name)) {
 				filter.eq("startAmt", Long.valueOf(value));
 
-			} else if (name.equals("devVendorId")) {
+			} else if ("devVendorId".equals(name)) {
 				filter.eq("devVendorId", Long.valueOf(value));
 
-			} else if (name.equals("devTypeId")) {
+			} else if ("devTypeId".equals(name)) {
 				filter.eq("devTypeId", Long.valueOf(value));
 
-			} else if (name.equals("orgId")) {
+			} else if ("orgId".equals(name)) {
 				orgFlag = orgService.get(value).getOrgFlag();
 
-			} else if (name.equals("accountNo")) {
+			} else if ("accountNo".equals(name)) {
 				filter.eq("accountNo", value);
 
-			} else if (name.equals("inOut")) {
+			} else if ("inOut".equals(name)) {
 				filter.eq("awayFlag", AwayFlag.getById(Long.valueOf(value).intValue()));
 
-			} else if (name.equals("terminalId")) {
+			} else if ("terminalId".equals(name)) {
 				filter.eq("terminalId", value);
 
-			} else if (name.equals("transCode")) {
+			} else if ("transCode".equals(name)) {
 				filter.eq("transCode", value);
 
 			} else if ("orgLevel".equals(name)) {
 				filter.eq("orgLevel", OrganizationLevel.getById(Integer.valueOf(value)));
 
-			} else if (name.equals("endData")) {
+			} else if ("endData".equals(name)) {
 				filter.eq("endData", DateUtils.getDate(value));
 
-			} else if (name.equals("startData")) {
+			} else if ("startData".equals(name)) {
 				filter.eq("startData", DateUtils.getDate(value));
 
-			} else if (name.equals("isDevice")) {
+			} else if ("isDevice".equals(name)) {
 				filter.eq("isDevice", value);
 
 			} else if ("devType".equals(name)) {

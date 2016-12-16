@@ -164,16 +164,16 @@ public class DeviceVersionController {
         filter.eq("terminalId", device.getTerminalId());
         List<IDeviceSoftVersion> versions = dsvService.list(filter);
         for(IDeviceSoftVersion dsv : versions){
-            if(dsv.getTypeName().equalsIgnoreCase("gump-professional")){
+            if("gump-professional".equalsIgnoreCase(dsv.getTypeName())){
                 return dsv.getTypeName() + "_" + dsv.getVersionNo();
             }
-            if(dsv.getTypeName().equalsIgnoreCase("Cols_SRCB_ShangHai")){
+            if("Cols_SRCB_ShangHai".equalsIgnoreCase(dsv.getTypeName())){
                 return dsv.getTypeName() + "_" + dsv.getVersionNo();
             }
-            if(dsv.getTypeName().equalsIgnoreCase("Cols_SRCB_RURAL")){
+            if("Cols_SRCB_RURAL".equalsIgnoreCase(dsv.getTypeName())){
                 return dsv.getTypeName() + "_" + dsv.getVersionNo();
             }
-            if(dsv.getTypeName().equalsIgnoreCase("ASM_SRCB_ShangHai")){
+            if("ASM_SRCB_ShangHai".equalsIgnoreCase(dsv.getTypeName())){
                 return dsv.getTypeName() + "_" + dsv.getVersionNo();
             }
         }

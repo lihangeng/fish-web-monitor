@@ -124,14 +124,14 @@ public class VersionDownloadController {
 		String nextRecord = request.getParameter("nextRecord");
 		long displayJobId = jobId;
 		// 前一页
-		if (nextRecord.equals("-1")) {
+		if ("-1".equals(nextRecord)) {
 			filter.lt("id", jobId);
 			filter.descOrder("id");
 			List<IJob> jobList = jobService.list(filter);
 			displayJobId = jobList.size() > 0 ? jobList.get(0).getJobId() : jobId;
 		}
 		// 后一页
-		else if (nextRecord.equals("1")) {
+		else if ("1".equals(nextRecord)) {
 			filter.gt("id", jobId);
 			filter.order("id");
 			List<IJob> jobList = jobService.list(filter);
@@ -415,13 +415,13 @@ public class VersionDownloadController {
 			if (StringUtils.isEmpty(value)) {
 				continue;
 			}
-			if (name.equals("versionTypeId")) {
-				if (!value.equals("0")) {
+			if ("versionTypeId".equals(name)) {
+				if (!"0".equals(value)) {
 					filter.eq("version.versionType.id", Long.valueOf(value));
 				}
-			} else if (name.equals("versionNo")) {
+			} else if ("versionNo".equals(name)) {
 				filter.like("version.versionNo", value);
-			} else if ("jobId".equals(name)) {
+			} else if (name.equals("jobId")) {
 				filter.eq("updateDeployDateHistory.jobId", Long.valueOf(value));
 			}
 		}
@@ -492,19 +492,19 @@ public class VersionDownloadController {
 				continue;
 			}
 
-			if (name.equals("orgId")) {
+			if ("orgId".equals(name)) {
 				orgFlag = orgService.get(value).getOrgFlag();
 			}
 
-			if (name.equals("ip")) {
+			if ("ip".equals(name)) {
 				filter.eq("ip", new IP(value));
 			}
 
-			if (name.equals("atmTypeId")) {
+			if ("atmTypeId".equals(name)) {
 				filter.eq("atmTypeId", value);
 			}
 
-			if (name.equals("terminalId")) {
+			if ("terminalId".equals(name)) {
 				filter.eq("terminalId", value);
 			}
 		}
@@ -541,36 +541,36 @@ public class VersionDownloadController {
 
 		String updateResult = request.getParameter("updateResult");
 		if (StringUtils.isNotEmpty(updateResult)) {
-			if (updateResult.equals("NEW")) {
+			if ("NEW".equals(updateResult)) {
 				filter.eq("task.status", TaskStatus.NEW);
-			} else if (updateResult.equals("RUN")) {
+			} else if ("RUN".equals(updateResult)) {
 				filter.eq("task.status", TaskStatus.RUN);
-			} else if (updateResult.equals("NOTICED")) {
+			} else if ("NOTICED".equals(updateResult)) {
 				filter.eq("task.status", TaskStatus.NOTICED);
-			} else if (updateResult.equals("NOTICED_FAIL")) {
+			} else if ("NOTICED_FAIL".equals(updateResult)) {
 				filter.eq("task.status", TaskStatus.NOTICED_FAIL);
-			} else if (updateResult.equals("DOWNLOADED")) {
+			} else if ("DOWNLOADED".equals(updateResult)) {
 				List<TaskStatus> status = new ArrayList<TaskStatus>();
 				status.add(TaskStatus.DOWNLOADED);
 				status.add(TaskStatus.DEPLOYED_WAIT);
 				filter.in("task.status", status);
-			} else if (updateResult.equals("DOWNLOADED_FAIL")) {
+			} else if ("DOWNLOADED_FAIL".equals(updateResult)) {
 				filter.eq("task.status", TaskStatus.DOWNLOADED_FAIL);
-			} else if (updateResult.equals("DEPLOYED")) {
+			} else if ("DEPLOYED".equals(updateResult)) {
 				filter.eq("task.status", TaskStatus.DEPLOYED);
-			} else if (updateResult.equals("DEPLOYED_FAIL")) {
+			} else if ("DEPLOYED_FAIL".equals(updateResult)) {
 				filter.eq("task.status", TaskStatus.DEPLOYED_FAIL);
-			} else if (updateResult.equals("CHECKED")) {
+			} else if ("CHECKED".equals(updateResult)) {
 				filter.eq("task.status", TaskStatus.CHECKED);
-			} else if (updateResult.equals("DEPLOYED_WAIT")) {
+			} else if ("DEPLOYED_WAIT".equals(updateResult)) {
 				filter.eq("task.status", TaskStatus.DEPLOYED_WAIT);
-			} else if (updateResult.equals("DOWNLOADING")) {
+			} else if ("DOWNLOADING".equals(updateResult)) {
 				filter.eq("task.status", TaskStatus.DOWNLOADING);
-			} else if (updateResult.equals("CANCEL_UPDATE_OK")) {
+			} else if ("CANCEL_UPDATE_OK".equals(updateResult)) {
 				filter.eq("task.status", TaskStatus.CANCEL_UPDATE_OK);
-			} else if (updateResult.equals("FAIL_ROLLBACK")) {
+			} else if ("FAIL_ROLLBACK".equals(updateResult)) {
 				filter.eq("task.status", TaskStatus.FAIL_ROLLBACK);
-			} else if (updateResult.equals("OTHER")) {
+			} else if ("OTHER".equals(updateResult)) {
 				List<TaskStatus> status = new ArrayList<TaskStatus>();
 				status.add(TaskStatus.CANCEL_FAIL);
 				status.add(TaskStatus.CANCEL_UPDATE_FAIL);
@@ -580,9 +580,9 @@ public class VersionDownloadController {
 				status.add(TaskStatus.OTHER);
 				status.add(TaskStatus.REMOVED);
 				filter.in("task.status", status);
-			} else if (updateResult.equals("1")) {
+			} else if ("1".equals(updateResult)) {
 				filter.eq("task.status", TaskStatus.CHECKED);
-			} else if (updateResult.equals("0")) {
+			} else if ("0".equals(updateResult)) {
 				List<TaskStatus> status = new ArrayList<TaskStatus>();
 				status.add(TaskStatus.NOTICED_FAIL);
 				status.add(TaskStatus.DOWNLOADED_FAIL);
@@ -590,7 +590,7 @@ public class VersionDownloadController {
 				status.add(TaskStatus.NOTICE_APP_FAIL);
 				status.add(TaskStatus.REMOVED);
 				filter.in("task.status", status);
-			} else if (updateResult.equals("2")) {
+			} else if ("2".equals(updateResult)) {
 				List<TaskStatus> status = new ArrayList<TaskStatus>();
 				status.add(TaskStatus.DEPLOYED_WAIT);
 				status.add(TaskStatus.DOWNLOADED);
