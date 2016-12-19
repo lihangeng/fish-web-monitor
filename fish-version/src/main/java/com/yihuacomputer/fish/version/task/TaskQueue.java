@@ -34,7 +34,7 @@ public class TaskQueue {
 				taskQueueLength=30;
 			}
 		}catch(Exception ex){
-			logger.error(String.format("get device_update_count error [%s]",ex.getMessage()));
+			logger.error(String.format("get device_update_count error [%s]",ex));
 		}
 	}
 	

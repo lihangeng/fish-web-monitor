@@ -46,7 +46,7 @@ public class MailUtils {
 			emailHandle.setNamePass(fromAddress, fromAPass);
 			emailHandle.sendEmail();
 		} catch (Exception e) {
-			logger.error(String.format("send mail errors [%s]",e.getMessage()));
+			logger.error(String.format("send mail errors [%s]",e));
 		}
 		
 	}

@@ -131,20 +131,20 @@ public class AbstractAdvertZipGenerator implements IAdvertZipGenerator {
             bw.write("Gump-InstallEndDate: 2012-02-01 00:00:00");
             bw.flush();
         } catch (IOException e) {
-        	logger.error(e.getMessage());
+        	logger.error(String.format("%s", e));
         } finally {
         	if (bw != null) {
                 try {
                 	bw.close();
                 } catch (IOException e) {
-                	logger.error(e.getMessage());
+                	logger.error(String.format("%s", e));
                 }
             }
             if (fw != null) {
                 try {
                     fw.close();
                 } catch (IOException e) {
-                	logger.error(e.getMessage());
+                	logger.error(String.format("%s", e));
                 }
             }
         }

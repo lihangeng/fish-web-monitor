@@ -132,7 +132,7 @@ public class CashInitPlanDeviceDetailController {
 		try {
 			list = cashInitPlanDeviceInfoService.listSelectAble(planInfo,filter);
 		} catch (Exception e) {
-			logger.error("load selectable initplandevice failer:"+e.getMessage());
+			logger.error(String.format("load selectable initplandevice failer: [%s]",e));
 			result.put(FishConstant.SUCCESS, false);
 			return result;
 		}
@@ -173,7 +173,7 @@ public class CashInitPlanDeviceDetailController {
 			result.addAttribute(FishConstant.SUCCESS, true);
 		} catch (Exception ex) {
 			result.addAttribute(FishConstant.SUCCESS, false);
-			logger.error(ex.getMessage());
+			logger.error(String.format("[%s]", ex));
 		}
 		return result;
 	}
@@ -283,7 +283,7 @@ public class CashInitPlanDeviceDetailController {
 			initPlan.setAmt(amt);
 			cashInitPlanInfoService.update(initPlan);
 		} catch (Exception e) {
-			logger.error(String.format("add error : %s", e.getMessage()));
+			logger.error(String.format("add error : %s", e));
 			model.put(FishConstant.SUCCESS, false);
 			model.put("errorMsg", messageSource.getMessage("commen.error", null, FishCfg.locale));
 			return model;

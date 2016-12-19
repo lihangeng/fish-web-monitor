@@ -170,7 +170,7 @@ public class SerialPortDetector {
 						return portIdRs.getName();
 					}
 				} catch (Exception e) {
-					logger.error(String.format("Exception is [%s]", e.getMessage()));
+					logger.error(String.format("Exception is [%s]", e));
 				}finally{
 					// ④ 关闭串口
 					serialPortDetector.closePort();

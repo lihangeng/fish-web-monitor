@@ -126,7 +126,7 @@ public class LoginController {
 			result.addAttribute(FishConstant.SUCCESS, false);
 			result.addAttribute("message", app.getMessage());
 		} catch (Exception e) {
-			logger.error(String.format("User login error! Exception is [%s]", e.getMessage()));
+			logger.error(String.format("User login error! Exception is [%s]", e));
 			result.addAttribute(FishConstant.SUCCESS, false);
 			result.addAttribute("message", messageSource.getMessage("login.loginError", null, FishCfg.locale));
 

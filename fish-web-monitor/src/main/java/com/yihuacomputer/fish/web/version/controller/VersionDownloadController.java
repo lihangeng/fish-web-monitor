@@ -291,7 +291,7 @@ public class VersionDownloadController {
 			jobManager.cancelJob(id);
 			result.addAttribute(FishConstant.SUCCESS, true);
 		} catch (Exception ex) {
-			logger.error("The Failure of Canceling Job：" + ex.getMessage());
+			logger.error(String.format("The Failure of Canceling Job：[%s]", ex));
 			result.addAttribute(FishConstant.SUCCESS, false);
 			result.addAttribute(FishConstant.ERROR_MSG, getI18N("job.cancel.cancelfailer"));
 		}

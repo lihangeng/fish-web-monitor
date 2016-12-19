@@ -39,7 +39,7 @@ public class UploadVersionController {
 			map.put(FishConstant.SUCCESS, true);
 		} catch (Exception e) {
 			map.put(FishConstant.SUCCESS, false);
-			logger.info(e.getMessage());
+			logger.info(String.format("[%s]", e));
 		}
 //		model.addAttribute("fileUrl", request.getContextPath() + "/upload/" + fileName);
 

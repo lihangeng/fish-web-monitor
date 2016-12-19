@@ -178,7 +178,7 @@ public class ScreenShotController {
 			result.addAttribute("data", list);
 			return result;
 		} catch (Exception e) {
-		    logger.error(String.format("远程截屏失败,错误信息[%s]", e.getMessage()));
+		    logger.error(String.format("The remote screen was failed,error message is [%s]", e));
 			result.addAttribute(FishConstant.SUCCESS, false);
 			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("screenShot.getScreenFail", null, FishCfg.locale));
 			return result;
@@ -493,31 +493,23 @@ public class ScreenShotController {
 			}
 			// osa.close();
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			logger.error(String.format("[%s]", e));
 		} finally {
 			if (out != null) {
 				try {
 					out.close();
 				} catch (IOException e) {
-					logger.error(e.getMessage());
+					logger.error(String.format("[%s]", e));
 				}
 			}
 			if (is != null) {
 				try {
 					is.close();
 				} catch (IOException e) {
-					logger.error(e.getMessage());
+					logger.error(String.format("[%s]", e));
 				}
 			}
 
-			// if (osw != null) {
-			// try {
-			// osw.close();
-			// }
-			// catch (IOException e) {
-			// logger.error(e.getMessage());
-			// }
-			// }
 		}
 	}
 }

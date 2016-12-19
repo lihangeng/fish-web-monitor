@@ -191,11 +191,8 @@ public class RuntimeInfoController {
 					wb.write(fout);
 					fout.close();
 				} catch (Exception e) {
-					logger.error(e.getMessage());
+					logger.error(String.format("[%s]", e));
 				}
-				// File file = new
-				// File(FishCfg.getTempDir()+File.separator+name);
-				// this.download(file, response, "gb2312", "application/x-xls");
 				result.addAttribute(FishConstant.SUCCESS, true);
 				result.addAttribute("path", name);
 
@@ -429,17 +426,14 @@ public class RuntimeInfoController {
 					wb.write(fout);
 					fout.close();
 				} catch (Exception e) {
-					logger.error(e.getMessage());
+					logger.error(String.format("[%s]", e));
 				}
-				// File file = new
-				// File(FishCfg.getTempDir()+File.separator+name);
-				// this.download(file, response, "gb2312", "application/x-xls");
 				result.addAttribute(FishConstant.SUCCESS, true);
 				result.addAttribute("path", name);
 
 			}
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			logger.error(String.format("[%s]", e));
 			result.addAttribute(FishConstant.SUCCESS, false);
 			result.addAttribute("msg", e.getMessage());
 			return result;
@@ -448,7 +442,7 @@ public class RuntimeInfoController {
 				try {
 					fout.close();
 				} catch (IOException e) {
-					logger.error(e.getMessage());
+					logger.error(String.format("[%s]", e));
 				}
 			}
 			
@@ -573,7 +567,7 @@ public class RuntimeInfoController {
 					wb.write(fout);
 					fout.close();
 				} catch (Exception e) {
-					logger.error(e.getMessage());
+					logger.error(String.format("[%s]", e));
 				}
 				// File file = new File(name);
 				// this.download(file, response, "gb2312", "application/x-xls");
@@ -819,17 +813,15 @@ public class RuntimeInfoController {
 					wb.write(fout);
 					fout.close();
 				} catch (Exception e) {
-					logger.error(e.getMessage());
+					logger.error(String.format("[%s]", e));
 				}
 
-				// File file = new File(name);
-				// this.download(file, response, "gb2312", "application/x-xls");
 				result.addAttribute(FishConstant.SUCCESS, true);
 				result.addAttribute("path", name);
 				return result;
 			}
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			logger.error(String.format("[%s]", e));
 			result.addAttribute(FishConstant.SUCCESS, false);
 			result.addAttribute("msg", e.getMessage());
 			return result;
@@ -838,7 +830,7 @@ public class RuntimeInfoController {
 				try {
 					fout.close();
 				} catch (IOException e) {
-					logger.error(e.getMessage());
+					logger.error(String.format("[%s]", e));
 				}
 			}
 			
@@ -891,31 +883,23 @@ public class RuntimeInfoController {
 			}
 			// osa.close();
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			logger.error(String.format("[%s]", e));
 		} finally {
 			if (out != null) {
 				try {
 					out.close();
 				} catch (IOException e) {
-					logger.error(e.getMessage());
+					logger.error(String.format("[%s]", e));
 				}
 			}
 			if (is != null) {
 				try {
 					is.close();
 				} catch (IOException e) {
-					logger.error(e.getMessage());
+					logger.error(String.format("[%s]", e));
 				}
 			}
 
-			// if (osw != null) {
-			// try {
-			// osw.close();
-			// }
-			// catch (IOException e) {
-			// e.printStackTrace();
-			// }
-			// }
 		}
 	}
 }

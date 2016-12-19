@@ -85,7 +85,7 @@ public class OrgAndDeviceImportController {
 			out.close();
 			randomFile.close();
 		} catch (Exception ex) {
-			logger.error(ex.getMessage());
+			logger.error(String.format("[%s]", ex));
 		} finally {
 			if (out != null) {
 				out.close();
@@ -135,7 +135,7 @@ public class OrgAndDeviceImportController {
 			out.close();
 			randomFile.close();
 		} catch (Exception ex) {
-			logger.error(String.format("Exception is [%s]", ex.getMessage()));
+			logger.error(String.format("Exception is [%s]", ex));
 		} finally {
 			if (out != null) {
 				out.close();

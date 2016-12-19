@@ -275,7 +275,7 @@ public class ParamElementController {
 					return "{'success':false,'content':'"+messageSource.getMessage("vendorCode.fileEmpty", null, FishCfg.locale)+"'}";
 				}
 			} catch (Exception ex) {
-				logger.error(ex.getMessage());
+				logger.error(String.format("[%s]", ex));
 				return "{'success':false,'content':'"+messageSource.getMessage("paramElement.fileComment", null, FishCfg.locale)+"'}";
 			}
 
@@ -370,7 +370,7 @@ public class ParamElementController {
 				return true;
 			}
 		}catch(Exception e){
-			logger.error(String.format("Exception is [%s]", e.getMessage()));
+			logger.error(String.format("Exception is [%s]", e));
 			return false;
 		}
 

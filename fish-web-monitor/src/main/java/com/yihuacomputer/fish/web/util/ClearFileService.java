@@ -48,7 +48,7 @@ public class ClearFileService {
                     FileUtils.deleteDirectory(file);
                 }
                 catch (IOException e) {
-                   log.error(String.format("delete dir [%s] Failed [%s]",file.getName(),e.getMessage()));
+                   log.error(String.format("delete dir [%s] Failed [%s]",file.getName(),e));
                 }
             }
         }

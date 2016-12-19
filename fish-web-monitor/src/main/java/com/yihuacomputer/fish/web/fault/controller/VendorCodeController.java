@@ -126,7 +126,7 @@ public class VendorCodeController {
 					return "{'success':false,'content':'"+messageSource.getMessage("vendorCode.fileEmpty", null, FishCfg.locale)+"'}";
 				}
 			} catch (Exception ex) {
-				logger.error(ex.getMessage());
+				logger.error(String.format("[%s]", ex));
 				return "{'success':false,'content':'"+messageSource.getMessage("vendorCode.fileComment", null, FishCfg.locale)+"'}";
 			}
 		}
@@ -156,7 +156,7 @@ public class VendorCodeController {
 			try {
 				vendorCodeService.deleteByVendor(vendor);
 			} catch (Exception e) {
-				logger.error(String.format("Exception is [%s]", e.getMessage()));
+				logger.error(String.format("Exception is [%s]", e));
 				return "{'success':false,'content':'"+messageSource.getMessage("person.delError", null, FishCfg.locale)+"','logKey':'"+vendorName+"'}";
 			}
 		}
@@ -322,7 +322,7 @@ public class VendorCodeController {
             out.close();
             randomFile.close();
         }catch(Exception ex){
-            logger.error(ex.getMessage());
+            logger.error(String.format("[%s]", ex));
         }finally{
             if (out != null)
             {

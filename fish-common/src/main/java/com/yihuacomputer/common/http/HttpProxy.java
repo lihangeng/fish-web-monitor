@@ -148,7 +148,7 @@ public class HttpProxy {
 				try {
 					stream.close();
 				} catch (IOException e) {
-					logger.error(e.getMessage());
+					logger.error(String.format("[%s]", e));
 				}
 			}
 		}
@@ -192,7 +192,7 @@ public class HttpProxy {
                 try {
                     stream.close();
                 } catch (IOException e) {
-                	logger.error(e.getMessage());
+                	logger.error(String.format("[%s]", e));
                 }
             }
         }
@@ -242,7 +242,7 @@ public class HttpProxy {
                 try {
                     stream.close();
                 } catch (IOException e) {
-                	logger.error(e.getMessage());
+                	logger.error(String.format("[%s]", e));
                 }
             }
         }

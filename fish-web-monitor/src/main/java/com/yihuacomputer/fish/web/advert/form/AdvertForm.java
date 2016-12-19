@@ -94,7 +94,7 @@ public class AdvertForm {
                 });
             }
             catch (Exception e) {
-            	logger.error(e.getMessage());
+            	logger.error(String.format("[%s]", e));
             }
         }
         return advertResources;

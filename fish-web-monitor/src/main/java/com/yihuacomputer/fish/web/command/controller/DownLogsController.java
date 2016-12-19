@@ -146,7 +146,7 @@ public class DownLogsController {
             }
         }
         catch (Exception ex) {
-            logger.info(ex.getMessage());
+            logger.info(String.format("[%s]", ex));
         }
         finally {
             if (out != null) {

@@ -60,7 +60,7 @@ public class SystemHelpController
             out.close();
             randomFile.close();
         }catch(Exception ex){
-        	logger.error(ex.getMessage());
+        	logger.error(String.format("[%s]", ex));
         }finally{
             if (out != null)
             {

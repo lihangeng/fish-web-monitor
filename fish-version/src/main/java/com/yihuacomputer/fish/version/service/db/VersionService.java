@@ -426,8 +426,7 @@ public class VersionService implements IDomainVersionService {
             }
         }
         catch (Exception ex) {
-            // logger.error(String.format("登记软件版本信息失败[%s]", ex.getMessage()));
-            logger.error(String.format("save version fail[%s]", ex.getMessage()));
+            logger.error(String.format("save version fail[%s]", ex));
         }
     }
 

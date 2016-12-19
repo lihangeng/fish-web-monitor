@@ -32,7 +32,7 @@ public class TaskCollection implements ITaskCollection{
 		try{
 			taskQueueLength = Integer.valueOf(paramService.getParam(paramKey).getParamValue());
 		}catch(Exception ex){
-			logger.error(String.format("get device_update_count error [%s]",ex.getMessage()));
+			logger.error(String.format("get device_update_count error [%s]",ex));
 		}
 	}
 	
@@ -56,7 +56,7 @@ public class TaskCollection implements ITaskCollection{
 		try {
 			this.getTaskQueue().put(task);
 		} catch (InterruptedException e) {
-			logger.error(String.format("Exception is [%s]", e.getMessage()));
+			logger.error(String.format("Exception is [%s]", e));
 		}
 	}
 	
@@ -69,7 +69,7 @@ public class TaskCollection implements ITaskCollection{
 		try {
 			return this.getTaskQueue().take();
 		} catch (InterruptedException e) {
-			logger.error(String.format("Exception is [%s]", e.getMessage()));
+			logger.error(String.format("Exception is [%s]", e));
 			return null;
 		}
 	}

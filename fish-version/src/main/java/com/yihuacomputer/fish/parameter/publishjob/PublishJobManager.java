@@ -60,7 +60,7 @@ public class PublishJobManager {
 				taskQueueLength=50;
 			}
 		}catch(Exception ex){
-			logger.error(String.format("get param_update_count error [%s]",ex.getMessage()));
+			logger.error(String.format("get param_update_count error [%s]",ex));
 		}
 		if(queue == null){
 			queue = new ArrayBlockingQueue<IParamPublishResult>(this.taskQueueLength);
@@ -78,7 +78,7 @@ public class PublishJobManager {
 		try {
 			this.queue.put(result) ;
 		} catch (InterruptedException e) {
-			logger.error(String.format("InterruptedException is [%s]", e.getMessage()));
+			logger.error(String.format("InterruptedException is [%s]", e));
 		}
 	}
 

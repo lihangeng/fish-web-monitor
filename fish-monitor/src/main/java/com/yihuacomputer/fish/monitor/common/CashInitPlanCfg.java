@@ -30,7 +30,7 @@ public class CashInitPlanCfg {
 		try{
 			days = Integer.parseInt(FishCfg.getEntities().get("cashinit_days"));
 		}catch(NumberFormatException e){
-			logger.error(e.getMessage());
+			logger.error(String.format("[%s]", e));
 		}
 		return days;
 	}
@@ -46,7 +46,7 @@ public class CashInitPlanCfg {
 		try {
 			orgLevel = Integer.parseInt(FishCfg.getEntities().get("cashinit_orglevel"));
 		} catch (NumberFormatException e) {
-			logger.error(e.getMessage());
+			logger.error(String.format("[%s]", e));
 		}
 		return orgLevel;
 	}
@@ -59,7 +59,7 @@ public class CashInitPlanCfg {
 		try {
 			tradingVolumeCashIn = Long.parseLong(FishCfg.getEntities().get("trading_volume_in"));
 		} catch (NumberFormatException e) {
-			logger.error(e.getMessage());
+			logger.error(String.format("[%s]", e));
 		}
 		return tradingVolumeCashIn;
 	}
@@ -72,7 +72,7 @@ public class CashInitPlanCfg {
 		try {
 			tradingVolumeBill = Long.parseLong(FishCfg.getEntities().get("trading_volume_out"));
 		} catch (NumberFormatException e) {
-			logger.error(e.getMessage());
+			logger.error(String.format("[%s]", e));
 		}
 		return tradingVolumeBill;
 	}

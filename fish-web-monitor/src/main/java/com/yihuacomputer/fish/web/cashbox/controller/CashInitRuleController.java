@@ -87,7 +87,7 @@ public class CashInitRuleController {
 		try {
 			devBoxInitRuleService.update(deviceBoxInitRule);
 		} catch (Exception e) {
-			logger.error(String.format("update error : %s", e.getMessage()));
+			logger.error(String.format("update error : %s", e));
 			model.put(FishConstant.SUCCESS, false);
 			model.put("errorMsg", messageSource.getMessage("commen.error", null, FishCfg.locale));
 			return model;

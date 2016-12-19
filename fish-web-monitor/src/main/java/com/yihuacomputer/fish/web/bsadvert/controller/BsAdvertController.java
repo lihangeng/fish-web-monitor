@@ -192,7 +192,7 @@ public class BsAdvertController {
 			bsAdvert.setActiveUserId(userSession.getUserId());
 			bsAdvertService.actived(bsAdvert);
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			logger.error(String.format("[%s]", e));
 			result.addAttribute(FishConstant.SUCCESS, false);
 			// bsadvert.active.exception"广告激活异常。"
 			result.addAttribute(FishConstant.ERROR_MSG, getI18NResource("bsadvert.active.exception", null));
@@ -241,7 +241,7 @@ public class BsAdvertController {
 			screenResources = getResoucesJson(willCopyFileName, request);
 			new File(willCopyFileName).delete();
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			logger.error(String.format("[%s]", e));
 			// bsadvert.load.exception=加载广告资源异常。
 			result.addAttribute(FishConstant.SUCCESS, false);
 			result.addAttribute(FishConstant.ERROR_MSG, getI18NResource("bsadvert.load.exception", null));
@@ -285,7 +285,7 @@ public class BsAdvertController {
 					form.setBeginSecond(beginTimes[2]);
 				}
 			} catch (Exception e) {
-				logger.error(e.getMessage());
+				logger.error(String.format("[%s]", e));
 			}
 			form.setDisplayName(resourceForm.getContent());
 			form.setEndDate(resourceForm.getEndDate());
@@ -298,7 +298,7 @@ public class BsAdvertController {
 					form.setEndSecond(endTimes[2]);
 				}
 			} catch (Exception e) {
-				logger.error(e.getMessage());
+				logger.error(String.format("[%s]", e));
 			}
 			form.setFileName(fileName);
 			form.setId(String.valueOf(resourceForm.getId()));
@@ -324,15 +324,15 @@ public class BsAdvertController {
 			br.close();
 			reader.close();
 		} catch (FileNotFoundException e) {
-			logger.error(e.getMessage());
+			logger.error(String.format("[%s]", e));
 		} catch (IOException e) {
-			logger.error(e.getMessage());
+			logger.error(String.format("[%s]", e));
 		} finally {
 			if (null != br) {
 				try {
 					br.close();
 				} catch (IOException e) {
-					logger.error(e.getMessage());
+					logger.error(String.format("[%s]", e));
 				}
 			}
 		}
@@ -681,7 +681,7 @@ public class BsAdvertController {
 			UploadResourceForm form = new UploadResourceForm(oFileName, saveFileName, getTempWebDir(request, screen, saveFileName), screen);
 			return JsonUtils.toJson(form);
 		} catch (Exception e) {
-			logger.error("upload file exception:" + e.getMessage());
+			logger.error(String.format("upload file exception: [%s]" + e));
 			return "{'success':false,'errors':'" + messageSourceVersion.getMessage("advert.upload.exception", new Object[] { saveFileName, e.getMessage() }, FishCfg.locale) + "'}";
 		}
 	}

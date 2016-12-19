@@ -107,7 +107,7 @@ public class UserController {
 			result.put(FishConstant.SUCCESS, true);
 			result.put(FishConstant.DATA, request);
 		} catch (Exception ex) {
-			logger.info(ex.getMessage());
+			logger.info(String.format("[%s]", ex));
 			result.addAttribute(FishConstant.SUCCESS, false);
 			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("user.processError", null, FishCfg.locale));
 		}
@@ -133,7 +133,7 @@ public class UserController {
 			result.addAttribute(FishConstant.LOG_KEY,user.getCode() + "->" + role.getName());
 			result.addAttribute(FishConstant.SUCCESS, true);
 		}catch (Exception ex) {
-			logger.info(ex.getMessage());
+			logger.info(String.format("[%s]", ex));
 			result.addAttribute(FishConstant.SUCCESS, false);
 		}
 		return result;
@@ -227,7 +227,7 @@ public class UserController {
 			logService.remove(code);
 			result.addAttribute(FishConstant.SUCCESS, true);
 		} catch (Exception ex) {
-			logger.info(ex.getMessage());
+			logger.info(String.format("[%s]", ex));
 			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("person.delError", null, FishCfg.locale));
 			result.addAttribute(FishConstant.SUCCESS, false);
 		}

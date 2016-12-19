@@ -32,7 +32,7 @@ public class MessagHandleCollection implements IMessagHandleCollection{
 		try{
 			faultHandleQueueLength = Integer.valueOf(paramService.getParam(paramKey).getParamValue());
 		}catch(Exception ex){
-			logger.error(String.format("get status_handle_count error [%s]",ex.getMessage()));
+			logger.error(String.format("get status_handle_count error: [%s]",ex));
 		}
 	}
 
@@ -56,7 +56,7 @@ public class MessagHandleCollection implements IMessagHandleCollection{
 		try {
 			this.getfaultHandleQueue().put(xfsStatus);
 		} catch (InterruptedException e) {
-			logger.error(String.format("InterruptedException is [%s]", e.getMessage()));
+			logger.error(String.format("InterruptedException is [%s]", e));
 		}
 	}
 
@@ -65,7 +65,7 @@ public class MessagHandleCollection implements IMessagHandleCollection{
 		try {
 			return this.getfaultHandleQueue().take();
 		} catch (InterruptedException e) {
-			logger.error(String.format("InterruptedException is [%s]", e.getMessage()));
+			logger.error(String.format("InterruptedException is [%s]", e));
 			return null;
 		}
 	}

@@ -51,7 +51,7 @@ public class TransactionKafkaConsumer extends KafkaConsumerConfig  implements Ru
 		try {
 			kafkaConsumerManager.getMessagePusher().pushTransToWeb(msg);
         } catch (Exception e) {
-            logger.error(String.format("mq handle error [%s]", e.getMessage()));
+            logger.error(String.format("mq handle error [%s]", e));
         }
 	}
 

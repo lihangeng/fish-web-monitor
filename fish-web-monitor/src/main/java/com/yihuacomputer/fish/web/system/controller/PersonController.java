@@ -237,7 +237,7 @@ public class PersonController {
             result.addAttribute(FishConstant.SUCCESS, true);
         }
         catch (Exception ex) {
-            logger.info(ex.getMessage());
+            logger.info(String.format("[%s]", ex));
             result.addAttribute(FishConstant.SUCCESS, false);
         }
         return result;
@@ -257,7 +257,7 @@ public class PersonController {
             result.addAttribute("data", new PersonForm(person));
         }
         catch (Exception ex) {
-            logger.info(ex.getMessage());
+            logger.info(String.format("[%s]", ex));
             result.addAttribute(FishConstant.SUCCESS, false);
         }
         return result;
@@ -326,7 +326,7 @@ public class PersonController {
                 form.setBirthday(DateUtils.getDate(person.getBirthday()));
             }
             catch (ParseException e) {
-                logger.info(e.getMessage());
+                logger.info(String.format("[%s]", e));
             }
         }
         IOrganization organization = null;
@@ -469,7 +469,7 @@ public class PersonController {
                 form.setBirthday(new SimpleDateFormat("yyyy-MM-dd").format(person.getBirthday()));
             }
             catch (ParseException e) {
-                logger.info(e.getMessage());
+                logger.info(String.format("[%s]", e));
             }
         }
         person.setEmail(form.getEmail());

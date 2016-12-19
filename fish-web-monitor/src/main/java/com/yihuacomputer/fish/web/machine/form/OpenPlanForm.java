@@ -79,7 +79,7 @@ public class OpenPlanForm {
 				}
 			}
 			catch (Exception e){
-				logger.error(e.getMessage());
+				logger.error(String.format("[%s]", e));
 			}
 		}
 		this.desc = deviceOpenPlan.getDesc();
@@ -156,7 +156,7 @@ public class OpenPlanForm {
 				openPlanDetails = JsonUtils.om.readValue(this.openPlanDetailForms, new TypeReference<List<OpenPlanDetailForm>>() {
 				});
 			} catch (Exception e) {
-				logger.error(e.getMessage());
+				logger.error(String.format("[%s]", e));
 			}
 		}
 		return openPlanDetails;

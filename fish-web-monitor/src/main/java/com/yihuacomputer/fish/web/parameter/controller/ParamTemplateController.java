@@ -390,7 +390,7 @@ public class ParamTemplateController {
 			}
 			result.addAttribute(FishConstant.SUCCESS, true);
 		} catch (Exception ex) {
-			logger.info(ex.getMessage());
+			logger.info(String.format("[%s]", ex));
 			result.addAttribute(FishConstant.SUCCESS, false);
 		}
 		return result;
@@ -520,7 +520,7 @@ public class ParamTemplateController {
 
 		}catch(Exception ex){
 
-			logger.info(ex.getMessage());
+			logger.info(String.format("[%s]", ex));
 			result.addAttribute(FishConstant.SUCCESS, false);
 			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("parameter.template.issueFailure", null, FishCfg.locale));
 

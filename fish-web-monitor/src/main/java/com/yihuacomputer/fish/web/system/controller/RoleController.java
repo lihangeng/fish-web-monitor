@@ -133,7 +133,7 @@ public class RoleController {
 					try {
 						service.remove(id);
 					} catch (IllegalArgumentException iae) {
-						logger.warn(iae.getMessage());
+						logger.warn(String.format("[%s]", iae));
 						result.addAttribute(FishConstant.SUCCESS, false);
 						result.put("errorMsg", messageSource.getMessage("commen.error", null, FishCfg.locale));
 					}

@@ -51,7 +51,7 @@ public class CaseFaultKafkaConsumer extends KafkaAloneConsumerConfig implements 
 		try {
 			//TODO 收到故障信息后的处理动作
         } catch (Exception e) {
-            logger.error(String.format("mq handle error [%s]", e.getMessage()));
+            logger.error(String.format("mq handle error [%s]", e));
         }
 	}
 

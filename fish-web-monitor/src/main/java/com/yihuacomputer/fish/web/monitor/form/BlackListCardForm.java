@@ -83,7 +83,7 @@ public class BlackListCardForm {
             return new SimpleDateFormat(format).parse(text);
         }
         catch (ParseException e) {
-            throw new RuntimeException(e.getMessage());
+            throw new RuntimeException(String.format("[%s]", e));
         }
 
     }

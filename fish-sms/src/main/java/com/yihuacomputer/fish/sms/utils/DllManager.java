@@ -43,7 +43,7 @@ public class DllManager {
 					buffer = new byte[1024];
 				}
 			} catch (IOException e) {
-				logger.error(String.format("IOException is [%s]", e.getMessage()));
+				logger.error(String.format("IOException is [%s]", e));
 			} finally {
 				if (in != null)
 					in.close();

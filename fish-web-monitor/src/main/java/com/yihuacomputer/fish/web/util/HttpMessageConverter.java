@@ -52,7 +52,6 @@ public class HttpMessageConverter extends  AbstractHttpMessageConverter<String> 
 				return (long) s.getBytes(charset.name()).length;
 			}
 			catch (UnsupportedEncodingException ex) {
-				// should not occur
 				throw new InternalError(ex.getMessage());
 			}
 		}

@@ -56,7 +56,7 @@ public class LoginKafkaConsumer extends KafkaConsumerConfig implements Runnable 
 			LoginMessage loginMessage = JsonUtils.fromJson(msg, LoginMessage.class);
 			sessionManage.loginByNotice(loginMessage);
 		} catch (Exception e) {
-			logger.error(String.format("mq handle error [%s]", e.getMessage()));
+			logger.error(String.format("mq handle error [%s]", e));
 		}
 	}
 

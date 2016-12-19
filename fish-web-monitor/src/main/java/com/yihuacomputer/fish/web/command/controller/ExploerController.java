@@ -248,7 +248,7 @@ public class ExploerController
             out.close();
             randomFile.close();
         }catch(Exception ex){
-        	logger.error(ex.getMessage());
+        	logger.error(String.format("[%s]", ex));
         }finally{
             if (out != null)
             {
@@ -314,7 +314,7 @@ public class ExploerController
                 return "{'success':false,'errors':'"+tips+"'}";
             }
         } catch (Exception e) {
-        	logger.error(String.format("Exception is [%s]", e.getMessage()));
+        	logger.error(String.format("Exception is [%s]", e));
         	String tips = messageSource.getMessage("exploer.fileUpload.fail", null, FishCfg.locale);
             return "{'success':false,'errors':'"+tips+"'}";
         }

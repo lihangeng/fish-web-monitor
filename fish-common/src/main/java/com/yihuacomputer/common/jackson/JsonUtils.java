@@ -54,7 +54,7 @@ public class JsonUtils {
 		try {
 			jsonStr = gson.toJson(object);
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			logger.error(String.format("[%s]", e));
 			return jsonStr;
 		}
 		return jsonStr;
@@ -109,7 +109,7 @@ public class JsonUtils {
 			om.configure(JsonParser.Feature.ALLOW_SINGLE_QUOTES, true);
 			return om.readValue(json, classOfT);
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			logger.error(String.format("[%s]", e));
 			return null;
 		}
 	}
@@ -126,7 +126,7 @@ public class JsonUtils {
 		try {
 			jsonStr = om.writeValueAsString(src);
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			logger.error(String.format("[%s]", e));
 			return jsonStr;
 		}
 		return jsonStr;
@@ -167,9 +167,9 @@ public class JsonUtils {
 			JsonNode jsonNode = om.readTree(json);
 			result = jsonNode.get(name).toString();
 		} catch (JsonProcessingException e) {
-			logger.error(e.getMessage());
+			logger.error(String.format("[%s]", e));
 		} catch (IOException e) {
-			logger.error(e.getMessage());
+			logger.error(String.format("[%s]", e));
 		}
 		return result;
 	}

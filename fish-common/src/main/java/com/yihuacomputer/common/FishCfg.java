@@ -54,7 +54,7 @@ public class FishCfg {
 		try {
 			FishCfg.hostIp=InetAddress.getLocalHost().getHostAddress();
 		} catch (final UnknownHostException e) {
-			logger.error(e.getMessage());
+			logger.error(String.format("[%s]", e));
 		}
 	}
 

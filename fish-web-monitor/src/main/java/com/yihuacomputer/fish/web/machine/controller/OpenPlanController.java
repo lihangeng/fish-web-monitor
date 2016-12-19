@@ -383,7 +383,7 @@ public class OpenPlanController {
 			result.addAttribute(FishConstant.SUCCESS, true);
 		} catch (Exception ex) {
 			result.addAttribute(FishConstant.SUCCESS, false);
-			logger.error(ex.getMessage());
+			logger.error(String.format("[%s]", ex));
 			//删除失败
 			result.put(FishConstant.ERROR_MSG, messageSource.getMessage("servicePlan.deleteFail", null,FishCfg.locale) + ex.getMessage());
 		}
@@ -496,7 +496,7 @@ public class OpenPlanController {
 			out.close();
 			randomFile.close();
 		} catch (Exception ex) {
-			logger.error(ex.getMessage());
+			logger.error(String.format("[%s]", ex));
 		} finally {
 			if (out != null) {
 				out.close();
@@ -527,7 +527,7 @@ public class OpenPlanController {
 				relationService.unlink(openPlan, deviceService.get(Long.valueOf(id)));
 			}
 		} catch (Exception ex) {
-			logger.error(String.format("Exception is %s", ex.getMessage()));
+			logger.error(String.format("Exception is %s", ex));
 			i++;
 		}
 		if (i > 0) {
@@ -596,7 +596,7 @@ public class OpenPlanController {
 					i++;
 				}
 			} catch (Exception e) {
-				logger.error(e.getMessage());
+				logger.error(String.format("[%s]", e));
 				i++;
 			}
 		}
@@ -631,7 +631,7 @@ public class OpenPlanController {
 				try {
 					filter.eq("ip", new IP(value));
 				} catch (Exception e) {
-					logger.error(e.getMessage());
+					logger.error(String.format("[%s]", e));
 				}
 			}
 		}

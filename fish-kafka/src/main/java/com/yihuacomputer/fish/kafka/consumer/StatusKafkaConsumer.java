@@ -50,7 +50,7 @@ public class StatusKafkaConsumer  extends KafkaConsumerConfig implements Runnabl
 					try {
 						kafkaConsumerManager.getMessagePusher().pushStatusToWeb(message);
 			        } catch (Exception e) {
-			            logger.error(String.format("mq handle error [%s]", e.getMessage()));
+			            logger.error(String.format("mq handle error [%s]", e));
 			        }
 				}
 			}

@@ -282,7 +282,7 @@ public class OrganizationController {
 			result.addAttribute(FishConstant.ERROR_MSG, String.format("%s,"+messageSource.getMessage("organization.move.refresh", null, FishCfg.locale), nfe.getMessage()));
 		}
 		catch (Exception ex) {
-			logger.error(ex.getMessage());
+			logger.error(String.format("[%s]", ex));
 			result.addAttribute(FishConstant.SUCCESS, false);
 			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("user.processError", null, FishCfg.locale));
 		}

@@ -63,7 +63,7 @@ public class DeviceVersionService implements IDomainDeviceVersionService {
                     dao.saveOrUpdate(tempDv);
                 } catch (Exception e) {
                     logger.error(String.format("update terminal [%s] deviceVersion error,Exception is : [%s]", tempDv == null ? ""
-                            : tempDv.getDeviceId(), e.getMessage()));
+                            : tempDv.getDeviceId(), e));
                 }
             }
         }
@@ -148,7 +148,7 @@ public class DeviceVersionService implements IDomainDeviceVersionService {
                     dao.saveOrUpdate(tempDv);
                 } catch (Exception e) {
                     logger.error(String.format("update terminal [%s] deviceVersion error,Exception is : [%s]", tempDv == null ? ""
-                            : tempDv.getDeviceId(), e.getMessage()));
+                            : tempDv.getDeviceId(), e));
                 }
             }
         }

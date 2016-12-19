@@ -112,9 +112,9 @@ public class LevelFinalSerial {
 				}
 			}
 		} catch (PortInUseException e) {
-			logger.error(String.format("PortInUseException is [%s]", e.getMessage()));
+			logger.error(String.format("PortInUseException is [%s]", e));
 		} catch (Exception e) {
-			logger.error(String.format("Exception is [%s]", e.getMessage()));
+			logger.error(String.format("Exception is [%s]", e));
 		}
 
 		return rsBool;
@@ -177,7 +177,7 @@ public class LevelFinalSerial {
 				out = null;
 				in = null;
 			} catch (IOException e) {
-				logger.error(String.format("IOException is [%s]", e.getMessage()));
+				logger.error(String.format("IOException is [%s]", e));
 			}
 		}
 		if (serialPort != null) {

@@ -50,7 +50,7 @@ public class TransactionDaysCountController {
         try {
 			days = DateUtils.daysOfMonth(month) ;
 		} catch (ParseException e) {
-			logger.error(e.getMessage());
+			logger.error(String.format("[%s]", e));
 		}
         filter.eq("endDate", Integer.parseInt((month +"-" + days).replaceAll("-", "")));
         String orgId = req.getParameter("orgId") ;

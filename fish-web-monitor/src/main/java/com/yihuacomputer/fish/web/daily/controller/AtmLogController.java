@@ -183,7 +183,7 @@ public class AtmLogController {
 			path = AtmLogCfg.getAtmAppLogDir() + FishCfg.FILESEP + String.valueOf(year) + FishCfg.FILESEP + monthString
 					+ FishCfg.FILESEP + deviceId + FishCfg.FILESEP + fileName;
 		} catch (ParseException e1) {
-			logger.error(String.format("Exception is [%s]", e1.getMessage()));
+			logger.error(String.format("Exception is [%s]", e1));
 		}
 		File file = new File(path);
 
@@ -203,7 +203,7 @@ public class AtmLogController {
 			}
 			os.flush();
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			logger.error(String.format("[%s]", e));
 		} finally {
 			if (fis != null) {
 				fis.close();
@@ -247,7 +247,7 @@ public class AtmLogController {
 		try {
 			file.transferTo(targetFile);
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			logger.error(String.format("[%s]", e));
 			String tips = messageSource.getMessage("exploer.fileUpload.fail", null, FishCfg.locale);
 			return "{'success':false,'errors':'"+tips+"'}";
 		}
@@ -381,17 +381,17 @@ public class AtmLogController {
 					result.addAttribute(FishConstant.SUCCESS, true);
 					result.addAttribute("path", FishCfg.getTempDir() + System.getProperty("file.separator") + name);
 				} catch (Exception e) {
-					logger.error(e.getMessage());
+					logger.error(String.format("[%s]", e));
 				}
 				
 			} catch (Exception e) {
-					logger.error(e.getMessage());
+					logger.error(String.format("[%s]", e));
 			} finally{
 				if(fout!=null){
 					try {
 						fout.close();
 					} catch (IOException e) {
-						logger.error(e.getMessage());
+						logger.error(String.format("[%s]", e));
 					}
 				}
 				
@@ -430,20 +430,20 @@ public class AtmLogController {
 				out.write(buffer, 0, len);
 			}
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			logger.error(String.format("[%s]", e));
 		} finally {
 			if (out != null) {
 				try {
 					out.close();
 				} catch (IOException e) {
-					logger.error(e.getMessage());
+					logger.error(String.format("[%s]", e));
 				}
 			}
 			if (is != null) {
 				try {
 					is.close();
 				} catch (IOException e) {
-					logger.error(e.getMessage());
+					logger.error(String.format("[%s]", e));
 				}
 			}
 		}

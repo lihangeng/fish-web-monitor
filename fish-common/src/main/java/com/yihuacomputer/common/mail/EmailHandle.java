@@ -65,14 +65,14 @@ public class EmailHandle {
 			// 用props对象来创建并初始化session对象
 			session = Session.getDefaultInstance(props, null);
 		} catch (Exception e) {
-			logger.error(String.format("获取邮件会话对象时发生错误 [%s]", e.getMessage()));
+			logger.error(String.format("获取邮件会话对象时发生错误 [%s]", e));
 			return false;
 		}
 		try {
 			mimeMsg = new MimeMessage(session); // 用session对象来创建并初始化邮件对象
 			mp = new MimeMultipart();// 生成附件组件的实例
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			logger.error(String.format("[%s]", e));
 			return false;
 		}
 		return true;
@@ -110,7 +110,7 @@ public class EmailHandle {
 		try {
 			mimeMsg.setSubject(mailSubject);
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			logger.error(String.format("[%s]", e));
 			return false;
 		}
 		return true;
@@ -129,7 +129,7 @@ public class EmailHandle {
 			// 在组件上添加邮件文本
 			mp.addBodyPart(bp);
 		} catch (Exception e) {
-			logger.error(String.format("设置邮件正文时发生错误 [%s]", e.getMessage()));
+			logger.error(String.format("设置邮件正文时发生错误 [%s]", e));
 			return false;
 		}
 		return true;
@@ -151,7 +151,7 @@ public class EmailHandle {
 			mp.addBodyPart(bp);// 添加附件
 			files.add(fileds);
 		} catch (Exception e) {
-			logger.error(String.format("增加邮件附件 [%s]发生错误[%s]", filename, e.getMessage()));
+			logger.error(String.format("增加邮件附件 [%s]发生错误[%s]", filename, e));
 			return false;
 		}
 		return true;
@@ -230,7 +230,7 @@ public class EmailHandle {
 			transport.close();
 			return true;
 		} catch (Exception e) {
-			logger.error(String.format("发送邮件失败 [%s]", e.getMessage()));
+			logger.error(String.format("发送邮件失败 [%s]", e));
 			return false;
 		}
 	}

@@ -139,7 +139,7 @@ public class AdvertController {
 			file.transferTo(targetFile);
 			return "{'success':true,'oFileName':'" + saveFileName + "'}";
 		} catch (Exception e) {
-			logger.error("upload file exception:" + e.getMessage());
+			logger.error(String.format("upload file exception: [%s]" + e));
 			return "{'success':false,'errors':'"+messageSourceVersion.getMessage("advert.upload.exception", new Object[]{saveFileName, e.getMessage()}, FishCfg.locale)+"'}";
 		}
 	}
@@ -174,7 +174,7 @@ public class AdvertController {
 			UploadResourceForm form = new UploadResourceForm(oFileName, saveFileName, getTempWebDir(request, screen, saveFileName), screen);
 			return JsonUtils.toJson(form);
 		} catch (Exception e) {
-			logger.error("upload file exception:" + e.getMessage());
+			logger.error(String.format("upload file exception: [%s]" + e));
 			return "{'success':false,'errors':'"+messageSourceVersion.getMessage("advert.upload.exception", new Object[]{saveFileName, e.getMessage()}, FishCfg.locale)+"'}";
 		}
 	}
@@ -410,7 +410,7 @@ public class AdvertController {
 						bw.close();
 						fw.close();
 					} catch (IOException e) {
-						logger.error("inputStream execption:" + e.getMessage());
+						logger.error(String.format("inputStream execption: [%s]" + e));
 					} finally {
 						try {
 							if (bw != null) {
@@ -420,7 +420,7 @@ public class AdvertController {
 								fw.close();
 							}
 						} catch (IOException e) {
-							logger.error("close ioStream exception:" + e.getMessage());
+							logger.error(String.format("close ioStream exception: [%s]" + e));
 						}
 					}
 				}
@@ -528,12 +528,12 @@ public class AdvertController {
 			advertService.delete(id);
 			result.addAttribute(FishConstant.SUCCESS, true);
 		} catch (NotFoundException iae) {
-			logger.warn(iae.getMessage());
+			logger.warn(String.format("[%s]", iae));
 			result.addAttribute(FishConstant.SUCCESS, false);
 			result.put("errors", getVersionI18n("advert.deleteFailNoFound",new Object[]{iae.getMessage() }));
 		} catch (Exception ex) {
 			result.addAttribute(FishConstant.SUCCESS, false);
-			logger.error(ex.getMessage());
+			logger.error(String.format("[%s]", ex));
 			result.put("errors", getVersionI18n("versionType.deleteFail",new Object[]{ex.getMessage() }));
 		}
 		return result;
@@ -555,7 +555,7 @@ public class AdvertController {
 			advertService.getById(id).toVersion();
 			result.addAttribute(FishConstant.SUCCESS, true);
 		} catch (Exception ex) {
-			logger.error("general version File execption:" + ex.getMessage());
+			logger.error(String.format("general version File execption:[%s]", ex));
 			result.addAttribute(FishConstant.SUCCESS, false);
 		}
 		return result;
@@ -571,7 +571,7 @@ public class AdvertController {
 			result.addAttribute(FishConstant.SUCCESS, true);
 			result.addAttribute(FishConstant.DATA, toAdvertVersion(version));
 		} catch (Exception ex) {
-			logger.error("get advert version error:" + ex.getMessage());
+			logger.error(String.format("get advert version error: [%s]" + ex));
 			result.addAttribute(FishConstant.SUCCESS, false);
 		}
 		return result;

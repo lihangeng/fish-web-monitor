@@ -100,7 +100,7 @@ public class WeekPdfReportService extends PdfReportService implements IWeekPdfRe
 			generateFault(pdf, weekOfYear);
 			pdf.close();
 		} catch (Exception e) {
-			logger.error(String.format("Exception is [%s]", e.getMessage()));
+			logger.error(String.format("Exception is [%s]", e));
 		}
 
 		return file.getAbsolutePath();

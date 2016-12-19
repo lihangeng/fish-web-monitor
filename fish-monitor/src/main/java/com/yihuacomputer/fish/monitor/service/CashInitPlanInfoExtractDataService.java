@@ -83,7 +83,7 @@ public class CashInitPlanInfoExtractDataService implements ICashInitPlanInfoExtr
 		try {
 			orgLevel = OrganizationLevel.getById(CashInitPlanCfg.getCashInitPlanUtils());
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			logger.error(String.format("[%s]", e));
 		}
 		// 获取规定的清机加钞周期
 		int cashInitDays = CashInitPlanCfg.getCashInitDays();

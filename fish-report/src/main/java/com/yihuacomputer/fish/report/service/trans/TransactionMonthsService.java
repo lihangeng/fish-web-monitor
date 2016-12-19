@@ -73,7 +73,7 @@ public class TransactionMonthsService implements ITransactionMonthsService {
 				save(tm);
 			}
 		} catch (Exception e) {
-			logger.error(String.format("Exception is [%s]", e.getMessage()));
+			logger.error(String.format("Exception is [%s]", e));
 		}
 	}
 

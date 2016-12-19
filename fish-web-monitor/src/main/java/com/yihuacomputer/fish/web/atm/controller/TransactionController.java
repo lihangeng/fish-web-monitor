@@ -77,7 +77,7 @@ public class TransactionController{
 			        trans.setCostTime(msg.getCostTime());
 	        	}
 	        }catch(Exception e){
-	        	logger.error(e.getMessage());
+	        	logger.error(String.format("[%s]", e));
 	        }
         	collectService.collectATMCTransaction(msg.getTermId(), trans);
 

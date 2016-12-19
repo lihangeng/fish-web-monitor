@@ -39,7 +39,7 @@ public class DataSourceInterceptor {
 			}
 			
 		} catch (Exception e) {
-			logger.error(clazz + ":" + e.getMessage());
+			logger.error(String.format(clazz + ":[%s]", e) );
 		}
 	}
 }

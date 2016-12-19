@@ -146,7 +146,7 @@ public class FtpUtils {
             return ftpClient.changeWorkingDirectory(path);
         }
         catch (Exception e) {
-        	logger.error(e.getMessage());
+        	logger.error(String.format("%s", e));
             return false;
         }
     }
@@ -191,7 +191,7 @@ public class FtpUtils {
                 return new String(obj.toString().getBytes(encode), ISOCHARSET);
         }
         catch (Exception e) {
-        	logger.error("charset convert error:"+e.getMessage());
+        	logger.error(String.format("charset convert error:[%s]", e));
             return "";
         }
     }

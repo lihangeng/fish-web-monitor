@@ -45,7 +45,7 @@ public class SessionManage implements ISessionManage {
 				try{
 					oldSession.removeAttribute("SESSION_USER");
 				}catch(Exception e){
-					logger.error(e.getMessage());
+					logger.error(String.format("[%s]", e));
 				}finally{
 					sessions.remove(userCode);
 				}
@@ -67,7 +67,7 @@ public class SessionManage implements ISessionManage {
 				try{
 					session.removeAttribute("SESSION_USER");
 				}catch(Exception e){
-					logger.error(e.getMessage());
+					logger.error(String.format("[%s]", e));
 				}finally{
 					sessions.remove(userCode);
 				}

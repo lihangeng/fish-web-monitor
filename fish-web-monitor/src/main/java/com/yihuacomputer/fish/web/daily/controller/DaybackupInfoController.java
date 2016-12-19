@@ -118,7 +118,7 @@ public class DaybackupInfoController {
 			map.addAttribute(FishConstant.SUCCESS, true);
 		} catch (Exception e) {
 			map.addAttribute(FishConstant.SUCCESS, false);
-			logger.error(e.getMessage());
+			logger.error(String.format("[%s]", e));
 		}
 		return map;
 	}
@@ -211,7 +211,7 @@ public class DaybackupInfoController {
 			FileOutputStream fout = new FileOutputStream(FishCfg.getTempDir() + File.separator + name);
 			wb.write(fout);
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			logger.error(String.format("[%s]", e));
 		}
 
 		File file = new File(FishCfg.getTempDir() + System.getProperty("file.separator") + name);
@@ -283,7 +283,7 @@ public class DaybackupInfoController {
 			FileOutputStream fout = new FileOutputStream(FishCfg.getTempDir() + File.separator + name);
 			wb.write(fout);
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			logger.error(String.format("[%s]", e));
 		}
 
 		File file = new File(FishCfg.getTempDir() + System.getProperty("file.separator") + name);
@@ -347,7 +347,7 @@ public class DaybackupInfoController {
 			FileOutputStream fout = new FileOutputStream(FishCfg.getTempDir() + File.separator + name);
 			wb.write(fout);
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			logger.error(String.format("[%s]", e));
 		}
 
 		File file = new File(FishCfg.getTempDir() + System.getProperty("file.separator") + name);
@@ -394,31 +394,23 @@ public class DaybackupInfoController {
 			}
 			// osa.close();
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			logger.error(String.format("[%s]", e));
 		} finally {
 			if (out != null) {
 				try {
 					out.close();
 				} catch (IOException e) {
-					logger.error(e.getMessage());
+					logger.error(String.format("[%s]", e));
 				}
 			}
 			if (is != null) {
 				try {
 					is.close();
 				} catch (IOException e) {
-					logger.error(e.getMessage());
+					logger.error(String.format("[%s]", e));
 				}
 			}
 
-			// if (osw != null) {
-			// try {
-			// osw.close();
-			// }
-			// catch (IOException e) {
-			// logger.error(e.getMessage());
-			// }
-			// }
 		}
 	}
 

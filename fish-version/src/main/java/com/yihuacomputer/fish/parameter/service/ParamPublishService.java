@@ -311,7 +311,7 @@ public class ParamPublishService implements IParamPublishService {
 			thread.start();
 			return paramPublish.getId();
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			logger.error(String.format("[%s]", e));
 			return Long.MIN_VALUE;
 		}
 	}
@@ -346,7 +346,7 @@ public class ParamPublishService implements IParamPublishService {
 			thread.start();
 			return paramPublish.getId();
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			logger.error(String.format("[%s]", e));
 			return Long.MIN_VALUE;
 		}
 	}
@@ -521,13 +521,13 @@ public class ParamPublishService implements IParamPublishService {
 				break;
 			}
 		} catch (IOException e1) {
-			logger.error(String.format("file %s writer failer,reason is IOException of [%s]", fileStr, e1.getMessage()));
+			logger.error(String.format("file %s writer failer,reason is IOException of [%s]", fileStr, e1));
 		} finally {
 			if (fw != null) {
 				try {
 					fw.close();
 				} catch (IOException e) {
-					logger.error(String.format("fileWriter stream close failer,reason is IOException of [%s]", e.getMessage()));
+					logger.error(String.format("fileWriter stream close failer,reason is IOException of [%s]", e));
 				}
 			}
 		}
@@ -663,7 +663,7 @@ class NoticeThread implements Runnable {
 			paramPublish.setRet("FINISH");
 			paramPublishService.update(paramPublish);
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			logger.error(String.format("[%s]", e));
 		}
 
 	}

@@ -80,14 +80,14 @@ public class JobThread implements Runnable {
 					}
 				}
 		} catch (Exception e) {
-			logger.error(String.format("execute job error [%s]",e.getMessage()));
+			logger.error(String.format("execute job error [%s]",e));
 		}
 		while(true){
 		    try {
                 Thread.sleep(30000);
             }
             catch (InterruptedException e) {
-            	logger.error(String.format("InterruptedException is [%s]",e.getMessage()));
+            	logger.error(String.format("InterruptedException is [%s]",e));
             }
 		    if(taskThreadPool.getTaskExecutor().getActiveCount()==0){
 		        break;

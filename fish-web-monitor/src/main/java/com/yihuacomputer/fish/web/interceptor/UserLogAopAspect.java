@@ -188,13 +188,13 @@ public class UserLogAopAspect {
 					}
 				}
 			} catch (SecurityException e) {
-				logger.error(String.format("SecurityException is [%s]", e.getMessage()));
+				logger.error(String.format("SecurityException is [%s]", e));
 			} catch (NoSuchFieldException e) {
-				logger.error(String.format("NoSuchFieldException is [%s]", e.getMessage()));
+				logger.error(String.format("NoSuchFieldException is [%s]", e));
 			} catch (IllegalArgumentException e) {
-				logger.error(String.format("IllegalArgumentException is [%s]", e.getMessage()));
+				logger.error(String.format("IllegalArgumentException is [%s]", e));
 			} catch (IllegalAccessException e) {
-				logger.error(String.format("IllegalAccessException is [%s]", e.getMessage()));
+				logger.error(String.format("IllegalAccessException is [%s]", e));
 			}
 			operatorAction.append("->").append(reqBodyKey);
 		}
@@ -211,9 +211,9 @@ public class UserLogAopAspect {
 				String[] value = (String[])map.get(methodDesc.faceParam());
 				operatorAction.append("->").append(value[0]);
 			} catch (IllegalArgumentException e) {
-				logger.error(String.format("IllegalArgumentException is [%s]", e.getMessage()));
+				logger.error(String.format("IllegalArgumentException is [%s]", e));
 			} catch (IllegalAccessException e) {
-				logger.error(String.format("IllegalAccessException is [%s]", e.getMessage()));
+				logger.error(String.format("IllegalAccessException is [%s]", e));
 			}
 		}
 		return operatorAction.toString();
@@ -283,7 +283,7 @@ public class UserLogAopAspect {
 				}
 			}
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			logger.error(String.format("[%s]", e));
 
 		} finally {
 			logger.debug(pjp.getTarget().getClass().getName() + "." + pjp.getSignature().getName() + " process time: " + time + " ms");
@@ -297,7 +297,7 @@ public class UserLogAopAspect {
 	@AfterThrowing(pointcut = "controller() && methodPointcut() && requestMapping()", throwing = "ex")
 	public void doThrowing(JoinPoint jp, Throwable ex) {
 		logger.error("method " + jp.getTarget().getClass().getName() + "." + jp.getSignature().getName() + " throw exception");
-		logger.error(ex.getMessage());
+		logger.error(String.format("[%s]", ex));
 	}
 
 }

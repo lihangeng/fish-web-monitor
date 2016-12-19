@@ -36,10 +36,10 @@ public class UploadContrller {
 
         }
         catch (IllegalStateException e) {
-            logger.error(e.getMessage());
+            logger.error(String.format("[%s]", e));
         }
         catch (IOException e) {
-            logger.error(e.getMessage());
+            logger.error(String.format("[%s]", e));
         }
     }
 

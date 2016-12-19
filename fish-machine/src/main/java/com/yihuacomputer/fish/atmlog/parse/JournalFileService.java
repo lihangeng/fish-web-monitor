@@ -60,35 +60,35 @@ public class JournalFileService implements IJournalFileService{
 			fos.close();
 			mFileChannel.close();
 		} catch (Exception e) {
-			logger.error(String.format("Exception is %s", e.getMessage()));
+			logger.error(String.format("Exception is %s", e));
 			return null;
 		} finally {
 			if(fos!=null){
 				try {
 					fos.close();
 				} catch (IOException e) {
-					logger.error(String.format("IOException is [%s]", e.getMessage()));
+					logger.error(String.format("IOException is [%s]", e));
 				}
 			}
 			if (mFileChannel != null) {
 				try {
 					mFileChannel.close();
 				} catch (IOException e) {
-					logger.error(String.format("IOException is [%s]", e.getMessage()));
+					logger.error(String.format("IOException is [%s]", e));
 				}
 			}
 			if (fis != null) {
 				try {
 					fis.close();
 				} catch (IOException e) {
-					logger.error(String.format("IOException is [%s]", e.getMessage()));
+					logger.error(String.format("IOException is [%s]", e));
 				}
 			}
 			if (inFileChannel != null) {
 				try {
 					inFileChannel.close();
 				} catch (IOException e) {
-					logger.error(String.format("IOException is [%s]", e.getMessage()));
+					logger.error(String.format("IOException is [%s]", e));
 				}
 			}
 		}
@@ -184,27 +184,27 @@ public class JournalFileService implements IJournalFileService{
             bufferedReader.close();
         }
         catch (Exception ex) {
-        	logger.error(String.format("Exception is [%s]", ex.getMessage()));
+        	logger.error(String.format("Exception is [%s]", ex));
         }finally{
         	if(fis!=null){
         		try {
         			fis.close();
 				} catch (IOException e) {
-					logger.error(String.format("IOException is [%s]", e.getMessage()));
+					logger.error(String.format("IOException is [%s]", e));
 				}
         	}
         	if(isr!=null){
         		try {
         			isr.close();
 				} catch (IOException e) {
-					logger.error(String.format("IOException is [%s]", e.getMessage()));
+					logger.error(String.format("IOException is [%s]", e));
 				}
         	}
         	if(bufferedReader!=null){
         		try {
 					bufferedReader.close();
 				} catch (IOException e) {
-					logger.error(String.format("IOException is [%s]", e.getMessage()));
+					logger.error(String.format("IOException is [%s]", e));
 				}
         	}
         }

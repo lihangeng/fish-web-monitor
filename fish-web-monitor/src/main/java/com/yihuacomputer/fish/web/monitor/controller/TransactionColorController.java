@@ -123,7 +123,7 @@ public class TransactionColorController {
         catch (Exception ex) {
             result.addAttribute(FishConstant.SUCCESS, false);
             result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("commen.error", null, FishCfg.locale));
-            logger.error(ex.getMessage());
+            logger.error(String.format("[%s]", ex));
         }
         return result;
     }
@@ -166,7 +166,7 @@ public class TransactionColorController {
             model.put("success", false);
             model.put("errorMsg", messageSource.getMessage("commen.error", null, FishCfg.locale));
             
-            logger.error(e.getMessage());
+            logger.error(String.format("[%s]", e));
         }
 
         return model;

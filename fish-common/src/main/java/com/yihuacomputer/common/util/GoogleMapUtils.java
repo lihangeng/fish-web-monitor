@@ -63,20 +63,20 @@ public class GoogleMapUtils {
 	        }
 	        get.abort();
         }catch(Exception e){
-        	logger.error(e.getMessage());
+        	logger.error(String.format("[%s]", e));
         }finally{
         	if(is!=null){
         		try {
 					is.close();
 				} catch (IOException e) {
-		        	logger.error(e.getMessage());
+		        	logger.error(String.format("[%s]", e));
 				}
         	}
         	if(out!=null){
         		try {
 					out.close();
 				} catch (IOException e) {
-		        	logger.error(e.getMessage());
+		        	logger.error(String.format("[%s]", e));
 				}
         	}
         }

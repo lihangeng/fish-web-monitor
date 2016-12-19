@@ -200,7 +200,7 @@ public class VersionController {
 				return "{'success':false,'msg':'2'}";
 			}
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			logger.error(String.format("[%s]", e));
 			if(zipFile!=null){
 				
 				zipFile.delete();
@@ -322,11 +322,11 @@ public class VersionController {
 			versionService.delete(id);
 			result.addAttribute(FishConstant.SUCCESS, true);
 		} catch (DependException dependException) {
-			logger.error(dependException.getMessage());
+			logger.error(String.format("[%s]", dependException));
 			result.addAttribute(FishConstant.SUCCESS, false);
 			result.put(FishConstant.ERROR_MSG, dependException.getMessage());
 		} catch (Exception ex) {
-			logger.error(ex.getMessage());
+			logger.error(String.format("[%s]", ex));
 			result.addAttribute(FishConstant.SUCCESS, false);
 			result.put(FishConstant.ERROR_MSG, messageSource.getMessage("error.handleError", null, FishCfg.locale));
 		}

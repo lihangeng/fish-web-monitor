@@ -49,7 +49,7 @@ public class PublishTaskManager implements Runnable {
 		try {
 			this.queue.put(result);
 		} catch (InterruptedException e) {
-			logger.error(String.format("InterruptedException is [%s]", e.getMessage()));
+			logger.error(String.format("InterruptedException is [%s]", e));
 		}
 	}
 

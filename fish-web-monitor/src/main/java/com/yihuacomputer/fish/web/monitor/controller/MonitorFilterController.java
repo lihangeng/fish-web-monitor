@@ -207,7 +207,7 @@ public class MonitorFilterController {
 
         }
         catch (Exception ex) {
-            logger.error(String.format("保存监控状态失败!失败信息[%s]", ex.getMessage()));
+            logger.error(String.format("saving the status of monitor was failed: [%s]", ex));
             result.addAttribute(FishConstant.SUCCESS, false);
         }
 
@@ -259,7 +259,7 @@ public class MonitorFilterController {
 
         }
         catch (Exception ex) {
-            logger.error(String.format("修改监控状态失败!失败信息[%s]", ex.getMessage()));
+            logger.error(String.format("Updating the status of monitor was failed :[%s]", ex));
             result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("commen.error", null, FishCfg.locale));
             result.addAttribute(FishConstant.SUCCESS, false);
         }

@@ -89,7 +89,7 @@ public class ExportOpenPlanForm {
 					this.planStateType = PlanStateType.WExpired.getText();
 				}
 			} catch (Exception e) {
-				logger.error(e.getMessage());
+				logger.error(String.format("[%s]", e));
 			}
 		}
 		this.desc = deviceOpenPlan.getDesc();

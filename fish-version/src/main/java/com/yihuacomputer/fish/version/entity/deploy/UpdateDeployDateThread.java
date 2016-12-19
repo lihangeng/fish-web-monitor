@@ -66,7 +66,7 @@ public class UpdateDeployDateThread implements Runnable {
             HttpProxy.httpPost(getUrl(device.getIp()), notice, NoticeForm.class);
             updateDeployDate.setNoticeStatus(NoticeStatus.SUCCESS);
         } catch (Exception ex) {
-        	logger.error(String.format("Exception is [%s]", ex.getMessage()));
+        	logger.error(String.format("Exception is [%s]", ex));
             updateDeployDate.setNoticeStatus(NoticeStatus.FAIL);
             updateDeployDate.setReason("通知失败");
         }

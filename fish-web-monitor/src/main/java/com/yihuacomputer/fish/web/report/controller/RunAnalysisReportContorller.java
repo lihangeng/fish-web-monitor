@@ -76,7 +76,7 @@ public class RunAnalysisReportContorller {
 			map.addAttribute("data", runAnalysisReportResult.list());
 			return map;
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			logger.error(String.format("[%s]", e));
 			map.addAttribute(FishConstant.SUCCESS, true);
 			map.addAttribute("total", 0);
 			map.addAttribute("data", formList);
@@ -112,7 +112,7 @@ public class RunAnalysisReportContorller {
 			response.setHeader("Content-Disposition", "attachment; filename=\"" + getFileName(request, file.getName()) + "\"");
 			response.setContentType("application/x-msdownload;charset=UTF-8");
 		} catch (ParseException e1) {
-			logger.error(String.format("ParseException is [%s]", e1.getMessage()));
+			logger.error(String.format("ParseException is [%s]", e1));
 		}
 		OutputStream os = null;
 		FileInputStream fis = null;
@@ -127,7 +127,7 @@ public class RunAnalysisReportContorller {
 			fis.close();
 			os.flush();
 		} catch (Exception e) {
-			logger.error(String.format("Exception is [%s]", e.getMessage()));
+			logger.error(String.format("Exception is [%s]", e));
 		} finally {
 			if (fis != null) {
 				fis.close();

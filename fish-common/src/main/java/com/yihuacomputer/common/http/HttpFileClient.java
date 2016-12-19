@@ -110,7 +110,7 @@ public class HttpFileClient {
 			se = new StringEntity(JsonUtils.toJson(fileCfg), HttpFileClient.ENCODING_DEFAULT);
 			httpPost.setEntity(se);
 		} catch (UnsupportedEncodingException e) {
-			logger.error("UnsupportedEncodingException"+e.getMessage());
+			logger.error(String.format("UnsupportedEncodingException: [%s]", e));
 			return HttpFileRet.ERROR;
 		}
 
@@ -141,25 +141,25 @@ public class HttpFileClient {
 				return ret;
 			}
 		}catch(HttpHostConnectException e){
-			logger.error("HttpHostConnectException "+e.getMessage());
+			logger.error(String.format("HttpHostConnectException:[%s]", e));
 			return HttpFileRet.CONN_ERROR;
 		}
 		catch (Exception e) {
-			logger.error("Exception "+e.getMessage());
+			logger.error(String.format("Exception:[%s]" , e));
 			return HttpFileRet.ERROR;
 		} finally {
 			if (randomFile != null) {
 				try {
 					randomFile.close();
 				} catch (IOException e) {
-					logger.error("randomFile close IOException "+e.getMessage());
+					logger.error(String.format("randomFile close IOException:[%s] ", e));
 				}
 			}
 			if (is != null) {
 				try {
 					is.close();
 				} catch (IOException e) {
-					logger.error("inputStream close IOException "+e.getMessage());
+					logger.error(String.format("inputStream close IOException:[%s] ", e));
 				}
 			}
 		}

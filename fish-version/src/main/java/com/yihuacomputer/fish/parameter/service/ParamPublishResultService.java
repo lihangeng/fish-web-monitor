@@ -110,7 +110,7 @@ public class ParamPublishResultService implements IParamPublishResultService {
 				}
 			}
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			logger.error(String.format("[%s]", e));
 			retResult = -1;
 			return false;
 		} finally {

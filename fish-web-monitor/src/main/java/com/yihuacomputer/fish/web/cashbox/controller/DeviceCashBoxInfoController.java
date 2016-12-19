@@ -107,7 +107,7 @@ public class DeviceCashBoxInfoController {
 		try {
 			deviceBoxInfoService.update(deviceBoxInfo);
 		} catch(Exception e) {
-			logger.error(String.format("add error : %s",e.getMessage()));
+			logger.error(String.format("add error : %s",e));
 			model.put(FishConstant.SUCCESS, false);
 			model.put(FishConstant.ERROR_MSG, messageSource.getMessage("commen.error", null, FishCfg.locale));
 			return model;

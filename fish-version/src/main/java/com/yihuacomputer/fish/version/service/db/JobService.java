@@ -189,7 +189,7 @@ public class JobService extends DomainJobService {
         	 Job entity = this.interface2Entity(job, true);
         	 dao.merge(entity);
         }catch(Exception ex){
-        	logger.error(String.format("update job status fail [%s] " ,ex.getMessage()));
+        	logger.error(String.format("update job status fail [%s] " ,ex));
         }
 
     }

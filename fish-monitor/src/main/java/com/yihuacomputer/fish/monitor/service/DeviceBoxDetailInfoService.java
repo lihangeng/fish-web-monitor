@@ -59,7 +59,7 @@ public class DeviceBoxDetailInfoService implements IDeviceBoxDetailInfoService {
 		try{
 			dao.batchUpdate(sb.toString(), new Object[]{deviceBoxInfoId});
 		}catch(Exception e){
-			logger.error(e.getMessage());
+			logger.error(String.format("[%s]", e));
 			return false;
 		}
 		return false;

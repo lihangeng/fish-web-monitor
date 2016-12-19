@@ -46,15 +46,15 @@ public class FileMD5 {
             in.close();
         }
         catch (NoSuchAlgorithmException e) {
-        	logger.error(e.getMessage());
+        	logger.error(String.format("%s", e));
             return "0";
         }
         catch( FileNotFoundException e){
-        	logger.error(e.getMessage());
+        	logger.error(String.format("%s", e));
         	return "0";
         }
         catch( IOException e){
-        	logger.error(e.getMessage());
+        	logger.error(String.format("%s", e));
         	return "0";
         }
         BigInteger bigInt = new BigInteger(1, digest.digest());

@@ -177,7 +177,7 @@ public class CashInitPlanDeviceInfoService implements ICashInitPlanDeviceInfoSer
 			try{
 				cashInitDays = Integer.parseInt(cashInitDaysParam.getParamValue());
 			}catch(Exception e){
-				logger.error(e.getMessage());
+				logger.error(String.format("[%s]", e));
 			}
 		}
 		//获取日均交易信息

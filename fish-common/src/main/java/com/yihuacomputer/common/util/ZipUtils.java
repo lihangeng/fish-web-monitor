@@ -67,7 +67,7 @@ public class ZipUtils {
 			}
 			zos.close();
 		}catch(Exception e){
-			logger.error(e.getMessage());
+			logger.error(String.format("[%s]", e));
 		}finally{
 			try {
 				if (is!=null) {
@@ -77,7 +77,7 @@ public class ZipUtils {
 					zos.close();
 				}
 			} catch (Exception e2) {
-				logger.error(e2.getMessage());
+				logger.error(String.format("[%s]", e2));
 			}
 		}
 	}
@@ -192,7 +192,7 @@ public class ZipUtils {
 				}
 				zipFile.close();
 			} catch (Exception e) {
-				logger.error(e.getMessage());
+				logger.error(String.format("[%s]", e));
 			}finally{
 				try {
 					if (os!=null) {
@@ -205,7 +205,7 @@ public class ZipUtils {
 						zipFile.close();
 					}
 				} catch (Exception e2) {
-					logger.error(e2.getMessage());
+					logger.error(String.format("[%s]", e2));
 				}
 			}
 		}
@@ -246,7 +246,7 @@ public class ZipUtils {
 			java.io.File myFilePath = new java.io.File(filePath);
 			myFilePath.delete(); // 删除空文件夹
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			logger.error(String.format("[%s]", e));
 		}
 	}
 
@@ -336,7 +336,7 @@ public class ZipUtils {
 						reader.close();
 						
 					} catch (Exception e) {
-						logger.error(e.getMessage());
+						logger.error(String.format("[%s]", e));
 					}finally{
 						try {
 							if(bw!=null){
@@ -352,7 +352,7 @@ public class ZipUtils {
 								reader.close();
 							}
 						} catch (IOException e) {
-							logger.error(e.getMessage());
+							logger.error(String.format("[%s]", e));
 						}
 					}
 				}
@@ -391,14 +391,14 @@ public class ZipUtils {
 			zip.close();
 			return true;
 		} catch (IOException e) {
-			logger.error(e.getMessage());
+			logger.error(String.format("[%s]", e));
 		}finally{
 			if(zip!=null){
 				try {
 					zip.close();
 				} catch (IOException e1) {
 					
-					logger.error(e1.getMessage());
+					logger.error(String.format("[%s]", e1));
 				}
 			}
 		}

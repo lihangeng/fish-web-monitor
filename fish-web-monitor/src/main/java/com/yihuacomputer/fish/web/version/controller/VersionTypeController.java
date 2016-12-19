@@ -221,7 +221,6 @@ public class VersionTypeController {
 		} catch (Exception ex) {
 			result.addAttribute(FishConstant.SUCCESS, false);
 			String tips = messageSourceVersion.getMessage("versionType.deleteFail", new Object[]{ex.getMessage()}, FishCfg.locale);
-//			result.addAttribute(FishConstant.ERROR_MSG,"删除失败：" + ex.getMessage());
 			result.addAttribute(FishConstant.ERROR_MSG,tips);
 		}
 		return result;

@@ -26,7 +26,7 @@ public class IOUtils {
             return file;
         }
         catch (IOException e) {
-        	logger.error(e.getMessage());
+        	logger.error(String.format("[%s]", e));
         }
         throw new AppException("Create Files Failed:" + fileName);
     }
@@ -57,7 +57,7 @@ public class IOUtils {
             FileUtils.writeStringToFile(createFile(fileName), data);
         }
         catch (IOException e) {
-        	logger.error(e.getMessage());
+        	logger.error(String.format("[%s]", e));
         }
     }
 
@@ -66,7 +66,7 @@ public class IOUtils {
             FileUtils.copyFileToDirectory(new File(srcFileName), new File(desDir));
         }
         catch (IOException e) {
-        	logger.error(e.getMessage());
+        	logger.error(String.format("[%s]", e));
         }
     }
 
@@ -86,7 +86,7 @@ public class IOUtils {
             FileUtils.copyDirectory(new File(srcDir), new File(destDir));
         }
         catch (IOException e) {
-        	logger.error(e.getMessage());
+        	logger.error(String.format("[%s]", e));
         }
     }
 
@@ -95,7 +95,7 @@ public class IOUtils {
             FileUtils.deleteDirectory(new File(dir));
         }
         catch (IOException e) {
-        	logger.error(e.getMessage());
+        	logger.error(String.format("[%s]", e));
         }
     }
     
@@ -109,7 +109,7 @@ public class IOUtils {
              return file;
          }
          catch (Exception e) {
-         	logger.error(e.getMessage());
+         	logger.error(String.format("[%s]", e));
          }
          throw new AppException("Create Files Failed:" + path);
     }

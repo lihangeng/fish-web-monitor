@@ -122,7 +122,7 @@ public class JobRuner implements Runnable {
 			}
 
 		} catch (Exception e) {
-			logger.error("Notify job runner error！[%s]",e.getMessage());
+			logger.error("Notify job runner error！[%s]",e);
 		}
 	}
 

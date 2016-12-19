@@ -365,7 +365,7 @@ public class RetainCardForm {
 			Method method = targetClass.getMethod("getById", new Class[] { int.class });
 			resultObj = (T) method.invoke(null, new Object[] { Integer.valueOf(value) });
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			logger.error(String.format("[%s]", e));
 		}
 		return resultObj;
 	}
