@@ -11,6 +11,8 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpInputMessage;
 import org.springframework.http.HttpOutputMessage;
 import org.springframework.http.MediaType;
@@ -22,6 +24,8 @@ import org.springframework.util.FileCopyUtils;
  * 
  */
 public class HttpMessageConverter extends  AbstractHttpMessageConverter<String> {
+	
+	private static Logger logger = LoggerFactory.getLogger(HttpMessageConverter.class);
 
 	public static final Charset DEFAULT_CHARSET = Charset.forName("UTF-8");
 
@@ -52,6 +56,7 @@ public class HttpMessageConverter extends  AbstractHttpMessageConverter<String> 
 				return (long) s.getBytes(charset.name()).length;
 			}
 			catch (UnsupportedEncodingException ex) {
+				logger.error(String.format("[%s]", ex));
 				throw new InternalError(ex.getMessage());
 			}
 		}

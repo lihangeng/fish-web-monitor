@@ -8,9 +8,13 @@ import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @SuppressWarnings("rawtypes")
 public class Excel {
+	
+	private static Logger logger = LoggerFactory.getLogger(Excel.class);
 
     private String[] headers;
 
@@ -55,7 +59,7 @@ public class Excel {
             workBook.write(fos);
         }
         catch (Exception e) {
-
+        	logger.error(String.format("[%s]", e));
         }
         finally {
             if (fos != null) {
@@ -63,6 +67,7 @@ public class Excel {
                     fos.close();
                 }
                 catch (IOException e) {
+                	logger.error(String.format("[%s]", e));
                 }
             }
         }

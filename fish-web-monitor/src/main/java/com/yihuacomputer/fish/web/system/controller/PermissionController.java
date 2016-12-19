@@ -98,6 +98,7 @@ public class PermissionController {
 			service.removeById(id);
 			result.addAttribute(FishConstant.SUCCESS, true);
 		} catch (Exception ex) {
+			logger.error(String.format("[%s]", ex));
 			result.addAttribute(FishConstant.SUCCESS, false);
 		}
 		return result;
@@ -120,6 +121,7 @@ public class PermissionController {
 			service.remove(code);
 			result.addAttribute(FishConstant.SUCCESS, true);
 		} catch (Exception ex) {
+			logger.error(String.format("[%s]", ex));
 			result.addAttribute(FishConstant.SUCCESS, false);
 		}
 		return result;

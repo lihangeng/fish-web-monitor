@@ -140,6 +140,7 @@ public class RoleController {
 				}
 			}
 		} catch (Exception e) {
+			logger.error(String.format("[%s]", e));
 			result.addAttribute(FishConstant.SUCCESS, false);
 			result.addAttribute("errorMsg", messageSource.getMessage("commen.error", null, FishCfg.locale));
 		}
@@ -285,6 +286,7 @@ public class RoleController {
 			service.update(role);
 			result.addAttribute(FishConstant.SUCCESS, true);
 		} catch (Exception ex) {
+			logger.error(String.format("[%s]", ex));
 			result.addAttribute(FishConstant.SUCCESS, false);
 		}
 		return result;
@@ -424,6 +426,7 @@ public class RoleController {
 				result.addAttribute(FishConstant.SUCCESS, true);
 			}
 		} catch (Exception e) {
+			logger.error(String.format("[%s]", e));
 			result.addAttribute(FishConstant.SUCCESS, false);
 			result.addAttribute("errorMsg", messageSource.getMessage("role.isRoleExist.notExist", null, FishCfg.locale));
 		}
@@ -460,6 +463,7 @@ public class RoleController {
 				return true;
 			}
 		} catch (Exception e) {
+			logger.error(String.format("[%s]", e));
 			return false;
 		}
 
@@ -470,6 +474,7 @@ public class RoleController {
 			IRole role = service.get(id);
 			return role.isSystem();
 		} catch (Exception e) {
+			logger.error(String.format("[%s]", e));
 			return false;
 		}
 

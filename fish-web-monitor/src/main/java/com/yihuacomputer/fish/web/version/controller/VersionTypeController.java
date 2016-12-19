@@ -193,6 +193,7 @@ public class VersionTypeController {
 			}
 			result.addAttribute(FishConstant.SUCCESS, true);
 		}catch(Exception ex){
+			logger.error(String.format("[%s]", ex));
 			result.addAttribute(FishConstant.SUCCESS, false);
 			result.addAttribute(FishConstant.ERROR_MSG,ex.getMessage());
 		}
@@ -219,6 +220,7 @@ public class VersionTypeController {
 			versionTypeService.delete(id);
 			result.addAttribute(FishConstant.SUCCESS, true);
 		} catch (Exception ex) {
+			logger.error(String.format("[%s]", ex));
 			result.addAttribute(FishConstant.SUCCESS, false);
 			String tips = messageSourceVersion.getMessage("versionType.deleteFail", new Object[]{ex.getMessage()}, FishCfg.locale);
 			result.addAttribute(FishConstant.ERROR_MSG,tips);

@@ -187,6 +187,7 @@ public class UserController {
 					result.put(FishConstant.SUCCESS, true);
 					result.addAttribute(FishConstant.DATA, form);
 				} catch (Exception ex) {
+					logger.error(String.format("[%s]", ex));
 					result.put(FishConstant.ERROR_MSG, messageSource.getMessage("user.addFail", null, FishCfg.locale));
 					result.put(FishConstant.SUCCESS, false);
 				}
@@ -303,7 +304,7 @@ public class UserController {
 
 		} catch (Exception e) {
 
-			logger.error(e.toString());
+			logger.error(String.format("[%s]", e));
 
 			result.addAttribute(FishConstant.SUCCESS, false);
 			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("user.resetPwdFail", null, FishCfg.locale));
@@ -482,6 +483,7 @@ public class UserController {
 				return true;
 			}
 		} catch (Exception e) {
+			logger.error(String.format("[%s]", e));
 			return false;
 		}
 	}

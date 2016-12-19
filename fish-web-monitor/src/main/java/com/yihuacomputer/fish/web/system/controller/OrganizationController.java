@@ -158,6 +158,7 @@ public class OrganizationController {
 			service.remove(guid);
 			result.addAttribute(FishConstant.SUCCESS, true);
 		} catch (Exception ex) {
+			logger.error(String.format("[%s]", ex));
 			switch (organization.getOrganizationType()) {
 			case BANK:
 				result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("org.delHasRelation", null, FishCfg.locale));
@@ -278,6 +279,7 @@ public class OrganizationController {
 				result.addAttribute(FishConstant.SUCCESS, true);
 			}
 		} catch (NotFoundException nfe) {
+			logger.error(String.format("[%s]", nfe));
 			result.addAttribute(FishConstant.SUCCESS, false);
 			result.addAttribute(FishConstant.ERROR_MSG, String.format("%s,"+messageSource.getMessage("organization.move.refresh", null, FishCfg.locale), nfe.getMessage()));
 		}
@@ -441,6 +443,7 @@ public class OrganizationController {
 				}
 			}
 		} catch (Exception e) {
+			logger.error(String.format("[%s]", e));
 			return false;
 		}
 	}

@@ -343,6 +343,7 @@ public class VersionDownloadController {
 				result.addAttribute(FishConstant.ERROR_MSG, getI18N("exception.task.cantResetTask"));
 			}
 		} catch (Exception e) {
+			logger.error(String.format("[%s]", e));
 			result.addAttribute(FishConstant.SUCCESS, false);
 			result.addAttribute(FishConstant.ERROR_MSG, getI18N("task.reset.failer"));
 		}
@@ -698,6 +699,7 @@ public class VersionDownloadController {
 			jobManager.cancelTask(jobId, taskId);
 			result.addAttribute(FishConstant.SUCCESS, true);
 		} catch (Exception ex) {
+			logger.error(String.format("[%s]", ex));
 			result.addAttribute(FishConstant.SUCCESS, false);
 			result.addAttribute(FishConstant.ERROR_MSG, getI18N("task.cancel.failer"));
 		}
@@ -712,6 +714,7 @@ public class VersionDownloadController {
 			taskService.deepCancelApp(taskId);
 			result.addAttribute(FishConstant.SUCCESS, true);
 		} catch (Exception ex) {
+			logger.error(String.format("[%s]", ex));
 			result.addAttribute(FishConstant.SUCCESS, false);
 			result.addAttribute(FishConstant.ERROR_MSG, getI18N("task.cancel.failer"));
 		}
@@ -726,6 +729,7 @@ public class VersionDownloadController {
 			taskService.reDistribute(taskId);
 			result.addAttribute(FishConstant.SUCCESS, true);
 		} catch (Exception ex) {
+			logger.error(String.format("[%s]", ex));
 			result.addAttribute(FishConstant.SUCCESS, false);
 			result.addAttribute(FishConstant.ERROR_MSG, getI18N("task.reDistribute.failer"));
 		}
@@ -746,6 +750,7 @@ public class VersionDownloadController {
 			jobManager.suspendJob(id);
 			return "{'success':true}";
 		} catch (Exception ex) {
+			logger.error(String.format("[%s]", ex));
 			return "{'success':false,'errors':'" + getI18N("job.pause.failer") + "'}";
 		}
 	}
@@ -871,6 +876,7 @@ public class VersionDownloadController {
 			result.put(FishConstant.SUCCESS, true);
 			result.addAttribute("appRet", appRet);
 		} catch (Exception e) {
+			logger.error(String.format("[%s]", e));
 			result.put(FishConstant.SUCCESS, false);
 			result.addAttribute(FishConstant.ERROR_MSG, getI18N("task.reboot.failer"));
 		}
@@ -890,6 +896,7 @@ public class VersionDownloadController {
 			jobService.updateDeployDate(jobId, startDate, endDate);
 			result.addAttribute(FishConstant.SUCCESS, true);
 		} catch (Exception ex) {
+			logger.error(String.format("[%s]", ex));
 			result.addAttribute(FishConstant.SUCCESS, false);
 			result.addAttribute(FishConstant.ERROR_MSG, getI18N("job.updateDeployDate.failer"));
 		}
@@ -936,6 +943,7 @@ public class VersionDownloadController {
 			taskService.reNoticeApp(updateDeployDateHistoryId);
 			result.addAttribute(FishConstant.SUCCESS, true);
 		} catch (Exception e) {
+			logger.error(String.format("[%s]", e));
 			result.addAttribute(FishConstant.SUCCESS, false);
 		}
 		return result;

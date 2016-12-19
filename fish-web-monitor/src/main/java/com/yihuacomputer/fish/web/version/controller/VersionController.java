@@ -260,6 +260,7 @@ public class VersionController {
 			result.addAttribute(FishConstant.SUCCESS, true);
 			result.addAttribute("data", form);
 		} catch (Exception ex) {
+			logger.error(String.format("[%s]", ex));
 			result.addAttribute(FishConstant.SUCCESS, false);
 			
 			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("error.handleError", null, FishCfg.locale));

@@ -113,6 +113,7 @@ public class QuartzConfController {
 			scheduler.pauseJob(jobKey);
 			result.addAttribute(FishConstant.SUCCESS, true);
 		} catch (SchedulerException e) {
+			logger.error(String.format("[%s]", e));
 			result.addAttribute(FishConstant.SUCCESS, false);
 		}
 		return result;
@@ -138,6 +139,7 @@ public class QuartzConfController {
 			scheduler.resumeJob(jobKey);
 			result.addAttribute(FishConstant.SUCCESS, true);
 		} catch (SchedulerException e) {
+			logger.error(String.format("[%s]", e));
 			result.addAttribute(FishConstant.SUCCESS, false);
 		}
 		return result;
@@ -166,6 +168,7 @@ public class QuartzConfController {
 			scheduler.deleteJob(jobKey);
 			result.addAttribute(FishConstant.SUCCESS, true);
 		} catch (SchedulerException e) {
+			logger.error(String.format("[%s]", e));
 			result.addAttribute(FishConstant.SUCCESS, false);
 		}
 		return result;
@@ -198,6 +201,7 @@ public class QuartzConfController {
 			result.addAttribute(FishConstant.SUCCESS, true);
 			
 		} catch (SchedulerException e) {
+			logger.error(String.format("[%s]", e));
 			result.addAttribute(FishConstant.SUCCESS, false);
 		}
 		
@@ -241,6 +245,7 @@ public class QuartzConfController {
 			scheduler.rescheduleJob(triggerKey , trigger);
 			result.addAttribute(FishConstant.SUCCESS, true);
 		} catch (Exception e) {
+			logger.error(String.format("[%s]", e));
 			result.addAttribute(FishConstant.SUCCESS, false);
 			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("quartz.fail", null, FishCfg.locale));
 		}
