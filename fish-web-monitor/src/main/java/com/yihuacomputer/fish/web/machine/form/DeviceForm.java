@@ -2,6 +2,9 @@ package com.yihuacomputer.fish.web.machine.form;
 
 import java.lang.reflect.Method;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.common.util.IP;
 import com.yihuacomputer.fish.api.device.AwayFlag;
@@ -11,6 +14,9 @@ import com.yihuacomputer.fish.api.device.SetupType;
 import com.yihuacomputer.fish.api.device.WorkType;
 
 public class DeviceForm {
+	
+	private static Logger logger = LoggerFactory.getLogger(DeviceForm.class);
+	
 	private String id;
 
 	/**
@@ -306,6 +312,7 @@ public class DeviceForm {
 			Method method = targetClass.getMethod("getById", new Class[] { int.class });
 			resultObj = (T) method.invoke(null, new Object[] { Integer.valueOf(value) });
 		} catch (Exception e) {
+			logger.error(String.format("[%s]", e));
 		}
 		return resultObj;
 	}

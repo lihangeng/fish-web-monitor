@@ -72,6 +72,7 @@ public class GroupController {
 			service.remove(id);
 			result.addAttribute(FishConstant.SUCCESS, true);
 		} catch (Exception ex) {
+			logger.error(String.format("[%s]", ex));
 			result.addAttribute(FishConstant.SUCCESS, false);
 		}
 		return result;

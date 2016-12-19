@@ -223,6 +223,7 @@ public class AtmBrandController {
 				return true;
 			}
 		} catch (Exception e) {
+			logger.error(String.format("[%s]", e));
 			return false;
 		}
 	}

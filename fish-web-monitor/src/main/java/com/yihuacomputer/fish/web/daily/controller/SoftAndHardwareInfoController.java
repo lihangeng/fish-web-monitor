@@ -83,7 +83,7 @@ public class SoftAndHardwareInfoController {
             result.put(FishConstant.SUCCESS, true);
             result.put("data", modHalVersion);
         }catch (Exception e) {
-            logger.info("The DeviceModuleStatusController of the method deviceIDC error!" + e.toString());
+            logger.info(String.format("The DeviceModuleStatusController of the method deviceIDC error! Exception is [%s]", e));
             result.put(FishConstant.SUCCESS, false);
         }
         return result;

@@ -162,6 +162,7 @@ public class QuittingNoticeController {
 			result.put(FishConstant.SUCCESS, true);
 			result.addAttribute("data", form);
 		} catch (Exception e) {
+			logger.error(String.format("[%s]", e));
 			result.put(FishConstant.SUCCESS, false);
 			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("user.addFail", null, FishCfg.locale)+messageSource.getMessage("commen.error", null, FishCfg.locale));
 		}
@@ -205,6 +206,7 @@ public class QuittingNoticeController {
 			}
 			result.addAttribute(FishConstant.SUCCESS, true);
 		} catch (Exception ex) {
+			logger.error(String.format("[%s]", ex));
 			result.addAttribute(FishConstant.SUCCESS, false);
 			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("person.delError", null, FishCfg.locale));
 		}
@@ -282,6 +284,7 @@ public class QuittingNoticeController {
 				result.addAttribute("data", form);
 			}
 		} catch (Exception ex) {
+			logger.error(String.format("[%s]", ex));
 			result.addAttribute(FishConstant.SUCCESS, false);
 			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("quittingNotice.updateError", null, FishCfg.locale));
 		}

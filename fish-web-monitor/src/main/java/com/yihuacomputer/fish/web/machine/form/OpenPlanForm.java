@@ -134,6 +134,7 @@ public class OpenPlanForm {
 				}
 			}
 			catch (Exception e){
+				logger.error(String.format("[%s]", e));
 			}
 		}
 		this.desc = deviceOpenPlan.getDesc();

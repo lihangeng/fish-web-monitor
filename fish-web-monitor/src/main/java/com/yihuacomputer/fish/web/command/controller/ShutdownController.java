@@ -1,5 +1,7 @@
 package com.yihuacomputer.fish.web.command.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -30,6 +32,8 @@ import com.yihuacomputer.fish.web.command.format.ShutdownParamForm;
 @Controller
 @RequestMapping("agent")
 public class ShutdownController {
+	
+	private static Logger logger = LoggerFactory.getLogger(ShutdownController.class);
 
     @Autowired
     private ICollectService collectService;
@@ -68,6 +72,7 @@ public class ShutdownController {
             collectService.collectATMCRunInfo(terminalId, runInfo);
         }
         catch (Exception e) {
+        	logger.error(String.format("[%s]", e));
             result.put(FishConstant.SUCCESS, false);
             result.addAttribute("appRet", MonitorResponseCode.FAILURE);
         }
@@ -109,6 +114,7 @@ public class ShutdownController {
             }
         }
         catch (Exception e) {
+        	logger.error(String.format("[%s]", e));
             result.put(FishConstant.SUCCESS, false);
             result.addAttribute("appRet", MonitorResponseCode.FAILURE);
         }

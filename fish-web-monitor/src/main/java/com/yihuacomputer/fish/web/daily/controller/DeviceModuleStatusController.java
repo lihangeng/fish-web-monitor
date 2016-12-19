@@ -95,7 +95,7 @@ public class DeviceModuleStatusController {
             modStatus = (ModStatus) HttpProxy.httpGet(url, ModStatus.class, 5000);
         }
         catch (Exception e) {
-            logger.info("remote get status details error！" + e.toString());
+            logger.info(String.format("remote get status details error！Exception is [%s]", e));
             result.put(FishConstant.SUCCESS, false);
             return result;
         }
@@ -103,7 +103,7 @@ public class DeviceModuleStatusController {
         	try{
         		updateStatus(deviceId, modStatus);
         	}catch(Exception e){
-        		logger.info("updateStatus status details error！" + e.toString());
+        		logger.info(String.format("updateStatus status details error！Exception is [%s]", e));
         	}
             result.put(FishConstant.SUCCESS, true);
             result.put("data", enumI18n(modStatus));

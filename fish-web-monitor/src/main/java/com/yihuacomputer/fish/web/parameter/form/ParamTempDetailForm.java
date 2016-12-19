@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -11,6 +13,9 @@ import com.yihuacomputer.common.jackson.JsonUtils;
 import com.yihuacomputer.fish.api.parameter.IParamTemplateDetail;
 
 public class ParamTempDetailForm {
+	
+	private static Logger logger = LoggerFactory.getLogger(ParamTempDetailForm.class);
+	
 	private long id;
 	private String name;
 	private String remark;
@@ -49,6 +54,7 @@ public class ParamTempDetailForm {
 						new TypeReference<List<ParamTempDetailForm>>() {
 						});
 			} catch (Exception e) {
+				logger.error(String.format("[%s]", e));
 			}
 		}
 		return tempDetailForm;

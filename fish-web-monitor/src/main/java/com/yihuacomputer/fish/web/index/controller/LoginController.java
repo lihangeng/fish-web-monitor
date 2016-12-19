@@ -123,6 +123,7 @@ public class LoginController {
 			}
 			session.setAttribute(FishWebUtils.USER, userSession);
 		} catch (AppException app) {
+			logger.error(String.format("AppException is [%s]", app));
 			result.addAttribute(FishConstant.SUCCESS, false);
 			result.addAttribute("message", app.getMessage());
 		} catch (Exception e) {

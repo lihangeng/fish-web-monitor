@@ -106,6 +106,7 @@ public class RetaincardController {
 						orgService, deviceService));
 			}
 		} catch (Exception e) {
+			logger.error(String.format("[%s]", e));
 			result.addAttribute(FishConstant.SUCCESS, false);
 			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("retaincard.addRefuseError", null, FishCfg.locale));
 		}
@@ -157,6 +158,7 @@ public class RetaincardController {
 				retaincardService.remove(id);
 				result.addAttribute(FishConstant.SUCCESS, true);
 			} catch (Exception ex) {
+				logger.error(String.format("[%s]", ex));
 				result.addAttribute(FishConstant.SUCCESS, false);
 				result.addAttribute("errorMsg", messageSource.getMessage("retaincard.delError", null, FishCfg.locale));
 			}
@@ -216,6 +218,7 @@ public class RetaincardController {
 				result.addAttribute(FishConstant.SUCCESS, true);
 			}
 		} catch (Exception e) {
+			logger.error(String.format("[%s]", e));
 			result.addAttribute(FishConstant.SUCCESS, false);
 			result.addAttribute("errorMsg", messageSource.getMessage("retaincard.getFailError", null, FishCfg.locale));
 		}
@@ -259,6 +262,7 @@ public class RetaincardController {
 				result.addAttribute(FishConstant.SUCCESS, true);
 			}
 		} catch (Exception e) {
+			logger.error(String.format("[%s]", e));
 			result.addAttribute(FishConstant.SUCCESS, false);
 			result.addAttribute("errorMsg", messageSource.getMessage("retaincard.operateError", null, FishCfg.locale));
 		}
@@ -307,6 +311,7 @@ public class RetaincardController {
 				result.addAttribute("errorMsg", messageSource.getMessage("retaincard.getFailNotExist", null, FishCfg.locale));
 			}
 		} catch (Exception e) {
+			logger.error(String.format("[%s]", e));
 			result.addAttribute(FishConstant.SUCCESS, false);
 			result.addAttribute("errorMsg", messageSource.getMessage("retaincard.getFailError", null, FishCfg.locale));
 		}
@@ -401,6 +406,7 @@ public class RetaincardController {
 				}
 			}
 		} catch (Exception e) {
+			logger.error(String.format("[%s]", e));
 			result.addAttribute(FishConstant.SUCCESS, false);
 			result.addAttribute("errorMsg", messageSource.getMessage("retaincard.handoverError", null, FishCfg.locale));
 		}
@@ -443,6 +449,7 @@ public class RetaincardController {
 				result.addAttribute(FishConstant.SUCCESS, true);
 			}
 		} catch (Exception e) {
+			logger.error(String.format("[%s]", e));
 			result.addAttribute(FishConstant.SUCCESS, false);
 			result.addAttribute("errorMsg", messageSource.getMessage("retaincard.destroyFailError", null, FishCfg.locale));
 		}

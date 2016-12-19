@@ -1,5 +1,7 @@
 package com.yihuacomputer.fish.web.command.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
@@ -27,6 +29,8 @@ import com.yihuacomputer.fish.web.command.format.ProcessForm;
 @RequestMapping("agent/process")
 public class SysProcessController {
 	
+	private static Logger logger = LoggerFactory.getLogger(SysProcessController.class);
+	
 	@Autowired
 	private MessageSource messageSource;
 	@RequestMapping(method = RequestMethod.GET)
@@ -39,6 +43,7 @@ public class SysProcessController {
 			result.addAttribute(FishConstant.SUCCESS, true);
 			result.addAttribute("data", ProcessForm.convert(listProcessForm.getProcessList()));
 		} catch (Exception e) {
+			logger.error(String.format("[%s]", e));
 			result.addAttribute(FishConstant.SUCCESS, false);
 			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("sysProcess.getFail", null, FishCfg.locale));
 		}

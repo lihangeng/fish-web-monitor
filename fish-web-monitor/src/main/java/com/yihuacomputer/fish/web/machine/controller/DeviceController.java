@@ -164,11 +164,12 @@ public class DeviceController {
 			deviceService.remove(id);
 			result.addAttribute(FishConstant.LOG_KEY, device.getTerminalId());
 		} catch (ServiceException se) {
-
+			logger.error(String.format("[%s]", se));
 			result.addAttribute(FishConstant.SUCCESS, false);
 			result.addAttribute(FishConstant.ERROR_MSG, se.getMessage());
 
 		} catch (Exception ex) {
+			logger.error(String.format("[%s]", ex));
 			result.addAttribute(FishConstant.SUCCESS, false);
 			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("commen.error", null, FishCfg.locale));
 		}

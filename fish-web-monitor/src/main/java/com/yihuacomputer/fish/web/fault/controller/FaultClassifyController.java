@@ -95,6 +95,7 @@ public class FaultClassifyController
         }
         catch (Exception e)
         {
+        	logger.error(String.format("[%s]", e));
             result.addAttribute(FishConstant.SUCCESS, false);
             result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("param.updateError", null, FishCfg.locale));
         }

@@ -1,5 +1,8 @@
 package com.yihuacomputer.fish.web.command.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.yihuacomputer.common.http.HttpProxy;
 import com.yihuacomputer.common.util.StringUtils;
 import com.yihuacomputer.fish.api.monitor.business.CommandResult;
@@ -7,6 +10,8 @@ import com.yihuacomputer.fish.api.monitor.business.IRemoteCommHist;
 import com.yihuacomputer.fish.api.monitor.business.IRemoteCommHistService;
 
 public class RemoteCommandRunnable implements Runnable {
+	
+	private static Logger logger = LoggerFactory.getLogger(RemoteCommandRunnable.class);
 
     private String url;
 
@@ -41,7 +46,7 @@ public class RemoteCommandRunnable implements Runnable {
             }
         }
         catch (Exception e) {
-
+        	logger.error(String.format("[%s]", e));
             IRemoteCommHist hist = remoteCommHistService.get(id);
             hist.setCommandResult(CommandResult.CONNECT_FAIL);
             remoteCommHistService.update(hist);

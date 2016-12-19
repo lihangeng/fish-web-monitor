@@ -123,6 +123,7 @@ public class ScreenShotController {
 			result.addAttribute("data", list);
 			return result;
 		} catch (Exception e) {
+			logger.error(String.format("[%s]", e));
 			result.addAttribute(FishConstant.SUCCESS, false);
 			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("screenShot.fail", null, FishCfg.locale));
 			return result;

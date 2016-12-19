@@ -100,6 +100,7 @@ public class AtmGroupController {
 				result.addAttribute(FishConstant.SUCCESS, true);
 			}
 		} catch (Exception e) {
+			logger.error(String.format("[%s]", e));
 			result.addAttribute(FishConstant.SUCCESS, false);
 			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("person.delError", null, FishCfg.locale));
 		}
@@ -124,6 +125,7 @@ public class AtmGroupController {
 				result.addAttribute(FishConstant.DATA, new AtmGroupForm(atmGroup));
 			}
 		} catch (Exception e) {
+			logger.error(String.format("[%s]", e));
 			result.addAttribute(FishConstant.SUCCESS, false);
 			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("user.addFail", null, FishCfg.locale)+":"+messageSource.getMessage("commen.error", null, FishCfg.locale));
 		}
@@ -158,6 +160,7 @@ public class AtmGroupController {
 				}
 			}
 		} catch (Exception e) {
+			logger.error(String.format("[%s]", e));
 			result.addAttribute(FishConstant.SUCCESS, false);
 			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("param.updateError", null, FishCfg.locale));
 		}
@@ -292,6 +295,7 @@ public class AtmGroupController {
 				return true;
 			}
 		} catch (Exception e) {
+			logger.error(String.format("[%s]", e));
 			return false;
 		}
 	}

@@ -117,7 +117,7 @@ public class ETLJobController {
 			}
 		} catch (Exception e) {
 
-			logger.error(e.toString());
+			logger.error(String.format("Exception is [%s]", e));
 
 			result.addAttribute(FishConstant.SUCCESS, false);
 			result.addAttribute(FishConstant.ERROR_MSG, null);
@@ -145,10 +145,9 @@ public class ETLJobController {
 			result.addAttribute(FishConstant.DATA, path);
 		} catch (Exception e) {
 
-			logger.error(e.toString());
+			logger.error(String.format("Exception is [%s]", e));
 
 			result.addAttribute(FishConstant.SUCCESS, false);
-			// result.addAttribute(FishConstant.ERROR_MSG, null);
 		}
 		return result;
 	}
@@ -168,6 +167,7 @@ public class ETLJobController {
 			bufferedWriter.close();
 
 		} catch (Exception e) {
+			logger.error(String.format("[%s]", e));
 		}
 
 		finally {
@@ -231,7 +231,7 @@ public class ETLJobController {
 			result.addAttribute(FishConstant.SUCCESS, true);
 			result.addAttribute("data", forms);
 		} catch (Exception e) {
-			logger.error(e.toString());
+			logger.error(String.format("[%s]", e));
 			result.addAttribute(FishConstant.SUCCESS, false);
 			result.addAttribute(FishConstant.ERROR_MSG, null);
 			result.addAttribute("data", forms);

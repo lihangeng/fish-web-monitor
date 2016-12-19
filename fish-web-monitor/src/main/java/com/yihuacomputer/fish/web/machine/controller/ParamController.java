@@ -87,6 +87,7 @@ public class ParamController {
 			result.addAttribute(FishConstant.SUCCESS, true);
 			result.addAttribute("data", request);
 		} catch (Exception e) {
+			logger.error(String.format("[%s]", e));
 			result.addAttribute(FishConstant.SUCCESS, false);
 			result.addAttribute(FishConstant.ERROR_MSG, getI18N("param.updateError"));
 		}

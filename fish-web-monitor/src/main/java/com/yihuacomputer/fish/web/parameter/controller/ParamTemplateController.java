@@ -149,10 +149,12 @@ public class ParamTemplateController {
 			templateService.remove(id);
 			result.addAttribute(FishConstant.SUCCESS, true);
 		}catch(ObjectNotFoundException ex ){
+			logger.error(String.format("[%s]", ex));
 			result.addAttribute(FishConstant.SUCCESS, false);
 			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("param.template.notExist", null, FishCfg.locale));
 		} 
 		catch (Exception ex) {
+			logger.error(String.format("[%s]", ex));
 			result.addAttribute(FishConstant.SUCCESS, false);
 		}
 		return result;
@@ -254,6 +256,7 @@ public class ParamTemplateController {
 				return true;
 			}
 		} catch (Exception e) {
+			logger.error(String.format("[%s]", e));
 			return false;
 		}
 	}

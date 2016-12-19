@@ -4,6 +4,8 @@ import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -43,6 +45,8 @@ import com.yihuacomputer.fish.web.util.FishWebUtils;
 @RequestMapping("agent")
 public class RestartController {
 
+	private static Logger logger = LoggerFactory.getLogger(RestartController.class);
+	
     @Autowired
     private ICollectService collectService;
 
@@ -87,7 +91,7 @@ public class RestartController {
             result.put(FishConstant.SUCCESS, true);
         }
         catch (Exception e) {
-            
+        	logger.error(String.format("[%s]", e));
             result.put(FishConstant.SUCCESS, false);
             
             hist.setCommandResult(CommandResult.CONNECT_FAIL);
@@ -188,13 +192,6 @@ public class RestartController {
         hist.setHandlePerson(session.getUserName());
         hist.setTerminalId(terminalId);
         remoteCommHistService.save(hist);
-
-//        restartParamForm.setId(hist.getId());
-//        Runnable runnable = new RemoteCommandRunnable(url, restartParamForm, "POST", hist.getId(),
-//                remoteCommHistService);
-//        Thread thread = new Thread(runnable);
-//        thread.start();
-        
         restartParamForm.setId(hist.getId());
         try {
             // 设置运行状态为重启
@@ -205,8 +202,8 @@ public class RestartController {
             result.put(FishConstant.SUCCESS, true);
         }
         catch (Exception e) {
+        	logger.error(String.format("[%s]", e));
             result.put(FishConstant.SUCCESS, false);
-            
             hist.setCommandResult(CommandResult.CONNECT_FAIL);
             remoteCommHistService.update(hist);
             

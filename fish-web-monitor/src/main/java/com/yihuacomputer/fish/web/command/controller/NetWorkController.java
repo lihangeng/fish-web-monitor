@@ -93,7 +93,7 @@ public class NetWorkController {
             result.addAttribute(FishConstant.SUCCESS, true);
         }
         catch (Exception e) {
-            logger.error(String.format("Error test bandwidth! IP is [%s]", ip));
+            logger.error(String.format("Error test bandwidth! IP is [%s],Exception is:[%s]", ip,e));
             result.addAttribute(FishConstant.SUCCESS, false);
         }
         return result;
@@ -112,7 +112,7 @@ public class NetWorkController {
             }
         }
         catch (Exception e) {
-            logger.error(String.format("write test file error! file : [%s]", file.getAbsoluteFile()));
+            logger.error(String.format("write test file error! file : [%s],Exception is :[%s]", file.getAbsoluteFile(),e));
         }
         finally {
             if (fw != null) {
@@ -120,14 +120,13 @@ public class NetWorkController {
                     fw.close();
                 }
                 catch (IOException e) {
+                	logger.error(String.format("Exception is :[%s]", e));
                 }
             }
         }
     }
 
     public static void main(String[] args) {
-//        NetWorkController nwc = new NetWorkController();
-//        nwc.netWorkBandwidth("192.18.30.38");
         System.out.println(FishCfg.getTempDir());
 
     }
