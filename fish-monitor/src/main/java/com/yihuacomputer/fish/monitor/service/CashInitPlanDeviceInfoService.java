@@ -225,7 +225,7 @@ public class CashInitPlanDeviceInfoService implements ICashInitPlanDeviceInfoSer
 				//设置加钞设备加钞限额信息
 				double dailyVolume = 0.0;
 				if(monthDailyTradingVolume!=null){
-					if(monthDailyTradingVolume.getLastYearAmtOutAvg()==0){
+					if(Double.compare(monthDailyTradingVolume.getLastYearAmtOutAvg(), 0.0) == 0){
 						dailyVolume = monthDailyTradingVolume.getMonthAmtOutAvg()*cashInitDays;
 					}
 					else{

@@ -308,7 +308,7 @@ public class CashInitPlanInfoExtractDataService implements ICashInitPlanInfoExtr
 		IMonthDailyTradingVolume monthDailyTradingVolume = monthDailyVolume.get(terminalId);
 		long dailyVolume = 0;
 		if (monthDailyTradingVolume != null) {
-			if (monthDailyTradingVolume.getLastYearAmtOutAvg() == 0) {
+			if (Double.compare(monthDailyTradingVolume.getLastYearAmtOutAvg(), 0.0) == 0) {
 				dailyVolume = (long) monthDailyTradingVolume.getMonthAmtOutAvg();
 			} else {
 				dailyVolume = (long) monthDailyTradingVolume.getLastYearAmtOutAvg() + (long) monthDailyTradingVolume.getMonthAmtOutAvg();

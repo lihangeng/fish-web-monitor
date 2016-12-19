@@ -116,7 +116,7 @@ public class TransationFilter implements ITransationFilter {
         }
 
         // 检查金额
-        boolean amt_b = (startAmt == endAmt && Double.compare(startAmt, 0.0) == 0) || (trans.getAmt() >= startAmt && trans.getAmt() <= endAmt);
+        boolean amt_b = (Double.compare(startAmt, 0.0) == 0 && Double.compare(endAmt, 0.0) == 0) || (trans.getAmt() >= startAmt && trans.getAmt() <= endAmt);
         if (!amt_b) {
             return false;
         }
@@ -264,7 +264,7 @@ public class TransationFilter implements ITransationFilter {
         if ((terminalId == null || terminalId.equals(trans.getTermId()))
                 && (creditAccount == null || creditAccount.equals(trans.getCreditAccount()))
                 && (debitAccount == null || debitAccount.equals(trans.getDebitAccount()))
-                && ((startAmt == 0.0 && endAmt == 0.0) || (trans.getAmt() >= startAmt && trans.getAmt() <= endAmt))) {
+                && ((Double.compare(startAmt, 0.0) == 0 && Double.compare(endAmt, 0.0) == 0) || (trans.getAmt() >= startAmt && trans.getAmt() <= endAmt))) {
 
             return true;
         }
