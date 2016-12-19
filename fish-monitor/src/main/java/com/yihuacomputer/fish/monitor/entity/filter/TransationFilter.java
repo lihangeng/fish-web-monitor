@@ -116,7 +116,7 @@ public class TransationFilter implements ITransationFilter {
         }
 
         // 检查金额
-        boolean amt_b = (startAmt == 0.0 && endAmt == 0.0) || (trans.getAmt() >= startAmt && trans.getAmt() <= endAmt);
+        boolean amt_b = (startAmt == endAmt && Double.compare(startAmt, 0.0) == 0) || (trans.getAmt() >= startAmt && trans.getAmt() <= endAmt);
         if (!amt_b) {
             return false;
         }
