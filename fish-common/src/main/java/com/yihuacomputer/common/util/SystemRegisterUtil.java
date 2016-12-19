@@ -10,9 +10,12 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 public class SystemRegisterUtil {
-	
+	private static Logger logger = LoggerFactory.getLogger(SystemRegisterUtil.class);
 	//对key进行编码
 	public static String convertKey(String mac){
 		//去掉特殊字符
@@ -172,6 +175,7 @@ public class SystemRegisterUtil {
 			regInfo.setDisDay(innerDistanceDay);
 			regInfo.setAnalySuccess(true);
 		} catch (Exception e) {
+			logger.error(String.format("Exception is: [%s]",e));
 			regInfo.setAnalySuccess(false);
 		}
 		return regInfo;

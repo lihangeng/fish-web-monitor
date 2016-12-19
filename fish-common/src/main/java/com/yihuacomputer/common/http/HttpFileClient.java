@@ -265,6 +265,7 @@ public class HttpFileClient {
 			return HttpFileRet.CONN_ERROR;
 		}
 		catch (Exception e) {
+			logger.error(String.format("Exception is: [%s]",e));
 			return HttpFileRet.ERROR;
 		} finally {
 			if (randomFile != null) {

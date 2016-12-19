@@ -22,6 +22,9 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.yihuacomputer.fish.api.person.IUser;
 import com.yihuacomputer.fish.api.version.IVersion;
 import com.yihuacomputer.fish.api.version.job.IJob;
@@ -35,6 +38,8 @@ import com.yihuacomputer.fish.version.service.api.IDomainJobService;
 @Entity
 @Table(name = "VER_JOB")
 public class Job implements IJob, Serializable {
+	
+	private static Logger logger = LoggerFactory.getLogger(Job.class);
 
     private static final long serialVersionUID = 1L;
 
@@ -211,6 +216,7 @@ public class Job implements IJob, Serializable {
             return this.tasks;
         }
         catch (Exception ex) {
+        	logger.error(String.format("[%s]", ex));
             return this.jobService.getTaskService().findTasksByJobId(this.jobId);
         }
     }

@@ -7,6 +7,8 @@ import java.util.Map;
 
 import javax.annotation.PostConstruct;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,6 +27,9 @@ import com.yihuacomputer.fish.monitor.entity.box.DeviceBoxInfo;
 @Service
 @Transactional
 public class DeviceBoxInfoService implements IDeviceBoxInfoService,IDeviceListener {
+	
+	private static Logger logger = LoggerFactory.getLogger(DeviceBoxInfoService.class);
+	
 	@Autowired
 	private IGenericDao dao;
 
@@ -126,6 +131,7 @@ public class DeviceBoxInfoService implements IDeviceBoxInfoService,IDeviceListen
 		try{
 			dao.batchUpdate(sb.toString(), fixedFilters.toArray());
 		}catch(Exception e){
+			logger.error(String.format("[%s]", e));
 			return false;
 		}
 		return true;

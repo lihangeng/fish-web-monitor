@@ -275,6 +275,7 @@ public class TaskService implements ITaskService {
 	                task.setReason("");
                 }
             } catch (Exception ex) {
+            	logger.error(String.format("[%s]", ex));
             	retResult = -1 ;
                 task.setReason(messageSourceVersion.getMessage("exception.task.connectAgentFail", null, FishCfg.locale));
             }

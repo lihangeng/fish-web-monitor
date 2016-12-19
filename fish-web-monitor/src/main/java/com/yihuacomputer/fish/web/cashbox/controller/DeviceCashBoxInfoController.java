@@ -135,6 +135,7 @@ public class DeviceCashBoxInfoController {
 		try{
 			updateResult = deviceBoxInfoService.synchronizedUpdate(deviceBoxInfo,filter);
 		}catch(Exception e){
+			logger.error(String.format("[%s]", e));
 			model.addAttribute(FishConstant.SUCCESS, false);
 			model.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("user.processError", null, FishCfg.locale));
 		}

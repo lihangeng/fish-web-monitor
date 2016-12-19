@@ -1,6 +1,8 @@
 package com.yihuacomputer.fish.monitor.entity.report;
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.MessageSource;
 
 import com.yihuacomputer.common.FishCfg;
@@ -13,6 +15,8 @@ import com.yihuacomputer.fish.api.monitor.xfs.status.DeviceStatus;
 import com.yihuacomputer.fish.api.monitor.xfs.status.NetStatus;
 
 public class ClassifyReport implements IClassifyReport {
+	
+	private static Logger logger = LoggerFactory.getLogger(ClassifyReport.class);
 
     private long id;
     /** 设备号 */
@@ -464,6 +468,7 @@ public class ClassifyReport implements IClassifyReport {
             }
         }
         catch (Exception e) {
+        	logger.error(String.format("[%s]", e));
             return;
         }
     }

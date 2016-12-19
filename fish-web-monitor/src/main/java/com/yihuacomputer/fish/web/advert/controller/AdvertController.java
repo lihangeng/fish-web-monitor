@@ -376,7 +376,7 @@ public class AdvertController {
 						try {
 							meta.createNewFile();
 						} catch (IOException e) {
-							throw new AppException(messageSourceVersion.getMessage("advert.createMeta.fail",null,FishCfg.locale));
+							logger.error(String.format("%s,IOException is [%s]",messageSourceVersion.getMessage("advert.createMeta.fail",null,FishCfg.locale),e));
 						}
 					}
 

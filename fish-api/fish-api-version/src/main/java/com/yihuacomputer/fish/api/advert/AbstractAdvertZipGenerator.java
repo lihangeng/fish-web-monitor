@@ -11,7 +11,6 @@ import java.io.IOException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.yihuacomputer.common.exception.AppException;
 import com.yihuacomputer.common.util.IOUtils;
 import com.yihuacomputer.common.util.ZipUtils;
 import com.yihuacomputer.fish.api.advert.util.AdvertTypeConversionService;
@@ -99,7 +98,7 @@ public class AbstractAdvertZipGenerator implements IAdvertZipGenerator {
             try {
                 meta.createNewFile();
             } catch (IOException e) {
-                throw new AppException("创建meta文件失败");
+            	logger.error(String.format("The creating file of [meta] has been failed,IOException is :[%s]", e));
             }
         }
 

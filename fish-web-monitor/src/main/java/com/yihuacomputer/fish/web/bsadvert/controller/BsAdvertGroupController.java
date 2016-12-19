@@ -232,6 +232,7 @@ public class BsAdvertGroupController {
 				result.addAttribute(FishConstant.DATA, request);
 			}
 		} catch (Exception e) {
+			logger.error(String.format("[%s]", e));
 			result.addAttribute(FishConstant.SUCCESS, false);
 			result.addAttribute(FishConstant.ERROR_MSG, messageSourceVersion.getMessage("bsadvertGroup.update.updateError", null, FishCfg.locale));
 		}
@@ -279,6 +280,7 @@ public class BsAdvertGroupController {
 				result.addAttribute(FishConstant.SUCCESS, true);
 			}
 		} catch (Exception e) {
+			logger.error(String.format("[%s]", e));
 			result.addAttribute(FishConstant.SUCCESS, false);
 			result.addAttribute(FishConstant.ERROR_MSG, messageSourceVersion.getMessage("bsadvertGroup.delete.deleteFailed", null, FishCfg.locale));
 		}

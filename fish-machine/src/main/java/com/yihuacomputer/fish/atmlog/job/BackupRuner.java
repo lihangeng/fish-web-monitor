@@ -3,6 +3,9 @@ package com.yihuacomputer.fish.atmlog.job;
 import java.io.File;
 import java.util.Date;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.http.HttpFileCfg;
 import com.yihuacomputer.common.http.HttpFileClient;
@@ -21,6 +24,8 @@ import com.yihuacomputer.fish.atmlog.rule.BackupRule;
  *
  */
 public class BackupRuner implements Runnable{
+	
+	private static Logger logger = LoggerFactory.getLogger(BackupRuner.class);
 
 	private IAtmLogService logService;
 
@@ -53,6 +58,7 @@ public class BackupRuner implements Runnable{
 		try{
 			ret = this.getBackupResult(HttpFileClient.downloadFile(fileCfg));
 		}catch(Exception e){
+			logger.error(String.format("[%s]", e));
 			ret =  BackupResult.ERROR;
 		}
 

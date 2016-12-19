@@ -236,7 +236,7 @@ public class CashInitPlanDeviceDetailController {
 			cashInitPlanInfoService.update(planInfo);
 			result.put(FishConstant.SUCCESS, true);
 		} catch (Exception e) {
-			logger.error("load selectable initplandevice failer");
+			logger.error(String.format("load selectable initplandevice failer,Exception is :[%s]",e));
 			result.addAttribute(FishConstant.SUCCESS, false);
 			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("user.processError", null, FishCfg.locale));
 			return result;

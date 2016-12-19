@@ -179,6 +179,7 @@ public class FtpUtils {
             return false;
         }
         catch (Exception e) {
+        	logger.error(String.format("%s", e));
             return false;
         }
     }

@@ -57,10 +57,10 @@ public class DownloadVersionStatusController {
             }
             catch (TaskCanceledException cancelException) {
                 msg.setRet("CANCEL");
-                logger.error(String.format("更新报告被取消:[%s]", JsonUtils.toJson(msg)));
+                logger.error(String.format("Updating has been canceled! [%s],exception is [%s]", JsonUtils.toJson(msg),cancelException));
             }
             catch (Exception e) {
-                logger.error(String.format("更新报告信息异常![%s],异常内容:[%s]", e, JsonUtils.toJson(msg)));
+                logger.error(String.format("Updating has been canceled! [%s],exception is [%s]", JsonUtils.toJson(msg),e));
             }
         }
         return msg;

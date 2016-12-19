@@ -4,12 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.yihuacomputer.common.jackson.JsonUtils;
 
 public class DeviceParam {
+	
+	private static Logger logger = LoggerFactory.getLogger(DeviceParam.class);
 	
 	private long id;
 
@@ -154,6 +158,7 @@ public class DeviceParam {
 						new TypeReference<List<DeviceParam>>() {
 						});
 			} catch (Exception e) {
+				logger.error(String.format("[%s]", e));
 			}
 		}
 		return tempDetailForm;

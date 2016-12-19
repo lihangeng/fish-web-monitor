@@ -2,6 +2,9 @@ package com.yihuacomputer.fish.report.engine.pdf;
 
 import java.io.IOException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.itextpdf.awt.AsianFontMapper;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.DocumentException;
@@ -14,7 +17,7 @@ import com.itextpdf.text.pdf.BaseFont;
  *
  */
 public class FontMgr {
-	
+	private static Logger logger = LoggerFactory.getLogger(FontMgr.class);
 	public static BaseFont chinaFont;
 	
 	public static final AsianFontMapper asianFontMapper = new AsianFontMapper(AsianFontMapper.ChineseSimplifiedFont,AsianFontMapper.ChineseSimplifiedEncoding_H);
@@ -24,9 +27,9 @@ public class FontMgr {
 		try {
 			chinaFont = BaseFont.createFont(AsianFontMapper.ChineseSimplifiedFont, AsianFontMapper.ChineseSimplifiedEncoding_H,BaseFont.NOT_EMBEDDED);
 		} catch (DocumentException e) {
-			e.printStackTrace();
+			logger.error(String.format("[%s]", e));
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error(String.format("[%s]", e));
 		}
 	}
 	

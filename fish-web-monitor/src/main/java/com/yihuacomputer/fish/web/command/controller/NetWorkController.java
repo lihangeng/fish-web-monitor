@@ -55,7 +55,7 @@ public class NetWorkController {
             result.addAttribute("sendByte", sendByte);
         }
         catch (Exception e) {
-            logger.error(String.format("NetWork request is error! ip is [%s]", ip));
+            logger.error(String.format("NetWork request is error! ip is [%s],Exception is :[%s]", ip,e));
             result.addAttribute(FishConstant.SUCCESS, false);
         }
 

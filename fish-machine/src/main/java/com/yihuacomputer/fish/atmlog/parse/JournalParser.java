@@ -12,6 +12,8 @@ import java.util.regex.Pattern;
 
 import javax.annotation.PostConstruct;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.yihuacomputer.fish.api.atmlog.BizJournal;
@@ -23,6 +25,8 @@ import com.yihuacomputer.fish.atmlog.entity.TransCycle;
 
 @Service
 public class JournalParser {
+	
+	private static Logger logger = LoggerFactory.getLogger(JournalParser.class);
 	
 	/*ATM周期开始匹配表达式*/
 	private Pattern cashInPattern = null;
@@ -93,21 +97,21 @@ public class JournalParser {
 /*			this.transTimePattern = Pattern.compile(pros.getProperty("TRANS_TIME_PATTERN_TEXT"));*/
 			
 		}catch( Exception e ){
-			/*e.printStackTrace();*/
+			logger.error(String.format("[%s]", e));
 			return;
 		}finally{
 			if ( null != bf  ){
 				try{
 					bf.close();
 				}catch(IOException e){
-					/*e.printStackTrace();*/
+					logger.error(String.format("[%s]", e));
 				}
 			}
 			if ( null != ins ){
 				try {
 					ins.close();
 				} catch (IOException e) {
-					/*e.printStackTrace();*/
+					logger.error(String.format("[%s]", e));
 				}
 			}
 		}	

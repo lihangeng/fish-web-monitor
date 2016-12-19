@@ -247,6 +247,7 @@ public class Advert implements IAdvert, Serializable {
             try {
                 meta.createNewFile();
             } catch (IOException e) {
+            	logger.error(String.format("[%s]", e));
                 throw new AppException(messageSourceVersion.getMessage("advert.createMetaFail", null, FishCfg.locale));
             }
         }

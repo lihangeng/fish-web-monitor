@@ -41,7 +41,7 @@ public class UpdateReportController {
 				versionServic.collectUpdateReport(msg.getTaskId(),msg.getRet(),msg.getDownUrl());
 			}catch(TaskCanceledException cancelException){
 				msg.setRet("CANCEL");
-				logger.error(String.format("collection UpdateReport is cancel :[%s]",JsonUtils.toJson(msg)));
+				logger.error(String.format("collection UpdateReport is cancel :[%s],The exception is [%s]",JsonUtils.toJson(msg),cancelException));
 			}
 			catch(Exception e){
 	            logger.error(String.format("collection UpdateReport exception![%s],UpdateReport is [%s]",e,JsonUtils.toJson(msg)));

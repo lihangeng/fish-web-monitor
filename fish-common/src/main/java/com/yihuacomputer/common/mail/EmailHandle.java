@@ -168,6 +168,7 @@ public class EmailHandle {
 		try {
 			mimeMsg.setFrom(new InternetAddress(from));
 		} catch (Exception e) {
+			logger.error(String.format("Exception is: [%s]",e));
 			return false;
 		}
 		return true;
@@ -186,6 +187,7 @@ public class EmailHandle {
 		try {
 			mimeMsg.addRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
 		} catch (Exception e) {
+			logger.error(String.format("Exception is: [%s]",e));
 			return false;
 		}
 		return true;
@@ -204,6 +206,7 @@ public class EmailHandle {
 		try {
 			mimeMsg.setRecipients(javax.mail.Message.RecipientType.CC, InternetAddress.parse(copyto));
 		} catch (Exception e) {
+			logger.error(String.format("Exception is: [%s]",e));
 			return false;
 		}
 		return true;

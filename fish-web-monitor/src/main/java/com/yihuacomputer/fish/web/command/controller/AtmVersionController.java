@@ -96,6 +96,7 @@ public class AtmVersionController {
             result.addAttribute("data", atmVersionForm);
         }
         catch (Exception e) {
+        	logger.error(String.format("[%s]", e));
             result.addAttribute(FishConstant.SUCCESS, false);
         }
         logger.info(JsonUtils.toJson(result));
