@@ -281,7 +281,7 @@ public class OrganizationController {
 		} catch (NotFoundException nfe) {
 			logger.error(String.format("[%s]", nfe));
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute(FishConstant.ERROR_MSG, String.format("%s,"+messageSource.getMessage("organization.move.refresh", null, FishCfg.locale), nfe.getMessage()));
+			result.addAttribute(FishConstant.ERROR_MSG, String.format("%s , %s",nfe.getMessage(),messageSource.getMessage("organization.move.refresh", null, FishCfg.locale)));
 		}
 		catch (Exception ex) {
 			logger.error(String.format("[%s]", ex));

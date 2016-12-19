@@ -139,7 +139,7 @@ public class AdvertController {
 			file.transferTo(targetFile);
 			return "{'success':true,'oFileName':'" + saveFileName + "'}";
 		} catch (Exception e) {
-			logger.error(String.format("upload file exception: [%s]" + e));
+			logger.error(String.format("upload file exception: [%s]", e));
 			return "{'success':false,'errors':'"+messageSourceVersion.getMessage("advert.upload.exception", new Object[]{saveFileName, e.getMessage()}, FishCfg.locale)+"'}";
 		}
 	}
@@ -174,7 +174,7 @@ public class AdvertController {
 			UploadResourceForm form = new UploadResourceForm(oFileName, saveFileName, getTempWebDir(request, screen, saveFileName), screen);
 			return JsonUtils.toJson(form);
 		} catch (Exception e) {
-			logger.error(String.format("upload file exception: [%s]" + e));
+			logger.error(String.format("upload file exception: [%s]",e));
 			return "{'success':false,'errors':'"+messageSourceVersion.getMessage("advert.upload.exception", new Object[]{saveFileName, e.getMessage()}, FishCfg.locale)+"'}";
 		}
 	}
@@ -410,7 +410,7 @@ public class AdvertController {
 						bw.close();
 						fw.close();
 					} catch (IOException e) {
-						logger.error(String.format("inputStream execption: [%s]" + e));
+						logger.error(String.format("inputStream execption: [%s]",e));
 					} finally {
 						try {
 							if (bw != null) {
@@ -420,7 +420,7 @@ public class AdvertController {
 								fw.close();
 							}
 						} catch (IOException e) {
-							logger.error(String.format("close ioStream exception: [%s]" + e));
+							logger.error(String.format("close ioStream exception: [%s]" , e));
 						}
 					}
 				}
@@ -571,7 +571,7 @@ public class AdvertController {
 			result.addAttribute(FishConstant.SUCCESS, true);
 			result.addAttribute(FishConstant.DATA, toAdvertVersion(version));
 		} catch (Exception ex) {
-			logger.error(String.format("get advert version error: [%s]" + ex));
+			logger.error(String.format("get advert version error: [%s]" , ex));
 			result.addAttribute(FishConstant.SUCCESS, false);
 		}
 		return result;

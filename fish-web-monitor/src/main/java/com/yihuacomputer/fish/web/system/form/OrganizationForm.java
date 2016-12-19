@@ -106,14 +106,15 @@ public class OrganizationForm {
 		if(null==organization){
 			return displayName;
 		}
-		while(null!=organization.getParent()){
+		IOrganization organizationValue = organization;
+		while(null!=organizationValue.getParent()){
 			if("".equals(displayName)){
-				displayName = organization.getName();
+				displayName = organizationValue.getName();
 			}
 			else{
-				displayName = organization.getName()+"/"+displayName;
+				displayName = organizationValue.getName()+"/"+displayName;
 			}
-			organization = organization.getParent();
+			organizationValue = organizationValue.getParent();
 		}
 		return displayName;
 	}

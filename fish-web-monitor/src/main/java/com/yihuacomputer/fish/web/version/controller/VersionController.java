@@ -166,7 +166,7 @@ public class VersionController {
 		String versionNo = request.getParameter("versionNo");
 		IVersion version = versionService.findVersion(typeName, versionNo);
 		if (version != null) {
-			return String.format("{'success':false,'msg':'0'}", versionNo);
+			return String.format("{'success':false,'msg':'0'}");
 		}
 
 		/*

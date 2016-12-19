@@ -681,7 +681,7 @@ public class BsAdvertController {
 			UploadResourceForm form = new UploadResourceForm(oFileName, saveFileName, getTempWebDir(request, screen, saveFileName), screen);
 			return JsonUtils.toJson(form);
 		} catch (Exception e) {
-			logger.error(String.format("upload file exception: [%s]" + e));
+			logger.error(String.format("upload file exception: [%s]" , e));
 			return "{'success':false,'errors':'" + messageSourceVersion.getMessage("advert.upload.exception", new Object[] { saveFileName, e.getMessage() }, FishCfg.locale) + "'}";
 		}
 	}

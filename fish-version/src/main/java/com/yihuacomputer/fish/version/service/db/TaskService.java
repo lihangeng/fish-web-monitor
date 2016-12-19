@@ -260,46 +260,46 @@ public class TaskService implements ITaskService {
         //暂时存放远程访问的返回值
         int retResult = 0 ;
         //下发之前判断是否任务已取消
-        task = this.get(task.getId());
-        if(TaskStatus.canRun(task.getStatus()) || TaskStatus.RUN.equals(task.getStatus())){
+        ITask taskValue = this.get(task.getId());
+        if(TaskStatus.canRun(taskValue.getStatus()) || TaskStatus.RUN.equals(taskValue.getStatus())){
             // 通知
             try {
-                IDevice device = task.getDevice();
-                NoticeForm notice = new NoticeForm(task);
+                IDevice device = taskValue.getDevice();
+                NoticeForm notice = new NoticeForm(taskValue);
                 notice = (NoticeForm)HttpProxy.httpPost(geNoticetUrl(device.getIp()), notice, NoticeForm.class, 10000, 30000);
                 if("RET0100".equals(notice.getRet())){
                 	 retResult = 1 ;
-                	 task.setReason(messageSourceVersion.getMessage("exception.task.sameTaskRuningForAgentRefuse", null, FishCfg.locale));
+                	 taskValue.setReason(messageSourceVersion.getMessage("exception.task.sameTaskRuningForAgentRefuse", null, FishCfg.locale));
                 }else{
                 	retResult = 2 ;
-	                task.setReason("");
+                	taskValue.setReason("");
                 }
             } catch (Exception ex) {
             	logger.error(String.format("[%s]", ex));
             	retResult = -1 ;
-                task.setReason(messageSourceVersion.getMessage("exception.task.connectAgentFail", null, FishCfg.locale));
+            	taskValue.setReason(messageSourceVersion.getMessage("exception.task.connectAgentFail", null, FishCfg.locale));
             }
-            if(TaskStatus.REMOVED.equals(task.getStatus())){
-            	task.setReason("");
-            	task.setStatus(TaskStatus.CANCEL_UPDATE_OK);
+            if(TaskStatus.REMOVED.equals(taskValue.getStatus())){
+            	taskValue.setReason("");
+            	taskValue.setStatus(TaskStatus.CANCEL_UPDATE_OK);
             }else{
             	if(retResult==1){
-            		task.setStatus(TaskStatus.NOTICED_FAIL);
-            		task.setSuccess(false);
+            		taskValue.setStatus(TaskStatus.NOTICED_FAIL);
+            		taskValue.setSuccess(false);
             	}else if(retResult==2){
-            		task.setStatus(TaskStatus.NOTICED);
-            		task.setSuccess(true);
+            		taskValue.setStatus(TaskStatus.NOTICED);
+            		taskValue.setSuccess(true);
             	}else if(retResult==-1){
-            		task.setStatus(TaskStatus.NOTICED_FAIL);
-            		task.setSuccess(false);
+            		taskValue.setStatus(TaskStatus.NOTICED_FAIL);
+            		taskValue.setSuccess(false);
             	}
             }
-            logger.info("taskStatus is "+task.getStatus());
+            logger.info("taskStatus is "+taskValue.getStatus());
             // 更新任务状态
             Date date = new Date();
-            task.setExcuteTime(date);
-            task.setDownloadStartTime(DateUtils.getTimestamp(date));
-            this.updateTask(task);
+            taskValue.setExcuteTime(date);
+            taskValue.setDownloadStartTime(DateUtils.getTimestamp(date));
+            this.updateTask(taskValue);
             ignore = false;
         }
         return ignore;

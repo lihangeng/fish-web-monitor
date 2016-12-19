@@ -44,7 +44,7 @@ public class CheckATMController {
 			result.addAttribute(FishConstant.SUCCESS, true);
 			result.addAttribute("data", checkInfoForm);
 		} catch (Exception e) {
-			logger.error(String.format(messageSource.getMessage("checkATM.fail", null, FishCfg.locale)+"[%s]", e));
+			logger.error(String.format("[%s],the exception is :[%s]", messageSource.getMessage("checkATM.fail", null, FishCfg.locale),e));
 			result.addAttribute(FishConstant.SUCCESS, false);
 			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("checkATM.fail", null, FishCfg.locale));
 		}
