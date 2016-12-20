@@ -102,18 +102,22 @@ public class AtmMove implements IAtmMove,Serializable {
     public AtmMove() {
     }
 
+    @Override
     public IOrganization getOrganization() {
         return organization;
     }
 
+    @Override
     public void setOrganization(IOrganization organization) {
         this.organization = organization;
     }
 
+    @Override
     public IOrganization getTargetOrganization() {
         return targetOrganization;
     }
 
+    @Override
     public void setTargetOrganization(IOrganization targetOrganization) {
         this.targetOrganization = targetOrganization;
     }

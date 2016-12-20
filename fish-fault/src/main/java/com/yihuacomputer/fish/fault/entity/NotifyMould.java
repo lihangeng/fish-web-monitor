@@ -49,43 +49,52 @@ public class NotifyMould implements INotifyMould{
 	@Column(name = "NOTIFY_SET",length = 200)
 	private String notifySet;
 
-	
+	@Override
 	public long getId() {
 		return id;
 	}
 
+	@Override
 	public void setId(long id) {
 		this.id = id;
 	}
 
+	@Override
 	public IFaultClassify getFaultClassify() {
 		return faultClassify;
 	}
 
+	@Override
 	public void setFaultClassify(IFaultClassify faultClassify) {
 		this.faultClassify = (FaultClassify)faultClassify;
 	}
 
+	@Override
 	public NotifyType getNotifyType() {
 		return notifyType;
 	}
 
+	@Override
 	public void setNotifyType(NotifyType notifyType) {
 		this.notifyType = notifyType;
 	}
 
+	@Override
 	public NotifyWay getNotifyWay() {
 		return notifyWay;
 	}
 
+	@Override
 	public void setNotifyWay(NotifyWay notifyWay) {
 		this.notifyWay = notifyWay;
 	}
 
+	@Override
 	public String getNotifySet() {
 		return notifySet;
 	}
 
+	@Override
 	public void setNotifySet(String notifySet) {
 		this.notifySet = notifySet;
 	}	

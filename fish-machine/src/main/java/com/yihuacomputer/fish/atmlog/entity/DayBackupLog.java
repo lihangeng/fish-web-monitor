@@ -37,42 +37,52 @@ public class DayBackupLog implements IDayBackupLog,Serializable {
 	@Column(name = "DEVICE_COUNT")
 	private int deviceCount;
 
+	@Override
 	public String getDate() {
 		return date;
 	}
 
+	@Override
 	public void setDate(String date) {
 		this.date = date;
 	}
 
+	@Override
 	public DayBackupResult getResult() {
 		return result;
 	}
 
+	@Override
 	public void setResult(DayBackupResult result) {
 		this.result = result;
 	}
 
+	@Override
 	public String getDoTime() {
 		return doTime;
 	}
 
+	@Override
 	public void setDoTime(String doTime) {
 		this.doTime = doTime;
 	}
 	
+	@Override
 	public String getEndTime() {
 		return endTime;
 	}
 
+	@Override
 	public void setEndTime(String endTime) {
 		this.endTime = endTime;
 	}
 
+	@Override
 	public int getDeviceCount() {
 		return deviceCount;
 	}
 
+	@Override
 	public void setDeviceCount(int deviceCount) {
 		this.deviceCount = deviceCount;
 	}	

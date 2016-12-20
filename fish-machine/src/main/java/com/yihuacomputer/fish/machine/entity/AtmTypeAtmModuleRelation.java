@@ -30,7 +30,7 @@ public class AtmTypeAtmModuleRelation implements IAtmTypeAtmModuleRelation,Seria
 	@Column(name = "MODULE_ID", nullable = false)
 	private long atmModuleId;
 
-
+	@Override
 	public long getId() {
 	    
 		return id;
@@ -40,21 +40,25 @@ public class AtmTypeAtmModuleRelation implements IAtmTypeAtmModuleRelation,Seria
 		this.id=id;
 	}
 	
+	@Override
 	public long getAtmModuleId() {
 		
 		return atmModuleId;
 	}
 
+	@Override
 	public void setAtmModuleId(long atmModuleId) {
 		this.atmModuleId=atmModuleId;
 		
 	}
 
+	@Override
 	public long getAtmTypeId() {
 	
 		return atmTypeId;
 	}
 	
+	@Override
 	public void setAtmTypeId(long atmTypeId) {
 		this.atmTypeId=atmTypeId;
 		

@@ -81,98 +81,122 @@ public class CaseNotify implements ICaseNotify {
 	@Transient
 	private List<IPerson> serPerson;
 
+	@Override
 	public long getId() {
 		return id;
 	}
 
+	@Override
 	public void setId(long id) {
 		this.id = id;
 	}
 
+	@Override
 	public String getTerminalId() {
 		return terminalId;
 	}
 
+	@Override
 	public void setTerminalId(String terminalId) {
 		this.terminalId = terminalId;
 	}
 
+	@Override
 	public long getFaultId() {
 		return faultId;
 	}
 
+	@Override
 	public void setFaultId(long faultId) {
 		this.faultId = faultId;
 	}
 
+	@Override
 	public Date getCreateTime() {
 		return createTime;
 	}
 
+	@Override
 	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
 	}
 
+	@Override
 	public String getContent() {
 		return content;
 	}
 
+	@Override
 	public void setContent(String content) {
 		this.content = content;
 	}
 
+	@Override
 	public NotifyWay getNotifyWay() {
 		return notifyWay;
 	}
 
+	@Override
 	public void setNotifyWay(NotifyWay notifyWay) {
 		this.notifyWay = notifyWay;
 	}
 
+	@Override
 	public String getMobile() {
 		return mobile;
 	}
 
+	@Override
 	public void setMobile(String mobile) {
 		this.mobile = mobile;
 	}
 
+	@Override
 	public String getMail() {
 		return mail;
 	}
 
+	@Override
 	public void setMail(String mail) {
 		this.mail = mail;
 	}
 
+	@Override
 	public int getNotifyTimes() {
 		return notifyTimes;
 	}
 
+	@Override
 	public void setNotifyTimes(int notifyTimes) {
 		this.notifyTimes = notifyTimes;
 	}
 
+	@Override
 	public int getSendTimes() {
 		return sendTimes;
 	}
 
+	@Override
 	public void setSendTimes(int sendTimes) {
 		this.sendTimes = sendTimes;
 	}
 
+	@Override
 	public int getSendInterval() {
 		return sendInterval;
 	}
 
+	@Override
 	public void setSendInterval(int sendInterval) {
 		this.sendInterval = sendInterval;
 	}
 
+	@Override
 	public Date getSendTime() {
 		return sendTime;
 	}
 
+	@Override
 	public void setSendTime(Date sendTime) {
 		this.sendTime = sendTime;
 	}

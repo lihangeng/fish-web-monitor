@@ -104,103 +104,128 @@ public class CaseFault implements ICaseFault {
 	@Transient
 	private IDevice device;
 
+	@Override
 	public long getId() {
 		return id;
 	}
 
+	@Override
 	public void setId(long id) {
 		this.id = id;
 	}
 
+	@Override
 	public String getTerminalId() {
 		return terminalId;
 	}
 
+	@Override
 	public void setTerminalId(String terminalId) {
 		this.terminalId = terminalId;
 	}
 
+	@Override
 	public RunStatus getAppStatus() {
 		return appStatus;
 	}
 
+	@Override
 	public void setAppStatus(RunStatus appStatus) {
 		this.appStatus = appStatus;
 	}
 
+	@Override
 	public DeviceMod getDevMod() {
 		return devMod;
 	}
 
+	@Override
 	public void setDevMod(DeviceMod devMod) {
 		this.devMod = devMod;
 	}
 
+	@Override
 	public IFaultClassify getFaultClassify() {
 		return faultClassify;
 	}
 
+	@Override
 	public void setFaultClassify(IFaultClassify faultClassify) {
 		this.faultClassify = (FaultClassify) faultClassify;
 	}
 
+	@Override
 	public String getFaultCode() {
 		return faultCode;
 	}
 
+	@Override
 	public void setFaultCode(String faultCode) {
 		this.faultCode = faultCode;
 	}
 
+	@Override
 	public String getVendorHwCode() {
 		return vendorHwCode;
 	}
 
+	@Override
 	public void setVendorHwCode(String vendorHwCode) {
 		this.vendorHwCode = vendorHwCode;
 	}
 
+	@Override
 	public Date getFaultTime() {
 		return faultTime;
 	}
 
+	@Override
 	public void setFaultTime(Date faultTime) {
 		this.faultTime = faultTime;
 		this.faultDate = Long.parseLong(DateUtils.get(faultTime,DateUtils.STANDARD_DATE_SHORT));
 	}
 
+	@Override
 	public Date getClosedTime() {
 		return closedTime;
 	}
 
+	@Override
 	public void setClosedTime(Date closedTime) {
 		this.closedTime = closedTime;
 	}
 
+	@Override
 	public double getDuration() {
 		return duration;
 	}
 
+	@Override
 	public void setDuration(double duration) {
 		this.duration = duration;
 	}
 
+	@Override
 	public FaultStatus getFaultStatus() {
 		return faultStatus;
 	}
 
+	@Override
 	public void setFaultStatus(FaultStatus faultStatus) {
 		this.faultStatus = faultStatus;
 	}
 
+	@Override
 	public int getUpgrade() {
 		return upgrade;
 	}
 
+	@Override
 	public void setUpgrade(int upgrade) {
 		this.upgrade = upgrade;
 	}
 
+	@Override
 	public IDevice getDevice() {
 		if (this.device == null) {
 			this.device = deviceService.get(this.terminalId);
@@ -254,10 +279,13 @@ public class CaseFault implements ICaseFault {
 	public FaultCloseType getCloseType() {
 		return faultCloseType;
 	}
+	
+	@Override
 	public Long getFaultDate() {
 		return faultDate;
 	}
 
+	@Override
 	public void setFaultDate(Long faultDate) {
 		this.faultDate = faultDate;
 	}

@@ -93,6 +93,7 @@ public class AtmLogService implements IAtmLogService{
 		return dao.page(start, limit, hql.toString());
 	}
 
+    @Override
     @Transactional(readOnly=true)
 	public List<Object> loadDayErrorLogs(String date){
 

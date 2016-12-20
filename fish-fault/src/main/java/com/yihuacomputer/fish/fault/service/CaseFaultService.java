@@ -189,6 +189,7 @@ public class CaseFaultService implements ICaseFaultService {
 	 * @param faultClassify
 	 * @return
 	 */
+	@Override
 	public boolean hasModCaseFault(List<ICaseFault> openCaseList, DeviceMod devMod, IFaultClassify faultClassify) {
 		if (openCaseList == null || openCaseList.isEmpty()) {
 			return false;
@@ -211,6 +212,7 @@ public class CaseFaultService implements ICaseFaultService {
 	 * @param faultClassify
 	 * @return
 	 */
+	@Override
 	public ICaseFault getModCaseFault(List<ICaseFault> openCaseList, IFaultClassify faultClassify) {
 		if (openCaseList == null || openCaseList.isEmpty()) {
 			return null;
@@ -229,6 +231,7 @@ public class CaseFaultService implements ICaseFaultService {
 	 * @param openCaseList
 	 * @param devMod
 	 */
+	@Override
 	public void closeHealthyModCase(List<ICaseFault> openCaseList, DeviceMod devMod) {
 		if (openCaseList == null || openCaseList.isEmpty()) {
 			return;

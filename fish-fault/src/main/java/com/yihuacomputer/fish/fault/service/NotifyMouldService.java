@@ -24,9 +24,12 @@ public class NotifyMouldService implements INotifyMouldService{
 	@Autowired
 	private IGenericDao dao;
 	
+	@Override
 	public INotifyMould make(){
 		return new NotifyMould();
 	}
+	
+	@Override
 	public void save(INotifyMould notifyMould){
 		this.dao.save(notifyMould);
 	}

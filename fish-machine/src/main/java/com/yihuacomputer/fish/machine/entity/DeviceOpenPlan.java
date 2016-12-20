@@ -76,59 +76,73 @@ public class DeviceOpenPlan implements IDeviceOpenPlan {
     
     @Transient
     private int deviceCount;
-    
+   
+    @Override
     public long getId() {
         return id;
     }
 
+    @Override
     public void setId(long id) {
         this.id = id;
     }
 
+    @Override
     public String getName() {
         return name;
     }
 
+    @Override
     public void setName(String name) {
         this.name = name;
     }
 
+    @Override
     public Date getStartDate() {
         return startDate;
     }
 
+    @Override
     public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
 
+    @Override
     public Date getEndDate() {
         return endDate;
     }
 
+    @Override
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
 
+    @Override
     public String getDesc() {
         return desc;
     }
 
+    @Override
     public void setDesc(String desc) {
         this.desc = desc;
     }
 
+    @Override
     public PlanType getPlanType() {
         return planType;
     }
 
+    @Override
     public void setPlanType(PlanType planType) {
         this.planType = planType;
     }
 
+    @Override
     public PlanState getPlanState() {
         return planState;
     }
 
+    @Override
     public void setPlanState(PlanState planState) {
         this.planState = planState;
     }
@@ -153,18 +167,22 @@ public class DeviceOpenPlan implements IDeviceOpenPlan {
         this.createDateTime = createDateTime;
     }
 
+    @Override
 	public PlanStateType getPlanStateType() {
 		return planStateType;
 	}
 
+    @Override
 	public void setPlanStateType(PlanStateType planStateType) {
 		this.planStateType = planStateType;
 	}
 
+    @Override
 	public int getDeviceCount() {
 		return deviceCount;
 	}
 
+    @Override
 	public void setDeviceCount(int deviceCount) {
 		this.deviceCount = deviceCount;
 	}

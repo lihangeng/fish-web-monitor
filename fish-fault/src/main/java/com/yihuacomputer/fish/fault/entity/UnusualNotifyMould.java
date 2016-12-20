@@ -45,43 +45,52 @@ public class UnusualNotifyMould implements IUnusualNotifyMould{
 	@Column(name = "RESPONSOR_TYPE",length=10,nullable=false)
 	private ResponsorType responsorType;
 
-	
+	@Override
 	public long getId() {
 		return id;
 	}
 
+	@Override
 	public void setId(long id) {
 		this.id = id;
 	}
 
+	@Override
 	public String getUnusualTranscationTypeId() {
 		return unusualTranscationTypeId;
 	}
 
+	@Override
 	public void setUnusualTranscationTypeId(String unusualTranscationTypeId) {
 		this.unusualTranscationTypeId = unusualTranscationTypeId;
 	}
 
+	@Override
 	public String getUnusualTranscationTypeName() {
 		return unusualTranscationTypeName;
 	}
 
+	@Override
 	public void setUnusualTranscationTypeName(String unusualTranscationTypeName) {
 		this.unusualTranscationTypeName = unusualTranscationTypeName;
 	}
 	
+	@Override
 	public ResponsorType getResponsorType() {
 		return responsorType;
 	}
 
+	@Override
 	public void setResponsorType(ResponsorType responsorType) {
 		this.responsorType = responsorType;
 	}
 	
+	@Override
 	public IsNotify getIsNotify() {
 		return isNotify;
 	}
 
+	@Override
 	public void setIsNotify(IsNotify isNotify) {
 		this.isNotify = isNotify;
 	}

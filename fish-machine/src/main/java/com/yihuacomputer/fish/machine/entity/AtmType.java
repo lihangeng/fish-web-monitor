@@ -83,50 +83,62 @@ public class AtmType implements IAtmType, Serializable {
 		this.cashtype = CashType.CASH;
 	}
 
+	@Override
 	public long getId() {
 		return id;
 	}
 
+	@Override
 	public void setId(long id) {
 		this.id = id;
 	}
 
+	@Override
 	public String getName() {
 		return name;
 	}
 
+	@Override
 	public void setName(String name) {
 		this.name = name;
 	}
 
+	@Override
 	public IAtmVendor getDevVendor() {
 		return devVendor;
 	}
 
+	@Override
 	public void setDevVendor(IAtmVendor devVendor) {
 		this.devVendor = devVendor;
 	}
 
+	@Override
 	public IAtmCatalog getDevCatalog() {
 		return devCatalog;
 	}
 
+	@Override
 	public void setDevCatalog(IAtmCatalog devCatalog) {
 		this.devCatalog = devCatalog;
 	}
 
+	@Override
 	public CashType getCashtype() {
 		return cashtype;
 	}
 
+	@Override
 	public void setCashtype(CashType cashtype) {
 		this.cashtype = cashtype;
 	}
 
+	@Override
 	public String getRemark() {
 		return remark;
 	}
 
+	@Override
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}

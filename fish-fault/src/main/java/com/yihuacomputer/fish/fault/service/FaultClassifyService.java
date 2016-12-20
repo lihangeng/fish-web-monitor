@@ -20,9 +20,12 @@ public class FaultClassifyService implements IFaultClassifyService {
 	@Autowired
 	private IGenericDao dao;
 	
+	@Override
 	public IFaultClassify make(){
 		return new FaultClassify();
 	}
+	
+	@Override
 	public void save(IFaultClassify faultClassify){
 		this.dao.save(faultClassify);
 	}

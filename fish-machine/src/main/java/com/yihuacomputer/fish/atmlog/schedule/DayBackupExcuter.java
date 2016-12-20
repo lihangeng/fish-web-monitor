@@ -63,6 +63,7 @@ public class DayBackupExcuter implements IDayBackupExcuter{
 	 * @param date
 	 * @throws
 	 */
+	@Override
 	public void redoDayJob(String date) {
 		IDayBackupLog dayBackup = this.dayBackupService.get(date);
 		if(dayBackup==null){

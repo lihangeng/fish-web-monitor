@@ -30,6 +30,7 @@ public class LoginKafkaConsumer extends KafkaConsumerConfig implements Runnable 
 		this.sessionManage = sessionManage;
 	}
 
+	@Override
 	public void run() {
 		logger.info(" LoginKafkaConsumer run");
 		TopicType topicType = TopicType.LOGIN;

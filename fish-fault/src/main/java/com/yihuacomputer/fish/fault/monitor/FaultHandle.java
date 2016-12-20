@@ -38,7 +38,7 @@ public class FaultHandle implements Runnable {
 		this.xfsStatus = xfsStatus;
 	}
 
-
+	@Override
 	public void run() {
 		logger.info(String.format("handle status start,terminal id is [%s]",xfsStatus.getTerminalId()));
 		deviceCaseService.handleModStatus(xfsStatus);

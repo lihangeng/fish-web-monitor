@@ -95,81 +95,85 @@ public class AtmVendor implements IAtmVendor,Serializable
     	this.service = service;
     }
 
+    @Override
     public long getId()
     {
         return id;
     }
 
+    @Override
     public void setId(long id)
     {
         this.id = id;
     }
 
-/*    public String getNo()
-    {
-        return no;
-    }
-
-    public void setNo(String no)
-    {
-        this.no = no;
-    }*/
-
+    @Override
     public String getName()
     {
         return name;
     }
 
+    @Override
     public void setName(String name)
     {
         this.name = name;
     }
 
+    @Override
     public String getCountry()
     {
         return country;
     }
 
+    @Override
     public void setCountry(String country)
     {
         this.country = country;
     }
 
+    @Override
     public String getAddress()
     {
         return address;
     }
 
+    @Override
     public void setAddress(String address)
     {
         this.address = address;
     }
 
+    @Override
     public String getHotline1()
     {
         return hotline1;
     }
 
+    @Override
     public void setHotline1(String hotline1)
     {
         this.hotline1 = hotline1;
     }
 
+    @Override
     public String getHotline2()
     {
         return hotline2;
     }
 
+    @Override
     public void setHotline2(String hotline2)
     {
         this.hotline2 = hotline2;
     }
 
+    @Override
     public VendorStatus getStatus()
     {
         return status;
     }
 
+    @Override
     public void setStatus(VendorStatus status)
     {
         this.status = status;
@@ -182,7 +186,6 @@ public class AtmVendor implements IAtmVendor,Serializable
         setHotline1(brand.getHotline1());
         setHotline2(brand.getHotline2());
         setName(brand.getName());
-//        setNo(brand.getNo());
         setStatus(brand.getStatus());
     }
 }

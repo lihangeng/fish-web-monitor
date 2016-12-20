@@ -33,6 +33,7 @@ public class TransCycle implements ITransCycle,Serializable{
 	
 	private String boxList;
 
+	@Override
 	public String getTerminalSerial() {
 		return terminalSerial;
 	}
@@ -41,6 +42,7 @@ public class TransCycle implements ITransCycle,Serializable{
 		this.terminalSerial = terminalSerial;
 	}
 
+	@Override
 	public String getHostserial() {
 		return hostserial;
 	}
@@ -49,6 +51,7 @@ public class TransCycle implements ITransCycle,Serializable{
 		this.hostserial = hostserial;
 	}
 
+	@Override
 	public String getTransType() {
 		return transType;
 	}
@@ -57,6 +60,7 @@ public class TransCycle implements ITransCycle,Serializable{
 		this.transType = transType;
 	}
 
+	@Override
 	public String getTransAmount() {
 		return transAmount;
 	}
@@ -65,6 +69,7 @@ public class TransCycle implements ITransCycle,Serializable{
 		this.transAmount = transAmount;
 	}
 
+	@Override
 	public String getHostreturn() {
 		return hostreturn;
 	}
@@ -73,6 +78,7 @@ public class TransCycle implements ITransCycle,Serializable{
 		this.hostreturn = hostreturn;
 	}
 
+	@Override
 	public String getBoxList() {
 		return boxList;
 	}

@@ -40,6 +40,7 @@ public class JournalFileService implements IJournalFileService{
 	 * @param files
 	 * @return
 	 */
+	@Override
 	public File combineJournal(List<File> files) {
 		File journalFile = new File(FishCfg.getTempDir()+FishCfg.FILESEP+UUID.randomUUID().toString());
 		FileChannel mFileChannel = null;
@@ -100,6 +101,7 @@ public class JournalFileService implements IJournalFileService{
 	 * @param journalFile
 	 * @return
 	 */
+	@Override
 	public List<IAtmCycle> readJournalFile(File journalFile){
 
 		List<IAtmCycle> atmCycles = new ArrayList<IAtmCycle>();

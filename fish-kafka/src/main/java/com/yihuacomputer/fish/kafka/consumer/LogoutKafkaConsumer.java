@@ -25,6 +25,7 @@ public class LogoutKafkaConsumer extends KafkaConsumerConfig implements Runnable
 		this.sessionManage = sessionManage;
 	}
 
+	@Override
 	public void run() {
 		logger.info(" LogoutKafkaConsumer run");
 		TopicType topicType = TopicType.LOGOUT;

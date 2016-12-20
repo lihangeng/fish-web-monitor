@@ -100,10 +100,12 @@ public class AtmModule implements IAtmModule ,Serializable{
 		setCase(module.isCase());
 	}
 
+	@Override
 	public boolean isCase() {
 		return isCase;
 	}
 
+	@Override
 	public void setCase(boolean isCase) {
 		this.isCase = isCase;
 	}	

@@ -166,74 +166,92 @@ public class Device implements IDevice, Serializable {
 		this.deviceService = deviceService;
 	}
 
+	@Override
 	public long getId() {
 		return id;
 	}
 
+	@Override
 	public void setId(long id) {
 		this.id = id;
 	}
 
+	@Override
 	public String getTerminalId() {
 		return terminalId;
 	}
 
+	@Override
 	public void setTerminalId(String terminalId) {
 		this.terminalId = terminalId;
 	}
 
+	@Override
 	public ITypeIP getIp() {
 		return ip;
 	}
 
+	@Override
 	public void setIp(ITypeIP ip) {
 		this.ip = ip;
 	}
 
+	@Override
 	public IOrganization getOrganization() {
 		return organization;
 	}
 
+	@Override
 	public void setOrganization(IOrganization organization) {
 		this.organization = organization;
 	}
 
+	@Override
 	public IAtmType getDevType() {
 		return devType;
 	}
 
+	@Override
 	public void setDevType(IAtmType devType) {
 		this.devType = devType;
 	}
 
+	@Override
 	public DevStatus getStatus() {
 		return status;
 	}
 
+	@Override
 	public void setStatus(DevStatus status) {
 		this.status = status;
 	}
 
+	@Override
 	public IOrganization getDevService() {
 		return devService;
 	}
 
+	@Override
 	public void setDevService(IOrganization devService) {
 		this.devService = devService;
 	}
 
+	@Override
 	public String getAddress() {
 		return address;
 	}
 
+	@Override
 	public void setAddress(String address) {
 		this.address = address;
 	}
 
+	@Override
 	public int getCashboxLimit() {
 		return cashboxLimit;
 	}
 
+	@Override
 	public void setCashboxLimit(int cashboxLimit) {
 		this.cashboxLimit = cashboxLimit;
 	}
@@ -258,67 +276,82 @@ public class Device implements IDevice, Serializable {
 		this.deviceService = deviceService;
 	}
 
-
+	@Override
 	public SetupType getSetupType() {
 		return setupType;
 	}
 
+	@Override
 	public void setSetupType(SetupType setupType) {
 		this.setupType = setupType;
 	}
 
+	@Override
 	public AwayFlag getAwayFlag() {
 		return awayFlag;
 	}
 
+	@Override
 	public void setAwayFlag(AwayFlag awayFlag) {
 		this.awayFlag = awayFlag;
 	}
 
+	@Override
 	public WorkType getWorkType() {
 		return workType;
 	}
 
+	@Override
 	public void setWorkType(WorkType workType) {
 		this.workType = workType;
 	}
 
+	@Override
 	public String getVirtual() {
 		return virtual;
 	}
 
+	@Override
 	public void setVirtual(String virtual) {
 		this.virtual = virtual;
 	}
 
+	@Override
 	public String getMac() {
 		return mac;
 	}
 
+	@Override
 	public void setMac(String mac) {
 		this.mac = mac;
 	}
 
+	@Override
 	public String getSerial() {
 		return serial;
 	}
 
+	@Override
 	public void setSerial(String serial) {
 		this.serial = serial;
 	}
 
+	@Override
 	public NetType getNetType() {
 		return netType;
 	}
 
+	@Override
 	public void setNetType(NetType netType) {
 		this.netType = netType;
 	}
 
+	@Override
 	public Date getInstallDate() {
 		return installDate;
 	}
 
+	@Override
 	public void setInstallDate(Date installDate) {
 		this.installDate = installDate;
 	}

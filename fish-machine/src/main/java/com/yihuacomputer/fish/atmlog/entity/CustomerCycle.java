@@ -27,6 +27,7 @@ public class CustomerCycle implements ICustomerCycle,Serializable{
 	/*交易列表*/
 	private List<ITransCycle> trans;
 
+	@Override
 	public String getDateTime() {
 		return dateTime;
 	}
@@ -35,6 +36,7 @@ public class CustomerCycle implements ICustomerCycle,Serializable{
 		this.dateTime = dateTime;
 	}
 
+	@Override
 	public String getAccount() {
 		return account;
 	}
@@ -43,6 +45,7 @@ public class CustomerCycle implements ICustomerCycle,Serializable{
 		this.account = account;
 	}
 
+	@Override
 	public List<ITransCycle> getTrans() {
 		return trans;
 	}

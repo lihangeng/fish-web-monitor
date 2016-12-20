@@ -45,58 +45,72 @@ public class FaultClassify implements IFaultClassify{
 	@Column(name = "NOTIFY_WAY",nullable=false)
 	private NotifyWay notifyWay;
 
+	@Override
 	public String getId() {
 		return id;
 	}
 
+	@Override
 	public void setId(String id) {
 		this.id = id;
 	}
 
+	@Override
 	public String getClassifyName() {
 		return classifyName;
 	}
 
+	@Override
 	public void setClassifyName(String classifyName) {
 		this.classifyName = classifyName;
 	}
 
+	@Override
 	public ResponsorType getResponsorType() {
 		return responsorType;
 	}
 
+	@Override
 	public void setResponsorType(ResponsorType responsorType) {
 		this.responsorType = responsorType;
 	}
 
+	@Override
 	public double getResolveHour() {
 		return resolveHour;
 	}
 
+	@Override
 	public void setResolveHour(double resolveHour) {
 		this.resolveHour = resolveHour;
 	}
 
+	@Override
 	public int getUpgrade() {
 		return upgrade;
 	}
 
+	@Override
 	public void setUpgrade(int upgrade) {
 		this.upgrade = upgrade;
 	}
 
+	@Override
 	public int getNotifyTimes() {
 		return notifyTimes;
 	}
 
+	@Override
 	public void setNotifyTimes(int notifyTimes) {
 		this.notifyTimes = notifyTimes;
 	}
 
+	@Override
 	public NotifyWay getNotifyWay() {
 		return notifyWay;
 	}
 
+	@Override
 	public void setNotifyWay(NotifyWay notifyWay) {
 		this.notifyWay = notifyWay;
 	}	

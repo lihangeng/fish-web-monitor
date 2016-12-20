@@ -30,6 +30,7 @@ public class AtmLogInfoService implements IAtmLogInfoService {
     @Autowired
     private IGenericDao dao;
 
+    @Override
 	@SuppressWarnings("unchecked")
     @Transactional(readOnly=true)
 	public Map<String,IAtmLogInfo> getBackUpInfo(String backupStartDay , String backupEndDay) {

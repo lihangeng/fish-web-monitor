@@ -26,6 +26,7 @@ public class TransactionKafkaConsumer extends KafkaConsumerConfig  implements Ru
 		return kafkaConsumerManager.getKafkaConfig();
 	}
 
+	@Override
 	public void run() {
 		logger.info(" TransactionKafkaConsumer run");
 		TopicType topicType = TopicType.TRANSACTION;

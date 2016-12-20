@@ -23,7 +23,8 @@ public class RedoJob implements Runnable{
 	public RedoJob(IAtmLogService atmLogService){
 		this.atmLogService = atmLogService;
 	}
-	
+
+	@Override
 	public void run() {
 		while(true){
 			try {

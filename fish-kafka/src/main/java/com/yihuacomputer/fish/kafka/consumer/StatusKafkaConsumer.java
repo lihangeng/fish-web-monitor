@@ -32,6 +32,7 @@ public class StatusKafkaConsumer  extends KafkaConsumerConfig implements Runnabl
 		return kafkaConsumerManager.getKafkaConfig();
 	}
 
+	@Override
 	public void run() {
 		logger.info(" StatusKafkaConsumer run");
 		//状态消费

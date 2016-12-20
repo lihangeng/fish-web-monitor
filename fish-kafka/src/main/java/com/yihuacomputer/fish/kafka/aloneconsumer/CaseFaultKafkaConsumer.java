@@ -27,6 +27,7 @@ public class CaseFaultKafkaConsumer extends KafkaAloneConsumerConfig implements 
 		return kafkaConsumerManager.getKafkaConfig();
 	}
 
+	@Override
 	public void run() {
 		logger.info(" CaseFaultKafkaConsumer run");
 		TopicType topicType = TopicType.CASEFAULT;
