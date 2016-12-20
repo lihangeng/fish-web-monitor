@@ -32,8 +32,8 @@ public class Scheduler {
 	}
 	
 	//调度作业
-	public void schedulerJob(Job _job){
-		this.job = _job;
+	public void schedulerJob(Job jobPara){
+		this.job = jobPara;
 		timer.schedule(new TimerTask(){
 			/**
 			 * 定时任务启动之后将作业的状态置为READY_RUN，并且通知JobRuner去执行

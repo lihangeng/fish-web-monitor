@@ -39,8 +39,8 @@ public class PdfChart {
 	 * @param dataset
 	 * @return
 	 */
-	public static JFreeChart generateLineChart(DefaultCategoryDataset dataset,String XVallue,String YValue) {
-		JFreeChart chart = ChartFactory.createLineChart(EMTPY_STR, XVallue, YValue, dataset,
+	public static JFreeChart generateLineChart(DefaultCategoryDataset dataset,String xVallue,String yValue) {
+		JFreeChart chart = ChartFactory.createLineChart(EMTPY_STR, xVallue, yValue, dataset,
 	            PlotOrientation.VERTICAL, // 绘制方向
 	            true, // 显示图例
 	            true, // 采用标准生成器

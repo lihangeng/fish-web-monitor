@@ -98,33 +98,33 @@ public class TransationFilter implements ITransationFilter {
     private boolean isFilter(ITransaction trans) {
 
         // 检查设备
-        boolean terminalId_b = StringUtils.isEmpty(terminalId) || terminalId.equals(trans.getTerminalId());
-        if (!terminalId_b) {
+        boolean terminalIdBoo = StringUtils.isEmpty(terminalId) || terminalId.equals(trans.getTerminalId());
+        if (!terminalIdBoo) {
             return false;
         }
 
         // 检查卡号
-        boolean creditAccount_b = StringUtils.isEmpty(creditAccount) || creditAccount.equals(trans.getCreditAccount());
-        if (!creditAccount_b) {
+        boolean creditAccountBoo = StringUtils.isEmpty(creditAccount) || creditAccount.equals(trans.getCreditAccount());
+        if (!creditAccountBoo) {
             return false;
         }
 
         // 检查转帐卡号
-        boolean debitAccount_b = StringUtils.isEmpty(debitAccount) || debitAccount.equals(trans.getDebitAccount());
-        if (!debitAccount_b) {
+        boolean debitAccountBoo = StringUtils.isEmpty(debitAccount) || debitAccount.equals(trans.getDebitAccount());
+        if (!debitAccountBoo) {
             return false;
         }
 
         // 检查金额
-        boolean amt_b = (Double.compare(startAmt, 0.0) == 0 && Double.compare(endAmt, 0.0) == 0) || (trans.getAmt() >= startAmt && trans.getAmt() <= endAmt);
-        if (!amt_b) {
+        boolean amtBoo = (Double.compare(startAmt, 0.0) == 0 && Double.compare(endAmt, 0.0) == 0) || (trans.getAmt() >= startAmt && trans.getAmt() <= endAmt);
+        if (!amtBoo) {
             return false;
         }
 
         // 检查交易是否成功
-        boolean states_b = StringUtils.isEmpty(tranStates) || ("0".equals(tranStates) ? "00".equals(trans.getHostRet())
+        boolean statesBoo = StringUtils.isEmpty(tranStates) || ("0".equals(tranStates) ? "00".equals(trans.getHostRet())
                 : !"00".equals(trans.getHostRet()));
-        if (!states_b) {
+        if (!statesBoo) {
             return false;
         }
         return true;

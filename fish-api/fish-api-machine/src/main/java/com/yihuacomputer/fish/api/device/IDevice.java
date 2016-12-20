@@ -66,7 +66,7 @@ public interface IDevice {
      */
 	public String getVirtual();
 
-	public void setVirtual(String Virtual);
+	public void setVirtual(String virtual);
     /*
      * mac地址
      */

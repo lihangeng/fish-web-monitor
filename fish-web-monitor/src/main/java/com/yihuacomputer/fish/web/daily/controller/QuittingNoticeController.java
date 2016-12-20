@@ -102,15 +102,15 @@ public class QuittingNoticeController {
 				result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("quittingNotice.addFail.deviceScrappend", null, FishCfg.locale));
 				return result;
 			}
-			IQuittingNotice exit_quittingNotice = quittingNoticeService
+			IQuittingNotice exitQuittingNotice = quittingNoticeService
 					.get(form.getDeviceCode(),new Date());
-			if (exit_quittingNotice != null && exit_quittingNotice.getDevStatus().equals(DevStatus.DISABLED))
+			if (exitQuittingNotice != null && exitQuittingNotice.getDevStatus().equals(DevStatus.DISABLED))
 			{
 				result.put(FishConstant.SUCCESS, false);
 				result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("quittingNotice.addFail.deviceHavedQuitted", null, FishCfg.locale));
 				return result;
 			}
-			if (exit_quittingNotice != null && exit_quittingNotice.getDevStatus().equals(DevStatus.OPEN))
+			if (exitQuittingNotice != null && exitQuittingNotice.getDevStatus().equals(DevStatus.OPEN))
 			{
 				result.put(FishConstant.SUCCESS, false);
 				result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("quittingNotice.addFail.exitOneQuittingNotice", null, FishCfg.locale));

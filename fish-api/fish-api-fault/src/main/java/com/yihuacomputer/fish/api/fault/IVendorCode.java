@@ -37,7 +37,7 @@ public interface IVendorCode {
 	 */
 	public String getDescription();
 	
-	public void setDescription(String Description);
+	public void setDescription(String description);
 	
 	/**
 	 * 解决方案

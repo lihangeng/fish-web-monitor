@@ -333,9 +333,9 @@ public class DateUtils {
 		long smallTimes = cal.getTimeInMillis();
 		cal.setTime(bdateFormat);
 		long bigTimes = cal.getTimeInMillis();
-		long between_days = (bigTimes - smallTimes) / (1000l * 3600 * 24);
+		long betweenDays = (bigTimes - smallTimes) / (1000l * 3600 * 24);
 
-		return Integer.parseInt(String.valueOf(between_days));
+		return Integer.parseInt(String.valueOf(betweenDays));
 	}
 
 	/**

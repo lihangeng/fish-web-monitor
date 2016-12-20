@@ -14,5 +14,5 @@ public interface IDeviceOpenRateExtractDataService {
 	 * 抽过去上周的统计数据
 	 * @param date 统计周
 	 */
-	public void extractByWeek(Date Date);
+	public void extractByWeek(Date date);
 }

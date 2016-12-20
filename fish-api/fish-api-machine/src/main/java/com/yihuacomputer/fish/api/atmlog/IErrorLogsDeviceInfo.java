@@ -91,9 +91,9 @@ public interface IErrorLogsDeviceInfo {
 	
 	/**
 	 * 设置备份时间
-	 * @param DateTime
+	 * @param dateTime
 	 */
-	public void setDateTime(String DateTime);
+	public void setDateTime(String dateTime);
 	
 	/**
 	 * 获取设备IP
@@ -103,9 +103,9 @@ public interface IErrorLogsDeviceInfo {
 	
 	/**
 	 * 设置设备IP
-	 * @param IP
+	 * @param ip
 	 */
-	public void setIP(String IP);
+	public void setIP(String ip);
 	
 	
 }

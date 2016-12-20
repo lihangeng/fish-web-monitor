@@ -17,15 +17,6 @@ import com.yihuacomputer.fish.api.report.trans.ISettlementCashInRptService;
 @Transactional(readOnly = true)
 public class SettlementCashInRptService implements ISettlementCashInRptService {
 
-    // private String SETT_CASH_HQL =
-    // "select o.code, o.name, d.terminalId, d.devType.name, sett.date, cash.date, cash.amt, sett.leftAmt "
-    // +
-    // "from Settlement sett, CashInit cash, Organization o, Device d" +
-    // "where o.id = d.organization " +
-    // "and d.terminalId = sett.terminalId" +
-    // "and sett.terminalId = cash.terminalId " +
-    // "and sett.uuId=cash.uuid ";
-
     @Autowired
     private IGenericDao dao;
 
@@ -45,31 +36,24 @@ public class SettlementCashInRptService implements ISettlementCashInRptService {
         IFilterEntry startAmt = filter.getFilterEntry("startAmt"); // 开始加钞金额
         IFilterEntry endAmt = filter.getFilterEntry("endAmt"); // 结束加钞金额
 
-        String SETT_CASH_HQL = "select o.code, o.name, d.terminalId, d.devType.name, sett.date, cash.date, cash.amt, sett.leftAmt "
+        String settCachHql = "select o.code, o.name, d.terminalId, d.devType.name, sett.date, cash.date, cash.amt, sett.leftAmt "
                 + " from Settlement sett, CashInit cash, Organization o, Device d "
                 + " where o.id = d.organization "
                 + " and d.terminalId = sett.terminalId "
                 + " and sett.terminalId = cash.terminalId "
                 + " and sett.uuId=cash.uuId ";
 
-        hql.append(SETT_CASH_HQL);
+        hql.append(settCachHql);
 
-        upHql.append(SETT_CASH_HQL);
+        upHql.append(settCachHql);
 
         if (orgFlag != null) {
             hql.append(" and o.orgFlag like ?");
             valueObj.add(orgFlag.getValue() + "%");
-
-//            upHql.append(" and o.orgFlag like ?");
-//            upValueObj.add("%" + orgFlag.getValue());
-
         }
         if (terminalId != null) {
             hql.append(" and d.terminalId like ?");
             valueObj.add("%" + terminalId.getValue() + "%");
-
-//            upHql.append(" and d.terminalId like ?");
-//            upValueObj.add("%" + terminalId.getValue() + "%");
         }
         if (endDate != null) {
             hql.append(" and sett.date<=?");
@@ -82,24 +66,14 @@ public class SettlementCashInRptService implements ISettlementCashInRptService {
         if (endAmt != null) {
             hql.append(" and cash.amt<=?");
             valueObj.add(endAmt.getValue());
-
-//            upHql.append(" and cash.amt<=?");
-//            upValueObj.add(endAmt.getValue());
-
         }
         if (startAmt != null) {
             hql.append(" and cash.amt>=?");
             valueObj.add(startAmt.getValue());
-
-//            upHql.append(" and cash.amt>=?");
-//            upValueObj.add(startAmt.getValue());
         }
         if (devVendorId != null) {
             hql.append(" and d.devType.id=?");
             valueObj.add(Long.valueOf(devVendorId.getValue().toString()));
-
-//            upHql.append(" and d.devType.id=?");
-//            upValueObj.add(Long.valueOf(devVendorId.getValue().toString()));
         }
         hql.append(" order by sett.date ");
 

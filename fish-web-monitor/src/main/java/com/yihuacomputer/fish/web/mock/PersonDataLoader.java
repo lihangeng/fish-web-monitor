@@ -829,32 +829,32 @@ public class PersonDataLoader {
 		retainCard.setParent(atmDailyWork);
 		permissionService.add(retainCard);
 
-		IPermission monitor_cardInfo = permissionService.make("B0201");
-		monitor_cardInfo.setCode("monitor_cardInfo");
-		monitor_cardInfo.setDescription("吞卡查询");
-		monitor_cardInfo.setButton(false);
-		monitor_cardInfo.setParent(retainCard);
-		permissionService.add(monitor_cardInfo);
+		IPermission monitorCardInfo = permissionService.make("B0201");
+		monitorCardInfo.setCode("monitor_cardInfo");
+		monitorCardInfo.setDescription("吞卡查询");
+		monitorCardInfo.setButton(false);
+		monitorCardInfo.setParent(retainCard);
+		permissionService.add(monitorCardInfo);
 
 		IPermission cardQuery = permissionService.make("B020101");
 		cardQuery.setCode("cardQuery");
 		cardQuery.setDescription("查询");
 		cardQuery.setButton(true);
-		cardQuery.setParent(monitor_cardInfo);
+		cardQuery.setParent(monitorCardInfo);
 		permissionService.add(cardQuery);
 
 		IPermission cardAdd = permissionService.make("B020102");
 		cardAdd.setCode("cardAdd");
 		cardAdd.setDescription("添加");
 		cardAdd.setButton(true);
-		cardAdd.setParent(monitor_cardInfo);
+		cardAdd.setParent(monitorCardInfo);
 		permissionService.add(cardAdd);
 
 		IPermission cardDel = permissionService.make("B020103");
 		cardDel.setCode("cardDel");
 		cardDel.setDescription("删除");
 		cardDel.setButton(true);
-		cardDel.setParent(monitor_cardInfo);
+		cardDel.setParent(monitorCardInfo);
 		permissionService.add(cardDel);
 
 		IPermission monitor_cardAction = permissionService.make("B0202");

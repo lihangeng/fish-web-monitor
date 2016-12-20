@@ -151,9 +151,9 @@ public class BsAdvertGroupController {
 
 	@RequestMapping(method = RequestMethod.POST)
 	@MethodNameDescrible(describle="userlog.bsAdvertGroupController.add",hasReqBodyParam=true,reqBodyClass=BsAdvertGroupForm.class,bodyProperties="groupName")
-	public @ResponseBody ModelMap add(@RequestBody BsAdvertGroupForm request, HttpServletRequest Httprequest) {
+	public @ResponseBody ModelMap add(@RequestBody BsAdvertGroupForm request, HttpServletRequest httpRequest) {
 		logger.info("add bsAdvertGroup");
-		UserSession userSession = (UserSession) Httprequest.getSession().getAttribute(FishWebUtils.USER);
+		UserSession userSession = (UserSession) httpRequest.getSession().getAttribute(FishWebUtils.USER);
 		long orgId = userSession.getOrgId();
 
 		IOrganization org = orgService.get(String.valueOf(orgId));

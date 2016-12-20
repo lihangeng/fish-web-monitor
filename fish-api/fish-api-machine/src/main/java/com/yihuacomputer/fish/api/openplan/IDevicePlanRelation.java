@@ -17,7 +17,7 @@ public interface IDevicePlanRelation {
 	 */
 	public long getDeviceId();
 
-	public void setDeviceId(long DeviceId);
+	public void setDeviceId(long deviceId);
 
 	/**
 	 * 方案id

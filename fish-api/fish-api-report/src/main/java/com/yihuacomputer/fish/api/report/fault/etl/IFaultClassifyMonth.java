@@ -32,7 +32,7 @@ public interface IFaultClassifyMonth {
 	 * 
 	 * @param openCount
 	 */
-	void setClassifyId(String ClassifyId);
+	void setClassifyId(String classifyId);
 	
 	/**
 	 * 
