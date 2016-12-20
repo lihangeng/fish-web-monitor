@@ -32,6 +32,9 @@ public class FishCfg {
 
 	private static String hostIp = "127.0.0.1";
 	
+	/**
+	 * 本地语言环境
+	 */
 	public static Locale locale;
 
 	
