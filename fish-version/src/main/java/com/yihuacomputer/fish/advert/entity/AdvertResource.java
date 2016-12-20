@@ -73,66 +73,82 @@ public class AdvertResource implements IAdvertResource, Serializable {
         this.screen = Screen.SCREEN_resource;
     }
 
+    @Override
     public long getId() {
         return id;
     }
 
+    @Override
     public void setId(long id) {
         this.id = id;
     }
 
+    @Override
     public int getPlayTime() {
         return playTime;
     }
 
+    @Override
     public void setPlayTime(int playTime) {
         this.playTime = playTime;
     }
 
+    @Override
     public String getContent() {
         return content;
     }
 
+    @Override
     public void setContent(String content) {
         this.content = content;
     }
 
+    @Override
     public Date getBeginDate() {
         return beginDate;
     }
 
+    @Override
     public void setBeginDate(Date beginDate) {
         this.beginDate = beginDate;
     }
 
+    @Override
     public Date getEndDate() {
         return endDate;
     }
 
+    @Override
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
 
+    @Override
     public String getBeginTime() {
         return beginTime;
     }
 
+    @Override
     public void setBeginTime(String beginTime) {
         this.beginTime = beginTime;
     }
 
+    @Override
     public String getEndTime() {
         return endTime;
     }
 
+    @Override
     public void setEndTime(String endTime) {
         this.endTime = endTime;
     }
 
+    @Override
     public IAdvert getAdvert() {
         return advert;
     }
 
+    @Override
     public void setAdvert(IAdvert advert) {
         this.advert = advert;
     }
@@ -166,10 +182,12 @@ public class AdvertResource implements IAdvertResource, Serializable {
         return cfg.toString();
     }
 
+    @Override
     public Screen getScreen() {
         return screen;
     }
 
+    @Override
     public void setScreen(Screen screen) {
         this.screen = screen;
     }

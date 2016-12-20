@@ -40,43 +40,52 @@ public class AdvertGroupDeviceRelation implements IAdvertGroupDeviceRelation,
 	@Column(name = "ADVERT_ID_USING")
 	private long advertIdUsing;
 	
-
+	@Override
 	public long getId() {
 		return id;
 	}
 
+	@Override
 	public void setId(long id) {
 		this.id = id;
 	}
 
+	@Override
 	public long getGroupId() {
 		return groupId;
 	}
 
+	@Override
 	public void setGroupId(long groupId) {
 		this.groupId = groupId;
 	}
 
+	@Override
 	public long getDeviceId() {
 		return deviceId;
 	}
 
+	@Override
 	public void setDeviceId(long deviceId) {
 		this.deviceId = deviceId;
 	}
 
+	@Override
 	public long getAdvertId() {
 		return advertId;
 	}
 
+	@Override
 	public void setAdvertId(long advertId) {
 		this.advertId = advertId;
 	}
 
+	@Override
 	public long getAdvertIdUsing() {
 		return advertIdUsing;
 	}
 
+	@Override
 	public void setAdvertIdUsing(long advertIdUsing) {
 		this.advertIdUsing = advertIdUsing;
 	}

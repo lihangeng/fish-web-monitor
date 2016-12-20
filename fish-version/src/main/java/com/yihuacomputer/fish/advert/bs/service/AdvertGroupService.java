@@ -32,32 +32,38 @@ public class AdvertGroupService implements IAdvertGroupService {
 	@Autowired
 	private IOrganizationService organizationService;
 	
+	@Override
 	public IAdvertGroup make(){
 		return new AdvertGroup();
 	}
 	
+	@Override
 	public IAdvertGroup save(IAdvertGroup advertGroup){
 		return dao.save(advertGroup);
 	}
 	
-
+	@Override
 	public IAdvertGroup update(IAdvertGroup advertGroup){
 		return dao.update(advertGroup);
 	}
 	
+	@Override
 	public void deleteById(long id){
 		delete(getById(id));
 	}
 	
+	@Override
 	public void delete(IAdvertGroup advertGroup){
 		 dao.delete(advertGroup);
 	}
 	
+	@Override
 	public IAdvertGroup getById(long id){
 		return dao.get(id, AdvertGroup.class);
 	}
 	private final static String  AdvertGroupSql = "SELECT B.GROUP_ID AS ID,A.ADVERT_NAME AS ADVERTNAME,B.GROUP_NAME AS GROUPNAME,B.GROUP_TYPE AS GROUPTYPE , B.ORG_ID ORGID,B.RESOURCE_PATH PATH,B.ORG_LEVEL ORGLEVEL,B.ORG_NAME ORGNAME FROM (SELECT ADVBSADVERT.ADVERT_NAME ADVERT_NAME ,ADVBSADVERT.GROUP_ID GROUP_ID FROM ADV_BSADVERT ADVBSADVERT WHERE ADVBSADVERT.ADVERT_STRATUS = 1 ) A RIGHT JOIN (SELECT ADVERTGROUP.ID GROUP_ID,ADVERTGROUP.GROUP_NAME GROUP_NAME ,ADVERTGROUP.GROUP_TYPE GROUP_TYPE ,ADVERTGROUP.ORG_ID ORG_ID ,ADVERTGROUP.RESOURCE_PATH RESOURCE_PATH ,ORG.ORG_LEVEL ORG_LEVEL ,ORG.NAME ORG_NAME FROM ADV_GROUP ADVERTGROUP,SM_ORG ORG WHERE ORG.ID=ADVERTGROUP.ORG_ID ";
 	
+	@Override
 	public IPageResult<Object> page(int start, int limit, IFilter filter){
 		
 		StringBuffer sb = new StringBuffer();
@@ -109,12 +115,12 @@ public class AdvertGroupService implements IAdvertGroupService {
 		}
 		
 		PageResult<Object> page = new PageResult<Object>(lists,start,limit);
-		//page.setData(lists);
 		page.setTotal(total);
 		
 		return page;
 	}
 	
+	@Override
 	public List<IAdvertGroup> list(IFilter filter){
 		return dao.findByFilter(filter, IAdvertGroup.class);
 	}

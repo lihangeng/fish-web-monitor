@@ -54,66 +54,82 @@ public class AtmLog implements IAtmLog,Serializable{
 	@Column(name = "CROWN_IMPOERT",columnDefinition="CHAR",length=1)
 	private boolean isCrownImport;
 
+	@Override
 	public long getId() {
 		return id;
 	}
 
+	@Override
 	public void setId(long id) {
 		this.id = id;
 	}
 	
+	@Override
 	public long getLogSize() {
 		return logSize;
 	}
 
+	@Override
 	public void setLogSize(long logSize) {
 		this.logSize = logSize;
 	}
 
+	@Override
 	public String getTerminalId() {
 		return terminalId;
 	}
 
+	@Override
 	public void setTerminalId(String terminalId) {
 		this.terminalId = terminalId;
 	}
 
+	@Override
 	public String getDateTime() {
 		return dateTime;
 	}
 
+	@Override
 	public void setDateTime(String dateTime) {
 		this.dateTime = dateTime;
 	}
 
+	@Override
 	public int getDoTimes() {
 		return doTimes;
 	}
 
+	@Override
 	public void setDoTimes(int doTimes) {
 		this.doTimes = doTimes;
 	}
 
+	@Override
 	public String getLastDoDate() {
 		return lastDoDate;
 	}
 
+	@Override
 	public void setLastDoDate(String lastDoDate) {
 		this.lastDoDate = lastDoDate;
 	}
 
+	@Override
 	public BackupResult getBackupResult() {
 		return backupResult;
 	}
 
+	@Override
 	public void setBackupResult(BackupResult backupResult) {
 		this.backupResult = backupResult;
 	}
 
+	@Override
 	public boolean isCrownImport() {
 		return isCrownImport;
 	}
 
+	@Override
 	public void setCrownImport(boolean isCrownImport) {
 		this.isCrownImport = isCrownImport;
 	}	

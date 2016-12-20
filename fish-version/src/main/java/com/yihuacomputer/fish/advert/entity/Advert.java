@@ -151,26 +151,32 @@ public class Advert implements IAdvert, Serializable {
         this.advertType = advertType;
     }
 
+    @Override
     public long getId() {
         return id;
     }
 
+    @Override
     public void setId(long id) {
         this.id = id;
     }
 
+    @Override
     public AdvertType getAdvertType() {
         return advertType;
     }
 
+    @Override
     public void setAdvertType(AdvertType advertType) {
         this.advertType = advertType;
     }
 
+    @Override
     public List<IAdvertResource> getAdvertResources() {
         return advertResources;
     }
 
+    @Override
     public void setAdvertResources(List<IAdvertResource> advertResources) {
         this.advertResources = advertResources;
     }
@@ -196,26 +202,32 @@ public class Advert implements IAdvert, Serializable {
         }
     }
 
+    @Override
     public AdvertDownMethod getAdvertDownMethod() {
         return advertDownMethod;
     }
 
+    @Override
     public void setAdvertDownMethod(AdvertDownMethod advertDownMethod) {
         this.advertDownMethod = advertDownMethod;
     }
 
+    @Override
     public AdvertValidity getAdvertValidity() {
         return advertValidity;
     }
 
+    @Override
     public void setAdvertValidity(AdvertValidity advertValidity) {
         this.advertValidity = advertValidity;
     }
-
+    
+    @Override
     public Date getCreatedTime() {
         return createdTime;
     }
 
+    @Override
     public void setCreatedTime(Date createdTime) {
         this.createdTime = createdTime;
     }
@@ -309,6 +321,7 @@ public class Advert implements IAdvert, Serializable {
         return VersionCfg.getAdvertDir() + File.separator + this.id;
     }
 
+    @Override
     public String getAdvertConfig() {
         StringBuffer cfg = new StringBuffer();
         cfg.append("{");
@@ -329,6 +342,7 @@ public class Advert implements IAdvert, Serializable {
         return cfg.toString();
     }
 
+    @Override
     public String getAdvertConfigByScreen(Screen screen) {
         StringBuffer cfg = new StringBuffer();
         cfg.append("{");
@@ -362,6 +376,7 @@ public class Advert implements IAdvert, Serializable {
         });
     }
 
+    
     public IDomainAdvertService getAdvertService() {
         return advertService;
     }
@@ -379,10 +394,12 @@ public class Advert implements IAdvert, Serializable {
         return versionId;
     }
 
+    @Override
     public void setVersionId(long versionId) {
         this.versionId = versionId;
     }
 
+    @Override
     public IUser getCreateUser() {
         if (this.createUser == null && this.createUserId > 0) {
             this.createUser = advertService.getUserService().get(this.createUserId);
@@ -402,30 +419,37 @@ public class Advert implements IAdvert, Serializable {
         return createUserId;
     }
 
+    @Override
     public void setCreateUserId(long createUserId) {
         this.createUserId = createUserId;
     }
 
+    @Override
     public long getCreateOrgId() {
         return createOrgId;
     }
 
+    @Override
     public void setCreateOrgId(long createOrgId) {
         this.createOrgId = createOrgId;
     }
 
+    @Override
     public CheckStatus getCheckStatus() {
         return checkStatus;
     }
 
+    @Override
     public void setCheckStatus(CheckStatus checkStatus) {
         this.checkStatus = checkStatus;
     }
 
+    @Override
     public long getVideoFlag() {
         return videoFlag;
     }
 
+    @Override
     public void setVideoFlag(long videoFlag) {
         this.videoFlag = videoFlag;
     }

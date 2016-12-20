@@ -24,50 +24,62 @@ public class AtmLogInfo implements IAtmLogInfo,Serializable {
 
 	private Date backupDate;
 
+	@Override
 	public long getId() {
 		return id;
 	}
 
+	@Override
 	public void setId(long id) {
 		this.id = id;
 	}
 
+	@Override
 	public int getBackupSuccessNumber() {
 		return backupSuccessNumber;
 	}
 
+	@Override
 	public void setBackupSuccessNumber(int backupSuccessNumber) {
 		this.backupSuccessNumber = backupSuccessNumber;
 	}
 
+	@Override
 	public int getBackupErrorNumber() {
 		return backupErrorNumber;
 	}
 
+	@Override
 	public void setBackupErrorNumber(int backupErrorNumber) {
 		this.backupErrorNumber = backupErrorNumber;
 	}
 
+	@Override
 	public int getTotalBackupNumber() {
 		return totalBackupNumber;
 	}
 
+	@Override
 	public void setTotalBackupNumber(int totalBackupNumber) {
 		this.totalBackupNumber = totalBackupNumber;
 	}
 
+	@Override
 	public Date getBackupDate() {
 		return backupDate;
 	}
 
+	@Override
 	public void setBackupDate(Date backupDate) {
 		this.backupDate = backupDate;
 	}
 
+	@Override
 	public String getOrgName() {
 		return orgName;
 	}
 
+	@Override
 	public void setOrgName(String orgName) {
 		this.orgName = orgName;
 	}

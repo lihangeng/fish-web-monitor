@@ -128,7 +128,8 @@ public class BsAdvertService implements IBsAdvertService {
 	public IBsAdvertResourceService getBsAdvertResourceService() {
 		return bsAdvertResourceService;
 	}
-	
+
+	@Override
 	public List<IBsAdvert> getBsAdvertByNameAndOrgId(long orgId,String advertName,long advertId){
 		StringBuffer hql= new StringBuffer("select bsAdvert from ");
 		hql.append(BsAdvert.class.getSimpleName()).append(" bsAdvert, ").
@@ -139,6 +140,7 @@ public class BsAdvertService implements IBsAdvertService {
 		return list;
 	}
 	
+	@Override
 	public IBsAdvert actived(IBsAdvert bsAdvert){
 		IFilter filter = new Filter();
 		filter.eq("groupId", bsAdvert.getGroupId());

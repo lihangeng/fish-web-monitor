@@ -27,7 +27,7 @@ public class AtmCycle implements IAtmCycle,Serializable{
 	/*客户交易列表*/
 	private List<ICustomerCycle> customers;
 
-	
+	@Override
 	public String getCashInId() {
 		return cashInId;
 	}
@@ -36,6 +36,7 @@ public class AtmCycle implements IAtmCycle,Serializable{
 		this.cashInId = cashInId;
 	}
 
+	@Override
 	public String getDateTime() {
 		return dateTime;
 	}
@@ -44,6 +45,7 @@ public class AtmCycle implements IAtmCycle,Serializable{
 		this.dateTime = dateTime;
 	}
 
+	@Override
 	public List<ICustomerCycle> getCustomers() {
 		return customers;
 	}

@@ -71,84 +71,85 @@ public class BsAdvertResource implements IBsAdvertResource, Serializable {
 		this.screen = Screen.SCREEN_resource;
 	}
 
+	@Override
 	public long getId() {
 		return id;
 	}
 
+	@Override
 	public void setId(long id) {
 		this.id = id;
 	}
 
+	@Override
 	public int getPlayTime() {
 		return playTime;
 	}
 
+	@Override
 	public void setPlayTime(int playTime) {
 		this.playTime = playTime;
 	}
 
+	@Override
 	public String getContent() {
 		return content;
 	}
 
+	@Override
 	public void setContent(String content) {
 		this.content = content;
 	}
 
+	@Override
 	public Date getBeginDate() {
 		return beginDate;
 	}
 
+	@Override
 	public void setBeginDate(Date beginDate) {
 		this.beginDate = beginDate;
 	}
 
+	@Override
 	public Date getEndDate() {
 		return endDate;
 	}
 
+	@Override
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
 
+	@Override
 	public String getBeginTime() {
 		return beginTime;
 	}
 
+	@Override
 	public void setBeginTime(String beginTime) {
 		this.beginTime = beginTime;
 	}
 
+	@Override
 	public String getEndTime() {
 		return endTime;
 	}
 
+	@Override
 	public void setEndTime(String endTime) {
 		this.endTime = endTime;
 	}
 
+	@Override
 	public IBsAdvert getBsAdvert() {
 		return bsAdvert;
 	}
 
+	@Override
 	public void setBsAdvert(IBsAdvert bsAdvert) {
 		this.bsAdvert = bsAdvert;
 	}
-
-	// @Override
-	// public boolean isTextAdvert() {
-	// if (this.getAdvert() != null &&
-	// this.getAdvert().getAdvertType().equals(AdvertType.TEXT)) {
-	// return true;
-	// }
-	// return false;
-	// }
-	//
-	// @Override
-	// public String getPlayTimeSlot() {
-	// // TODO Auto-generated method stub
-	// return null;
-	// }
 
 	@Override
 	public String getConfig() {
@@ -169,10 +170,12 @@ public class BsAdvertResource implements IBsAdvertResource, Serializable {
 		return cfg.toString();
 	}
 
+	@Override
 	public Screen getScreen() {
 		return screen;
 	}
 
+	@Override
 	public void setScreen(Screen screen) {
 		this.screen = screen;
 	}

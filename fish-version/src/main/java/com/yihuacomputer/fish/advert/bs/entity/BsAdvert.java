@@ -77,76 +77,94 @@ public class BsAdvert implements IBsAdvert, Serializable {
 
     @Transient
     private IBsAdvertService advertService;
+    
+    @Override
 	public long getId() {
 		return id;
 	}
 
+    @Override
 	public void setId(long id) {
 		this.id = id;
 	}
 
+    @Override
 	public long getGroupId() {
 		return groupId;
 	}
 
+    @Override
 	public void setGroupId(long groupId) {
 		this.groupId = groupId;
 	}
 
+    @Override
 	public String getAdvertName() {
 		return advertName;
 	}
 
+    @Override
 	public void setAdvertName(String advertName) {
 		this.advertName = advertName;
 	}
 
+    @Override
 	public BsAdvertStatus getBsAdvertStatus() {
 		return bsAdvertStatus;
 	}
 
+    @Override
 	public void setBsAdvertStatus(BsAdvertStatus bsAdvertStatus) {
 		this.bsAdvertStatus = bsAdvertStatus;
 	}
 
+    @Override
 	public Date getLastTime() {
 		return lastTime;
 	}
 
+    @Override
 	public void setLastTime(Date lastTime) {
 		this.lastTime = lastTime;
 	}
 
 	
-
+    @Override
 	public long getUserId() {
 		return userId;
 	}
 
+    @Override
 	public void setUserId(long userId) {
 		this.userId = userId;
 	}
-
+    
+    @Override
 	public long getActiveUserId() {
 		return activeUserId;
 	}
 
+    @Override
 	public void setActiveUserId(long activeUserId) {
 		this.activeUserId = activeUserId;
 	}
 
+    @Override
 	public List<IBsAdvertResource> getAdvertResources() {
 		return advertResources;
 	}
 
+    @Override
 	public void setAdvertResources(List<IBsAdvertResource> advertResources) {
 		this.advertResources = advertResources;
 	}
 
+    @Override
 	public AdvertType getAdvertType() {
 		return advertType;
 	}
 
+    @Override
 	public void setAdvertType(AdvertType advertType) {
 		this.advertType = advertType;
 	}
@@ -169,6 +187,7 @@ public class BsAdvert implements IBsAdvert, Serializable {
         return this.advertService.getBsAdvertResourceService();
     }
     
+    @Override
     public void insertBsAdvertService(IBsAdvertService advertService){
     	this.advertService = advertService;
     }
@@ -180,6 +199,7 @@ public class BsAdvert implements IBsAdvert, Serializable {
         }
 	}
 
+	@Override
     public String getAdvertConfigByScreen(Screen screen){
     	 StringBuffer cfg = new StringBuffer();
          cfg.append("{");

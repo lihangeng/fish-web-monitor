@@ -11,10 +11,12 @@ import com.yihuacomputer.fish.advert.bs.entity.AdvertGroupDeviceRelation;
 import com.yihuacomputer.fish.api.advert.bs.IAdvertGroupDeviceRelation;
 import com.yihuacomputer.fish.api.advert.bs.IAdvertGroupDeviceRelationService;
 
-public class AdvertGroupDeviceRelationService implements
-		IAdvertGroupDeviceRelationService {
+public class AdvertGroupDeviceRelationService implements IAdvertGroupDeviceRelationService {
+	
 	@Autowired
 	private IGenericDao dao;
+	
+	@Override
 	public IAdvertGroupDeviceRelation getGroup(long deviceId,List<Long> groupIdList){
 		IFilter filter = new Filter();
 		filter.eq("deviceId", deviceId);

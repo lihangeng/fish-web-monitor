@@ -43,34 +43,42 @@ public class AdvertGroup implements IAdvertGroup, Serializable {
 	@Column(name = "RESOURCE_PATH", length = 140)
 	private String path;
 
+	@Override
 	public long getId() {
 		return id;
 	}
 
+	@Override
 	public void setId(long id) {
 		this.id = id;
 	}
 
+	@Override
 	public GroupType getGroupType() {
 		return groupType;
 	}
 
+	@Override
 	public void setGroupType(GroupType groupType) {
 		this.groupType = groupType;
 	}
 
+	@Override
 	public long getOrgId() {
 		return orgId;
 	}
 
+	@Override
 	public void setOrgId(long orgId) {
 		this.orgId = orgId;
 	}
 
+	@Override
 	public String getGroupName() {
 		return groupName;
 	}
 
+	@Override
 	public void setGroupName(String groupName) {
 		this.groupName = groupName;
 	}
@@ -79,6 +87,7 @@ public class AdvertGroup implements IAdvertGroup, Serializable {
 		return path;
 	}
 
+	@Override
 	public void setPath(String path) {
 		this.path = path;
 	}
