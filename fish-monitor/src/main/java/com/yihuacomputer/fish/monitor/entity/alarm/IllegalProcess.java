@@ -40,45 +40,72 @@ public class IllegalProcess implements IIllegalProcess{
 	@Column(name = "PROCESS_DATE",length = 20)
 	private String date;
 	
+	@Override
 	public long getId(){
 		return this.id;
 	}
+	
+	@Override
 	public void setId(long id){
 		this.id = id;
 	}
+	
+	@Override
 	public String getTerminalId() {
 		return terminalId;
 	}
+	
+	@Override
 	public void setTerminalId(String terminalId) {
 		this.terminalId = terminalId;
 	}
+	
+	@Override
 	public String getName() {
 		return name;
 	}
+	
+	@Override
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	@Override
 	public String getUser() {
 		return user;
 	}
+	
+	@Override
 	public void setUser(String user) {
 		this.user = user;
 	}
+	
+	@Override
 	public double getCpuRate() {
 		return cpuRate;
 	}
+	
+	@Override
 	public void setCpuRate(double cpuRate) {
 		this.cpuRate = cpuRate;
 	}
+	
+	@Override
 	public long getMemoryRate() {
 		return memoryRate;
 	}
+	
+	@Override
 	public void setMemoryRate(long memoryRate) {
 		this.memoryRate = memoryRate;
 	}
+	
+	@Override
 	public String getDate() {
 		return date;
 	}
+	
+	@Override
 	public void setDate(String date) {
 		this.date = date;
 	}

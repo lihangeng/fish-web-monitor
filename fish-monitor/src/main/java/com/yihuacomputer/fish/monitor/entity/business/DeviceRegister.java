@@ -47,38 +47,57 @@ public class DeviceRegister implements IDeviceRegister{
 		this.regStatus = RegStatus.UNREGISTERED;
 	}
 	
+	@Override
 	public void setTerminalId(String terminalId){
 		this.terminalId = terminalId;
 	}
+	
+	@Override
 	public String getTerminalId(){
 		return this.terminalId;
 	}
+	
+	@Override
 	public String getAtmcVersion() {
 		return atmcVersion;
 	}
+	
+	@Override
 	public void setAtmcVersion(String atmcVersion) {
 		this.atmcVersion = atmcVersion;
 	}
 	
+	@Override
 	public RegStatus getRegStatus() {
 		return regStatus;
 	}
 
+	@Override
 	public void setRegStatus(RegStatus regStatus) {
 		this.regStatus = regStatus;
 	}
+	
+	@Override
 	public void setRegTimes(int regTimes){
 		this.regTimes = regTimes;
 	}
+	
+	@Override
 	public int getRegTimes(){
 		return this.regTimes;
 	}
+	
+	@Override
 	public void setSignTimes(int signTimes){
 		this.signTimes = signTimes;
 	}
+	
+	@Override
 	public int getSignTimes(){
 		return this.signTimes;
 	}
+	
+	@Override
 	public void setRegisterSerialNumber(String serialNumber) {
 		this.serialNumber = serialNumber;
 	}
@@ -87,14 +106,17 @@ public class DeviceRegister implements IDeviceRegister{
 		this.signTime = signTime;
 	}
 
+	@Override
 	public String getRegisterSerialNumber() {
 		return this.serialNumber;
 	}
 
+	@Override
 	public boolean isDeviceRegisted() {
 		return serialNumber != null;		
 	}
 
+	@Override
 	public boolean isDeivceSigned() {
 		return signTime != null;
 	}

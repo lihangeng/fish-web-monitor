@@ -60,87 +60,107 @@ public class DeviceBoxInfo implements IDeviceBoxInfo {
     @JoinColumn(name = "DEV_BOX_INFO_ID")
     private List<IDeviceBoxDetailInfo> deviceBoxDetails = new ArrayList<IDeviceBoxDetailInfo>();
 
-
+    @Override
 	public long getId() {
 		return id;
 	}
 
+    @Override
 	public void setId(long id) {
 		this.id = id;
 	}
 
+    @Override
 	public IDevice getDeviceId() {
 		return deviceId;
 	}
 
+    @Override
 	public void setDeviceId(IDevice deviceId) {
 		this.deviceId = deviceId;
 	}
 
+    @Override
 	public long getMaxAlarm() {
 		return maxAlarm;
 	}
 
+    @Override
 	public void setMaxAlarm(long maxAlarm) {
 		this.maxAlarm = maxAlarm;
 	}
 
+    @Override
 	public long getMinAlarm() {
 		return minAlarm;
 	}
 
+    @Override
 	public void setMinAlarm(long minAlarm) {
 		this.minAlarm = minAlarm;
 	}
 
+    @Override
 	public boolean isBoxChange() {
 		return boxChange;
 	}
 
+    @Override
 	public void setBoxChange(boolean boxChange) {
 		this.boxChange = boxChange;
 	}
 
+    @Override
 	public List<IDeviceBoxDetailInfo> getDeviceBoxDetails() {
 		return deviceBoxDetails;
 	}
 
+    @Override
 	public void setDeviceBoxDetails(List<IDeviceBoxDetailInfo> deviceBoxDetails) {
 		this.deviceBoxDetails = deviceBoxDetails;
 	}
 
+    @Override
 	public void add(IDeviceBoxDetailInfo deviceBoxDetail) {
 		this.deviceBoxDetails.add(deviceBoxDetail);
 	}
 
+    @Override
 	public long getDefaultCashIn() {
 		return defaultCashIn;
 	}
 
+    @Override
 	public void setDefaultCashIn(long defaultCashIn) {
 		this.defaultCashIn = defaultCashIn;
 	}
 
+    @Override
 	public long getDefaultBill() {
 		return defaultBill;
 	}
 
+    @Override
 	public void setDefaultBill(long defaultBill) {
 		this.defaultBill = defaultBill;
 	}
 
+    @Override
 	public long getCashInValue() {
 		return cashInValue;
 	}
 
+    @Override
 	public void setCashInValue(long cashInValue) {
 		this.cashInValue = cashInValue;
 	}
 
+    @Override
 	public long getBillValue() {
 		return billValue;
 	}
 
+    @Override
 	public void setBillValue(long billValue) {
 		this.billValue = billValue;
 	}

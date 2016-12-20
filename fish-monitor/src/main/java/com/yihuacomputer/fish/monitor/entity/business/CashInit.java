@@ -54,39 +54,63 @@ public class CashInit implements ICashInit {
 	public void setId(long id) {
 		this.id = id;
 	}
+	
+	@Override
 	public String getTerminalId() {
 		return terminalId;
 	}
+	
+	@Override
 	public void setTerminalId(String terminalId) {
 		this.terminalId = terminalId;
 	}
+	
+	@Override
 	public String getDate() {
 		return date;
 	}
+	
+	@Override
 	public void setDate(String date) {
 		this.date = date;
 	}
+	
+	@Override
 	public String getUuId() {
 		return uuId;
 	}
+	
+	@Override
 	public void setUuId(String uuId) {
 		this.uuId = uuId;
 	}
+	
+	@Override
 	public long getAmt() {
 		return amt;
 	}
+	
+	@Override
 	public void setAmt(long amt) {
 		this.amt = amt;
 	}
+	
+	@Override
 	public List<IBoxInitDetail> getBoxDetail() {
 		return this.boxDetail;
 	}
+	
+	@Override
 	public void setBoxDetail(List<IBoxInitDetail> boxDetail) {
 		this.boxDetail = boxDetail;
 	}
+	
+	@Override
 	public int getDates() {
 		return dates;
 	}
+	
+	@Override
 	public void setDates(int dates) {
 		this.dates = dates;
 	}

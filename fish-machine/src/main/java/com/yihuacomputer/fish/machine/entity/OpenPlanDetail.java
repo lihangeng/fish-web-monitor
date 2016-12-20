@@ -50,50 +50,62 @@ public class OpenPlanDetail implements IOpenPlanDetail{
     @JoinColumn(name = "OPENPLAN_ID", insertable = false, updatable = false)
 	private IDeviceOpenPlan deviceOpenPlan;
 
+    @Override
 	public long getId() {
 		return id;
 	}
 
+    @Override
 	public void setId(long id) {
 		this.id = id;
 	}
 
+    @Override
 	public Week getWeek() {
 		return week;
 	}
 
+    @Override
 	public void setWeek(Week week) {
 		this.week = week;
 	}
 
+    @Override
 	public OpenClose getOpenClose() {
 		return openClose;
 	}
 
+    @Override
 	public void setOpenClose(OpenClose openClose) {
 		this.openClose = openClose;
 	}
 
+    @Override
 	public String getStartTime() {
 		return startTime;
 	}
 
+    @Override
 	public void setStartTime(String startTime) {
 		this.startTime = startTime;
 	}
 
+    @Override
 	public String getEndTime() {
 		return endTime;
 	}
 
+    @Override
 	public void setEndTime(String endTime) {
 		this.endTime = endTime;
 	}
 
+    @Override
 	public IDeviceOpenPlan getDeviceOpenPlan() {
 		return deviceOpenPlan;
 	}
 
+    @Override
 	public void setDeviceOpenPlan(IDeviceOpenPlan deviceOpenPlan) {
 		this.deviceOpenPlan = deviceOpenPlan;
 	}	

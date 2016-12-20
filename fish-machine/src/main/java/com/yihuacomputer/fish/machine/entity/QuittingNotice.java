@@ -76,10 +76,12 @@ public class QuittingNotice implements IQuittingNotice {
 
 	public QuittingNotice(){}
 	
+	@Override
 	public DevStatus getDevStatus() {
 		return devStatus;
 	}
 
+	@Override
 	public void setDevStatus(DevStatus devStatus) {
 		this.devStatus = devStatus;
 	}

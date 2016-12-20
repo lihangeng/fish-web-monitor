@@ -58,6 +58,7 @@ public class DeviceService implements IDeviceService {
 
 	public List<IDeviceListener> deviceListeners = new ArrayList<IDeviceListener>();
 
+	@Override
 	public Device make() {
 		return new Device(this);
 	}

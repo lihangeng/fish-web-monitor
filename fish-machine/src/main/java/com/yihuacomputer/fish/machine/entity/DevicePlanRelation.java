@@ -33,26 +33,32 @@ public class DevicePlanRelation implements IDevicePlanRelation,Serializable{
     @Column(name = "PLAN_ID")
 	private long openPlanId;
 
+    @Override
 	public long getId() {
 		return id;
 	}
 
+    @Override
 	public void setId(long id) {
 		this.id = id;
 	}
 
+    @Override
     public long getDeviceId() {
         return deviceId;
     }
 
+    @Override
     public void setDeviceId(long deviceId) {
         this.deviceId = deviceId;
     }
 
+    @Override
     public long getOpenPlanId() {
         return openPlanId;
     }
 
+    @Override
     public void setOpenPlanId(long openPlanId) {
         this.openPlanId = openPlanId;
     }

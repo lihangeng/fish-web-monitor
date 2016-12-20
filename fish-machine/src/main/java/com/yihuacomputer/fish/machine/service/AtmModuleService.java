@@ -30,12 +30,14 @@ public class AtmModuleService implements IAtmModuleService {
 		return new AtmModule();
 	}
 	
+    @Override
     public void init(){
     	for(IAtmModule atmModule : this.list()){
     		modules.put(atmModule.getName(), atmModule);
     	}
     }
 
+    @Override
     public Map<String,IAtmModule> getModules(){
     	return this.modules;
     }

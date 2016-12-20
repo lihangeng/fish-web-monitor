@@ -33,6 +33,7 @@ public class OpenPlanDeviceRelation implements IOpenPlanDeviceRelation {
 	/**
 	 * 将设备和开机方案进行关联：
 	 */
+	@Override
 	public void link(IDeviceOpenPlan openPlan, IDevice device) {
 		dao.save(DevicePlanRelation.make(openPlan.getId(), device.getId()));
 	}
@@ -40,6 +41,7 @@ public class OpenPlanDeviceRelation implements IOpenPlanDeviceRelation {
 	/**
 	 * 设备和开机方案进行解除关联关系：
 	 */
+	@Override
 	public void unlink(IDeviceOpenPlan openPlan, IDevice device) {
 		Filter filter = new Filter();
 		filter.addFilterEntry(FilterFactory.eq("openPlanId", openPlan.getId()));
@@ -57,51 +59,23 @@ public class OpenPlanDeviceRelation implements IOpenPlanDeviceRelation {
 	 * @param filter
 	 * @return
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	public IPageResult<IDevice> pageUnlinkDeviceByPlan(int offset, int limit, IDeviceOpenPlan openPlan, IFilter filter, String orgId) {
 
 		StringBuffer hql = new StringBuffer();
 		IOrganization org = orgService.get(orgId);
 		List<Object> valueObj = new ArrayList<Object>();
-		/*IFilterEntry startCashboxLimit = filter.getFilterEntry("startCashboxLimit");
-		IFilterEntry endCashboxLimit = filter.getFilterEntry("endCashboxLimit");
-		IFilterEntry startInstallDate = filter.getFilterEntry("startInstallDate");
-		IFilterEntry endInstallDate = filter.getFilterEntry("endInstallDate");*/
 		IFilterEntry devType = filter.getFilterEntry("devType");
 		IFilterEntry devCatalogId = filter.getFilterEntry("devCatalogId");
 		IFilterEntry devVendorId = filter.getFilterEntry("devVendorId");
-	/*	IFilterEntry devServiceId = filter.getFilterEntry("devService");*/
 		IFilterEntry organizationId = filter.getFilterEntry("organization");
 		IFilterEntry ip = filter.getFilterEntry("ip");
-		/*IFilterEntry awayFlag = filter.getFilterEntry("awayFlag");*/
 		IFilterEntry terminalId = filter.getFilterEntry("terminalId");
-	/*	IFilterEntry address = filter.getFilterEntry("address");*/
 		hql.append("from Device device where device.id not in ");
 		hql.append("(select distinct devicePlanRelation.deviceId from DevicePlanRelation devicePlanRelation ) ");
-	/*	valueObj.add(openPlan.getId());*/
 		hql.append("and device.organization.orgFlag like ? ");
 		valueObj.add(org.getOrgFlag() + "%");
-		/*
-		hql.append(" and device.devType.devCatalog.no != '01' ");
-		hql.append(" and device.devType.devCatalog.no != '05' ");
-		hql.append(" and device.devType.devCatalog.no != '08' ");
- */
-	/*	if (startCashboxLimit != null) {
-			hql.append("and device.cashboxLimit>=? ");
-			valueObj.add(startCashboxLimit.getValue());
-		}
-		if (endCashboxLimit != null) {
-			hql.append("and device.cashboxLimit<=? ");
-			valueObj.add(endCashboxLimit.getValue());
-		}
-		if (startInstallDate != null) {
-			hql.append("and device.deviceExtend.installDate>=? ");
-			valueObj.add(startInstallDate.getValue());
-		}
-		if (endInstallDate != null) {
-			hql.append("and device.deviceExtend.installDate<=? ");
-			valueObj.add(endInstallDate.getValue());
-		}*/
 		if (devType != null) {
 			hql.append("and device.devType.id=? ");
 			valueObj.add(devType.getValue());
@@ -114,11 +88,6 @@ public class OpenPlanDeviceRelation implements IOpenPlanDeviceRelation {
 			hql.append("and device.devType.devVendor.id=? ");
 			valueObj.add(devVendorId.getValue());
 		}
-	/*	if (devServiceId != null) {
-			IOrganization devService = orgService.get(String.valueOf(devServiceId.getValue()));
-			hql.append("and device.devService.orgFlag like ? ");
-			valueObj.add(devService.getOrgFlag() + "%");
-		}*/
 		if (organizationId != null) {
 			IOrganization organization = orgService.get(String.valueOf(organizationId.getValue()));
 			hql.append("and device.organization.orgFlag like ? ");
@@ -128,18 +97,10 @@ public class OpenPlanDeviceRelation implements IOpenPlanDeviceRelation {
 			hql.append("and device.ip=? ");
 			valueObj.add(ip.getValue());
 		}
-		/*if (awayFlag != null) {
-			hql.append("and device.awayFlag=? ");
-			valueObj.add(awayFlag.getValue());
-		}*/
 		if (terminalId != null) {
 			hql.append("and device.terminalId like ? ");
 			valueObj.add("%" + terminalId.getValue() + "%");
 		}
-	/*	if (address != null) {
-			hql.append("and device.address like ? ");
-			valueObj.add("%" + address.getValue() + "%");
-		}*/
 		IPageResult<IDevice> result = (IPageResult<IDevice>) this.dao.page(offset, limit, hql.toString(), valueObj.toArray());
 		return result;
 	}
@@ -147,6 +108,7 @@ public class OpenPlanDeviceRelation implements IOpenPlanDeviceRelation {
 	/**
 	 * 分页显示获得条件下的该开机方案关联的设备：
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	public IPageResult<IDevice> pageDeviceByPlan(int offset, int limit, IDeviceOpenPlan openPlan, IFilter filter, String orgId) {
 		StringBuffer hql = new StringBuffer();
@@ -231,6 +193,7 @@ public class OpenPlanDeviceRelation implements IOpenPlanDeviceRelation {
 	/**
 	 * 获得该设备相关的开机方案：
 	 */
+	@Override
 	public List<IDeviceOpenPlan> listPlanByDevice(IDevice device) {
 		StringBuffer hql = new StringBuffer();
 		hql.append("select t from DeviceOpenPlan t ,DevicePlanRelation t1 ");
@@ -249,6 +212,7 @@ public class OpenPlanDeviceRelation implements IOpenPlanDeviceRelation {
 	 * @param orgId
 	 * @return
 	 */
+	@Override
    public List<IDevicePlanRelation> devicePlanRelations()
    {
 	   StringBuffer  hql = new StringBuffer();
@@ -262,6 +226,7 @@ public class OpenPlanDeviceRelation implements IOpenPlanDeviceRelation {
     * @param orgId
     * @return
     */
+	@Override
    public List<IDevice> getDevicebyCode(String deviceCode,String orgId)
    {
 	   IOrganization org = orgService.get(orgId);

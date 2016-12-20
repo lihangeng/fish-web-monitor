@@ -46,50 +46,62 @@ public class SysProcess implements IProcess {
 	public SysProcess() {
 	}
 
+	@Override
 	public long getId() {
 		return id;
 	}
 
+	@Override
 	public void setId(long id) {
 		this.id = id;
 	}
 
+	@Override
 	public String getName() {
 		return this.name;
 	}
 
+	@Override
 	public void setName(String name) {
 		this.name = name;
 	}
 
+	@Override
 	public String getUser() {
 		return this.user;
 	}
 
+	@Override
 	public void setUser(String user) {
 		this.user = user;
 	}
 
+	@Override
 	public double getCpuRate() {
 		return this.cpuRate;
 	}
 
+	@Override
 	public void setCpuRate(double cpuRate) {
 		this.cpuRate = cpuRate;
 	}
 
+	@Override
 	public long getMemoryRate() {
 		return this.memoryRate;
 	}
 
+	@Override
 	public void setMemoryRate(long memoryRate) {
 		this.memoryRate = memoryRate;
 	}
 
+	@Override
 	public String getDescription() {
 		return this.description;
 	}
 
+	@Override
 	public void setDescription(String description) {
 		this.description = description;
 	}
@@ -104,6 +116,7 @@ public class SysProcess implements IProcess {
 		this.date = date;
 	}
 
+	@Override
 	public String toString() {
 		return "Process [name=" + name + ", user=" + user + ", cpuRate=" + cpuRate + ", memoryRate=" + memoryRate + ", description=" + description + ", date=" + date + "]";
 	}

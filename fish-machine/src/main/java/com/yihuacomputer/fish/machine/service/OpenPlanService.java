@@ -39,6 +39,7 @@ public class OpenPlanService implements IOpenPlanService {
 		return dao.get(openPlanId, DeviceOpenPlan.class);
 	}
 
+	@Override
 	public IDeviceOpenPlan getDeviceOpenPlanByName(String name) {
 		IDeviceOpenPlan openPlan = (IDeviceOpenPlan) dao.getCriteria(DeviceOpenPlan.class).add(Restrictions.eq("name", name)).uniqueResult();
 		return openPlan;

@@ -66,98 +66,122 @@ public class DeviceBoxDetailInfo implements IDeviceBoxDetailInfo {
     @JoinColumn(name = "DEV_BOX_INFO_ID", insertable = false, updatable = false)
     private IDeviceBoxInfo deviceBoxInfo;
 
+    @Override
 	public long getId() {
 		return id;
 	}
 
+    @Override
 	public void setId(long id) {
 		this.id = id;
 	}
 
+    @Override
 	public String getCashId() {
 		return cashId;
 	}
 
+    @Override
 	public void setCashId(String cashId) {
 		this.cashId = cashId;
 	}
 
+    @Override
 	public String getCurrency() {
 		return currency;
 	}
 
+    @Override
 	public void setCurrency(String currency) {
 		this.currency = currency;
 	}
 
+    @Override
 	public int getValue() {
 		return value;
 	}
 
+    @Override
 	public void setValue(int value) {
 		this.value = value;
 	}
 
+    @Override
 	public int getNumber() {
 		return number;
 	}
 
+    @Override
 	public void setNumber(int number) {
 		this.number = number;
 	}
 
+    @Override
 	public BoxType getBoxType() {
 		return boxType;
 	}
 
+    @Override
 	public void setBoxType(BoxType boxType) {
 		this.boxType = boxType;
 	}
 
+    @Override
 	public int getMaxiNum() {
 		return maxiNum;
 	}
 
+    @Override
 	public void setMaxiNum(int maxiNum) {
 		this.maxiNum = maxiNum;
 	}
 
+    @Override
 	public boolean isEffect() {
 		return effect;
 	}
 
+    @Override
 	public void setEffect(boolean effect) {
 		this.effect = effect;
 	}
-
+    
+    @Override
 	public IDeviceBoxInfo getDeviceBoxInfo() {
 		return deviceBoxInfo;
 	}
 
+    @Override
 	public void setDeviceBoxInfo(IDeviceBoxInfo deviceBoxInfo) {
 		this.deviceBoxInfo = deviceBoxInfo;
 	}
 
+    @Override
 	public int getInitialCount() {
 		return initialCount;
 	}
 
+    @Override
 	public void setInitialCount(int initialCount) {
 		this.initialCount = initialCount;
 	}
 
+    @Override
 	public int getCashInCount() {
 		return cashInCount;
 	}
 
+    @Override
 	public void setCashInCount(int cashInCount) {
 		this.cashInCount = cashInCount;
 	}
 
+    @Override
 	public int getDispenseCount() {
 		return dispenseCount;
 	}
 
+    @Override
 	public void setDispenseCount(int dispenseCount) {
 		this.dispenseCount = dispenseCount;
 	}
