@@ -857,53 +857,53 @@ public class PersonDataLoader {
 		cardDel.setParent(monitorCardInfo);
 		permissionService.add(cardDel);
 
-		IPermission monitor_cardAction = permissionService.make("B0202");
-		monitor_cardAction.setCode("monitor_cardAction");
-		monitor_cardAction.setDescription("吞卡处理");
-		monitor_cardAction.setButton(false);
-		monitor_cardAction.setParent(retainCard);
-		permissionService.add(monitor_cardAction);
+		IPermission monitorCardAction = permissionService.make("B0202");
+		monitorCardAction.setCode("monitor_cardAction");
+		monitorCardAction.setDescription("吞卡处理");
+		monitorCardAction.setButton(false);
+		monitorCardAction.setParent(retainCard);
+		permissionService.add(monitorCardAction);
 
 		IPermission cardReceiveQuery = permissionService.make("B020201");
 		cardReceiveQuery.setCode("cardReceiveQuery");
 		cardReceiveQuery.setDescription("查询");
 		cardReceiveQuery.setButton(true);
-		cardReceiveQuery.setParent(monitor_cardAction);
+		cardReceiveQuery.setParent(monitorCardAction);
 		permissionService.add(cardReceiveQuery);
 
 		IPermission cardReceive = permissionService.make("B020202");
 		cardReceive.setCode("cardReceive");
 		cardReceive.setDescription("客户领卡");
 		cardReceive.setButton(true);
-		cardReceive.setParent(monitor_cardAction);
+		cardReceive.setParent(monitorCardAction);
 		permissionService.add(cardReceive);
 
 		IPermission cardHandOver = permissionService.make("B020203");
 		cardHandOver.setCode("cardHandOver");
 		cardHandOver.setDescription("卡片移交");
 		cardHandOver.setButton(true);
-		cardHandOver.setParent(monitor_cardAction);
+		cardHandOver.setParent(monitorCardAction);
 		permissionService.add(cardHandOver);
 
-		IPermission monitor_cardDestroy = permissionService.make("B0203");
-		monitor_cardDestroy.setCode("monitor_cardDestroy");
-		monitor_cardDestroy.setDescription("吞卡销毁");
-		monitor_cardDestroy.setButton(false);
-		monitor_cardDestroy.setParent(retainCard);
-		permissionService.add(monitor_cardDestroy);
+		IPermission monitorCardDestroy = permissionService.make("B0203");
+		monitorCardDestroy.setCode("monitor_cardDestroy");
+		monitorCardDestroy.setDescription("吞卡销毁");
+		monitorCardDestroy.setButton(false);
+		monitorCardDestroy.setParent(retainCard);
+		permissionService.add(monitorCardDestroy);
 
 		IPermission cardDestoryQuery = permissionService.make("B020301");
 		cardDestoryQuery.setCode("cardDestoryQuery");
 		cardDestoryQuery.setDescription("查询");
 		cardDestoryQuery.setButton(true);
-		cardDestoryQuery.setParent(monitor_cardDestroy);
+		cardDestoryQuery.setParent(monitorCardDestroy);
 		permissionService.add(cardDestoryQuery);
 
 		IPermission cardDestory = permissionService.make("B020302");
 		cardDestory.setCode("cardDestory");
 		cardDestory.setDescription("卡片销毁");
 		cardDestory.setButton(true);
-		cardDestory.setParent(monitor_cardDestroy);
+		cardDestory.setParent(monitorCardDestroy);
 		permissionService.add(cardDestory);
 
 		IPermission blackCard = permissionService.make("B03");
@@ -948,54 +948,54 @@ public class PersonDataLoader {
 		blackCardDel.setParent(blackCard);
 		permissionService.add(blackCardDel);
 
-		IPermission device_runtimeParams = permissionService.make("B04");
-		device_runtimeParams.setCode("device_runtimeParams");
-		device_runtimeParams.setDescription("ATM参数管理");
-		device_runtimeParams.setButton(false);
-		device_runtimeParams.setParent(atmDailyWork);
-		permissionService.add(device_runtimeParams);
+		IPermission deviceRuntimeParams = permissionService.make("B04");
+		deviceRuntimeParams.setCode("device_runtimeParams");
+		deviceRuntimeParams.setDescription("ATM参数管理");
+		deviceRuntimeParams.setButton(false);
+		deviceRuntimeParams.setParent(atmDailyWork);
+		permissionService.add(deviceRuntimeParams);
 
 		IPermission deviceRuntimeParamsQuery = permissionService.make("B0401");
 		deviceRuntimeParamsQuery.setCode("deviceRuntimeParamsQuery");
 		deviceRuntimeParamsQuery.setDescription("查询");
 		deviceRuntimeParamsQuery.setButton(true);
-		deviceRuntimeParamsQuery.setParent(device_runtimeParams);
+		deviceRuntimeParamsQuery.setParent(deviceRuntimeParams);
 		permissionService.add(deviceRuntimeParamsQuery);
 
 		IPermission deviceRuntimeParamsActivation = permissionService.make("B0402");
 		deviceRuntimeParamsActivation.setCode("deviceRuntimeParamsActivation");
 		deviceRuntimeParamsActivation.setDescription("激活");
 		deviceRuntimeParamsActivation.setButton(true);
-		deviceRuntimeParamsActivation.setParent(device_runtimeParams);
+		deviceRuntimeParamsActivation.setParent(deviceRuntimeParams);
 		permissionService.add(deviceRuntimeParamsActivation);
 
-		IPermission device_runtimeInfo = permissionService.make("B05");
-		device_runtimeInfo.setCode("device_runtimeInfo");
-		device_runtimeInfo.setDescription("客服信息采集");
-		device_runtimeInfo.setButton(false);
-		device_runtimeInfo.setParent(atmDailyWork);
-		permissionService.add(device_runtimeInfo);
+		IPermission deviceRuntimeInfo = permissionService.make("B05");
+		deviceRuntimeInfo.setCode("device_runtimeInfo");
+		deviceRuntimeInfo.setDescription("客服信息采集");
+		deviceRuntimeInfo.setButton(false);
+		deviceRuntimeInfo.setParent(atmDailyWork);
+		permissionService.add(deviceRuntimeInfo);
 
 		IPermission deviceRuntimeInfoQuery = permissionService.make("B0501");
 		deviceRuntimeInfoQuery.setCode("deviceRuntimeInfoQuery");
 		deviceRuntimeInfoQuery.setDescription("查询");
 		deviceRuntimeInfoQuery.setButton(true);
-		deviceRuntimeInfoQuery.setParent(device_runtimeInfo);
+		deviceRuntimeInfoQuery.setParent(deviceRuntimeInfo);
 		permissionService.add(deviceRuntimeInfoQuery);
 
 
-		IPermission device_quittingNotice = permissionService.make("B06");
-		device_quittingNotice.setCode("device_quittingNotice");
-		device_quittingNotice.setDescription("ATM设备报停");
-		device_quittingNotice.setButton(false);
-		device_quittingNotice.setParent(atmDailyWork);
-		permissionService.add(device_quittingNotice);
+		IPermission deviceQuittingNotice = permissionService.make("B06");
+		deviceQuittingNotice.setCode("device_quittingNotice");
+		deviceQuittingNotice.setDescription("ATM设备报停");
+		deviceQuittingNotice.setButton(false);
+		deviceQuittingNotice.setParent(atmDailyWork);
+		permissionService.add(deviceQuittingNotice);
 
 		IPermission quittingNoticeQuery = permissionService.make("B0601");
 		quittingNoticeQuery.setCode("quittingNoticeQuery");
 		quittingNoticeQuery.setDescription("查询");
 		quittingNoticeQuery.setButton(true);
-		quittingNoticeQuery.setParent(device_quittingNotice);
+		quittingNoticeQuery.setParent(deviceQuittingNotice);
 		permissionService.add(quittingNoticeQuery);
 
 
@@ -1003,56 +1003,56 @@ public class PersonDataLoader {
 		quittingNoticeAdd.setCode("quittingNoticeAdd");
 		quittingNoticeAdd.setDescription("增加");
 		quittingNoticeAdd.setButton(true);
-		quittingNoticeAdd.setParent(device_quittingNotice);
+		quittingNoticeAdd.setParent(deviceQuittingNotice);
 		permissionService.add(quittingNoticeAdd);
 
 		IPermission quittingNoticeUpdate = permissionService.make("B0603");
 		quittingNoticeUpdate.setCode("quittingNoticeUpdate");
 		quittingNoticeUpdate.setDescription("更改");
 		quittingNoticeUpdate.setButton(true);
-		quittingNoticeUpdate.setParent(device_quittingNotice);
+		quittingNoticeUpdate.setParent(deviceQuittingNotice);
 		permissionService.add(quittingNoticeUpdate);
 
 		IPermission quittingNoticeDel = permissionService.make("B0604");
 		quittingNoticeDel.setCode("quittingNoticeDel");
 		quittingNoticeDel.setDescription("删除");
 		quittingNoticeDel.setButton(true);
-		quittingNoticeDel.setParent(device_quittingNotice);
+		quittingNoticeDel.setParent(deviceQuittingNotice);
 		permissionService.add(quittingNoticeDel);
 
-		IPermission device_move = permissionService.make("B07");
-		device_move.setCode("device_move");
-		device_move.setDescription("ATM设备移机");
-		device_move.setButton(false);
-		device_move.setParent(atmDailyWork);
-		permissionService.add(device_move);
+		IPermission deviceMoveA = permissionService.make("B07");
+		deviceMoveA.setCode("device_move");
+		deviceMoveA.setDescription("ATM设备移机");
+		deviceMoveA.setButton(false);
+		deviceMoveA.setParent(atmDailyWork);
+		permissionService.add(deviceMoveA);
 
 		IPermission deviceMoveQuery = permissionService.make("B0701");
 		deviceMoveQuery.setCode("deviceMoveQuery");
 		deviceMoveQuery.setDescription("待移机查询");
 		deviceMoveQuery.setButton(true);
-		deviceMoveQuery.setParent(device_move);
+		deviceMoveQuery.setParent(deviceMoveA);
 		permissionService.add(deviceMoveQuery);
 
 		IPermission deviceMove = permissionService.make("B0702");
 		deviceMove.setCode("deviceMove");
 		deviceMove.setDescription("移机");
 		deviceMove.setButton(true);
-		deviceMove.setParent(device_move);
+		deviceMove.setParent(deviceMoveA);
 		permissionService.add(deviceMove);
 
 		IPermission deviceMoveRecordQuery = permissionService.make("B0703");
 		deviceMoveRecordQuery.setCode("deviceMoveRecordQuery");
 		deviceMoveRecordQuery.setDescription("移机记录查询");
 		deviceMoveRecordQuery.setButton(true);
-		deviceMoveRecordQuery.setParent(device_move);
+		deviceMoveRecordQuery.setParent(deviceMoveA);
 		permissionService.add(deviceMoveRecordQuery);
 
 		IPermission moveDel = permissionService.make("B0704");
 		moveDel.setCode("moveDel");
 		moveDel.setDescription("删除");
 		moveDel.setButton(true);
-		moveDel.setParent(device_move);
+		moveDel.setParent(deviceMoveA);
 		permissionService.add(moveDel);
 
 		IPermission mapMarker = permissionService.make("B08");
@@ -1090,60 +1090,60 @@ public class PersonDataLoader {
 		monitor.setParent(root);
 		permissionService.add(monitor);
 
-		IPermission monitor_device = permissionService.make("C01");
-		monitor_device.setCode("monitor_device");
-		monitor_device.setDescription("状态监控");
-		monitor_device.setButton(false);
-		monitor_device.setParent(monitor);
-		permissionService.add(monitor_device);
+		IPermission monitorDevice = permissionService.make("C01");
+		monitorDevice.setCode("monitor_device");
+		monitorDevice.setDescription("状态监控");
+		monitorDevice.setButton(false);
+		monitorDevice.setParent(monitor);
+		permissionService.add(monitorDevice);
 
 		IPermission remoteScreen = permissionService.make("C0101");
 		remoteScreen.setCode("remoteScreen");
 		remoteScreen.setDescription("远程抓屏");
 		remoteScreen.setButton(true);
-		remoteScreen.setParent(monitor_device);
+		remoteScreen.setParent(monitorDevice);
 		permissionService.add(remoteScreen);
 
 		IPermission takeLog = permissionService.make("C0102");
 		takeLog.setCode("takeLog");
 		takeLog.setDescription("提取电子日志");
 		takeLog.setButton(true);
-		takeLog.setParent(monitor_device);
+		takeLog.setParent(monitorDevice);
 		permissionService.add(takeLog);
 
 		IPermission close = permissionService.make("C0103");
 		close.setCode("close");
 		close.setDescription("关机");
 		close.setButton(true);
-		close.setParent(monitor_device);
+		close.setParent(monitorDevice);
 		permissionService.add(close);
 
 		IPermission restart = permissionService.make("C0104");
 		restart.setCode("restart");
 		restart.setDescription("重新启动");
 		restart.setButton(true);
-		restart.setParent(monitor_device);
+		restart.setParent(monitorDevice);
 		permissionService.add(restart);
 
 		IPermission logicOpen = permissionService.make("C0105");
 		logicOpen.setCode("logicOpen");
 		logicOpen.setDescription("开启服务");
 		logicOpen.setButton(true);
-		logicOpen.setParent(monitor_device);
+		logicOpen.setParent(monitorDevice);
 		permissionService.add(logicOpen);
 
 		IPermission logicClose = permissionService.make("C0106");
 		logicClose.setCode("logicClose");
 		logicClose.setDescription("暂停服务");
 		logicClose.setButton(true);
-		logicClose.setParent(monitor_device);
+		logicClose.setParent(monitorDevice);
 		permissionService.add(logicClose);
 
 		IPermission remoteBrowser = permissionService.make("C0107");
 		remoteBrowser.setCode("remoteBrowser");
 		remoteBrowser.setDescription("远程浏览");
 		remoteBrowser.setButton(true);
-		remoteBrowser.setParent(monitor_device);
+		remoteBrowser.setParent(monitorDevice);
 		permissionService.add(remoteBrowser);
 
 		IPermission remoteUpFile = permissionService.make("C010701");
@@ -1164,28 +1164,28 @@ public class PersonDataLoader {
 		screenCamera.setCode("screenCamera");
 		screenCamera.setDescription("屏幕录制");
 		screenCamera.setButton(true);
-		screenCamera.setParent(monitor_device);
+		screenCamera.setParent(monitorDevice);
 		permissionService.add(screenCamera);
 
 		IPermission reset = permissionService.make("C0109");
 		reset.setCode("reset");
 		reset.setDescription("强制复位");
 		reset.setButton(true);
-		reset.setParent(monitor_device);
+		reset.setParent(monitorDevice);
 		permissionService.add(reset);
 
 		IPermission modStatusGraphic = permissionService.make("C0110");
 		modStatusGraphic.setCode("modStatusGraphic");
 		modStatusGraphic.setDescription("模块状态图形化展示");
 		modStatusGraphic.setButton(true);
-		modStatusGraphic.setParent(monitor_device);
+		modStatusGraphic.setParent(monitorDevice);
 		permissionService.add(modStatusGraphic);
 
 		IPermission mapView = permissionService.make("C0111");
 		mapView.setCode("mapView");
 		mapView.setDescription("地图方式");
 		mapView.setButton(true);
-		mapView.setParent(monitor_device);
+		mapView.setParent(monitorDevice);
 		permissionService.add(mapView);
 
 		IPermission trans = permissionService.make("C02");
@@ -1195,40 +1195,40 @@ public class PersonDataLoader {
 		trans.setParent(monitor);
 		permissionService.add(trans);
 
-		IPermission hits_trans = permissionService.make("C0201");
-		hits_trans.setCode("hits_trans");
-		hits_trans.setDescription("历史交易查询");
-		hits_trans.setButton(false);
-		hits_trans.setParent(trans);
-		permissionService.add(hits_trans);
+		IPermission hitsTrans = permissionService.make("C0201");
+		hitsTrans.setCode("hits_trans");
+		hitsTrans.setDescription("历史交易查询");
+		hitsTrans.setButton(false);
+		hitsTrans.setParent(trans);
+		permissionService.add(hitsTrans);
 
 		IPermission hitsTransQuery = permissionService.make("C020101");
 		hitsTransQuery.setCode("hitsTransQuery");
 		hitsTransQuery.setDescription("查询");
 		hitsTransQuery.setButton(true);
-		hitsTransQuery.setParent(hits_trans);
+		hitsTransQuery.setParent(hitsTrans);
 		permissionService.add(hitsTransQuery);
 
 
-		IPermission monitor_trans = permissionService.make("C0202");
-		monitor_trans.setCode("monitor_trans");
-		monitor_trans.setDescription("实时交易监控");
-		monitor_trans.setButton(false);
-		monitor_trans.setParent(trans);
-		permissionService.add(monitor_trans);
+		IPermission monitorTrans = permissionService.make("C0202");
+		monitorTrans.setCode("monitor_trans");
+		monitorTrans.setDescription("实时交易监控");
+		monitorTrans.setButton(false);
+		monitorTrans.setParent(trans);
+		permissionService.add(monitorTrans);
 
-		IPermission cash_init = permissionService.make("C0203");
-		cash_init.setCode("cash_init");
-		cash_init.setDescription("加钞信息查询");
-		cash_init.setButton(false);
-		cash_init.setParent(trans);
-		permissionService.add(cash_init);
+		IPermission cashInit = permissionService.make("C0203");
+		cashInit.setCode("cash_init");
+		cashInit.setDescription("加钞信息查询");
+		cashInit.setButton(false);
+		cashInit.setParent(trans);
+		permissionService.add(cashInit);
 
 		IPermission cashInitQuery = permissionService.make("C020301");
 		cashInitQuery.setCode("cashInitQuery");
 		cashInitQuery.setDescription("查询");
 		cashInitQuery.setButton(true);
-		cashInitQuery.setParent(cash_init);
+		cashInitQuery.setParent(cashInit);
 		permissionService.add(cashInitQuery);
 
 		IPermission settlement = permissionService.make("C0204");
@@ -1252,46 +1252,46 @@ public class PersonDataLoader {
 		process.setParent(monitor);
 		permissionService.add(process);
 
-		IPermission hits_process = permissionService.make("C0301");
-		hits_process.setCode("hits_process");
-		hits_process.setDescription("历史黑名单进程");
-		hits_process.setButton(false);
-		hits_process.setParent(process);
-		permissionService.add(hits_process);
+		IPermission hitsProcess = permissionService.make("C0301");
+		hitsProcess.setCode("hits_process");
+		hitsProcess.setDescription("历史黑名单进程");
+		hitsProcess.setButton(false);
+		hitsProcess.setParent(process);
+		permissionService.add(hitsProcess);
 
 		IPermission hitsProcessQuery = permissionService.make("C030101");
 		hitsProcessQuery.setCode("hitsProcessQuery");
 		hitsProcessQuery.setDescription("查询");
 		hitsProcessQuery.setButton(true);
-		hitsProcessQuery.setParent(hits_process);
+		hitsProcessQuery.setParent(hitsProcess);
 		permissionService.add(hitsProcessQuery);
 
-		IPermission monitor_process = permissionService.make("C0302");
-		monitor_process.setCode("monitor_process");
-		monitor_process.setDescription("实时进程监控");
-		monitor_process.setButton(false);
-		monitor_process.setParent(process);
-		permissionService.add(monitor_process);
+		IPermission monitorProcess = permissionService.make("C0302");
+		monitorProcess.setCode("monitor_process");
+		monitorProcess.setDescription("实时进程监控");
+		monitorProcess.setButton(false);
+		monitorProcess.setParent(process);
+		permissionService.add(monitorProcess);
 
 		IPermission monitorProcessAdd = permissionService.make("C030201");
 		monitorProcessAdd.setCode("monitorProcessAdd");
 		monitorProcessAdd.setDescription("创建");
 		monitorProcessAdd.setButton(true);
-		monitorProcessAdd.setParent(monitor_process);
+		monitorProcessAdd.setParent(monitorProcess);
 		permissionService.add(monitorProcessAdd);
 
 		IPermission monitorProcessUpdate = permissionService.make("C030202");
 		monitorProcessUpdate.setCode("monitorProcessUpdate");
 		monitorProcessUpdate.setDescription("修改");
 		monitorProcessUpdate.setButton(true);
-		monitorProcessUpdate.setParent(monitor_process);
+		monitorProcessUpdate.setParent(monitorProcess);
 		permissionService.add(monitorProcessUpdate);
 
 		IPermission monitorProcessDel = permissionService.make("C030203");
 		monitorProcessDel.setCode("monitorProcessDel");
 		monitorProcessDel.setDescription("删除");
 		monitorProcessDel.setButton(true);
-		monitorProcessDel.setParent(monitor_process);
+		monitorProcessDel.setParent(monitorProcess);
 		permissionService.add(monitorProcessDel);
 
 		IPermission softDistribute = permissionService.make("D");

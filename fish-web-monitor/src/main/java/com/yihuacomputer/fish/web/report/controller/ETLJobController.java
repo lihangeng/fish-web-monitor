@@ -63,12 +63,12 @@ public class ETLJobController {
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.GET)
-	public @ResponseBody ModelMap search(@RequestParam int start, @RequestParam int limit, WebRequest Request, HttpServletRequest req) {
+	public @ResponseBody ModelMap search(@RequestParam int start, @RequestParam int limit, WebRequest request, HttpServletRequest req) {
 		logger.info(String.format("search interface : start = %s ,limt = %s ", start, limit));
 		ModelMap result = new ModelMap();
 		IFilter filter = new Filter();
-		String startTime = Request.getParameter("startTime");
-		String endTime = Request.getParameter("endTime");
+		String startTime = request.getParameter("startTime");
+		String endTime = request.getParameter("endTime");
 		if (startTime != null) {
 			filter.like("startTime", startTime);
 		}
@@ -182,22 +182,22 @@ public class ETLJobController {
 		old.add(Calendar.MONTH, -1);
 		Calendar xin = Calendar.getInstance();
 		xin.add(Calendar.DAY_OF_MONTH, -1);
-		List<String> SureList = new ArrayList<String>();
+		List<String> sureList = new ArrayList<String>();
 		String oldstr = new SimpleDateFormat(STANDARD_DATE).format(old.getTime());
 		String xinstr = new SimpleDateFormat(STANDARD_DATE).format(xin.getTime());
 
-		SureList.add(oldstr);
+		sureList.add(oldstr);
 		long o = Long.parseLong(oldstr);
 		long n = Long.parseLong(xinstr);
 		List<String> getList = iDaysService.dateList(o, n);
 		do {
 			old.set(Calendar.DAY_OF_MONTH, old.get(Calendar.DAY_OF_MONTH) + 1);// 让日期加1
 			oldstr = new SimpleDateFormat(STANDARD_DATE).format(old.getTime());
-			SureList.add(oldstr);
+			sureList.add(oldstr);
 			o = Long.parseLong(oldstr);
 		} while (o < n);
 		int index = 0;
-		for (Iterator<String> iterator = SureList.iterator(); iterator.hasNext();) {
+		for (Iterator<String> iterator = sureList.iterator(); iterator.hasNext();) {
 			String date = (String) iterator.next();
 			index++;
 			if (getList.contains(date)) {
@@ -247,7 +247,7 @@ public class ETLJobController {
 	 */
 	@MethodNameDescrible(describle="userlog.ETLJobController.AllOpera",hasArgs=false)
 	@RequestMapping(value = "/AllOpera", method = RequestMethod.GET)
-	public @ResponseBody ModelMap AgainAll(WebRequest Request, HttpServletRequest req) {
+	public @ResponseBody ModelMap AgainAll(WebRequest request, HttpServletRequest req) {
 		logger.info("All opera!!");
 		ModelMap result = new ModelMap();
 		try {

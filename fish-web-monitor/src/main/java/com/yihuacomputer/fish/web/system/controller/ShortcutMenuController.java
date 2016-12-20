@@ -83,8 +83,8 @@ public class ShortcutMenuController {
 	ModelMap edit(@RequestParam String permissions, HttpSession session) {
 		ModelMap result = new ModelMap();
 		UserSession userSession = (UserSession) session.getAttribute(FishWebUtils.USER);
-		long UserId = userSession.getUserId();
-		IUser user = userService.get(UserId);
+		long userId = userSession.getUserId();
+		IUser user = userService.get(userId);
 
 		List<IPermission> list = userPermissionRelation.listShortMenuByUser(user);
 		List<String> codesInDB = new ArrayList<String>();
@@ -140,8 +140,8 @@ public class ShortcutMenuController {
 	List<MenuTreeForm> listShortcutMenu(WebRequest request, @RequestParam String node, HttpSession session) {
 		logger.info("listShortcutMenu...");
 		UserSession userSession = (UserSession) session.getAttribute(FishWebUtils.USER);
-		long UserId = userSession.getUserId();
-		IUser user = userService.get(UserId);
+		long userId = userSession.getUserId();
+		IUser user = userService.get(userId);
 		List<IPermission> permissions = userPermissionRelation.listShortMenuByUser(user);
 		//对权限进行排序
 		Collections.sort(permissions, new Comparator<IPermission>() {

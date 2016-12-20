@@ -333,12 +333,12 @@ public class RetaincardController {
 			@RequestParam int start, @RequestParam int limit, WebRequest request) {
 		ModelMap result = new ModelMap();
 
-		int WAIT_RECEIVE = 0;
-		int HAND_OVER = 3;
+		int waitReceive = 0;
+		int handOver = 3;
 		IFilter filter = request2filter(request);
 		IPageResult<IRetaincard> pageResult = retaincardService.page(start,
-				limit, filter, organizationId, CardStatus.getById(HAND_OVER),
-				CardStatus.getById(WAIT_RECEIVE));
+				limit, filter, organizationId, CardStatus.getById(handOver),
+				CardStatus.getById(waitReceive));
 		List<RetainCardForm> resultList = new ArrayList<RetainCardForm>();
 		for (IRetaincard item : pageResult.list()) {
 			resultList.add(new RetainCardForm(item, orgService, deviceService));
