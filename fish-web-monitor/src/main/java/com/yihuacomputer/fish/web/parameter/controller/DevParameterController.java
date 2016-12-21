@@ -61,7 +61,7 @@ import com.yihuacomputer.fish.web.parameter.form.ParamDownloadMonitorForm;
 @RequestMapping("/parameter/devParameter")
 @ClassNameDescrible(describle="userlog.DevParameterController")
 public class DevParameterController {
-	private Logger logger = LoggerFactory.getLogger(AppSystemController.class);
+	private Logger logger = LoggerFactory.getLogger(DevParameterController.class);
 
 	@Autowired
 	private MessageSource messageSource;
