@@ -15,18 +15,22 @@ import com.yihuacomputer.common.util.IP;
 
 public class IPUserType implements UserType {
 
+	@Override
     public Object assemble(Serializable cached, Object owner) throws HibernateException {
         return cached;
     }
 
+	@Override
     public Object deepCopy(Object value) throws HibernateException {
         return value;
     }
 
+	@Override
     public Serializable disassemble(Object value) throws HibernateException {
         return (Serializable) value;
     }
 
+	@Override
     public boolean equals(Object x, Object y) throws HibernateException {
         if (x == y) {
             return true;
@@ -37,23 +41,28 @@ public class IPUserType implements UserType {
         return x.equals(y);
     }
 
+	@Override
     public int hashCode(Object x) throws HibernateException {
         return x.hashCode();
     }
 
+	@Override
     public boolean isMutable() {
         return false;
     }
 
+	@Override
     public Object replace(Object original, Object target, Object owner) throws HibernateException {
         return original;
     }
 
+	@Override
     @SuppressWarnings("rawtypes")
     public Class returnedClass() {
         return ITypeIP.class;
     }
 
+	@Override
     public int[] sqlTypes() {
         return new int[]{StandardBasicTypes.STRING.sqlType()};
     }

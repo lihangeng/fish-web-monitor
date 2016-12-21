@@ -91,90 +91,112 @@ public class Transaction implements ITransaction {
         this.id = id;
     }
 
+    @Override 
     public String getTerminalId() {
         return terminalId;
     }
 
+    @Override
     public void setTerminalId(String terminalId) {
         this.terminalId = terminalId;
     }
 
+    @Override
     public String getTransId() {
         return transId;
     }
 
+    @Override
     public void setTransId(String transId) {
         this.transId = transId;
     }
 
+    @Override
     public String getDebitAccount() {
         return debitAccount;
     }
 
+    @Override
     public void setDebitAccount(String debitAccount) {
         this.debitAccount = debitAccount;
     }
 
+    @Override
     public String getCreditAccount() {
         return creditAccount;
     }
 
+    @Override
     public void setCreditAccount(String creditAccount) {
         this.creditAccount = creditAccount;
     }
 
+    @Override
     public String getTransCode() {
         return transCode;
     }
 
+    @Override
     public void setTransCode(String transCode) {
         this.transCode = transCode;
     }
 
+    @Override
     public double getAmt() {
         return amt;
     }
 
+    @Override
     public void setAmt(double amt) {
         this.amt = amt;
     }
 
+    @Override
     public String getCurrency() {
         return currency;
     }
 
+    @Override
     public void setCurrency(String currency) {
         this.currency = currency;
     }
 
+    @Override
     public Date getDateTime() {
         return dateTime;
     }
 
+    @Override
     public void setDateTime(Date dateTime) {
         this.dateTime = dateTime;
     }
 
+    @Override
     public String getHostRet() {
         return hostRet;
     }
 
+    @Override
     public void setHostRet(String hostRet) {
         this.hostRet = hostRet;
     }
 
+    @Override
     public String getLocalRet() {
         return localRet;
     }
 
+    @Override
     public void setLocalRet(String localRet) {
         this.localRet = localRet;
     }
 
+    @Override
     public double getTipFee() {
         return tipFee;
     }
 
+    @Override
     public void setTipFee(double tipFee) {
         this.tipFee = tipFee;
     }
@@ -183,14 +205,17 @@ public class Transaction implements ITransaction {
         return transDate;
     }
 
+    @Override
     public void setTransDate(int transDate) {
         this.transDate = transDate;
     }
 
+    @Override
     public CardType getCardType() {
         return cardType;
     }
-
+    
+    @Override
     public void setCardType(CardType cardType) {
         this.cardType = cardType;
     }

@@ -110,6 +110,7 @@ public class VersionNo{
     /* (non-Javadoc)
      * @see com.yihuacomputer.fish.api.version.IVersionNo#toString()
      */
+    @Override
     public String toString() {
         StringBuilder version = new StringBuilder();
         version.append(this.major);

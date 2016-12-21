@@ -93,99 +93,122 @@ public class TransactionColor implements ITransactionColor {
     @Column(name = "LOCAL_RET_DESCRIBE", length = 60)
     private String localRetDes;
 
-
+    @Override
 	public long getId() {
 		return id;
 	}
 
+    @Override
 	public void setId(long id) {
 		this.id = id;
 	}
 
+    @Override
 	public String getHostRet() {
 		return hostRet;
 	}
 
+    @Override
 	public void setHostRet(String hostRet) {
 		this.hostRet = hostRet;
 	}
 
+    @Override
 	public String getUpdateDateTime() {
 		return updateDateTime;
 	}
 
+    @Override
 	public void setUpdateDateTime(String updateDateTime) {
 		this.updateDateTime = updateDateTime;
 	}
 
+    @Override
 	public String getRemark() {
 		return remark;
 	}
 
+    @Override
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
 
+    @Override
 	public String getBackgroundColor() {
 		return backgroundColor;
 	}
 
+    @Override
 	public void setBackgroundColor(String backgroundColor) {
 		this.backgroundColor = backgroundColor;
 	}
 
+    @Override
 	public String getFontColor() {
 		return fontColor;
 	}
 
+    @Override
 	public void setFontColor(String fontColor) {
 		this.fontColor = fontColor;
 	}
 
+    @Override
 	public String getUserName() {
 		return userName;
 	}
 
+    @Override
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
 
+    @Override
     public String getLocalRet() {
         return localRet;
     }
 
+    @Override
     public void setLocalRet(String localRet) {
         this.localRet = localRet;
     }
 
+    @Override
     public String getLocalBackgroundColor() {
         return localBackgroundColor;
     }
 
+    @Override
     public void setLocalBackgroundColor(String localBackgroundColor) {
         this.localBackgroundColor = localBackgroundColor;
     }
 
+    @Override
     public String getLocalFontColor() {
         return localFontColor;
     }
 
+    @Override
     public String getHostRetDes() {
 		return hostRetDes;
 	}
 
+    @Override
 	public void setHostRetDes(String hostRetDes) {
 		this.hostRetDes = hostRetDes;
 	}
 
+    @Override
 	public String getLocalRetDes() {
 		return localRetDes;
 	}
 
+    @Override
 	public void setLocalRetDes(String localRetDes) {
 		this.localRetDes = localRetDes;
 	}
 
+    @Override
 	public void setLocalFontColor(String localFontColor) {
         this.localFontColor = localFontColor;
     }

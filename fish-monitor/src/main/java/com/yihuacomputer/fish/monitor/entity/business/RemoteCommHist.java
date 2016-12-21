@@ -42,10 +42,6 @@ public class RemoteCommHist implements IRemoteCommHist {
     @Column(name = "TERMINAL_ID", length = 20, nullable = false)
     private String terminalId;
     
-//    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Device.class)
-//    @JoinColumn(name = "DEVICE_ID")
-//    private IDevice device;
-
     /**
      * 远程命令类型(重启(正常),重启(强制),开启服务，暂停服务，强制复位)
      */
@@ -66,60 +62,64 @@ public class RemoteCommHist implements IRemoteCommHist {
     @Column(name = "HANDLE_PERSON")
     private String handlePerson;
 
+    @Override
     public long getId() {
         return id;
     }
 
+    @Override
     public void setId(long id) {
         this.id = id;
     }
 
+    @Override
     public String getDatetime() {
         return datetime;
     }
 
+    @Override
     public void setDatetime(String datetime) {
         this.datetime = datetime;
     }
 
+    @Override
     public String getTerminalId() {
         return terminalId;
     }
 
+    @Override
     public void setTerminalId(String terminalId) {
         this.terminalId = terminalId;
     }
 
+    @Override
     public CommandType getCommandType() {
         return commandType;
     }
 
+    @Override
     public void setCommandType(CommandType commandType) {
         this.commandType = commandType;
     }
 
+    @Override
     public CommandResult getCommandResult() {
         return commandResult;
     }
 
+    @Override
     public void setCommandResult(CommandResult commandResult) {
         this.commandResult = commandResult;
     }
 
+    @Override
     public String getHandlePerson() {
         return handlePerson;
     }
 
+    @Override
     public void setHandlePerson(String handlePerson) {
         this.handlePerson = handlePerson;
     }
-
-//    public IDevice getDevice() {
-//        return device;
-//    }
-//
-//    public void setDevice(IDevice device) {
-//        this.device = device;
-//    }
 
 }

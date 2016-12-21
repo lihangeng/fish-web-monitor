@@ -156,50 +156,62 @@ public class Retaincard implements IRetaincard {
 
 	}
 
+	@Override
 	public void setAccountNo(String accountNo) {
 		this.accountNo = accountNo;
 	}
 
+	@Override
 	public String getAccountNo() {
 		return this.accountNo;
 	}
 
+	@Override
 	public void setReason(String reason) {
 		this.reason = reason;
 	}
 
+	@Override
 	public String getReason() {
 		return this.reason;
 	}
 
+	@Override
 	public void setRet(String ret) {
 		this.ret = ret;
 	}
 
+	@Override
 	public String getRet() {
 		return this.ret;
 	}
 
+	@Override
 	public String toString() {
 		return "Retaincard [accountNo=" + accountNo + ", reason=" + reason + ", ret=" + ret + "]";
 	}
 
+	@Override
 	public long getId() {
 		return this.id;
 	}
 
+	@Override
 	public void setId(long id) {
 		this.id = id;
 	}
 
+	@Override
 	public CardRetainType getCardRetainType() {
 		return cardRetainType;
 	}
 
+	@Override
 	public void setCardRetainType(CardRetainType cardRetainType) {
 		this.cardRetainType = cardRetainType;
 	}
 
+	@Override
 	public void update(IRetaincard retaincard) {
 		setAccountNo(retaincard.getAccountNo());
 		setReason(retaincard.getReason());
@@ -221,27 +233,33 @@ public class Retaincard implements IRetaincard {
 
 	}
 
+	@Override
 	public void setCardRetainTime(Date cardRetainTime) {
 		this.cardRetainTime = cardRetainTime;
 		this.retainDate = Long.parseLong(DateUtils.get(cardRetainTime,DateUtils.STANDARD_DATE_SHORT));
 	}
 
+	@Override
 	public Date getCardRetainTime() {
 		return cardRetainTime;
 	}
 
+	@Override
 	public IOrganization getTreatmentOrganization() {
 		return treatmentOrganization;
 	}
 
+	@Override
 	public void setTreatmentOrganization(IOrganization treatmentOrganization) {
 		this.treatmentOrganization = treatmentOrganization;
 	}
 
+	@Override
 	public void setCardDistributionBank(String cardDistributionBank) {
 		this.cardDistributionBank = cardDistributionBank;
 	}
 
+	@Override
 	public String getCardDistributionBank() {
 
 		return cardDistributionBank;

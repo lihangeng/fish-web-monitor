@@ -37,7 +37,9 @@ public interface IStatusUkd {
 
 	public void setHwCode(String hwCode);
 
+	@Override
 	public int hashCode();
 
+	@Override
 	public boolean equals(Object obj);
 }

@@ -67,77 +67,123 @@ public class Settlement implements ISettlement {
 	public void setId(long id) {
 		this.id = id;
 	}
+	
+	@Override
 	public String getTerminalId() {
 		return terminalId;
 	}
+	
+	@Override
 	public void setTerminalId(String terminalId) {
 		this.terminalId = terminalId;
 	}
+	
+	@Override
 	public String getDate() {
 		return date;
 	}
+	
+	@Override
 	public void setDate(String date) {
 		this.date = date;
 	}
+	
+	@Override
 	public String getUuId() {
 		return uuId;
 	}
+	
+	@Override
 	public long getLeftAmt() {
 		return leftAmt;
 	}
+	
+	@Override
 	public List<IBoxSettleDetail> getBoxDetail() {
-//		List<IBoxSettleDetail> boxDetail = new ArrayList<IBoxSettleDetail>();
-//		boxDetail.addAll(this.boxDetail);
 		return this.boxDetail;
 	}
+	
+	@Override
 	public long getDeposit() {
 		return deposit;
 	}
+	
+	@Override
 	public long getDepositAmt() {
 		return depositAmt;
 	}
+	
+	@Override
 	public long getWithdrawal() {
 		return withdrawal;
 	}
+	
+	@Override
 	public long getWithdrawalAmt() {
 		return withdrawalAmt;
 	}
+	
+	@Override
 	public void setUuId(String uuId) {
 		this.uuId = uuId;
 	}
+	
+	@Override
 	public void setLeftAmt(long leftAmt) {
 		this.leftAmt = leftAmt;
 	}
+	
+	@Override
 	public void setBoxDetail(List<IBoxSettleDetail> boxDetail) {			
 		this.boxDetail = boxDetail;
 	}
+	
+	@Override
 	public void setDeposit(long deposit) {
 		this.deposit = deposit;
 	}
+	
+	@Override
 	public void setDepositAmt(long depositAmt) {
 		this.depositAmt = depositAmt;
 	}
+	
+	@Override
 	public void setWithdrawal(long withdrawal) {
 		this.withdrawal = withdrawal;
 	}
+	
+	@Override
 	public void setWithdrawalAmt(long withdrawalAmt) {
 		this.withdrawalAmt = withdrawalAmt;
 	}
+	
+	@Override
 	public long getTransaction() {
 		return transaction;
 	}
+	
+	@Override
 	public void setTransaction(long transaction) {
 		this.transaction = transaction;
 	}
+	
+	@Override
 	public long getTransactionAmt() {
 		return transactionAmt;
 	}
+	
+	@Override
 	public void setTransactionAmt(long transactionAmt) {
 		this.transactionAmt = transactionAmt;
 	}
+	
+	@Override
 	public int getDates() {
 		return dates;
 	}
+	
+	@Override
 	public void setDates(int dates) {
 		this.dates = dates;
 	}

@@ -33,35 +33,42 @@ public class RunInfo implements IRunInfo {
 	@Column(name = "STATUS_TIME",length = 20)
 	private String statusTime;
 	
-	
+	@Override
 	public long getId() {
 		return id;
 	}
 
+	@Override
 	public void setId(long id) {
 		this.id = id;
 	}
 
+	@Override
 	public String getTerminalId() {
 		return terminalId;
 	}
 
+	@Override
 	public void setTerminalId(String terminalId) {
 		this.terminalId = terminalId;
 	}
 
+	@Override
 	public String getStatusTime() {
 		return statusTime;
 	}
 
+	@Override
 	public void setStatusTime(String statusTime) {
 		this.statusTime = statusTime;
 	}
 
+	@Override
 	public void setRunStatus(RunStatus runStatus) {
 		this.runStatus = runStatus;
 	}
 
+	@Override
 	public RunStatus getRunStatus() {
 		return this.runStatus;
 	}

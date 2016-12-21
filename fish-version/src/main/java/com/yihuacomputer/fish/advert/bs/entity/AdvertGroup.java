@@ -83,6 +83,7 @@ public class AdvertGroup implements IAdvertGroup, Serializable {
 		this.groupName = groupName;
 	}
 
+	@Override
 	public String getPath() {
 		return path;
 	}
