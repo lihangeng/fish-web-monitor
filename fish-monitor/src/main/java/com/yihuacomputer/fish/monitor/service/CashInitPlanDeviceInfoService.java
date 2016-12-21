@@ -137,6 +137,7 @@ public class CashInitPlanDeviceInfoService implements ICashInitPlanDeviceInfoSer
 	 * @param planInfo
 	 * @return
 	 */
+	@Override
 	public List<CashInitPlanDeviceInfoForm> listSelectAble(ICashInitPlanInfo planInfo,IFilter filter){
 		List<CashInitPlanDeviceInfoForm> planDeviceList = new ArrayList<CashInitPlanDeviceInfoForm>();
 		List<ICashInitPlanDeviceInfo>  devicePlanList = planInfo.getCashInitPlanDeviceList();

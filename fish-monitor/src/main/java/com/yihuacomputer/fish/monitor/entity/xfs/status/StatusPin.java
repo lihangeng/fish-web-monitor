@@ -41,6 +41,7 @@ public class StatusPin implements IStatusPin ,Serializable {
      *
      * @return 硬件主状态
      */
+    @Override
     public DeviceStatus getStatus() {
         return this.pin;
     }
@@ -50,6 +51,7 @@ public class StatusPin implements IStatusPin ,Serializable {
      *
      * @param pin
      */
+    @Override
     public void setStatus(DeviceStatus pin) {
         this.pin = pin;
     }
@@ -59,6 +61,7 @@ public class StatusPin implements IStatusPin ,Serializable {
      *
      * @return 状态代码
      */
+    @Override
     public String getCode() {
         return this.pinCode;
     }
@@ -68,6 +71,7 @@ public class StatusPin implements IStatusPin ,Serializable {
      *
      * @param code
      */
+    @Override
     public void setCode(String code) {
         this.pinCode = code;
     }

@@ -149,146 +149,182 @@ public class XfsStatus implements IXfsStatus,Serializable{
         this.ukr = new StatusUkr();
     }
 
+    @Override
     public String getDateTime() {
         return dateTime;
     }
 
+    @Override
     public void setDateTime(String dateTime) {
         this.dateTime = dateTime;
     }
 
+    @Override
     public RunStatus getRunStatus() {
         return runStatus;
     }
 
+    @Override
     public void setRunStatus(RunStatus runStatus) {
         this.runStatus = runStatus;
     }
 
+    @Override
     public void setTerminalId(String terminalId) {
         this.terminalId = terminalId;
     }
 
+    @Override
     public String getTerminalId() {
         return this.terminalId;
     }
 
+    @Override
     public BoxStatus getBoxStatus() {
         return this.boxStatus;
     }
 
+    @Override
     public NetStatus getNetStatus() {
         return netStatus;
     }
 
+    @Override
     public void setNetStatus(NetStatus netStatus) {
         this.netStatus = netStatus;
     }
 
+    @Override
     public long getBoxInitCount() {
         return boxInitCount;
     }
 
+    @Override
     public void setBoxInitCount(long boxInitCount) {
         this.boxInitCount = boxInitCount;
     }
 
+    @Override
     public long getBoxCurrentCount() {
         return boxCurrentCount;
     }
 
+    @Override
     public void setBoxCurrentCount(long boxCurrentCount) {
         this.boxCurrentCount = boxCurrentCount;
     }
 
+    @Override
     public DeviceStatus getModStatus() {
         return this.modStatus;
     }
 
+    @Override
     public IStatusIdc getStatusIdc() {
         return this.idc;
     }
 
+    @Override
     public IStatusNfc getStatusNfc() {
         return this.nfc;
     }
 
+    @Override
     public IStatusJpr getStatusJpr() {
         return this.jpr;
     }
 
+    @Override
     public IStatusRpr getStatusRpr() {
         return this.rpr;
     }
 
+    @Override
     public IStatusPbk getStatusPbk() {
         return this.pbk;
     }
 
+    @Override
     public IStatusCdm getStatusCdm() {
         return this.cdm;
     }
 
+    @Override
     public IStatusCim getStatusCim() {
         return this.cim;
     }
 
+    @Override
     public IStatusPin getStatusPin() {
         return this.pin;
     }
 
+    @Override
     public IStatusSiu getStatusSiu() {
         return this.siu;
     }
 
+    @Override
     public IStatusTtu getStatusTtu() {
         return this.ttu;
     }
 
+    @Override
     public void setBoxStatus(BoxStatus boxStatus) {
         this.boxStatus = boxStatus;
     }
 
+    @Override
     public void setModStatus(DeviceStatus modStatus) {
         this.modStatus = modStatus;
     }
 
+    @Override
     public void setStatusIdc(IStatusIdc idc) {
         this.idc = (StatusIdc) idc;
     }
 
+    @Override
     public void setStatusNfc(IStatusNfc nfc) {
         this.nfc = (StatusNfc) nfc;
     }
 
+    @Override
     public void setStatusJpr(IStatusJpr jpr) {
         this.jpr = (StatusJpr) jpr;
     }
 
+    @Override
     public void setStatusRpr(IStatusRpr rpr) {
         this.rpr = (StatusRpr) rpr;
     }
 
+    @Override
     public void setStatusPbk(IStatusPbk pbk) {
         this.pbk = (StatusPbk) pbk;
     }
 
+    @Override
     public void setStatusCdm(IStatusCdm cdm) {
         this.cdm = (StatusCdm) cdm;
     }
 
+    @Override
     public void setStatusCim(IStatusCim cim) {
         this.cim = (StatusCim) cim;
     }
 
+    @Override
     public void setStatusPin(IStatusPin pin) {
         this.pin = (StatusPin) pin;
     }
 
+    @Override
     public void setStatusSiu(IStatusSiu siu) {
         this.siu = (StatusSiu) siu;
     }
 
+    @Override
     public void setStatusTtu(IStatusTtu ttu) {
         this.ttu = (StatusTtu) ttu;
     }
@@ -333,14 +369,17 @@ public class XfsStatus implements IXfsStatus,Serializable{
         return new StatusTtu();
     }
 
+    @Override
     public IStatusNfc makeStatusNfc() {
         return new StatusNfc();
     }
 
+    @Override
     public IStatusPbk makeStatusPbk() {
         return new StatusPbk();
     }
 
+    @Override
     public void setXfsStatus(IXfsStatus xfsStatus) {
     	this.terminalId = xfsStatus.getTerminalId() ;
         this.setBoxStatus(xfsStatus.getBoxStatus());

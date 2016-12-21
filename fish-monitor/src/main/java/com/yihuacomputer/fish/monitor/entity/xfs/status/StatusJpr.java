@@ -35,6 +35,7 @@ public class StatusJpr implements IStatusJpr  ,Serializable {
      *
      * @return 硬件主状态
      */
+    @Override
     public DeviceStatus getStatus() {
         return this.jpr;
     }
@@ -44,6 +45,7 @@ public class StatusJpr implements IStatusJpr  ,Serializable {
      *
      * @param jpr
      */
+    @Override
     public void setStatus(DeviceStatus jpr) {
         this.jpr = jpr;
     }
@@ -53,6 +55,7 @@ public class StatusJpr implements IStatusJpr  ,Serializable {
      *
      * @return 状态代码
      */
+    @Override
     public String getCode() {
         return this.jprCode;
     }
@@ -62,6 +65,7 @@ public class StatusJpr implements IStatusJpr  ,Serializable {
      *
      * @param code
      */
+    @Override
     public void setCode(String code) {
         this.jprCode = code;
     }

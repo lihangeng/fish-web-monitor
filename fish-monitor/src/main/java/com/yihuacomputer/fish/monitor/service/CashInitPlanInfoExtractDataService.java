@@ -77,6 +77,7 @@ public class CashInitPlanInfoExtractDataService implements ICashInitPlanInfoExtr
 		generalCashInitPlan(organization, date);
 	}
 
+	@Override
 	public void generalCashInitPlan(IOrganization organization, String cashInitDate) {
 		// 获取加钞计划机构单位(总分支行)
 		OrganizationLevel orgLevel = OrganizationLevel.TOTAL;

@@ -128,6 +128,7 @@ public class CollectService implements ICollectService, IDeviceListener,IMessage
 	 *
 	 * @param listener
 	 */
+	@Override
 	public void setClollectListener(ICollectListener listener) {
 		this.collectListener = listener;
 	}
@@ -135,6 +136,7 @@ public class CollectService implements ICollectService, IDeviceListener,IMessage
 	/**
 	 * 收集服务初始化
 	 */
+	@Override
 	@PostConstruct
 	public void init() {
 		deviceService.addDeviceListener(this);
@@ -143,6 +145,7 @@ public class CollectService implements ICollectService, IDeviceListener,IMessage
 	/**
 	 * 收集服务关闭
 	 * */
+	@Override
 	public void close() {
 
 	}
@@ -154,6 +157,7 @@ public class CollectService implements ICollectService, IDeviceListener,IMessage
 	 * @param regSn
 	 * @return 签到是否成功
 	 */
+	@Override
 	public void collectBootSign(String terminalId, IDeviceRegister deviceRegister, MessageSource messageSourceRef) {
 		DeviceReport deviceReport = this.getDeviceReport(terminalId);
 		deviceReport.setDeviceRegister((DeviceRegister) deviceRegister);
@@ -166,6 +170,7 @@ public class CollectService implements ICollectService, IDeviceListener,IMessage
 	 * @param terminalId
 	 * @param status
 	 */
+	@Override
 	public void collectModuleStatus(String terminalId, IXfsStatus xfsStatus) {
 		// 1.update Xfs Status
 		IXfsStatus histXfsStatus = xfsService.loadXfsStatus(terminalId);
@@ -225,6 +230,7 @@ public class CollectService implements ICollectService, IDeviceListener,IMessage
 	 * 推送状态类信息到WEB页面
 	 * @param message
 	 */
+	@Override
 	public void pushStatusToWeb(String message) {
 		try{
 			MqXfsStatus histXfsStatus = JsonUtils.fromJson(message, MqXfsStatus.class);
@@ -240,6 +246,7 @@ public class CollectService implements ICollectService, IDeviceListener,IMessage
 	 * @param terminalId
 	 * @param xfsStatus
 	 */
+	@Override
 	public void collectNetError(String terminalId, IXfsStatus xfsStatus) {
 		// 1.update xfs
 		xfsService.updateXfsStatus(xfsStatus);
@@ -273,6 +280,7 @@ public class CollectService implements ICollectService, IDeviceListener,IMessage
 	 * @param terminalId
 	 * @return
 	 */
+	@Override
 	public DeviceReport getDeviceReport(String terminalId) {
 		DeviceReport deviceReport = new DeviceReport();
 		deviceReport.setDeviceId(terminalId);
@@ -285,6 +293,7 @@ public class CollectService implements ICollectService, IDeviceListener,IMessage
 	 * @param terminalId
 	 * @param hardware
 	 */
+	@Override
 	public void collectDeviceHardware(String terminalId, IHardware hardware) {
 		if (hardware != null) {
 			this.hardwareService.update(hardware);
@@ -297,6 +306,7 @@ public class CollectService implements ICollectService, IDeviceListener,IMessage
 	 * @param terminalId
 	 * @param software
 	 */
+	@Override
 	public void collectDeviceSoftware(String terminalId, ISoftware software) {
 		if (software != null) {
 			this.softwareService.update(software);
@@ -309,6 +319,7 @@ public class CollectService implements ICollectService, IDeviceListener,IMessage
 	 * @param terminalId
 	 * @param failure
 	 */
+	@Override
 	public void collectSoftwareFailure(String terminalId, ISoftwareFailure failure) {
 		// dao.save(failure);
 	}
@@ -319,6 +330,7 @@ public class CollectService implements ICollectService, IDeviceListener,IMessage
 	 * @param terminalId
 	 * @param process
 	 */
+	@Override
 	@Deprecated
 	public void collectSchindlerAlarm(String terminalId, List<IIllegalProcess> processList) {
 		DeviceReport deviceReport = this.getDeviceReport(terminalId);
@@ -335,6 +347,7 @@ public class CollectService implements ICollectService, IDeviceListener,IMessage
 	 * @param terminalId
 	 * @param runInfo
 	 */
+	@Override
 	public void collectATMCRunInfo(String terminalId, IRunInfo runInfo) {
 		IXfsStatus xfsStatus = xfsService.loadXfsStatus(terminalId);
 		if (xfsStatus == null
@@ -376,6 +389,7 @@ public class CollectService implements ICollectService, IDeviceListener,IMessage
 	 * @param terminalId
 	 * @param checkin
 	 */
+	@Override
 	public void collectCashInit(String terminalId, ICashInit cashInit) {
 		this.cashInit.save(cashInit);
 	}
@@ -386,6 +400,7 @@ public class CollectService implements ICollectService, IDeviceListener,IMessage
 	 * @param terminalId
 	 * @param checkout
 	 */
+	@Override
 	public void collectSettlement(String terminalId, ISettlement settlement) {
 		this.settle.save(settlement);
 	}
@@ -394,6 +409,7 @@ public class CollectService implements ICollectService, IDeviceListener,IMessage
 	 * 推送交易类信息到WEB页面
 	 * @param message
 	 */
+	@Override
     public void pushTransToWeb(String message){
     	try{
 
@@ -422,6 +438,7 @@ public class CollectService implements ICollectService, IDeviceListener,IMessage
 	 * @param terminalId
 	 * @param retainCard
 	 */
+    @Override
 	public void collectATMCRetainCard(String terminalId, IRetaincard retainCard) {
 		retainCard.setTerminalId(terminalId);
 		retaincardService.add(retainCard);
@@ -429,13 +446,6 @@ public class CollectService implements ICollectService, IDeviceListener,IMessage
 		if (deviceCaseService != null) {
 			deviceCaseService.handleRetainCard(retainCard);
 		}
-
-		// 删除推送从v2.0.0.6
-		/*DeviceReport deviceReport = this.getDeviceReport(terminalId);
-		retainCard.setTerminalId(terminalId);
-		deviceReport.setRetaincard(retainCard);
-		deviceReport.setDevice(this.deviceService.get(terminalId));
-		this.collectListener.receivedBusiness(terminalId, BusinessInfo.RETAIN_CARD, deviceReport);*/
 	}
 
 	/**
@@ -444,6 +454,7 @@ public class CollectService implements ICollectService, IDeviceListener,IMessage
 	 * @param terminalId
 	 * @param xfsPro
 	 */
+    @Override
 	public void collectModulePropertise(String terminalId, IXfsPropertise xfsPro) {
 		IXfsPropertise oldXfsPro = this.xfsService.loadXfsProp(terminalId);
 		if (oldXfsPro == null || oldXfsPro.equals(xfsPro)) {

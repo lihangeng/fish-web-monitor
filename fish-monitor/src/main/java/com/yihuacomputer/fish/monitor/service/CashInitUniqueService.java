@@ -57,6 +57,7 @@ public class CashInitUniqueService implements ICashInitUniqueService {
 		return dao.findUniqueByFilter(filter, ICashInitUnique.class);
 	}
 	
+	@Override
 	public List<ICashInitUnique> getCashInitByOrg(IOrganization org,int cashInitDays){
 		StringBuilder sb = new StringBuilder();
 		String date = DateUtils.getDate(DateUtils.getDate(-cashInitDays));
@@ -73,6 +74,7 @@ public class CashInitUniqueService implements ICashInitUniqueService {
 	 * @param org
 	 * @return
 	 */
+	@Override
 	public Map<String, ICashInitUnique> getCashInitMap(IOrganization org){
 		Map<String, ICashInitUnique> cashInitMap = new HashMap<String, ICashInitUnique>();
 		StringBuilder sb = new StringBuilder();

@@ -35,6 +35,7 @@ public class StatusSiu implements IStatusSiu ,Serializable {
      *
      * @return 硬件主状态
      */
+    @Override
     public DeviceStatus getStatus() {
         return this.siu;
     }
@@ -44,6 +45,7 @@ public class StatusSiu implements IStatusSiu ,Serializable {
      *
      * @param siu
      */
+    @Override
     public void setStatus(DeviceStatus siu) {
         this.siu = siu;
     }
@@ -53,6 +55,7 @@ public class StatusSiu implements IStatusSiu ,Serializable {
      *
      * @return 状态代码
      */
+    @Override
     public String getCode() {
         return this.siuCode;
     }
@@ -62,6 +65,7 @@ public class StatusSiu implements IStatusSiu ,Serializable {
      *
      * @param code
      */
+    @Override
     public void setCode(String code) {
         this.siuCode = code;
     }

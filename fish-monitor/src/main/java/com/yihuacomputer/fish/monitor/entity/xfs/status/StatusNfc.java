@@ -35,6 +35,7 @@ public class StatusNfc implements IStatusNfc ,Serializable {
      *
      * @return 硬件主状态
      */
+    @Override
     public DeviceStatus getStatus() {
         return this.nfc;
     }
@@ -44,6 +45,7 @@ public class StatusNfc implements IStatusNfc ,Serializable {
      *
      * @param nfc
      */
+    @Override
     public void setStatus(DeviceStatus nfc) {
         this.nfc = nfc;
     }
@@ -53,6 +55,7 @@ public class StatusNfc implements IStatusNfc ,Serializable {
      *
      * @return 状态代码
      */
+    @Override
     public String getCode() {
         return this.nfcCode;
     }
@@ -62,6 +65,7 @@ public class StatusNfc implements IStatusNfc ,Serializable {
      *
      * @param code
      */
+    @Override
     public void setCode(String code) {
         this.nfcCode = code;
     }
@@ -100,11 +104,13 @@ public class StatusNfc implements IStatusNfc ,Serializable {
         }
         return true;
     }
-
+    
+    @Override
     public String getHwCode() {
         return this.nfcHwCode;
     }
 
+    @Override
     public void setHwCode(String hwCode) {
         this.nfcHwCode = hwCode;
     }

@@ -35,6 +35,7 @@ public class StatusPbk implements IStatusPbk ,Serializable {
      *
      * @return 硬件主状态
      */
+    @Override
     public DeviceStatus getStatus() {
         return this.pbk;
     }
@@ -44,6 +45,7 @@ public class StatusPbk implements IStatusPbk ,Serializable {
      *
      * @param rpr
      */
+    @Override
     public void setStatus(DeviceStatus pbk) {
         this.pbk = pbk;
     }
@@ -53,10 +55,12 @@ public class StatusPbk implements IStatusPbk ,Serializable {
      *
      * @return 状态代码
      */
+    @Override
     public String getCode() {
         return this.pbkCode;
     }
 
+    @Override
     public void setCode(String code) {
         this.pbkCode = code;
     }

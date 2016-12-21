@@ -19,6 +19,7 @@ public class CollectListener implements ICollectListener{
 
 	private IWorkUnit workUnit;
 
+	@Override
 	public void setWorkUnit(IWorkUnit workUnit){
 		this.workUnit = workUnit;
 	}
@@ -26,6 +27,7 @@ public class CollectListener implements ICollectListener{
 	 * 设备注册
 	 * @param deviceId
 	 */
+	@Override
 	public void registered(String deviceId){
 
 	}
@@ -42,6 +44,7 @@ public class CollectListener implements ICollectListener{
 	 * 网络超时
 	 * @param deviceId
 	 */
+	@Override
 	public void timeout(String deviceId){
 
 	}
@@ -51,6 +54,7 @@ public class CollectListener implements ICollectListener{
 	 * @param deviceId
 	 * @param info
 	 */
+	@Override
 	public void receivedSystem(String deviceId, SystemInfo info){
 
 	}
@@ -60,16 +64,11 @@ public class CollectListener implements ICollectListener{
 	 * @param deviceId
 	 * @param info
 	 */
+	@Override
 	@SuppressWarnings("incomplete-switch")
 	public void receivedBusiness(String deviceId, BusinessInfo info,IDeviceReport deviceReport){
 
 		switch (info) {
-//			case RUN_INFO: {
-//				if(workUnit.hasDevice(deviceId)){
-//					workUnit.fireMonitorUser(deviceId, deviceReport,messageSourceRef);
-//				}
-//				break;
-//			}
 			case TRANSACTION:{
 				if(workUnit.hasDevice(deviceId)){
 					workUnit.fireTransationUser(deviceId, deviceReport);
@@ -95,6 +94,7 @@ public class CollectListener implements ICollectListener{
 	 * @param deviceId
 	 * @param info
 	 */
+	@Override
 	public void receivedAlarm(String deviceId, AlarmInfo info,IDeviceReport deviceReport){
 		if(workUnit.hasDevice(deviceId)){
 			workUnit.fireProcessUser(deviceId, deviceReport);
@@ -105,6 +105,7 @@ public class CollectListener implements ICollectListener{
 	 * 模块状态
 	 * @param deviceId
 	 */
+	@Override
 	public void receivedStatus(String deviceId,IDeviceReport deviceReport,MessageSource messageSourceRef){
 		if(workUnit.hasDevice(deviceId)){
 			workUnit.fireMonitorUser(deviceId,deviceReport,messageSourceRef);
@@ -115,6 +116,7 @@ public class CollectListener implements ICollectListener{
 	 * 模块属性
 	 * @param deviceId
 	 */
+	@Override
 	public void receivedProperty(String deviceId){
 
 	}

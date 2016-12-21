@@ -50,6 +50,7 @@ public class CashInitPlanInfoService implements ICashInitPlanInfoService {
 		return dao.page(offset, limit, filter, CashInitPlanInfo.class);
 	}
 
+	@Override
 	public List<ICashInitPlanInfo> list(IFilter filter) {
 		return dao.findByFilter(filter, ICashInitPlanInfo.class);
 	}

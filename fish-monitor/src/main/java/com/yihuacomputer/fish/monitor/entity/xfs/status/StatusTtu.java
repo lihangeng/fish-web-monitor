@@ -41,6 +41,7 @@ public class StatusTtu implements IStatusTtu ,Serializable {
      *
      * @return 硬件主状态
      */
+    @Override
     public DeviceStatus getStatus() {
         return this.ttu;
     }
@@ -50,6 +51,7 @@ public class StatusTtu implements IStatusTtu ,Serializable {
      *
      * @param ttu
      */
+    @Override
     public void setStatus(DeviceStatus ttu) {
         this.ttu = ttu;
     }
@@ -59,6 +61,7 @@ public class StatusTtu implements IStatusTtu ,Serializable {
      *
      * @return 状态代码
      */
+    @Override
     public String getCode() {
         return this.ttuCode;
     }
@@ -68,6 +71,7 @@ public class StatusTtu implements IStatusTtu ,Serializable {
      *
      * @param code
      */
+    @Override
     public void setCode(String code) {
         this.ttuCode = code;
     }

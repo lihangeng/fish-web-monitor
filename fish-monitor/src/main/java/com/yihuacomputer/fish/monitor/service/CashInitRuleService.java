@@ -32,6 +32,7 @@ public class CashInitRuleService implements ICashInitRuleService {
 		return dao.get(id, CashInitRule.class);
 	}
 
+	@Override
 	public ICashInitRule get(BoxInitRuleType ruleType){
 		IFilter filter  = new Filter();
 		filter.eq("ruleType", ruleType);

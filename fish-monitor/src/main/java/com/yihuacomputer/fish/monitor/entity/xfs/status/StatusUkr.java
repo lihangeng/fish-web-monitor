@@ -35,6 +35,7 @@ public class StatusUkr implements IStatusUkr, Serializable {
 	 *
 	 * @return 硬件主状态
 	 */
+	@Override
 	public DeviceStatus getStatus() {
 		return this.ukr;
 	}
@@ -47,6 +48,7 @@ public class StatusUkr implements IStatusUkr, Serializable {
 	 *
 	 * @return 状态代码
 	 */
+    @Override
 	public String getCode() {
 		return this.ukrCode;
 	}
@@ -56,6 +58,7 @@ public class StatusUkr implements IStatusUkr, Serializable {
 	 *
 	 * @param cdm
 	 */
+    @Override
 	public void setStatus(DeviceStatus bcr) {
 		this.ukr = bcr;
 	}
@@ -65,6 +68,7 @@ public class StatusUkr implements IStatusUkr, Serializable {
 	 *
 	 * @param code
 	 */
+    @Override
 	public void setCode(String code) {
 		this.ukrCode = code;
 	}
