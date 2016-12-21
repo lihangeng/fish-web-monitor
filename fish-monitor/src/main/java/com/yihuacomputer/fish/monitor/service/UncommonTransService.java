@@ -39,6 +39,7 @@ public class UncommonTransService implements IUncommonTransService {
 		
 	}
 
+	@Override
 	public IPageResult<IUncommonTrans> page(int offset, int limit, IFilter filter) {
 		return dao.page(offset, limit, filter, UncommonTrans.class);
 	}

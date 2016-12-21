@@ -137,6 +137,7 @@ public class RetaincardService implements IRetaincardService{
 		return cardList;
 	}
 
+	@Override
 	@SuppressWarnings("unchecked")
     public IPageResult<IRetaincard> page(int offset, int limit, IFilter filter,long orgId) {
 		StringBuffer sql = new StringBuffer();

@@ -41,42 +41,52 @@ public class ParamPublishAppResult implements IParamPublishAppResult {
 	@JoinColumn(name = "PARAM_PUBLISH_RESULT_ID")
 	private IParamPublishResult paramPublishResult;
 
+	@Override
 	public long getId() {
 		return id;
 	}
 
+	@Override
 	public void setId(long id) {
 		this.id = id;
 	}
 
+	@Override
 	public IAppSystem getAppSystem() {
 		return appSystem;
 	}
 
+	@Override
 	public void setAppSystem(IAppSystem appSystem) {
 		this.appSystem = appSystem;
 	}
 
+	@Override
 	public TaskStatus getStatus() {
 		return status;
 	}
 
+	@Override
 	public void setStatus(TaskStatus status) {
 		this.status = status;
 	}
 
+	@Override
 	public IParamPublishResult getParamPublishResult() {
 		return paramPublishResult;
 	}
 
+	@Override
 	public void setParamPublishResult(IParamPublishResult paramPublishResult) {
 		this.paramPublishResult = paramPublishResult;
 	}
 
+	@Override
 	public String getReason() {
 		return reason;
 	}
 
+	@Override
 	public void setReason(String reason) {
 		this.reason = reason;
 	}

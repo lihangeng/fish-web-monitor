@@ -40,26 +40,32 @@ public class ParamClassify implements IParamClassify, Serializable {
 
 	}
 
+	@Override
 	public long getId() {
 		return id;
 	}
 
+	@Override
 	public void setId(long id) {
 		this.id = id;
 	}
 
+	@Override
 	public String getName() {
 		return name;
 	}
 
+	@Override
 	public void setName(String name) {
 		this.name = name;
 	}
 
+	@Override
 	public String getRemark() {
 		return remark;
 	}
 
+	@Override
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}

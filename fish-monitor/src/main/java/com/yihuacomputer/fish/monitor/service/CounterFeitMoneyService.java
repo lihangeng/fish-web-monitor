@@ -53,6 +53,7 @@ public class CounterFeitMoneyService implements ICounterFeitMoneyService {
     }
 
 	
+    @Override
 	public IPageResult<ICounterFeitMoney> page(int offset, int limit, IFilter filter) {
 		return dao.page(offset, limit, filter, CounterFeitMoney.class);
 	}

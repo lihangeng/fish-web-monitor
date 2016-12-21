@@ -56,6 +56,7 @@ public class TransTypeService implements ITransTypeService {
         return dao.findByFilter(filter, ITransType.class);
     }
     
+    @Override
     public Map<String,ITransType> getTransTypeMap(){
     	List<ITransType> transTypeList =  dao.findByFilter(new Filter(), ITransType.class);
     	Map<String,ITransType> map = new HashMap<String,ITransType> ();

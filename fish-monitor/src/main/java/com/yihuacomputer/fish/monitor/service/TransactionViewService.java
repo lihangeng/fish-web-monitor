@@ -48,6 +48,7 @@ public class TransactionViewService implements ITransactionViewService {
         return page;
     }
 
+    @Override
     @SuppressWarnings("unchecked")
     @Transactional(readOnly = true)
 	public IPageResult<ITransactionView> page(int offset, int limit, IFilter filter) {

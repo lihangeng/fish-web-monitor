@@ -55,82 +55,102 @@ public class ParamPublishResult implements IParamPublishResult {
     @Column(name = "RET", nullable = true, length = 20)
 	private TaskStatus ret;
 
+	@Override
 	public long getId() {
 		return id;
 	}
 
+	@Override
 	public void setId(long id) {
 		this.id = id;
 	}
 
+	@Override
 	public IParamPublish getParamPublish() {
 		return paramPublish;
 	}
 
+	@Override
 	public void setParamPublish(IParamPublish paramPublish) {
 		this.paramPublish = paramPublish;
 	}
 
+	@Override
 	public long getDeviceId() {
 		return deviceId;
 	}
 
+	@Override
 	public void setDeviceId(long deviceId) {
 		this.deviceId = deviceId;
 	}
 
+	@Override
 	public long getVersionNo() {
 		return versionNo;
 	}
 
+	@Override
 	public void setVersionNo(long versionNo) {
 		this.versionNo = versionNo;
 	}
 
+	@Override
 	public String getDownloadStartTime() {
 		return downloadStartTime;
 	}
 
+	@Override
 	public void setDownloadStartTime(String downloadStartTime) {
 		this.downloadStartTime = downloadStartTime;
 	}
 
+	@Override
 	public String getDownloadFinishTime() {
 		return downloadFinishTime;
 	}
 
+	@Override
 	public void setDownloadFinishTime(String downloadFinishTime) {
 		this.downloadFinishTime = downloadFinishTime;
 	}
 
+	@Override
 	public boolean isSuccess() {
 		return success;
 	}
 
+	@Override
 	public void setSuccess(boolean success) {
 		this.success = success;
 	}
 
+	@Override
 	public String getReason() {
 		return reason;
 	}
 
+	@Override
 	public void setReason(String reason) {
 		this.reason = reason;
 	}
 
+	@Override
 	public TaskStatus getRet() {
 		return ret;
 	}
 
+	@Override
 	public void setRet(TaskStatus ret) {
 		this.ret = ret;
 	}
 
+	@Override
 	public IDevice getDevice() {
 		return device;
 	}
 
+	@Override
 	public void setDevice(IDevice device) {
 		this.device = device;
 	}

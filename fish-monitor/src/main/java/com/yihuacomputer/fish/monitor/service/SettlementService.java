@@ -72,6 +72,7 @@ public class SettlementService implements ISettlementService {
         return dao.page(offset, limit, filter, Settlement.class);
     }
     
+    @Override
     public List<CashSettleInit> getCashSettleInitListByDev(String terminalId){
     	StringBuilder sb = new StringBuilder();
     	sb.append("select sum(init.amt),sum(settle.leftAmt),sum(settle.depositAmt),sum(settle.deposit),");

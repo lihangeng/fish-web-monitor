@@ -192,15 +192,16 @@ public class ParamElement implements IParamElement, Serializable {
 	}
 
 	@Override
-	public void setRemark(String remark)
- {
+	public void setRemark(String remark){
 		this.remark = remark;
 	}
 
+	@Override
 	public long getParamTimestamp() {
 		return paramTimestamp;
 	}
 
+	@Override
 	public void setParamTimestamp(long paramTimestamp) {
 		this.paramTimestamp = paramTimestamp;
 	}

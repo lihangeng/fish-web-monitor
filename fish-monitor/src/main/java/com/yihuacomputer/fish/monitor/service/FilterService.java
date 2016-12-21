@@ -78,6 +78,7 @@ public class FilterService implements IFilterService {
         return new RetaincardFilter();
     }
 
+    @Override
     public IClassifyModStatusFilter makeClassifyModStatusFilter() {
         return new ClassifyModStatusFilter();
     }

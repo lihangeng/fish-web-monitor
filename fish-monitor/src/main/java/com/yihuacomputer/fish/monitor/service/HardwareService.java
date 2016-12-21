@@ -49,6 +49,8 @@ public class HardwareService implements IHardwareService{
 			this.delete(hardware);
 		}		
 	}
+	
+	@Override
 	public void delete(IHardware hardware){
 		if(hardware!=null){
 			this.dao.delete(hardware);

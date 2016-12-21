@@ -35,14 +35,17 @@ public class MonitorService implements IMonitorService {
 
 	private IWorkUnit workUnit;
 
+	@Override
 	public void setMonitorListener(IMonitorListener listener) {
 		this.monitorListener = listener;
 	}
 
+	@Override
 	public IMonitorListener getMonitorListener() {
 		return this.monitorListener;
 	}
 
+	@Override
 	@PostConstruct
 	public void init() {
 		MonitorListener monitorListener = new MonitorListener();
@@ -55,20 +58,24 @@ public class MonitorService implements IMonitorService {
 		collectService.setClollectListener(collectListener);
 	}
 
+	@Override
 	@PreDestroy
 	public void close() {
 
 	}
 
+	@Override
 	public IDeviceReport getMonitorReport(String deviceId) {
 		IDeviceReport deviceReport = collectService.getDeviceReport(deviceId);
 		return deviceReport;
 	}
 
+	@Override
 	public void addWorkUnit(IWorkUnit workUnit) {
 		this.workUnit = workUnit;
 	}
 
+	@Override
 	public IMonitorUser makeMonitorUser(String userId) {
 		IMonitorUser monitorUser = this.getMonitoruser(userId);
 		if (monitorUser == null) {
@@ -79,40 +86,26 @@ public class MonitorService implements IMonitorService {
 		return monitorUser;
 	}
 
+	@Override
 	public void addMonitorUser(IMonitorUser user, MonitorUserType type) {
 		MonitorUser monitorUser = (MonitorUser) user;
 		monitorUser.setMonitorService(this);
 		this.workUnit.link(monitorUser, type);
 		monitorUserMap.put(monitorUser.getUserId(), monitorUser);
-		// this.monitorUserList.add(monitorUser);
 	}
 
+	@Override
 	public IMonitorUser getMonitoruser(String userId) {
 		return this.monitorUserMap.get(userId);
-
-		// for(MonitorUser user:this.monitorUserList){
-		// if(user.getUserId().equals(userId)){
-		// return user;
-		// }
-		// }
-		// return null;
 	}
 
+	@Override
 	public void removeMonitorUser(String userId, MonitorUserType type) {
 		MonitorUser user = this.monitorUserMap.get(userId);
 		if (user != null) {
 			this.monitorUserMap.remove(userId);
 			this.workUnit.unlink(user, type);
 		}
-
-		// for(int userIdx=0;userIdx<this.monitorUserList.size();userIdx++){
-		// MonitorUser user = this.monitorUserList.get(userIdx);
-		// if(user.getUserId().equals(userId)){
-		// this.monitorUserList.remove(userIdx);
-		// this.workUnit.unlink(user);
-		// break;
-		// }
-		// }
 	}
 
 }

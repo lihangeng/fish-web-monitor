@@ -29,6 +29,7 @@ public class XfsChartService implements IXfsChartService {
 	@Autowired
 	private IGenericDao dao;
 	
+	@Override
 	public IPageResult<Object> getXfsChartsDetailInfo(int start, int limit,IFilter filter){
 		List<Object> argList = new ArrayList<Object>();
 		Object orgFlagObject = filter.getValue("orgFlag");
@@ -69,7 +70,7 @@ public class XfsChartService implements IXfsChartService {
 		return deviceDetailResult;
 	}
 	
-	
+	@Override
 	public List<Object> getAllDeviceList(IFilter filter){
 		List<Object> argList = new ArrayList<Object>();
 		Object orgFlagObject = filter.getValue("orgFlag");

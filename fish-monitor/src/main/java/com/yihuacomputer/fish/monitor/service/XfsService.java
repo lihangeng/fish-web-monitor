@@ -71,6 +71,7 @@ public class XfsService implements IXfsService {
         this.dao.save(status);
     }
 
+    @Override
     public void deleteXfsStatus(IXfsStatus status) {
         this.dao.delete(status);
     }
@@ -80,6 +81,7 @@ public class XfsService implements IXfsService {
         this.dao.save(prop);
     }
 
+    @Override
     public void deleteXfsProp(IXfsPropertise prop) {
         this.dao.delete(prop);
     }

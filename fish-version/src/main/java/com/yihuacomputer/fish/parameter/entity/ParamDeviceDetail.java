@@ -94,10 +94,12 @@ public class ParamDeviceDetail implements IParamDeviceDetail, Serializable {
 		this.paramValue = paramValue;
 	}
 
+	@Override
 	public long getVersionTimeStamp() {
 		return versionTimeStamp;
 	}
 
+	@Override
 	public void setVersionTimeStamp(long versionTimeStamp) {
 		this.versionTimeStamp = versionTimeStamp;
 	}

@@ -45,39 +45,63 @@ public class ParamPublish implements IParamPublish {
 
 	@Column(name = "TEMPLATE_ID")
 	private long templateId;
+	
+	@Override
 	public long getId() {
 		return id;
 	}
+	
+	@Override
 	public void setId(long id) {
 		this.id = id;
 	}
+	
+	@Override
 	public String getDate() {
 		return date;
 	}
+	
+	@Override
 	public void setDate(String date) {
 		this.date = date;
 	}
+	
+	@Override
 	public long getPublisher() {
 		return publisher;
 	}
+	
+	@Override
 	public void setPublisher(long publisher) {
 		this.publisher = publisher;
 	}
+	
+	@Override
 	public String getRet() {
 		return ret;
 	}
+	
+	@Override
 	public void setRet(String ret) {
 		this.ret = ret;
 	}
+	
+	@Override
 	public List<IParamPublishResult> getParamPublishs() {
 		return paramPublishs;
 	}
+	
+	@Override
 	public void setParamPublishs(List<IParamPublishResult> paramPublishs) {
 		this.paramPublishs = paramPublishs;
 	}
+	
+	@Override
 	public JobType getJobType() {
 		return jobType;
 	}
+	
+	@Override
 	public void setJobType(JobType jobType) {
 		this.jobType = jobType;
 	}

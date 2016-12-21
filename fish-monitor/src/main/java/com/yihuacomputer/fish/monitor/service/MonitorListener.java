@@ -43,10 +43,12 @@ public class MonitorListener implements IMonitorListener{
 	
 	private MessageSource messageSourceRef;
 	
+	@Override
 	public MessageSource getMessageSourceRef() {
 		return messageSourceRef;
 	}
 
+	@Override
 	public void setMessageSourceRef(MessageSource messageSourceRef) {
 		this.messageSourceRef = messageSourceRef;
 	}
@@ -56,6 +58,7 @@ public class MonitorListener implements IMonitorListener{
 	 * @param userId
 	 * @param devices
 	 */
+	@Override
 	public void restart(ServerSession userSession, PageResult<IDeviceReport> devices){
 
 	}
@@ -65,6 +68,7 @@ public class MonitorListener implements IMonitorListener{
 	 * @param userId
 	 * @param device
 	 */
+	@Override
 	public void updateDevice(ServerSession userSession, IDeviceReport device){
 		StatusReport statusMonitor = new StatusReport();
 		statusMonitor.setStatusReport(device,messageSourceRef);
@@ -78,6 +82,7 @@ public class MonitorListener implements IMonitorListener{
 	 * @param userId
 	 * @param device
 	 */
+	@Override
 	public void addDevice(ServerSession userSession, IDeviceReport device){
 		StatusReport statusMonitor = new StatusReport();
 		statusMonitor.setStatusReport(device,messageSourceRef);
@@ -92,6 +97,7 @@ public class MonitorListener implements IMonitorListener{
 	 * @param userId
 	 * @param device
 	 */
+	@Override
 	public void removeDevice(ServerSession userSession, IDeviceReport device){
 		StatusReport statusMonitor = new StatusReport();
 		statusMonitor.setStatusReport(device,messageSourceRef);
@@ -106,6 +112,7 @@ public class MonitorListener implements IMonitorListener{
 	 * @param total
 	 * @return
 	 */
+	@Override
 	public int updateTotal(ServerSession userSerssion, int total){
 		return 0;
 	}
@@ -113,6 +120,7 @@ public class MonitorListener implements IMonitorListener{
 	/**
 	 * 推送交易数据
 	 */
+	@Override
 	public void addTransation(ServerSession userSession, IDeviceReport device) {
 		TransactionReport report = new TransactionReport();
 		report.setTransaction(device.getTransaction());
@@ -122,6 +130,7 @@ public class MonitorListener implements IMonitorListener{
 	/**
 	 * 推送非白名单进程数据
 	 */
+	@Override
 	public void addProcess(ServerSession userSession,IDeviceReport device){
 		List<ProcessReport> reportList = new ArrayList<ProcessReport>();
 		for(IIllegalProcess process:device.getProcess()){
@@ -134,6 +143,7 @@ public class MonitorListener implements IMonitorListener{
 	/**
 	 * 推送设备签到信息
 	 */
+	@Override
 	public void deviceSign(ServerSession userSession, IDeviceReport device) {
 		StatusReport statusMonitor = new StatusReport();
 		statusMonitor.setDeviceSign(device,messageSourceRef);
