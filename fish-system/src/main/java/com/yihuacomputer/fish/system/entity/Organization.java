@@ -91,7 +91,6 @@ public class Organization implements IOrganization,Serializable {
 	@JoinColumn(name = "PARENT_ID")
 	private IOrganization parent;
 
-//	@OneToMany(mappedBy = "parent", fetch = FetchType.EAGER, targetEntity = com.yihuacomputer.fish.system.entity.Organization.class)
 	@Transient
 	private List<Organization> children = new ArrayList<Organization>();
 
@@ -156,6 +155,7 @@ public class Organization implements IOrganization,Serializable {
 		return code;
 	}
 
+	@Override
 	public long getId() {
 		return id;
 	}
@@ -338,18 +338,22 @@ public class Organization implements IOrganization,Serializable {
 		this.serviceObject = serviceObject;
 	}
 
+	@Override
 	public OrganizationLevel getOrganizationLevel() {
 		return organizationLevel;
 	}
 
+	@Override
 	public void setOrganizationLevel(OrganizationLevel organizationLevel) {
 		this.organizationLevel = organizationLevel;
 	}
 
+	@Override
 	public String getAreaFlag() {
 		return this.areaFlag;
 	}
 
+	@Override
 	public void setAreaFlag(String areaFlag) {
 		this.areaFlag = areaFlag;
 	}
@@ -396,10 +400,12 @@ public class Organization implements IOrganization,Serializable {
 		this.applicationPer = applicationPer;
 	}
 
+	@Override
 	public boolean isLeaf() {
 		return leaf;
 	}
 
+	@Override
 	public void setLeaf(boolean leaf) {
 		this.leaf = leaf;
 	}

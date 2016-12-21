@@ -37,26 +37,32 @@ public class RetainCardRpt implements IRetainCardRpt {
 		this.reason = reason;
 	}
 
+	@Override
 	public String getTerminalId() {
 		return terminalId;
 	}
 
+	@Override
 	public String getOrgName() {
 		return orgName;
 	}
 
+	@Override
 	public String getAccount() {
 		return account;
 	}
 
+	@Override
 	public String getRetainDate() {
 		return retainDate;
 	}
 
+	@Override
 	public String getAddress() {
 		return address;
 	}
 
+	@Override
 	public String getReason() {
 		return reason;
 	}
@@ -70,6 +76,7 @@ public class RetainCardRpt implements IRetainCardRpt {
 		this.orgCode = orgCode;
 	}
 
+	@Override
 	public String getStatus() {
 		return status;
 	}

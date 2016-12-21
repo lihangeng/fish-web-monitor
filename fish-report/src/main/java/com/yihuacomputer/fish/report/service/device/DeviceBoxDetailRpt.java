@@ -69,10 +69,12 @@ public class DeviceBoxDetailRpt implements IDeviceBoxDetailRpt {
 		this.typeName = typeName;
 	}
 
+	@Override
 	public void setSetupType(String setupType) {
 		this.setupType = setupType;
 	}
 
+	@Override
 	public void setStatus(String status) {
 		this.status = status;
 	}

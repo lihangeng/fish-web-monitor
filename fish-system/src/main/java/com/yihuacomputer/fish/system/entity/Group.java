@@ -40,9 +40,6 @@ public class Group implements IGroup,Serializable {
 	@Column(name="GROUP_NAME", length=128)
 	private String name;
 
-//	@ManyToOne(targetEntity = com.yihuacomputer.fish.person.Organization.class)
-//	@JoinColumn(name = "ORGANIZATION_ID")
-//	private IOrganization organization;
 	@Column(name="ORGANIZATION_CODE")
 	private String organizationCode;
 
@@ -71,10 +68,12 @@ public class Group implements IGroup,Serializable {
 		this.name = name;
 	}
 
+	@Override
 	public long getId() {
 		return id;
 	}
 
+	@Override
 	public void setId(long id) {
 		this.id = id;
 	}
@@ -97,10 +96,12 @@ public class Group implements IGroup,Serializable {
 		return service.listRole(this);
 	}
 
+	@Override
 	public IOrganization getOrganization() {
 		return null;
 	}
 
+	@Override
 	public void setOrganization(IOrganization organization) {
 		this.organizationCode = organization.getCode();
 	}

@@ -33,14 +33,17 @@ public class Message implements IMessage, Serializable {
 		this.service = service;	
 	}
 
+	@Override
 	public void setId(long id) {
 		this.id = id;
 	}
 
+	@Override
 	public void setUser(String user) {
 		this.user = user;
 	}
 
+	@Override
 	public void setContent(String content) {
 		this.content = content;
 	}
@@ -55,6 +58,7 @@ public class Message implements IMessage, Serializable {
 		return this.createTime;
 	}
 	
+	@Override
 	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
 	}

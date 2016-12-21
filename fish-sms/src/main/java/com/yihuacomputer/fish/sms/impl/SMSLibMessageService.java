@@ -23,9 +23,6 @@ public class SMSLibMessageService implements ISMSLibMessageService {
 
 	private static Logger logger = LoggerFactory.getLogger(SMSLibMessageService.class);
 
-//	@Autowired
-//	private IParamService paramService;
-
 	static { // 拷贝dll/so到jdk安装目录对应的位置
 		try {
 			String systemType = System.getProperty("os.name");
@@ -74,29 +71,15 @@ public class SMSLibMessageService implements ISMSLibMessageService {
 	}
 
 	private String getParamValue(String key, String defautValue) {
-//		IParam param = null;
-//		if(paramService!=null)
-//			param = paramService.getParam(key);
-//		if (param == null) {
 			return defautValue;
-//		} else {
-//			return param.getParamValue();
-//		}
 	}
-//	private String getParamValue(String key) {
-//		IParam param = null;
-//		if(paramService!=null){
-//			param = paramService.getParam(key);
-//			return param.getParamValue();
-//		}
-//		return "";
-//	}
 
 	/**
 	 * 服务初始化
 	 *
 	 * @throws Exception
 	 */
+	@Override
 	public boolean init(String comName) {
 		String realComPorts = SerialPortDetector.getComPorts();
 		String cfgComPorts = comName;
@@ -123,6 +106,7 @@ public class SMSLibMessageService implements ISMSLibMessageService {
 	/**
 	 * 销毁服务
 	 */
+	@Override
 	@javax.annotation.PreDestroy
 	public void destory() {
 		try {
@@ -134,6 +118,7 @@ public class SMSLibMessageService implements ISMSLibMessageService {
 		}
 	}
 
+	@Override
 	public void sendMsg(String telePhoneNum, String messageInfo,String comName) {
 		if (Service.getInstance().getServiceStatus() != ServiceStatus.STARTED
 				&& Service.getInstance().getServiceStatus() != ServiceStatus.STARTING) {
@@ -156,6 +141,7 @@ public class SMSLibMessageService implements ISMSLibMessageService {
 	}
 
 	public class OutboundNotification implements IOutboundMessageNotification {
+		@Override
 		public void process(AGateway gateway, OutboundMessage msg) {
 			logger.info(String.format("成功发送短信到手机号[%s],短信的内容是[%s]",msg.getRecipient(),msg.getText()));
 			System.out.println(String.format("成功发送短信到手机号[%s],短信的内容是[%s]",msg.getRecipient(),msg.getText()));

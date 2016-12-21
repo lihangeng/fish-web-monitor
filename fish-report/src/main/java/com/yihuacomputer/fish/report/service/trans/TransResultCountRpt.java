@@ -56,6 +56,7 @@ public class TransResultCountRpt implements ITransResultCountRpt {
 		this.orgName = orgName;
 	}
 
+	@Override
 	public void setResult(String result) {
 		this.result = result;
 	}

@@ -58,6 +58,7 @@ public class SessionManage implements ISessionManage {
 	 * 
 	 * @param loginMessage
 	 */
+	@Override
 	public void logoutByNotice(LoginMessage loginMessage) {
 		String userCode = loginMessage.getUsername();
 		SessionInfo sessionInfo = sessions.get(userCode);
@@ -81,6 +82,7 @@ public class SessionManage implements ISessionManage {
 	 * 
 	 * @param loginMessage
 	 */
+	@Override
 	public void loginByNotice(LoginMessage loginMessage) {
 		String userCode = loginMessage.getUsername();
 		SessionInfo sessionInfo = sessions.get(userCode);

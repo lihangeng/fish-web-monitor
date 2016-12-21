@@ -44,6 +44,7 @@ public class DeviceCatalogSummaryMonthService implements IDeviceCatalogSummaryMo
 		return dao.save(dcsm);
 	}
 
+	@Override
 	public List<IDeviceCatalogSummaryMonth> list(IFilter filter) {
 		return dao.findByFilter(filter, IDeviceCatalogSummaryMonth.class);
 	}
@@ -60,6 +61,7 @@ public class DeviceCatalogSummaryMonthService implements IDeviceCatalogSummaryMo
 	 * @see com.yihuacomputer.fish.api.analysis.device.IDeviceCatalogSummaryMonthService#get(java.util.Date)
 	 * 获取指定日期分类统计信息
 	 */
+	@Override
 	@DataSource(value=DataSources.Analysis)
 	public Map<String,IDeviceCatalogSummaryMonth> get(String date){
 		IFilter filter = new Filter();

@@ -196,34 +196,42 @@ public class Announcement implements IAnnouncement,Serializable {
         return String.valueOf(id);
     }
 
+    @Override
 	public Date getReleaseDate() {
 		return releaseDate;
 	}
 
+	@Override
 	public void setReleaseDate(Date releaseDate) {
 		this.releaseDate = releaseDate;
 	}
 
+	@Override
 	public String getReleasePerson() {
 		return releasePerson;
 	}
 
+	@Override
 	public void setReleasePerson(String releasePerson) {
 		this.releasePerson = releasePerson;
 	}
 
+	@Override
 	public AnnounceStatus getAnnounceStatus() {
 		return announceStatus;
 	}
 
+	@Override
 	public void setAnnounceStatus(AnnounceStatus announceStatus) {
 		this.announceStatus = announceStatus;
 	}
 
+	@Override
 	public long getPublisherOrg() {
 		return publisherOrg;
 	}
 
+	@Override
 	public void setPublisherOrg(long publisherOrg) {
 		this.publisherOrg = publisherOrg;
 	}

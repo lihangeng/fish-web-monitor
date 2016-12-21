@@ -57,10 +57,12 @@ public class Param implements IParam,Serializable {
     @Column(name = "PARAM_TYPE",length = 128)
 	private String paramType;
 	
+    @Override
 	public String getParamType() {
 		return paramType;
 	}
 
+    @Override
 	public void setParamType(String paramType) {
 		this.paramType = paramType;
 	}
@@ -68,19 +70,22 @@ public class Param implements IParam,Serializable {
 	public Param() {
 	}
 	
+	@Override
 	public int getClassify() {
 		return classify;
 	}
 
-
+	@Override
 	public void setClassify(int classify) {
 		this.classify = classify;
 	}
 
+	@Override
 	public long getId() {
 		return id;
 	}
 
+	@Override
 	public void setId(long id) {
 		this.id = id;
 	}

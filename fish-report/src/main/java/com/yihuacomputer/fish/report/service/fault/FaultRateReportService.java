@@ -52,6 +52,7 @@ public class FaultRateReportService implements IFaultRateReportService {
 	/**
 	 * 查询指定日期的所有品牌故障率
 	 */
+	@Override
 	public List<FaultRateReport> listAllHql(String monthStr){
 		
 		List<FaultRateReport> list= new ArrayList<FaultRateReport>();
@@ -118,6 +119,7 @@ public class FaultRateReportService implements IFaultRateReportService {
 	/**
 	 * 查询指定日期的某品牌下的所有型号故障率
 	 */
+	@Override
 	public List<FaultRateReport> listByVendorHql(String monthStr,long vendorId){
 		List<FaultRateReport> list= new ArrayList<FaultRateReport>();
 		//统计品牌交易信息
@@ -185,6 +187,7 @@ public class FaultRateReportService implements IFaultRateReportService {
 	/**
 	 * 查询指定日期的某品牌对应下的型号的所有模块故障率
 	 */
+	@Override
 	public List<FaultRateReport> listByDevTypeHql(String monthStr,long vendorId,long devTypeId){
 		List<FaultRateReport> list= new ArrayList<FaultRateReport>();
 		//统计品牌交易信息

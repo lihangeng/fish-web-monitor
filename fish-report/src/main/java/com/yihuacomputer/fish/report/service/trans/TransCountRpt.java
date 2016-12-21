@@ -56,6 +56,7 @@ public class TransCountRpt implements ITransCountRpt {
 		this.subtotalColumn = subtotalColumn;
 	}
 
+	@Override
 	public String getOrgName() {
 		return orgName;
 	}
@@ -64,6 +65,7 @@ public class TransCountRpt implements ITransCountRpt {
 		this.orgName = orgName;
 	}
 
+	@Override
 	public String getTransType() {
 		return transType;
 	}

@@ -82,12 +82,12 @@ public class Permission implements IPermission ,Serializable{
 	    this.isButton = false;
 	}
 
-	
+	@Override
 	public boolean isButton() {
 		return isButton;
 	}
 
-
+	@Override
 	public void setButton(boolean isButton) {
 		this.isButton = isButton;
 	}
@@ -192,80 +192,82 @@ public class Permission implements IPermission ,Serializable{
 		this.children = children;
 	}
 
+	@Override
 	public String getAction() {
 		return action;
 	}
 
+	@Override
 	public void setAction(String action) {
 		this.action = action;
 	}
 
-
+	@Override
 	public boolean isLeaf() {
 		return isLeaf;
 	}
 
-
+	@Override
 	public void setLeaf(boolean isLeaf) {
 		this.isLeaf = isLeaf;
 	}
 
-
+	@Override
 	public String getIconCls() {
 		return iconCls;
 	}
 
-
+	@Override
 	public void setIconCls(String iconCls) {
 		this.iconCls = iconCls;
 	}
 
-
+	@Override
 	public String getViewName() {
 		return viewName;
 	}
 
-
+	@Override
 	public void setViewName(String viewName) {
 		this.viewName = viewName;
 	}
 
-
+	@Override
 	public String getRouteId() {
 		return routeId;
 	}
 
-
+	@Override
 	public void setRouteId(String routeId) {
 		this.routeId = routeId;
 	}
 
-
+	@Override
 	public String getSelectCls() {
 		return selectCls;
 	}
 
-
+	@Override
 	public void setSelectCls(String selectCls) {
 		this.selectCls = selectCls;
 	}
 
-
+	@Override
 	public String getParentId() {
 		return parentId;
 	}
 
-
+	@Override
 	public void setParentId(String parentId) {
 		this.parentId = parentId;
 	}
 
-
+	@Override
 	public boolean isTreeNode() {
 		return isTreeNode;
 	}
 
-
+	@Override
 	public void setTreeNode(boolean isTreeNode) {
 		this.isTreeNode = isTreeNode;
 	}	
