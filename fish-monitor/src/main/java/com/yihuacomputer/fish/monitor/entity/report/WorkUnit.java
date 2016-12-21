@@ -32,6 +32,7 @@ public class WorkUnit implements IWorkUnit{
 	 * 该数据单元设备数
 	 * @return
 	 */
+	@Override
 	public int getTotalDevice(){
 		return -1;
 	}
@@ -40,6 +41,7 @@ public class WorkUnit implements IWorkUnit{
 	 * 该数据单元在线设备数
 	 * @return
 	 */
+	@Override
 	public int getTotalOnline(){
 		return -1;
 	}
@@ -48,6 +50,7 @@ public class WorkUnit implements IWorkUnit{
 	 * 该数据单元设备列表
 	 * @return
 	 */
+	@Override
 	public List<String> listDevice(){
 		return null;
 	}
@@ -57,14 +60,17 @@ public class WorkUnit implements IWorkUnit{
 	 * @param deviceId
 	 * @return 判断结果
 	 */
+	@Override
 	public boolean hasDevice(String deviceId){
 		return true;
 	}
 
+	@Override
 	public PageResult<IDeviceReport> page(int offset, int limit){
 		return null;
 	}
 
+	@Override
 	public PageResult<IDeviceReport> page(int offset, int limit, IFilter filter){
 		return null;
 	}
@@ -73,6 +79,7 @@ public class WorkUnit implements IWorkUnit{
 	 * 将用户与数据加工单元绑定
 	 * @param user
 	 */
+	@Override
 	@SuppressWarnings("incomplete-switch")
 	public void link(IMonitorUser user,MonitorUserType type){
 		switch (type) {
@@ -118,6 +125,7 @@ public class WorkUnit implements IWorkUnit{
 	 * 解除用户与数据加工单元的绑定关系
 	 * @param user
 	 */
+	@Override
 	@SuppressWarnings("incomplete-switch")
 	public void unlink(IMonitorUser user,MonitorUserType type){
 		switch (type) {
@@ -155,22 +163,15 @@ public class WorkUnit implements IWorkUnit{
 	 * 列出该数据单元的绑定的用户
 	 * @return
 	 */
+	@Override
 	public List<String> listUser(){
 		return null;
 	}
-//	private MessageSource messageSourceEnum;
-//    
-//    public MessageSource getMessageSourceEnum() {
-//		return messageSourceEnum;
-//	}
-//
-//	public void setMessageSourceEnum(MessageSource messageSourceEnum) {
-//		this.messageSourceEnum = messageSourceEnum;
-//	}
 	/**
 	 * 加工状态数据
 	 * @param deviceId
 	 */
+	@Override
 	public void fireMonitorUser(String deviceId,IDeviceReport deviceReport,MessageSource messageSourceRef){
 		for(int i=this.monitorUserList.size()-1;i>=0;i--){
 			MonitorUser user = this.monitorUserList.get(i);
@@ -185,6 +186,7 @@ public class WorkUnit implements IWorkUnit{
 	 * 加工交易数据
 	 * @param deviceId
 	 */
+	@Override
 	public void fireTransationUser(String deviceId,IDeviceReport deviceReport){
 		for(int i=this.monitorTransUserList.size()-1;i>=0;i--){
 			MonitorUser user = this.monitorTransUserList.get(i);
@@ -196,7 +198,7 @@ public class WorkUnit implements IWorkUnit{
 	 * 加工白名单进程数据
 	 * @param deviceId
 	 */
-
+	@Override
 	public void fireProcessUser(String deviceId,IDeviceReport deviceReport){
 		for(int i = this.monitorProcessUserList.size() - 1 ; i>=0;i--){
 			MonitorUser user = this.monitorProcessUserList.get(i);

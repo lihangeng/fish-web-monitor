@@ -22,6 +22,7 @@ public class PropCim implements IPropCim {
 	public DeviceProp getPropCim() {
 		return this.cim;
 	}
+	@Override
 	public void setPropCim(DeviceProp cim){
 		this.cim = cim;
 	}

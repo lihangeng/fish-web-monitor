@@ -19,10 +19,12 @@ public class PropIcc implements IPropIcc {
         this.icc = DeviceProp.F;
     }
 
+    @Override
     public DeviceProp getPropIcc() {
         return this.icc;
     }
 
+    @Override
     public void setPropIcc(DeviceProp icc) {
         this.icc = icc;
     }

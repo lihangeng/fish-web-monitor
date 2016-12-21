@@ -31,42 +31,52 @@ public class DayTradingVolume implements IDayTradingVolume {
 	@Column(name = "TRANS_DATE")
 	private int transDate;
 
+	@Override
 	public long getId() {
 		return id;
 	}
 
+	@Override
 	public void setId(long id) {
 		this.id = id;
 	}
 
+	@Override
 	public String getTerminalId() {
 		return terminalId;
 	}
 
+	@Override
 	public void setTerminalId(String terminalId) {
 		this.terminalId = terminalId;
 	}
 
+	@Override
 	public int getTransDate() {
 		return transDate;
 	}
 
+	@Override
 	public void setTransDate(int transDate) {
 		this.transDate = transDate;
 	}
 
+	@Override
 	public double getAmtIn() {
 		return amtIn;
 	}
 
+	@Override
 	public void setAmtIn(double amtIn) {
 		this.amtIn = amtIn;
 	}
 
+	@Override
 	public double getAmtOut() {
 		return amtOut;
 	}
 
+	@Override
 	public void setAmtOut(double amtOut) {
 		this.amtOut = amtOut;
 	}

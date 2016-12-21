@@ -38,66 +38,82 @@ public class OS implements IOS {
 	@Column(name = "SYS_PATCH_VERSION",length=30)
 	private String osPath;
 
+	@Override
 	public void setOsPath(String osPath) {
 		this.osPath = osPath;
 	}
 
+	@Override
 	public String getOsPath() {
 		return this.osPath;
 	}
 
+	@Override
 	public void setArch(String arch) {
 		this.arch = arch;
 	}
 
+	@Override
 	public void setDescription(String description) {
 		this.description = description;
 	}
 
+	@Override
 	public void setType(String type) {
 		this.type = type;
 	}
 
+	@Override
 	public void setPatchLevel(String patchLevel) {
 		this.patchLevel = patchLevel;
 	}
 
+	@Override
 	public void setVendor(String vendor) {
 		this.vendor = vendor;
 	}
 
+	@Override
 	public void setVendorName(String vendorName) {
 		this.vendorName = vendorName;
 	}
 
+	@Override
 	public void setVersion(String version) {
 		this.version = version;
 	}
 
+	@Override
 	public String getArch() {
 		return this.arch;
 	}
 
+	@Override
 	public String getDescription() {
 		return this.description;
 	}
 
+	@Override
 	public String getType() {
 		return this.type;
 	}
 
+	@Override
 	public String getPatchLevel() {
 		return this.patchLevel;
 	}
 
+	@Override
 	public String getVendor() {
 		return this.vendor;
 	}
 
+	@Override
 	public String getVendorName() {
 		return this.vendorName;
 	}
 
+	@Override
 	public String getVersion() {
 		return this.version;
 	}

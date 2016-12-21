@@ -39,16 +39,17 @@ public class MonitorUser implements IMonitorUser {
 		this.monitorService = monitorService;
 	}
 
+	@Override
 	public String getUserId() {
 		return this.userId;
 	}
 
+	@Override
 	public String getUserName() {
-
 		return this.userName;
 	}
 
-
+	@Override
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
@@ -57,31 +58,37 @@ public class MonitorUser implements IMonitorUser {
 		this.userName = userName;
 	}
 
+	@Override
 	public IWorkUnit getWorkUnit() {
 		return null;
 	}
 
+	@Override
 	public PageResult<IDeviceReport> restart(int offset, int limit,
 			IFilter filter) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	@Override
 	public int getOffset() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
+	@Override
 	public int getLimit() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
+	@Override
 	public IFilter getFilter() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	@Override
 	public PageResult<IDeviceReport> getResult() {
 		// TODO Auto-generated method stub
 		return null;
@@ -114,25 +121,6 @@ public class MonitorUser implements IMonitorUser {
 				}
 				monitorListener.reportClassifyMonitor(this.userSession,classifyReport);
 			}
-//			switch(reportMedthod){
-//				case ADD:{
-//					modStatusFilter.modAddDevice(deviceId.getTerminalId());
-//					monitorListener.addDevice(this.userSession, deviceReport);
-//					break;
-//				}
-//				case UPDATE:{
-//					monitorListener.updateDevice(this.userSession, deviceReport);
-//					break;
-//				}
-//				case DELETE:{
-//					modStatusFilter.modRemoveDevice(deviceId.getTerminalId());
-//					monitorListener.removeDevice(this.userSession, deviceReport);
-//					break;
-//				}
-//				case BEFILTERED: {
-//					break;
-//				}
-//			}
 		}
 		else {
 			this.monitorService.removeMonitorUser(this.userId, MonitorUserType.Mod);
@@ -151,8 +139,6 @@ public class MonitorUser implements IMonitorUser {
 					.getMonitorListener();
 			monitorListener.setMessageSourceRef(messageSourceRef);
 			ReportMedthod reportMedthod = statusFilter.filterStatus(deviceReport);
-			//logger.info(this.userSession.getId()+"过滤结果:"+reportMedthod);
-
 			switch (reportMedthod) {
 				case ADD: {
 					statusFilter.addDevice(deviceReport.getDeviceId());
@@ -255,14 +241,17 @@ public class MonitorUser implements IMonitorUser {
 		}
 	}
 
+	@Override
 	public ServerSession getUserSession() {
 		return this.userSession;
 	}
 
+	@Override
 	public void setUserSession(ServerSession userSession) {
 		this.userSession = userSession;
 	}
 
+	@Override
 	public void setStatusFilter(IStatusFilter statusFilter) {
 		this.statusFilter = statusFilter;
 	}
@@ -272,19 +261,22 @@ public class MonitorUser implements IMonitorUser {
 		return this.statusFilter;
 	}
 
-
+	@Override
 	public ITransationFilter getTransFilter() {
 		return transFilter;
 	}
 
+	@Override
 	public void setTransFilter(ITransationFilter transFilter) {
 		this.transFilter = transFilter;
 	}
 
+	@Override
 	public IProcessFilter getProcessFilter() {
 		return processFilter;
 	}
 
+	@Override
 	public void setProcessFilter(IProcessFilter processFilter) {
 		this.processFilter = processFilter;
 	}
@@ -304,10 +296,12 @@ public class MonitorUser implements IMonitorUser {
 		this.retaincardFilter = retaincardFilter;
 	}
 
+	@Override
 	public IClassifyModStatusFilter getModStatusFilter() {
 		return modStatusFilter;
 	}
 
+	@Override
 	public void setModStatusFilter(IClassifyModStatusFilter modStatusFilter) {
 		this.modStatusFilter = modStatusFilter;
 	}
@@ -317,6 +311,7 @@ public class MonitorUser implements IMonitorUser {
 		return counterFeitMoneyFilter;
 	}
 
+	@Override
 	public void setCounterFeitMoneyFilter(ITransationFilter transFilter) {
 		this.transFilter = transFilter;
 	}

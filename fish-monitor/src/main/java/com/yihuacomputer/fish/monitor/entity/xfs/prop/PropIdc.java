@@ -22,6 +22,7 @@ public class PropIdc implements IPropIdc {
 		return this.idc;
 	}
 
+	@Override
 	public void setPropIdc(DeviceProp idc){
 		this.idc = idc;
 	}

@@ -93,10 +93,12 @@ public class MonthDailyTradingVolumeService implements IMonthDailyTradingVolumeS
 		dao.delete(monthDailyTradingVolume);
 	}
 
+	@Override
 	public List<IMonthDailyTradingVolume> list(IFilter filter){
 		return dao.findByFilter(filter, IMonthDailyTradingVolume.class);
 	}
 	
+	@Override
 	public Map<String,IMonthDailyTradingVolume> getMonthDailyMap(IFilter filter){
 		Map<String,IMonthDailyTradingVolume> monthDailyMap = new HashMap<String,IMonthDailyTradingVolume>();
 		List<IMonthDailyTradingVolume> monthDaliyList = this.list(filter);

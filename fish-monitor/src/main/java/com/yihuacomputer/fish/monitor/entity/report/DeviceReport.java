@@ -33,6 +33,7 @@ public class DeviceReport implements IDeviceReport {
 
 	private IRetaincard retaincard;
 
+	@Override
 	public String getDeviceId() {
 		return this.deviceId;
 	}
@@ -41,6 +42,7 @@ public class DeviceReport implements IDeviceReport {
 		this.deviceId = deviceId;
 	}
 
+	@Override
 	public IDevice getDevice() {
 		return this.device;
 	}
@@ -53,40 +55,49 @@ public class DeviceReport implements IDeviceReport {
 		this.transInfo = transInfo;
 	}
 
+	@Override
 	public ITransaction getTransaction() {
 		return this.transInfo;
 	}
 
+	@Override
 	public List<IIllegalProcess> getProcess() {
 		return process;
 	}
 
+	@Override
 	public void setProcess(List<IIllegalProcess> process) {
 		this.process = process;
 	}
 
+	@Override
 	public IHardware getHardware() {
 		return this.hardware;
 	}
 
+	@Override
 	public ISoftware getSoftware() {
 		return this.software;
 	}
 
+	@Override
 	public IRunInfo getRunInfo() {
 		return this.runInfo;
 	}
 
+	@Override
 	public List<IProcess> listSchindlerAlarm() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	@Override
 	public List<ISoftwareFailure> listSoftwareFailure(int start, int limit) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	@Override
 	public IXfsStatus getXfsStatus() {
 		return this.xfsStatus;
 	}
@@ -95,6 +106,7 @@ public class DeviceReport implements IDeviceReport {
 		this.xfsStatus = xfsStatus;
 	}
 
+	@Override
 	public IDeviceRegister getDeviceRegister() {
 		return this.deviceRegister;
 	}
@@ -134,10 +146,12 @@ public class DeviceReport implements IDeviceReport {
 	}
 
 	// 后台转换疑问币假币信息
+	@Override
 	public List<CounterFeitMoneyForms> getForms() {
 		return forms;
 	}
 
+	@Override
 	public void setCounterFeitMoneyForms(List<CounterFeitMoneyForms> forms) {
 		this.forms = forms;
 	}

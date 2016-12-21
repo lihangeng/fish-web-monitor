@@ -55,81 +55,128 @@ public class RumtimeInfo implements IRuntimeInfo {
 	 */
 	private double stopRate;
 	
+	@Override
 	public String getTermId(){
 		return this.termId;
 	}
+	
+	@Override
 	public void setTermId(String termId){
 		this.termId = termId;
 	}
+	
+	@Override
 	public String getRunDate() {
 		return runDate;
 	}
+	
+	@Override
 	public void setRunDate(String runDate) {
 		this.runDate = runDate;
 	}
+	
 	public double getCashRefusedRate() {
 		return cashRefusedRate;
 	}
+	
 	public void setCashRefusedRate(double cashRefusedRate) {
 		this.cashRefusedRate = cashRefusedRate;
 	}
+	
+	@Override
 	public long getRefusedNote() {
 		return refusedNote;
 	}
+	
+	@Override
 	public void setRefusedNote(long refusedNote) {
 		this.refusedNote = refusedNote;
 	}
+	
+	@Override
 	public long getTotalNote() {
 		return totalNote;
 	}
+	
+	@Override
 	public void setTotalNote(long totalNote) {
 		this.totalNote = totalNote;
 	}
+	
+	@Override
 	public long getCashError() {
 		return cashError;
 	}
+	
+	@Override
 	public void setCashError(long cashError) {
 		this.cashError = cashError;
 	}
+	
 	public long getCashTransError() {
 		return cashTransError;
 	}
+	
 	public void setCashTransError(long cashTransError) {
 		this.cashTransError = cashTransError;
 	}
+	
+	@Override
 	public long getCashTrans() {
 		return cashTrans;
 	}
+	
+	@Override
 	public void setCashTrans(long cashTrans) {
 		this.cashTrans = cashTrans;
 	}
+	
+	@Override
 	public long getCashNote() {
 		return cashNote;
 	}
+	
+	@Override
 	public void setCashNote(long cashNote) {
 		this.cashNote = cashNote;
 	}
+	
+	@Override
 	public long getOtherTrans() {
 		return otherTrans;
 	}
+	
+	@Override
 	public void setOtherTrans(long otherTrans) {
 		this.otherTrans = otherTrans;
 	}
+	
+	@Override
 	public double getCustomRate() {
 		return customRate;
 	}
+	
+	@Override
 	public void setCustomRate(double customRate) {
 		this.customRate = customRate;
 	}
+	
+	@Override
 	public double getAdminRate() {
 		return adminRate;
 	}
+	
+	@Override
 	public void setAdminRate(double adminRate) {
 		this.adminRate = adminRate;
 	}
+	
+	@Override
 	public double getStopRate() {
 		return stopRate;
 	}
+	
+	@Override
 	public void setStopRate(double stopRate) {
 		this.stopRate = stopRate;
 	}

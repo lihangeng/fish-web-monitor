@@ -31,58 +31,72 @@ public class MonthDailyTradingVolume implements IMonthDailyTradingVolume {
 	@Column(name = "LAST_YEAR_OUT_AVG")
 	private double lastYearAmtOutAvg;
 
+	@Override
 	public long getId() {
 		return id;
 	}
 
+	@Override
 	public void setId(long id) {
 		this.id = id;
 	}
 
+	@Override
 	public double getMonthAmtInAvg() {
 		return monthAmtInAvg;
 	}
 
+	@Override
 	public void setMonthAmtInAvg(double monthAmtInAvg) {
 		this.monthAmtInAvg = monthAmtInAvg;
 	}
 
+	@Override
 	public double getMonthAmtOutAvg() {
 		return monthAmtOutAvg;
 	}
 
+	@Override
 	public void setMonthAmtOutAvg(double monthAmtOutAvg) {
 		this.monthAmtOutAvg = monthAmtOutAvg;
 	}
 
+	@Override
 	public String getTerminalId() {
 		return terminalId;
 	}
 
+	@Override
 	public void setTerminalId(String terminalId) {
 		this.terminalId = terminalId;
 	}
 
+	@Override
 	public int getTransMonth() {
 		return transMonth;
 	}
 
+	@Override
 	public void setTransMonth(int transMonth) {
 		this.transMonth = transMonth;
 	}
 
+	@Override
 	public double getLastYearAmtInAvg() {
 		return lastYearAmtInAvg;
 	}
 
+	@Override
 	public void setLastYearAmtInAvg(double lastYearAmtInAvg) {
 		this.lastYearAmtInAvg = lastYearAmtInAvg;
 	}
 
+	@Override
 	public double getLastYearAmtOutAvg() {
 		return lastYearAmtOutAvg;
 	}
 
+	@Override
 	public void setLastYearAmtOutAvg(double lastYearAmtOutAvg) {
 		this.lastYearAmtOutAvg = lastYearAmtOutAvg;
 	}

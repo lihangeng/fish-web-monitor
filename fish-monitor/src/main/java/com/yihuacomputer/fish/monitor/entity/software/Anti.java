@@ -29,6 +29,7 @@ public class Anti implements IAnti {
 		this.antiVer = antiVer;
 	}
 
+	@Override
 	public String getAntiVer() {
 		return this.antiVer;
 	}
@@ -37,6 +38,7 @@ public class Anti implements IAnti {
 		this.antiVer = antiName;
 	}
 
+	@Override
 	public String getAntiName() {
 		return this.antiName;
 	}

@@ -89,10 +89,12 @@ public class DeviceParam implements IDeviceParam {
         this.defaultValue = defaultValue;
     }
 
+    @Override
     public String getModule() {
         return module;
     }
 
+    @Override
     public void setModule(String module) {
         this.module = module;
     }

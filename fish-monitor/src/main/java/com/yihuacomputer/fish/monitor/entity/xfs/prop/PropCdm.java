@@ -22,6 +22,7 @@ public class PropCdm implements IPropCdm {
 		return this.cdm;
 	}
 
+	@Override
 	public void setPropCdm(DeviceProp cdm){
 		this.cdm =  cdm;
 	}

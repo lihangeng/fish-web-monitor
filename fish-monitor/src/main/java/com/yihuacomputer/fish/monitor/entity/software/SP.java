@@ -43,14 +43,17 @@ public class SP implements ISP {
 		this.spDate = spDate;
 	}
 
+	@Override
 	public String getSpVersion() {
 		return this.spVersion;
 	}
 
+	@Override
 	public String getSpPatch() {
 		return this.spPatch;
 	}
 
+	@Override
 	public String getSpDate() {
 		return this.spDate;
 	}
