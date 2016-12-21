@@ -42,6 +42,7 @@ public class StatusIcc implements IStatusIcc  ,Serializable {
      *
      * @return 硬件主状态
      */
+    @Override
     public DeviceStatus getStatus() {
         return this.icc;
     }
@@ -51,6 +52,7 @@ public class StatusIcc implements IStatusIcc  ,Serializable {
      *
      * @param idc
      */
+    @Override
     public void setStatus(DeviceStatus icc) {
         this.icc = icc;
     }
@@ -60,6 +62,7 @@ public class StatusIcc implements IStatusIcc  ,Serializable {
      *
      * @return 状态代码
      */
+    @Override
     public String getCode() {
         return this.iccCode;
     }
@@ -69,6 +72,7 @@ public class StatusIcc implements IStatusIcc  ,Serializable {
      *
      * @param code
      */
+    @Override
     public void setCode(String code) {
         this.iccCode = code;
     }
@@ -78,6 +82,7 @@ public class StatusIcc implements IStatusIcc  ,Serializable {
      *
      * @return 吞卡张数
      */
+    @Override
     public int getCards() {
         return this.cards;
     }
@@ -87,6 +92,7 @@ public class StatusIcc implements IStatusIcc  ,Serializable {
      *
      * @param cards
      */
+    @Override
     public void setCards(int cards) {
         this.cards = cards;
     }

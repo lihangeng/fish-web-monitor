@@ -41,6 +41,7 @@ public class StatusCim implements IStatusCim  ,Serializable {
      *
      * @return 硬件主状态
      */
+    @Override
     public DeviceStatus getStatus() {
         return this.cim;
     }
@@ -50,6 +51,7 @@ public class StatusCim implements IStatusCim  ,Serializable {
      *
      * @param cim
      */
+    @Override
     public void setStatus(DeviceStatus cim) {
         this.cim = cim;
     }
@@ -59,6 +61,7 @@ public class StatusCim implements IStatusCim  ,Serializable {
      *
      * @return 状态代码
      */
+    @Override
     public String getCode() {
         return this.cimCode;
     }
@@ -68,6 +71,7 @@ public class StatusCim implements IStatusCim  ,Serializable {
      *
      * @param code
      */
+    @Override
     public void setCode(String code) {
         this.cimCode = code;
     }

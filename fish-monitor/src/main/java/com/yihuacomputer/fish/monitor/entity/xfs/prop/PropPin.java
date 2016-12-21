@@ -21,6 +21,7 @@ public class PropPin implements IPropPin {
 	public DeviceProp getPropPin() {
 		return this.pin;
 	}
+	@Override
 	public void setPropPin(DeviceProp pin){
 		this.pin = pin;
 	}

@@ -22,6 +22,7 @@ public class PropUkr implements IPropUkr {
 	public DeviceProp getPropUkr() {
 		return this.ukr;
 	}
+	@Override
 	public void setPropUkr(DeviceProp ukr){
 		this.ukr = ukr;
 	}

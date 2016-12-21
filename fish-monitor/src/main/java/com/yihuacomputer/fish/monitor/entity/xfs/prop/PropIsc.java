@@ -17,10 +17,11 @@ public class PropIsc implements IPropIsc {
 	public PropIsc(){
 		this.isc = DeviceProp.F;
 	}
+	@Override
 	public DeviceProp getPropIsc() {		
 		return this.isc;
 	}
-	
+	@Override
 	public void setPropIsc(DeviceProp isc){
 		this.isc = isc;
 	}

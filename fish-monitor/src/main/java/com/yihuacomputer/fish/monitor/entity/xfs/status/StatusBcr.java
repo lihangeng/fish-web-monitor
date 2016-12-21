@@ -32,6 +32,7 @@ private static final long serialVersionUID = 1L;
      *
      * @return 硬件主状态
      */
+    @Override
 	public DeviceStatus getStatus() {
 		return this.bcr;
 	}
@@ -41,6 +42,7 @@ private static final long serialVersionUID = 1L;
      *
      * @return 状态代码
      */
+    @Override
 	public String getCode() {
 		return this.bcrCode;
 	}
@@ -50,6 +52,7 @@ private static final long serialVersionUID = 1L;
      *
      * @param cdm
      */
+    @Override
 	public void setStatus(DeviceStatus bcr) {
 		this.bcr = bcr;
 	}
@@ -59,6 +62,7 @@ private static final long serialVersionUID = 1L;
      *
      * @param code
      */
+    @Override
 	public void setCode(String code) {
 		this.bcrCode = code;
 	}

@@ -21,7 +21,8 @@ public class PropNfc implements IPropNfc {
 	public DeviceProp getPropNfc() {		
 		return this.nfc;
 	}
-	
+
+	@Override
 	public void setPropNfc(DeviceProp nfc){
 		this.nfc = nfc;
 	}

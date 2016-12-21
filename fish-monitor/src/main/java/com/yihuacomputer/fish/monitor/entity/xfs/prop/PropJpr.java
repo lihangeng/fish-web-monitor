@@ -21,6 +21,7 @@ public class PropJpr implements IPropJpr {
 	public DeviceProp getPropJpr() {		
 		return this.jpr;
 	}
+	@Override
 	public void setPropJpr(DeviceProp jpr){
 		this.jpr = jpr;
 	}

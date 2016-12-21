@@ -38,6 +38,7 @@ public class StatusCam implements IStatusCam, Serializable {
      *
      * @return 硬件主状态
      */
+    @Override
 	public DeviceStatus getStatus() {
 		return this.cam;
 	}
@@ -47,6 +48,7 @@ public class StatusCam implements IStatusCam, Serializable {
      *
      * @return 状态代码
      */
+    @Override
 	public String getCode() {
 		return this.camCode;
 	}
@@ -56,6 +58,7 @@ public class StatusCam implements IStatusCam, Serializable {
      *
      * @param cdm
      */
+    @Override
 	public void setStatus(DeviceStatus cam) {
 		this.cam = cam;
 	}
@@ -65,6 +68,7 @@ public class StatusCam implements IStatusCam, Serializable {
      *
      * @param code
      */
+    @Override
 	public void setCode(String code) {
 		this.camCode=code;
 	}

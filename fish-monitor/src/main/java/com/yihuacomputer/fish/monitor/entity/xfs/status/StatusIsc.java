@@ -35,6 +35,7 @@ public class StatusIsc implements IStatusIsc ,Serializable {
      *
      * @return 硬件主状态
      */
+    @Override
     public DeviceStatus getStatus() {
         return this.isc;
     }
@@ -44,6 +45,7 @@ public class StatusIsc implements IStatusIsc ,Serializable {
      *
      * @param idc
      */
+    @Override
     public void setStatus(DeviceStatus isc) {
         this.isc = isc;
     }
@@ -53,6 +55,7 @@ public class StatusIsc implements IStatusIsc ,Serializable {
      *
      * @return 状态代码
      */
+    @Override
     public String getCode() {
         return this.iscCode;
     }
@@ -62,6 +65,7 @@ public class StatusIsc implements IStatusIsc ,Serializable {
      *
      * @param code
      */
+    @Override
     public void setCode(String code) {
         this.iscCode = code;
     }

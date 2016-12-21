@@ -87,6 +87,7 @@ public class XfsPropertise implements IXfsPropertise {
     public XfsPropertise() {
     }
 
+    @Override
     public void setTerminalId(String terminalId) {
         this.terminalId = terminalId;
     }
@@ -135,51 +136,62 @@ public class XfsPropertise implements IXfsPropertise {
         return this.siu;
     }
 
+    @Override
     public void setIdc(IPropIdc idc) {
         this.idc = (PropIdc) idc;
     }
 
+    @Override
     public void setRpr(IPropRpr rpr) {
         this.rpr = (PropRpr) rpr;
     }
 
+    @Override
     public void setCdm(IPropCdm cdm) {
         this.cdm = (PropCdm) cdm;
     }
 
+    @Override
     public void setCim(IPropCim cim) {
         this.cim = (PropCim) cim;
     }
 
+    @Override
     public void setJpr(IPropJpr jpr) {
         this.jpr = (PropJpr) jpr;
     }
 
+    @Override
     public void setTtu(IPropTtu ttu) {
         this.ttu = (PropTtu) ttu;
     }
 
+    @Override
     public void setSiu(IPropSiu siu) {
         this.siu = (PropSiu) siu;
     }
 
+    @Override
     public void setPin(IPropPin pin) {
         this.pin = (PropPin) pin;
     }
 
-    
+    @Override
     public IPropBcr getBcr() {
 		return bcr;
 	}
 
+    @Override
 	public void setBcr(IPropBcr bcr) {
 		this.bcr = (PropBcr)bcr;
 	}
 
+    @Override
 	public IPropCam getCam() {
 		return cam;
 	}
 
+    @Override
 	public void setCam(IPropCam cam) {
 		this.cam = (PropCam)cam;
 	}
@@ -224,18 +236,22 @@ public class XfsPropertise implements IXfsPropertise {
         return new PropPin();
     }
 
+    @Override
     public IPropPbk makePropPbk() {
         return new PropPbk();
     }
 
+    @Override
     public IPropNfc makePropNfc() {
         return new PropNfc();
     }
 
+    @Override
     public IPropBcr makePropBcr() {
         return new PropBcr();
     }
 
+    @Override
     public IPropCam makePropCam() {
         return new PropCam();
     }

@@ -22,6 +22,7 @@ public class PropTtu implements IPropTtu {
 	public DeviceProp getPropTtu() {
 		return this.ttu;
 	}
+	@Override
 	public void setPropTtu(DeviceProp ttu){
 		this.ttu = ttu;
 	}

@@ -21,6 +21,7 @@ public class PropPbk implements IPropPbk {
 	public DeviceProp getPropPbk() {
 		return this.pbk;
 	}
+	@Override
 	public void setPropPbk(DeviceProp pbk){
 		this.pbk = pbk;
 	}

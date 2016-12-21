@@ -39,6 +39,7 @@ public class StatusIdc implements IStatusIdc,Serializable {
      *
      * @return 硬件主状态
      */
+    @Override
     public DeviceStatus getStatus() {
         return this.idc;
     }
@@ -48,6 +49,7 @@ public class StatusIdc implements IStatusIdc,Serializable {
      *
      * @param idc
      */
+    @Override
     public void setStatus(DeviceStatus idc) {
         this.idc = idc;
     }
@@ -57,6 +59,7 @@ public class StatusIdc implements IStatusIdc,Serializable {
      *
      * @return 状态代码
      */
+    @Override
     public String getCode() {
         return this.idcCode;
     }
@@ -66,6 +69,7 @@ public class StatusIdc implements IStatusIdc,Serializable {
      *
      * @param code
      */
+    @Override
     public void setCode(String code) {
         this.idcCode = code;
     }
@@ -75,6 +79,7 @@ public class StatusIdc implements IStatusIdc,Serializable {
      *
      * @return 吞卡张数
      */
+    @Override
     public int getCards() {
         return this.cards;
     }
@@ -84,6 +89,7 @@ public class StatusIdc implements IStatusIdc,Serializable {
      *
      * @param cards
      */
+    @Override
     public void setCards(int cards) {
         this.cards = cards;
     }

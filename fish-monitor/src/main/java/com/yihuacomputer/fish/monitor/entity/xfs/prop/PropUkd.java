@@ -21,6 +21,7 @@ public class PropUkd implements IPropUkd {
 	public DeviceProp getPropUkd() {
 		return this.ukd;
 	}
+	@Override
 	public void setPropUkd(DeviceProp ukd){
 		this.ukd = ukd;
 	}

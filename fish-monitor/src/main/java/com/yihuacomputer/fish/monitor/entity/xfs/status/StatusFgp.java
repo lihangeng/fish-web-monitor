@@ -34,6 +34,7 @@ public class StatusFgp implements IStatusFgp ,Serializable {
      *
      * @return 硬件主状态
      */
+    @Override
     public DeviceStatus getStatus() {
         return this.fgp;
     }
@@ -43,6 +44,7 @@ public class StatusFgp implements IStatusFgp ,Serializable {
      *
      * @param fgp
      */
+    @Override
     public void setStatus(DeviceStatus fgp) {
         this.fgp = fgp;
     }
@@ -52,6 +54,7 @@ public class StatusFgp implements IStatusFgp ,Serializable {
      *
      * @return 状态代码
      */
+    @Override
     public String getCode() {
         return this.fgpCode;
     }
@@ -61,6 +64,7 @@ public class StatusFgp implements IStatusFgp ,Serializable {
      *
      * @param code
      */
+    @Override
     public void setCode(String code) {
         this.fgpCode = code;
     }

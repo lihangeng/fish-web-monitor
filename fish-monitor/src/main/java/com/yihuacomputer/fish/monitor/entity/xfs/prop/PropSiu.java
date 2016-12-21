@@ -21,6 +21,7 @@ public class PropSiu implements IPropSiu {
 	public DeviceProp getPropSiu() {
 		return this.siu;
 	}
+	@Override
 	public void setPropSiu(DeviceProp siu){
 		this.siu = siu;
 	}

@@ -21,6 +21,7 @@ public class PropRpr implements IPropRpr {
 	public DeviceProp getPropRpr() {
 		return this.rpr;
 	}
+	@Override
 	public void setPropRpr(DeviceProp rpr){
 		this.rpr = rpr;
 	}

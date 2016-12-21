@@ -35,6 +35,7 @@ public class StatusCdm implements IStatusCdm ,Serializable {
      *
      * @return 硬件主状态
      */
+    @Override
     public DeviceStatus getStatus() {
         return this.cdm;
     }
@@ -44,6 +45,7 @@ public class StatusCdm implements IStatusCdm ,Serializable {
      *
      * @param cdm
      */
+    @Override
     public void setStatus(DeviceStatus cdm) {
         this.cdm = cdm;
     }
@@ -53,6 +55,7 @@ public class StatusCdm implements IStatusCdm ,Serializable {
      *
      * @return 状态代码
      */
+    @Override
     public String getCode() {
         return this.cdmCode;
     }
@@ -62,6 +65,7 @@ public class StatusCdm implements IStatusCdm ,Serializable {
      *
      * @param code
      */
+    @Override
     public void setCode(String code) {
         this.cdmCode = code;
     }
