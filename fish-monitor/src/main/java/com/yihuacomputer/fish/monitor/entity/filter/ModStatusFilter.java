@@ -32,39 +32,62 @@ public class ModStatusFilter implements IModStatusFilter {
 	@Column(name = "MOD_NODEVICE",columnDefinition="CHAR",length=1)
 	private boolean nodevice;
 	
+	@Override
 	public boolean isAll() {
 		return all;
 	}
+	
+	@Override
 	public void setAll(boolean all) {
 		this.all = all;
 	}
+	
+	@Override
 	public boolean isHealth() {
 		return health;
 	}
+	
+	@Override
 	public void setHealth(boolean health) {
 		this.health = health;
 	}
+	
+	@Override
 	public boolean isWarning() {
 		return warning;
 	}
+	
+	@Override
 	public void setWarning(boolean warning) {
 		this.warning = warning;
 	}
+	
+	@Override
 	public boolean isFatal() {
 		return fatal;
 	}
+	
+	@Override
 	public void setFatal(boolean fatal) {
 		this.fatal = fatal;
 	}
+	
+	@Override
 	public boolean isUnknown() {
 		return unknown;
 	}
+	
+	@Override
 	public void setUnknown(boolean unknown) {
 		this.unknown = unknown;
 	}
+	
+	@Override
 	public boolean isNodevice() {
 		return nodevice;
 	}
+	
+	@Override
 	public void setNodevice(boolean nodevice) {
 		this.nodevice = nodevice;
 	}

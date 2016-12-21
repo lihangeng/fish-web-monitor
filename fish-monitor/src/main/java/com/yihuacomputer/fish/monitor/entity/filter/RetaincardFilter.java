@@ -80,10 +80,12 @@ public class RetaincardFilter implements IRetaincardFilter {
 		return false;
 	}
 
+	@Override
 	public int getCardRetainNum() {
 		return cardRetainNum;
 	}
 
+	@Override
 	public void setCardRetainNum(int cardRetainNum) {
 		this.cardRetainNum = cardRetainNum;
 	}

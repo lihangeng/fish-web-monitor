@@ -30,35 +30,42 @@ public class ClassifyModStatusFilter implements IClassifyModStatusFilter{
 	private int boxLimit;
 
 
-
+	@Override
 	public int getNetLimit() {
 		return netLimit;
 	}
 
+	@Override
 	public void setNetLimit(int netLimit) {
 		this.netLimit = netLimit;
 	}
 
+	@Override
 	public int getBoxLimit() {
 		return boxLimit;
 	}
 
+	@Override
 	public void setBoxLimit(int boxLimit) {
 		this.boxLimit = boxLimit;
 	}
 
+	@Override
 	public List<String> getNetDeviceList() {
 		return netDeviceList;
 	}
 
+	@Override
 	public void setNetDeviceList(List<String> netDeviceList) {
 		this.netDeviceList = new ArrayList<String>(netDeviceList);
 	}
 
+	@Override
 	public List<String> getBoxDeviceList() {
 		return boxDeviceList;
 	}
 
+	@Override
 	public void setBoxDeviceList(List<String> boxDeviceList) {
 		this.boxDeviceList = new ArrayList<String>(boxDeviceList);
 	}
@@ -126,19 +133,22 @@ public class ClassifyModStatusFilter implements IClassifyModStatusFilter{
 	}
 
 
-
+	@Override
 	public List<String> getModDeviceList() {
 		return modDeviceList;
 	}
 
+	@Override
 	public void setModDeviceList(List<String> deviceList) {
 		this.modDeviceList = new ArrayList<String>(deviceList);
 	}
 
+	@Override
 	public int getModLimit() {
 		return modLimit;
 	}
 
+	@Override
 	public void setModLimit(int limit) {
 		this.modLimit = limit;
 	}

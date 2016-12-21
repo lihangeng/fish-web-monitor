@@ -17,26 +17,32 @@ public class Bios implements IBios {
 	@Column(name = "RELEASE_DATE",length=20)
 	private String biosReleaseDate;
 
+	@Override
 	public void setBiosVersion(String biosVersion) {
 		this.biosVersion = biosVersion;
 	}
 
+	@Override
 	public void setBiosVendor(String biosVendor) {
 		this.biosVendor = biosVendor;
 	}
 
+	@Override
 	public void setBiosReleaseDate(String biosReleaseDate) {
 		this.biosReleaseDate = biosReleaseDate;
 	}
 
+	@Override
 	public String getBiosVendor() {
 		return this.biosVendor;
 	}
 
+	@Override
 	public String getBiosVersion() {
 		return this.biosVersion;
 	}
 
+	@Override
 	public String getBiosReleaseDate() {
 		return this.biosReleaseDate;
 	}

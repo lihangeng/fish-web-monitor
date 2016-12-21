@@ -45,43 +45,68 @@ public class CashInitPlanInfo implements ICashInitPlanInfo {
 
 	@Column(name = "CASH_INIT_PLAN_AMT")
     private double amt;
+	
+	@Override
 	public long getId() {
 		return id;
 	}
+	
+	@Override
 	public void setId(long id) {
 		this.id = id;
 	}
+	
+	@Override
 	public int getDate() {
 		return date;
 	}
+	
+	@Override
 	public void setDate(int date) {
 		this.date = date;
 	}
+	
+	@Override
 	public String getCashInitCode() {
 		return cashInitCode;
 	}
+	
+	@Override
 	public void setCashInitCode(String cashInitCode) {
 		this.cashInitCode = cashInitCode;
 	}
+	
+	@Override
 	public IOrganization getOrg() {
 		return org;
 	}
+	
+	@Override
 	public void setOrg(IOrganization org) {
 		this.org = org;
 	}
+	
+	@Override
 	public double getAmt() {
 		return amt;
 	}
+	
+	@Override
 	public void setAmt(double amt) {
 		this.amt = amt;
 	}
+	
+	@Override
 	public List<ICashInitPlanDeviceInfo> getCashInitPlanDeviceList() {
 		return cashInitPlanDeviceList;
 	}
+	
+	@Override
 	public void setCashInitPlanDeviceList(List<ICashInitPlanDeviceInfo> cashInitPlanDeviceList) {
 		this.cashInitPlanDeviceList = cashInitPlanDeviceList;
 	}
 	
+	@Override
 	public void add(ICashInitPlanDeviceInfo cashPlanDeviceInfo){
 		this.cashInitPlanDeviceList.add(cashPlanDeviceInfo);
 	}

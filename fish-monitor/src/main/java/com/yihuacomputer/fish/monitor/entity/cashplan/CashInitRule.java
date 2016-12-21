@@ -30,42 +30,53 @@ public class CashInitRule implements ICashInitRule {
     @Enumerated(EnumType.STRING)
 	@Column(name = "RULE_TYPE")
 	private BoxInitRuleType ruleType;
+    
+    @Override
 	public long getId() {
 		return id;
 	}
 
+    @Override
 	public void setId(long id) {
 		this.id = id;
 	}
 
+    @Override
 	public String getName() {
 		return name;
 	}
 
+    @Override
 	public void setName(String name) {
 		this.name = name;
 	}
 
+    @Override
 	public String getRuleDesc() {
 		return ruleDesc;
 	}
 
+    @Override
 	public void setRuleDesc(String ruleDesc) {
 		this.ruleDesc = ruleDesc;
 	}
 
+    @Override
 	public boolean isStartUsing() {
 		return startUsing;
 	}
 
+    @Override
 	public void setStartUsing(boolean startUsing) {
 		this.startUsing = startUsing;
 	}
 
+    @Override
 	public BoxInitRuleType getRuleType() {
 		return ruleType;
 	}
 
+    @Override
 	public void setRuleType(BoxInitRuleType ruleType) {
 		this.ruleType = ruleType;
 	}

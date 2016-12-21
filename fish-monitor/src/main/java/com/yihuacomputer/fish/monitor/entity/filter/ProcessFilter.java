@@ -8,10 +8,12 @@ public class ProcessFilter implements IProcessFilter {
 
 	private List<Long> subOrg;
 
+	@Override
 	public List<Long> getSubOrg() {
 		return subOrg;
 	}
 
+	@Override
 	public void setSubOrg(List<Long> subOrg) {
 		this.subOrg = subOrg;
 	}

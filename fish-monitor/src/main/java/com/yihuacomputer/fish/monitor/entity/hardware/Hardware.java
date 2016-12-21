@@ -63,22 +63,27 @@ public class Hardware implements IHardware ,Serializable{
 		this.id = id;
 	}
 
+	@Override
 	public long getId() {
 		return this.id;
 	}
 
+	@Override
 	public String getTerminalId() {
 		return terminalId;
 	}
 
+	@Override
 	public void setTerminalId(String terminalId) {
 		this.terminalId = terminalId;
 	}
 
+	@Override
 	public void setBios(IBios bios) {
 		this.bios = (Bios) bios;
 	}
 
+	@Override
 	public IBios getBios() {
 	    if(this.bios == null){
 	        this.bios = new Bios();
@@ -86,40 +91,49 @@ public class Hardware implements IHardware ,Serializable{
 		return this.bios;
 	}
 
+	@Override
 	public void setCpu(List<ICpu> cpuList) {
 		this.cpu.clear();
 		this.cpu.addAll(cpuList);
 	}
 
+	@Override
 	public List<ICpu> getCpu() {
 		return this.cpu;
 	}
 
+	@Override
 	public void setMemory(IMemory memory) {
 		this.memory = (Memory) memory;
 	}
 
+	@Override
 	public IMemory getMemory() {
 		return this.memory;
 	}
 
+	@Override
 	public void setHardDisk(List<IDisk> hardDisk) {
 		this.hardDisk.clear();
 		this.hardDisk.addAll(hardDisk);
 	}
-
+	
+	@Override
 	public void setDiskMem(long diskMem) {
 		this.diskMem = diskMem;
 	}
 
+	@Override
 	public long getDiskMem() {
 		return this.diskMem;
 	}
 
+	@Override
 	public void setFrimware(IFrimware frimware) {
 		this.frimware = (Frimware) frimware;
 	}
 
+	@Override
 	public IFrimware getFrimware() {
 		return this.frimware;
 	}

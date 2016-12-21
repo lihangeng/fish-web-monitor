@@ -28,33 +28,52 @@ public class NetStatusFilter implements INetStatusFilter {
 	@Column(name = "NET_UNKNOW",columnDefinition="CHAR",length=1)
 	private boolean unknown;
 	
+	@Override
 	public boolean isAll() {
 		return all;
 	}
+	
+	@Override
 	public void setAll(boolean all) {
 		this.all = all;
 	}
+	
+	@Override
 	public boolean isHealth() {
 		return health;
 	}
+	
+	@Override
 	public void setHealth(boolean health) {
 		this.health = health;
 	}
+	
+	@Override
 	public boolean isWarning() {
 		return warning;
 	}
+	
+	@Override
 	public void setWarning(boolean warning) {
 		this.warning = warning;
 	}
+	
+	@Override
 	public boolean isFatal() {
 		return fatal;
 	}
+	
+	@Override
 	public void setFatal(boolean fatal) {
 		this.fatal = fatal;
 	}
+	
+	@Override
 	public boolean isUnknown() {
 		return unknown;
 	}
+	
+	@Override
 	public void setUnknown(boolean unknown) {
 		this.unknown = unknown;
 	}

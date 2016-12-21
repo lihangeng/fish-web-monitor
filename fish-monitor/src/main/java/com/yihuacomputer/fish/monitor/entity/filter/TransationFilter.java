@@ -41,10 +41,12 @@ public class TransationFilter implements ITransationFilter {
      */
     private String tranStates;
 
+    @Override
     public List<Long> getSubOrg() {
         return subOrg;
     }
 
+    @Override
     public void setSubOrg(List<Long> subOrg) {
         this.subOrg = subOrg;
     }
@@ -130,6 +132,7 @@ public class TransationFilter implements ITransationFilter {
         return true;
     }
 
+    @Override
     public void setTerminalId(String terminalId) {
         if (terminalId == null || terminalId.isEmpty()) {
             this.terminalId = null;
@@ -138,6 +141,7 @@ public class TransationFilter implements ITransationFilter {
         }
     }
 
+    @Override
     public void setCurrency(String currency) {
         if (currency == null || currency.isEmpty()) {
             this.currency = null;
@@ -146,6 +150,7 @@ public class TransationFilter implements ITransationFilter {
         }
     }
 
+    @Override
     public void setCreditAccount(String creditAccount) {
         if (creditAccount == null || creditAccount.isEmpty()) {
             this.creditAccount = null;
@@ -154,6 +159,7 @@ public class TransationFilter implements ITransationFilter {
         }
     }
 
+    @Override
     public void setDebitAccount(String debitAccount) {
         if (debitAccount == null || debitAccount.isEmpty()) {
             this.debitAccount = null;
@@ -162,34 +168,42 @@ public class TransationFilter implements ITransationFilter {
         }
     }
 
+    @Override
     public void setStartAmt(double startAmt) {
         this.startAmt = startAmt;
     }
 
+    @Override
     public void setEndAmt(double endAmt) {
         this.endAmt = endAmt;
     }
 
+    @Override
     public String getTerminalId() {
         return terminalId;
     }
 
+    @Override
     public String getCurrency() {
         return currency;
     }
 
+    @Override
     public String getCreditAccount() {
         return creditAccount;
     }
 
+    @Override
     public String getDebitAccount() {
         return debitAccount;
     }
 
+    @Override
     public double getStartAmt() {
         return startAmt;
     }
 
+    @Override
     public double getEndAmt() {
         return endAmt;
     }

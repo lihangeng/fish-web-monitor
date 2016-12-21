@@ -47,9 +47,6 @@ public class CashInitPlanDeviceInfo implements ICashInitPlanDeviceInfo {
     @Enumerated(EnumType.ORDINAL)
 	@Column(name = "INIT_FLAG")
 	private BoxInitRuleType flag;//加钞类型标识(1:钞箱预警.2:超过加钞预警天数.4.手工强制清机加钞)
-//	@org.hibernate.annotations.Type(type = "com.yihuacomputer.domain.util.BooleanUserType")
-//	@Column(name = "CASH_INIT", columnDefinition = "CHAR", length = 1)
-//	private boolean init;
 	
 	@Column(name = "ADDRESS")
 	private String address;
@@ -58,75 +55,122 @@ public class CashInitPlanDeviceInfo implements ICashInitPlanDeviceInfo {
     @JoinColumn(name = "CASH_INIT_PLAN_ID", insertable = true, updatable = false)
 	private ICashInitPlanInfo cashInitPlanInfo;
     
+    @Override
 	public long getId() {
 		return id;
 	}
+    
+    @Override
 	public void setId(long id) {
 		this.id = id;
 	}
+    
+    @Override
 	public String getTerminalId() {
 		return terminalId;
 	}
+    
+    @Override
 	public void setTerminalId(String terminalId) {
 		this.terminalId = terminalId;
 	}
+    
+    @Override
 	public String getOrgName() {
 		return orgName;
 	}
+    
+    @Override
 	public void setOrgName(String orgName) {
 		this.orgName = orgName;
 	}
+    
+    @Override
 	public long getLastAmt() {
 		return lastAmt;
 	}
+    
+    @Override
 	public void setLastAmt(long lastAmt) {
 		this.lastAmt = lastAmt;
 	}
+    
+    @Override
 	public String getLastDate() {
 		return lastDate;
 	}
+    
+    @Override
 	public void setLastDate(String lastDate) {
 		this.lastDate = lastDate;
 	}
+    
+    @Override
 	public double getAdviceAmt() {
 		return adviceAmt;
 	}
+    
+    @Override
 	public void setAdviceAmt(double adviceAmt) {
 		this.adviceAmt = adviceAmt;
 	}
+    
+    @Override
 	public double getActualAmt() {
 		return actualAmt;
 	}
+    
+    @Override
 	public void setActualAmt(double actualAmt) {
 		this.actualAmt = actualAmt;
 	}
+    
+    @Override
 	public BoxInitRuleType getFlag() {
 		return flag;
 	}
+    
+    @Override
 	public void setFlag(BoxInitRuleType flag) {
 		this.flag = flag;
 	}
+    
+    @Override
 	public String getAddress() {
 		return address;
 	}
+    
+    @Override
 	public void setAddress(String address) {
 		this.address = address;
 	}
+    
+    @Override
 	public ICashInitPlanInfo getCashInitPlanInfo() {
 		return cashInitPlanInfo;
 	}
+    
+    @Override
 	public void setCashInitPlanInfo(ICashInitPlanInfo cashInitPlanInfo) {
 		this.cashInitPlanInfo = cashInitPlanInfo;
 	}
+    
+    @Override
 	public String getDevType() {
 		return devType;
 	}
+    
+    @Override
 	public void setDevType(String devType) {
 		this.devType = devType;
 	}
+    
+    @Override
 	public AwayFlag getAwayFlag() {
 		return awayFlag;
 	}
+    
+    @Override
 	public void setAwayFlag(AwayFlag awayFlag) {
 		this.awayFlag = awayFlag;
 	}

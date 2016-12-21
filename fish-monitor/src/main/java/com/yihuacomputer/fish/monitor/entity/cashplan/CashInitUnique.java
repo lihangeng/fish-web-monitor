@@ -39,34 +39,42 @@ public class CashInitUnique implements ICashInitUnique {
 		this.id = id;
 	}
 
+	@Override
 	public String getTerminalId() {
 		return terminalId;
 	}
 
+	@Override
 	public void setTerminalId(String terminalId) {
 		this.terminalId = terminalId;
 	}
-
+	
+	@Override
 	public String getDate() {
 		return date;
 	}
 
+	@Override
 	public void setDate(String date) {
 		this.date = date;
 	}
 
+	@Override
 	public String getUuId() {
 		return uuId;
 	}
 
+	@Override
 	public void setUuId(String uuId) {
 		this.uuId = uuId;
 	}
 
+	@Override
 	public long getAmt() {
 		return amt;
 	}
 
+	@Override
 	public void setAmt(long amt) {
 		this.amt = amt;
 	}

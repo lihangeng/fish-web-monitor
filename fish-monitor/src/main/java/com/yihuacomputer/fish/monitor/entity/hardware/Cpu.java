@@ -59,6 +59,7 @@ public class Cpu implements ICpu,Serializable {
 	@JoinColumn(name = "TERMINAL_ID", insertable = false, updatable = false)
 	private IHardware hardware;
 	
+	@Override
 	public long getId() {
 		return id;
 	}
@@ -75,74 +76,92 @@ public class Cpu implements ICpu,Serializable {
 		return this.hardware;
 	}
 	
+	@Override
 	public int getFrequency() {
 		return this.frequency;
 	}
 
+	@Override
 	public void setFrequency(int frequency) {
 		this.frequency = frequency;
 	}
 
+	@Override
 	public String getVendor() {
 		return vendor;
 	}
 
+	@Override
 	public void setVendor(String vendor) {
 		this.vendor = vendor;
 	}
 
+	@Override
 	public String getModel() {
 		return this.model;
 	}
 
+	@Override
 	public void setModel(String model) {
 		this.model = model;
 	}
 
+	@Override
 	public long getCacheSize() {
 		return this.cacheSize;
 	}
 
+	@Override
 	public void setCacheSize(long cacheSize) {
 		this.cacheSize = cacheSize;
 	}
 
+	@Override
 	public int getTotalCores() {
 		return this.totalCores;
 	}
 
+	@Override
 	public void setTotalCores(int totalCores) {
 		this.totalCores = totalCores;
 	}
 
+	@Override
 	public String getUser() {
 		return this.user;
 	}
 
+	@Override
 	public void setUser(String user) {
 		this.user = user;
 	}
 
+	@Override
 	public String getSys() {
 		return this.sys;
 	}
 
+	@Override
 	public void setSys(String sys) {
 		this.sys = sys;
 	}
 
+	@Override
 	public String getIdle() {
 		return this.idle;
 	}
 
+	@Override
 	public void setIdle(String idle) {
 		this.idle = idle;
 	}
 
+	@Override
 	public String getCombined() {
 		return this.combined;
 	}
 
+	@Override
 	public void setCombined(String combined) {
 		this.combined = combined;
 	}

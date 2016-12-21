@@ -51,7 +51,7 @@ public class Disk implements IDisk,Serializable {
 	@JoinColumn(name = "TERMINAL_ID", insertable = false, updatable = false)
 	private IHardware hardware;
 	
-	
+	@Override
 	public void setHardware(IHardware hardware){
 		this.hardware = hardware;
 	}
@@ -60,6 +60,7 @@ public class Disk implements IDisk,Serializable {
 		return this.hardware;
 	}
 
+	@Override
 	public long getId() {
 		return id;
 	}
@@ -68,58 +69,72 @@ public class Disk implements IDisk,Serializable {
 		this.id = id;
 	}
 	
+	@Override
 	public void setLabel(String label) {
 		this.label = label;
 	}
 
+	@Override
 	public void setName(String name) {
 		this.name = name;
 	}
 
+	@Override
 	public void setTotalSize(long totalSize) {
 		this.totalSize = totalSize;
 	}
 
+	@Override
 	public void setFreeSize(long freeSize) {
 		this.freeSize = freeSize;
 	}
 
+	@Override
 	public void setFileSys(String fileSys) {
 		this.fileSys = fileSys;
 	}
 
+	@Override
 	public void setMemo(String memo) {
 		this.memo = memo;
 	}
 
+	@Override
 	public void setLabelAndname(String labelAndname) {
 		this.labelAndname = labelAndname;
 	}
 
+	@Override
 	public String getLabel() {
 		return this.label;
 	}
 
+	@Override
 	public String getName() {
 		return this.name;
 	}
 
+	@Override
 	public long getTotalSize() {
 		return this.totalSize;
 	}
 
+	@Override
 	public long getFreeSize() {
 		return this.freeSize;
 	}
 
+	@Override
 	public String getFileSys() {
 		return this.fileSys;
 	}
 
+	@Override
 	public String getMemo() {
 		return this.memo;
 	}
 
+	@Override
 	public String getLabelAndname() {
 		return this.labelAndname;
 	}

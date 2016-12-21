@@ -39,51 +39,82 @@ public class BoxStatusFilter implements IBoxStatusFilter {
 	@Column(name = "BOX_UNKNOW",columnDefinition="CHAR",length=1)
 	private boolean unknown;
 	
+	@Override
 	public boolean isAll() {
 		return all;
 	}
+	
+	@Override
 	public void setAll(boolean all) {
 		this.all = all;
 	}	
+	
+	@Override
 	public boolean isHealthy() {
 		return healthy;
 	}
+	
+	@Override
 	public void setHealthy(boolean healthy) {
 		this.healthy = healthy;
 	}
+	
+	@Override
 	public boolean isFull() {
 		return full;
 	}
+	
+	@Override
 	public void setFull(boolean full) {
 		this.full = full;
 	}
+	
+	@Override
 	public boolean isLow() {
 		return low;
 	}
+	
+	@Override
 	public void setLow(boolean low) {
 		this.low = low;
 	}
+	
+	@Override
 	public boolean isEmpty() {
 		return empty;
 	}
+	
+	@Override
 	public void setEmpty(boolean empty) {
 		this.empty = empty;
 	}
+	
+	@Override
 	public boolean isHigh() {
 		return high;
 	}
+	
+	@Override
 	public void setHigh(boolean high) {
 		this.high = high;
 	}
+	
+	@Override
 	public boolean isFatal() {
 		return fatal;
 	}
+	
+	@Override
 	public void setFatal(boolean fatal) {
 		this.fatal = fatal;
 	}
+	
+	@Override
 	public boolean isUnknown() {
 		return unknown;
 	}
+	
+	@Override
 	public void setUnknown(boolean unknown) {
 		this.unknown = unknown;
 	}

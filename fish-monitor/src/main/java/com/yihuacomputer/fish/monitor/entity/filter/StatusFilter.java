@@ -93,54 +93,67 @@ public class StatusFilter implements IStatusFilter {
     @Transient
     private Map<String, String> atmGroupMap;
 
+    @Override
     public String getUserId() {
         return userId;
     }
 
+    @Override
     public void setUserId(String userId) {
         this.userId = userId;
     }
 
+    @Override
     public String getOrgId() {
         return orgId;
     }
 
+    @Override
     public void setOrgId(String orgId) {
         this.orgId = orgId;
     }
 
+    @Override
     public List<String> getDeviceList() {
         return this.deviceList;
     }
 
+    @Override
     public IRunStatusFilter getRunStatusFilter() {
         return this.runStatusFilter;
     }
 
+    @Override
     public IBoxStatusFilter getBoxStatusFilter() {
         return this.boxStatusFilter;
     }
 
+    @Override
     public IModStatusFilter getModStatusFilter() {
         return this.modStatusFilter;
     }
 
+    @Override
     public String getTerminalId() {
         return this.terminalId;
     }
 
+    @Override
     public int getLimit() {
         return this.limit;
     }
 
+    @Override
     public void setTerminalId(String terminalId) {
         this.terminalId = terminalId;
     }
 
+    @Override
     public void setLimit(int limit) {
         this.limit = limit;
     }
 
+    @Override
     public void setDeviceList(List<String> deviceList) {
         this.deviceList = new ArrayList<String>();
         this.deviceList.addAll(deviceList);
@@ -150,50 +163,62 @@ public class StatusFilter implements IStatusFilter {
         this.runStatusFilter = (RunStatusFilter) runStatusFilter;
     }
 
+    @Override
     public void setBoxStatusFilter(IBoxStatusFilter boxStatusFilter) {
         this.boxStatusFilter = (BoxStatusFilter) boxStatusFilter;
     }
 
+    @Override
     public void setModStatusFilter(IModStatusFilter modStatusFilter) {
         this.modStatusFilter = (ModStatusFilter) modStatusFilter;
     }
 
+    @Override
     public INetStatusFilter getNetStatusFilter() {
         return this.netStatusFilter;
     }
 
+    @Override
     public void setNetStatusFilter(INetStatusFilter netFilter) {
         this.netStatusFilter = (NetStatusFilter) netFilter;
     }
 
+    @Override
     public long getDevVendor() {
         return devVendor;
     }
 
+    @Override
     public void setDevVendor(long devVendor) {
         this.devVendor = devVendor;
     }
 
+    @Override
     public long getDevType() {
         return devType;
     }
 
+    @Override
     public void setDevType(long devType) {
         this.devType = devType;
     }
 
+    @Override
     public int getWorkType() {
         return workType;
     }
 
+    @Override
     public void setWorkType(int workType) {
         this.workType = workType;
     }
 
+    @Override
     public int getAwayFlag() {
         return awayFlag;
     }
 
+    @Override
     public void setAwayFlag(int awayFlag) {
         this.awayFlag = awayFlag;
     }
@@ -204,15 +229,13 @@ public class StatusFilter implements IStatusFilter {
      * @param deviceReport
      * @return
      */
+    @Override
     public ReportMedthod filterStatus(IDeviceReport deviceReport) {
         IXfsStatus xfsStatus = deviceReport.getXfsStatus();
         IRunInfo runInfo = deviceReport.getRunInfo();
         IDevice device = deviceReport.getDevice();
 
         if (this.terminalId != null && !"".equals(this.terminalId)) {
-//            if (device.getTerminalId().equals(this.terminalId)) {
-//                return ReportMedthod.UPDATE;
-//            }
             // 因为状态监控查询,设备号是模糊匹配的,所以此处也需要进行模糊匹配
             if (device.getTerminalId().indexOf(this.terminalId) != -1) {
                 return ReportMedthod.UPDATE;
@@ -476,14 +499,17 @@ public class StatusFilter implements IStatusFilter {
         return true;
     }
 
+    @Override
     public int getOffset() {
         return this.offset;
     }
 
+    @Override
     public void setRunStattusFilter(IRunStatusFilter runFilter) {
         this.runStatusFilter = (RunStatusFilter) runFilter;
     }
 
+    @Override
     public void setOffset(int offset) {
         this.offset = offset;
     }
@@ -518,26 +544,32 @@ public class StatusFilter implements IStatusFilter {
         this.atmGroup = atmGroupId;
     }
 
+    @Override
     public DevStatus getDeviceStatus() {
         return deviceStatus;
     }
 
+    @Override
     public void setDeviceStatus(DevStatus deviceStatus) {
         this.deviceStatus = deviceStatus;
     }
 
+    @Override
     public long getId() {
         return id;
     }
 
+    @Override
     public void setId(long id) {
         this.id = id;
     }
 
+    @Override
     public String getFilterName() {
         return filterName;
     }
 
+    @Override
     public void setFilterName(String filterName) {
         this.filterName = filterName;
     }
