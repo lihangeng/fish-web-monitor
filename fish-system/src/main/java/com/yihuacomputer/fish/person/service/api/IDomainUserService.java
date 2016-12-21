@@ -31,6 +31,7 @@ public interface IDomainUserService extends IUserService {
     /**
      * 根据人员ID获得账户信息
      */
+    @Override
     public User getByPerson(String id);
 
     /**
@@ -45,6 +46,7 @@ public interface IDomainUserService extends IUserService {
      * 
      * @return
      */
+    @Override
     public IPersonService getPersonService();
 
     /**

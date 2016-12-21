@@ -53,6 +53,7 @@ public class ParamTemplateElementRelation implements
 		return obj;
 	}
 
+	@Override
 	public long getId() {
 		return id;
 	}
@@ -61,6 +62,7 @@ public class ParamTemplateElementRelation implements
 		this.id = id;
 	}
 
+	@Override
 	public long getTemplateId() {
 		return templateId;
 	}
@@ -69,6 +71,7 @@ public class ParamTemplateElementRelation implements
 		this.templateId = templateId;
 	}
 
+	@Override
 	public long getElementId() {
 		return elementId;
 	}

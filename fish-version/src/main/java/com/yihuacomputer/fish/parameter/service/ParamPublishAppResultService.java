@@ -42,6 +42,7 @@ public class ParamPublishAppResultService implements IParamPublishAppResultServi
 		return dao.findByHQL(sb.toString(), new Object[]{paramPublishResultId});
 	}
 	
+	@Override
 	public IParamPublishAppResult get(long paramPublishResultId,String name){
 		StringBuffer sb = new StringBuffer();
 		sb.append("from ").append(ParamPublishAppResult.class.getSimpleName()).append(" appResult ")

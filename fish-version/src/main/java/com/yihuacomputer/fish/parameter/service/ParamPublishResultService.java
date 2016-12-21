@@ -88,6 +88,7 @@ public class ParamPublishResultService implements IParamPublishResultService {
 
 	private static final String PARAM_PUSH_URL = "/ctr/paramUpdateNotify";
 
+	@Override
 	public boolean notice(IParamPublishResult publishResult, IDevice device) {
 		int retResult = 0;
 		try {

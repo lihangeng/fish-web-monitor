@@ -69,6 +69,7 @@ public class UserRoleRelation implements IUserRoleRelation {
         return roles;
     }
 
+    @Override
     @Transactional(readOnly = true)
     public List<IPermission> listUserPermission(long userId) {
         StringBuffer hql = new StringBuffer();
@@ -86,11 +87,13 @@ public class UserRoleRelation implements IUserRoleRelation {
 	 * @return
 	 * @since 2.1.0.6
 	 */
+    @Override
     @Transactional(readOnly = true)
     public List<IPermission> findDirectChildPermissionsByUser(long userId,String parentPermissionId) {
     	return findDirectChildPermissionsByUser(userId,parentPermissionId,true);
     }
     
+    @Override
     @Transactional(readOnly = true)
     public List<IPermission> findDirectChildPermissionsByUserNotTree(long userId,String parentPermissionId) {
     	return findDirectChildPermissionsByUser(userId,parentPermissionId,false);
@@ -111,6 +114,7 @@ public class UserRoleRelation implements IUserRoleRelation {
 	 * @return
 	 *  @since 2.1.0.6
 	 */
+	@Override
 	public List<IPermission> findAllChildPermissionsByUser(long userId,String parentPermissionId){
 		StringBuffer hql = new StringBuffer();
         hql.append("select distinct m from UserRoleObj ur,RolePermissionObj r,Permission m ");

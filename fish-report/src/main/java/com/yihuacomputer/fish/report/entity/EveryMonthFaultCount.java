@@ -56,73 +56,92 @@ public class EveryMonthFaultCount implements IEveryMonthFaultCount {
 	@Column(name = "DEV_TYPE_ID")
 	private long devTypeId;
 
+	@Override
 	public long getId() {
 		return id;
 	}
 
+	@Override
 	public void setId(long id) {
 		this.id = id;
 	}
 
+	@Override
 	public String getVendorName() {
 		return vendorName;
 	}
 
+	@Override
 	public void setVendorName(String vendorName) {
 		this.vendorName = vendorName;
 	}
 
+	@Override
 	public String getDevType() {
 		return devType;
 	}
 
+	@Override
 	public void setDevType(String devType) {
 		this.devType = devType;
 	}
 
+	@Override
 	public String getDevMod() {
 		return devMod;
 	}
 
+	@Override
 	public void setDevMod(String devMod) {
 		this.devMod = devMod;
 	}
 
+	@Override
 	public String getClassifyId() {
 		return classifyId;
 	}
 
+	@Override
 	public void setClassifyId(String classifyId) {
 		this.classifyId = classifyId;
 	}
 
+	@Override
 	public long getFaultDate() {
 		return faultDate;
 	}
 
+	@Override
 	public void setFaultDate(long faultDate) {
 		this.faultDate = faultDate;
 	}
 
+	@Override
 	public long getFaultCount() {
 		return faultCount;
 	}
 
+	@Override
 	public void setFaultCount(long faultCount) {
 		this.faultCount = faultCount;
 	}
+	
+	@Override
 	public long getVendorId() {
 		return vendorId;
 	}
 
+	@Override
 	public void setVendorId(long vendorId) {
 		this.vendorId = vendorId;
 	}
 
+	@Override
 	public long getDevTypeId() {
 		return devTypeId;
 	}
 
+	@Override
 	public void setDevTypeId(long devTypeId) {
 		this.devTypeId = devTypeId;
 	}

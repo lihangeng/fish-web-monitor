@@ -92,6 +92,7 @@ public class ParamPublishService implements IParamPublishService {
 		return publishJobManager;
 	}
 
+	@Override
 	public IParamPublishResultService getParamPulishResultService() {
 		return paramPulishResultService;
 	}
@@ -357,6 +358,7 @@ public class ParamPublishService implements IParamPublishService {
 	 * @param deviceId
 	 * @return
 	 */
+	@Override
 	public Map<String, Long> getMaxVersionNoInfoByDeviceId(long deviceId) {
 		Map<String, Long> map = new HashMap<String, Long>();
 		StringBuffer hql = new StringBuffer();

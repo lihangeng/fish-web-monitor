@@ -112,6 +112,7 @@ public class PermissionService implements IPermissionService {
 
 	}
 
+	@Override
 	public void remove(IPermission permission){
 		dao.delete(permission);
 	}

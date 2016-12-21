@@ -48,82 +48,102 @@ public class TransactionMonths implements ITransactionMonths {
 	@Column(name = "DEV_TYPE_ID")
 	private long devTypeId;
 
+	@Override
 	public long getId() {
 		return id;
 	}
 
+	@Override
 	public void setId(long id) {
 		this.id = id;
 	}
 
+	@Override
 	public long getTransDate() {
 		return transDate;
 	}
 
+	@Override
 	public void setTransDate(long transDate) {
 		this.transDate = transDate;
 	}
 
+	@Override
 	public long getTransCount() {
 		return transCount;
 	}
 
+	@Override
 	public void setTransCount(long transCount) {
 		this.transCount = transCount;
 	}
 
+	@Override
 	public String getVendorName() {
 		return vendorName;
 	}
 
+	@Override
 	public void setVendorName(String vendorName) {
 		this.vendorName = vendorName;
 	}
 
+	@Override
 	public String getDevType() {
 		return devType;
 	}
 
+	@Override
 	public void setDevType(String devType) {
 		this.devType = devType;
 	}
 
+	@Override
 	public String getTransCode() {
 		return transCode;
 	}
 
+	@Override
 	public void setTransCode(String transCode) {
 		this.transCode = transCode;
 	}
 
+	@Override
 	public String getCardType() {
 		return cardType;
 	}
 
+	@Override
 	public void setCardType(String cardType) {
 		this.cardType = cardType;
 	}
 
+	@Override
 	public long getTransAmt() {
 		return transAmt;
 	}
 
+	@Override
 	public void setTransAmt(long transAmt) {
 		this.transAmt = transAmt;
 	}
 
+	@Override
 	public long getVendorId() {
 		return vendorId;
 	}
 
+	@Override
 	public void setVendorId(long vendorId) {
 		this.vendorId = vendorId;
 	}
 
+	@Override
 	public long getDevTypeId() {
 		return devTypeId;
 	}
 
+	@Override
 	public void setDevTypeId(long devTypeId) {
 		this.devTypeId = devTypeId;
 	}

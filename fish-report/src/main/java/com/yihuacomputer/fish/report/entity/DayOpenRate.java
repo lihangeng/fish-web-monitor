@@ -108,131 +108,162 @@ public class DayOpenRate implements IDayOpenRate {
     @Transient 
     private double avgOpenRate;
 
-    
+    @Override
     public long getId() {
         return id;
     }
 
+    @Override
     public void setId(long id) {
         this.id = id;
     }
 
+    @Override
     public String getTerminalId() {
         return terminalId;
     }
 
+    @Override
     public void setTerminalId(String terminalId) {
         this.terminalId = terminalId;
     }
 
+    @Override
     public String getStatDate() {
         return statDate;
     }
 
+    @Override
     public void setStatDate(String statDate) {
         this.statDate = statDate;
     }
 
+    @Override
     public int getOpenTimes() {
         return openTimes;
     }
 
+    @Override
     public void setOpenTimes(int openTimes) {
         this.openTimes = openTimes;
     }
 
+    @Override
     public int getHealthyTimeReal() {
         return healthyTimeReal;
     }
 
+    @Override
     public void setHealthyTimeReal(int healthyTimeReal) {
         this.healthyTimeReal = healthyTimeReal;
     }
 
+    @Override
     public int getUnknownTimeReal() {
         return unknownTimeReal;
     }
 
+    @Override
     public void setUnknownTimeReal(int unknownTimeReal) {
         this.unknownTimeReal = unknownTimeReal;
     }
 
+    @Override
     public int getMaintainTimeReal() {
         return maintainTimeReal;
     }
 
+    @Override
     public void setMaintainTimeReal(int maintainTimeReal) {
         this.maintainTimeReal = maintainTimeReal;
     }
 
+    @Override
     public int getFaultTimeReal() {
         return faultTimeReal;
     }
 
+    @Override
     public void setFaultTimeReal(int faultTimeReal) {
         this.faultTimeReal = faultTimeReal;
     }
 
+    @Override
     public int getAtmpTimeReal() {
         return atmpTimeReal;
     }
 
+    @Override
     public void setAtmpTimeReal(int atmpTimeReal) {
         this.atmpTimeReal = atmpTimeReal;
     }
 
+    @Override
     public int getStopTimeReal() {
         return stopTimeReal;
     }
 
+    @Override
     public void setStopTimeReal(int stopTimeReal) {
         this.stopTimeReal = stopTimeReal;
     }
 
+    @Override
     public String getProgramOpenTime() {
         return programOpenTime;
     }
 
+    @Override
     public void setProgramOpenTime(String programOpenTime) {
         this.programOpenTime = programOpenTime;
     }
 
+    @Override
     public String getProgramCloseTime() {
         return programCloseTime;
     }
 
+    @Override
     public void setProgramCloseTime(String programCloseTime) {
         this.programCloseTime = programCloseTime;
     }
 
+    @Override
     public int getProgramTimes() {
         return programTimes;
     }
 
+    @Override
     public void setProgramTimes(int programTimes) {
         this.programTimes = programTimes;
     }
 
+    @Override
     public int getProgramTimeReal() {
         return programTimeReal;
     }
 
+    @Override
     public void setProgramTimeReal(int programTimeReal) {
         this.programTimeReal = programTimeReal;
     }
 
+    @Override
 	public String getOrgName() {
 		return orgName;
 	}
 
+    @Override
 	public void setOrgName(String orgName) {
 		this.orgName = orgName;
 	}
 
+    @Override
 	public String getDevCatalogName() {
 		return devCatalogName;
 	}
 
+    @Override
 	public void setDevCatalogName(String devCatalogName) {
 		this.devCatalogName = devCatalogName;
 	}
@@ -253,18 +284,22 @@ public class DayOpenRate implements IDayOpenRate {
 		this.devVendorName = devVendorName;
 	}
 
+	@Override
 	public String getAwayFlag() {
 		return awayFlag;
 	}
 
+	@Override
 	public void setAwayFlag(String awayFlag) {
 		this.awayFlag = awayFlag;
 	}
 
+	@Override
 	public double getAvgOpenRate() {
 		return avgOpenRate;
 	}
 
+	@Override
 	public void setAvgOpenRate(double avgOpenRate) {
 		this.avgOpenRate = avgOpenRate;
 	}

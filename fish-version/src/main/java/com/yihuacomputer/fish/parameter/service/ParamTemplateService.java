@@ -377,6 +377,7 @@ public class ParamTemplateService implements IParamTemplateService {
 		dao.batchUpdate(hql, templateId, templateId);
 	}
 
+	@Override
 	public List<IParamTemplateDetail> getParamTemplateDetailListByDeviceId(long deviceId){
 		StringBuffer sb = new StringBuffer();
 		sb.append("select templateDetail from ").append(ParamTemplateDetail.class.getSimpleName()).append(" templateDetail, ");

@@ -53,10 +53,12 @@ public class ReportParam implements IReportParam {
 		return dataList;
 	}
 
+	@Override
 	public String[] getSheetNames() {
 		return sheetNames;
 	}
 
+	@Override
 	public String getReportFilepath() {
 		return reportFilepath;
 	}
