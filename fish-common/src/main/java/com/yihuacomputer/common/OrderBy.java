@@ -27,11 +27,18 @@ public class OrderBy {
 	 */
 	public static final String DESC  = "desc";
 
+	/**
+	 * @param propertyName
+	 * @param order
+	 */
 	public OrderBy(String propertyName, String order) {
 		this.propertyName = propertyName;
 		this.ascending = order.equalsIgnoreCase(ASC) ? true : false;
 	}
 	
+	/**
+	 * @param propertyName
+	 */
 	public OrderBy(String propertyName){
 		this.propertyName = propertyName;
 	}

@@ -88,10 +88,12 @@ public class IP implements ITypeIP {
 		return changeIpFromLongToString(this.longValue);
 	}
 	
+	@Override
 	public Long toLong() {
 		return this.longValue;
 	}
 
+	@Override
 	public long tolong() {
 		return toLong().longValue();
 	}

@@ -1,5 +1,9 @@
 package com.yihuacomputer.common;
 
+/**
+ * 操作符
+ *
+ */
 public enum Operator {
 
 	/**

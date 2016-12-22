@@ -69,7 +69,7 @@ public class MAC implements ITypeMAC {
 	     return rst;
 	 }
 	
-	 @Override
+	@Override
 	public String toString() {
 		String tempString = changeIpFromLongToString(this.longValue);
 		StringBuilder result = new StringBuilder();
@@ -82,14 +82,17 @@ public class MAC implements ITypeMAC {
 		return result.substring(1);
 	}
 	
+	@Override
 	public Long toLong() {
 		return this.longValue;
 	}
 	
+	@Override
 	public Integer toInteger(){
 		return toLong().intValue();
 	}
 
+	@Override
 	public long tolong() {
 		return toLong().longValue();
 	}
