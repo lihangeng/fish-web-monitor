@@ -1,5 +1,9 @@
 package com.yihuacomputer.common.http;
 
+/**
+ * 文件传输结果
+ *
+ */
 public enum HttpFileRet {
     SUCCESS("HttpFileRet.SUCCESS"), // 成功
     CFG_ERROR("HttpFileRet.CFG_ERROR"), // 参数配置出错
@@ -14,6 +18,10 @@ public enum HttpFileRet {
         this.text = text;
     }
 
+    /**
+     * @param ret
+     * @return
+     */
     public static HttpFileRet get(String ret) {
         for (HttpFileRet httpRet : HttpFileRet.values()) {
             if (httpRet.name().equals(ret)) {

@@ -13,10 +13,17 @@ public class ServiceException extends AppException{
 	 */
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * @param message
+	 */
 	public ServiceException(String message) {
 		super(message);
 	}
 
+	/**
+	 * @param message
+	 * @param e
+	 */
 	public ServiceException(String message, Throwable e) {
 		super(message, e);
 	}

@@ -168,6 +168,10 @@ public class HttpFileClient {
 
 	
 	
+	/**
+	 * @param fileCfg
+	 * @return
+	 */
 	public static HttpFileRet mergeDownloadFile(HttpFileCfg fileCfg) {
 
 		if (fileCfg.getLocalPath() == null || fileCfg.getPort() == null

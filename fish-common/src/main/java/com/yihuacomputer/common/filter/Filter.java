@@ -124,6 +124,10 @@ public class Filter implements IFilter {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see com.yihuacomputer.common.IFilter#filter(java.util.List)
+	 */
+	@Override
 	public <T> List<T> filter(List<T> data) {
 		List<T> result = new ArrayList<T>();
 		for(T item : data) {
@@ -134,6 +138,7 @@ public class Filter implements IFilter {
 		return result;
 	}
 
+	@Override
 	public int getEntrySize(){
 		return this.entrySet.size();
 	}

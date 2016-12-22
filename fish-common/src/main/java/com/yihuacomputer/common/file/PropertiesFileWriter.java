@@ -6,11 +6,23 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Map;
 
+/**
+ * property文件操作
+ *
+ */
 public class PropertiesFileWriter {
 	private StringBuilder sb = new StringBuilder();
 
+	/**
+	 * 目录分隔符
+	 */
 	public static String LINE_SEPARATOR = System.getProperty("line.separator");
 
+	/**
+	 * @param filename
+	 * @param sections
+	 * @throws IOException
+	 */
 	public PropertiesFileWriter(String filename, Map<String, Map<String, String>> sections) throws IOException {
 		BufferedWriter writer = null;
 		try {

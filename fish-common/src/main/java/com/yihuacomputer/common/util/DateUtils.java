@@ -43,6 +43,11 @@ public class DateUtils {
 	
 	public static final String STANDARD_WEEK = "yyyyww" ;
 
+	/**
+	 * @param strDate
+	 * @param format
+	 * @return
+	 */
 	public static Date get(String strDate, String format) {
 		if (format == null) {
 			throw new AppException("Date format can not be null");
@@ -65,9 +70,17 @@ public class DateUtils {
 		return get(new Date(), STANDARD_DATE_SHORT);
 	}
 
+	/**
+	 * @param strDate
+	 * @return
+	 */
 	public static Date getDate(String strDate) {
 		return get(strDate, STANDARD_DATE);
 	}
+	/**
+	 * @param strDate
+	 * @return
+	 */
 	public static Date getDateShort(String strDate) {
 		return get(strDate, STANDARD_DATE_SHORT);
 	}
@@ -81,50 +94,99 @@ public class DateUtils {
 		return get(date, STANDARD_DATE_SHORT);
 	}
 
+	/**
+	 * @param strDate
+	 * @return
+	 */
 	public static Date getTimestamp(String strDate) {
 		return get(strDate, STANDARD_TIMESTAMP);
 	}
 
+	/**
+	 * @param strDate
+	 * @return
+	 */
 	public static Date getTimestamp2(String strDate) {
 		return get(strDate, STANDARD_TIMESTAMP2);
 	}
 
+	/**
+	 * @param strDate
+	 * @return
+	 */
 	public static Date getTimestamp3(String strDate) {
 		return get(strDate, STANDARD_TIMESTAMP3);
 	}
 
+	/**
+	 * @param strDate
+	 * @return
+	 */
 	public static Date getTime(String strDate) {
 		return get(strDate, STANDARD_TIME);
 	}
 
+	/**
+	 * @param date
+	 * @return
+	 */
 	public static String getDate(Date date) {
 		return get(date, STANDARD_DATE);
 	}
 
+	/**
+	 * @param date
+	 * @return
+	 */
 	public static String getTimestamp(Date date) {
 		return get(date, STANDARD_TIMESTAMP);
 	}
 
+	/**
+	 * @param date
+	 * @return
+	 */
 	public static String getTimestamp5(Date date) {
 		return get(date, STANDARD_TIMESTAMP5);
 	}
 
+	/**
+	 * @param date
+	 * @return
+	 */
 	public static String getTimestamp2(Date date) {
 		return get(date, STANDARD_TIMESTAMP3);
 	}
 
+	/**
+	 * @param date
+	 * @return
+	 */
 	public static String getTime(Date date) {
 		return get(date, STANDARD_TIME);
 	}
 
+	/**
+	 * @param date
+	 * @return
+	 */
 	public static String getTime2(Date date) {
 		return get(date, STANDARD_TIME2);
 	}
 
+	/**
+	 * @param date
+	 * @param format
+	 * @return
+	 */
 	public static String get(Date date, String format) {
 		return new SimpleDateFormat(format).format(date);
 	}
 
+	/**
+	 * @param strDate
+	 * @return
+	 */
 	public static Date getTimestamp4(String strDate) {
 		return get(strDate, STANDARD_DATE);
 	}
@@ -181,7 +243,7 @@ public class DateUtils {
 	/**
 	 * 获取当天的前或者后多少天
 	 * -1前一天,1后一天,0当天
-	 *
+	 *@param days
 	 * @return
 	 */
 	public static Date getDate(int days) {
@@ -214,13 +276,17 @@ public class DateUtils {
 	}
 	/**
 	 * 获取指定日期 格式：yyyyMM
-	 *
+	 * @param date
 	 * @return
 	 */
 	public static String getYM(Date date) {
 		return new SimpleDateFormat(STANDARD_MONTH_FULL1).format(date);
 	}
 	
+	/**
+	 * @param date
+	 * @return
+	 */
 	public static long getLongYM(Date date) {
 		return Long.parseLong(new SimpleDateFormat(STANDARD_MONTH_FULL1).format(date));
 	}
@@ -266,7 +332,7 @@ public class DateUtils {
 
 	/**
 	 * 获取下一日日期 格式:yyyyMMdd
-	 *
+	 * @param date
 	 * @return
 	 */
 	public static String getNextShortDate(Date date) {
@@ -280,7 +346,7 @@ public class DateUtils {
 
 	/**
 	 * 获取下一日日期 格式:yyyy-MM-dd
-	 *
+	 * @param dates
 	 * @return
 	 */
 	public static Date getNexDate(String dates) {
@@ -302,9 +368,9 @@ public class DateUtils {
 		return new SimpleDateFormat(STANDARD_DATE_SHORT).format(cal.getTime());
 	}
 
-	/**
-	 * 获取下一日日期
-	 *
+	/**获取下一日日期
+	 * @param date
+	 * @param format
 	 * @return
 	 */
 	public static String getNextShortDate(Date date, String format) {

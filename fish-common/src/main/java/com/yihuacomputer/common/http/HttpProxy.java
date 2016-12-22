@@ -159,6 +159,7 @@ public class HttpProxy {
      * @param url
      * @param msg
      * @param classOfT
+     * @param connectionTimeout
      * @return
      */
     public static Object httpPost(String url, Object msg, Class<?> classOfT, int connectionTimeout) {

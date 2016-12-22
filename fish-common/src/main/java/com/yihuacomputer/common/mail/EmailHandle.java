@@ -46,6 +46,9 @@ public class EmailHandle {
 
 	private List<FileDataSource> files = new LinkedList<FileDataSource>();// 存放附件文件
 
+	/**
+	 * @param smtp
+	 */
 	public EmailHandle(String smtp) {
 		sendUserName = "";
 		sendUserPass = "";
@@ -60,6 +63,9 @@ public class EmailHandle {
 		props.put("mail.smtp.host", hostName);
 	}
 
+	/**
+	 * @return
+	 */
 	public boolean createMimeMessage() {
 		try {
 			// 用props对象来创建并初始化session对象
@@ -92,8 +98,9 @@ public class EmailHandle {
 		}
 	}
 
-	/**
-	 * 进行用户身份验证时，设置用户名和密码
+	/**进行用户身份验证时，设置用户名和密码
+	 * @param name
+	 * @param pass
 	 */
 	public void setNamePass(String name, String pass) {
 		sendUserName = name;

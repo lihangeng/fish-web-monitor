@@ -11,6 +11,9 @@ import com.yihuacomputer.common.FishCfg;
  */
 public class DeleteFileDirectory {
 
+	/**
+	 * @param path
+	 */
 	public static void deleteDir(String path){
 	    File f=new File(path);
 	    if(f.isDirectory()){//如果是目录，先递归删除
@@ -22,6 +25,9 @@ public class DeleteFileDirectory {
 	    f.delete();
 	}
 	
+	/**
+	 * 删除临时目录文件
+	 */
 	public void deleteTempDoc(){
 		DeleteFileDirectory.deleteDir(FishCfg.getTempDir());
 		

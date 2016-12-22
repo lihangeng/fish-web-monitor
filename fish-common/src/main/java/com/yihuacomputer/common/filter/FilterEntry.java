@@ -16,12 +16,21 @@ public class FilterEntry implements IFilterEntry{
 	private Object value;
 	private Operator op;
 
+	/**
+	 * @param key
+	 * @param value
+	 */
 	public FilterEntry(String key,Object value){
 		this.key =key;
 		this.value = value;
 		this.op = Operator.EQ;
 	}
 	
+	/**
+	 * @param key
+	 * @param value
+	 * @param op
+	 */
 	public FilterEntry(String key,Object value,Operator op){
 		this.key =key;
 		this.value = value;

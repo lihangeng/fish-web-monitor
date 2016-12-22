@@ -12,10 +12,17 @@ public class NotFoundException extends ServiceException {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * @param message
+	 */
 	public NotFoundException(String message) {
 		super(message);
 	}
 
+	/**
+	 * @param message
+	 * @param e
+	 */
 	public NotFoundException(String message, Throwable e) {
 		super(message, e);
 	}

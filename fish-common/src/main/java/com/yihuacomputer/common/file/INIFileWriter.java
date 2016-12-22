@@ -6,9 +6,16 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Map;
 
+/**
+ * ini文件操作
+ *
+ */
 public class INIFileWriter {
 	private StringBuilder sb = new StringBuilder();
 
+	/**
+	 * 目录分割符
+	 */
 	public static String LINE_SEPARATOR = System.getProperty("line.separator");
 
 	/**

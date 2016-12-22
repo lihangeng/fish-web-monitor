@@ -49,6 +49,10 @@ public class JsonUtils {
 		return gson.fromJson(JsonUtils.inputStreamToString(in), classOfT);
 	}
 
+	/**
+	 * @param object
+	 * @return
+	 */
 	public static String toJsonWithGson(Object object){
 		String jsonStr = "";
 		try {
@@ -60,10 +64,8 @@ public class JsonUtils {
 		return jsonStr;
 	}
 
-	/**
-	 * 将post提交的数据流转换为字符串
-	 *
-	 * @param request
+	/**将post提交的数据流转换为字符串
+	 * @param in
 	 * @return
 	 * @throws IOException
 	 */
