@@ -3,13 +3,23 @@ package com.yihuacomputer.common.util;
 
 import com.yihuacomputer.common.ITypeMAC;
 
+/**
+ * MAC地址
+ *
+ */
 public class MAC implements ITypeMAC {
 	private Long longValue;
 	
+	/**
+	 * 无参构造方法
+	 */
 	public MAC(){
 		this(0);
 	}
 	
+	/**
+	 * @param stringValue
+	 */
 	public MAC(String stringValue){
 		String macValue = stringValue;
 		if(macValue == null || "".equals(macValue)) {
@@ -18,10 +28,16 @@ public class MAC implements ITypeMAC {
 		this.longValue = changeIpFromStringToLong(macValue);
 	}
 	
+	/**
+	 * @param longValue
+	 */
 	public MAC(Long longValue){
 		this.longValue = longValue;
 	}
 	
+	/**
+	 * @param value
+	 */
 	public MAC(long value) {
 		this((Long)value);
 	}

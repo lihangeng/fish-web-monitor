@@ -2,6 +2,10 @@ package com.yihuacomputer.common.util;
 
 import java.util.Calendar;
 
+/**
+ * 注册信息
+ *
+ */
 public class RegisterInfo {
 	
 	private String key;
@@ -15,6 +19,13 @@ public class RegisterInfo {
 	}
 
 
+	/**
+	 * @param analySuccess
+	 * @param key
+	 * @param startDate
+	 * @param endDate
+	 * @param disDay
+	 */
 	public RegisterInfo(boolean analySuccess,String key, Calendar startDate, Calendar endDate, int disDay) {
 		this.analySuccess = analySuccess;
 		this.key = key;

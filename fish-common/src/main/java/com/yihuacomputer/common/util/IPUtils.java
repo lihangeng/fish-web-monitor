@@ -11,9 +11,16 @@ import org.slf4j.LoggerFactory;
 
 import com.yihuacomputer.common.ITypeIP;
 
+/**
+ * ip
+ *
+ */
 public class IPUtils {
 
 	private static Logger logger = LoggerFactory.getLogger(IPUtils.class);
+    /**
+     * @return
+     */
     public static List<ITypeIP> listLocalIp(){
         List<ITypeIP> ipList = new ArrayList<ITypeIP>();
         Enumeration<NetworkInterface> netInterfaces = null;  

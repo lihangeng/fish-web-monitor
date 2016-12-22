@@ -16,6 +16,10 @@ import org.slf4j.LoggerFactory;
 
 import com.yihuacomputer.common.FishCfg;
 
+/**
+ * Google
+ *
+ */
 public class GoogleMapUtils {
 	
 	private static Logger logger = LoggerFactory.getLogger(GoogleMapUtils.class);

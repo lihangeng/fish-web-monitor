@@ -19,6 +19,7 @@ public class StringUtils {
 	 *            需要替换的源变量
 	 * @param compile
 	 *            替换之后的内容
+	 * @return
 	 * */
 	public static String replaceLogRule(String desMatcher, String srcPattern, String compile) {
 		Pattern pattern = Pattern.compile(srcPattern);
@@ -27,15 +28,19 @@ public class StringUtils {
 		return matcher.replaceAll(compile);
 	}
 
+	/**
+	 * @param str
+	 * @return
+	 */
 	public static boolean isEmpty(Object str) {
 		return (str == null || "".equals(str));
 	}
 
-
-	 /**
-     * 前置零补位
-     * @return
-     */
+	/**前置零补位
+	 * @param srcStr
+	 * @param length
+	 * @return
+	 */
 	public static String preZeroStr(String srcStr,int length){
 		String srcValue = srcStr;
 		if(null==srcValue){
@@ -49,10 +54,11 @@ public class StringUtils {
     	return descStr.substring(descStr.length()-length);
     }
 
-    /**
-     * 后置补空格
-     * @return
-     */
+	/**后置补空格
+	 * @param srcStr
+	 * @param length
+	 * @return
+	 */
 	public static String subBlankStr(String srcStr,int length){
 		String srcValue = srcStr;
 		if(null == srcValue){

@@ -13,6 +13,10 @@ import com.yihuacomputer.common.IPageResult;
  *
  */
 public class EntityUtils {
+	/**
+	 * @param lists
+	 * @return
+	 */
 	public static <IT> List<IT> convert(List<? extends IT> lists){
 		List<IT> result = new ArrayList<IT>();
 		for(IT each : lists){
@@ -21,6 +25,10 @@ public class EntityUtils {
 		return result;
 	}
 
+	/**
+	 * @param pageResult
+	 * @return
+	 */
 	public static <IT> IPageResult<IT> convert(IPageResult<? extends IT> pageResult){
 		PageResult<IT> page = new PageResult<IT>();
 		page.setTotal(pageResult.getTotal());
@@ -32,12 +40,20 @@ public class EntityUtils {
 		return page;
 	}
 
+	/**
+	 * @param lists
+	 * @param result
+	 */
 	public static <IT> void convert(Iterable<? extends IT> lists,List<IT> result){
 		for(IT each : lists){
 			result.add(each);
 		}
 	}
 
+	/**
+	 * @param lists
+	 * @return
+	 */
 	public static <IT> List<IT> convert(Iterable<IT> lists){
 		List<IT> result = new ArrayList<IT>();
 		for(IT each : lists){

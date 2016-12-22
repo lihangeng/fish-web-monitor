@@ -6,6 +6,11 @@ import java.util.List;
 
 import com.yihuacomputer.common.IPageResult;
 
+/**
+ * 
+ *
+ * @param <T>
+ */
 public class PageResult<T> implements IPageResult<T> {
 	
 	private int total;
@@ -14,6 +19,11 @@ public class PageResult<T> implements IPageResult<T> {
 	public PageResult() {	
 	}
 	
+	/**
+	 * @param all
+	 * @param offset
+	 * @param limit
+	 */
 	public PageResult(List<T> all, int offset, int limit) {
 		total = all.size();
 		data = new ArrayList<T>();
@@ -24,11 +34,16 @@ public class PageResult<T> implements IPageResult<T> {
 		}
 	}
 
+	/**
+	 * @param total
+	 * @param data
+	 */
 	public PageResult(int total, List<T> data) {
 		this.total = total;
 		this.data = data;
 	}
 	
+	@Override
 	public int getTotal() {
 		return total;
 	}
@@ -37,6 +52,7 @@ public class PageResult<T> implements IPageResult<T> {
 		this.total = total;
 	}
 
+	@Override
 	public List<T> list() {
 		return data;
 	}

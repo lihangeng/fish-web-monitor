@@ -10,6 +10,10 @@ import org.slf4j.LoggerFactory;
 
 import com.yihuacomputer.common.exception.AppException;
 
+/**
+ * IO流
+ *
+ */
 public class IOUtils {
 
 	private static Logger logger = LoggerFactory.getLogger(IOUtils.class);
@@ -42,16 +46,28 @@ public class IOUtils {
         return file.substring(file.lastIndexOf("."));
     }
 
+    /**获取文件的前缀
+     * @param fileName
+     * @return
+     */
     public static String getFilePrefix(String fileName) {
         String file = fileName;
         return file.substring(0, file.lastIndexOf("."));
     }
 
+    /**
+     * @param fileName
+     * @return
+     */
     public static String addTimeStampInFileName(String fileName) {
         String file = fileName;
         return getFilePrefix(file) + "_" + DateUtils.get(new Date(),"yyyyMMddhhmmss") + getFileSuffix(file);
     }
 
+    /**
+     * @param fileName
+     * @param data
+     */
     public static void writeStringToFile(String fileName, String data) {
         try {
             FileUtils.writeStringToFile(createFile(fileName), data);
@@ -61,6 +77,10 @@ public class IOUtils {
         }
     }
 
+    /**
+     * @param srcFileName
+     * @param desDir
+     */
     public static void copyFileToDirectory(String srcFileName, String desDir) {
         try {
             FileUtils.copyFileToDirectory(new File(srcFileName), new File(desDir));
@@ -70,6 +90,11 @@ public class IOUtils {
         }
     }
 
+    /**
+     * @param resFilePath
+     * @param distFolder
+     * @throws IOException
+     */
     public static void moveFile(String resFilePath, String distFolder) throws IOException {
         File resFile = new File(resFilePath);
         File distFile = new File(distFolder);
@@ -81,6 +106,10 @@ public class IOUtils {
         }
     }
 
+    /**
+     * @param srcDir
+     * @param destDir
+     */
     public static void copyDirToDir(String srcDir, String destDir) {
         try {
             FileUtils.copyDirectory(new File(srcDir), new File(destDir));
@@ -90,6 +119,9 @@ public class IOUtils {
         }
     }
 
+    /**
+     * @param dir
+     */
     public static void deleteDir(String dir) {
         try {
             FileUtils.deleteDirectory(new File(dir));
@@ -99,6 +131,10 @@ public class IOUtils {
         }
     }
     
+    /**
+     * @param path
+     * @return
+     */
     public static File createDir(String path){
     	 try {
              File file = new File(path);
@@ -114,6 +150,9 @@ public class IOUtils {
          throw new AppException("Create Files Failed:" + path);
     }
     
+    /**
+     * @param args
+     */
     public static void main(String...args){
         String fileName = "adfdfd_dfe-L.jpg";
         System.out.println(IOUtils.createFile("d:\\e\\f\\d\\g.txt"));

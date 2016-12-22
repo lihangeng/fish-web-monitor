@@ -14,9 +14,17 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
+/**
+ * 注册类
+ *
+ */
 public class SystemRegisterUtil {
 	private static Logger logger = LoggerFactory.getLogger(SystemRegisterUtil.class);
-	//对key进行编码
+	
+	/**对key进行编码
+	 * @param mac
+	 * @return
+	 */
 	public static String convertKey(String mac){
 		//去掉特殊字符
 		String macValue = mac.replaceAll("\\W", "").trim();
@@ -182,9 +190,18 @@ public class SystemRegisterUtil {
 	}
 	
     
+	/**
+	 * @param mac
+	 * @param serial
+	 * @return
+	 */
 	public static RegisterResult isOk(String mac,String serial){
 		return SystemRegisterUtil.serialIsOk(mac.trim(),SystemRegisterUtil.analys(serial.trim()));
 	}
+	/**
+	 * @param serial
+	 * @return
+	 */
 	public static RegisterResult isOk(String serial){
 		return SystemRegisterUtil.serialIsOk("",SystemRegisterUtil.analys(serial));
 	}
@@ -235,9 +252,10 @@ public class SystemRegisterUtil {
 		return registerResult;
 	}
 	
-	
-	
-	//将key的位数保证在12位
+	/**将key的位数保证在12位
+	 * @param key
+	 * @return
+	 */
 	public static String getkey(String key){
 		//确保key只有12位数
 		int keyLength = 12;
@@ -448,6 +466,10 @@ public class SystemRegisterUtil {
 		return key.toString();		
 	}
 
+	/**
+	 * @param args
+	 * @throws IOException
+	 */
 	public static void main(String[] args) throws IOException {					
 		
 	    System.out.println("----------------------------------------");
