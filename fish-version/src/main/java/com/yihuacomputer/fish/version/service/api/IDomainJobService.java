@@ -25,8 +25,10 @@ public interface IDomainJobService extends IJobService{
 	 */
 	public List<IJob> findReloadJob();
 	
+	@Override
 	public Job cascadeAdd(IJob job,IFilter fitler);
 	
+	@Override
 	public Job getById(long jobId);
 	
 	public int getNotRemovedTasks(IJob job);

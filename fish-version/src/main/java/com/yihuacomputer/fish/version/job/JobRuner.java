@@ -63,6 +63,7 @@ public class JobRuner implements Runnable {
 	/**
 	 * 调度作业执行
 	 * */
+	@Override
 	public synchronized void run() {
 	
 		while (true) {

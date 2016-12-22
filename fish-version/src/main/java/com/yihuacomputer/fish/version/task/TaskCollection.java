@@ -60,6 +60,7 @@ public class TaskCollection implements ITaskCollection{
 		}
 	}
 	
+	@Override
 	public boolean cancelTask(ITask task){
 		return this.getTaskQueue().remove(task);
 	}

@@ -113,6 +113,7 @@ public class VersionTypeService implements IVersionTypeService {
 		return dao.findByFilter(filter, IVersionType.class);
 	}
 	
+	@Override
     @Transactional(readOnly = true)
 	public List<IVersionType> listContainsAdvert(IFilter filter){
 	    return dao.findByFilter(filter, IVersionType.class);

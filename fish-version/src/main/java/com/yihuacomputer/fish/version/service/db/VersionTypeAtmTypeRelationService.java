@@ -31,6 +31,7 @@ public class VersionTypeAtmTypeRelationService implements IVersionTypeAtmTypeRel
 		dao.save(relation);
 	}
 
+	@Override
 	public List<Long> getAtmTypeIdsByVersionId(long versionId){
 		IVersion version = VersionService.getById(versionId);
 		if(null==version){

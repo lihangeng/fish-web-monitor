@@ -106,7 +106,7 @@ public class VersionStaticsStatusService implements IVersionStaticsStautsService
 		return list;
 	}
 	
-	
+	@Override
 	public List<Long> getAtmTypeIdsByVersionId(long versionId){
 		StringBuffer hql = new StringBuffer();
 		hql.append("select vtatr.atmTypeId from ").append(Version.class.getSimpleName()).append(" as version,")
@@ -127,6 +127,7 @@ public class VersionStaticsStatusService implements IVersionStaticsStautsService
      * @param orgFlag
      * @return
      */
+	@Override
     public IPageResult<VersionChartsDetailForm> getMatchConditionDeviceTotal(long versionId,String orgFlag,int start,int limit){
     	StringBuffer hqlsb = new StringBuffer();
     	IVersion version = versionService.getById(versionId);
@@ -208,6 +209,7 @@ public class VersionStaticsStatusService implements IVersionStaticsStautsService
      * @return
      *  TODO 如果设备型号变更可能导致成功数量大于设备总数量
      */
+    @Override
     public IPageResult<VersionChartsDetailForm> getMatchConditionDeviceSuccess(long versionId,String orgFlag,int start,int limit){
     	StringBuffer hql = new StringBuffer();
     	IVersion version = versionService.getById(versionId);
@@ -248,6 +250,7 @@ public class VersionStaticsStatusService implements IVersionStaticsStautsService
      * @return
      * TODO 当前所有设备型号符合条件，并且版本依赖符合条件(如果没有依赖，则要求设备对应的版本低于当前下发的版本)，并且没有下发成功的设备数量
      */
+    @Override
     public IPageResult<VersionChartsDetailForm> getMatchConditionDevicePush(long versionId,String orgFlag,int start,int limit){
     	//由于版本的依赖版本是版本自依赖关系，所有在差巡之前进行判断是否有依赖关系
     	IVersion version = versionService.getById(versionId);
@@ -269,6 +272,7 @@ public class VersionStaticsStatusService implements IVersionStaticsStautsService
      * @param orgFlag
      * @return
      */
+    @Override
     public IPageResult<VersionChartsDetailForm> getMatchConditionDeviceFatal(long versionId,String orgFlag,int start,int limit){
     	StringBuffer hql = new StringBuffer();
 		//设备下发失败的台数

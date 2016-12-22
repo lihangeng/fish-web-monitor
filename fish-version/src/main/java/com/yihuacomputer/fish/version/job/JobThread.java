@@ -63,6 +63,7 @@ public class JobThread implements Runnable {
 	/**
 	 * 执行作业
 	 * */
+	@Override
 	public synchronized void run() {
 		try {
 			logger.info("start to run a job" + this.job.toString());

@@ -38,6 +38,7 @@ public class Scheduler {
 			/**
 			 * 定时任务启动之后将作业的状态置为READY_RUN，并且通知JobRuner去执行
 			 * */
+			@Override
 			public void run() {
 				if (job != null) {
 					job.setJobStatus(JobStatus.READY_RUN);

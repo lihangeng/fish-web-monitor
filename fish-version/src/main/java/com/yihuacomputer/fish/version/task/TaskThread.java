@@ -63,6 +63,7 @@ public class TaskThread implements Runnable {
 	/**
 	 * 具体的执行任务
 	 * */
+	@Override
 	public synchronized void run() {
 		logger.info("Starting notify atm client：" + task.toString()+task.getState());
 		if(!taskService.noticeATM(task)){

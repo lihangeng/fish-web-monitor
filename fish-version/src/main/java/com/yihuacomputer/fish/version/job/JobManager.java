@@ -93,6 +93,7 @@ public class JobManager implements IJobManager,IJobManangerStatus {
 	 */
 	public JobManager() {
 	}
+	@Override
 	@PostConstruct
 	public void init() {
 		this.taskThreadPool = new TaskThreadPool(taskQueue);
@@ -122,6 +123,7 @@ public class JobManager implements IJobManager,IJobManangerStatus {
 		scheduler.schedulerJob(job);
 	}
 
+	@Override
 	public IJob createJob(IJob job,IFilter filter) {
 		// 如果没有入库，则入库
 		IJob jobValue = job;
@@ -143,6 +145,7 @@ public class JobManager implements IJobManager,IJobManangerStatus {
 	/**
 	 * 创建作业，并将作业放到JobQueue中
 	 * */
+	@Override
 	public IJob createJob(String jobName, long versionId, JobType jobType, JobPriority jobPriority, Date schedulerDate, List<ITask> tasks) {
 		IJob job = jobService.make();
 		job.setJobName(jobName);
@@ -164,6 +167,7 @@ public class JobManager implements IJobManager,IJobManangerStatus {
 	/**
 	 * 删除作业
 	 * */
+	@Override
 	public void cancelJob(long jobId) {
 		Job jobInQueue = this.jobQueue.getJobById(jobId);
 
@@ -215,6 +219,7 @@ public class JobManager implements IJobManager,IJobManangerStatus {
 	 * 取消一个任务
 	 * @param taskId 任务ID
 	 */
+	@Override
 	public void cancelTask(long jobId,long taskId){
 	    Job jobInQueue = this.jobQueue.getJobById(jobId);
 	    jobInQueue = jobService.getById(jobId);
@@ -271,6 +276,7 @@ public class JobManager implements IJobManager,IJobManangerStatus {
 	 * 挂起作业（暂停作业）
 	 * --无用
 	 */
+	@Override
 	public void suspendJob(long jobId) {
 		Job jobInQueue = this.jobQueue.getJobById(jobId);
 		if (jobInQueue == null) {
@@ -284,6 +290,7 @@ public class JobManager implements IJobManager,IJobManangerStatus {
 	 * 恢复作业
 	 * --无用
 	 */
+	@Override
 	public void resumeJob(long jobId) {
 		Job jobInQueue = this.jobQueue.getJobById(jobId);
 		if (jobInQueue == null) {
@@ -294,6 +301,7 @@ public class JobManager implements IJobManager,IJobManangerStatus {
 	}
 
 	// 系统启动的时候，自动加载没有完成的作业
+	@Override
 	public void loadDowntimeJobs() {
 		List<IJob> jobs = jobService.findReloadJob();
 		for (IJob job : jobs) {
@@ -301,6 +309,7 @@ public class JobManager implements IJobManager,IJobManangerStatus {
 		}
 	}
 
+	@Override
 	public IPageResult<IJob> pageDowntimeJobs(int offset, int limit, IFilter filter) {
 		return jobService.page(offset, limit, filter);
 	}

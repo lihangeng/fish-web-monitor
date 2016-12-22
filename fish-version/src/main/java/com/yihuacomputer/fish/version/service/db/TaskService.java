@@ -134,6 +134,7 @@ public class TaskService implements ITaskService {
 	    }
 	}
 
+	@Override
 	public void onlyUpdateTask(ITask task){
 	    dao.update(task);
 	}
@@ -141,6 +142,7 @@ public class TaskService implements ITaskService {
 	/**
 	 * 取消任务
 	 */
+	@Override
 	public void cancelTask(ITask task){
 	    task.setStatus(TaskStatus.REMOVED);
 	    dao.update(task);
@@ -149,6 +151,7 @@ public class TaskService implements ITaskService {
         cancelTasks(tasks);
 	}
 	
+	@Override
 	public void resetTask(ITask task){
 	    task.setStatus(TaskStatus.DEPLOYED_FAIL);
 	    dao.update(task);
@@ -156,6 +159,7 @@ public class TaskService implements ITaskService {
         tasks.add(task);
         resetTasks(tasks);
 	}
+	@Override
 	public void resetTasks(List<ITask> tasks){
 	    int size = tasks.size();
 	    if(size > 0){
@@ -168,6 +172,7 @@ public class TaskService implements ITaskService {
 	 * 取消前，任务的状态已经是removed
 	 * 取消一批任务
 	 */
+	@Override
 	public void cancelTasks(List<ITask> tasks){
 	    int size = tasks.size();
 	    if(size > 0){
@@ -189,6 +194,7 @@ public class TaskService implements ITaskService {
 		return dao.findByFilter(filter, ITask.class);
 	}
 
+	@Override
 	@SuppressWarnings("unchecked")
 	@Transactional(readOnly = true)
 	public IPageResult<ITask> page(int start, int limit, IFilter filter) {
@@ -255,6 +261,7 @@ public class TaskService implements ITaskService {
         }
     }
 
+    @Override
     public boolean noticeATM(ITask task){
         boolean ignore = true;
         //暂时存放远程访问的返回值
@@ -359,6 +366,7 @@ public class TaskService implements ITaskService {
     	 return dao.findByHQL("from Task t where t.deviceId = ? and t.version.id = ? order by t.excuteTime desc", deviceId,versionId);
     }
 
+    @Override
     public void collectTaskReport(long taskId,double process){
     	ITask task = this.get(taskId);
     	task.setProcess(process);
@@ -489,6 +497,7 @@ public class TaskService implements ITaskService {
 		return make(device,null);
 	}
 	
+	@Override
    public ITask make(IDevice device,String versionTypeName) {
         ITask task = make();
         task.setDevice(device);
@@ -516,6 +525,7 @@ public class TaskService implements ITaskService {
 		return list(filter);
 	}
 	
+	@Override
 	public List<ChartsInfo> listTaskGroupbyTaskStatus(long jobId){
 		StringBuffer sb = new StringBuffer();
 		sb.append("select count(task.id),task.status from ").append(Task.class.getSimpleName())
@@ -534,7 +544,7 @@ public class TaskService implements ITaskService {
 		return chartsList;
 	}
 	
-	
+	@Override
 	public long getDownloadTimeAvg(long jobId){
 		StringBuffer sb = new StringBuffer();
 		sb.append("select sum(task.downloadTime),count(task.id) from ").append(Task.class.getSimpleName())

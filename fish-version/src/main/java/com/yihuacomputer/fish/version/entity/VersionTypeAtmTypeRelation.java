@@ -30,6 +30,7 @@ public class VersionTypeAtmTypeRelation implements IVersionTypeAtmTypeRelation, 
 	@Column(name = "VERSION_TYPE_ID", nullable = false)
 	private long versionTypeId;
 
+	@Override
 	public long getId() {
 		return id;
 	}
@@ -38,18 +39,22 @@ public class VersionTypeAtmTypeRelation implements IVersionTypeAtmTypeRelation, 
 		this.id = id;
 	}
 
+	@Override
 	public long getAtmTypeId() {
 		return atmTypeId;
 	}
 
+	@Override
 	public void setAtmTypeId(long atmTypeId) {
 		this.atmTypeId = atmTypeId;
 	}
 
+	@Override
 	public long getVersionTypeId() {
 		return versionTypeId;
 	}
 
+	@Override
 	public void setVersionTypeId(long versionTypeId) {
 		this.versionTypeId = versionTypeId;
 	}

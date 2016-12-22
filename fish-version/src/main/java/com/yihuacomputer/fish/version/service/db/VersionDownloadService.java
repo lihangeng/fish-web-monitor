@@ -110,6 +110,7 @@ public class VersionDownloadService implements IVersionDownloadService {
     }
 
 	   //-------------------------增加
+    @Override
    public IPageResult<LinkedDeviceForm> pageDevices(int start, int limit,IVersion version,IFilter outerFilter){
 	   IPageResult<Object> resultObject = getCanPushDevicePagesInfo(start, limit,version,outerFilter);
 	   List<LinkedDeviceForm> formPage = new ArrayList<LinkedDeviceForm>();
@@ -134,6 +135,7 @@ public class VersionDownloadService implements IVersionDownloadService {
 	   return new PageResult<LinkedDeviceForm>(resultObject.getTotal(),formPage);
    }
 
+    @Override
    	public IPageResult<Object> getCanPushDevicePagesInfo(int start, int limit,IVersion version,IFilter outerFilter){
 
 		List<Object> argList=new ArrayList<Object>();
@@ -275,7 +277,7 @@ public class VersionDownloadService implements IVersionDownloadService {
 		return pushResult;
    	}
    	
-   	
+   	@Override
    	public boolean selectAllDeviceToTask(IJob job,IFilter outerFilter){
 		List<Object> argList=new ArrayList<Object>();
 		Object orgFlag = outerFilter.getValue("orgFlag");
