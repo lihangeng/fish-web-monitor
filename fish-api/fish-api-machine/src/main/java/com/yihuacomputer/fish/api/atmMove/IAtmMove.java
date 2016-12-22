@@ -86,30 +86,4 @@ public interface IAtmMove {
 
     public void setTargetOrganization(IOrganization targetOrganization);
 
-//    /**
-//     * 新设备号
-//     *
-//     * @param
-//     */
-//    public void setTargetTerminalId(String targetTerminalId);
-//
-//    public String getTargetTerminalId();
-
-//    /**
-//     * 原ip
-//     *
-//     * @param
-//     */
-//    public void setIp(String ip);
-//
-//    public String getIp();
-//
-//    /**
-//     * 目标ip
-//     *
-//     * @param
-//     */
-//    public void setTargetIp(String targetIp);
-//
-//    public String getTargetIp();
 }

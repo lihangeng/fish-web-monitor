@@ -11,7 +11,6 @@ package com.yihuacomputer.fish.api.device;
 public enum SetupType
 {
     WEAR_WALL(1, "SetupType.WEAR_WALL"), LOBBY(2, "SetupType.LOBBY");
-//    WEAR_WALL(0, "穿墙"), LOBBY(1, "大堂");
    
     private int id;
 

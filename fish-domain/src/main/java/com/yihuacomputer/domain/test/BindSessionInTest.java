@@ -38,7 +38,6 @@ public class BindSessionInTest {
 		if(applicationContext.containsBean("sessionFactory")){
 			this.sessionFactory = applicationContext.getBean(SessionFactory.class);
 			session = sessionFactory.openSession();
-//			session.setFlushMode(FlushMode.ALWAYS);
 			TransactionSynchronizationManager.bindResource(sessionFactory, new SessionHolder(session));
 		}
 	}

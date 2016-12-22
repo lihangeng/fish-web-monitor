@@ -12,7 +12,6 @@ public class LinkedDeviceForm {
 	private String deviceVersion;
 	private String orgName;
 	private String deviceType;
-//	private boolean selectable = true;
 	private String targetVersion;
 	private String taskStatus;
 	private boolean success;
@@ -95,14 +94,6 @@ public class LinkedDeviceForm {
 	public void setOrgName(String orgName) {
 		this.orgName = orgName;
 	}
-
-//	public boolean isSelectable() {
-//		return selectable;
-//	}
-//
-//	public void setSelectable(boolean selectable) {
-//		this.selectable = selectable;
-//	}
 
 	public String getDeviceType() {
 		return deviceType;

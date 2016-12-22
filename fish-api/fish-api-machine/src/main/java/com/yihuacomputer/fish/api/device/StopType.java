@@ -7,11 +7,6 @@ package com.yihuacomputer.fish.api.device;
  *
  */
 public enum StopType {
-//	HOLIDAY(0,"放假"),
-//	DECORATE(1,"装修"),
-//	POWER_CUT(2,"停电"),
-//	TRABLE_NO_REPAIR(3,"故障未修复"),
-//	OTHER(4,"其他");
 	
 	HOLIDAY(0,"StopType.HOLIDAY"),
 	DECORATE(1,"StopType.DECORATE"),

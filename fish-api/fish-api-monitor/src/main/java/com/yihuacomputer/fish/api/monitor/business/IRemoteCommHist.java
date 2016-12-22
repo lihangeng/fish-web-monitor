@@ -57,12 +57,4 @@ public interface IRemoteCommHist {
 
     public void setHandlePerson(String handlePerson);
 
-    /**
-     * 设备对象
-     * 
-     * @return
-     */
-//    public IDevice getDevice();
-//
-//    public void setDevice(IDevice device);
 }

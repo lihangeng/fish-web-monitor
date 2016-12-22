@@ -4,8 +4,15 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * 过滤器接口
+ *
+ */
 public interface IFilter {
 
+	/**
+	 * @return
+	 */
 	public Set<OrderBy> getOrders();
 
 	/**
@@ -115,6 +122,9 @@ public interface IFilter {
 	public IFilter or(String propertyName, Collection<?> value);
 
 
+	/**
+	 * @param order
+	 */
 	@Deprecated
 	public void addOrder(OrderBy order);
 
@@ -134,20 +144,48 @@ public interface IFilter {
 	 */
 	public IFilter order(String propertyName);
 
+	/**判断是否为空
+	 * @return
+	 */
 	public boolean isEmpty();
 
+	/**返回key
+	 * @return
+	 */
 	public Set<String> keys();
 
+	/**
+	 * @return
+	 */
 	public Set<IFilterEntry> entrySet();
 
+	/**
+	 * @param key
+	 * @return
+	 */
 	public Object getValue(String key);
 
+	/**
+	 * @param object
+	 * @return
+	 */
 	public boolean isMatch(Object object);
 
+	/**
+	 * @param data
+	 * @return
+	 */
 	public <T> List<T> filter(List<T> data);
 
+	/**
+	 * @return
+	 */
 	public int getEntrySize();
 
+	/**
+	 * @param key
+	 * @return
+	 */
 	public IFilterEntry getFilterEntry(String key);
 
 }

@@ -51,12 +51,5 @@ public interface IAtmLogGlobalStatistics {
 	public int getBackupErrorNumber();
 	
 	public void setBackupErrorNumber(int backupErrorNumber);
-	/**
-	 * 总共备份的台数
-	 * @return
-	 */
-/*	public int getTotalBackupNumber() ;
-
-	public void setTotalBackupNumber(int totalBackupNumber) ;*/
 	
 }

@@ -12,29 +12,10 @@ public interface INoteItem{
 	 */
 	public int getSerial();
 	
-//
-//	/**
-//	 * 版别
-//	 * 90/99/05
-//	 * @return
-//	 */
-//	public String getVersion() ;
-
-
-//	/**
-//	 * 面值.
-//	 */
-//	public String getValue();
-
 	/**
 	 * 获取冠字号.
 	 * @return 冠字号
 	 */
 	public String getNoteCode();
 
-//	/**
-//	 * 图像全路径文件名.
-//	 * @return null 表示无图像
-//	 */
-//	public String getImage() ;
 }

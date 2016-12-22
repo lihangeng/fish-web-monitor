@@ -150,8 +150,6 @@ public class AdvertService implements IDomainAdvertService {
             versionService.add(version);
 
             //update to 3.1.2 ,这句话不生效，why？先放到控制层中调用
-           /* advert.setVersionId(version.getId());
-            dao.update(advert);*/
             this.updateAdvert(advert, version.getId());
         }
         return version;

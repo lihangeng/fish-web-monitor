@@ -25,12 +25,6 @@ public interface ICashInRpt {
 	 */
 	public String getDate();
 	
-//	/**
-//	 * 加钞张数
-//	 * @return
-//	 */
-//	public long getCashInCount();
-	
 	/**
 	 * 加钞金额
 	 * @return

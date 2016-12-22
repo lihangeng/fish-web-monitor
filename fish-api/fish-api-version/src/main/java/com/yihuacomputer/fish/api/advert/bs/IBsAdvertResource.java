@@ -33,12 +33,6 @@ public interface IBsAdvertResource {
 	public String getContent();
 
 	/**
-	 * 是否是文字广告
-	 * @return
-	 */
-//	public boolean isTextAdvert();
-	
-	/**
 	 * 设置播放的开始日期
 	 * @param beginDate 开始日期
 	 */
@@ -90,11 +84,6 @@ public interface IBsAdvertResource {
 	 * @param advert
 	 */
 	public void setBsAdvert(IBsAdvert advert);
-	/**
-	 * 获得播放时间段
-	 * @return
-	 */
-//	public String getPlayTimeSlot();
 	
 	/**
 	 * 获得资源的配置文件，组织成JSON的格式

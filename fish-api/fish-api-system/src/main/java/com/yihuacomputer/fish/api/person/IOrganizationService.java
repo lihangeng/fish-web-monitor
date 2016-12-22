@@ -28,16 +28,7 @@ public interface IOrganizationService
      * @return
      */
     public IOrganization get(String guid);
-/*
-    *//**
-     * 根据组织的code和类型来获取组织
-     * @param code
-     * @param orgType
-     * @since 1.0.0
-     * @return
-     *//*
-    public IOrganization getByCode(String code,OrganizationType orgType);
-*/
+    
     /**
      * 返回所有组织机构列表
      *

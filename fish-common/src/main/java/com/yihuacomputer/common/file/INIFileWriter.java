@@ -46,7 +46,6 @@ public class INIFileWriter {
 
 	// 组装ini文件
 	private void initIni(Map<String, Map<String, String>> sections,long maxVersion) {
-//		sb.append("#").append(maxVersion).append(LINE_SEPARATOR);
 		for (Map.Entry<String, Map<String, String>> e : sections.entrySet()) {
 			String k = e.getKey();
 			Map<String, String> values = e.getValue();

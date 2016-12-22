@@ -110,18 +110,6 @@ public interface IOrganization extends Comparable<IOrganization> {
      */
     public void setParent(IOrganization organization);
 
-    // /**
-    // * 返回机构级别
-    // * @return
-    // */
-    // public OrganizationLevel getOrganizationLevel();
-    //
-    // /**
-    // * 设置机构级别
-    // * @param level
-    // */
-    // public void setOrganizationLevel(OrganizationLevel level);
-    //
     /**
      * 返回机构类型
      *

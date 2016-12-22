@@ -52,10 +52,6 @@ public interface IFilterService {
 
     public IClassifyModStatusFilter makeClassifyModStatusFilter();
 
-    // public IClassifyBoxStatusFilter makeClassifyBoxStatusFilter() ;
-    //
-    // public IClassifyNetStatusFilter makeClassifyNetStatusFilter();
-
     /**
      * 保存监控状态
      * 

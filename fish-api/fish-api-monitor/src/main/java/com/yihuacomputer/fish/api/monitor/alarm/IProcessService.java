@@ -64,5 +64,4 @@ public interface IProcessService
      */
     public IPageResult<IIllegalProcess> pageSchindlerAlarm(int offset, int limit,IFilter filter);
 
-   // public void pushSchndlerAlarm(List<IProcess> processList);
 }

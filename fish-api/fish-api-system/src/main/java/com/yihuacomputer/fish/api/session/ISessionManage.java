@@ -44,16 +44,4 @@ public interface ISessionManage {
 	 */
 	public void logoutByNotice(LoginMessage loginMessage);
 	
-/*	*//**
-	 * 某个用户超时退出 
-	 * @param userCode
-	 *//*
-	public void timeout(String userCode,HttpSession session);
-	
-	public Map<String,HttpSession> getSession(String userCode);
-	
-	public void add(String userCode,Map<String,HttpSession> map);
-	
-	public void remove(String userCode);*/
-	
 }

@@ -46,19 +46,9 @@ public interface IRetaincard {
 	 *
 	 * @param organizationNumber
 	 */
-	// public void setOrganizationNumber(String organizationNumber);
-	//
-	// public String getOrganizationNumber();
-
 	public void setTreatmentOrganization(IOrganization treatmentOrganization);
 
 	public IOrganization getTreatmentOrganization();
-
-	/*
-	 * public void setOrgGuid(String orgGuid);
-	 *
-	 * public String getOrgGuid();
-	 */
 
 	/**
 	 * 吞卡时间
@@ -138,17 +128,6 @@ public interface IRetaincard {
 	 * @param cardType
 	 */
 	public void setCardType(IDCardType cardType);
-
-	/*	*//**
-	 * 设备所属机构
-	 *
-	 * @return
-	 */
-	/*
-	 * public String getSubsidiaryorganId();
-	 *
-	 * public void setSubsidiaryorganId(String subsidiaryorganId);
-	 */
 
 	public IDCardType getCardType();
 

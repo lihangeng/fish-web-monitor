@@ -11,7 +11,6 @@ package com.yihuacomputer.fish.api.device;
 public enum WorkType
 {
     FROM_OPERATING(1, "WorkType.FROM_OPERATING"), COOPERATION(2, "WorkType.FROM_OPERATING"), OUTSOURCING(3, "WorkType.FROM_OPERATING");
-//FROM_OPERATING(1, "自营"), COOPERATION(2, "合作"), OUTSOURCING(3, "外包");
 
     private int id;
 
