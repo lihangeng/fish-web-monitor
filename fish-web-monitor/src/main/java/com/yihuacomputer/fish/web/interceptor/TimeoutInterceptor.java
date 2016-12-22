@@ -30,6 +30,7 @@ public class TimeoutInterceptor extends HandlerInterceptorAdapter {
 	/**
 	 * 返回false表示用户未登陆或者超时
 	 */
+	@Override
 	public boolean preHandle(HttpServletRequest request,
 			HttpServletResponse response, Object handler) throws Exception {
 		HttpServletRequest httpServletRequest = (HttpServletRequest) request;

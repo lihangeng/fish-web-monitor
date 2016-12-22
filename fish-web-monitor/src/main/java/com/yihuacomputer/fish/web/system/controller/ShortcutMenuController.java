@@ -57,6 +57,7 @@ public class ShortcutMenuController {
 		List<IPermission> datalist = EntityUtils.convert(data);
 		//对权限进行排序
 		Collections.sort(datalist, new Comparator<IPermission>() {
+			@Override
 			public int compare(IPermission o1, IPermission o2) {
 				return o1.getId().compareTo(o2.getId());
 			}
@@ -145,6 +146,7 @@ public class ShortcutMenuController {
 		List<IPermission> permissions = userPermissionRelation.listShortMenuByUser(user);
 		//对权限进行排序
 		Collections.sort(permissions, new Comparator<IPermission>() {
+			@Override
 			public int compare(IPermission o1, IPermission o2) {
 				return o1.getId().compareTo(o2.getId());
 			}

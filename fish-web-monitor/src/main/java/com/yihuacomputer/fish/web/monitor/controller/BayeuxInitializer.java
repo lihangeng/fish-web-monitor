@@ -33,6 +33,7 @@ public class BayeuxInitializer implements DestructionAwareBeanPostProcessor,
 		this.processor = new ServerAnnotationProcessor(bayeuxServer);
 	}
 
+	@Override
 	public Object postProcessBeforeInitialization(Object bean, String name)
 			throws BeansException {
 		processor.processDependencies(bean);
@@ -41,11 +42,13 @@ public class BayeuxInitializer implements DestructionAwareBeanPostProcessor,
 		return bean;
 	}
 
+	@Override
 	public Object postProcessAfterInitialization(Object bean, String name)
 			throws BeansException {
 		return bean;
 	}
 
+	@Override
 	public void postProcessBeforeDestruction(Object bean, String name)
 			throws BeansException {
 		processor.deprocessCallbacks(bean);
@@ -60,6 +63,7 @@ public class BayeuxInitializer implements DestructionAwareBeanPostProcessor,
 		return bean;
 	}
 
+	@Override
 	public void setServletContext(ServletContext servletContext) {
 		servletContext.setAttribute(BayeuxServer.ATTRIBUTE, bayeuxServer);
 	}

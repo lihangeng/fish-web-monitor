@@ -351,6 +351,7 @@ public class AdvertController {
 			advertService.add(advert);
 			version = advert.toVersion(new AbstractAdvertZipGenerator() {
 
+				@Override
 				protected void beforeZip(IAdvert advert) {
 					// 二代应用需要
 					String advertVersionFilePath = VersionCfg.getVersionDir() + File.separator + "advert" + File.separator;
@@ -485,6 +486,7 @@ public class AdvertController {
 
 			// 生成广告版本文件
 			version = advert.toVersion(new AbstractAdvertZipGenerator() {
+				@Override
 				protected void getAdvertConfigInfoAndSaveToFile(IAdvert advert) {
 					saveConfigInfoToFileByScreen(advert, Screen.SCREEN_1024);
 					saveConfigInfoToFileByScreen(advert, Screen.SCREEN_800);

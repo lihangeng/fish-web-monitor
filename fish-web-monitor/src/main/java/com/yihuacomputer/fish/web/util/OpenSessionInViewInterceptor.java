@@ -44,6 +44,7 @@ public class OpenSessionInViewInterceptor implements WebRequestInterceptor {
      * <code>HibernateAccessor</code> and bind it to the thread via the
      * {@link org.springframework.transaction.support.TransactionSynchronizationManager}.
      */
+    @Override
     public void preHandle(WebRequest request) throws DataAccessException {
         if (TransactionSynchronizationManager.hasResource(getSessionFactory())) {
             // Do not modify the Session: just mark the request accordingly.
@@ -59,6 +60,7 @@ public class OpenSessionInViewInterceptor implements WebRequestInterceptor {
         }
     }
 
+    @Override
     public void postHandle(WebRequest request, ModelMap model) {
     }
 
@@ -66,6 +68,7 @@ public class OpenSessionInViewInterceptor implements WebRequestInterceptor {
      * Unbind the Hibernate <code>Session</code> from the thread and close it).
      * @see org.springframework.transaction.support.TransactionSynchronizationManager
      */
+    @Override
     public void afterCompletion(WebRequest request, Exception ex) throws DataAccessException {
         String participateAttributeName = getParticipateAttributeName();
         Integer count = (Integer) request.getAttribute(participateAttributeName, WebRequest.SCOPE_REQUEST);
