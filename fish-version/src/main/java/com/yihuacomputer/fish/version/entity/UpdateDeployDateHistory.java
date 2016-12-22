@@ -59,11 +59,12 @@ public class UpdateDeployDateHistory implements IUpdateDeployDateHistory {
     @Transient
     private ITask task;
 
+    @Override
     public ITask getTask() {
         return task;
     }
 
-
+    @Override
     public void setTask(ITask task) {
         this.task = task;
     }
@@ -79,6 +80,8 @@ public class UpdateDeployDateHistory implements IUpdateDeployDateHistory {
         this.taskId = task.getId();
         this.jobId = task.getJob().getJobId();
     }
+    
+    @Override
     public long getId() {
         return id;
     }
@@ -87,14 +90,17 @@ public class UpdateDeployDateHistory implements IUpdateDeployDateHistory {
         this.id = id;
     }
 
+    @Override
     public long getTaskId() {
         return taskId;
     }
 
+    @Override
     public void setTaskId(long taskId) {
         this.taskId = taskId;
     }
 
+    @Override
     public long getJobId() {
         return jobId;
     }
@@ -103,26 +109,32 @@ public class UpdateDeployDateHistory implements IUpdateDeployDateHistory {
         this.jobId = jobId;
     }
 
+    @Override
     public Date getDeployStartDate() {
         return deployStartDate;
     }
 
+    @Override
     public void setDeployStartDate(Date deployStartDate) {
         this.deployStartDate = deployStartDate;
     }
 
+    @Override
     public Date getNoticeTime() {
         return noticeTime;
     }
 
+    @Override
     public void setNoticeTime(Date noticeTime) {
         this.noticeTime = noticeTime;
     }
 
+    @Override
     public String getReason() {
         return reason;
     }
 
+    @Override
     public void setReason(String reason) {
         this.reason = reason;
     }

@@ -101,14 +101,17 @@ public class Task implements ITask {
         this.eagerRestart = false;
     }
 
+    @Override
     public long getId() {
         return id;
     }
 
+    @Override
     public void setId(long id) {
         this.id = id;
     }
 
+    @Override
     public IDevice getDevice() {
         if (this.device == null && this.deviceId > 0) {
             this.device = this.getTaskService().getDeviceService().get(this.deviceId);
@@ -116,6 +119,7 @@ public class Task implements ITask {
         return device;
     }
 
+    @Override
     public void setDevice(IDevice device) {
         this.device = device;
         if (device != null) {
@@ -123,38 +127,47 @@ public class Task implements ITask {
         }
     }
 
+    @Override
     public TaskStatus getStatus() {
         return status;
     }
 
+    @Override
     public void setStatus(TaskStatus status) {
         this.status = status;
     }
 
+    @Override
     public Date getExcuteTime() {
         return excuteTime;
     }
 
+    @Override
     public void setExcuteTime(Date excuteTime) {
         this.excuteTime = excuteTime;
     }
 
+    @Override
     public boolean isSuccess() {
         return success;
     }
 
+    @Override
     public void setSuccess(boolean success) {
         this.success = success;
     }
 
+    @Override
     public String getReason() {
         return reason;
     }
 
+    @Override
     public void setReason(String reason) {
         this.reason = reason;
     }
 
+    @Override
     public String toString() {
         return this.getDevice().getTerminalId() + " ~ " + this.getDevice().getIp().toString();
     }
@@ -169,10 +182,12 @@ public class Task implements ITask {
         return job;
     }
 
+    @Override
     public long getDeviceId() {
         return deviceId;
     }
 
+    @Override
     public void setDeviceId(long deviceId) {
         this.deviceId = deviceId;
     }
@@ -229,34 +244,42 @@ public class Task implements ITask {
         this.version = version;
     }
 
+    @Override
     public String getVersionBeforeUpdate() {
         return versionBeforeUpdate;
     }
 
+    @Override
     public void setVersionBeforeUpdate(String versionBeforeUpdate) {
         this.versionBeforeUpdate = versionBeforeUpdate;
     }
 
+    @Override
     public String getExceptVersion() {
         return exceptVersion;
     }
 
+    @Override
     public void setExceptVersion(String exceptVersion) {
         this.exceptVersion = exceptVersion;
     }
 
+    @Override
     public boolean isEagerRestart() {
         return eagerRestart;
     }
 
+    @Override
     public void setEagerRestart(boolean eagerRestart) {
         this.eagerRestart = eagerRestart;
     }
 
+    @Override
     public TaskType getTaskType() {
         return taskType;
     }
 
+    @Override
     public void setTaskType(TaskType taskType) {
         this.taskType = taskType;
     }
@@ -271,10 +294,12 @@ public class Task implements ITask {
         return this.getJob().getDeployEndDate();
     }
 
+    @Override
 	public double getProcess() {
 		return process;
 	}
 
+    @Override
 	public void setProcess(double process) {
 		this.process = process;
 	}
@@ -302,10 +327,12 @@ public class Task implements ITask {
 		return this.downloadFinishTime ;
 	}
 
+	@Override
 	public long getDownloadTime() {
 		return downloadTime;
 	}
 
+	@Override
 	public void setDownloadTime(long downloadTime) {
 		this.downloadTime = downloadTime;
 	}

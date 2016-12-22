@@ -15,6 +15,7 @@ import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
 
 public class Hibernate4SessionFactoryBeanInJetty extends LocalSessionFactoryBean {
 
+	@Override
 	@SuppressWarnings("serial")
 	protected SessionFactory buildSessionFactory(LocalSessionFactoryBuilder sfb) {
 		Configuration cfg = this.getConfiguration();

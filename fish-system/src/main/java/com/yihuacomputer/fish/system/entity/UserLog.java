@@ -151,26 +151,32 @@ public class UserLog implements IUserLog,Serializable {
         this.operResult = operResult;
     }
 
+    @Override
 	public String getClientIP() {
 		return clientIP;
 	}
 
+    @Override
 	public void setClientIP(String clientIP) {
 		this.clientIP = clientIP;
 	}
 
+    @Override
 	public String getServerIp() {
 		return serverIp;
 	}
 
+    @Override
 	public void setServerIp(String serverIp) {
 		this.serverIp = serverIp;
 	}
 
+    @Override
 	public long getTimes() {
 		return times;
 	}
 
+    @Override
 	public void setTimes(long times) {
 		this.times = times;
 	}

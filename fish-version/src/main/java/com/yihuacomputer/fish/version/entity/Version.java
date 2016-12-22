@@ -145,6 +145,7 @@ public class Version implements IVersion, Serializable {
         this.versionService = versionService;
     }
 
+    @Override
     public long getId() {
         return id;
     }
@@ -153,50 +154,62 @@ public class Version implements IVersion, Serializable {
         this.id = id;
     }
 
+    @Override
     public Date getCreatedTime() {
         return createdTime;
     }
 
+    @Override
     public void setCreatedTime(Date createdTime) {
         this.createdTime = createdTime;
     }
 
+    @Override
     public IVersionType getVersionType() {
         return versionType;
     }
 
+    @Override
     public void setVersionType(IVersionType versionType) {
         this.versionType = versionType;
     }
 
+    @Override
     public IVersion getDependVersion() {
         return dependVersion;
     }
 
+    @Override
     public void setDependVersion(IVersion preVersion) {
         this.dependVersion = preVersion;
     }
 
+    @Override
     public String getVersionNo() {
         return versionNo;
     }
 
+    @Override
     public void setVersionNo(String versionNo) {
         this.versionNo = versionNo;
     }
 
+    @Override
     public String getVersionPath() {
         return versionPath;
     }
 
+    @Override
     public void setVersionPath(String versionPath) {
         this.versionPath = versionPath;
     }
 
+    @Override
     public boolean isAutoDown() {
         return autoDown;
     }
 
+    @Override
     public void setAutoDown(boolean autoDown) {
         this.autoDown = autoDown;
     }
@@ -206,10 +219,12 @@ public class Version implements IVersion, Serializable {
         this.execBefore = execBefore;
     }
 
+    @Override
     public String getOriginalFileName() {
         return originalFileName;
     }
 
+    @Override
     public void setOriginalFileName(String originalFileName) {
         this.originalFileName = originalFileName;
     }
@@ -219,10 +234,12 @@ public class Version implements IVersion, Serializable {
         this.execAfter = execAfter;
     }
 
+    @Override
     public String getExecBefore() {
         return execBefore;
     }
 
+    @Override
     public String getExecAfter() {
         return execAfter;
     }
@@ -232,46 +249,57 @@ public class Version implements IVersion, Serializable {
         return this.getDependVersion() == null ? true : false;
     }
 
+    @Override
     public String getDesc() {
         return desc;
     }
 
+    @Override
     public void setDesc(String desc) {
         this.desc = desc;
     }
 
+    @Override
     public String getFullName() {
         return this.getVersionType().getTypeName() + "_" + this.versionNo;
     }
 
+    @Override
     public String getServerPath() {
         return serverPath;
     }
 
+    @Override
     public void setServerPath(String serverPath) {
         this.serverPath = serverPath;
     }
 
+    @Override
     public VersionStatus getVersionStatus() {
         return versionStatus;
     }
 
+    @Override
     public void setVersionStatus(VersionStatus versionStatus) {
         this.versionStatus = versionStatus;
     }
 
+    @Override
     public boolean isUncompress() {
         return uncompress;
     }
 
+    @Override
     public void setUncompress(boolean uncompress) {
         this.uncompress = uncompress;
     }
 
+    @Override
     public boolean isEagerRestart() {
         return eagerRestart;
     }
 
+    @Override
     public void setEagerRestart(boolean eagerRestart) {
         this.eagerRestart = eagerRestart;
     }
@@ -287,6 +315,7 @@ public class Version implements IVersion, Serializable {
 	/**
      * 目标版本是否在当前版本在之后 1.目标版本大于当前版本 2.目标版本的依赖版本小于等于当前版本
      */
+	@Override
     public boolean isAfter(IVersion currentVersion) {
         if (currentVersion == null) {
             return (this.getDependVersion() == null);
@@ -317,6 +346,7 @@ public class Version implements IVersion, Serializable {
         return me.isBiggerThan(other);
     }
 
+    @Override
     public IUser getCreateUser() {
         if (this.createUser == null && this.createUserId > 0) {
             this.createUser = versionService.getUserService().get(this.createUserId);
@@ -336,6 +366,7 @@ public class Version implements IVersion, Serializable {
         return createUserId;
     }
 
+    @Override
     public void setCreateUserId(long createUserId) {
         this.createUserId = createUserId;
     }
@@ -344,34 +375,42 @@ public class Version implements IVersion, Serializable {
         this.versionService = versionService;
     }
 
+    @Override
     public String getMd5CheckNum() {
         return md5CheckNum;
     }
 
+    @Override
     public void setMd5CheckNum(String md5CheckNum) {
         this.md5CheckNum = md5CheckNum;
     }
 
+    @Override
     public Date getReleaseDate() {
         return releaseDate;
     }
 
+    @Override
     public void setReleaseDate(Date releaseDate) {
         this.releaseDate = releaseDate;
     }
 
+    @Override
 	public String getVersionStr() {
 		return versionStr;
 	}
 
+    @Override
 	public void setVersionStr(String versionStr) {
 		this.versionStr = versionStr;
 	}
 
+    @Override
 	public int getDownloadCounter() {
 		return downloadCounter;
 	}
 
+    @Override
 	public void setDownloadCounter(int downloadCounter) {
 		this.downloadCounter = downloadCounter;
 	}

@@ -78,6 +78,7 @@ public class VersionType implements IVersionType, Serializable {
         this.typeName = typeName;
     }
 
+    @Override
     public long getId() {
         return id;
     }
@@ -86,66 +87,82 @@ public class VersionType implements IVersionType, Serializable {
         this.id = id;
     }
 
+    @Override
     public String getTypeName() {
         return typeName;
     }
 
+    @Override
     public void setTypeName(String typeName) {
         this.typeName = typeName;
     }
 
+    @Override
     public boolean isAutoDeploy() {
         return autoDeploy;
     }
 
+    @Override
     public void setAutoDeploy(boolean autoDeploy) {
         this.autoDeploy = autoDeploy;
     }
 
+    @Override
     public String getDesc() {
         return desc;
     }
 
+    @Override
     public String getDefaultInstallPath() {
         return defaultInstallPath;
     }
 
+    @Override
     public void setDefaultInstallPath(String defaultInstallPath) {
         this.defaultInstallPath = defaultInstallPath;
     }
 
+    @Override
     public void setDesc(String desc) {
         this.desc = desc;
     }
 
+    @Override
     public boolean isDisplay() {
         return display;
     }
 
+    @Override
     public void setDisplay(boolean system) {
         this.display = system;
     }
 
+    @Override
     public boolean isSystem() {
         return system;
     }
 
+    @Override
     public void setSystem(boolean system) {
         this.system = system;
     }
 
+    @Override
     public boolean isCustomVersion() {
         return customVersion;
     }
 
+    @Override
     public void setCustomVersion(boolean customVersion) {
         this.customVersion = customVersion;
     }
 
+    @Override
     public VersionCatalog getVersionCatalog() {
         return versionCatalog;
     }
 
+    @Override
     public void setVersionCatalog(VersionCatalog versionCatalog) {
         this.versionCatalog = versionCatalog;
     }

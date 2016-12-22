@@ -94,19 +94,22 @@ public class DeviceSoftVersion implements IDeviceSoftVersion, Serializable {
 		this.dsvService = dsvService;
 	}
 
+	@Override
 	public long getId() {
 		return id;
 	}
 
+	@Override
 	public void setId(long id) {
 		this.id = id;
 	}
 
+	@Override
 	public IDevice getDevice() {
-		// TODO
 		return device;
 	}
 
+	@Override
 	public IVersion getVersion() {
 		if (this.version == null) {
 			this.version = dsvService.findVersion(this.typeName, this.versionNo);
@@ -114,50 +117,62 @@ public class DeviceSoftVersion implements IDeviceSoftVersion, Serializable {
 		return this.version;
 	}
 
+	@Override
 	public Date getCreatedTime() {
 		return createdTime;
 	}
 
+	@Override
 	public void setCreatedTime(Date createdTime) {
 		this.createdTime = createdTime;
 	}
 
+	@Override
 	public Date getLastUpdatedTime() {
 		return lastUpdatedTime;
 	}
 
+	@Override
 	public void setLastUpdatedTime(Date lastUpdatedTime) {
 		this.lastUpdatedTime = lastUpdatedTime;
 	}
 
+	@Override
 	public String getDesc() {
 		return desc;
 	}
 
+	@Override
 	public void setDesc(String desc) {
 		this.desc = desc;
 	}
 
+	@Override
 	public String getTerminalId() {
 		return terminalId;
 	}
 
+	@Override
 	public void setTerminalId(String terminalId) {
 		this.terminalId = terminalId;
 	}
 
+	@Override
 	public String getTypeName() {
 		return typeName;
 	}
 
+	@Override
 	public void setTypeName(String typeName) {
 		this.typeName = typeName;
 	}
 
+	@Override
 	public String getVersionNo() {
 		return versionNo;
 	}
 
+	@Override
 	public void setVersionNo(String versionNo) {
 		this.versionNo = versionNo;
 	}
@@ -174,18 +189,22 @@ public class DeviceSoftVersion implements IDeviceSoftVersion, Serializable {
 		this.dsvService = dsvService;
 	}
 
+	@Override
 	public String getVersionStr() {
 		return versionStr;
 	}
 
+	@Override
 	public void setVersionStr(String versionStr) {
 		this.versionStr = versionStr;
 	}
 
+	@Override
 	public IVersionType getVersionType() {
 		return versionType;
 	}
 
+	@Override
 	public void setVersionType(IVersionType versionType) {
 		this.versionType = versionType;
 	}

@@ -270,18 +270,22 @@ public class Person implements IPerson,Serializable {
         this.state = state;
     }
 
+    @Override
     public String getJobNum() {
         return jobNum;
     }
 
+    @Override
     public void setJobNum(String jobNum) {
         this.jobNum = jobNum;
     }
 
+    @Override
     public String getRemark() {
         return remark;
     }
 
+    @Override
     public void setRemark(String remark) {
         this.remark = remark;
     }

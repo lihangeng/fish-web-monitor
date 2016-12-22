@@ -68,7 +68,8 @@ public class MAC implements ITypeMAC {
 	     Long rst = Long.valueOf(node1 + node2 + node3 + node4 + node5 + node6);
 	     return rst;
 	 }
-	 
+	
+	 @Override
 	public String toString() {
 		String tempString = changeIpFromLongToString(this.longValue);
 		StringBuilder result = new StringBuilder();
@@ -93,6 +94,7 @@ public class MAC implements ITypeMAC {
 		return toLong().longValue();
 	}
 	
+	@Override
 	public boolean equals(Object x) {
 		if(x instanceof MAC) {
 			MAC v = (MAC)x;
@@ -100,7 +102,8 @@ public class MAC implements ITypeMAC {
 		}
 		return false;
 	}
-	
+
+	@Override
 	public int hashCode() {
 		return toLong().hashCode();
 	}

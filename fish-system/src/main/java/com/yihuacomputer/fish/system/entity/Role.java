@@ -54,17 +54,12 @@ public class Role implements IRole,Serializable {
     @Column(name = "IS_SYSTEM")
     private boolean system;
 
-    // @Column(name="ORGANIZATION_CODE",nullable = true,length = 255)
-    // private String organizationCode;
     /**
      * 描述
      */
     @Column(name = "NOTE", nullable = true, length = 300)
     private String description;
 
-    // public String getOrganizationCode() {
-    // return organizationCode;
-    // }
 
     @Transient
     private IDomainRoleService service;
@@ -116,23 +111,12 @@ public class Role implements IRole,Serializable {
         this.service = service;
     }
 
-    // public IOrganization getOrganization() {
-    // if(organizationCode == null) {
-    // throw new
-    // AppException(String.format("Role[%s]'s organizationCode is null",
-    // getName()));
-    // }
-    // return service.lookupOrganization(organizationCode);
-    // }
-
-    // public void setOrganization(IOrganization organization) {
-    // this.organizationCode = organization.getCode();
-    // }
-
+    @Override
     public RoleType getType() {
         return type;
     }
 
+    @Override
     public void setType(RoleType type) {
         this.type = type;
     }
@@ -159,11 +143,6 @@ public class Role implements IRole,Serializable {
 
     @Override
     public int compareTo(IRole o) {
-        // int result = this.getOrganization().compareTo(o.getOrganization());
-        // if(result == 0) {
-        // return this.getName().compareTo(o.getName());
-        // }
-        // return result;
         return 0;
     }
 

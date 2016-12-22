@@ -123,19 +123,22 @@ public class Job implements IJob, Serializable {
     @Column(name = "DOWN_COUNTER")
     private int downCounter;
 
-
+    @Override
     public Date getDeployStartDate() {
         return deployStartDate;
     }
 
+    @Override
     public void setDeployStartDate(Date deployStartDate) {
         this.deployStartDate = deployStartDate;
     }
 
+    @Override
     public Date getDeployEndDate() {
         return deployEndDate;
     }
 
+    @Override
     public void setDeployEndDate(Date deployEndDate) {
         this.deployEndDate = deployEndDate;
     }
@@ -147,50 +150,62 @@ public class Job implements IJob, Serializable {
         this.createdTime = new Date();
     }
 
+    @Override
     public long getJobId() {
         return jobId;
     }
 
+    @Override
     public void setJobId(long jobId) {
         this.jobId = jobId;
     }
 
+    @Override
     public IVersion getVersion() {
         return version;
     }
 
+    @Override
     public void setVersion(IVersion version) {
         this.version = version;
     }
 
+    @Override
     public Date getPlanTime() {
         return planTime;
     }
 
+    @Override
     public void setPlanTime(Date jobTime) {
         this.planTime = jobTime;
     }
 
+    @Override
     public JobType getJobType() {
         return jobType;
     }
 
+    @Override
     public void setJobType(JobType jobType) {
         this.jobType = jobType;
     }
 
+    @Override
     public JobStatus getJobStatus() {
         return jobStatus;
     }
 
+    @Override
     public void setJobStatus(JobStatus jobStatus) {
         this.jobStatus = jobStatus;
     }
 
+    @Override
     public JobPriority getJobPriority() {
         return jobPriority;
     }
 
+    @Override
     public void setJobPriority(JobPriority jobPriority) {
         this.jobPriority = jobPriority;
     }
@@ -199,18 +214,22 @@ public class Job implements IJob, Serializable {
         this.tasks = tasks;
     }
 
+    @Override
     public int getTaskSize() {
         return this.getTasks().size();
     }
 
+    @Override
     public void addTasks(List<ITask> tasks) {
         this.tasks.addAll(tasks);
     }
 
+    @Override
     public void addTask(ITask task) {
         this.tasks.add(task);
     }
 
+    @Override
     public List<ITask> getTasks() {
         try {
             return this.tasks;
@@ -221,26 +240,32 @@ public class Job implements IJob, Serializable {
         }
     }
 
+    @Override
     public Date getCreatedTime() {
         return createdTime;
     }
 
+    @Override
     public void setCreatedTime(Date createdTime) {
         this.createdTime = createdTime;
     }
 
+    @Override
     public String getJobName() {
         return jobName;
     }
 
+    @Override
     public void setJobName(String jobName) {
         this.jobName = jobName;
     }
 
+    @Override
     public String getDesc() {
         return desc;
     }
 
+    @Override
     public void setDesc(String desc) {
         this.desc = desc;
     }
@@ -261,22 +286,27 @@ public class Job implements IJob, Serializable {
         this.scheduler = scheduler;
     }
 
+    @Override
     public Date getStartTime() {
         return startTime;
     }
 
+    @Override
     public void setStartTime(Date startTime) {
         this.startTime = startTime;
     }
 
+    @Override
     public Date getFinishTime() {
         return finishTime;
     }
 
+    @Override
     public void setFinishTime(Date finishTime) {
         this.finishTime = finishTime;
     }
 
+    @Override
     public IUser getCreateUser() {
         if (this.createUser == null && this.createUserId > 0) {
             this.createUser = jobService.getUserService().get(this.createUserId);
@@ -284,7 +314,7 @@ public class Job implements IJob, Serializable {
         return this.createUser;
     }
 
-
+    @Override
     public void setCreateUser(IUser user) {
         this.createUser = user;
         if (user != null) {
@@ -296,38 +326,47 @@ public class Job implements IJob, Serializable {
         return createUserId;
     }
 
+    @Override
     public void setCreateUserId(long createUserId) {
         this.createUserId = createUserId;
     }
 
+    @Override
 	public long getCancelPreVer() {
 		return cancelPreVer;
 	}
 
+    @Override
 	public void setCancelPreVer(long cancelPreVer) {
 		this.cancelPreVer = cancelPreVer;
 	}
 
+    @Override
 	public long getRebootUpdate() {
 		return rebootUpdate;
 	}
 
+    @Override
 	public void setRebootUpdate(long rebootUpdate) {
 		this.rebootUpdate = rebootUpdate;
 	}
 
+    @Override
 	public String getServerIp() {
 		return serverIp;
 	}
 
+    @Override
 	public void setServerIp(String serverIp) {
 		this.serverIp = serverIp;
 	}
 
+    @Override
 	public int getDownCounter() {
 		return downCounter;
 	}
 
+    @Override
 	public void setDownCounter(int downCounter) {
 		this.downCounter = downCounter;
 	}

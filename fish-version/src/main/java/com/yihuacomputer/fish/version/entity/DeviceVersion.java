@@ -154,10 +154,12 @@ public class DeviceVersion implements Serializable, IDeviceVersion {
         return dvService.getRelationTaskSize(this.deviceId,this.versionId);
     }
 
+    @Override
     public long getCompleteTaskId() {
         return completeTaskId;
     }
 
+    @Override
     public void setCompleteTaskId(long completeTaskId) {
         this.completeTaskId = completeTaskId;
     }

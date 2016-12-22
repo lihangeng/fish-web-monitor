@@ -50,6 +50,7 @@ public class TaskDetail implements ITaskDetail {
         this.createdTime = new Date();
     }
 
+    @Override
     public long getId() {
         return id;
     }
@@ -58,30 +59,37 @@ public class TaskDetail implements ITaskDetail {
         this.id = id;
     }
 
+    @Override
     public Date getCreatedTime() {
         return createdTime;
     }
 
+    @Override
     public void setCreatedTime(Date createdTime) {
         this.createdTime = createdTime;
     }
 
+    @Override
     public long getTaskId() {
         return taskId;
     }
 
+    @Override
     public void setTaskId(long taskId) {
         this.taskId = taskId;
     }
 
+    @Override
     public String getTaskAction() {
         return taskAction;
     }
 
+    @Override
     public void setTaskAction(String taskAction) {
         this.taskAction = taskAction;
     }
 
+    @Override
     public boolean isSuccess() {
         return success;
     }
@@ -90,10 +98,12 @@ public class TaskDetail implements ITaskDetail {
         this.success = success;
     }
 
+    @Override
     public String getReason() {
         return reason;
     }
 
+    @Override
     public void setReason(String reason) {
         if(reason != null &&  !"".equals(reason)){
             this.success = false;

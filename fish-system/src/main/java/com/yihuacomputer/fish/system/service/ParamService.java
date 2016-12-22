@@ -28,6 +28,7 @@ public class ParamService implements IParamService {
 	/**
 	 * 初始化装载参数到FishCfg中
 	 */
+	@Override
 	public void init(){
 		Iterable<IParam> parmList = this.list();
 		for(IParam param:parmList){

@@ -143,14 +143,17 @@ public class User implements IUser,Serializable {
 		this.service = service;
 	}
 
+	@Override
 	public long getId() {
 		return this.id;
 	}
 
+	@Override
 	public void setId(long id) {
 		this.id = id;
 	}
 
+	@Override
 	public String getCode() {
 		if (StringUtils.isEmpty(this.code)) {
 			this.code = getPerson().getCode();
@@ -158,18 +161,22 @@ public class User implements IUser,Serializable {
 		return this.code;
 	}
 
+	@Override
 	public void setCode(String code) {
 		this.code = code;
 	}
 
+	@Override
 	public String getName() {
 		return getPerson().getName();
 	}
 
+	@Override
 	public String getEmail() {
 		return getPerson().getEmail();
 	}
 
+	@Override
 	public String getMobile() {
 		return getPerson().getMobile();
 	}
@@ -188,6 +195,7 @@ public class User implements IUser,Serializable {
 		this.personId = user.getGuid();
 	}
 
+	@Override
 	public String getPassword() {
 		return this.password;
 	}
@@ -204,10 +212,12 @@ public class User implements IUser,Serializable {
 		this.enabled = enabled;
 	}
 
+	@Override
 	public UserState getState() {
 		return this.userState;
 	}
 
+	@Override
 	public void setState(UserState state) {
 		this.userState = state;
 	}
@@ -225,15 +235,18 @@ public class User implements IUser,Serializable {
 		this.loginFailCount = loginFailCount;
 	}
 
+	@Override
 	public Date getAccessTime() {
         return accessTime;
     }
 
+	@Override
     public void setAccessTime(Date accessTime) {
         this.accessTime = accessTime;
     }
 
     //此处注意：
+	@Override
 	public String getPlainText() {
 		if (this.password != null) {
 			this.plainText = this.password;
@@ -241,6 +254,7 @@ public class User implements IUser,Serializable {
 		return this.plainText;
 	}
 
+	@Override
 	public void setPlainText(String plainText) {
 		this.plainText = plainText;
 		this.password = MsgDigestAlgorithm.getMD5Str(plainText);
@@ -288,11 +302,13 @@ public class User implements IUser,Serializable {
 		return getPerson().getPhone();
 	}
 
+	@Override
     public boolean isSystem()
     {
         return system;
     }
 
+	@Override
     public void setSystem(boolean system)
     {
         this.system = system;
@@ -308,18 +324,22 @@ public class User implements IUser,Serializable {
 		return this.roles;
 	}
 
+	@Override
 	public String getCheckRemark() {
 		return checkRemark;
 	}
 
+	@Override
 	public void setCheckRemark(String checkRemark) {
 		this.checkRemark = checkRemark;
 	}
 
+	@Override
 	public UserType getUserType() {
 		return userType;
 	}
 
+	@Override
 	public void setUserType(UserType userType) {
 		this.userType = userType;
 	}

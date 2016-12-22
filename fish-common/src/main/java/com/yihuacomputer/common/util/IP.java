@@ -96,6 +96,7 @@ public class IP implements ITypeIP {
 		return toLong().longValue();
 	}
 	
+	@Override
 	public boolean equals(Object x) {
 		if(x instanceof IP) {
 			IP v = (IP)x;
@@ -104,6 +105,7 @@ public class IP implements ITypeIP {
 		return false;
 	}
 	
+	@Override
 	public int hashCode() {
 		return toLong().hashCode();
 	}

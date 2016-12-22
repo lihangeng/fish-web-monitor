@@ -2,6 +2,7 @@ package com.yihuacomputer.common;
 
 public interface ITypeMAC {
 
+	@Override
 	public String toString();
 	
 	public Long toLong();
