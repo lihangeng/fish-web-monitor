@@ -132,6 +132,7 @@ public class AdvertService implements IDomainAdvertService {
     /**
      * 根据广告配置生成版本信息 only generate once time?
      */
+    @Override
     public IVersion generateVersion(Advert advert,IAdvertZipGenerator zipGenerator) {
         IVersion version = findVersion(advert);
         // 生成压缩文件
@@ -160,6 +161,7 @@ public class AdvertService implements IDomainAdvertService {
         dao.update(advert);
     }
 
+    @Override
     @Transactional(readOnly = true)
     public IVersion findVersion(Advert advert) {
         if (versionService != null && advert.getVersionId() != 0) {

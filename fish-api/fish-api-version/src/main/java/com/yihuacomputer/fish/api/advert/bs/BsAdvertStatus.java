@@ -1,5 +1,9 @@
 package com.yihuacomputer.fish.api.advert.bs;
 
+/**
+ * @author YiHua
+ *
+ */
 public enum BsAdvertStatus {
 	/**
 	 * 未激活
@@ -15,6 +19,10 @@ public enum BsAdvertStatus {
 		this.id = id;
 		this.name = name;
 	}
+	/**
+	 * @param id
+	 * @return
+	 */
 	public static BsAdvertStatus getBsAdvertStatusById(int id){
 		BsAdvertStatus defaultStatus = BsAdvertStatus.UNACTIVE;
 		BsAdvertStatus[] advertStatuss = BsAdvertStatus.values();

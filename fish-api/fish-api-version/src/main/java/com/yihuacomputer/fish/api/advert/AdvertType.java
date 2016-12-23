@@ -40,6 +40,10 @@ public enum AdvertType {
 		return text;
 	}
 
+	/**判断广告类型是否为文字
+	 * @param type
+	 * @return
+	 */
 	public static boolean isWords(AdvertType type){
 	    if(type.equals(TEXT) || type.equals(ANNOUNCEMENT)){
 	        return true;

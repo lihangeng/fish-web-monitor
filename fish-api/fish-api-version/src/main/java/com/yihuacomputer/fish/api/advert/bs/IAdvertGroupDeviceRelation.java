@@ -1,8 +1,18 @@
 package com.yihuacomputer.fish.api.advert.bs;
 
+/**
+ * @author YiHua
+ *
+ */
 public interface IAdvertGroupDeviceRelation {
 
+	/**
+	 * @return
+	 */
 	public long getId();
+	/**
+	 * @param id
+	 */
 	public void setId(long id);
 	
 	/**
@@ -10,9 +20,18 @@ public interface IAdvertGroupDeviceRelation {
 	 * @return
 	 */
 	public long getGroupId();
+	/**
+	 * @param groupId
+	 */
 	public void setGroupId(long groupId);
 
+	/**
+	 * @return
+	 */
 	public long getDeviceId() ;
+	/**
+	 * @param deviceId
+	 */
 	public void setDeviceId(long deviceId);
 	
 	/**
@@ -20,6 +39,9 @@ public interface IAdvertGroupDeviceRelation {
 	 * @return
 	 */
 	public long getAdvertId() ;
+	/**
+	 * @param advertId
+	 */
 	public void setAdvertId(long advertId);
 
 	/**
@@ -27,6 +49,9 @@ public interface IAdvertGroupDeviceRelation {
 	 * @return
 	 */
 	public long getAdvertIdUsing();
+	/**
+	 * @param advertIdUsing
+	 */
 	public void setAdvertIdUsing(long advertIdUsing);
 
 }

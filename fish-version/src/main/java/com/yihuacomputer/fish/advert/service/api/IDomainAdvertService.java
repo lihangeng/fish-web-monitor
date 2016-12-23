@@ -16,8 +16,16 @@ import com.yihuacomputer.fish.api.version.IVersion;
  */
 public interface IDomainAdvertService extends IAdvertService {
 
+	/**
+	 * @return
+	 */
 	public IAdvertResourceService getAdvertResourceService();
 
+	/**
+	 * @param advert
+	 * @param zipGenerator
+	 * @return
+	 */
 	public IVersion generateVersion(Advert advert,IAdvertZipGenerator zipGenerator);
 
 	/**
@@ -27,5 +35,8 @@ public interface IDomainAdvertService extends IAdvertService {
 	 */
 	public IVersion findVersion(Advert advert);
 
+	/**
+	 * @return
+	 */
 	public IUserService getUserService();
 }

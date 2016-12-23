@@ -9,18 +9,31 @@ import com.yihuacomputer.fish.advert.service.db.AdvertResourceService;
 import com.yihuacomputer.fish.advert.service.db.AdvertService;
 import com.yihuacomputer.fish.api.advert.IAdvertResourceService;
 
+/**
+ * @author YiHua
+ *
+ */
 @Configuration
 public class AdvertModule {
+	/**
+	 * @return
+	 */
 	@Bean
 	public IAdvertResourceService advertResourceService() {
 		return new AdvertResourceService();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public IDomainAdvertService advertService() {
 		return new AdvertService();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public AdvertEntityInjector advertEntityInjector() {
 		return new AdvertEntityInjector();

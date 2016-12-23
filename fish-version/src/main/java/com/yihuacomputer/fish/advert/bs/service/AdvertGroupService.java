@@ -22,6 +22,10 @@ import com.yihuacomputer.fish.api.person.IOrganization;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
 import com.yihuacomputer.fish.api.person.OrganizationLevel;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional
 public class AdvertGroupService implements IAdvertGroupService {

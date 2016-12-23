@@ -22,6 +22,10 @@ import com.yihuacomputer.fish.api.advert.Screen;
 import com.yihuacomputer.fish.api.advert.bs.IBsAdvert;
 import com.yihuacomputer.fish.api.advert.bs.IBsAdvertResource;
 
+/**
+ * @author YiHua
+ *
+ */
 @Entity
 @Table(name = "ADV_BSADVERT_RESOURCE")
 public class BsAdvertResource implements IBsAdvertResource, Serializable {
@@ -64,6 +68,9 @@ public class BsAdvertResource implements IBsAdvertResource, Serializable {
 	@JoinColumn(name = "ADVERT_ID", insertable = false, updatable = false)
 	private IBsAdvert bsAdvert;
 
+	/**
+	 * 初始化
+	 */
 	public BsAdvertResource() {
 		this.beginDate = new Date();
 		this.beginTime = "00:00:00";

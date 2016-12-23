@@ -32,6 +32,10 @@ import com.yihuacomputer.fish.api.advert.bs.IBsAdvertResourceService;
 import com.yihuacomputer.fish.api.advert.bs.IBsAdvertService;
 import com.yihuacomputer.fish.api.advert.util.AdvertTypeConversionService;
 
+/**
+ * @author YiHua
+ *
+ */
 @Entity
 @Table(name = "ADV_BSADVERT")
 public class BsAdvert implements IBsAdvert, Serializable {

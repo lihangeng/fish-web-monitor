@@ -23,6 +23,10 @@ import com.yihuacomputer.fish.api.advert.IAdvert;
 import com.yihuacomputer.fish.api.advert.IAdvertResource;
 import com.yihuacomputer.fish.api.advert.Screen;
 
+/**
+ * @author YiHua
+ *
+ */
 @Entity
 @Table(name = "ADV_ADVERT_RESOURCE")
 public class AdvertResource implements IAdvertResource, Serializable {
@@ -66,6 +70,9 @@ public class AdvertResource implements IAdvertResource, Serializable {
     @JoinColumn(name = "ADVERT_ID", insertable = false, updatable = false)
     private IAdvert advert;
 
+    /**
+     * 初始化
+     */
     public AdvertResource() {
         this.beginDate = new Date();
         this.beginTime = "00:00:00";

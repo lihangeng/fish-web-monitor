@@ -142,10 +142,16 @@ public class Advert implements IAdvert, Serializable {
 		this.messageSourceVersion = messageSourceVersion;
 	}
 
+	/**
+	 * 
+	 */
 	public Advert() {
         this.createdTime = new Date();
     }
 
+    /**
+     * @param advertType
+     */
     public Advert(AdvertType advertType) {
         this();
         this.advertType = advertType;

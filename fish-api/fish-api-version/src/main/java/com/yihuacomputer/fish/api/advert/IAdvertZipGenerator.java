@@ -11,6 +11,7 @@ package com.yihuacomputer.fish.api.advert;
 public interface IAdvertZipGenerator {
 	/**
 	 * 根据广告生成广告压缩包
+	 * @param advert
 	 * @return
 	 */
 	public void generateZipFile(IAdvert advert);

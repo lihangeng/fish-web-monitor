@@ -11,8 +11,14 @@ import java.util.Date;
  *
  */
 public interface IAdvertResource {
+	/**
+	 * @param id
+	 */
 	public void setId(long id);
 
+	/**
+	 * @return
+	 */
 	public long getId();
 	
 	/**
@@ -28,6 +34,7 @@ public interface IAdvertResource {
 	
 	/**
 	 * 设置广告内容
+	 * @param content
 	 */
 	public void setContent(String content);
 
@@ -114,5 +121,8 @@ public interface IAdvertResource {
 	 */
 	public Screen getScreen();
 	
+	/**
+	 * @param screen
+	 */
 	public void setScreen(Screen screen);
 }

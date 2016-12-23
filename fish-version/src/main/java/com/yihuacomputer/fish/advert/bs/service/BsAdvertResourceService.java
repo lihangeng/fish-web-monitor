@@ -13,6 +13,10 @@ import com.yihuacomputer.fish.advert.bs.entity.BsAdvertResource;
 import com.yihuacomputer.fish.api.advert.bs.IBsAdvertResource;
 import com.yihuacomputer.fish.api.advert.bs.IBsAdvertResourceService;
 
+/**
+ * @author YiHua
+ *
+ */
 public class BsAdvertResourceService implements IBsAdvertResourceService {
 	@Autowired
 	private IGenericDao dao;

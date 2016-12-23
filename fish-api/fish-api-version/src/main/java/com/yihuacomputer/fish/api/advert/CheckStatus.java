@@ -37,6 +37,10 @@ public enum CheckStatus {
         return text;
     }
 
+    /**
+     * @param id
+     * @return
+     */
     public static CheckStatus getById(int id)
     {
         for (CheckStatus each : CheckStatus.values())

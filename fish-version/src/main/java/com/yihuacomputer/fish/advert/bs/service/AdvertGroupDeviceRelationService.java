@@ -11,6 +11,10 @@ import com.yihuacomputer.fish.advert.bs.entity.AdvertGroupDeviceRelation;
 import com.yihuacomputer.fish.api.advert.bs.IAdvertGroupDeviceRelation;
 import com.yihuacomputer.fish.api.advert.bs.IAdvertGroupDeviceRelationService;
 
+/**
+ * @author YiHua
+ *
+ */
 public class AdvertGroupDeviceRelationService implements IAdvertGroupDeviceRelationService {
 	
 	@Autowired

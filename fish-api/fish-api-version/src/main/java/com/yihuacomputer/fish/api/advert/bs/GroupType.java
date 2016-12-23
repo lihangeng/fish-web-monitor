@@ -1,5 +1,9 @@
 package com.yihuacomputer.fish.api.advert.bs;
 
+/**
+ * @author YiHua
+ *
+ */
 public enum GroupType {
 	NORMAl(0,"GroupType.NORMAL"),
 	DEFAULT(1,"GroupType.DEFAULT");
@@ -9,6 +13,10 @@ public enum GroupType {
 		this.id = id;
 		this.name = name;
 	}
+	/**
+	 * @param id
+	 * @return
+	 */
 	public static GroupType getGroupTypeById(int id){
 		GroupType defaultType = GroupType.NORMAl;
 		GroupType[] groupTypes = GroupType.values();

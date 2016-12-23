@@ -8,6 +8,10 @@ import com.yihuacomputer.domain.interceptor.IEntityInjector;
 import com.yihuacomputer.fish.advert.entity.Advert;
 import com.yihuacomputer.fish.advert.service.api.IDomainAdvertService;
 
+/**
+ * @author YiHua
+ *
+ */
 @Component("advertEntityInjector")
 public class AdvertEntityInjector implements IEntityInjector {
 	@Autowired

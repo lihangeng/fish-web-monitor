@@ -28,6 +28,10 @@ import com.yihuacomputer.fish.api.system.config.IParam;
 import com.yihuacomputer.fish.api.system.config.IParamService;
 import com.yihuacomputer.fish.api.version.VersionCfg;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional
 public class BsAdvertService implements IBsAdvertService {

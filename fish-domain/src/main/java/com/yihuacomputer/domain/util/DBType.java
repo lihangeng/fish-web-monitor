@@ -10,11 +10,18 @@ import org.hibernate.dialect.Oracle10gDialect;
 import org.hibernate.dialect.SQLServerDialect;
 import org.hibernate.dialect.SybaseASE15Dialect;
 
+/**
+ * @author YiHua
+ *
+ */
 public class DBType {
 
     private Properties properties ;
     private Dialect dialect = null;
    
+    /**
+     * @param properties
+     */
     public DBType(Properties properties){
         this.properties = properties;
     }

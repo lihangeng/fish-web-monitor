@@ -14,8 +14,14 @@ import com.yihuacomputer.fish.api.version.IVersion;
  *
  */
 public interface IAdvert {
+    /**
+     * @param id
+     */
     public void setId(long id);
 
+    /**
+     * @return
+     */
     public long getId();
 
     /**
@@ -103,7 +109,7 @@ public interface IAdvert {
 
     /**
      * 生成版本文件
-     *
+     * @param zipGenerator
      * @return
      */
     public IVersion toVersion(IAdvertZipGenerator zipGenerator);
@@ -136,8 +142,15 @@ public interface IAdvert {
      */
     public String getAdvertConfig();
 
+    /**
+     * @param screen
+     * @return
+     */
     public String getAdvertConfigByScreen(Screen screen);
 
+    /**
+     * @param versionId
+     */
     public void setVersionId(long versionId);
 
     /**
@@ -152,8 +165,14 @@ public interface IAdvert {
      */
     public void setCreateUser(IUser user);
 
+    /**
+     * @param userId
+     */
     public void setCreateUserId(long userId);
 
+    /**
+     * @return
+     */
     public IUser getCreateUser();
 
     /**
@@ -161,6 +180,9 @@ public interface IAdvert {
      */
     public long getCreateOrgId();
 
+    /**
+     * @param orgId
+     */
     public void setCreateOrgId(long orgId);
 
     /**
@@ -168,6 +190,9 @@ public interface IAdvert {
      */
     public CheckStatus getCheckStatus();
 
+    /**
+     * @param checkStatus
+     */
     public void setCheckStatus(CheckStatus checkStatus);
 
     /**
@@ -175,6 +200,9 @@ public interface IAdvert {
      */
     public long getVideoFlag();
 
+    /**
+     * @param videoFlag
+     */
     public void setVideoFlag(long videoFlag);
 
     /**

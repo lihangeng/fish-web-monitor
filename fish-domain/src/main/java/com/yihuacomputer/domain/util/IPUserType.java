@@ -13,6 +13,10 @@ import org.hibernate.usertype.UserType;
 import com.yihuacomputer.common.ITypeIP;
 import com.yihuacomputer.common.util.IP;
 
+/**
+ * @author YiHua
+ *
+ */
 public class IPUserType implements UserType {
 
 	@Override

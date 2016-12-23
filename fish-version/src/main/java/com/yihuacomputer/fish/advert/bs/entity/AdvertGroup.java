@@ -15,6 +15,10 @@ import javax.persistence.Table;
 import com.yihuacomputer.fish.api.advert.bs.GroupType;
 import com.yihuacomputer.fish.api.advert.bs.IAdvertGroup;
 
+/**
+ * @author YiHua
+ *
+ */
 @Entity
 @Table(name = "ADV_GROUP")
 public class AdvertGroup implements IAdvertGroup, Serializable {

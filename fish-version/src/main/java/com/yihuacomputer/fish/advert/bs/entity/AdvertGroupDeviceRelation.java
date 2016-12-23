@@ -12,6 +12,10 @@ import javax.persistence.Table;
 
 import com.yihuacomputer.fish.api.advert.bs.IAdvertGroupDeviceRelation;
 
+/**
+ * @author YiHua
+ *
+ */
 @Entity
 @Table(name = "ADV_GROUP_DEVICE_RELATION")
 public class AdvertGroupDeviceRelation implements IAdvertGroupDeviceRelation,
@@ -94,8 +98,8 @@ public class AdvertGroupDeviceRelation implements IAdvertGroupDeviceRelation,
     /**
      * 根据指定的广告组和设备创建关系实体
      * 
-     * @param master
-     * @param role
+     * @param groupId
+     * @param deviceId
      * @return
      */
     public static AdvertGroupDeviceRelation make(Long groupId, Long deviceId) {

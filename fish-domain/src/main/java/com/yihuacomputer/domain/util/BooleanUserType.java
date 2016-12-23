@@ -10,6 +10,10 @@ import org.hibernate.engine.spi.SessionImplementor;
 import org.hibernate.type.StandardBasicTypes;
 import org.hibernate.usertype.UserType;
 
+/**
+ * @author YiHua
+ *
+ */
 public class BooleanUserType implements UserType {
 
 	@Override
