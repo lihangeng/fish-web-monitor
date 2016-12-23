@@ -11,21 +11,36 @@ import com.yihuacomputer.fish.api.person.IOrganization;
  *
  */
 public interface IRetaincard {
+	/**
+	 * @return
+	 */
 	public long getId();
 
+	/**
+	 * @param id
+	 */
 	public void setId(long id);
 
+	/**
+	 * @param terminalId
+	 */
 	public void setTerminalId(String terminalId);
 
+	/**
+	 * @return
+	 */
 	public String getTerminalId();
 
 	/**
 	 * 卡号
 	 *
-	 * @param terminalId
+	 * @param accountNo
 	 */
 	public void setAccountNo(String accountNo);
 
+	/**
+	 * @return
+	 */
 	public String getAccountNo();
 
 	/**
@@ -35,19 +50,31 @@ public interface IRetaincard {
 	 */
 	public void setReason(String reason);
 
+	/**
+	 * @return
+	 */
 	public String getReason();
 
+	/**
+	 * @param ret
+	 */
 	public void setRet(String ret);
 
+	/**
+	 * @return
+	 */
 	public String getRet();
 
 	/**
 	 * 处理机构名称
 	 *
-	 * @param organizationNumber
+	 * @param treatmentOrganization
 	 */
 	public void setTreatmentOrganization(IOrganization treatmentOrganization);
 
+	/**
+	 * @return
+	 */
 	public IOrganization getTreatmentOrganization();
 
 	/**
@@ -57,6 +84,9 @@ public interface IRetaincard {
 	 */
 	public void setCardRetainTime(Date cardRetainTime);
 
+	/**
+	 * @return
+	 */
 	public Date getCardRetainTime();
 
 	/**
@@ -66,6 +96,9 @@ public interface IRetaincard {
 	 */
 	public void setCardDistributionBank(String cardDistributionBank);
 
+	/**
+	 * @return
+	 */
 	public String getCardDistributionBank();
 
 	/**
@@ -75,6 +108,9 @@ public interface IRetaincard {
 	 */
 	public void setStatus(CardStatus status);
 
+	/**
+	 * @return
+	 */
 	public CardStatus getStatus();
 
 	/**
@@ -84,6 +120,9 @@ public interface IRetaincard {
 	 */
 	public void setTreatmentPeople(String treatmentPeople);
 
+	/**
+	 * @return
+	 */
 	public String getTreatmentPeople();
 
 	/**
@@ -93,6 +132,9 @@ public interface IRetaincard {
 	 */
 	public void setTreatmentTime(Date treatmentTime);
 
+	/**
+	 * @return
+	 */
 	public Date getTreatmentTime();
 
 	/**
@@ -102,6 +144,9 @@ public interface IRetaincard {
 	 */
 	public void setCustomerName(String customerName);
 
+	/**
+	 * @return
+	 */
 	public String getCustomerName();
 
 	/**
@@ -111,6 +156,9 @@ public interface IRetaincard {
 	 */
 	public void setCustomerPhone(String customerPhone);
 
+	/**
+	 * @return
+	 */
 	public String getCustomerPhone();
 
 	/**
@@ -120,6 +168,9 @@ public interface IRetaincard {
 	 */
 	public void setCustomerPapers(String customerPapers);
 
+	/**
+	 * @return
+	 */
 	public String getCustomerPapers();
 
 	/**
@@ -129,8 +180,14 @@ public interface IRetaincard {
 	 */
 	public void setCardType(IDCardType cardType);
 
+	/**
+	 * @return
+	 */
 	public IDCardType getCardType();
 
+	/**
+	 * @param retaincard
+	 */
 	public void update(IRetaincard retaincard);
 
 	/**
@@ -141,10 +198,19 @@ public interface IRetaincard {
 
 	public void setHandOverOrg(IOrganization handOverOrg);
 
+	/**
+	 * @return
+	 */
 	public IOrganization getHandOverOrg();
 
+	/**
+	 * @param cardRetainType
+	 */
 	public void setCardRetainType(CardRetainType cardRetainType);
 
+	/**
+	 * @return
+	 */
 	public CardRetainType getCardRetainType();
 
 	/**
@@ -156,6 +222,7 @@ public interface IRetaincard {
 
 	/**
 	 * 处理地址
+	 * @param treatmentAddress
 	 */
 	public void setTreatmentAddress(String treatmentAddress);
 
@@ -166,6 +233,9 @@ public interface IRetaincard {
 	 */
 	public String getPhone();
 
+	/**
+	 * @param phone
+	 */
 	public void setPhone(String phone);
 	
 	/**
@@ -177,5 +247,8 @@ public interface IRetaincard {
 	 */
 	public Long getRetainDate();
 	
+	/**
+	 * @param retainDate
+	 */
 	public void setRetainDate(Long retainDate);
 }

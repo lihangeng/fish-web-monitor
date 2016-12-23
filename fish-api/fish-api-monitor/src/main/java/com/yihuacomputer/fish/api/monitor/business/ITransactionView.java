@@ -2,8 +2,15 @@ package com.yihuacomputer.fish.api.monitor.business;
 
 import java.util.Date;
 
+/**
+ * @author YiHua
+ *
+ */
 public interface ITransactionView {
 
+	/**
+	 * @param terminalId
+	 */
 	public void setTerminalId(String terminalId);
 
     /**
@@ -20,6 +27,9 @@ public interface ITransactionView {
      */
     public String getTransId();
 
+    /**
+     * @param transId
+     */
     public void setTransId(String transId);
 
     /**
@@ -29,6 +39,9 @@ public interface ITransactionView {
      */
     public String getDebitAccount();
 
+    /**
+     * @param debitAccount
+     */
     public void setDebitAccount(String debitAccount);
 
     /**
@@ -38,6 +51,9 @@ public interface ITransactionView {
      */
     public String getCreditAccount();
 
+    /**
+     * @param creditAccount
+     */
     public void setCreditAccount(String creditAccount);
 
     /**
@@ -47,6 +63,9 @@ public interface ITransactionView {
      */
     public String getTransCode();
 
+    /**
+     * @param transCode
+     */
     public void setTransCode(String transCode);
 
     /**
@@ -56,6 +75,9 @@ public interface ITransactionView {
      */
     public double getAmt();
 
+    /**
+     * @param amt
+     */
     public void setAmt(double amt);
 
     /**
@@ -65,6 +87,9 @@ public interface ITransactionView {
      */
     public String getCurrency();
 
+    /**
+     * @param currency
+     */
     public void setCurrency(String currency);
 
     /**
@@ -74,6 +99,9 @@ public interface ITransactionView {
      */
     public Date getDateTime();
 
+    /**
+     * @param dateTime
+     */
     public void setDateTime(Date dateTime);
 
     /**
@@ -83,6 +111,9 @@ public interface ITransactionView {
      */
     public String getHostRet();
 
+    /**
+     * @param hostRet
+     */
     public void setHostRet(String hostRet);
 
     /**
@@ -92,6 +123,9 @@ public interface ITransactionView {
      */
     public String getLocalRet();
 
+    /**
+     * @param localRet
+     */
     public void setLocalRet(String localRet);
 
     /**
@@ -101,15 +135,25 @@ public interface ITransactionView {
      */
     public double getTipFee();
 
+    /**
+     * @param tipFee
+     */
     public void setTipFee(double tipFee);
 
+    /**
+     * @param transDate
+     */
     public void setTransDate(int transDate);
 
     /**
      * 交易卡归属（本行/他行）
+     * @return
      */
     public CardType getCardType();
 
+    /**
+     * @param cardType
+     */
     public void setCardType(CardType cardType);
 
     /**

@@ -5,6 +5,10 @@ import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.common.util.PageResult;
 
 
+/**
+ * @author YiHua
+ *
+ */
 public interface IUncommonTransService{
 	 /**
      * 创建实体
@@ -34,7 +38,7 @@ public interface IUncommonTransService{
     /**
      * 修改异常交易
      *
-     * @param device
+     * @param trans
      *            需要修改的异常交易
      */
     public void update(IUncommonTrans trans);
@@ -42,7 +46,7 @@ public interface IUncommonTransService{
     /**
      * 保存交易信息
      *
-     * @param transaction
+     * @param uncommonTrans
      */
     public void save(IUncommonTrans uncommonTrans);
     
@@ -64,6 +68,12 @@ public interface IUncommonTransService{
      * @return
      */
     public IPageResult<IUncommonTrans> page(int offset, int limit, IFilter filter);
+	/**
+	 * @param offset
+	 * @param limit
+	 * @param filter
+	 * @return
+	 */
 	public PageResult<Object> pageObj(int offset, int limit, IFilter filter);
 }
 	

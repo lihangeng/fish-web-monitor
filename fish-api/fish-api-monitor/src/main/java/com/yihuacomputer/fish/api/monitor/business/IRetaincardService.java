@@ -49,6 +49,7 @@ public interface IRetaincardService {
 	 * @param limit
 	 * @param filter
 	 *            条件
+	 * @param orgId
 	 * @return
 	 */
 	public IPageResult<IRetaincard> page(int offset, int limit, IFilter filter,long orgId);
@@ -78,16 +79,34 @@ public interface IRetaincardService {
 	
 	/**
 	 * 
-	 * @param erminalId
+	 * @param terminalId
 	 * @return
 	 */
 	public List<IRetaincard> getCardByTerminalId(String terminalId);
 
+	/**
+	 * @param orgId
+	 * @param filter
+	 * @return
+	 */
 	public List<IRetaincard> listCardByOrgId(long orgId,IFilter filter);
 	
+	/**
+	 * @param offset
+	 * @param limit
+	 * @param filter
+	 * @param orgId
+	 * @param status1
+	 * @param status2
+	 * @return
+	 */
 	public IPageResult<IRetaincard> page(int offset, int limit, IFilter filter,long orgId,CardStatus status1,CardStatus status2);
 	
-	 public List<Object> statisticsReatainCardTrend(int days);
+	 /**
+	 * @param days
+	 * @return
+	 */
+	public List<Object> statisticsReatainCardTrend(int days);
 	 
 	 /**
 	  * 根据设备号查找近一个周的吞卡统计信息

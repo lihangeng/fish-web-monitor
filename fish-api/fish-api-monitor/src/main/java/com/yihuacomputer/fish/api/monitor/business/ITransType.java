@@ -1,19 +1,44 @@
 package com.yihuacomputer.fish.api.monitor.business;
 
+/**
+ * @author YiHua
+ *
+ */
 public interface ITransType{
 
+	/**
+	 * @return
+	 */
 	public long getId();
 
+	/**
+	 * @return
+	 */
 	public String getTransCode();
 
+	/**
+	 * @param transCode
+	 */
 	public void setTransCode(String transCode);
 
+	/**
+	 * @return
+	 */
 	public String getCodeDesc();
 
+	/**
+	 * @param codeDesc
+	 */
 	public void setCodeDesc(String codeDesc);
 	
+	/**
+	 * @return
+	 */
 	public int getTransSeq();
 
+	/**
+	 * @param transSeq
+	 */
 	public void setTransSeq(int transSeq);
 	
 	/**

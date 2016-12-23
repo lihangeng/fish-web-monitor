@@ -71,6 +71,10 @@ public enum IDCardType {
 		return text;
 	}
 
+    /**
+     * @param id
+     * @return
+     */
     public static IDCardType getById(int id){
     	for(IDCardType each : IDCardType.values()){
     		if(each.getId() == id){

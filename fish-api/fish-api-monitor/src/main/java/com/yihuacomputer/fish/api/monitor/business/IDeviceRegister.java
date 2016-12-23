@@ -58,7 +58,7 @@ public interface IDeviceRegister {
 	public RegStatus getRegStatus();
 	/**
 	 * 设置注册成功标志
-	 * @param regOk
+	 * @param regStatus
 	 */
 	public void setRegStatus(RegStatus regStatus);	
 
@@ -88,6 +88,7 @@ public interface IDeviceRegister {
 	
 	/**
 	 * 获取设备号
+	 * @return
 	 */
 	public String getTerminalId();
 }

@@ -11,7 +11,7 @@ public interface IRunInfo {
     /**
      * 设置终端号.
      * 
-     * @param termialId
+     * @param terminalId
      */
     public void setTerminalId(String terminalId);
 
@@ -36,12 +36,24 @@ public interface IRunInfo {
      */
     public void setStatusTime(String statusTime);
 
+    /**
+     * @return
+     */
     public long getId();
 
+    /**
+     * @param id
+     */
     public void setId(long id);
 
+    /**
+     * @return
+     */
     public String getTerminalId();
 
+    /**
+     * @return
+     */
     public String getStatusTime();
 
 }

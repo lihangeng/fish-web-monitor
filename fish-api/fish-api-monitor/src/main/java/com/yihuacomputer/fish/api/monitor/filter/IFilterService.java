@@ -5,6 +5,10 @@ import java.util.List;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
 
+/**
+ * @author YiHua
+ *
+ */
 public interface IFilterService {
 
     /**
@@ -50,6 +54,9 @@ public interface IFilterService {
      */
     public IRetaincardFilter makeRetaincardFilter();
 
+    /**
+     * @return
+     */
     public IClassifyModStatusFilter makeClassifyModStatusFilter();
 
     /**
@@ -116,6 +123,7 @@ public interface IFilterService {
     
     /**
      * 过滤器名称是否重复
+     * @param userId
      * @param filterName
      * @return
      */

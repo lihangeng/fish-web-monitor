@@ -1,10 +1,15 @@
 package com.yihuacomputer.fish.api.monitor.business;
 
+/**
+ * @author YiHua
+ *
+ */
 public interface IRegistService {
 
 	/**
 	 * 初始化注册信息
 	 * @param terminalId
+	 * @return
 	 */
 	public IDeviceRegister init(String terminalId);
 	

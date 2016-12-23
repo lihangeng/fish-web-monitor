@@ -1,6 +1,10 @@
 package com.yihuacomputer.fish.api.monitor.business;
 
 
+/**
+ * @author YiHua
+ *
+ */
 public interface IRemoteCommHist {
 
     /**
@@ -10,6 +14,9 @@ public interface IRemoteCommHist {
      */
     public long getId();
 
+    /**
+     * @param id
+     */
     public void setId(long id);
 
     /**
@@ -19,6 +26,9 @@ public interface IRemoteCommHist {
      */
     public String getDatetime();
 
+    /**
+     * @param datetime
+     */
     public void setDatetime(String datetime);
 
      /**
@@ -28,7 +38,10 @@ public interface IRemoteCommHist {
      */
      public String getTerminalId();
     
-     public void setTerminalId(String terminalId);
+     /**
+     * @param terminalId
+     */
+    public void setTerminalId(String terminalId);
 
     /**
      * 命令类型
@@ -37,6 +50,9 @@ public interface IRemoteCommHist {
      */
     public CommandType getCommandType();
 
+    /**
+     * @param commandType
+     */
     public void setCommandType(CommandType commandType);
 
     /**
@@ -46,6 +62,9 @@ public interface IRemoteCommHist {
      */
     public CommandResult getCommandResult();
 
+    /**
+     * @param commandResult
+     */
     public void setCommandResult(CommandResult commandResult);
 
     /**
@@ -55,6 +74,9 @@ public interface IRemoteCommHist {
      */
     public String getHandlePerson();
 
+    /**
+     * @param handlePerson
+     */
     public void setHandlePerson(String handlePerson);
 
 }

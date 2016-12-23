@@ -5,6 +5,10 @@ import java.util.List;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
 
+/**
+ * @author YiHua
+ *
+ */
 public interface ITransactionViewService {
 
     /**
@@ -19,6 +23,7 @@ public interface ITransactionViewService {
      * @param offset
      * @param limit
      * @param filter
+     * @param orgId
      * @return
      */
     public IPageResult<ITransactionView> pageBlackList(int offset, int limit, IFilter filter,long orgId);
@@ -28,6 +33,7 @@ public interface ITransactionViewService {
      * @param offset
      * @param limit
      * @param filter
+     * @param orgId
      * @return
      */
     public IPageResult<ITransactionView> pageNoBlackList(int offset, int limit, IFilter filter,long orgId);

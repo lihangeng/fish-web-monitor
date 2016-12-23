@@ -1,5 +1,9 @@
 package com.yihuacomputer.fish.api.monitor.business;
 
+/**
+ * @author YiHua
+ *
+ */
 public interface ITransactionColor {
     /**
      * ID主键
@@ -8,6 +12,9 @@ public interface ITransactionColor {
      */
     public long getId();
 
+    /**
+     * @param id
+     */
     public void setId(long id);
 
     /**
@@ -17,6 +24,9 @@ public interface ITransactionColor {
      */
     public String getHostRet();
 
+    /**
+     * @param hostRet
+     */
     public void setHostRet(String hostRet);
 
     /**
@@ -26,6 +36,9 @@ public interface ITransactionColor {
      */
     public String getBackgroundColor();
 
+    /**
+     * @param backgroundColor
+     */
     public void setBackgroundColor(String backgroundColor);
 
     /**
@@ -35,6 +48,9 @@ public interface ITransactionColor {
      */
     public String getFontColor();
 
+    /**
+     * @param fontColor
+     */
     public void setFontColor(String fontColor);
 
     
@@ -46,6 +62,9 @@ public interface ITransactionColor {
      */
     public String getHostRetDes();
 
+    /**
+     * @param hostRetDes
+     */
     public void setHostRetDes(String hostRetDes);
     
     /**
@@ -55,6 +74,9 @@ public interface ITransactionColor {
      */
     public String getUpdateDateTime();
 
+    /**
+     * @param updateDateTime
+     */
     public void setUpdateDateTime(String updateDateTime);
 
     /**
@@ -64,6 +86,9 @@ public interface ITransactionColor {
      */
     public String getRemark();
 
+    /**
+     * @param remark
+     */
     public void setRemark(String remark);
 
     /**
@@ -73,6 +98,9 @@ public interface ITransactionColor {
      */
     public String getUserName();
 
+    /**
+     * @param userName
+     */
     public void setUserName(String userName);
 
     /**
@@ -82,6 +110,9 @@ public interface ITransactionColor {
      */
     public String getLocalRet();
 
+    /**
+     * @param localRet
+     */
     public void setLocalRet(String localRet);
 
     /**
@@ -91,6 +122,9 @@ public interface ITransactionColor {
      */
     public String getLocalBackgroundColor();
 
+    /**
+     * @param localBackgroundColor
+     */
     public void setLocalBackgroundColor(String localBackgroundColor);
 
     /**
@@ -100,6 +134,9 @@ public interface ITransactionColor {
      */
     public String getLocalFontColor();
 
+    /**
+     * @param localFontColor
+     */
     public void setLocalFontColor(String localFontColor);
     
 
@@ -110,5 +147,8 @@ public interface ITransactionColor {
      */
     public String getLocalRetDes();
 
+    /**
+     * @param localRetDes
+     */
     public void setLocalRetDes(String localRetDes);
 }

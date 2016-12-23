@@ -7,6 +7,10 @@ import org.springframework.context.MessageSource;
 import com.yihuacomputer.fish.api.monitor.report.IClassifyReport;
 import com.yihuacomputer.fish.api.monitor.report.IDeviceReport;
 
+/**
+ * @author YiHua
+ *
+ */
 public interface IClassifyModStatusFilter {
 	/**
 	 * 机构ID
@@ -43,13 +47,16 @@ public interface IClassifyModStatusFilter {
 	 */
 	public List<Long> getSubOrg();
 
+	/**
+	 * @param subOrg
+	 */
 	public void setSubOrg(List<Long> subOrg);
 
 	/**
 	 * 过滤模块信息
 	 *
-	 * @param device
 	 * @param trans
+	 * @param messageSourceRef
 	 * @return
 	 */
 	public IClassifyReport filterMod(IDeviceReport trans,MessageSource messageSourceRef);
@@ -92,31 +99,67 @@ public interface IClassifyModStatusFilter {
 	 */
 	public void modRemoveDevice(String terminalId);
 
+	/**
+	 * @param terminalId
+	 */
 	public void netAddDevice(String terminalId);
 
+	/**
+	 * @param terminalId
+	 */
 	public void netRemoveDevice(String terminalId);
 
+	/**
+	 * @param terminalId
+	 */
 	public void boxAddDevice(String terminalId);
 
+	/**
+	 * @param terminalId
+	 */
 	public void boxRemoveDevice(String terminalId);
 
+	/**
+	 * @return
+	 */
 	public List<String> getNetDeviceList();
 
+	/**
+	 * @param netDeviceList
+	 */
 	public void setNetDeviceList(List<String> netDeviceList);
 
+	/**
+	 * @return
+	 */
 	public List<String> getBoxDeviceList();
 
+	/**
+	 * @param boxDeviceList
+	 */
 	public void setBoxDeviceList(List<String> boxDeviceList);
 
 
 
 
+	/**
+	 * @return
+	 */
 	public int getNetLimit();
 
+	/**
+	 * @param netLimit
+	 */
 	public void setNetLimit(int netLimit);
 
+	/**
+	 * @return
+	 */
 	public int getBoxLimit();
 
+	/**
+	 * @param boxLimit
+	 */
 	public void setBoxLimit(int boxLimit);
 
 }

@@ -5,6 +5,10 @@ import java.util.List;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
 
+/**
+ * @author YiHua
+ *
+ */
 public interface IRunInfoService {
 
     /**
@@ -30,13 +34,16 @@ public interface IRunInfoService {
 
     /**
      * 条件查询运行信息
-     *
+     * @param filter
      * @return
      */
     public List<IRunInfo> list(IFilter filter);
 
-    /**
-     * 带排序的分页
+    /**带排序的分页
+     * @param start
+     * @param limit
+     * @param filter
+     * @return
      */
     public IPageResult<IRunInfo> page(int start,int limit,IFilter filter);
 }

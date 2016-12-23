@@ -6,6 +6,10 @@ import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.common.util.ThreeTuple;
 
+/**
+ * @author YiHua
+ *
+ */
 public interface ITransactionService
 {
 
@@ -28,6 +32,7 @@ public interface ITransactionService
      * @param offset
      * @param limit
      * @param filter
+     * @param orgId
      * @return
      */
     public IPageResult<ITransaction> pageBlackList(int offset, int limit, IFilter filter,long orgId);
@@ -37,6 +42,7 @@ public interface ITransactionService
      * @param offset
      * @param limit
      * @param filter
+     * @param orgId
      * @return
      */
     public IPageResult<ITransaction> pageNoBlackList(int offset, int limit, IFilter filter,long orgId);

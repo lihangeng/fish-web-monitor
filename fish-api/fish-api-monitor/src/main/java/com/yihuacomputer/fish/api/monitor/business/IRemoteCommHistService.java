@@ -5,6 +5,10 @@ import java.util.List;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
 
+/**
+ * @author YiHua
+ *
+ */
 public interface IRemoteCommHistService {
 
     /**
@@ -17,28 +21,29 @@ public interface IRemoteCommHistService {
     /**
      * 唯一获取
      *
-     * @param runInfo
+     * @param id
+     * @return
      */
     public IRemoteCommHist get(long id);
 
     /**
      * 删除
      *
-     * @param runInfo
+     * @param id
      */
     public void delete(long id);
 
     /**
      * 保存信息
      *
-     * @param runInfo
+     * @param remoteCommHist
      */
     public void save(IRemoteCommHist remoteCommHist);
 
     /**
      * 修改信息
      *
-     * @param runInfo
+     * @param remoteCommHist
      */
     public void update(IRemoteCommHist remoteCommHist);
 
@@ -51,13 +56,16 @@ public interface IRemoteCommHistService {
 
     /**
      * 条件查询信息
-     *
+     * @param filter
      * @return
      */
     public List<IRemoteCommHist> list(IFilter filter);
 
-    /**
-     * 分页
+    /**分页
+     * @param start
+     * @param limit
+     * @param filter
+     * @return
      */
     public IPageResult<IRemoteCommHist> page(int start, int limit, IFilter filter);
 

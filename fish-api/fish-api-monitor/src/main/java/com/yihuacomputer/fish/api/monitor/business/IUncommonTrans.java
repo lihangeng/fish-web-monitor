@@ -2,6 +2,10 @@ package com.yihuacomputer.fish.api.monitor.business;
 
 import java.util.Date;
 
+/**
+ * @author YiHua
+ *
+ */
 public interface IUncommonTrans {
 	
 	/**
@@ -10,8 +14,14 @@ public interface IUncommonTrans {
 	 */
 	public long getId();
 	
+	/**
+	 * @param id
+	 */
 	public void setId(long id);
 	
+	/**
+	 * @param terminalId
+	 */
 	public void setTerminalId(String terminalId);
 
 	/**
@@ -26,6 +36,9 @@ public interface IUncommonTrans {
 	 */
 	public String getTransId();
 
+	/**
+	 * @param transId
+	 */
 	public void setTransId(String transId);
 
 	/**
@@ -34,6 +47,9 @@ public interface IUncommonTrans {
 	 */
 	public String getDebitAccount();
 
+	/**
+	 * @param debitAccount
+	 */
 	public void setDebitAccount(String debitAccount);
 
 	/**
@@ -42,6 +58,9 @@ public interface IUncommonTrans {
 	 */
 	public String getCreditAccount();
 
+	/**
+	 * @param creditAccount
+	 */
 	public void setCreditAccount(String creditAccount);
 
 	/**
@@ -50,6 +69,9 @@ public interface IUncommonTrans {
 	 */
 	public String getTransCode();
 
+	/**
+	 * @param transCode
+	 */
 	public void setTransCode(String transCode);
 
 	/**
@@ -58,6 +80,9 @@ public interface IUncommonTrans {
 	 */
 	public double getAmt();
 
+	/**
+	 * @param amt
+	 */
 	public void setAmt(double amt);
 
 	/**
@@ -66,6 +91,9 @@ public interface IUncommonTrans {
 	 */
 	public String getCurrency();
 
+	/**
+	 * @param currency
+	 */
 	public void setCurrency(String currency);
 
 	/**
@@ -74,6 +102,9 @@ public interface IUncommonTrans {
 	 */
 	public Date getDateTime();
 
+	/**
+	 * @param dateTime
+	 */
 	public void setDateTime(Date dateTime);
 
 	/**
@@ -82,6 +113,9 @@ public interface IUncommonTrans {
 	 */
 	public String getHostRet();
 
+	/**
+	 * @param hostRet
+	 */
 	public void setHostRet(String hostRet);
 
 	/**
@@ -90,6 +124,9 @@ public interface IUncommonTrans {
 	 */
 	public String getLocalRet();
 
+	/**
+	 * @param localRet
+	 */
 	public void setLocalRet(String localRet);
 
 	/**
@@ -98,9 +135,18 @@ public interface IUncommonTrans {
 	 */
 	public double getTipFee();
 
+	/**
+	 * @param tipFee
+	 */
 	public void setTipFee(double tipFee);
 
+	/**
+	 * @param transDate
+	 */
 	public void setTransDate(int transDate);
+	/**
+	 * @return
+	 */
 	public int getTransDate();
 	
 	/**
@@ -109,6 +155,9 @@ public interface IUncommonTrans {
 	 */
 	public String getCustName();
 
+	/**
+	 * @param custName
+	 */
 	public void setCustName(String custName);
 	
 	/**
@@ -117,6 +166,9 @@ public interface IUncommonTrans {
 	 */
 	public String getCustPhone();
 
+	/**
+	 * @param phone
+	 */
 	public void setPhone(String phone);
 	
 	/**
@@ -125,6 +177,9 @@ public interface IUncommonTrans {
 	 */
 	public String getResultFromV();
 
+	/**
+	 * @param resultFromV
+	 */
 	public void setResultFromV(String resultFromV);
 	
 
@@ -135,6 +190,9 @@ public interface IUncommonTrans {
 	 */
 	public String getRevflag();
 
+	/**
+	 * @param revflag
+	 */
 	void setRevflag(String revflag);
 	
 	/**
@@ -144,6 +202,9 @@ public interface IUncommonTrans {
 	 */
 	public String getCardType();
 
+	/**
+	 * @param cardType
+	 */
 	public void setCardType(String cardType);
 	
 	/**
@@ -152,5 +213,8 @@ public interface IUncommonTrans {
 	 */
 	public String getSuggest();
 
+	/**
+	 * @param suggest
+	 */
 	public void setSuggest(String suggest);
 }
