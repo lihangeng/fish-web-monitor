@@ -1,5 +1,9 @@
 package com.yihuacomputer.fish.api.monitor.business;
 
+/**
+ * @author YiHua
+ *
+ */
 public enum CommandType {
 
     /**
@@ -44,6 +48,10 @@ public enum CommandType {
         return text;
     }
 
+    /**
+     * @param id
+     * @return
+     */
     public static CommandType getById(int id) {
         for (CommandType each : CommandType.values()) {
             if (each.getId() == id) {

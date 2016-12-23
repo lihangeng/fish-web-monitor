@@ -1,7 +1,17 @@
 package com.yihuacomputer.fish.api.monitor.box;
 
+/**
+ * @author YiHua
+ *
+ */
 public interface ICashInitRule {
+	/**
+	 * @return
+	 */
 	public long getId();
+	/**
+	 * @param id
+	 */
 	public void setId(long id);
 	
 	/**

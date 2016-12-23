@@ -10,8 +10,14 @@ import com.yihuacomputer.fish.api.device.IDevice;
  *
  */
 public interface IDeviceBoxInfo {
+	/**
+	 * @return
+	 */
 	public long getId() ;
 
+	/**
+	 * @param id
+	 */
 	public void setId(long id);
 
 	/**
@@ -75,6 +81,9 @@ public interface IDeviceBoxInfo {
 	 */
 	public void setDeviceBoxDetails(List<IDeviceBoxDetailInfo> deviceBoxDetails) ;
 	
+	/**
+	 * @param deviceBoxDetail
+	 */
 	public void add(IDeviceBoxDetailInfo deviceBoxDetail);
 	
 	/**
@@ -109,7 +118,7 @@ public interface IDeviceBoxInfo {
 
 	/**
 	 * 当前取款箱金额
-	 * @param defaultBill
+	 * @param billValue
 	 */
 	public void setBillValue(long billValue);
 
@@ -121,7 +130,7 @@ public interface IDeviceBoxInfo {
 
 	/**
 	 * 当前存款箱金额
-	 * @param defaultCashIn
+	 * @param cashInValue
 	 */
 	public void setCashInValue(long cashInValue);
 }

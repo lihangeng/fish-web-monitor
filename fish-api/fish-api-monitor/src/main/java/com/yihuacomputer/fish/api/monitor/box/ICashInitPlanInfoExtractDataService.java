@@ -2,6 +2,10 @@ package com.yihuacomputer.fish.api.monitor.box;
 
 import com.yihuacomputer.fish.api.person.IOrganization;
 
+/**
+ * @author YiHua
+ *
+ */
 public interface ICashInitPlanInfoExtractDataService {
 
 	/**

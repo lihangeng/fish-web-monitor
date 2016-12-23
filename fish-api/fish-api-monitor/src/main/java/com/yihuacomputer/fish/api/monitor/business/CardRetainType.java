@@ -1,5 +1,9 @@
 package com.yihuacomputer.fish.api.monitor.business;
 
+/**
+ * @author YiHua
+ *
+ */
 public enum CardRetainType {
 
 	MANUAL_CARD(1, "CardRetainType.MANUAL_CARD"),
@@ -23,6 +27,10 @@ public enum CardRetainType {
 		return text;
 	}
 
+	/**
+	 * @param id
+	 * @return
+	 */
 	public static CardRetainType getById(int id){
 		for(CardRetainType each : CardRetainType.values()){
 			if(each.getId() == id){

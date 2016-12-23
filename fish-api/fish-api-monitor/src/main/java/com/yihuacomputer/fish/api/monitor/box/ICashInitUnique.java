@@ -8,7 +8,7 @@ public interface ICashInitUnique {
 	/**
      * 设置终端号.
      * 
-     * @param termialId
+     * @param terminalId
      */
     public void setTerminalId(String terminalId);
 
@@ -33,6 +33,9 @@ public interface ICashInitUnique {
      */
     public void setDate(String date);
 
+    /**
+     * @return
+     */
     public String getDate();
 
     /**

@@ -7,6 +7,10 @@ import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.fish.api.monitor.business.ICounterFeitMoney;
 import com.yihuacomputer.fish.api.monitor.business.INoteItem;
 
+/**
+ * @author YiHua
+ *
+ */
 public class CounterFeitMoneyForms{
     
 	private String termId;
@@ -42,6 +46,9 @@ public class CounterFeitMoneyForms{
 	public CounterFeitMoneyForms() {
 	}
 
+	/**
+	 * @param counterFeitMoney
+	 */
 	public CounterFeitMoneyForms(ICounterFeitMoney counterFeitMoney) {
 		List<INoteItem> noteResultList = counterFeitMoney.getNoteItem();
 		

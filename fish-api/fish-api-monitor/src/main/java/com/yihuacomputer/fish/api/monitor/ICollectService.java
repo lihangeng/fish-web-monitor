@@ -56,10 +56,10 @@ public interface ICollectService {
 	 */
 	public void collectSetup(String terminalId,IDeviceRegister deviceRegister);
 
-	/**
-	 * 设备开机签到
+	/**设备开机签到
 	 * @param terminalId
 	 * @param deviceRegister
+	 * @param messageSourceRef
 	 */
 	public void collectBootSign(String terminalId, IDeviceRegister deviceRegister,MessageSource messageSourceRef);	
 
@@ -93,7 +93,7 @@ public interface ICollectService {
 	 * 收集设备非百名但进程信息报警
 	 * 
 	 * @param terminalId 设备ID
-	 * @param process 进程信息
+	 * @param processList 进程信息
 	 */
 	public void collectSchindlerAlarm(String terminalId, List<IIllegalProcess> processList);
 
@@ -131,7 +131,7 @@ public interface ICollectService {
 
 	/**
 	 * 收集设备硬件模块属性信息
-	 * @param termianlId settlement
+	 * @param terminalId settlement
 	 * @param xfsPro 设备属信息
 	 */
 	public void collectModulePropertise(String terminalId,IXfsPropertise xfsPro);
@@ -167,7 +167,7 @@ public interface ICollectService {
 	
 	/**
 	 * 添加设备时初始化表中对应的记录
-	 * @param terminalId
+	 * @param device
 	 */
 	public void initDeviceCollect(IDevice device);
 		
@@ -182,7 +182,7 @@ public interface ICollectService {
 	 * 收集假币疑问币信息
 	 * 
 	 * @param terminalId
-	 * @param transaction
+	 * @param counterFeitMoney
 	 */
 	public void collectATMCCounterFeitMoney(String terminalId,ICounterFeitMoney counterFeitMoney);
 
@@ -190,7 +190,7 @@ public interface ICollectService {
 	 * 收集异常交易信息
 	 * 
 	 * @param terminalId
-	 * @param transaction
+	 * @param uncommonTrans
 	 */
 	public void collectATMCUncommonTrans(String terminalId,IUncommonTrans uncommonTrans);
 }

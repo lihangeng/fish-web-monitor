@@ -21,7 +21,7 @@ public interface IBlackListCardService {
     /**
      * 根据主键guid返回黑名单卡
      * 
-     * @param guid
+     * @param id
      * @return
      */
     public IBlackListCard get(long id);
@@ -37,21 +37,21 @@ public interface IBlackListCardService {
     /**
      * 修改黑名单卡
      * 
-     * @param guid
+     * @param entity
      */
     public void update(IBlackListCard entity);
     
     /**
      * 根据主键删除黑名单卡
      * 
-     * @param guid
+     * @param id
      */
     public void remove(long id);
 
     /**
      * 删除黑名单卡
      * 
-     * @param organization
+     * @param blackListCard
      */
     public void remove(IBlackListCard blackListCard);
 

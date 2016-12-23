@@ -19,21 +19,21 @@ public interface IMonitorListener {
 
 	/**
 	 * 初始化或重置设备列表.
-	 * @param userSerssion
+	 * @param userSession
 	 * @param devices
 	 */
 	public void restart(ServerSession userSession, PageResult<IDeviceReport> devices);
 
 	/**
 	 * 更新设备.
-	 * @param userSerssion
+	 * @param userSession
 	 * @param device
 	 */
 	public void updateDevice(ServerSession userSession, IDeviceReport device);
 
 	/**
 	 * 添加设备.
-	 * @param userSerssion
+	 * @param userSession
 	 * @param device
 	 */
 	public void addDevice(ServerSession userSession, IDeviceReport device);
@@ -41,13 +41,13 @@ public interface IMonitorListener {
 
 	/**
 	 * 设备删除.
-	 * @param userSerssion
+	 * @param userSession
 	 * @param device
 	 */
 	public void removeDevice(ServerSession userSession, IDeviceReport device);
 
 	/**增加监控数量.
-	 * @param userSerssion
+	 * @param userSession
 	 * @param total
 	 * @return
 	 */
@@ -55,7 +55,7 @@ public interface IMonitorListener {
 
 	/**
 	 * 增加一笔交易数据
-	 * @param userSerssion
+	 * @param userSession
 	 * @param device
 	 */
 	public void addTransation(ServerSession userSession,IDeviceReport device);
@@ -76,7 +76,7 @@ public interface IMonitorListener {
 
 	/**
 	 * 增加疑问币假币数据
-	 * @param userSerssion
+	 * @param userSession
 	 * @param device
 	 */
 	public void addCounterFeitMoney(ServerSession userSession,IDeviceReport device);
@@ -85,6 +85,7 @@ public interface IMonitorListener {
 	 * 吞卡
 	 * @param userSession
 	 * @param device
+	 * @param cardNum
 	 */
 	public void addRetaincard(ServerSession userSession, IDeviceReport device,int cardNum);
 
@@ -95,7 +96,13 @@ public interface IMonitorListener {
 	 */
 	public void reportClassifyMonitor(ServerSession userSession,IClassifyReport classifyReport);
 
+	/**
+	 * @return
+	 */
 	public MessageSource getMessageSourceRef();
 
+	/**
+	 * @param messageSourceRef
+	 */
 	public void setMessageSourceRef(MessageSource messageSourceRef);
 }

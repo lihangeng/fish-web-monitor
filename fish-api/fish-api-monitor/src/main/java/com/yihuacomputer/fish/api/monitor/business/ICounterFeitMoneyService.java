@@ -5,6 +5,10 @@ import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.common.util.PageResult;
 
 
+/**
+ * @author YiHua
+ *
+ */
 public interface ICounterFeitMoneyService{
 	
 	  /**
@@ -17,7 +21,7 @@ public interface ICounterFeitMoneyService{
     /**
      * 保存交易信息
      *
-     * @param transaction
+     * @param counterFeitMoney
      */
     public void save(ICounterFeitMoney counterFeitMoney);
     
@@ -40,6 +44,12 @@ public interface ICounterFeitMoneyService{
      */
     public IPageResult<ICounterFeitMoney> page(int offset, int limit, IFilter filter);
     
+	/**
+	 * @param offset
+	 * @param limit
+	 * @param filter
+	 * @return
+	 */
 	public PageResult<Object> pageObj(int offset, int limit, IFilter filter);
 
 }

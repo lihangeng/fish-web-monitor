@@ -6,14 +6,50 @@ import java.util.Map;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
 
+/**
+ * @author YiHua
+ *
+ */
 public interface IDeviceBoxInfoService {
+	/**
+	 * @return
+	 */
 	public IDeviceBoxInfo make();
+	/**
+	 * @param id
+	 * @return
+	 */
 	public IDeviceBoxInfo get(long id);
+	/**
+	 * @param dbi
+	 * @return
+	 */
 	public IDeviceBoxInfo save(IDeviceBoxInfo dbi);
+	/**
+	 * @param dbi
+	 * @return
+	 */
 	public IDeviceBoxInfo update(IDeviceBoxInfo dbi);
+	/**
+	 * @param deviceId
+	 * @return
+	 */
 	public IDeviceBoxInfo findByDeviceId(long deviceId);
+	/**
+	 * @param dbdi
+	 */
 	public void delete(IDeviceBoxInfo dbdi);
+	/**
+	 * @param filter
+	 * @return
+	 */
 	public List<IDeviceBoxInfo> list(IFilter filter);
+	/**
+	 * @param offset
+	 * @param limit
+	 * @param filter
+	 * @return
+	 */
 	public IPageResult<IDeviceBoxInfo> list(int offset,int limit,IFilter filter);
 	/**
 	 * 同步设备预警值(filter 中设备型号ID-deviceId.devType.id，用户所在的机构-deviceId.organization.orgFlag)

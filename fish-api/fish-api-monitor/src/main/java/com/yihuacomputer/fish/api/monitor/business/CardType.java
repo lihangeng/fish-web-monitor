@@ -1,5 +1,9 @@
 package com.yihuacomputer.fish.api.monitor.business;
 
+/**
+ * @author YiHua
+ *
+ */
 public enum CardType {
 
     /**
@@ -51,6 +55,10 @@ public enum CardType {
 		return text;
 	}
 
+	/**
+	 * @param id
+	 * @return
+	 */
 	public static CardType getById(int id){
 		for(CardType each : CardType.values()){
 			if(each.getId() == id){

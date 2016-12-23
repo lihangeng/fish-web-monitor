@@ -7,7 +7,13 @@ package com.yihuacomputer.fish.api.monitor.box;
  */
 public interface IDeviceBoxDetailInfo {
 
+	/**
+	 * @return
+	 */
 	public long getId();
+	/**
+	 * @param id
+	 */
 	public void setId(long id);
 
 	/**
@@ -17,7 +23,7 @@ public interface IDeviceBoxDetailInfo {
 	public IDeviceBoxInfo getDeviceBoxInfo();
 	/**
 	 * 设备钞箱概览ID
-	 * @param devBoxId
+	 * @param deviceBoxInfo
 	 */
 	public void setDeviceBoxInfo(IDeviceBoxInfo deviceBoxInfo);
 	/**
@@ -99,7 +105,7 @@ public interface IDeviceBoxDetailInfo {
 
 	/**
 	 * 初始化张数
-	 * @return
+	 * @param initialCount
 	 */
 	public void setInitialCount(int initialCount);
 
@@ -110,7 +116,7 @@ public interface IDeviceBoxDetailInfo {
 	public int getCashInCount();
 	/**
 	 * 入钞张数
-	 * @return
+	 * @param cashInCount
 	 */
 	public void setCashInCount(int cashInCount);
 	/**
@@ -121,8 +127,12 @@ public interface IDeviceBoxDetailInfo {
 
 	/**
 	 * 出钞张数
-	 * @return
+	 * @param dispenseCount
 	 */
 	public void setDispenseCount(int dispenseCount);
+	/**
+	 * @param idbdi
+	 * @return
+	 */
 	public boolean equals(IDeviceBoxDetailInfo idbdi);
 }

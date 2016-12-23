@@ -9,32 +9,74 @@ package com.yihuacomputer.fish.api.monitor.alarm;
  */
 public interface IProcess
 {
+    /**
+     * @return
+     */
     public long getId();
     
+    /**
+     * @param id
+     */
     public void setId(long id);
     
+    /**
+     * @return
+     */
     public String getName();
 
+    /**
+     * @param name
+     */
     public void setName(String name);
 
+    /**
+     * @return
+     */
     public String getUser();
 
+    /**
+     * @param user
+     */
     public void setUser(String user);
 
+    /**
+     * @return
+     */
     public double getCpuRate();
 
+    /**
+     * @param cpuRate
+     */
     public void setCpuRate(double cpuRate);
 
+    /**
+     * @return
+     */
     public long getMemoryRate();
 
+    /**
+     * @param memoryRate
+     */
     public void setMemoryRate(long memoryRate);
 
+    /**
+     * @return
+     */
     public String getDescription();
 
+    /**
+     * @param description
+     */
     public void setDescription(String description);
     
+    /**
+     * @return
+     */
     public String getDate();
 
+    /**
+     * @param date
+     */
     public void setDate(String date);
     
 }

@@ -10,7 +10,13 @@ import com.yihuacomputer.fish.api.person.IOrganization;
  * 加钞计划信息(每个钞计划有唯一的加钞单号),可以含有多个加钞设备
  */
 public interface ICashInitPlanInfo {
+	/**
+	 * @return
+	 */
 	public long getId();
+	/**
+	 * @param id
+	 */
 	public void setId(long id);
 	/**
 	 * 加钞日期

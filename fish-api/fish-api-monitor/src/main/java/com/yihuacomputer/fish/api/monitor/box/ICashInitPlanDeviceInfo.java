@@ -8,7 +8,13 @@ import com.yihuacomputer.fish.api.device.AwayFlag;
  * 加钞计划中的设备加钞信息
  */
 public interface ICashInitPlanDeviceInfo {
+	/**
+	 * @return
+	 */
 	public long getId();
+	/**
+	 * @param id
+	 */
 	public void setId(long id);
 	/**
 	 * 设备终端号

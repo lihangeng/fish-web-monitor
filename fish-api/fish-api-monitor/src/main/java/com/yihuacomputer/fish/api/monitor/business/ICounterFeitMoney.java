@@ -4,8 +4,15 @@ import java.util.Date;
 import java.util.List;
 
 
+/**
+ * @author YiHua
+ *
+ */
 public interface ICounterFeitMoney {
 
+	/**
+	 * @param terminalId
+	 */
 	public void setTerminalId(String terminalId);
 
 	/**
@@ -20,6 +27,9 @@ public interface ICounterFeitMoney {
 	 */
 	public String getTransId();
 
+	/**
+	 * @param transId
+	 */
 	public void setTransId(String transId);
 
 	/**
@@ -28,6 +38,9 @@ public interface ICounterFeitMoney {
 	 */
 	public String getDebitAccount();
 
+	/**
+	 * @param debitAccount
+	 */
 	public void setDebitAccount(String debitAccount);
 
 	/**
@@ -36,6 +49,9 @@ public interface ICounterFeitMoney {
 	 */
 	public String getCreditAccount();
 
+	/**
+	 * @param creditAccount
+	 */
 	public void setCreditAccount(String creditAccount);
 
 	/**
@@ -44,6 +60,9 @@ public interface ICounterFeitMoney {
 	 */
 	public String getTransCode();
 
+	/**
+	 * @param transCode
+	 */
 	public void setTransCode(String transCode);
 
 	/**
@@ -52,6 +71,9 @@ public interface ICounterFeitMoney {
 	 */
 	public double getAmt();
 
+	/**
+	 * @param amt
+	 */
 	public void setAmt(double amt);
 
 	/**
@@ -60,6 +82,9 @@ public interface ICounterFeitMoney {
 	 */
 	public String getCurrency();
 
+	/**
+	 * @param currency
+	 */
 	public void setCurrency(String currency);
 
 	/**
@@ -68,6 +93,9 @@ public interface ICounterFeitMoney {
 	 */
 	public Date getDateTime();
 
+	/**
+	 * @param dateTime
+	 */
 	public void setDateTime(Date dateTime);
 
 	/**
@@ -76,6 +104,9 @@ public interface ICounterFeitMoney {
 	 */
 	public String getHostRet();
 
+	/**
+	 * @param hostRet
+	 */
 	public void setHostRet(String hostRet);
 
 	/**
@@ -84,6 +115,9 @@ public interface ICounterFeitMoney {
 	 */
 	public String getLocalRet();
 
+	/**
+	 * @param localRet
+	 */
 	public void setLocalRet(String localRet);
 
 	/**
@@ -92,8 +126,14 @@ public interface ICounterFeitMoney {
 	 */
 	public double getTipFee();
 
+	/**
+	 * @param tipFee
+	 */
 	public void setTipFee(double tipFee);
 
+	/**
+	 * @param transDate
+	 */
 	public void setTransDate(int transDate);
 	
 	/**
@@ -102,6 +142,9 @@ public interface ICounterFeitMoney {
 	 */
 	public int getCounterFeitMoney();
 
+	/**
+	 * @param counterFeitMoney
+	 */
 	public void setCounterFeitMoney(int counterFeitMoney);
 	
 	/**
@@ -110,5 +153,8 @@ public interface ICounterFeitMoney {
 	 */
 	public List<INoteItem> getNoteItem();
 	
+	/**
+	 * @param noteItem
+	 */
 	public void setNoteItem(List<INoteItem> noteItem);
 }

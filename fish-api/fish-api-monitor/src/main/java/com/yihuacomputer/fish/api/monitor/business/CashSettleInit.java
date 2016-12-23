@@ -1,5 +1,9 @@
 package com.yihuacomputer.fish.api.monitor.business;
 
+/**
+ * @author YiHua
+ *
+ */
 public class CashSettleInit {
 	private String date;
 	private long initAmt;

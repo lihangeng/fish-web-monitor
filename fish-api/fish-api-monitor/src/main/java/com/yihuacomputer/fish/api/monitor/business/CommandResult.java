@@ -1,5 +1,9 @@
 package com.yihuacomputer.fish.api.monitor.business;
 
+/**
+ * @author YiHua
+ *
+ */
 public enum CommandResult {
 
     /**
@@ -39,6 +43,10 @@ public enum CommandResult {
         return text;
     }
 
+    /**
+     * @param id
+     * @return
+     */
     public static CommandResult getById(int id) {
         for (CommandResult each : CommandResult.values()) {
             if (each.getId() == id) {

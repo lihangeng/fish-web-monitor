@@ -18,6 +18,9 @@ public interface IBlackListCard {
 
     public long getId();
 
+    /**
+     * @param id
+     */
     public void setId(long id);
 
     /**
@@ -27,6 +30,9 @@ public interface IBlackListCard {
      */
     public String getCardNo();
 
+    /**
+     * @param cardNo
+     */
     public void setCardNo(String cardNo);
 
     /**
@@ -38,18 +44,19 @@ public interface IBlackListCard {
 
     /**
      * 设置用户姓名
+     * @param userName
      */
     public void setUserName(String userName);
 
-    /**
-     * 返回添加日期
+    /**返回添加日期
+     * @return
      */
     public Date getAddDate();
 
     /**
      * 设置添加日期
      * 
-     * @param address
+     * @param addDate
      */
     public void setAddDate(Date addDate);
     

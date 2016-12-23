@@ -31,6 +31,10 @@ public enum BoxInitRuleType {
     	return seqNo;
     }
     
+    /**
+     * @param seqNo
+     * @return
+     */
     public static BoxInitRuleType getBoxInitRuleType(int seqNo){
     	BoxInitRuleType[] boxInitRuleTypes = BoxInitRuleType.values();
     	for(BoxInitRuleType boxInitRuleType:boxInitRuleTypes){

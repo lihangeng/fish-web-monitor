@@ -21,6 +21,9 @@ public interface IMonitorService {
 	 */
 	public void setMonitorListener(IMonitorListener listener);
 
+	/**
+	 * @return
+	 */
 	public IMonitorListener getMonitorListener();
 	/***
 	 * 初始化服务.

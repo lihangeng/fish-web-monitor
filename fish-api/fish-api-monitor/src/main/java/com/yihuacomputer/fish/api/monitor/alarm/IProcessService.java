@@ -11,28 +11,72 @@ import com.yihuacomputer.common.IPageResult;
  */
 public interface IProcessService
 {
+    /**
+     * @return
+     */
     public IProcess make();
 
+    /**
+     * @return
+     */
     public IIllegalProcess makeIlegProc();
 
+    /**
+     * @param id
+     * @return
+     */
     public IProcess get(long id);
 
+    /**
+     * @param process
+     * @return
+     */
     public IProcess add(IProcess process);
 
+    /**
+     * @param id
+     */
     public void remove(long id);
 
+    /**
+     * @param process
+     */
     public void update(IProcess process);
 
+    /**
+     * @return
+     */
     public Iterable<IProcess> list();
 
+    /**
+     * @param offset
+     * @param limit
+     * @param filter
+     * @return
+     */
     public IPageResult<IProcess> page(int offset, int limit,IFilter filter);
 
+    /**
+     * @param filter
+     * @return
+     */
     public Iterable<IProcess> list(IFilter filter);
 
+    /**
+     * @return
+     */
     public List<IProcess> getSchindlerList();
 
+    /**
+     * @param value
+     * @return
+     */
     public List <IProcess> findByHQL(String value);
 
+    /**
+     * @param terminalId
+     * @param processList
+     */
     public void saveSchindlerAlarm(String terminalId,List<IIllegalProcess> processList);
 
     /**

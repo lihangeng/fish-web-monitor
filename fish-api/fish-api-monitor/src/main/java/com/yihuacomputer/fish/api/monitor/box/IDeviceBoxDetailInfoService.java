@@ -5,15 +5,37 @@ import java.util.Map;
 
 import com.yihuacomputer.common.IFilter;
 
+/**
+ * @author YiHua
+ *
+ */
 public interface IDeviceBoxDetailInfoService {
+	/**
+	 * @return
+	 */
 	public IDeviceBoxDetailInfo make();
 
+	/**
+	 * @param dbdi
+	 * @return
+	 */
 	public IDeviceBoxDetailInfo save(IDeviceBoxDetailInfo dbdi);
 
+	/**
+	 * @param dbdi
+	 * @return
+	 */
 	public IDeviceBoxDetailInfo update(IDeviceBoxDetailInfo dbdi);
 
+	/**
+	 * @param dbdi
+	 */
 	public void delete(IDeviceBoxDetailInfo dbdi);
 
+	/**
+	 * @param filter
+	 * @return
+	 */
 	public List<IDeviceBoxDetailInfo> list(IFilter filter);
 	/**
 	 * 获取以钞箱ID为key的钞箱明细信息集合

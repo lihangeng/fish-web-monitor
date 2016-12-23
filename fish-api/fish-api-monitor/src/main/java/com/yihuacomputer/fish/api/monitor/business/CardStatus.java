@@ -1,5 +1,9 @@
 package com.yihuacomputer.fish.api.monitor.business;
 
+/**
+ * @author YiHua
+ *
+ */
 public enum CardStatus {
 
 	/**
@@ -54,6 +58,10 @@ public enum CardStatus {
 		return text;
 	}
 
+    /**
+     * @param id
+     * @return
+     */
     public static CardStatus getById(int id){
     	for(CardStatus each : CardStatus.values()){
     		if(each.getId() == id){
