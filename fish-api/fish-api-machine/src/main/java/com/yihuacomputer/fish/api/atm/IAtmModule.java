@@ -8,8 +8,14 @@ package com.yihuacomputer.fish.api.atm;
  */
 public interface IAtmModule {
 
+	/**
+	 * @param id
+	 */
 	public void setId(long id);
 
+	/**
+	 * @return
+	 */
 	public long getId();
 
 	/**
@@ -18,6 +24,9 @@ public interface IAtmModule {
 	 */
 	public void setNo(String no);
 
+	/**
+	 * @return
+	 */
 	public String getNo();
 
 	/**
@@ -26,13 +35,28 @@ public interface IAtmModule {
 	 */
 	public void setName(String name);
 
+	/**
+	 * @return
+	 */
 	public String getName();
 
+	/**
+	 * @param note
+	 */
 	public void setNote(String note);
 
+	/**
+	 * @return
+	 */
 	public String getNote();
 
+	/**
+	 * @return
+	 */
 	public boolean isCase();
 
+	/**
+	 * @param isCase
+	 */
 	public void setCase(boolean isCase);
 }

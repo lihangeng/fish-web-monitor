@@ -5,6 +5,9 @@ package com.yihuacomputer.fish.api.atm;
  *
  */
 public interface IAtmTypeAtmModuleRelation {
+	/**
+	 * @return
+	 */
 	long getId();
 	/**
 	 * 获得设备模块Id

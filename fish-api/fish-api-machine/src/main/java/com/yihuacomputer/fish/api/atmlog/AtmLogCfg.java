@@ -2,6 +2,10 @@ package com.yihuacomputer.fish.api.atmlog;
 
 import com.yihuacomputer.common.FishCfg;
 
+/**
+ * @author YiHua
+ *
+ */
 public class AtmLogCfg {
 	/**
 	 * ATM APP日志存放规则 默认配置{terminalId}_{date}.txt

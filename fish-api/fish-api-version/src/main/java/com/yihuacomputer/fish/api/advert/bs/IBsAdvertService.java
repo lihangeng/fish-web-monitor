@@ -5,14 +5,32 @@ import java.util.List;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
 
+/**
+ * @author YiHua
+ *
+ */
 public interface IBsAdvertService {
 //	 *删除注意事项 判断广告组中是否有被使用的资源，relation存在（正在使用广告，将要使用广告）,都不能进行删除
+	/**
+	 * @return
+	 */
 	public IBsAdvert make();
 	
+	/**
+	 * @param advertGroup
+	 * @return
+	 */
 	public IBsAdvert save(IBsAdvert advertGroup);
 
+	/**
+	 * @param advertGroup
+	 * @return
+	 */
 	public IBsAdvert update(IBsAdvert advertGroup);
 	
+	/**
+	 * @param id
+	 */
 	public void deleteById(long id);
 	
 	/**
@@ -21,12 +39,29 @@ public interface IBsAdvertService {
 	 */
 	public void delete(IBsAdvert advertGroup);
 	
+	/**
+	 * @param id
+	 * @return
+	 */
 	public IBsAdvert getById(long id);
 	
+	/**
+	 * @param offset
+	 * @param limit
+	 * @param filter
+	 * @return
+	 */
 	public IPageResult<Object> page(int offset, int limit, IFilter filter);
 	
+	/**
+	 * @param filter
+	 * @return
+	 */
 	public List<IBsAdvert> list(IFilter filter);
 	
+	/**
+	 * @return
+	 */
 	public IBsAdvertResourceService getBsAdvertResourceService();
 	
 	/**

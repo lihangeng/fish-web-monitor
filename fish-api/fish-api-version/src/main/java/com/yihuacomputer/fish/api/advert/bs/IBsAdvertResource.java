@@ -4,9 +4,19 @@ import java.util.Date;
 
 import com.yihuacomputer.fish.api.advert.Screen;
 
+/**
+ * @author YiHua
+ *
+ */
 public interface IBsAdvertResource {
+	/**
+	 * @param id
+	 */
 	public void setId(long id);
 
+	/**
+	 * @return
+	 */
 	public long getId();
 	
 	/**
@@ -22,6 +32,7 @@ public interface IBsAdvertResource {
 	
 	/**
 	 * 设置广告内容
+	 * @param content
 	 */
 	public void setContent(String content);
 
@@ -97,5 +108,8 @@ public interface IBsAdvertResource {
 	 */
 	public Screen getScreen();
 	
+	/**
+	 * @param screen
+	 */
 	public void setScreen(Screen screen);
 }

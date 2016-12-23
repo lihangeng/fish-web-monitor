@@ -33,12 +33,16 @@ public interface IAtmTypeAtmModuleRelationService {
      */
     public List<IAtmModule> findAtmModules(long atmTypeId);
 
+    /**
+     * @param atmTypeId
+     * @return
+     */
     public List<Long> findAtmModuleIds(long atmTypeId);
 
     /**
      * 
      * @param atmTypeId
-     * @param atmmoduleIds
+     * @param atmModuleIds
      */
     public void link(long atmTypeId, List<Long> atmModuleIds);
 

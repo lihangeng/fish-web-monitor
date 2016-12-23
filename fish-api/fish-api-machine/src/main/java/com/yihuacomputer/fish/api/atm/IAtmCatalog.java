@@ -10,19 +10,43 @@ package com.yihuacomputer.fish.api.atm;
  *
  */
 public interface IAtmCatalog {
+	/**
+	 * @return
+	 */
 	public long getId();
 
+	/**
+	 * @param id
+	 */
 	public void setId(long id);
 
+	/**
+	 * @return
+	 */
 	public String getNo();
 
+	/**
+	 * @param no
+	 */
 	public void setNo(String no);
 
+	/**
+	 * @return
+	 */
 	public String getName();
 
+	/**
+	 * @param name
+	 */
 	public void setName(String name);
 
+	/**
+	 * @return
+	 */
 	public String getNote();
 
+	/**
+	 * @param note
+	 */
 	public void setNote(String note);
 }

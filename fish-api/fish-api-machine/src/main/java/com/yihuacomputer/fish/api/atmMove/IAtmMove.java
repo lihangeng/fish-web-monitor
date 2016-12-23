@@ -10,8 +10,14 @@ import com.yihuacomputer.fish.api.person.IOrganization;
  *
  */
 public interface IAtmMove {
+    /**
+     * @param id
+     */
     public void setId(long id);
 
+    /**
+     * @return
+     */
     public long getId();
 
     /**
@@ -21,15 +27,21 @@ public interface IAtmMove {
      */
     public void setDate(Date date);
 
+    /**
+     * @return
+     */
     public Date getDate();
 
     /**
      * 设备号
      *
-     * @param number
+     * @param terminalId
      */
     public void setTerminalId(String terminalId);
 
+    /**
+     * @return
+     */
     public String getTerminalId();
 
     /**
@@ -39,6 +51,9 @@ public interface IAtmMove {
      */
     public void setAddress(String address);
 
+    /**
+     * @return
+     */
     public String getAddress();
 
     /**
@@ -48,6 +63,9 @@ public interface IAtmMove {
      */
     public void setResponsibility(String responsibility);
 
+    /**
+     * @return
+     */
     public String getResponsibility();
 
     /**
@@ -57,6 +75,9 @@ public interface IAtmMove {
      */
     public void setTargetAddress(String targetAddress);
 
+    /**
+     * @return
+     */
     public String getTargetAddress();
 
     /**
@@ -66,6 +87,9 @@ public interface IAtmMove {
      */
     public void setNotice(String notice);
 
+    /**
+     * @return
+     */
     public String getNotice();
 
     /**
@@ -75,6 +99,9 @@ public interface IAtmMove {
      */
     public IOrganization getOrganization();
 
+    /**
+     * @param organization
+     */
     public void setOrganization(IOrganization organization);
 
     /**
@@ -84,6 +111,9 @@ public interface IAtmMove {
      */
     public IOrganization getTargetOrganization();
 
+    /**
+     * @param targetOrganization
+     */
     public void setTargetOrganization(IOrganization targetOrganization);
 
 }

@@ -9,14 +9,29 @@ import com.yihuacomputer.fish.api.device.CashType;
  *
  */
 public interface IAtmType {
+	/**
+	 * @return
+	 */
 	public long getId();
 
+	/**
+	 * @param id
+	 */
 	public void setId(long id);
 
+	/**
+	 * @return
+	 */
 	public String getName();
 
+	/**
+	 * @param name
+	 */
 	public void setName(String name);
 
+	/**
+	 * @return
+	 */
 	public IAtmVendor getDevVendor();
 
 	/**
@@ -33,8 +48,14 @@ public interface IAtmType {
 	 */
 	public IAtmCatalog getDevCatalog();
 
+	/**
+	 * @param devCatalog
+	 */
 	public void setDevCatalog(IAtmCatalog devCatalog);
 
+	/**
+	 * @return
+	 */
 	public CashType getCashtype();
 
 	/**
@@ -51,5 +72,8 @@ public interface IAtmType {
 	 */
 	public String getRemark();
 
+	/**
+	 * @param remark
+	 */
 	public void setRemark(String remark);
 }

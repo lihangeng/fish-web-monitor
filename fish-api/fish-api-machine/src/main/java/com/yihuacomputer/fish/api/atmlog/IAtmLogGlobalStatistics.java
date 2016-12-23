@@ -2,10 +2,20 @@ package com.yihuacomputer.fish.api.atmlog;
 
 import java.util.Date;
 
+/**
+ * @author YiHua
+ *
+ */
 public interface IAtmLogGlobalStatistics {
 	
+	/**
+	 * @return
+	 */
 	public long getId();
 	
+	/**
+	 * @param id
+	 */
 	public void setId(long id);
 	
 	/**
@@ -15,10 +25,19 @@ public interface IAtmLogGlobalStatistics {
 	
 	public String getOrgName();
 	
+	/**
+	 * @param orgName
+	 */
 	public void setOrgName(String orgName);
 	
+	/**
+	 * @return
+	 */
 	public String getOrgCode();
 	
+	/**
+	 * @param orgCode
+	 */
 	public void setOrgCode(String orgCode);
 	
 	
@@ -28,6 +47,9 @@ public interface IAtmLogGlobalStatistics {
 	 */
 	public Date getBackupDate();
 	
+	/**
+	 * @param backupDate
+	 */
 	public void setBackupDate(Date backupDate);
 	
 	/**
@@ -36,6 +58,9 @@ public interface IAtmLogGlobalStatistics {
 	 */
 	public String getDeviceVendor();
 	
+	/**
+	 * @param deviceVendor
+	 */
 	public void setDeviceVendor(String deviceVendor);
 	/**
 	 * 备份成功台数
@@ -43,6 +68,9 @@ public interface IAtmLogGlobalStatistics {
 	 */
 	public int getBackupSuccessNumber();
 	
+	/**
+	 * @param backupSuccessNumber
+	 */
 	public void setBackupSuccessNumber(int backupSuccessNumber);
 	/**
 	 * 备份失败台数
@@ -50,6 +78,9 @@ public interface IAtmLogGlobalStatistics {
 	 */
 	public int getBackupErrorNumber();
 	
+	/**
+	 * @param backupErrorNumber
+	 */
 	public void setBackupErrorNumber(int backupErrorNumber);
 	
 }

@@ -38,6 +38,10 @@ public enum VendorStatus
 		return text;
     }
     
+    /**
+     * @param id
+     * @return
+     */
     public static VendorStatus getById(int id)
     {
         for (VendorStatus each : VendorStatus.values())
