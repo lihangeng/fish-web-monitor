@@ -7,9 +7,16 @@ import org.aspectj.lang.reflect.MethodSignature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * @author YiHua
+ *
+ */
 public class DataSourceInterceptor {
 
 	private final Logger logger = LoggerFactory.getLogger(DataSourceInterceptor.class);
+	/**
+	 * @param point
+	 */
 	public void intercept(JoinPoint point) {
 		Class<?> target = point.getTarget().getClass();
 		MethodSignature signature = (MethodSignature) point.getSignature();

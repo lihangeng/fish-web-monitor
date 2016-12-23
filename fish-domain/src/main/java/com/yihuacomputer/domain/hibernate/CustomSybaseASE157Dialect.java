@@ -7,9 +7,16 @@ import org.hibernate.type.descriptor.sql.BooleanTypeDescriptor;
 import org.hibernate.type.descriptor.sql.SqlTypeDescriptor;
 
 
+/**
+ * @author YiHua
+ *
+ */
 @Deprecated
 public class CustomSybaseASE157Dialect extends SybaseASE157Dialect{
 
+    /**
+     * 
+     */
     public CustomSybaseASE157Dialect(){
         super();
 

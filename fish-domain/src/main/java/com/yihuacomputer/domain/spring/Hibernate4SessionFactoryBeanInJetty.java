@@ -13,6 +13,10 @@ import org.hibernate.service.internal.StandardServiceRegistryImpl;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
 
+/**
+ * @author YiHua
+ *
+ */
 public class Hibernate4SessionFactoryBeanInJetty extends LocalSessionFactoryBean {
 
 	@Override

@@ -59,49 +59,54 @@ public interface IGenericDao {
 	/**
 	 * 根据主键删除实体
 	 * @param id
+	 * @param entityClass
 	 */
 	 <T> void delete(Serializable id,Class<T> entityClass);
 	/**
 	 * 根据ID加载实体，返回异常
 	 * @param id
+	 * @param entityClass
 	 * @return T
 	 */
-	 <T> T load(Serializable id,Class<T> entityClass);
+	<T> T load(Serializable id,Class<T> entityClass);
 	/**
 	 * 根据ID加载实体，返回null
 	 * @param id
+	 * @param entityClass
 	 * @return T
 	 */
 	 <T> T get(Serializable id,Class<T> entityClass);
 
 	/**
 	 * 加载所有的对象
+	 * @param entityClass
 	 * @return List<T>
 	 */
 	 <T> List<T> loadAll(Class<T> entityClass);
 	/**
 	 * 根据实体查找
-	 * @param <T>
+	 * @param entity
 	 * @param entity
 	 * @return
 	 */
 	 <T> List<T> findByEntity(T entity);
 	/**
 	 * 根据过滤器查询
-	 * @param <T>
-	 * @param fitler
+	 * @param filter
+	 * @param entityClass
 	 * @return
 	 */
-	 <T> List<T> findByFilter(final IFilter filter,Class<T> entityClass);
+	<T> List<T> findByFilter(final IFilter filter,Class<T> entityClass);
 	/**
 	 * 根据过滤器查找唯一
-	 * @param <T>
+	 * @param entityClass
 	 * @param filter
 	 * @return
 	 */
 	 <T> T findUniqueByFilter(final IFilter filter,Class<T> entityClass);
 	/**
 	 * 获得Criteria查询
+	 * @param entityClass
 	 * @return
 	 */
 	 <T> Criteria getCriteria(Class<T> entityClass);
@@ -111,6 +116,7 @@ public interface IGenericDao {
 	 * @param offset
 	 * @param limit
 	 * @param filter
+	 * @param entityClass
 	 * @return
 	 */
 	 <T,IT> IPageResult<IT> page(int offset,int limit,IFilter filter,Class<T> entityClass);
@@ -156,7 +162,11 @@ public interface IGenericDao {
 	 */
 	 IPageResult<? extends Object> page(int start, int limit , IFilter filter,String hql, Object... values);
 
-	 <T> T saveOrUpdate(T entity);
+	 /**
+	 * @param entity
+	 * @return
+	 */
+	<T> T saveOrUpdate(T entity);
 
 	 /**
 	  * 支持native sql 的查询
@@ -175,14 +185,26 @@ public interface IGenericDao {
 		 * @param start
 		 * @param limit
 		 * @param filter 过滤条件
-		 * @param hql
+		 * @param sql
 		 * @param values
 		 * @return
 		 */
 		 IPageResult<Object> pageForSQL(int start, int limit,String sql, Object... values);
 
-		 IPageResult<Object> pageForSQLTrans(int start, int limit,String sql, Object... values);
+		 /**
+		 * @param start
+		 * @param limit
+		 * @param sql
+		 * @param values
+		 * @return
+		 */
+		IPageResult<Object> pageForSQLTrans(int start, int limit,String sql, Object... values);
 
-		 int countSqlResultBySQL(String hql, Object[] values) ;
+		 /**
+		 * @param hql
+		 * @param values
+		 * @return
+		 */
+		int countSqlResultBySQL(String hql, Object[] values) ;
 
 }

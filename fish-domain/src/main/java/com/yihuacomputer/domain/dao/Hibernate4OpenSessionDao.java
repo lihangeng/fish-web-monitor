@@ -47,12 +47,14 @@ public class Hibernate4OpenSessionDao implements IGenericDao {
 	@Autowired
 	private SessionFactory sessionFactory;
 
+	@Override
 	public <T> T save(T entity) {
 		Session session = sessionFactory.openSession();
 		session.save(entity);
 		return entity;
 	}
 
+	@Override
 	public <T> List<T> batchSave(List<T> entities){
 		Session session = sessionFactory.openSession();
 		boolean newTransaction = false;
@@ -75,6 +77,7 @@ public class Hibernate4OpenSessionDao implements IGenericDao {
 		return entities;
 	}
 
+	@Override
 	public <T> List<T> loadAll(Class<T> entityClass) {
 		Session session = sessionFactory.openSession();
 		return session.createCriteria(entityClass).list();
@@ -120,18 +123,21 @@ public class Hibernate4OpenSessionDao implements IGenericDao {
 		delete(load(id, entityClass));
 	}
 
+	@Override
 	public <T> T load(Serializable id, Class<T> entityClass) {
 		Session session = this.getHibernateSession();
 		T entity = (T) session.load(entityClass, id);
 		return entity;
 	}
 
+	@Override
 	public <T> T get(Serializable id, Class<T> entityClass) {
 		Session session = this.getHibernateSession();
 		T entity = (T) session.get(entityClass, id);
 		return entity;
 	}
 
+	@Override
 	public <T> List<T> findByEntity(T entity) {
 		Criteria criteria = getCriteria(entity.getClass());
 		criteria.add(Example.create(entity));
@@ -175,11 +181,13 @@ public class Hibernate4OpenSessionDao implements IGenericDao {
 		return result;
 	}
 
+	@Override
 	public <T> List<T> findByHQL(String hql, Object... values) {
 		Query query = this.createQuery(hql, values);
 		return query.list();
 	}
 
+	@Override
 	public <T> T findUniqueByHql(String hql, Object... values) {
 		Query query = this.createQuery(hql, values);
 		return (T) query.uniqueResult();
@@ -316,6 +324,7 @@ public class Hibernate4OpenSessionDao implements IGenericDao {
 		}
 	}
 
+	@Override
 	public int countSqlResultBySQL(String hql, Object[] values) {
 		String countHql = prepareCountHql(hql);
 		try {

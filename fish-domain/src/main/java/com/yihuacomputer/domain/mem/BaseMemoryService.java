@@ -17,19 +17,36 @@ import com.yihuacomputer.common.filter.Filter;
 public class BaseMemoryService {
 	private static final AtomicLong atomicLog = new AtomicLong();
 
+	/**
+	 * @return
+	 */
 	public long nextId() {
 		return atomicLog.incrementAndGet();
 	}
 
+	/**
+	 * @param it
+	 * @return
+	 */
 	@SuppressWarnings("unchecked")
 	public <IT, T extends IT> T interface2Entity(IT it) {
 		return (T) it;
 	}
 
+	/**
+	 * @param object
+	 * @param filter
+	 * @return
+	 */
 	public boolean isMacth(Object object, IFilter filter) {
 		return filter.isMatch(object);
 	}
 
+	/**
+	 * @param data
+	 * @param outerFilter
+	 * @return
+	 */
 	public <IT> List<IT> filter(List<? extends IT> data, IFilter outerFilter) {
 		IFilter filter = null;
 	    if(outerFilter == null){

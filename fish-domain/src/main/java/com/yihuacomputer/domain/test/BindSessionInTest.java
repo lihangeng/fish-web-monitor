@@ -33,6 +33,9 @@ public class BindSessionInTest {
 	private SessionFactory sessionFactory;
 	private Session session;
 
+	/**
+	 * @throws Exception
+	 */
 	@Before
 	public void setUp() throws Exception {
 		if(applicationContext.containsBean("sessionFactory")){
@@ -42,6 +45,9 @@ public class BindSessionInTest {
 		}
 	}
 
+	/**
+	 * @throws Exception
+	 */
 	@After
 	public void tearDown() throws Exception {
 		if(this.sessionFactory != null){
@@ -49,6 +55,9 @@ public class BindSessionInTest {
 			SessionFactoryUtils.closeSession(session);
 		}
 	}
+	/**
+	 * 测试例子
+	 */
 	@Test
 	public void testExample(){
 		assertNotNull(applicationContext);

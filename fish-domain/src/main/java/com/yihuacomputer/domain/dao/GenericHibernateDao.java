@@ -54,12 +54,14 @@ public class GenericHibernateDao extends HibernateDaoSupport implements IGeneric
 	/**
 	 * 保存实体
 	 */
+	@Override
 	public <T> T save(T entity) {
 		getHibernateTemplate().save(entity);
 		logger.debug("save entity: {}", entity);
 		return entity;
 	}
 
+	@Override
 	public <T> List<T> batchSave(List<T> entities){
 		Session session = super.getSessionFactory().getCurrentSession();
 		Transaction tx =session.beginTransaction();
@@ -78,12 +80,14 @@ public class GenericHibernateDao extends HibernateDaoSupport implements IGeneric
 	/**
 	 * 修改实体属性
 	 */
+	@Override
 	public <T> T update(T entity) {
 		getHibernateTemplate().update(entity);
 		logger.debug("update entity: {}", entity);
 		return entity;
 	}
 
+	@Override
 	public <T> T merge(T entity) {
 		getHibernateTemplate().merge(entity);
 		logger.debug("merge entity: {}", entity);
@@ -93,12 +97,14 @@ public class GenericHibernateDao extends HibernateDaoSupport implements IGeneric
 	/**
 	 * 删除实体
 	 */
+	@Override
 	public <T> void delete(T entity) {
 		getHibernateTemplate().delete(entity);
 		logger.debug("delete entity: {}", entity);
 
 	}
 
+	@Override
 	public <T> void delete(Serializable id, Class<T> entityClass) {
 		getHibernateTemplate().delete(load(id, entityClass));
 	}
@@ -106,6 +112,7 @@ public class GenericHibernateDao extends HibernateDaoSupport implements IGeneric
 	/**
 	 * 从缓冲中查找，先找ID，在从数据库中加载实体内容，找不到会抛出异常
 	 */
+	@Override
 	public <T> T load(Serializable id, Class<T> entityClass) {
 		return getHibernateTemplate().load(entityClass, id);
 	}
@@ -113,6 +120,7 @@ public class GenericHibernateDao extends HibernateDaoSupport implements IGeneric
 	/**
 	 * 从数据库里查找，找不到返回null
 	 */
+	@Override
 	public <T> T get(Serializable id, Class<T> entityClass) {
 		return getHibernateTemplate().get(entityClass, id);
 	}
@@ -120,10 +128,12 @@ public class GenericHibernateDao extends HibernateDaoSupport implements IGeneric
 	/**
 	 * 获取全部实体
 	 */
+	@Override
 	public <T> List<T> loadAll(Class<T> entityClass) {
 		return getHibernateTemplate().loadAll(entityClass);
 	}
 
+	@Override
 	public <T> Criteria getCriteria(Class<T> entityClass) {
 		String simpleName = entityClass.getSimpleName();
 		String alias = simpleName.substring(0,1).toLowerCase() + simpleName.substring(1);
@@ -201,12 +211,14 @@ public class GenericHibernateDao extends HibernateDaoSupport implements IGeneric
 		return Property.forName(orderBy.getPropertyName()).desc();
 	}
 
+	@Override
  	public <T> List<T> findByEntity(T entity) {
 		Criteria criteria = getCriteria(entity.getClass());
 		criteria.add(Example.create(entity));
 		return criteria.list();
 	}
 
+	@Override
 	public <T> List<T> findByFilter(IFilter filter, Class<T> entityClass) {
 	    Criteria criteria =  addCriterionByFitler(filter, entityClass);
 	    this.addCriterionOrderByFitler(criteria, filter);
@@ -252,6 +264,7 @@ public class GenericHibernateDao extends HibernateDaoSupport implements IGeneric
 		return page(start,limit,new Filter(),hql,values);
 	}
 
+	@Override
 	public IPageResult<? extends Object> page(int start, int limit , IFilter filter,String hql, Object... values) {
 		PageResult<Object> page = new PageResult<Object>();
 		Query query = this.createQueryByFilter(filter,hql, values);

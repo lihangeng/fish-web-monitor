@@ -151,7 +151,9 @@ public class ZipUtils {
 
 	/**
 	 * 解压缩功能. 将ZIP_FILENAME文件解压到ZIP_DIR目录下.
-	 * 
+	 * @param sourceZip
+	 * @param destDir
+	 * @param encoding 
 	 * @throws Exception
 	 */
 	public static void unZip(String sourceZip, String destDir, String encoding){

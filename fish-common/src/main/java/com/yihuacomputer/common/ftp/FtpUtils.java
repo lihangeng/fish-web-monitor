@@ -97,6 +97,7 @@ public class FtpUtils {
      *            上传到FTP服务器上的文件名
      * @param input
      *            输入流
+     * @param encode
      * @return 成功返回true，否则返回false
      * @throws IOException
      */
