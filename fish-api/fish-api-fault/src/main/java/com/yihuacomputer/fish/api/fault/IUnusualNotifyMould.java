@@ -1,10 +1,20 @@
 package com.yihuacomputer.fish.api.fault;
 
 
+/**
+ * @author YiHua
+ *
+ */
 public interface IUnusualNotifyMould {
 	
+	/**
+	 * @return
+	 */
 	public long getId();
 
+	/**
+	 * @param id
+	 */
 	public void setId(long id);
 	
 	/**
@@ -13,6 +23,9 @@ public interface IUnusualNotifyMould {
 	 */
 	public String getUnusualTranscationTypeId() ;
 
+	/**
+	 * @param unusualTranscationTypeId
+	 */
 	public void setUnusualTranscationTypeId(String unusualTranscationTypeId);
 	/**
 	 * 异常交易类型名称
@@ -20,6 +33,9 @@ public interface IUnusualNotifyMould {
 	 */
 	public String getUnusualTranscationTypeName() ;
 
+	/**
+	 * @param unusualTranscationTypeName
+	 */
 	public void setUnusualTranscationTypeName(String unusualTranscationTypeName);
 
 	/**
@@ -28,6 +44,9 @@ public interface IUnusualNotifyMould {
 	 */
 	public ResponsorType getResponsorType();
 
+	/**
+	 * @param responsorType
+	 */
 	public void setResponsorType(ResponsorType responsorType);
 
 
@@ -38,6 +57,9 @@ public interface IUnusualNotifyMould {
 	
     public IsNotify getIsNotify();
     
+    /**
+     * @param isNotify
+     */
     public void setIsNotify(IsNotify isNotify);
 	
 }

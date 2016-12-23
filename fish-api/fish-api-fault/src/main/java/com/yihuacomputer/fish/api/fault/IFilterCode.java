@@ -7,6 +7,9 @@ package com.yihuacomputer.fish.api.fault;
  */
 public interface IFilterCode {
 
+	/**
+	 * @return
+	 */
 	public long getId();
 	
 	/**

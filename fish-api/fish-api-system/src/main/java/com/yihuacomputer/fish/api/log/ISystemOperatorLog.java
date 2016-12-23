@@ -8,7 +8,13 @@ package com.yihuacomputer.fish.api.log;
  * @date 2010-8-3
  */
 public interface ISystemOperatorLog {
+	/**
+	 * @param id
+	 */
 	public void setId(long id);
+	/**
+	 * @return
+	 */
 	public long getId();
 
 }

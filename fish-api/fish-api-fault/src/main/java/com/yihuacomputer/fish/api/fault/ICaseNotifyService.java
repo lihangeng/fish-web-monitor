@@ -7,8 +7,15 @@ import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.fish.api.person.IPerson;
 
+/**
+ * @author YiHua
+ *
+ */
 public interface ICaseNotifyService {
 
+	/**
+	 * @return
+	 */
 	public ICaseNotify make();
 
 	/**
@@ -42,28 +49,45 @@ public interface ICaseNotifyService {
 	/**
 	 * 根据过滤条件查找对应的的故障通知列表
 	 *
-	 * @param faultId
+	 * @param filter
 	 * @return
 	 */
 	public List<ICaseNotify> listNotify(IFilter filter);
 
+	/**
+	 * @param offset
+	 * @param limit
+	 * @param filter
+	 * @param orgId
+	 * @return
+	 */
 	public IPageResult<ICaseNotify> page(int offset, int limit, IFilter filter,long orgId);
 
+	/**
+	 * @param filter
+	 * @param orgId
+	 * @return
+	 */
 	public List<ICaseNotify> page(IFilter filter,long orgId);
 
 	/**
 	 * 创建设备通知内容
-	 * @param fauleClassify
+	 * @param faultClassify
 	 * @param caseFault
 	 */
 	public void createCaseNotify(IFaultClassify faultClassify,ICaseFault caseFault);
 
+	/**
+	 * @param faultClassify
+	 * @param caseFault
+	 * @param personList
+	 */
 	public void createCaseNotify(IFaultClassify faultClassify,ICaseFault caseFault,List<IPerson> personList);
 
 	/**
 	 * 查询通知类型的故障通知
 	 *
-	 * @param faultId
+	 * @param filter
 	 * @return
 	 */
 	public List<ICaseNotify> getNotifyWay(IFilter filter);

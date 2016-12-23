@@ -3,8 +3,14 @@ package com.yihuacomputer.fish.api.fault;
 
 public interface INotifyMould {
 	
+	/**
+	 * @return
+	 */
 	public long getId();
 
+	/**
+	 * @param id
+	 */
 	public void setId(long id);
 	
 	/**
@@ -13,6 +19,9 @@ public interface INotifyMould {
 	 */
 	public IFaultClassify getFaultClassify();
 
+	/**
+	 * @param faultClassify
+	 */
 	public void setFaultClassify(IFaultClassify faultClassify);
 	/**
 	 * 通知类型
@@ -20,14 +29,20 @@ public interface INotifyMould {
 	 */
 	public NotifyType getNotifyType();
 
+	/**
+	 * @param notifyType
+	 */
 	public void setNotifyType(NotifyType notifyType);
 
 	/**
 	 * 通知方式
-	 * @param notifyWay
+	 * @return
 	 */
 	public NotifyWay getNotifyWay();
 
+	/**
+	 * @param notifyWay
+	 */
 	public void setNotifyWay(NotifyWay notifyWay);
 
 	/**
@@ -36,6 +51,9 @@ public interface INotifyMould {
 	 */
 	public String getNotifySet();
 
+	/**
+	 * @param notifySet
+	 */
 	public void setNotifySet(String notifySet);
 	
 }

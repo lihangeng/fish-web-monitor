@@ -11,6 +11,11 @@ import java.util.List;
  */
 public interface IFaultStatisticsService {
 
+	/**
+	 * @param start
+	 * @param end
+	 * @return
+	 */
 	public List<Object> statisticsFaultTrend(Date start, Date end);
 	
 	/**

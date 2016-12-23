@@ -29,6 +29,10 @@ public enum ResponsorType {
 		return text;
     }
 	
+	/**
+	 * @param id
+	 * @return
+	 */
 	public static ResponsorType getById(int id) {
 		for (ResponsorType each : ResponsorType.values()) {
 			if (each.getId() == id) {

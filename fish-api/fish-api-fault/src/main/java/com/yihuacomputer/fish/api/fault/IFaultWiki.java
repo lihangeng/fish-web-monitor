@@ -8,6 +8,9 @@ package com.yihuacomputer.fish.api.fault;
  */
 public interface IFaultWiki {
 
+	/**
+	 * @return
+	 */
 	public long getId();
 	
 	/**

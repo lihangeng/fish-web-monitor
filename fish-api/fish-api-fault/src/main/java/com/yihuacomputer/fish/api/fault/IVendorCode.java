@@ -13,6 +13,9 @@ public interface IVendorCode {
 	 */
 	public long getId();
 	
+	/**
+	 * @param id
+	 */
 	public void setId(long id);
 	
 	/**
@@ -21,6 +24,9 @@ public interface IVendorCode {
 	 */
 	public long getVendor();
 	
+	/**
+	 * @param vendor
+	 */
 	public void setVendor(long vendor);
 	
 	/**
@@ -29,6 +35,9 @@ public interface IVendorCode {
 	 */
 	public String getCode();
 	
+	/**
+	 * @param code
+	 */
 	public void setCode(String code);
 	
 	/**
@@ -37,6 +46,9 @@ public interface IVendorCode {
 	 */
 	public String getDescription();
 	
+	/**
+	 * @param description
+	 */
 	public void setDescription(String description);
 	
 	/**
@@ -45,5 +57,8 @@ public interface IVendorCode {
 	 */
 	public String getSolution();
 	
+	/**
+	 * @param solution
+	 */
 	public void setSolution(String solution);
 }

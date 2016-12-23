@@ -13,6 +13,9 @@ import com.yihuacomputer.fish.api.monitor.report.IWorkUnit;
  */
 public interface ICollectListener {
 
+	/**
+	 * @param workUnit
+	 */
 	public void setWorkUnit(IWorkUnit workUnit);
 	
 	/**
@@ -21,9 +24,10 @@ public interface ICollectListener {
 	 */
 	public void registered(String deviceId);
 
-	/**
-	 * 设备签到
+	/**设备签到
 	 * @param deviceId
+	 * @param deviceReport
+	 * @param messageSourceRef
 	 */
 	public void signed(String deviceId,IDeviceReport deviceReport,MessageSource messageSourceRef);
 
@@ -44,6 +48,7 @@ public interface ICollectListener {
 	 * ATMC业务信息
 	 * @param deviceId
 	 * @param info
+	 * @param deviceReport
 	 */
 	public void receivedBusiness(String deviceId, BusinessInfo info,IDeviceReport deviceReport);
 
@@ -51,12 +56,14 @@ public interface ICollectListener {
 	 * 报警
 	 * @param deviceId
 	 * @param info
+	 * @param deviceReport
 	 */
 	public void receivedAlarm(String deviceId, AlarmInfo info,IDeviceReport deviceReport);
 	
-	/**
-	 * 模块状态
+	/**模块状态
 	 * @param deviceId
+	 * @param deviceReport
+	 * @param messageSourceRef
 	 */
 	public void receivedStatus(String deviceId,IDeviceReport deviceReport,MessageSource messageSourceRef);
 

@@ -34,6 +34,10 @@ public enum IsNotify {
 		return text;
     }
 
+	/**
+	 * @param isNotify
+	 * @return
+	 */
 	public static IsNotify parsGender(String isNotify){
 		if("YES".equals(isNotify)){
 			return IsNotify.YES;

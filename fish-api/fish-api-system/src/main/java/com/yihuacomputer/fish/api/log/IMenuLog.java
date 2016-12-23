@@ -12,13 +12,22 @@ import com.yihuacomputer.common.ITypeIP;
  * @date 2011-03-15
  */
 public interface IMenuLog {
+	/**
+	 * @param id
+	 */
 	public void setId(long id);
+	/**
+	 * @return
+	 */
 	public long getId();
 	/**
 	 * 设置操作人
-	 * @param authorizerCode
+	 * @param code
 	 */
 	public void setCode(String code);
+	/**
+	 * @return
+	 */
 	public String getCode();
 
 	/**
@@ -26,19 +35,28 @@ public interface IMenuLog {
 	 * @param loginTime
 	 */
 	public void setLoginTime(Date loginTime);
+	/**
+	 * @return
+	 */
 	public Date getLoginTime();
 	/**
 	 * 设置请求的客户端端IP
-	 * @param clientIp
+	 * @param ip
 	 */
 	public void setIp(ITypeIP ip);
+	/**
+	 * @return
+	 */
 	public ITypeIP getIp();
 	
 	/**
 	 * 设置操作内容
-	 * @param roleCode
+	 * @param content
 	 */
 	public void setContent(String content);
+	/**
+	 * @return
+	 */
 	public String getContent();
 
 	/**
@@ -46,6 +64,9 @@ public interface IMenuLog {
 	 * @param sessionId
 	 */
 	public void setSessionId(String sessionId);
+	/**
+	 * @return
+	 */
 	public String getSessionId();
 	/**
 	 * 登录是否成功
@@ -57,5 +78,8 @@ public interface IMenuLog {
 	 * @param remark
 	 */
 	public void setRemark(String remark);
+	/**
+	 * @return
+	 */
 	public String getRemark();
 }

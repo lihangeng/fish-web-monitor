@@ -1,5 +1,9 @@
 package com.yihuacomputer.fish.api.fault;
 
+/**
+ * @author YiHua
+ *
+ */
 public interface INotifySmsSenderManager {
 
 	/**

@@ -5,10 +5,20 @@ import java.util.List;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
 
+/**
+ * @author YiHua
+ *
+ */
 public interface IFaultClassifyService {
 
+	/**
+	 * @return
+	 */
 	public IFaultClassify make();
 	
+	/**
+	 * @param faultClassify
+	 */
 	public void save(IFaultClassify faultClassify);
 	
 	/**

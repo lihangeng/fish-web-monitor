@@ -12,7 +12,7 @@ public interface IMessagHandleCollection {
 
 	/**
 	 * 在集合中放入任务
-	 * @param task
+	 * @param xfsStatus
 	 */
 	public void put(IXfsStatus xfsStatus);
 

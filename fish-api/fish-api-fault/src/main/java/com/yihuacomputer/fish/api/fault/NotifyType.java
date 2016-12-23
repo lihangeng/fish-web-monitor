@@ -29,6 +29,10 @@ public enum NotifyType {
 		return text;
     }
 	
+	/**
+	 * @param id
+	 * @return
+	 */
 	public static NotifyType getById(int id){
 		for(NotifyType each : NotifyType.values()){
 			if(each.getId() == id){

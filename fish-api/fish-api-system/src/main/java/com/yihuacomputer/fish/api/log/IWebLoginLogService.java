@@ -14,7 +14,14 @@ import com.yihuacomputer.common.IPageResult;
  * @date 2010-11-15
  */
 public interface IWebLoginLogService {
+	/**
+	 * @return
+	 */
 	public IWebLoginLog make();
+	/**
+	 * @param log
+	 * @return
+	 */
 	public IWebLoginLog add(IWebLoginLog log);
 	/**
 	 * 修改登出时间
@@ -22,6 +29,12 @@ public interface IWebLoginLogService {
 	 * @param logoutTime
 	 */
 	public void updateLogoutTime(String sessionId,Date logoutTime);
+	/**
+	 * @param offset
+	 * @param limit
+	 * @param filter
+	 * @return
+	 */
 	public IPageResult<IWebLoginLog> page(int offset,int limit,IFilter filter);
 	/**
 	 * 导出登录日志

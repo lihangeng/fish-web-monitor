@@ -5,10 +5,20 @@ import java.util.List;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
 
+/**
+ * @author YiHua
+ *
+ */
 public interface IUnuauslNotifyMouldService {
 
+	/**
+	 * @return
+	 */
 	public IUnusualNotifyMould make();
 	
+	/**
+	 * @param unusualNotifyMould
+	 */
 	public void save(IUnusualNotifyMould unusualNotifyMould);
 	
 	/**

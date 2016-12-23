@@ -6,6 +6,10 @@ import com.yihuacomputer.fish.api.monitor.business.IRunInfo;
 import com.yihuacomputer.fish.api.monitor.report.IRuntimeInfo;
 import com.yihuacomputer.fish.api.monitor.xfs.status.IXfsStatus;
 
+/**
+ * @author YiHua
+ *
+ */
 public interface IDeviceCaseService {
 
 	/**
@@ -18,7 +22,7 @@ public interface IDeviceCaseService {
 
 	/**
 	 * 处理吞卡消息
-	 * @param retianCard
+	 * @param retainCard
 	 */
 	public void handleRetainCard(IRetaincard retainCard);
 
@@ -32,6 +36,7 @@ public interface IDeviceCaseService {
 	/**
 	 * 处理设备模块状态
 	 * @param xfsStatus
+	 * @param hisXfsStatus
 	 */
 	public void handleModStatus(IXfsStatus xfsStatus,IXfsStatus hisXfsStatus);
 

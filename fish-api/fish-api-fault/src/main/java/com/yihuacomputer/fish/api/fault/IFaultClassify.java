@@ -1,9 +1,19 @@
 package com.yihuacomputer.fish.api.fault;
 
+/**
+ * @author YiHua
+ *
+ */
 public interface IFaultClassify {
 	
+	/**
+	 * @return
+	 */
 	public String getId();
 
+	/**
+	 * @param id
+	 */
 	public void setId(String id);
 
 	/**
@@ -12,6 +22,9 @@ public interface IFaultClassify {
 	 */
 	public String getClassifyName();
 
+	/**
+	 * @param classifyName
+	 */
 	public void setClassifyName(String classifyName);
 
 	/**
@@ -20,6 +33,9 @@ public interface IFaultClassify {
 	 */
 	public ResponsorType getResponsorType();
 
+	/**
+	 * @param responsorType
+	 */
 	public void setResponsorType(ResponsorType responsorType);
 
 	/**
@@ -28,6 +44,9 @@ public interface IFaultClassify {
 	 */
 	public double getResolveHour();
 
+	/**
+	 * @param resolveHour
+	 */
 	public void setResolveHour(double resolveHour);
 	
 	/**
@@ -36,6 +55,9 @@ public interface IFaultClassify {
 	 */
 	public int getUpgrade();
 
+	/**
+	 * @param upgrade
+	 */
 	public void setUpgrade(int upgrade);
 	
 	/**
@@ -44,6 +66,9 @@ public interface IFaultClassify {
 	 */
 	public void setNotifyTimes(int notifyTimes);
 	
+	/**
+	 * @return
+	 */
 	public int getNotifyTimes();
 	
 	/**
@@ -52,5 +77,8 @@ public interface IFaultClassify {
 	 */
 	public NotifyWay getNotifyWay();
 
+	/**
+	 * @param notifyWay
+	 */
 	public void setNotifyWay(NotifyWay notifyWay);
 }
