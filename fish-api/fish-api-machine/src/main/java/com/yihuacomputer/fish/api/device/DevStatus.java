@@ -28,6 +28,10 @@ public enum DevStatus {
 		return text;
 	}
 
+	/**
+	 * @param id
+	 * @return
+	 */
 	public static DevStatus getById(int id) {
 		for (DevStatus each : DevStatus.values()) {
 			if (each.getId() == id) {

@@ -30,6 +30,10 @@ public enum RegStatus
 		return text;
     }
     
+    /**
+     * @param id
+     * @return
+     */
     public static RegStatus getById(int id)
     {
         for (RegStatus each : RegStatus.values())

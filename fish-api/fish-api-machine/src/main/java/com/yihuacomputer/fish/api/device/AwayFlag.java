@@ -40,6 +40,10 @@ public enum AwayFlag
 		return text;
     }
     
+    /**
+     * @param id
+     * @return
+     */
     public static AwayFlag getById(int id)
     {
         for (AwayFlag each : AwayFlag.values())

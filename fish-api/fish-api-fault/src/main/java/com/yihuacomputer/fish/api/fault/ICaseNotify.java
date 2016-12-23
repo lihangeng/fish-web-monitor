@@ -5,10 +5,20 @@ import java.util.List;
 
 import com.yihuacomputer.fish.api.person.IPerson;
 
+/**
+ * @author YiHua
+ *
+ */
 public interface ICaseNotify {
 
+	/**
+	 * @return
+	 */
 	public long getId();
 
+	/**
+	 * @param id
+	 */
 	public void setId(long id);
 
 	/**
@@ -17,6 +27,9 @@ public interface ICaseNotify {
 	 */
 	public long getFaultId();
 
+	/**
+	 * @param faultId
+	 */
 	public void setFaultId(long faultId);
 
 	/**
@@ -25,6 +38,9 @@ public interface ICaseNotify {
 	 */
 	public String getTerminalId();
 
+	/**
+	 * @param terminalId
+	 */
 	public void setTerminalId(String terminalId);
 
 	/**
@@ -33,6 +49,9 @@ public interface ICaseNotify {
 	 */
 	public Date getCreateTime();
 
+	/**
+	 * @param createTime
+	 */
 	public void setCreateTime(Date createTime);
 
 	/**
@@ -41,6 +60,9 @@ public interface ICaseNotify {
 	 */
 	public String getContent();
 
+	/**
+	 * @param content
+	 */
 	public void setContent(String content);
 
 	/**
@@ -49,6 +71,9 @@ public interface ICaseNotify {
 	 */
 	public NotifyWay getNotifyWay();
 
+	/**
+	 * @param notifyWay
+	 */
 	public void setNotifyWay(NotifyWay notifyWay);
 
 	/**
@@ -57,6 +82,9 @@ public interface ICaseNotify {
 	 */
 	public String getMobile();
 
+	/**
+	 * @param mobile
+	 */
 	public void setMobile(String mobile);
 
 	/**
@@ -65,6 +93,9 @@ public interface ICaseNotify {
 	 */
 	public String getMail();
 
+	/**
+	 * @param mail
+	 */
 	public void setMail(String mail);
 
 	/**
@@ -73,6 +104,9 @@ public interface ICaseNotify {
 	 */
 	public int getNotifyTimes();
 
+	/**
+	 * @param notifyTimes
+	 */
 	public void setNotifyTimes(int notifyTimes);
 
 	/**
@@ -81,6 +115,9 @@ public interface ICaseNotify {
 	 */
 	public int getSendTimes();
 
+	/**
+	 * @param sendTimes
+	 */
 	public void setSendTimes(int sendTimes);
 
 	/**
@@ -89,6 +126,9 @@ public interface ICaseNotify {
 	 */
 	public int getSendInterval();
 
+	/**
+	 * @param sendInterval
+	 */
 	public void setSendInterval(int sendInterval);
 
 
@@ -98,6 +138,9 @@ public interface ICaseNotify {
 	 */
 	public Date getSendTime();
 
+	/**
+	 * @param sendTime
+	 */
 	public void setSendTime(Date sendTime);
 
 
@@ -106,6 +149,9 @@ public interface ICaseNotify {
 	 * @return
 	 */
 	public List<IPerson> getBankPerson();
+	/**
+	 * @param list
+	 */
 	public void setBankPerson(List<IPerson> list);
 
 	/**
@@ -113,6 +159,9 @@ public interface ICaseNotify {
 	 * @return
 	 */
 	public List<IPerson> getSerPerson();
+	/**
+	 * @param list
+	 */
 	public void setSerPerson(List<IPerson> list);
 
 	/**
@@ -121,6 +170,9 @@ public interface ICaseNotify {
 	 */
 	public String getSendPerson();
 
+	/**
+	 * @param personName
+	 */
 	public void setSendPerson(String personName);
 
 }

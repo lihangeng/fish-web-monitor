@@ -44,6 +44,12 @@ public interface IAtmLogService {
 	 */
 	public List<IBackupRule> loadErrorLogs();
 	
+	/**
+	 * @param start
+	 * @param limit
+	 * @param filter
+	 * @return
+	 */
 	public IPageResult<IAtmLog> pageList(int start , int limit , IFilter filter);
 	
 	/**
@@ -57,7 +63,7 @@ public interface IAtmLogService {
 	 * 获取备份失败的记录，并分页
 	 * @param start
 	 * @param limit
-	 * @param Date
+	 * @param date
 	 * @param orgId
 	 * @return
 	 */
@@ -76,6 +82,7 @@ public interface IAtmLogService {
 	/**
 	 * 获取指定机构与日期成功的日志记录
 	 * @param date
+	 * @param orgId
 	 * @return
 	 */
 	public List<IAtmLog> loadDaySuccessLogs(String date,long orgId);

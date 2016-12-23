@@ -30,6 +30,10 @@ public enum StopType {
 			return text;
     }
 	 
+	/**
+	 * @param id
+	 * @return
+	 */
 	public static StopType getById(int id)
 	    {
 	        for (StopType each : StopType.values())

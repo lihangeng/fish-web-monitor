@@ -25,6 +25,10 @@ public enum TypeStatus {
 		return text;
     }
 
+	/**
+	 * @param id
+	 * @return
+	 */
 	public static TypeStatus getById(int id) {
 		for (TypeStatus each : TypeStatus.values()) {
 			if (each.getId() == id) {

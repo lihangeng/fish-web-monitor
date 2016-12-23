@@ -1,5 +1,9 @@
 package com.yihuacomputer.fish.api.atmlog;
 
+/**
+ * @author YiHua
+ *
+ */
 public interface IDayBackupLog {
 
 	/**
@@ -8,6 +12,9 @@ public interface IDayBackupLog {
 	 */
 	public String getDate();
 
+	/**
+	 * @param date
+	 */
 	public void setDate(String date);
 
 	/**
@@ -16,6 +23,9 @@ public interface IDayBackupLog {
 	 */
 	public DayBackupResult getResult();
 
+	/**
+	 * @param result
+	 */
 	public void setResult(DayBackupResult result);
 
 	/**
@@ -24,6 +34,9 @@ public interface IDayBackupLog {
 	 */
 	public String getDoTime();
 
+	/**
+	 * @param doTime
+	 */
 	public void setDoTime(String doTime);
 
 	/**
@@ -32,6 +45,9 @@ public interface IDayBackupLog {
 	 */
 	public String getEndTime();
 
+	/**
+	 * @param endTime
+	 */
 	public void setEndTime(String endTime);
 	
 	/**
@@ -40,6 +56,9 @@ public interface IDayBackupLog {
 	 */
 	public int getDeviceCount();
 
+	/**
+	 * @param deviceCount
+	 */
 	public void setDeviceCount(int deviceCount);
 
 }

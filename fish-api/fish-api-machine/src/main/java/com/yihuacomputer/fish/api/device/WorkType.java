@@ -31,6 +31,10 @@ public enum WorkType
 		return text;
     }
     
+    /**
+     * @param id
+     * @return
+     */
     public static WorkType getById(int id)
     {
         for (WorkType each : WorkType.values())

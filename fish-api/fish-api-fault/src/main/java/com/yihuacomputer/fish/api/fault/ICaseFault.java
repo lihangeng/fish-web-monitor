@@ -9,10 +9,20 @@ import com.yihuacomputer.fish.api.monitor.xfs.status.DeviceMod;
 import com.yihuacomputer.fish.api.person.IOrganization;
 import com.yihuacomputer.fish.api.person.IPerson;
 
+/**
+ * @author YiHua
+ *
+ */
 public interface ICaseFault {
 
+	/**
+	 * @return
+	 */
 	public long getId();
 
+	/**
+	 * @param id
+	 */
 	public void setId(long id);
 
 	/**
@@ -21,6 +31,9 @@ public interface ICaseFault {
 	 */
 	public String getTerminalId();
 
+	/**
+	 * @param terminalId
+	 */
 	public void setTerminalId(String terminalId);
 
 	/**
@@ -29,6 +42,9 @@ public interface ICaseFault {
 	 */
 	public RunStatus getAppStatus();
 
+	/**
+	 * @param appStatus
+	 */
 	public void setAppStatus(RunStatus appStatus);
 	/**
 	 * 故障模块
@@ -36,6 +52,9 @@ public interface ICaseFault {
 	 */
 	public DeviceMod getDevMod();
 
+	/**
+	 * @param devMod
+	 */
 	public void setDevMod(DeviceMod devMod);
 
 	/**
@@ -44,6 +63,9 @@ public interface ICaseFault {
 	 */
 	public IFaultClassify getFaultClassify();
 
+	/**
+	 * @param faultClassify
+	 */
 	public void setFaultClassify(IFaultClassify faultClassify);
 
 	/**
@@ -52,6 +74,9 @@ public interface ICaseFault {
 	 */
 	public String getFaultCode();
 
+	/**
+	 * @param faultCode
+	 */
 	public void setFaultCode(String faultCode);
 
 	/**
@@ -60,6 +85,9 @@ public interface ICaseFault {
 	 */
 	public String getVendorHwCode();
 
+	/**
+	 * @param vendorHwCode
+	 */
 	public void setVendorHwCode(String vendorHwCode);
 
 	/**
@@ -68,6 +96,9 @@ public interface ICaseFault {
 	 */
 	public Date getFaultTime();
 
+	/**
+	 * @param faultTime
+	 */
 	public void setFaultTime(Date faultTime);
 	
 	/**
@@ -79,6 +110,9 @@ public interface ICaseFault {
 	 */
 	public Long getFaultDate();
 	
+	/**
+	 * @param faultDate
+	 */
 	public void setFaultDate(Long faultDate);
 
 	/**
@@ -87,6 +121,9 @@ public interface ICaseFault {
 	 */
 	public Date getClosedTime();
 
+	/**
+	 * @param closedTime
+	 */
 	public void setClosedTime(Date closedTime);
 
 	/**
@@ -95,6 +132,9 @@ public interface ICaseFault {
 	 */
 	public double getDuration();
 
+	/**
+	 * @param duration
+	 */
 	public void setDuration(double duration);
 
 	/**
@@ -103,6 +143,9 @@ public interface ICaseFault {
 	 */
 	public FaultStatus getFaultStatus();
 
+	/**
+	 * @param faultStatus
+	 */
 	public void setFaultStatus(FaultStatus faultStatus);
 
 	/**
@@ -111,6 +154,9 @@ public interface ICaseFault {
 	 */
 	public int getUpgrade();
 
+	/**
+	 * @param upgrade
+	 */
 	public void setUpgrade(int upgrade);
 
 
@@ -144,5 +190,8 @@ public interface ICaseFault {
 	 * @return
 	 */
 	public void setCloseType(FaultCloseType closeType) ;
+	/**
+	 * @return
+	 */
 	public FaultCloseType getCloseType() ;
 }

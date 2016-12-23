@@ -26,6 +26,10 @@ public enum NetType {
 		return text;
     }
     
+    /**
+     * @param id
+     * @return
+     */
     public static NetType getById(int id) {
         for (NetType each : NetType.values()) {
             if (each.getId() == id) {

@@ -6,16 +6,35 @@ import com.yihuacomputer.fish.api.person.IOrganization;
 import com.yihuacomputer.fish.api.person.IPerson;
 import com.yihuacomputer.fish.api.person.IUser;
 
+/**
+ * @author YiHua
+ *
+ */
 public interface IOrganizationExpand {
 	
+	/**
+	 * @return
+	 */
 	public IOrganization getOrganization();
 	
+	/**
+	 * @return
+	 */
 	public IOrganizationExpand getParent();
 	
+	/**
+	 * @return
+	 */
 	public Iterable<IOrganizationExpand> listChildren();
 
+	/**
+	 * @return
+	 */
 	public Iterable<IPerson> listPerson();
 	
+	/**
+	 * @return
+	 */
 	public Iterable<IUser> listUser();
 
 	/**

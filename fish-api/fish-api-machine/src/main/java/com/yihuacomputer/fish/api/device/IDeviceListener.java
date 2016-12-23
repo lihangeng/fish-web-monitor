@@ -13,18 +13,39 @@ package com.yihuacomputer.fish.api.device;
  */
 public interface IDeviceListener {
 
+	/**
+	 * @return
+	 */
 	public String getListenerName();
 
+	/**
+	 * @param device
+	 */
 	public void beforeAdd(IDevice device);
 
+	/**
+	 * @param device
+	 */
 	public void afterAdd(IDevice device);
 
+	/**
+	 * @param device
+	 */
 	public void beforeUpdate(IDevice device);
 
+	/**
+	 * @param device
+	 */
 	public void afterUpdate(IDevice device);
 
+	/**
+	 * @param device
+	 */
 	public void beforeDelete(IDevice device);
 
+	/**
+	 * @param device
+	 */
 	public void afterDelete(IDevice device);
 
 }

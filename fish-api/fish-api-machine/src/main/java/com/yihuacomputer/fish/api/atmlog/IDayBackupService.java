@@ -3,6 +3,10 @@ package com.yihuacomputer.fish.api.atmlog;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
 
+/**
+ * @author YiHua
+ *
+ */
 public interface IDayBackupService {
 
 	/**
@@ -31,6 +35,12 @@ public interface IDayBackupService {
 	 */
 	public void update(IDayBackupLog dayBackupLog);
 	
+	/**
+	 * @param start
+	 * @param limit
+	 * @param filter
+	 * @return
+	 */
 	public IPageResult<IDayBackupLog> pageList(int start , int limit , IFilter filter);
 
 }

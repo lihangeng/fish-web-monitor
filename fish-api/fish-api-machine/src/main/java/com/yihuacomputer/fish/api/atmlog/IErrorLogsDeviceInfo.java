@@ -7,8 +7,14 @@ package com.yihuacomputer.fish.api.atmlog;
  */
 public interface IErrorLogsDeviceInfo {
 	
+	/**
+	 * @return
+	 */
 	public long getId();
 
+	/**
+	 * @param id
+	 */
 	public void setId(long id);
 	
 	/**
@@ -78,8 +84,8 @@ public interface IErrorLogsDeviceInfo {
 	 */
 	public String getAddress();
 	
-	/**
-	 * 设置设备地址
+	/**设置设备地址
+	 * @param address
 	 */
 	public void setAddress(String address);
 	

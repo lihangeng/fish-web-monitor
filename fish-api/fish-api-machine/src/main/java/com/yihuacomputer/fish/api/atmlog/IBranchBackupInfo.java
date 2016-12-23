@@ -1,9 +1,19 @@
 package com.yihuacomputer.fish.api.atmlog;
 
+/**
+ * @author YiHua
+ *
+ */
 public interface IBranchBackupInfo {
 
+	/**
+	 * @return
+	 */
 	public long getId();
 	
+	/**
+	 * @return
+	 */
 	public long setId();
 	
 	/**
@@ -12,6 +22,9 @@ public interface IBranchBackupInfo {
 	 */
 	public String getOrgId();
 	
+	/**
+	 * @param orgId
+	 */
 	public void setOrgId(String orgId);
 	
 	/**
@@ -20,6 +33,9 @@ public interface IBranchBackupInfo {
 	 */
 	public String getDate();
 
+	/**
+	 * @param date
+	 */
 	public void setDate(String date);
 
 	/**
@@ -28,6 +44,9 @@ public interface IBranchBackupInfo {
 	 */
 	public DayBackupResult getResult();
 
+	/**
+	 * @param result
+	 */
 	public void setResult(DayBackupResult result);
 
 	/**
@@ -36,6 +55,9 @@ public interface IBranchBackupInfo {
 	 */
 	public String getDoTime();
 
+	/**
+	 * @param doTime
+	 */
 	public void setDoTime(String doTime);
 
 	/**
@@ -44,6 +66,9 @@ public interface IBranchBackupInfo {
 	 */
 	public String getEndTime();
 
+	/**
+	 * @param endTime
+	 */
 	public void setEndTime(String endTime);
 	
 	/**
@@ -52,6 +77,9 @@ public interface IBranchBackupInfo {
 	 */
 	public int getDeviceCount();
 
+	/**
+	 * @param deviceCount
+	 */
 	public void setDeviceCount(int deviceCount);
 	
 	/**
@@ -60,6 +88,9 @@ public interface IBranchBackupInfo {
 	 */
 	public void setUploadRet(DayBackupResult uploadRet);
 	
+	/**
+	 * @return
+	 */
 	public DayBackupResult getUploadRet();
 
 }

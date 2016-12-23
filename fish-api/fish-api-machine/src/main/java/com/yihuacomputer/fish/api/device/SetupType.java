@@ -31,6 +31,10 @@ public enum SetupType
 		return text;
     }
     
+    /**
+     * @param id
+     * @return
+     */
     public static SetupType getById(int id)
     {
         for (SetupType each : SetupType.values())

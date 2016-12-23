@@ -3,6 +3,10 @@ package com.yihuacomputer.fish.api.device;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
 
+/**
+ * @author YiHua
+ *
+ */
 public interface IDeviceCheckService
 {
     /**
@@ -14,6 +18,8 @@ public interface IDeviceCheckService
      *            结束
      * @param filter
      *            过滤
+     * @param orgId
+     * @param userId
      * @return　分页信息　
      */
     public IPageResult<IDevice> pageCheck(int offset, int limit, IFilter filter, String orgId,long userId);
@@ -28,6 +34,7 @@ public interface IDeviceCheckService
      *            结束
      * @param filter
      *            过滤
+     * @param orgId           
      * @return　分页信息　
      */
     public IPageResult<IDevice> pageCheckYes(int offset, int limit, IFilter filter, String orgId);
@@ -42,6 +49,7 @@ public interface IDeviceCheckService
      *            结束
      * @param filter
      *            过滤
+     * @param orgId           
      * @return　分页信息　
      */
     public IPageResult<IDevice> pageCheckNo(int offset, int limit, IFilter filter, String orgId);

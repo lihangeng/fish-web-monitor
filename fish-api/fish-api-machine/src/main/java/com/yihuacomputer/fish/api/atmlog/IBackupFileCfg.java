@@ -1,5 +1,9 @@
 package com.yihuacomputer.fish.api.atmlog;
 
+/**
+ * @author YiHua
+ *
+ */
 public interface IBackupFileCfg {
 	
 	/**

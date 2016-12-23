@@ -6,6 +6,10 @@ import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.fish.api.monitor.xfs.status.DeviceMod;
 
+/**
+ * @author YiHua
+ *
+ */
 public interface ICaseFaultService {
 
 	/**
@@ -35,6 +39,7 @@ public interface ICaseFaultService {
 
 	/**
 	 * 得到当前设备
+	 * @param terminalId
 	 * @return
 	 */
 	public List<ICaseFault> listOpenCaseFault(String terminalId);
@@ -63,6 +68,7 @@ public interface ICaseFaultService {
 	 * @param offset
 	 * @param limit
 	 * @param filter
+	 * @param orgId
 	 * @return
 	 */
 	public IPageResult<ICaseFault> page(int offset, int limit, IFilter filter,long orgId);

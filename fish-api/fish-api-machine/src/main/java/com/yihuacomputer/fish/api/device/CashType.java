@@ -32,6 +32,10 @@ public enum CashType
 		return text;
     }
     
+    /**
+     * @param id
+     * @return
+     */
     public static CashType getById(int id)
     {
         for (CashType each : CashType.values())

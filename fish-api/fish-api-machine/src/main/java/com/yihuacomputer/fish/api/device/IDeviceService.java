@@ -7,6 +7,10 @@ import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.fish.api.atm.IAtmType;
 import com.yihuacomputer.fish.api.person.IOrganization;
 
+/**
+ * @author YiHua
+ *
+ */
 public interface IDeviceService
 {
     /**
@@ -160,7 +164,7 @@ public interface IDeviceService
     /**
      * 通过设备ip,获取设备对象
      *
-     * @param code
+     * @param ip
      *            设备号
      * @return　设备对象
      */
@@ -170,7 +174,7 @@ public interface IDeviceService
     /**
      * 通过设备虚拟柜员号,获取设备对象
      *
-     * @param code
+     * @param virtual
      *            设备号
      * @return　设备对象
      */

@@ -14,7 +14,21 @@ import com.yihuacomputer.fish.api.person.IUser;
  */
 public interface IComplexDeviceService {
 
+    /**
+     * @param start
+     * @param limit
+     * @param filter
+     * @param currentLoginUser
+     * @return
+     */
     IPageResult<IDevice> page(int start,int limit,IFilter filter,IUser currentLoginUser);
     
+    /**
+     * @param start
+     * @param limit
+     * @param filter
+     * @param currentLoginUserId
+     * @return
+     */
     IPageResult<IDevice> page(int start,int limit,IFilter filter,long currentLoginUserId);
 }
