@@ -11,28 +11,64 @@ import java.util.Date;
  * @date 2010-8-3
  */
 public interface IUserLog {
+    /**
+     * @param id
+     */
     public void setId(long id);
 
+    /**
+     * @return
+     */
     public long getId();
 
+    /**
+     * @param operContent
+     */
     public void setOperContent(String operContent);
 
+    /**
+     * @return
+     */
     public String getOperContent();
 
+    /**
+     * @param operTime
+     */
     public void setOperTime(Date operTime);
 
+    /**
+     * @return
+     */
     public Date getOperTime();
 
+    /**
+     * @return
+     */
     public String getOperName();
 
+    /**
+     * @param operName
+     */
     public void setOperName(String operName);
 
+    /**
+     * @return
+     */
     public String getOperCode();
 
+    /**
+     * @param operCode
+     */
     public void setOperCode(String operCode);
 
+    /**
+     * @return
+     */
     public String getOperResult();
 
+    /**
+     * @param operResult
+     */
     public void setOperResult(String operResult);
 
 	/**
@@ -40,6 +76,9 @@ public interface IUserLog {
 	 * @return
 	 */
 	public String getClientIP();
+	/**
+	 * @param clientIP
+	 */
 	public void setClientIP(String clientIP);
 
 	/**
@@ -47,6 +86,9 @@ public interface IUserLog {
 	 * @return
 	 */
 	public String getServerIp();
+	/**
+	 * @param serverIp
+	 */
 	public void setServerIp(String serverIp);
 	
 	/**
@@ -54,5 +96,8 @@ public interface IUserLog {
 	 * @return
 	 */
 	public long getTimes();
+	/**
+	 * @param times
+	 */
 	public void setTimes(long times);
 }

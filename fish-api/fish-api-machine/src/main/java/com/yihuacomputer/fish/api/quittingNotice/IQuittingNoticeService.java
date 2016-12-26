@@ -11,10 +11,21 @@ import com.yihuacomputer.common.IPageResult;
  */
 public interface IQuittingNoticeService
 {
+    /**
+     * @return
+     */
     public IQuittingNotice make();
 
+    /**
+     * @param id
+     * @return
+     */
     public IQuittingNotice get(long id);
 
+    /**
+     * @param deviceCode
+     * @return
+     */
     public IQuittingNotice get(String deviceCode);
     /**
      * 增加停机信息
@@ -23,8 +34,14 @@ public interface IQuittingNoticeService
      */
     public IQuittingNotice add(IQuittingNotice quittingNotice);
 
+    /**
+     * @param id
+     */
     public void remove(long id);
 
+    /**
+     * @param deviceCode
+     */
     public void remove(String deviceCode);
     /**
      * 更新停机信息
@@ -32,14 +49,40 @@ public interface IQuittingNoticeService
      */
     public void update(IQuittingNotice quittingNotice);
 
+    /**
+     * @return
+     */
     public Iterable<IQuittingNotice> list();
 
+    /**
+     * @param offset
+     * @param limit
+     * @param filter
+     * @return
+     */
     public IPageResult<IQuittingNotice> page(int offset, int limit,IFilter filter);
 
+    /**
+     * @param offset
+     * @param limit
+     * @param filter
+     * @param orgId
+     * @param flag
+     * @return
+     */
     public IPageResult<IQuittingNotice> page(int offset, int limit,IFilter filter,String orgId,boolean flag);
 
+    /**
+     * @param filter
+     * @return
+     */
     public Iterable<IQuittingNotice> list(IFilter filter);
     
+	/**
+	 * @param deviceCode
+	 * @param openTime
+	 * @return
+	 */
 	public IQuittingNotice get(String deviceCode, Date openTime);
 
 }

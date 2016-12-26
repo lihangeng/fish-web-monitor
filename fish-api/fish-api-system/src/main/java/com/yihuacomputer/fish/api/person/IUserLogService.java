@@ -45,8 +45,21 @@ public interface IUserLogService {
 	 */
 	public IPageResult<IUserLog> page(int offset, int limit);
 
+	/**
+	 * @param offset
+	 * @param limit
+	 * @param filter
+	 * @return
+	 */
 	public IPageResult<IUserLog> page(int offset, int limit, IFilter filter);
 
+	/**
+	 * @param offset
+	 * @param limit
+	 * @param filter
+	 * @param orgId
+	 * @return
+	 */
 	public IPageResult<IUserLog> page(int offset, int limit, IFilter filter, String orgId);
 
 	/**
@@ -57,6 +70,13 @@ public interface IUserLogService {
 	 */
 	public String deleteUserLogs(String currentTime);
 
+	/**
+	 * @param offset
+	 * @param limit
+	 * @param filter
+	 * @param orgFlag
+	 * @return
+	 */
 	public IPageResult<IUserLog> searchLog(int offset, int limit, IFilter filter, String orgFlag);
 
 }

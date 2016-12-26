@@ -80,8 +80,19 @@ public interface IPersonService {
      */
     public List<IPerson> list(IFilter filter);
 
+    /**
+     * @param offset
+     * @param limit
+     * @return
+     */
     public IPageResult<IPerson> page(int offset, int limit);
 
+    /**
+     * @param offset
+     * @param limit
+     * @param filter
+     * @return
+     */
     public IPageResult<IPerson> page(int offset, int limit, IFilter filter);
 
     /**
@@ -89,7 +100,7 @@ public interface IPersonService {
      * 
      * @param offset
      * @param limit
-     * @param filter
+     * @param org
      * @return
      */
     public IPageResult<IPerson> page(int offset, int limit, String org);
@@ -104,12 +115,22 @@ public interface IPersonService {
      */
     public IPageResult<IPerson> page(int offset, int limit, String org,IFilter filter);
 
+    /**
+     * @param offset
+     * @param limit
+     * @param filter
+     * @return
+     */
     public IPageResult<IPerson> pageUnlinkUser(int offset, int limit, IFilter filter);
 
+	/**
+	 * @return
+	 */
 	public IOrganizationService getOrgService();
 	
 	/**
 	 * 根据所属机构取人员
+	 * @param orgId
 	 * @return
 	 */
 	public List<IPerson> getByOrg(String orgId);

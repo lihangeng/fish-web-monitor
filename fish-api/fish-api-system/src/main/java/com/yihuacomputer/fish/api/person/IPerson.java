@@ -17,6 +17,9 @@ public interface IPerson {
      */
     public String getGuid();
 
+    /**
+     * @param guid
+     */
     public void setGuid(String guid);
 
     /**
@@ -26,6 +29,9 @@ public interface IPerson {
      */
     public String getCode();
 
+    /**
+     * @param code
+     */
     public void setCode(String code);
 
     /**
@@ -37,6 +43,7 @@ public interface IPerson {
 
     /**
      * 设置人员姓名
+     * @param name
      */
     public void setName(String name);
 
@@ -63,7 +70,7 @@ public interface IPerson {
 
     /**
      * 设置人员出生日期
-     *
+     * @param birthday
      */
     public void setBirthday(Date birthday);
 
@@ -76,6 +83,7 @@ public interface IPerson {
 
     /**
      * 设置人员手机号码
+     * @param mobile
      */
     public void setMobile(String mobile);
 
@@ -88,6 +96,7 @@ public interface IPerson {
 
     /**
      * 设置人员固定电话号码
+     * @param phone
      */
     public void setPhone(String phone);
 
@@ -100,11 +109,13 @@ public interface IPerson {
 
     /**
      * 设置人员电子邮件
+     * @param email
      */
     public void setEmail(String email);
 
     /**
      * 返回人员类型
+     * @return
      */
     public PersonType getType();
 
@@ -124,6 +135,7 @@ public interface IPerson {
 
     /**
      * 设置人员所属组织机构
+     * @param organization
      */
     public void setOrganization(IOrganization organization);
 
@@ -136,11 +148,13 @@ public interface IPerson {
 
     /**
      * 设置人员状态
+     * @param state
      */
     public void setState(PersonState state);
 
     /**
      * 取到工号
+     * @return
      */
     public String getJobNum();
 
@@ -153,6 +167,7 @@ public interface IPerson {
 
     /**
      * 取到备注
+     * @return
      */
     public String getRemark();
 

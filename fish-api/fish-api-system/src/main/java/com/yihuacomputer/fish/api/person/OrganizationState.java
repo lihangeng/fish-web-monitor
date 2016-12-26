@@ -1,6 +1,10 @@
 package com.yihuacomputer.fish.api.person;
 
 
+/**
+ * @author YiHua
+ *
+ */
 public enum OrganizationState {
 	/**
 	 * 新设立
@@ -39,6 +43,10 @@ public enum OrganizationState {
 		return text;
 	}
 
+	/**
+	 * @param id
+	 * @return
+	 */
 	public static OrganizationState getById(int id){
 		for(OrganizationState each : OrganizationState.values()){
 			if(each.getId() == id){

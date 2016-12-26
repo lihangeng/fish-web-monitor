@@ -1,5 +1,9 @@
 package com.yihuacomputer.fish.api.person;
 
+/**
+ * @author YiHua
+ *
+ */
 public enum Gender {
 
 	/**
@@ -28,6 +32,10 @@ public enum Gender {
 		return text;
 	}
 
+	/**
+	 * @param gender
+	 * @return
+	 */
 	public static Gender parsGender(String gender){
 		if("MALE".equals(gender)){
 			return Gender.MALE;

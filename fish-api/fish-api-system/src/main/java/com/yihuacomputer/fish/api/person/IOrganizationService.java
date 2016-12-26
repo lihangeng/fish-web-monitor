@@ -99,7 +99,7 @@ public interface IOrganizationService
 
     /**
      * 根据机构Id，返回机构下属列表
-     * @param org
+     * @param orgId
      * @return
      */
     public List<IOrganization> listSubOrg(String orgId);
@@ -167,13 +167,17 @@ public interface IOrganizationService
      */
     public void removeOrgListener(IOrganizationListener orgListener);
 
-    /**
-     * 根据机构id查找机构的所有上级机构id列表（包含本机构不包含根）
+    /**根据机构id查找机构的所有上级机构id列表（包含本机构不包含根）
+     * @param parentOrgId
+     * @param orgType
+     * @return
      */
     public List<Long> listParent(String parentOrgId,OrganizationType orgType);
 
     /**
      * 根据机构id得到机构下有用户权限的人员列表
+     * @param orgId
+     * @return
      */
     public List<IPerson> listByOrgId(String orgId);
     

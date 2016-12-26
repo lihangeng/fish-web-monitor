@@ -14,6 +14,9 @@ public interface IPersonJob {
      */
     public long getId();
 
+    /**
+     * @param id
+     */
     public void setId(long id);
 
     /**
@@ -23,6 +26,9 @@ public interface IPersonJob {
      */
     public String getCode();
 
+    /**
+     * @param code
+     */
     public void setCode(String code);
 
     /**
@@ -32,6 +38,9 @@ public interface IPersonJob {
      */
     public String getName();
 
+    /**
+     * @param name
+     */
     public void setName(String name);
 
     /**
@@ -41,5 +50,8 @@ public interface IPersonJob {
      */
     public String getRemark();
 
+    /**
+     * @param remark
+     */
     public void setRemark(String remark);
 }

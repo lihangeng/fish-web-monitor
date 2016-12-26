@@ -1,5 +1,9 @@
 package com.yihuacomputer.fish.api.person;
 
+/**
+ * @author YiHua
+ *
+ */
 public enum UserType {
 	/**
 	 * 超级用户
@@ -23,6 +27,10 @@ public enum UserType {
 		return text;
 	}
 	
+	/**
+	 * @param id
+	 * @return
+	 */
 	public static UserType getById(int id){
         for(UserType each : UserType.values()){
             if(each.getId() == id){

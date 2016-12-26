@@ -1,6 +1,10 @@
 package com.yihuacomputer.fish.api.person;
 
 
+/**
+ * @author YiHua
+ *
+ */
 public enum PersonType {
     /**
      * 管机员
@@ -27,6 +31,10 @@ public enum PersonType {
         return text;
     }
 
+    /**
+     * @param id
+     * @return
+     */
     public static PersonType getById(int id){
         for(PersonType each : PersonType.values()){
             if(each.getId() == id){

@@ -1,5 +1,9 @@
 package com.yihuacomputer.fish.api.person;
 
+/**
+ * @author YiHua
+ *
+ */
 public enum OrganizationType
 {
     /**
@@ -31,6 +35,10 @@ public enum OrganizationType
         return text;
     }
 
+    /**
+     * @param id
+     * @return
+     */
     public static OrganizationType getById(int id){
         for(OrganizationType each : OrganizationType.values()){
             if(each.getId() == id){

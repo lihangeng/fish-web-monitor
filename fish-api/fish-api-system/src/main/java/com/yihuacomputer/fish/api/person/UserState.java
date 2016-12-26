@@ -1,6 +1,10 @@
 package com.yihuacomputer.fish.api.person;
 
 
+/**
+ * @author YiHua
+ *
+ */
 public enum UserState {
 	/**
 	 * 待审核
@@ -48,6 +52,10 @@ public enum UserState {
 		return text;
 	}
 
+	/**
+	 * @param id
+	 * @return
+	 */
 	public static UserState getById(int id){
 		for(UserState each : UserState.values()){
 			if(each.getId() == id){

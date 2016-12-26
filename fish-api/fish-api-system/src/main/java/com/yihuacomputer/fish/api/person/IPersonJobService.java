@@ -31,7 +31,7 @@ public interface IPersonJobService {
     /**
      * 根据编号找到人员岗位信息
      *
-     * @param id
+     * @param code
      * @return
      */
     public IPersonJob get(String code);

@@ -12,38 +12,38 @@ package com.yihuacomputer.fish.api.permission;
 public interface IUserRole  {
 	/**
 	 * 返回ID
-	 * @param system
+	 * @return
 	 * 
 	 */
 	public Long getId() ;
 	/**
 	 * 设置ID
-	 * @param system
+	 * @param id
 	 * 
 	 */
 	public void setId(Long id) ;
 
 	/**
 	 * 返回userId
-	 * @param system
+	 * @return
 	 * 
 	 */
 	public Long getUserId() ;
 	/**
 	 * 设置userId
-	 * @param system
+	 * @param userId
 	 * 
 	 */
 	public void setUserId(Long userId);
 	/**
 	 * 返回roleCode
-	 * @param system
+	 * @return
 	 * 
 	 */
 	public String getRoleCode() ;
 	/**
 	 * 设置roleCode
-	 * @param system
+	 * @param roleCode
 	 * 
 	 */
 	public void setRoleCode(String roleCode) ;

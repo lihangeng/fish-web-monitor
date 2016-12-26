@@ -8,10 +8,20 @@ import java.util.Date;
 import com.yihuacomputer.fish.api.device.DevStatus;
 import com.yihuacomputer.fish.api.device.StopType;
 
+/**
+ * @author YiHua
+ *
+ */
 public interface IQuittingNotice
 {
+    /**
+     * @param id
+     */
     public void setId(long id);
 
+    /**
+     * @return
+     */
     public long getId();
     /**
      * 设备编号
@@ -19,6 +29,9 @@ public interface IQuittingNotice
      */
     public void setDeviceCode(String deviceCode);
 
+    /**
+     * @return
+     */
     public String getDeviceCode();
     /**
      * 停机时间
@@ -36,6 +49,9 @@ public interface IQuittingNotice
      */
     public void setOpenTime(Date openTime);
 
+    /**
+     * @return
+     */
     public Date getOpenTime();
     /**
      * 停机类型
@@ -43,6 +59,9 @@ public interface IQuittingNotice
      */
     public void setStopType(StopType stopType);
 
+    /**
+     * @return
+     */
     public StopType getStopType();
     /**
      * 停机原因
@@ -50,6 +69,9 @@ public interface IQuittingNotice
      */
     public void setStopReason(String stopReason);
 
+    /**
+     * @return
+     */
     public String getStopReason();
     /**
      * 设置时间
@@ -57,6 +79,9 @@ public interface IQuittingNotice
      */
     public void setSetTime(Date setTime);
 
+    /**
+     * @return
+     */
     public Date getSetTime();
     /**
      * 责任人
@@ -64,6 +89,9 @@ public interface IQuittingNotice
      */
     public void setResponsiblilityName(String responsibilityName);
 
+    /**
+     * @return
+     */
     public String getResponsibilityName();
 
     /**
@@ -72,6 +100,9 @@ public interface IQuittingNotice
      */
 	public DevStatus getDevStatus();
 
+	/**
+	 * @param devStatus
+	 */
 	public void setDevStatus(DevStatus devStatus);
 
 }

@@ -2,6 +2,10 @@ package com.yihuacomputer.fish.api.person;
 
 import java.io.Serializable;
 
+/**
+ * @author YiHua
+ *
+ */
 public class UserSession implements Serializable{
 
 	private static final long serialVersionUID = 1L;

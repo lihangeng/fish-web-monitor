@@ -55,6 +55,10 @@ public enum OrganizationLevel {
         return text;
     }
 
+    /**
+     * @param id
+     * @return
+     */
     public static OrganizationLevel getById(int id) {
         for (OrganizationLevel each : OrganizationLevel.values()) {
             if (each.getId() == id) {
@@ -63,6 +67,10 @@ public enum OrganizationLevel {
         }
         throw new IllegalArgumentException(String.format("id=[%d] error", id));
     }
+    /**
+     * @param text
+     * @return
+     */
     public static OrganizationLevel getByText(String text) {
         for (OrganizationLevel each : OrganizationLevel.values()) {
             if (each.getText().equals(text)) {

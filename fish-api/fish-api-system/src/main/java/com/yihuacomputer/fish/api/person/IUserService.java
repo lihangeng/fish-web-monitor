@@ -23,16 +23,22 @@ public interface IUserService {
 
     /**
      * 根据ID获得账户信息
+     * @param id
+     * @return
      */
     public IUser get(long id);
 
     /**
      * 根据编号获得账户信息
+     * @param code
+     * @return
      */
     public IUser get(String code);
 
     /**
      * 根据人员ID获得账户信息
+     * @param id
+     * @return
      */
     public IUser getByPerson(String id);
 
@@ -92,11 +98,20 @@ public interface IUserService {
 
     /**
      * 根据条件分页返回账户列表
+     * @param offset
+     * @param limit
+     * @param filter
+     * @return
      */
     public IPageResult<IUser> page(int offset, int limit, IFilter filter);
     
     /**
      * 根据条件深度查询某机构下的用户
+     * @param offset
+     * @param limit
+     * @param filter
+     * @param orgId
+     * @return
      */
     public IPageResult<IUser> page(int offset, int limit, IFilter filter ,String orgId);
     /**
@@ -117,12 +132,14 @@ public interface IUserService {
     
     /**
      * 判断该人员是否已经创建用户
-     * @param userCode
      * @param personGuid
      * @return
      */
     public boolean isExist(String personGuid);
     
+    /**
+     * @return
+     */
     public IPersonService getPersonService();
 
 }

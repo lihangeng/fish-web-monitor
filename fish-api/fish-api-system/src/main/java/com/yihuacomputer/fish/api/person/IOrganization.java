@@ -8,6 +8,9 @@ package com.yihuacomputer.fish.api.person;
  */
 public interface IOrganization extends Comparable<IOrganization> {
 
+	/**
+	 * @return
+	 */
 	public long getId();
     /**
      * 主键
@@ -16,6 +19,9 @@ public interface IOrganization extends Comparable<IOrganization> {
      */
     public String getGuid();
 
+    /**
+     * @param guid
+     */
     public void setGuid(String guid);
 
     /**
@@ -25,6 +31,9 @@ public interface IOrganization extends Comparable<IOrganization> {
      */
     public String getCode();
 
+    /**
+     * @param code
+     */
     public void setCode(String code);
 
     /**
@@ -36,11 +45,13 @@ public interface IOrganization extends Comparable<IOrganization> {
 
     /**
      * 设置机构名称
+     * @param name
      */
     public void setName(String name);
 
     /**
      * 返回机构所在地
+     * @return
      */
     public String getAddress();
 
@@ -54,12 +65,13 @@ public interface IOrganization extends Comparable<IOrganization> {
     /**
      * 返回邮政编号
      *
-     * @param zip
+     * @return
      */
     public String getZip();
 
     /**
      * 返回邮政编号
+     * @param zip
      */
     public void setZip(String zip);
 
@@ -72,13 +84,14 @@ public interface IOrganization extends Comparable<IOrganization> {
 
     /**
      * 设置机构备注
+     * @param description
      */
     public void setDescription(String description);
 
     /**
      * 设置机构管理员
      *
-     * @param manager
+     * @param person
      */
     public void setManager(IPerson person);
 
@@ -133,6 +146,7 @@ public interface IOrganization extends Comparable<IOrganization> {
 
     /**
      * 设置机构状态
+     * @param state
      */
     public void setOrganizationState(OrganizationState state);
 
@@ -153,7 +167,7 @@ public interface IOrganization extends Comparable<IOrganization> {
 
     /**
      * 根据类型列出其子机构：
-     *
+     * @param organizationType
      * @return
      */
     public Iterable<IOrganization> listChildren(
@@ -168,12 +182,24 @@ public interface IOrganization extends Comparable<IOrganization> {
      */
     public IOrganization addChild(String code, String name);
 
+    /**
+     * @return
+     */
     public String getOrgFlag();
 
+    /**
+     * @param orgFlag
+     */
     public void setOrgFlag(String orgFlag);
 
+    /**
+     * @return
+     */
     public IOrganization getServiceObject();
 
+    /**
+     * @param serviceObject
+     */
     public void setServiceObject(IOrganization serviceObject);
 
     /**
@@ -181,6 +207,9 @@ public interface IOrganization extends Comparable<IOrganization> {
      * @param orgLevel
      */
     public void setOrganizationLevel(OrganizationLevel orgLevel);
+    /**
+     * @return
+     */
     public OrganizationLevel getOrganizationLevel();
 
     /**
@@ -192,59 +221,68 @@ public interface IOrganization extends Comparable<IOrganization> {
 
     /**
      * 设置银联地区标识码
+     * @param areaFlag
      */
     public void setAreaFlag(String areaFlag);
     /**
      * 设置是否需要短信群发的菜单
+     * @return
      */
     public String getIsNoteSend();
     /**
      * 返回是否需要短信群发的菜单
+     * @param isNoteSend
      */
     public void setIsNoteSend(String isNoteSend);
     
     /**
      * 返回审批建议
      *
-     * @param suggest
+     * @return
      */
     public String getSuggest();
 
     /**
      * 返回审批建议
+     * @param
      */
     public void setSuggest(String suggest);
     
     /**
      * 返回法人编号
-     *
-     * @param LegalPerCode
+     * @return
+     * 
      */
     public String getLegalPerCode();
 
     /**
      * 返回法人编号
+     * @param legalPerCode
      */
     public void setLegalPerCode(String legalPerCode);
 
     
     /**
      * 返回机构申请提交人
-     *
-     * @param applicationPer
+     * @return
+     * 
      */
     public String getApplicationPer();
 
     /**
      * 返回机构申请提交人
+     * @param applicationPer
      */
     public void setApplicationPer(String applicationPer);
     /**
 	 * 是否为叶子机构（默认为叶子机构）;update之前判断上一级机构更改后是否为叶子机构；update之后判断上一级机构是否为叶子机构
+	 * @return
 	 */
 	public boolean isLeaf();
 	/**
 	 * 是否为叶子机构（默认为叶子机构）;update之前判断上一级机构更改后是否为叶子机构；update之后判断上一级机构是否为叶子机构
+	 * @param leaf
+	 * @return
 	 */
 	public void setLeaf(boolean leaf);
 }

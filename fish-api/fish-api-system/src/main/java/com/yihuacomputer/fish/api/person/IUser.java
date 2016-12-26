@@ -5,42 +5,100 @@ import java.util.List;
 
 import com.yihuacomputer.fish.api.permission.IRole;
 
+/**
+ * @author YiHua
+ *
+ */
 public interface IUser {
 
+	/**
+	 * @param id
+	 */
 	public void setId(long id);
 
+	/**
+	 * @return
+	 */
 	public long getId();
 
+	/**
+	 * @return
+	 */
 	public String getCode();
 
+	/**
+	 * @param code
+	 */
 	public void setCode(String code);
 
+	/**
+	 * @return
+	 */
 	public IOrganization getOrganization();
 
+	/**
+	 * @return
+	 */
 	public IPerson getPerson();
 
+	/**
+	 * @param person
+	 */
 	public void setPerson(IPerson person);
 
+	/**
+	 * @return
+	 */
 	public UserState getState();
 
+	/**
+	 * @param state
+	 */
 	public void setState(UserState state);
 
+	/**
+	 * @return
+	 */
 	public String getName();
 
+	/**
+	 * @return
+	 */
 	public String getMobile();
 
+	/**
+	 * @return
+	 */
 	public String getPhone();
 
+	/**
+	 * @return
+	 */
 	public String getEmail();
 
+	/**
+	 * @return
+	 */
 	public String getPassword();
 
+	/**
+	 * @return
+	 */
 	public Date getAccessTime();
 
+	/**
+	 * @param accessTime
+	 */
 	public void setAccessTime(Date accessTime);
 
+	/**
+	 * @return
+	 */
 	public String getCheckRemark();
 
+	/**
+	 * @param checkRemark
+	 */
 	public void setCheckRemark(String checkRemark);
 
 	/**
@@ -53,7 +111,7 @@ public interface IUser {
 	/**
 	 * 设置密码的明文.
 	 *
-	 * @param plaintext
+	 * @param plainText
 	 *            明文
 	 */
 	public void setPlainText(String plainText);
@@ -92,7 +150,7 @@ public interface IUser {
 	/**
 	 * 获取当前用户角色
 	 *
-	 * @param roles
+	 * @return
 	 */
 	public List<IRole> getRoles();
 	

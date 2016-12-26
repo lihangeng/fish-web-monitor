@@ -1,6 +1,10 @@
 package com.yihuacomputer.fish.api.permission;
 
 
+/**
+ * @author YiHua
+ *
+ */
 public enum RoleType {
 
 	/**
@@ -39,6 +43,10 @@ public enum RoleType {
 		return text;
 	}
 
+	/**
+	 * @param type
+	 * @return
+	 */
 	public boolean isEntityRole(RoleType type){
 		if(type.getId() == 1 || type.getId() == 3){
 			return true;
@@ -46,6 +54,10 @@ public enum RoleType {
 		return false;
 	}
 	
+	/**
+	 * @param type
+	 * @return
+	 */
 	public boolean isInnerRole(RoleType type){
 		if(type.getId() == 4){
 			return true;
@@ -53,6 +65,10 @@ public enum RoleType {
 		return false;
 	}
 	
+	/**
+	 * @param id
+	 * @return
+	 */
 	public static RoleType getById(int id){
 		for(RoleType each : RoleType.values()){
 			if(each.getId() == id){
@@ -62,6 +78,10 @@ public enum RoleType {
 		throw new IllegalArgumentException(String.format("id=[%d] error", id));
 	}
 	
+	/**
+	 * @param id
+	 * @return
+	 */
 	public static RoleType getById(String id){
 		return getById(Integer.parseInt(id));
 	}

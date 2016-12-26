@@ -1,5 +1,9 @@
 package com.yihuacomputer.fish.api.person;
 
+/**
+ * @author YiHua
+ *
+ */
 public enum PersonState {
     /**
      * 其他
@@ -35,6 +39,10 @@ public enum PersonState {
         return text;
     }
 
+    /**
+     * @param id
+     * @return
+     */
     public static PersonState getById(int id) {
         for (PersonState each : PersonState.values()) {
             if (each.getId() == id) {

@@ -12,12 +12,24 @@ package com.yihuacomputer.fish.api.person;
 public interface IOrganizationListener {
 
 
+	/**
+	 * @param organization
+	 */
 	public void beforeAdd(IOrganization organization);
 
+	/**
+	 * @param organization
+	 */
 	public void afterAdd(IOrganization organization);
 
+	/**
+	 * @param organization
+	 */
 	public void beforeDelete(IOrganization organization);
 
+	/**
+	 * @param organization
+	 */
 	public void afterDelete(IOrganization organization);
 
 }
