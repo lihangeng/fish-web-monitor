@@ -143,7 +143,7 @@ public class Advert implements IAdvert, Serializable {
 	}
 
 	/**
-	 * 
+	 * 初始化广告创建时间
 	 */
 	public Advert() {
         this.createdTime = new Date();

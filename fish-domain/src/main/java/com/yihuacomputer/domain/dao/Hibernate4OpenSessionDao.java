@@ -360,6 +360,12 @@ public class Hibernate4OpenSessionDao implements IGenericDao {
 		return query;
 	}
 
+	/**
+	 * @param filter
+	 * @param outerHql
+	 * @param values
+	 * @return
+	 */
 	public Query createQueryByFilter(IFilter filter, String outerHql, Object... values) {
 		FilterHql21 fh = new FilterHql21(filter);
 

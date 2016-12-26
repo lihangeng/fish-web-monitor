@@ -39,8 +39,19 @@ public interface IWorkUnit {
 	 */
 	public boolean hasDevice(String deviceId);
 
+	/**
+	 * @param offset
+	 * @param limit
+	 * @return
+	 */
 	public PageResult<IDeviceReport> page(int offset, int limit);
 
+	/**
+	 * @param offset
+	 * @param limit
+	 * @param filter
+	 * @return
+	 */
 	public PageResult<IDeviceReport> page(int offset, int limit, IFilter filter);
 
 
@@ -68,6 +79,7 @@ public interface IWorkUnit {
 	 * 加工状态数据
 	 * @param deviceId
 	 * @param deviceReport
+	 * @param messageSourceRef
 	 */
 	public void fireMonitorUser(String deviceId,IDeviceReport deviceReport,MessageSource messageSourceRef);
 
@@ -89,6 +101,7 @@ public interface IWorkUnit {
 	 * 加工设备签到注册信息
 	 * @param deviceId
 	 * @param deviceReport
+	 * @param messageSourceRef
 	 */
 	public void fireBootSign(String deviceId,IDeviceReport deviceReport,MessageSource messageSourceRef);
 

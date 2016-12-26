@@ -47,7 +47,7 @@ public interface IMonitorListener {
 	public void removeDevice(ServerSession userSession, IDeviceReport device);
 
 	/**增加监控数量.
-	 * @param userSession
+	 * @param userSersion
 	 * @param total
 	 * @return
 	 */

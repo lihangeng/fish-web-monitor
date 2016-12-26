@@ -187,7 +187,7 @@ public interface ICaseFault {
 
 	/**
 	 * 故障关闭方式
-	 * @return
+	 * @param closeType
 	 */
 	public void setCloseType(FaultCloseType closeType) ;
 	/**

@@ -21,6 +21,9 @@ public interface IMonitorUser {
 	 * @return
 	 */
 	public String getUserId();
+	/**
+	 * @param userId
+	 */
 	public void setUserId(String userId);
 
 	/**
@@ -143,7 +146,7 @@ public interface IMonitorUser {
 	/**
 	 * 设置吞卡监控条件
 	 *
-	 * @param transFilter
+	 * @param retaincardFilter
 	 */
 	public void setRetaincardFilter(IRetaincardFilter retaincardFilter);
 
@@ -156,7 +159,7 @@ public interface IMonitorUser {
 
 	/**
 	 * 设置模块监控条件
-	 * @return
+	 * @param modStatusFilter
 	 */
 	public void setModStatusFilter(IClassifyModStatusFilter modStatusFilter);
 

@@ -22,6 +22,9 @@ import com.yihuacomputer.fish.api.monitor.xfs.status.IXfsStatus;
  */
 public interface IDeviceReport {
 
+	/**
+	 * @return
+	 */
 	public String getDeviceId();
 
 	/**
@@ -59,8 +62,16 @@ public interface IDeviceReport {
 	 */
 	public IRunInfo getRunInfo();
 
+	/**
+	 * @return
+	 */
 	public List<IProcess> listSchindlerAlarm();
 
+	/**
+	 * @param start
+	 * @param limit
+	 * @return
+	 */
 	public List<ISoftwareFailure> listSoftwareFailure(int start, int limit);
 
 	/**
@@ -101,8 +112,14 @@ public interface IDeviceReport {
 	 */
 	public IRetaincard getRetaincard();
 	
+	/**
+	 * @return
+	 */
 	public List<CounterFeitMoneyForms> getForms();
 	
+	/**
+	 * @param forms
+	 */
 	public void setCounterFeitMoneyForms(List<CounterFeitMoneyForms> forms);
 	 
 }

@@ -1,9 +1,19 @@
 package com.yihuacomputer.fish.api.monitor.report;
 
+/**
+ * @author YiHua
+ *
+ */
 public interface IRuntimeInfo {
 	
+	/**
+	 * @return
+	 */
 	public String getTermId();
 	
+	/**
+	 * @param termId
+	 */
 	public void setTermId(String termId);
 	/**
 	 * 获取信息报告日期
@@ -37,7 +47,7 @@ public interface IRuntimeInfo {
 	
 	/**
 	 *	接收拒钞张数
-	 * @param refused_note
+	 * @param refusedNote
 	 */
 	public void setRefusedNote(long refusedNote);
 	
@@ -49,7 +59,7 @@ public interface IRuntimeInfo {
 	
 	/**
 	 * 设置存取现金张数
-	 * @param cash_note
+	 * @param cashNote
 	 */
 	public void setCashNote(long cashNote);
 	
@@ -61,7 +71,7 @@ public interface IRuntimeInfo {
 	
 	/**
 	 * 设置存取交易笔数
-	 * @param cash_trans
+	 * @param cashTrans
 	 */
 	public void setCashTrans(long cashTrans);
 	
@@ -73,7 +83,7 @@ public interface IRuntimeInfo {
 	
 	/**
 	 * 设置卡钞交易笔数
-	 * @param cash_error
+	 * @param cashError
 	 */
 	public void setCashError(long cashError);
 	
@@ -85,7 +95,7 @@ public interface IRuntimeInfo {
 	
 	/**
 	 * 设置非现金交易笔数
-	 * @param other_trans
+	 * @param otherTrans
 	 */
 	public void setOtherTrans(long otherTrans);
 	

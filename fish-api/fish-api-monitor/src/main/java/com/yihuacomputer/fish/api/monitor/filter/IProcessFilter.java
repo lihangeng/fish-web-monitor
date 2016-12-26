@@ -9,10 +9,20 @@ import java.util.List;
  */
 public interface IProcessFilter {
 	
+	/**
+	 * @return
+	 */
 	public List<Long> getSubOrg();
 
+	/**
+	 * @param subOrg
+	 */
 	public void setSubOrg(List<Long> subOrg);
 	
+	/**
+	 * @param orgId
+	 * @return
+	 */
 	public boolean filterProcess(String orgId);
 	
 }

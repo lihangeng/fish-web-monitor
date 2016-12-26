@@ -5,6 +5,10 @@ import java.util.List;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.monitor.business.IRetaincard;
 
+/**
+ * @author YiHua
+ *
+ */
 public interface IRetaincardFilter {
 
 	/**
@@ -42,6 +46,9 @@ public interface IRetaincardFilter {
 	 */
 	public List<Long> getSubOrg();
 
+	/**
+	 * @param subOrg
+	 */
 	public void setSubOrg(List<Long> subOrg);
 
 	/**
@@ -53,8 +60,14 @@ public interface IRetaincardFilter {
 	 */
 	public boolean filterRetaincard(IDevice device, IRetaincard trans);
 
+	/**
+	 * @return
+	 */
 	public int getCardRetainNum();
 
+	/**
+	 * @param cardRetainNum
+	 */
 	public void setCardRetainNum(int cardRetainNum);
 
 }

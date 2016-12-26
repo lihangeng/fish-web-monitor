@@ -69,7 +69,7 @@ public interface IAuthorizationLog {
 	
 	/**
 	 * 设置操作类型type
-	 * @param 
+	 * @param tpye
 	 */
 	public void setType(String tpye);
 	/**

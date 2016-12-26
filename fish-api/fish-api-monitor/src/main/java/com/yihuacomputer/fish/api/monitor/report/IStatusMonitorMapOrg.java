@@ -1,5 +1,9 @@
 package com.yihuacomputer.fish.api.monitor.report;
 
+/**
+ * @author YiHua
+ *
+ */
 public interface IStatusMonitorMapOrg {
     /**
      * 获取纬度

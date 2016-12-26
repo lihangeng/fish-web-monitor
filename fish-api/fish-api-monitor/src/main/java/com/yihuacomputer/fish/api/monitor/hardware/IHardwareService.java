@@ -1,5 +1,9 @@
 package com.yihuacomputer.fish.api.monitor.hardware;
 
+/**
+ * @author YiHua
+ *
+ */
 public interface IHardwareService {
 	/**
 	 *  初始化设备硬件信息

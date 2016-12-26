@@ -64,7 +64,7 @@ public interface IAtmModuleService {
 	public Map<String,IAtmModule> getModules();
 
 	/**
-	 * 
+	 * 初始化
 	 */
 	public void init();
 }

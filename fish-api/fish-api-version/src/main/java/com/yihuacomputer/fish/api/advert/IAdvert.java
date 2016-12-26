@@ -177,6 +177,7 @@ public interface IAdvert {
 
     /**
      * 广告归属机构
+     * @return
      */
     public long getCreateOrgId();
 
@@ -187,6 +188,7 @@ public interface IAdvert {
 
     /**
      * 广告复核状态
+     * @return
      */
     public CheckStatus getCheckStatus();
 
@@ -197,6 +199,7 @@ public interface IAdvert {
 
     /**
      * 广告视频标识
+     * @return
      */
     public long getVideoFlag();
 

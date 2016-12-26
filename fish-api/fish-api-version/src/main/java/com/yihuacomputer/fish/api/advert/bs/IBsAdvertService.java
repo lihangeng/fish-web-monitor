@@ -75,6 +75,7 @@ public interface IBsAdvertService {
 	 * 根据机构和名称查找广告信息
 	 * @param orgId
 	 * @param advertName
+	 * @param advertId
 	 * @return
 	 */
 	public List<IBsAdvert> getBsAdvertByNameAndOrgId(long orgId,String advertName,long advertId);

@@ -360,6 +360,12 @@ public class Hibernate4Dao implements IGenericDao {
 		return query;
 	}
 
+	/**
+	 * @param filter
+	 * @param outerHql
+	 * @param values
+	 * @return
+	 */
 	public Query createQueryByFilter(IFilter filter, String outerHql, Object... values) {
 		FilterHql2 fh = new FilterHql2(filter);
 

@@ -140,8 +140,9 @@ public class GenericHibernateDao extends HibernateDaoSupport implements IGeneric
 		return getSession().createCriteria(entityClass,alias).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
 	}
 
-	/**
-	 * 取得对象的主键名.
+	/**取得对象的主键名.
+	 * @param entityClass
+	 * @return
 	 */
 	public <T> String getIdName(Class<T> entityClass) {
 		ClassMetadata meta = getSessionFactory().getClassMetadata(entityClass);
@@ -293,6 +294,12 @@ public class GenericHibernateDao extends HibernateDaoSupport implements IGeneric
 		return (T)this.createQueryByFilter(filter,countHql, values).uniqueResult();
 	}
 
+	/**
+	 * @param filter
+	 * @param outerHql
+	 * @param values
+	 * @return
+	 */
 	public Query createQueryByFilter(IFilter filter,String outerHql, Object... values){
 		FilterHql2 fh = new FilterHql2(filter);
 		String hql = outerHql + fh.getHql();
