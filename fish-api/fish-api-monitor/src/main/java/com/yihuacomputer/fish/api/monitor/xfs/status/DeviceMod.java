@@ -1,5 +1,9 @@
 package com.yihuacomputer.fish.api.monitor.xfs.status;
 
+/**
+ * @author YiHua
+ *
+ */
 public enum DeviceMod {
 	/**
 	 * 读卡器

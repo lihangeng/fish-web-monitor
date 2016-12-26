@@ -17,8 +17,14 @@ public interface IStatusPbk {
 	 */
 	public String getCode();
 	
+	/**
+	 * @param jpr
+	 */
 	public void setStatus(DeviceStatus jpr);
 	
+	/**
+	 * @param code
+	 */
 	public void setCode(String code);
 	
 	/**
@@ -27,6 +33,9 @@ public interface IStatusPbk {
 	 */
 	public String getHwCode();
 	
+	/**
+	 * @param hwCode
+	 */
 	public void setHwCode(String hwCode);
 
 }

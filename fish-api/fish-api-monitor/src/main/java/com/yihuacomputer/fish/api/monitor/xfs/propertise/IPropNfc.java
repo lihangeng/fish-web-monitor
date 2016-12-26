@@ -7,6 +7,12 @@ package com.yihuacomputer.fish.api.monitor.xfs.propertise;
  */
 public interface IPropNfc {
 
+	/**
+	 * @return
+	 */
 	public DeviceProp getPropNfc();
+	/**
+	 * @param nfc
+	 */
 	public void setPropNfc(DeviceProp nfc);
 }

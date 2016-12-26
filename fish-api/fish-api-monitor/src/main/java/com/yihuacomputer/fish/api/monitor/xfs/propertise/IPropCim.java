@@ -5,6 +5,12 @@ package com.yihuacomputer.fish.api.monitor.xfs.propertise;
  *
  */
 public interface IPropCim {
+	/**
+	 * @return
+	 */
 	public DeviceProp getPropCim();
+	/**
+	 * @param cim
+	 */
 	public void setPropCim(DeviceProp cim);
 }

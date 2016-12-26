@@ -20,8 +20,14 @@ public interface IStatusSiu {
 	 */
 	public String getCode();
 
+	/**
+	 * @param siu
+	 */
 	public void setStatus(DeviceStatus siu);
 
+	/**
+	 * @param code
+	 */
 	public void setCode(String code);
 	
 	/**
@@ -30,5 +36,8 @@ public interface IStatusSiu {
 	 */
 	public String getHwCode();
 	
+	/**
+	 * @param hwCode
+	 */
 	public void setHwCode(String hwCode);
 }

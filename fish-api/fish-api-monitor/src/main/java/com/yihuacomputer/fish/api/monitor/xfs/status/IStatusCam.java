@@ -1,5 +1,9 @@
 package com.yihuacomputer.fish.api.monitor.xfs.status;
 
+/**
+ * @author YiHua
+ *
+ */
 public interface IStatusCam {
 	/**
 	 * 获取硬件主状态
@@ -13,9 +17,15 @@ public interface IStatusCam {
 	 */
    public String getCode();
    
+   /**
+	 * @param cam
+	 */
    public void setStatus(DeviceStatus cam);
    
-   public void setCode(String code);
+   /**
+	 * @param code
+	 */
+	public void setCode(String code);
 
 	/**
 	 * 获取硬件故障码
@@ -23,5 +33,8 @@ public interface IStatusCam {
 	 */
 	public String getHwCode();
 	
+	/**
+	 * @param hwCode
+	 */
 	public void setHwCode(String hwCode);
 }

@@ -20,8 +20,14 @@ public interface IStatusTtu {
 	 */
 	public String getCode();
 
+	/**
+	 * @param ttu
+	 */
 	public void setStatus(DeviceStatus ttu);
 
+	/**
+	 * @param code
+	 */
 	public void setCode(String code);
 	
 	/**
@@ -30,5 +36,8 @@ public interface IStatusTtu {
 	 */
 	public String getHwCode();
 	
+	/**
+	 * @param hwCode
+	 */
 	public void setHwCode(String hwCode);
 }

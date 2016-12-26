@@ -1,5 +1,9 @@
 package com.yihuacomputer.fish.api.monitor.volume;
 
+/**
+ * @author YiHua
+ *
+ */
 public interface IDayTradingVolumeExtractDataService {
 
 	/**

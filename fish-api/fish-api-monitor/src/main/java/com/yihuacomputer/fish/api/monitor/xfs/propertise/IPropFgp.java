@@ -7,6 +7,12 @@ package com.yihuacomputer.fish.api.monitor.xfs.propertise;
  */
 public interface IPropFgp {
 
+	/**
+	 * @return
+	 */
 	public DeviceProp getPropFgp();
+	/**
+	 * @param fgp
+	 */
 	public void setPropFgp(DeviceProp fgp);
 }

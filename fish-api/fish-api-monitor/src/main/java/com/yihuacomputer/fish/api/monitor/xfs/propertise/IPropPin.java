@@ -5,6 +5,12 @@ package com.yihuacomputer.fish.api.monitor.xfs.propertise;
  *
  */
 public interface IPropPin {
+	/**
+	 * @return
+	 */
 	public DeviceProp getPropPin();
+	/**
+	 * @param pin
+	 */
 	public void setPropPin(DeviceProp pin);
 }

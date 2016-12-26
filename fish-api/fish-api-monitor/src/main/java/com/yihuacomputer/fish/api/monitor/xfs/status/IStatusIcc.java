@@ -25,10 +25,19 @@ public interface IStatusIcc {
 	 */
 	public int getCards();
 
+	/**
+	 * @param idc
+	 */
 	public void setStatus(DeviceStatus idc);
 
+	/**
+	 * @param code
+	 */
 	public void setCode(String code);
 
+	/**
+	 * @param cards
+	 */
 	public void setCards(int cards);
 
 	/**
@@ -37,10 +46,19 @@ public interface IStatusIcc {
 	 */
 	public String getHwCode();
 
+	/**
+	 * @param hwCode
+	 */
 	public void setHwCode(String hwCode);
 
+	/**
+	 * @param currCards
+	 */
 	public void setIccCurrCards(int currCards);
 
+	/**
+	 * @return
+	 */
 	public int getIccCurrCards() ;
 
 }

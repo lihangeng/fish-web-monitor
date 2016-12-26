@@ -7,7 +7,13 @@ package com.yihuacomputer.fish.api.monitor.volume;
  */
 public interface IDayTradingVolume {
 
+	/**
+	 * @return
+	 */
 	public long getId();
+	/**
+	 * @param id
+	 */
 	public void setId(long id);
 	/**
 	 * 设备号

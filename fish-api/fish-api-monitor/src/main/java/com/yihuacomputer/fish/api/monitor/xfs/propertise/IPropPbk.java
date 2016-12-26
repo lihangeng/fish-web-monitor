@@ -5,6 +5,12 @@ package com.yihuacomputer.fish.api.monitor.xfs.propertise;
  *
  */
 public interface IPropPbk {
+	/**
+	 * @return
+	 */
 	public DeviceProp getPropPbk();
+	/**
+	 * @param pbk
+	 */
 	public void setPropPbk(DeviceProp pbk);
 }

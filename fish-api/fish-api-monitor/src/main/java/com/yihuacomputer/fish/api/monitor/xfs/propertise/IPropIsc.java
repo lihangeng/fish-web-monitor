@@ -7,6 +7,12 @@ package com.yihuacomputer.fish.api.monitor.xfs.propertise;
  */
 public interface IPropIsc {
 
+	/**
+	 * @return
+	 */
 	public DeviceProp getPropIsc();
+	/**
+	 * @param isc
+	 */
 	public void setPropIsc(DeviceProp isc);
 }

@@ -18,9 +18,15 @@ public interface IStatusCdm {
 	 */
    public String getCode();
    
-   public void setStatus(DeviceStatus cdm);
+   /**
+	 * @param cdm
+	 */
+	public void setStatus(DeviceStatus cdm);
    
-   public void setCode(String code);
+   /**
+	 * @param code
+	 */
+	public void setCode(String code);
 
 	/**
 	 * 获取硬件故障码
@@ -28,5 +34,8 @@ public interface IStatusCdm {
 	 */
 	public String getHwCode();
 	
+	/**
+	 * @param hwCode
+	 */
 	public void setHwCode(String hwCode);
 }

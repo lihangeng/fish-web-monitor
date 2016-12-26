@@ -7,6 +7,10 @@ import java.util.List;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
 
+/**
+ * @author YiHua
+ *
+ */
 public interface IXfsChartService {
 
 	/**
@@ -60,6 +64,8 @@ public interface IXfsChartService {
 	public List<Object> getDeviceNetRunInfo(IFilter filter);
 	/**
 	 * 根据过滤条件判断要显示的设备信息
+	 * @param start
+	 * @param limit
 	 * @param filter
 	 * @return
 	 */

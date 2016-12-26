@@ -5,6 +5,12 @@ package com.yihuacomputer.fish.api.monitor.xfs.propertise;
  *
  */
 public interface IPropTtu {
+	/**
+	 * @return
+	 */
 	public DeviceProp getPropTtu();
+	/**
+	 * @param ttu
+	 */
 	public void setPropTtu(DeviceProp ttu);
 }

@@ -7,8 +7,14 @@ package com.yihuacomputer.fish.api.monitor.volume;
  * 存入的统计月为201607
  */
 public interface IMonthDailyTradingVolume {
+	/**
+	 * @return
+	 */
 	public long getId();
 
+	/**
+	 * @param id
+	 */
 	public void setId(long id);
 
 	/**
@@ -41,6 +47,9 @@ public interface IMonthDailyTradingVolume {
 	 */
 	public String getTerminalId();
 
+	/**
+	 * @param terminalId
+	 */
 	public void setTerminalId(String terminalId);
 
 	/**

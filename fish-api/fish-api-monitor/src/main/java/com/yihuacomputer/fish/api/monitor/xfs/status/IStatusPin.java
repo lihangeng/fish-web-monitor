@@ -20,8 +20,14 @@ public interface IStatusPin {
 	 */
 	public String getCode();
 
+	/**
+	 * @param pin
+	 */
 	public void setStatus(DeviceStatus pin);
 
+	/**
+	 * @param code
+	 */
 	public void setCode(String code);
 	/**
 	 * 获取硬件故障码
@@ -29,5 +35,8 @@ public interface IStatusPin {
 	 */
 	public String getHwCode();
 	
+	/**
+	 * @param hwCode
+	 */
 	public void setHwCode(String hwCode);
 }

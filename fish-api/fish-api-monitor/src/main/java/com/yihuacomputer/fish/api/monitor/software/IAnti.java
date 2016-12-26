@@ -13,5 +13,8 @@ public interface IAnti {
 	 */
 	public String getAntiVer();
 
+	/**病毒软件名称
+	 * @return
+	 */
 	public String getAntiName();
 }

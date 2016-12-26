@@ -1,5 +1,9 @@
 package com.yihuacomputer.fish.api.monitor.xfs.status;
 
+/**
+ * @author YiHua
+ *
+ */
 public interface IStatusBcr {
 	/**
 	 * 获取硬件主状态
@@ -13,9 +17,15 @@ public interface IStatusBcr {
 	 */
    public String getCode();
    
+   /**
+    * @param bcr
+    */
    public void setStatus(DeviceStatus bcr);
    
-   public void setCode(String code);
+   /**
+	 * @param code
+	 */
+	public void setCode(String code);
 
 	/**
 	 * 获取硬件故障码
@@ -23,5 +33,8 @@ public interface IStatusBcr {
 	 */
 	public String getHwCode();
 	
+	/**
+	 * @param hwCode
+	 */
 	public void setHwCode(String hwCode);
 }

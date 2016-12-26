@@ -5,6 +5,12 @@ package com.yihuacomputer.fish.api.monitor.xfs.propertise;
  *
  */
 public interface IPropJpr {
+	/**
+	 * @return
+	 */
 	public DeviceProp getPropJpr();
+	/**
+	 * @param jpr
+	 */
 	public void setPropJpr(DeviceProp jpr);
 }

@@ -10,12 +10,17 @@ import com.yihuacomputer.fish.api.monitor.xfs.propertise.IXfsPropertise;
 import com.yihuacomputer.fish.api.monitor.xfs.status.DeviceMod;
 import com.yihuacomputer.fish.api.monitor.xfs.status.IXfsStatus;
 
+/**
+ * @author YiHua
+ *
+ */
 public interface IXfsService {
 
     /**
      * 初始化设备状态
      * 
      * @param terminalId
+     * @return
      */
     public IXfsStatus initXfsStatus(String terminalId);
 
@@ -118,7 +123,7 @@ public interface IXfsService {
      * 
      * @param offset
      * @param limit
-     * @param filter
+     * @param statusFilter
      * @return
      */
     public IPageResult<IStatusReport> pageStatus(int offset, int limit, IStatusFilter statusFilter);

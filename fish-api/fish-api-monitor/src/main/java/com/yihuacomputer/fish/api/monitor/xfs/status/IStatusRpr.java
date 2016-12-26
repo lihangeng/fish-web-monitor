@@ -19,8 +19,14 @@ public interface IStatusRpr {
 	 */
 	public String getCode();
 
+	/**
+	 * @param rpr
+	 */
 	public void setStatus(DeviceStatus rpr);
 
+	/**
+	 * @param code
+	 */
 	public void setCode(String code);
 	/**
 	 * 获取硬件故障码
@@ -28,5 +34,8 @@ public interface IStatusRpr {
 	 */
 	public String getHwCode();
 	
+	/**
+	 * @param hwCode
+	 */
 	public void setHwCode(String hwCode);
 }

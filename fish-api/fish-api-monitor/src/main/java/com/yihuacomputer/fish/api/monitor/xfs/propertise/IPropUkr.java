@@ -5,6 +5,12 @@ package com.yihuacomputer.fish.api.monitor.xfs.propertise;
  *
  */
 public interface IPropUkr {
+	/**
+	 * @return
+	 */
 	public DeviceProp getPropUkr();
+	/**
+	 * @param ukr
+	 */
 	public void setPropUkr(DeviceProp ukr);
 }

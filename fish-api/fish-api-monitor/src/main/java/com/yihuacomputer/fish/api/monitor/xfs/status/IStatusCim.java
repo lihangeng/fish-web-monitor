@@ -22,8 +22,14 @@ public interface IStatusCim {
 	 */
 	public String getCode();
 
+	/**
+	 * @param cim
+	 */
 	public void setStatus(DeviceStatus cim);
 
+	/**
+	 * @param code
+	 */
 	public void setCode(String code);
 	/**
 	 * 获取硬件故障码
@@ -31,5 +37,8 @@ public interface IStatusCim {
 	 */
 	public String getHwCode();
 	
+	/**
+	 * @param hwCode
+	 */
 	public void setHwCode(String hwCode);
 }

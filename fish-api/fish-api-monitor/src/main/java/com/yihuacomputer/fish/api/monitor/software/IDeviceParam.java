@@ -8,8 +8,14 @@ package com.yihuacomputer.fish.api.monitor.software;
  */
 public interface IDeviceParam {
 
+    /**
+     * @return
+     */
     public long getId();
 
+    /**
+     * @param id
+     */
     public void setId(long id);
 
     /**
@@ -19,6 +25,9 @@ public interface IDeviceParam {
      */
     public String getTerminalId();
 
+    /**
+     * @param terminalId
+     */
     public void setTerminalId(String terminalId);
 
     /**
@@ -28,6 +37,9 @@ public interface IDeviceParam {
      */
     public String getKey();
 
+    /**
+     * @param key
+     */
     public void setKey(String key);
 
     /**
@@ -37,6 +49,9 @@ public interface IDeviceParam {
      */
     public String getValue();
 
+    /**
+     * @param value
+     */
     public void setValue(String value);
 
     /**
@@ -46,6 +61,9 @@ public interface IDeviceParam {
      */
     public String getDefaultValue();
 
+    /**
+     * @param defaultValue
+     */
     public void setDefaultValue(String defaultValue);
 
     /**
@@ -55,6 +73,9 @@ public interface IDeviceParam {
      */
     public String getModule();
 
+    /**
+     * @param module
+     */
     public void setModule(String module);
 
     /**
@@ -64,5 +85,8 @@ public interface IDeviceParam {
      */
     public String getLabel();
 
+    /**
+     * @param label
+     */
     public void setLabel(String label);
 }

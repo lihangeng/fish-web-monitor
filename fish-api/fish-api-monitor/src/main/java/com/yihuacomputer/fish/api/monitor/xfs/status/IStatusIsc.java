@@ -13,6 +13,9 @@ public interface IStatusIsc {
 	 */
 	public DeviceStatus getStatus();
 
+	/**
+	 * @param isc
+	 */
 	public void setStatus(DeviceStatus isc);
 
 	/**
@@ -21,6 +24,9 @@ public interface IStatusIsc {
 	 */
 	public String getCode();
 
+	/**
+	 * @param code
+	 */
 	public void setCode(String code);
 
 	/**
@@ -29,6 +35,9 @@ public interface IStatusIsc {
 	 */
 	public String getHwCode();
 
+	/**
+	 * @param hwCode
+	 */
 	public void setHwCode(String hwCode);
 
 }

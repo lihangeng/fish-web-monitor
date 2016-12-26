@@ -13,6 +13,9 @@ public interface IStatusFgp {
 	 */
 	public DeviceStatus getStatus();
 
+	/**
+	 * @param fgp
+	 */
 	public void setStatus(DeviceStatus fgp);
 
 	/**
@@ -21,6 +24,9 @@ public interface IStatusFgp {
 	 */
 	public String getCode();
 
+	/**
+	 * @param code
+	 */
 	public void setCode(String code);
 
 	/**
@@ -29,6 +35,9 @@ public interface IStatusFgp {
 	 */
 	public String getHwCode();
 
+	/**
+	 * @param hwCode
+	 */
 	public void setHwCode(String hwCode);
 
 }

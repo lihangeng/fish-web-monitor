@@ -1,5 +1,9 @@
 package com.yihuacomputer.fish.api.monitor.software;
 
+/**
+ * @author YiHua
+ *
+ */
 public interface ISoftwareService {
 
 	/**

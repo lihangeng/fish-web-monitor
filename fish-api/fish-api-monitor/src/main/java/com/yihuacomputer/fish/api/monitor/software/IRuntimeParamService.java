@@ -5,6 +5,10 @@ import java.util.List;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.util.PageResult;
 
+/**
+ * @author YiHua
+ *
+ */
 public interface IRuntimeParamService {
 
     /**

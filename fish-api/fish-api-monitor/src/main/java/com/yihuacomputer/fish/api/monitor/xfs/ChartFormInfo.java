@@ -1,5 +1,9 @@
 package com.yihuacomputer.fish.api.monitor.xfs;
 
+/**
+ * @author YiHua
+ *
+ */
 public class ChartFormInfo {
 	/**
 	 * 图表展示名称

@@ -20,8 +20,14 @@ public interface IStatusNfc {
 	public String getCode();
 	
 
+	/**
+	 * @param rfid
+	 */
 	public void setStatus(DeviceStatus rfid);
 	
+	/**
+	 * @param code
+	 */
 	public void setCode(String code);
 	
 	/**
@@ -30,6 +36,9 @@ public interface IStatusNfc {
 	 */
 	public String getHwCode();
 	
+	/**
+	 * @param hwCode
+	 */
 	public void setHwCode(String hwCode);
 
 }

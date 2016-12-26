@@ -24,7 +24,7 @@ public interface IStatusUkr {
 	/**
 	 * 设置硬件主状态
 	 *
-	 * @param cdm
+	 * @param bcr
 	 */
 	public void setStatus(DeviceStatus bcr);
 
@@ -35,8 +35,14 @@ public interface IStatusUkr {
 	 */
 	public void setCode(String code);
 
+	/**
+	 * @return
+	 */
 	public String getHwCode();
 
+	/**
+	 * @param hwCode
+	 */
 	public void setHwCode(String hwCode);
 
 	@Override
