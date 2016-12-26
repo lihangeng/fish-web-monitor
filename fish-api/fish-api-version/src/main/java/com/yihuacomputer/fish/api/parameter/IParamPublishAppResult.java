@@ -2,20 +2,36 @@ package com.yihuacomputer.fish.api.parameter;
 
 import com.yihuacomputer.fish.api.version.job.task.TaskStatus;
 
+/**
+ * @author YiHua
+ *
+ */
 public interface IParamPublishAppResult {
-	public long getId() ;
+	/**
+	 * @return
+	 */
+	public long getId();
+	/**
+	 * @param id
+	 */
 	public void setId(long id) ;
 	/**
 	 * 应用ID
 	 * @return
 	 */
 	public IAppSystem getAppSystem() ;
+	/**
+	 * @param appSystem
+	 */
 	public void setAppSystem(IAppSystem appSystem) ;
 	/**
 	 * 部署结果
 	 * @return
 	 */
 	public TaskStatus getStatus() ;
+	/**
+	 * @param status
+	 */
 	public void setStatus(TaskStatus status) ;
 	
 	/**
@@ -23,6 +39,9 @@ public interface IParamPublishAppResult {
 	 * @return
 	 */
 	public IParamPublishResult getParamPublishResult();
+	/**
+	 * @param paramPublishResult
+	 */
 	public void setParamPublishResult(IParamPublishResult paramPublishResult);
 	
 	/**
@@ -30,5 +49,8 @@ public interface IParamPublishAppResult {
 	 * @return
 	 */
 	public String getReason() ;
+	/**
+	 * @param reason
+	 */
 	public void setReason(String reason) ;
 }

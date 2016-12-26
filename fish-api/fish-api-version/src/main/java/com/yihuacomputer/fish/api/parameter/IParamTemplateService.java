@@ -13,18 +13,45 @@ import com.yihuacomputer.fish.api.device.IDevice;
  *
  */
 public interface IParamTemplateService {
+	/**
+	 * @return
+	 */
 	public IParamTemplate make();
 
+	/**
+	 * @param id
+	 * @return
+	 */
 	public IParamTemplate get(long id);
 
+	/**
+	 * @param name
+	 * @return
+	 */
 	public IParamTemplate get(String name);
 
+	/**
+	 * @param template
+	 * @return
+	 */
 	public IParamTemplate add(IParamTemplate template);
 
+	/**
+	 * @param template
+	 */
 	public void update(IParamTemplate template);
 
+	/**
+	 * @param id
+	 */
 	public void remove(long id);
 
+	/**
+	 * @param offset
+	 * @param limit
+	 * @param filter
+	 * @return
+	 */
 	public IPageResult<IParamTemplate> page(int offset,int limit,IFilter filter);
 
 	/**
@@ -33,6 +60,7 @@ public interface IParamTemplateService {
 	 * @param limit
 	 * @param template
 	 * @param filter
+	 * @param orgId
 	 * @return
 	 */
 	public IPageResult<IDevice> pageUnlinkedDevice(int offset,int limit, IParamTemplate template,long orgId, IFilter filter);
@@ -44,6 +72,7 @@ public interface IParamTemplateService {
 	 * @param limit
 	 * @param template
 	 * @param filter
+	 * @param orgId
 	 * @return
 	 */
 	public IPageResult<IDevice> pageLinkedDevice(int offset, int limit, IParamTemplate template,long orgId, IFilter filter);
@@ -80,6 +109,7 @@ public interface IParamTemplateService {
 	 * 获取模板所有关联元数据
 	 * @param templateId
 	 * @param flag 1:新增时查询  0:更改时查询
+	 * @param appSystem
 	 * @return
 	 */
 	public List<IParamElement> listParam(long templateId, long flag,long appSystem) ;
@@ -146,6 +176,10 @@ public interface IParamTemplateService {
 	public void unlinkAllBeforeDelete(long templateId);
 
 
+	/**
+	 * @param template
+	 * @param timeStamp
+	 */
 	public void issueTemplate(IParamTemplate template ,long timeStamp);
 
 	/**

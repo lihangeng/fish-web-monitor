@@ -10,8 +10,14 @@ package com.yihuacomputer.fish.api.mq;
  */
 public interface IMessagePusher {
 	
+	/**
+	 * @param message
+	 */
 	public void pushStatusToWeb(String message);
 	
+	/**
+	 * @param message
+	 */
 	public void pushTransToWeb(String message);
 
 }

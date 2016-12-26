@@ -18,6 +18,10 @@ public interface IGroupService {
 	 */
     public IGroup make(String name);
     
+    /**
+     * @param id
+     * @return
+     */
     public IGroup get(long id);
     /**
      * 根据name获取组织实例
@@ -53,6 +57,9 @@ public interface IGroupService {
 	 */
 	public void update(IGroup group);
 	
+	/**
+	 * @return
+	 */
 	public List<IGroup> list();
 	/**
 	 * 根据条件列出所有的组织

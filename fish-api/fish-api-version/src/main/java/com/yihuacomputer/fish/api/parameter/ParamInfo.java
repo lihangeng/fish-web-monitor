@@ -1,6 +1,10 @@
 package com.yihuacomputer.fish.api.parameter;
 
 
+/**
+ * @author YiHua
+ *
+ */
 public class ParamInfo {
 	/**
 	 * 参数文件在服务器上的路径

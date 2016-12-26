@@ -2,6 +2,10 @@ package com.yihuacomputer.fish.api.parameter;
 
 import java.util.List;
 
+/**
+ * @author YiHua
+ *
+ */
 public interface IParamPublishAppResultService {
 	/**
 	 * 新建应用参数执行结果

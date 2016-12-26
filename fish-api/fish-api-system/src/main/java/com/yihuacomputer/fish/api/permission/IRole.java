@@ -19,20 +19,20 @@ public interface IRole extends Comparable<IRole> {
 	public String getCode();
 	 /**
 	  * ldap中的code
-	  * 
+	  * @param code
 	  */
 	public void setCode(String code);
 
 	/**
 	 * 返回ID
-	 * @param system
+	 * @return
 	 * 
 	 */
 	public long getId();
 		
 	/**
 	 * 设置id
-	 * @param system
+	 * @param id
 	 * 
 	 */
 	public void setId(long id);
@@ -53,7 +53,7 @@ public interface IRole extends Comparable<IRole> {
 	public String getName();
 	 /**
 	  * 角色名称
-	  * @param Name
+	  * @param name
 	  */
 	public void setName(String name);
 	/**
@@ -108,53 +108,53 @@ public interface IRole extends Comparable<IRole> {
 	
 	/**
 	 * 返回唯一的成员
-	 * @param system
+	 * @return
 	 * 
 	 */
 	public String getUniqueMember() ;
 	
 	/**
 	 * 设置唯一的成员
-	 * @param system
+	 * @param uniqueMember
 	 * 
 	 */
 	public void setUniqueMember(String uniqueMember);
 	
 	/**
 	 * 返回组类型
-	 * @param system
+	 * @return
 	 * 
 	 */
 	public String getGroupType();
 	/**
 	 * 设置组类型
-	 * @param system
+	 * @param groupType
 	 * 
 	 */
 	public void setGroupType(String groupType) ;
 
 	/**
 	 * 返回组唯一
-	 * @param system
+	 * @return
 	 * 
 	 */
 	public String getGroupMember() ;
 	/**
 	 * 设置组唯一
-	 * @param system
+	 * @param groupMember
 	 * 
 	 */
 	public void setGroupMember(String groupMember) ;
 	
 	/**
 	 * 返回组规则
-	 * @param system
+	 * @return
 	 * 
 	 */
 	public String getGroupRule();
 	/**
 	 * 设置组规则
-	 * @param system
+	 * @param groupRule
 	 * 
 	 */
 	public void setGroupRule(String groupRule) ;

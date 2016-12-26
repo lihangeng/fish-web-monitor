@@ -5,13 +5,21 @@ import java.util.List;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
 
+/**
+ * @author YiHua
+ *
+ */
 public interface IOpenPlanService {
 
+	/**
+	 * @return
+	 */
 	public IOpenPlanDetail make();
 
 	/**
 	 * 保存开机方案
 	 * @param openPlan
+	 * @return
 	 */
 	public IDeviceOpenPlan saveOpenPlan(IDeviceOpenPlan openPlan);
 
@@ -24,8 +32,7 @@ public interface IOpenPlanService {
 
 	/**
      * 删除方案
-     * @param openPlan
-     * @return
+     * @param id
      */
     public void deletePlan(long id);
 
@@ -38,7 +45,7 @@ public interface IOpenPlanService {
 
 	/**
 	 *
-	 * @param openPlanId
+	 * @param name
 	 * @return
 	 */
 	public IDeviceOpenPlan getDeviceOpenPlanByName(String name);
@@ -72,10 +79,22 @@ public interface IOpenPlanService {
 	 */
 	public List<IDevicePlanRelation> page(IFilter filter);
 
+	/**
+	 * @param id
+	 * @return
+	 */
 	public int deviceCount(Long id);
 
+	/**
+	 * @param filter
+	 * @return
+	 */
 	public List<IDeviceOpenPlan> list(IFilter filter);
 
+	/**
+	 * @param id
+	 * @return
+	 */
 	public List<Object> deviceInfo(Long id);
 
 

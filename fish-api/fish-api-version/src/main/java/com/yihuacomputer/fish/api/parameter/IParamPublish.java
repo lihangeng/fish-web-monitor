@@ -5,8 +5,18 @@ import java.util.List;
 import com.yihuacomputer.fish.api.version.job.JobType;
 
 
+/**
+ * @author YiHua
+ *
+ */
 public interface IParamPublish {
-	public long getId() ;
+	/**
+	 * @return
+	 */
+	public long getId();
+	/**
+	 * @param id
+	 */
 	public void setId(long id);
 	
 	/**
@@ -31,12 +41,36 @@ public interface IParamPublish {
 	 */
 	public void setPublisher(long publisher);
 	
+	/**
+	 * @return
+	 */
 	public String getRet();
+	/**
+	 * @param ret
+	 */
 	public void setRet(String ret);
+	/**
+	 * @return
+	 */
 	public List<IParamPublishResult> getParamPublishs();
+	/**
+	 * @param paramPublishs
+	 */
 	public void setParamPublishs(List<IParamPublishResult> paramPublishs);
+	/**
+	 * @return
+	 */
 	public JobType getJobType();
+	/**
+	 * @param jobType
+	 */
 	public void setJobType(JobType jobType);
+	/**
+	 * @param tempateId
+	 */
 	public void setTemplateId(long tempateId);
+	/**
+	 * @return
+	 */
 	public long getTemplateId();
 }

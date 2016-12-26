@@ -27,19 +27,19 @@ public interface IMqProducer {
 	public void putStatus(String statusMessage);
 	/**
 	 * 把交易消息放入队列
-	 * @param message
+	 * @param transMessage
 	 * @since 2.1.1.11
 	 */
 	public void putTransaction(String transMessage);
 	/**
 	 * 把登录消息放入队列
-	 * @param message
+	 * @param loginMessage
 	 * @since 2.1.1.11
 	 */
 	public void putLogin(String loginMessage);
 	/**
 	 * 把退出消息放入队列
-	 * @param message
+	 * @param logoutMessage
 	 * @since 2.1.1.11
 	 */
 	public void putLogout(String logoutMessage);

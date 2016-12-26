@@ -7,8 +7,14 @@ package com.yihuacomputer.fish.api.openplan;
  */
 public interface IDevicePlanRelation {
 	
+	/**
+	 * @return
+	 */
 	public long getId();
 
+	/**
+	 * @param id
+	 */
 	public void setId(long id);
 
 	/**
@@ -17,6 +23,9 @@ public interface IDevicePlanRelation {
 	 */
 	public long getDeviceId();
 
+	/**
+	 * @param deviceId
+	 */
 	public void setDeviceId(long deviceId);
 
 	/**
@@ -25,5 +34,8 @@ public interface IDevicePlanRelation {
 	 */
 	public long getOpenPlanId();
 
+	/**
+	 * @param openPlanId
+	 */
 	public void setOpenPlanId(long openPlanId);
 }

@@ -1,5 +1,9 @@
 package com.yihuacomputer.fish.api.parameter;
 
+/**
+ * @author YiHua
+ *
+ */
 public enum ParamPublishRet {
 	CHECKED("00"), 
 	/**
@@ -40,6 +44,10 @@ public enum ParamPublishRet {
 	public String getText() {
 		return code;
 	}
+	/**
+	 * @param code
+	 * @return
+	 */
 	public static ParamPublishRet getById(String code) {
 		for (ParamPublishRet each : ParamPublishRet.values()) {
 			if (each.code == code) {

@@ -5,8 +5,14 @@ import java.util.List;
 
 public interface IDeviceOpenPlan {
 
+    /**
+     * @return
+     */
     public long getId();
 
+    /**
+     * @param id
+     */
     public void setId(long id);
 
     /**
@@ -16,6 +22,9 @@ public interface IDeviceOpenPlan {
      */
     public String getName();
 
+    /**
+     * @param name
+     */
     public void setName(String name);
 
     /**
@@ -25,6 +34,9 @@ public interface IDeviceOpenPlan {
      */
     public Date getStartDate();
 
+    /**
+     * @param startDate
+     */
     public void setStartDate(Date startDate);
 
     /**
@@ -34,6 +46,9 @@ public interface IDeviceOpenPlan {
      */
     public Date getEndDate();
 
+    /**
+     * @param endDate
+     */
     public void setEndDate(Date endDate);
 
     /**
@@ -43,6 +58,9 @@ public interface IDeviceOpenPlan {
      */
     public String getDesc();
 
+    /**
+     * @param desc
+     */
     public void setDesc(String desc);
 
     /**
@@ -52,6 +70,9 @@ public interface IDeviceOpenPlan {
      */
     public PlanType getPlanType();
 
+    /**
+     * @param planType
+     */
     public void setPlanType(PlanType planType);
 
     /**
@@ -61,6 +82,9 @@ public interface IDeviceOpenPlan {
      */
     public PlanState getPlanState();
 
+    /**
+     * @param planState
+     */
     public void setPlanState(PlanState planState);
 
     /**
@@ -70,6 +94,9 @@ public interface IDeviceOpenPlan {
      */
     public List<IOpenPlanDetail> getOpenPlanDetail();
 
+    /**
+     * @param details
+     */
     public void setOpenPlanDetail(List<IOpenPlanDetail> details);
 
     /**
@@ -79,13 +106,28 @@ public interface IDeviceOpenPlan {
      */
     public String getCreateDateTime();
 
+    /**
+     * @param createDateTime
+     */
     public void setCreateDateTime(String createDateTime);
     
+    /**
+     * @return
+     */
     public int getDeviceCount();
 
+    /**
+     * @param deviceCount
+     */
     public void setDeviceCount(int deviceCount);
     
+    /**
+     * @return
+     */
     public PlanStateType getPlanStateType();
 
+    /**
+     * @param planStateType
+     */
     public void setPlanStateType(PlanStateType planStateType);
 }

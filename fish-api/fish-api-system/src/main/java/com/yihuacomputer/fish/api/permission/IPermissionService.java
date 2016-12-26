@@ -5,6 +5,10 @@ import java.util.List;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
 
+/**
+ * @author YiHua
+ *
+ */
 public interface IPermissionService {
 	/**
 	 * 添加权限
@@ -25,6 +29,9 @@ public interface IPermissionService {
 	 */
 	public IPermission get(String code);
 
+	/**
+	 * @return
+	 */
 	public IPermission getRoot();
 	/**
 	 * 增加权限
@@ -34,8 +41,10 @@ public interface IPermissionService {
 	public IPermission add(IPermission permission);
 	/**
 	 * 根据code，description增加权限
+	 * @param id
 	 * @param code
 	 * @param description
+	 * @param isButton
 	 * @return
 	 */
 
@@ -86,6 +95,7 @@ public interface IPermissionService {
 	 * 增加权限
 	 * @param code
 	 * @param description
+	 * @param isButton
 	 * @param parent
 	 * @return
 	 */

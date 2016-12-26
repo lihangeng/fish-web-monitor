@@ -3,8 +3,14 @@ package com.yihuacomputer.fish.api.openplan;
 
 public interface IOpenPlanDetail {
 
+	/**
+	 * @return
+	 */
 	public long getId();
 
+	/**
+	 * @param id
+	 */
 	public void setId(long id);
 
 	/**
@@ -13,6 +19,9 @@ public interface IOpenPlanDetail {
 	 */
 	public Week getWeek();
 
+	/**
+	 * @param week
+	 */
 	public void setWeek(Week week);
 
 	/**
@@ -21,6 +30,9 @@ public interface IOpenPlanDetail {
 	 */
 	public OpenClose getOpenClose() ;
 
+	/**
+	 * @param openClose
+	 */
 	public void setOpenClose(OpenClose openClose);
 
 	/**
@@ -29,6 +41,9 @@ public interface IOpenPlanDetail {
 	 */
 	public String getStartTime();
 
+	/**
+	 * @param startTime
+	 */
 	public void setStartTime(String startTime);
 
 	/**
@@ -37,6 +52,9 @@ public interface IOpenPlanDetail {
 	 */
 	public String getEndTime() ;
 
+	/**
+	 * @param endTime
+	 */
 	public void setEndTime(String endTime);
 
 	/**
@@ -45,5 +63,8 @@ public interface IOpenPlanDetail {
 	 */
 	public IDeviceOpenPlan getDeviceOpenPlan();
 
+	/**
+	 * @param deviceOpenPlan
+	 */
 	public void setDeviceOpenPlan(IDeviceOpenPlan deviceOpenPlan);
 }

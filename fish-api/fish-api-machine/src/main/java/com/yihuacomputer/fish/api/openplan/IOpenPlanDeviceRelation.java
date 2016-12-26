@@ -16,7 +16,7 @@ public interface IOpenPlanDeviceRelation {
     /**
      * 开机方案和设备建立关系
      *
-     * @param person
+     * @param openPlan
      * @param device
      */
     public void link(IDeviceOpenPlan openPlan, IDevice device);
@@ -24,7 +24,7 @@ public interface IOpenPlanDeviceRelation {
     /**
      * 开机方案和设备解除关系
      *
-     * @param person
+     * @param openPlan
      * @param device
      */
     public void unlink(IDeviceOpenPlan openPlan, IDevice device);
@@ -36,13 +36,19 @@ public interface IOpenPlanDeviceRelation {
      * @param limit
      * @param person
      * @param filter
+     * @param orgId
      * @return
      */
     public IPageResult<IDevice> pageUnlinkDeviceByPlan(int offset, int limit,
             IDeviceOpenPlan openPlan, IFilter filter, String orgId);
 
-    /**
-     * 根据某开机方案的所有关联设备分页
+    /**根据某开机方案的所有关联设备分页
+     * @param offset
+     * @param limit
+     * @param openPlan
+     * @param filter
+     * @param orgId
+     * @return
      */
     public IPageResult<IDevice> pageDeviceByPlan(int offset, int limit,
             IDeviceOpenPlan openPlan, IFilter filter, String orgId);
@@ -56,9 +62,21 @@ public interface IOpenPlanDeviceRelation {
     public List<IDeviceOpenPlan> listPlanByDevice(IDevice device);
 
 
+    /**
+     * @param filter
+     * @return
+     */
     public boolean isExistPlanLink(IFilter filter);
 
+	/**
+	 * @return
+	 */
 	public List<IDevicePlanRelation> devicePlanRelations();
 
+	/**
+	 * @param deviceCode
+	 * @param orgId
+	 * @return
+	 */
 	public List<IDevice> getDevicebyCode(String deviceCode, String orgId);
 }

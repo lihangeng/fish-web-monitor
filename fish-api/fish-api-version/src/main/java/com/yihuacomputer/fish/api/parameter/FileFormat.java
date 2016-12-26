@@ -1,5 +1,9 @@
 package com.yihuacomputer.fish.api.parameter;
 
+/**
+ * @author YiHua
+ *
+ */
 public enum FileFormat {
 	JSON("FileForm.JSON",0),
 	
@@ -25,6 +29,10 @@ public enum FileFormat {
 		return text;
 	}
 
+	/**
+	 * @param id
+	 * @return
+	 */
 	public static FileFormat getById(int id){
 		for(FileFormat each : FileFormat.values()){
 			if(each.getId()==id){

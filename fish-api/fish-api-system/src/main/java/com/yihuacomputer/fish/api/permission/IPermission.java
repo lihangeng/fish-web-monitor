@@ -2,10 +2,20 @@ package com.yihuacomputer.fish.api.permission;
 
 import java.util.List;
 
+/**
+ * @author YiHua
+ *
+ */
 public interface IPermission {
 	
+	/**
+	 * @return
+	 */
 	public String getId();
 	
+	/**
+	 * @param id
+	 */
 	public void setId(String id);
 	/**
 	 * 返回编号
@@ -49,8 +59,14 @@ public interface IPermission {
 	 */
 	public void setParent(IPermission permission);
 	
+	/**
+	 * @param parentId
+	 */
 	public void setParentId(String parentId);
 	
+	/**
+	 * @return
+	 */
 	public String getParentId();
 	/**
 	 * 根据code返回权限
@@ -66,6 +82,9 @@ public interface IPermission {
 	 */
 	public IPermission addChild(String id,String code, String description,boolean isButton);
 	
+	/**
+	 * @param code
+	 */
 	public void removeChild(String code);
 	/**
 	 * 返回权限列表
@@ -73,8 +92,14 @@ public interface IPermission {
 	 */
 	public List<IPermission>  listChildren();
 	
+	/**
+	 * @return
+	 */
 	public boolean isButton();
 
+	/**
+	 * @param isButton
+	 */
 	public void setButton(boolean isButton);
 	
 	/**
@@ -83,6 +108,9 @@ public interface IPermission {
 	 * @since 2.1.0.6
 	 */
 	public String getViewName();
+	/**
+	 * @param viewName
+	 */
 	public void   setViewName(String viewName);
 	
 	/**
@@ -91,6 +119,9 @@ public interface IPermission {
 	 */
     public boolean isLeaf();
 
+	/**
+	 * @param isLeaf
+	 */
 	public void setLeaf(boolean isLeaf);
 	
 	/**
@@ -98,6 +129,9 @@ public interface IPermission {
 	 * @return
 	 */
 	public String getIconCls();
+	/**
+	 * @param iconCls
+	 */
 	public void   setIconCls(String iconCls);
 	
 	/**
@@ -105,6 +139,9 @@ public interface IPermission {
 	 * @return
 	 */
 	public String getRouteId();
+	/**
+	 * @param routeId
+	 */
 	public void   setRouteId(String routeId);
 	
 	/**
@@ -112,6 +149,9 @@ public interface IPermission {
 	 * @return
 	 */
 	public String getSelectCls();
+	/**
+	 * @param selectCls
+	 */
 	public void setSelectCls(String selectCls);
 	
 	/**
@@ -119,5 +159,8 @@ public interface IPermission {
 	 * @return
 	 */
 	public boolean isTreeNode();
+	/**
+	 * @param isTreeNode
+	 */
 	public void setTreeNode(boolean isTreeNode);
 }

@@ -1,5 +1,9 @@
 package com.yihuacomputer.fish.api.parameter;
 
+/**
+ * @author YiHua
+ *
+ */
 public class ParamDownloadResultForm {
 	private long id;
 	

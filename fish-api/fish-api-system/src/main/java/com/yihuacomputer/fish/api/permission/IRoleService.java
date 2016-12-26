@@ -5,6 +5,10 @@ import java.util.List;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
 
+/**
+ * @author YiHua
+ *
+ */
 public interface IRoleService {
 
 	/**
@@ -98,7 +102,7 @@ public interface IRoleService {
 
 	/**
 	 *  根据角色名称获取角色信息  LDAP需要用到
-	 * @param name
+	 * @param roleName
 	 * @return
 	 */
 	public IRole getByName(String roleName);

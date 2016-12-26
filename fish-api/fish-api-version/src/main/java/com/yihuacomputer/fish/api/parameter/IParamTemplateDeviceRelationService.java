@@ -5,8 +5,20 @@ import java.util.List;
 import com.yihuacomputer.fish.api.device.IDevice;
 
 
+/**
+ * @author YiHua
+ *
+ */
 public interface IParamTemplateDeviceRelationService {
+	/**
+	 * @param id
+	 * @return
+	 */
 	IParamTemplateDeviceRelation getById(long id);
+	/**
+	 * @param deviceId
+	 * @return
+	 */
 	List<IParamTemplateDeviceRelation> getByDeviceId(long deviceId);
 
 	

@@ -3,8 +3,18 @@ package com.yihuacomputer.fish.api.parameter;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.version.job.task.TaskStatus;
 
+/**
+ * @author YiHua
+ *
+ */
 public interface IParamPublishResult {
+	/**
+	 * @return
+	 */
 	public long getId();
+	/**
+	 * @param id
+	 */
 	public void setId(long id) ;
 
 	/**

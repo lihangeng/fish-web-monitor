@@ -13,14 +13,41 @@ import com.yihuacomputer.common.IFilter;
  */
 public interface IParamPublishService {
 
+	/**
+	 * @return
+	 */
 	IParamPublish make();
+	/**
+	 * @param publish
+	 * @return
+	 */
 	IParamPublish update(IParamPublish publish);
+	/**
+	 * @param id
+	 * @param ret
+	 * @return
+	 */
 	IParamPublish update(long id,String ret);
+	/**
+	 * @param publish
+	 * @return
+	 */
 	IParamPublish save(IParamPublish publish);
+	/**
+	 * @param id
+	 * @return
+	 */
 	IParamPublish get(long id);
+	/**
+	 * @return
+	 */
 	IParamPublishResultService getParamPulishResultService() ;
 	
 	
+	/**
+	 * @param filter
+	 * @return
+	 */
 	List<IParamPublish> list(IFilter filter);
 	
 	/**
