@@ -7,6 +7,10 @@ import com.yihuacomputer.fish.api.permission.IPermission;
 import com.yihuacomputer.fish.api.permission.IRole;
 
 
+/**
+ * @author YiHua
+ *
+ */
 public interface IRolePermissionRelation {
 	/**
 	 * 建立角色与权限之间的关联
@@ -34,10 +38,26 @@ public interface IRolePermissionRelation {
 	 */
 	public List<IPermission> listPermissionByRole(IRole role);
 	
+	/**
+	 * @param role
+	 * @return
+	 */
 	public List<IPermission> listMenuByRole(IRole role);
 	
+	/**
+	 * @param offset
+	 * @param limit
+	 * @param role
+	 * @return
+	 */
 	public IPageResult<IPermission> pagePermissionByRole(int offset, int limit, IRole role);
 	
+	/**
+	 * @param offset
+	 * @param limit
+	 * @param role
+	 * @return
+	 */
 	public IPageResult<IPermission> pageUnlinkPermissionByRole(int offset, int limit, IRole role);
 	/**
 	 * 返回改权限下的角色列表

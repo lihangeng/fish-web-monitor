@@ -32,6 +32,13 @@ public interface IUserRoleRelation {
 	 */
 	public void unlink(IUser user, IRole role);
 	
+	/**
+	 * @param offset
+	 * @param limit
+	 * @param user
+	 * @param filter
+	 * @return
+	 */
 	public IPageResult<IRole> pageUnlinkRoleByUser(int offset, int limit, IUser user,IFilter filter);
 
 	/**
@@ -44,6 +51,7 @@ public interface IUserRoleRelation {
 	
 	/**
 	 * 根据用户ID查找用户菜单功能
+	 * @param userId
 	 * @return
 	 */
 	public List<IPermission> listUserPermission(long userId);
@@ -84,6 +92,10 @@ public interface IUserRoleRelation {
 	 */
 	public IPageResult<IRole> pageRoleByUser(int offset, int limit, IUser user, IFilter filter);
 	
+	/**
+	 * @param role
+	 * @return
+	 */
 	public List<IUser> listUserByRole(IRole role);
 
 }

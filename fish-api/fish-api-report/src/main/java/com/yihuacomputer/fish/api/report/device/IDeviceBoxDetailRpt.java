@@ -36,6 +36,9 @@ public interface IDeviceBoxDetailRpt {
 	 * @return
 	 */
 	public String getSetupType();
+	/**
+	 * @param setupType
+	 */
 	public void setSetupType(String setupType);
 	
 	/**
@@ -43,6 +46,9 @@ public interface IDeviceBoxDetailRpt {
 	 * @return
 	 */
 	public String getStatus();
+	/**
+	 * @param status
+	 */
 	public void setStatus(String status);
 	
 	/**

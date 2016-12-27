@@ -6,7 +6,13 @@ package com.yihuacomputer.fish.api.report.device.etl;
  */
 public interface IDeviceCatalogSummaryMonth {
 	
+	/**
+	 * @return
+	 */
 	public long getId();
+	/**
+	 * @param id
+	 */
 	public void setId(long id);
 
 	/**
@@ -16,7 +22,7 @@ public interface IDeviceCatalogSummaryMonth {
 	public String getCatalog() ;
 	/**
 	 * 设备分类(CRS,ASM,ATM)
-	 * @return
+	 * @param catalog
 	 */
 	public void setCatalog(String catalog) ;
 	/**
@@ -26,7 +32,7 @@ public interface IDeviceCatalogSummaryMonth {
 	public int getNum() ;
 	/**
 	 * 设备数量(CRS,ASM,ATM)
-	 * @return
+	 * @param num
 	 */
 	public void setNum(int num);
 
@@ -37,7 +43,7 @@ public interface IDeviceCatalogSummaryMonth {
 	public String getDate();
 	/**
 	 * 设备统计日期
-	 * @return
+	 * @param date
 	 */
 	public void setDate(String date);
 
@@ -49,7 +55,7 @@ public interface IDeviceCatalogSummaryMonth {
 	public int getAddDevNum();
 	/**
 	 * 设备新增数量，针对上一次统计
-	 * @return
+	 * @param addDevNum
 	 */
 	public void setAddDevNum(int addDevNum);
 	/**
@@ -59,7 +65,7 @@ public interface IDeviceCatalogSummaryMonth {
 	public int getScrappedDevNum();
 	/**
 	 * 设备报废数量，针对上一次统计
-	 * @return
+	 * @param scrappedDevNum
 	 */
 	public void setScrappedDevNum(int scrappedDevNum);
 	/**
@@ -69,7 +75,7 @@ public interface IDeviceCatalogSummaryMonth {
 	public int getAllAddDevNum();
 	/**
 	 * 增加设备数量，针对第一次统计
-	 * @return
+	 * @param allAddDevNum
 	 */
 	public void setAllAddDevNum(int allAddDevNum);
 
@@ -80,7 +86,7 @@ public interface IDeviceCatalogSummaryMonth {
 	public int getAllScrappedDevNum();
 	/**
 	 * 报废设备数量，针对第一次统计
-	 * @return
+	 * @param allScrappedDevNum
 	 */
 	public void setAllScrappedDevNum(int allScrappedDevNum);
 }

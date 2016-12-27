@@ -76,8 +76,10 @@ public interface IPermission {
 	public IPermission getChild(String code);
 	/**
 	 * 增加权限
+	 * @param id
 	 * @param code
 	 * @param description
+	 * @param isButton
 	 * @return
 	 */
 	public IPermission addChild(String id,String code, String description,boolean isButton);

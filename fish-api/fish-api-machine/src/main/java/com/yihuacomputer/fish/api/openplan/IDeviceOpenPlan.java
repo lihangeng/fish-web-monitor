@@ -3,6 +3,10 @@ package com.yihuacomputer.fish.api.openplan;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * @author YiHua
+ *
+ */
 public interface IDeviceOpenPlan {
 
     /**

@@ -34,7 +34,7 @@ public interface IOpenPlanDeviceRelation {
      *
      * @param offset
      * @param limit
-     * @param person
+     * @param openPlan
      * @param filter
      * @param orgId
      * @return

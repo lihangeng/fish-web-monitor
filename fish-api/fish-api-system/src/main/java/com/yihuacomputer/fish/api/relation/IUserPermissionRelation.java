@@ -6,6 +6,10 @@ import com.yihuacomputer.fish.api.permission.IPermission;
 import com.yihuacomputer.fish.api.permission.IUserRole;
 import com.yihuacomputer.fish.api.person.IUser;
 
+/**
+ * @author YiHua
+ *
+ */
 public interface IUserPermissionRelation {
 	/**
 	 * 建立user 与permission之间的关联
@@ -41,7 +45,7 @@ public interface IUserPermissionRelation {
 	public List<IPermission> listPermissionsByUser(long userId);
 	/**
 	 * 根据rolecode 找出用户所具有的所有的权限,不包含button
-	 * @param userId
+	 * @param roleId
 	 * @return
 	 */
 	public List<IPermission> listPermissionsByUser(String roleId);

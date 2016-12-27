@@ -244,7 +244,7 @@ public interface IOrganization extends Comparable<IOrganization> {
 
     /**
      * 返回审批建议
-     * @param
+     * @param suggest
      */
     public void setSuggest(String suggest);
     

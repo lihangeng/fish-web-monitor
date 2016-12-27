@@ -1,6 +1,10 @@
 package com.yihuacomputer.fish.api.openplan;
 
 
+/**
+ * @author YiHua
+ *
+ */
 public interface IOpenPlanDetail {
 
 	/**

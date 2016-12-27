@@ -4,8 +4,16 @@ import java.util.List;
 
 import com.yihuacomputer.common.IFilter;
 
+/**
+ * @author YiHua
+ *
+ */
 public interface IDeviceTypeCountRptService {
 
+	/**
+	 * @param filter
+	 * @return
+	 */
 	public List<IDeviceTypeCountRpt> listDeviceTypeCount(IFilter filter);
 	/**
 	 * ireport实现报表

@@ -67,7 +67,7 @@ interface ITransactionDays {
 	String getTransCode();
 	/**
 	 * 交易码
-	 * @return
+	 * @param transCode
 	 */
 	void setTransCode(String transCode);
 	
@@ -78,7 +78,7 @@ interface ITransactionDays {
 	String getCardType();
 	/**
 	 * 卡类型
-	 * @return
+	 * @param cardType
 	 */
 	void setCardType(String cardType);
 	

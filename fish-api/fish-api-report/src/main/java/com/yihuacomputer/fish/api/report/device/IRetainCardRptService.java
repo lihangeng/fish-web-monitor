@@ -13,12 +13,14 @@ public interface IRetainCardRptService {
 
 	/**
 	 * 吞卡明细
+	 * @param filter
 	 * @return
 	 */
 	public List<IRetainCardRpt> listRetainCardDetail(IFilter filter);
 	
 	/**
 	 * 吞卡统计
+	 * @param filter
 	 * @return
 	 */
 	public List<IRetainCardCountRpt> listRetainCardCount(IFilter filter);

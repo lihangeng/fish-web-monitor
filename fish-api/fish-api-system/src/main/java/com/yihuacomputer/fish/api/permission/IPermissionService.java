@@ -93,6 +93,7 @@ public interface IPermissionService {
 
 	/**
 	 * 增加权限
+	 * @param id
 	 * @param code
 	 * @param description
 	 * @param isButton

@@ -13,7 +13,7 @@ public interface IRelationService {
 	
 	/**
 	 * 根据用户找到对应的权限
-	 * @param user
+	 * @param userId
 	 * @return
 	 */
 	public Set<IPermission> findPermissonsByUser(long userId);

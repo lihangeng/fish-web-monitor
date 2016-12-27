@@ -8,6 +8,10 @@ import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.person.IPerson;
 import com.yihuacomputer.fish.api.person.PersonType;
 
+/**
+ * @author YiHua
+ *
+ */
 public interface IDevicePersonRelation
 {
    /**
@@ -30,6 +34,8 @@ public interface IDevicePersonRelation
      * @param limit
      * @param person
      * @param filter
+     * @param bankOrgId
+     * @param serOrgId
      * @return
      */
     public IPageResult<IDevice> pageUnlinkDeviceByPerson(int offset, int limit, IPerson person,IFilter filter,String bankOrgId,String serOrgId);
@@ -53,12 +59,19 @@ public interface IDevicePersonRelation
     
     /**
      * 根据某人员的所有关联设备分页
+     * @param offset
+     * @param limit
+     * @param person
+     * @param filter
+     * @param orgId
+     * @param flag
+     * @return
      */
     public IPageResult<IDevice> pageDeviceByTypePerson(int offset, int limit, IPerson person, IFilter filter,String orgId,boolean flag);
     
     /**
      * 根据设备获得该设备的关联人员
-     * @param device
+     * @param terminalId
      * @return
      */
     public List<IPerson> listPersonByDevice(String terminalId);

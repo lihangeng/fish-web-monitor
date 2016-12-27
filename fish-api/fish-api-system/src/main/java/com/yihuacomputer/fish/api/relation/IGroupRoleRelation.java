@@ -7,6 +7,10 @@ import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.fish.api.permission.IGroup;
 import com.yihuacomputer.fish.api.permission.IRole;
 
+/**
+ * @author YiHua
+ *
+ */
 public interface IGroupRoleRelation {
 	/**
 	 * 建立组织与角色之间的关联
@@ -33,8 +37,22 @@ public interface IGroupRoleRelation {
 	 */
 	public List<IGroup> listGroupByRole(IRole role);
 	
+	/**
+	 * @param start
+	 * @param limit
+	 * @param group
+	 * @param filter
+	 * @return
+	 */
 	public IPageResult<IRole> pageRoleByGroup(int start, int limit, IGroup group,IFilter filter);
 
+	/**
+	 * @param start
+	 * @param limit
+	 * @param group
+	 * @param filter
+	 * @return
+	 */
 	public IPageResult<IRole> pageUnlinkRoleByGroup(int start, int limit, IGroup group,IFilter filter);
 	
 	
