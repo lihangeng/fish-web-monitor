@@ -36,7 +36,7 @@ public class TransTypeExtractDataService implements ITransTypeExtractDataService
 		sql.append("SELECT tr.TRANS_DATE,tr.TRANS_CODE,SUM(tr.AMT),COUNT(tr.TRANS_DATE) ");
 		sql.append("FROM ATMC_TRANSACTION tr ");
 		sql.append("WHERE tr.TRANS_DATE = ? ");
-		sql.append("GROUP BY tr.TRANS_CODE ");
+		sql.append("GROUP BY tr.TRANS_DATE,tr.TRANS_CODE ");
 		
 		SQLQuery query = dao.getSQLQuery(sql.toString());
 		query.setLong(0, lDate);
