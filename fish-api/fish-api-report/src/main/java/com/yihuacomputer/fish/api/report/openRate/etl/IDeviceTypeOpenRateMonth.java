@@ -12,6 +12,9 @@ public interface IDeviceTypeOpenRateMonth extends IOpenRateColumn{
 	 * @return
 	 */
 	long getDate();
+	/**
+	 * @param date
+	 */
 	void setDate(long date);
 	
 	/**
@@ -19,6 +22,9 @@ public interface IDeviceTypeOpenRateMonth extends IOpenRateColumn{
 	 * @return
 	 */
 	long getTypeId();
+	/**
+	 * @param typeId
+	 */
 	void setTypeId(long typeId);
 	
 	/**
@@ -26,5 +32,8 @@ public interface IDeviceTypeOpenRateMonth extends IOpenRateColumn{
 	 * @return
 	 */
 	String getDevType();
+	/**
+	 * @param devType
+	 */
 	void setDevType(String devType);
 }

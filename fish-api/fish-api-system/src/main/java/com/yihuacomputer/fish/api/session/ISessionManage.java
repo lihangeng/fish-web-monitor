@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 public interface ISessionManage {
 	/**
 	 * 用户是否已登录
-	 * @param session
+	 * @param userCode
 	 * @return
 	 */
 	public boolean hasLogin(String userCode);

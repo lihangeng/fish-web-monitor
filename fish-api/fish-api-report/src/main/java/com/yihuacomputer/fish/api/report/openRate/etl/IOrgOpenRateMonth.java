@@ -12,6 +12,9 @@ public interface IOrgOpenRateMonth extends IOpenRateColumn{
 	 * @return
 	 */
 	long getDate();
+	/**
+	 * @param date
+	 */
 	void setDate(long date);
 	
 	/**
@@ -19,6 +22,9 @@ public interface IOrgOpenRateMonth extends IOpenRateColumn{
 	 * @return
 	 */
 	String getOrgCode();
+	/**
+	 * @param orgCode
+	 */
 	void setOrgCode(String orgCode);
 	
 	/**
@@ -26,6 +32,9 @@ public interface IOrgOpenRateMonth extends IOpenRateColumn{
 	 * @return
 	 */
 	String getOrgName();
+	/**
+	 * @param orgName
+	 */
 	void setOrgName(String orgName);
 	
 }

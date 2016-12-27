@@ -9,6 +9,9 @@ package com.yihuacomputer.fish.api.report.openRate.etl;
  *
  */
 public interface IOpenRateColumn {
+	/**
+	 * @return
+	 */
 	long getId();
 	
 	/**
@@ -16,6 +19,9 @@ public interface IOpenRateColumn {
 	 * @return
 	 */
 	long getOpenTimes();
+	/**
+	 * @param openTimes
+	 */
 	void setOpenTimes(long openTimes);
 	
 	/**
@@ -23,6 +29,9 @@ public interface IOpenRateColumn {
 	 * @return
 	 */
 	long getHealthyTimeReal();
+	/**
+	 * @param healthyTimeReal
+	 */
 	void setHealthyTimeReal(long  healthyTimeReal);
 	
     /**
@@ -33,7 +42,7 @@ public interface IOpenRateColumn {
     
     /**
      * 设置开机率
-     * @return
+     * @param openRate
      */
     public void setOpenRate(double openRate);
 }

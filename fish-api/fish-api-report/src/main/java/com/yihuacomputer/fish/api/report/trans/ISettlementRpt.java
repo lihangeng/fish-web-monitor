@@ -1,5 +1,9 @@
 package com.yihuacomputer.fish.api.report.trans;
 
+/**
+ * @author YiHua
+ *
+ */
 public interface ISettlementRpt {
     
     /**

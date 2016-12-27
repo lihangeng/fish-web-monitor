@@ -38,16 +38,22 @@ public interface ITransTypeEtlService {
 	
 	/**
 	 * 保存交易类型/日
+	 * @param transTypeDay
+	 * @return
 	 */
 	public ITransTypeDay saveByDay(ITransTypeDay transTypeDay);
 	
 	/**
 	 * 保存交易类型/周
+	 * @param transTypeWeek
+	 * @return
 	 */
 	public ITransTypeWeek saveByWeek(ITransTypeWeek transTypeWeek);
 	
 	/**
 	 * 保存交易类型/月
+	 * @param transTypeMonth
+	 * @return
 	 */
 	public ITransTypeMonth saveByMonth(ITransTypeMonth transTypeMonth);
 	

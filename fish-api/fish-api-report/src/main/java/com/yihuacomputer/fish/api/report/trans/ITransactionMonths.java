@@ -1,9 +1,19 @@
 package com.yihuacomputer.fish.api.report.trans;
 
+/**
+ * @author YiHua
+ *
+ */
 public interface ITransactionMonths {
 
+	/**
+	 * @return
+	 */
 	public long getId();
 
+	/**
+	 * @param id
+	 */
 	public void setId(long id);
 
 	/**
@@ -57,7 +67,7 @@ public interface ITransactionMonths {
 	public String getTransCode();
 	/**
 	 * 交易码
-	 * @return
+	 * @param transCode
 	 */
 	public void setTransCode(String transCode);
 	
@@ -68,7 +78,7 @@ public interface ITransactionMonths {
 	public String getCardType();
 	/**
 	 * 卡类型
-	 * @return
+	 * @param cardType
 	 */
 	public void setCardType(String cardType);
 	

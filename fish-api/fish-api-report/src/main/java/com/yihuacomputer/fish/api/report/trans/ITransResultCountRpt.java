@@ -35,7 +35,7 @@ public interface ITransResultCountRpt {
     
     /**
      *  设置结果
-     * @return
+     * @param result
      */
     public void setResult(String result);
 	

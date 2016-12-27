@@ -5,6 +5,10 @@ import java.util.List;
 import com.yihuacomputer.common.IFilter;
 
 
+/**
+ * @author YiHua
+ *
+ */
 public interface ICashInRptService {
     
     /**

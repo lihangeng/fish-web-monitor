@@ -12,6 +12,9 @@ public interface IDeviceTypeOpenRateWeek extends IOpenRateColumn{
 	 * @return
 	 */
 	long getDate();
+	/**
+	 * @param date
+	 */
 	void setDate(long date);
 	
 	/**
@@ -19,12 +22,18 @@ public interface IDeviceTypeOpenRateWeek extends IOpenRateColumn{
 	 * @return
 	 */
 	String getStartDate();
+	/**
+	 * @param startDate
+	 */
 	void setStartDate(String startDate);
 	/**
 	 * 周结束时间yyyyMMdd
 	 * @return
 	 */
 	String getEndDate();
+	/**
+	 * @param endDate
+	 */
 	void setEndDate(String endDate);
 	
 	/**
@@ -32,6 +41,9 @@ public interface IDeviceTypeOpenRateWeek extends IOpenRateColumn{
 	 * @return
 	 */
 	long getTypeId();
+	/**
+	 * @param typeId
+	 */
 	void setTypeId(long typeId);
 	
 	/**
@@ -39,5 +51,8 @@ public interface IDeviceTypeOpenRateWeek extends IOpenRateColumn{
 	 * @return
 	 */
 	String getDevType();
+	/**
+	 * @param devType
+	 */
 	void setDevType(String devType);
 }

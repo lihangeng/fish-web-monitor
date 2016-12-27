@@ -12,6 +12,9 @@ public interface IOrgOpenRateWeek extends IOpenRateColumn{
 	 * @return
 	 */
 	long getDate();
+	/**
+	 * @param date
+	 */
 	void setDate(long date);
 	
 	/**
@@ -19,12 +22,18 @@ public interface IOrgOpenRateWeek extends IOpenRateColumn{
 	 * @return
 	 */
 	String getStartDate();
+	/**
+	 * @param startDate
+	 */
 	void setStartDate(String startDate);
 	/**
 	 * 周结束时间yyyyMMdd
 	 * @return
 	 */
 	String getEndDate();
+	/**
+	 * @param endDate
+	 */
 	void setEndDate(String endDate);
 	
 	/**
@@ -32,6 +41,9 @@ public interface IOrgOpenRateWeek extends IOpenRateColumn{
 	 * @return
 	 */
 	String getOrgCode();
+	/**
+	 * @param orgCode
+	 */
 	void setOrgCode(String orgCode);
 	
 	/**
@@ -39,6 +51,9 @@ public interface IOrgOpenRateWeek extends IOpenRateColumn{
 	 * @return
 	 */
 	String getOrgName();
+	/**
+	 * @param orgName
+	 */
 	void setOrgName(String orgName);
 	
 }

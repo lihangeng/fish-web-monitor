@@ -14,12 +14,14 @@ public interface ITransRptService {
 
 	/**
 	 * 机构分类统计
+	 * @param filter
 	 * @return
 	 */
 	public List<ITransCountRpt> listOrgTransCount(IFilter filter);
 	
 	/**
      * 机构分类统计
+     * @param filter
      * @return
      */
     public List<ITransCountRpt> listDeviceTransCount(IFilter filter);
@@ -27,6 +29,7 @@ public interface ITransRptService {
 	
 	/**
 	 * 交易结果统计
+	 * @param filter
 	 * @return
 	 */
 	public List<ITransResultCountRpt> listTransResultCount(IFilter filter);
