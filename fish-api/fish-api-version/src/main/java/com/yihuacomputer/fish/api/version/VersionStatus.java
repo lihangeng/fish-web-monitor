@@ -1,5 +1,9 @@
 package com.yihuacomputer.fish.api.version;
 
+/**
+ * @author YiHua
+ *
+ */
 public enum VersionStatus {
     NEW("VersionStatus.NEW"),//刚创建
 	WAITING("VersionStatus.WAITING"),//经配置后进入下发队列

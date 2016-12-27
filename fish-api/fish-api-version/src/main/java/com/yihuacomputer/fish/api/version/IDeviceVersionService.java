@@ -13,26 +13,77 @@ import com.yihuacomputer.fish.api.version.job.task.TaskStatus;
  *
  */
 public interface IDeviceVersionService {
+    /**
+     * @return
+     */
     IDeviceVersion make();
 
+    /**
+     * @param deviceId
+     * @param versionId
+     * @param taskStatus
+     * @param reason
+     * @return
+     */
     IDeviceVersion saveOrUpdateDeviceVersion(long deviceId, long versionId, TaskStatus taskStatus, String reason);
 
+    /**
+     * @param deviceId
+     * @param versionId
+     * @return
+     */
     IDeviceVersion findDeviceVersionContainsRemoved(long deviceId, long versionId);
 
+    /**
+     * @param deviceId
+     * @param versionId
+     * @return
+     */
     IDeviceVersion findDeviceVersion(long deviceId, long versionId);
 
+    /**
+     * @param versionId
+     */
     void deleteDeviceVersion(long versionId);
 
+    /**
+     * @return
+     */
     List<IDeviceVersion> listDeviceVersions();
 
+    /**
+     * @param deviceId
+     * @return
+     */
     List<IDeviceVersion> listDeviceVersions(long deviceId);
 
+    /**
+     * @param deviceId
+     * @param versionId
+     * @param taskStatus
+     * @return
+     */
     IDeviceVersion updateDeviceVersionStatus(long deviceId, long versionId, TaskStatus taskStatus);
 
+    /**
+     * @param versionId
+     * @return
+     */
     List<IDeviceVersion> findDeviceVersionContainsRemoved(long versionId);
 
+    /**
+     * @param deviceId
+     * @param versionId
+     * @param taskStatus
+     * @param reason
+     */
     void saveOrUpdateDeviceVersionForList(long deviceId, long versionId, TaskStatus taskStatus, String reason);
 
+    /**
+     * @param deviceId
+     * @param versionId
+     * @param taskStatus
+     */
     void updateDeviceVersionStatusForList(long deviceId, long versionId, TaskStatus taskStatus);
 
     /**

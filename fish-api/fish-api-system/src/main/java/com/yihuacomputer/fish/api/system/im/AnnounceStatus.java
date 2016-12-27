@@ -1,6 +1,10 @@
 package com.yihuacomputer.fish.api.system.im;
 
 
+/**
+ * @author YiHua
+ *
+ */
 public enum AnnounceStatus {
 
 	/**
@@ -31,6 +35,10 @@ public enum AnnounceStatus {
         return text;
     }
 
+    /**
+     * @param id
+     * @return
+     */
     public static AnnounceStatus getById(int id) {
 		for (AnnounceStatus each : AnnounceStatus.values()) {
 			if (each.getId() == id) {

@@ -2,6 +2,10 @@ package com.yihuacomputer.fish.api.version;
 
 import com.yihuacomputer.common.FishCfg;
 
+/**
+ * @author YiHua
+ *
+ */
 public class VersionCfg {
 
 	/**
@@ -38,6 +42,9 @@ public class VersionCfg {
 		return FishCfg.getFishHome() + FishCfg.FILESEP + "temp"+FishCfg.FILESEP+"atmParam";
 	}
 	
+	/**
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		System.out.println(FishCfg.getFishHome()+FishCfg.FILESEP+"temp");
 	}

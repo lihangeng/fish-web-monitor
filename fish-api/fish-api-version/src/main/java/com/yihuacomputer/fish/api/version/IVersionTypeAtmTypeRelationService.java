@@ -31,6 +31,10 @@ public interface IVersionTypeAtmTypeRelationService {
 	 */
 	public List<IAtmType> findAtmTypes(long versionTypeId);
 	
+	/**
+	 * @param versionTypeId
+	 * @return
+	 */
 	public List<Long> findAtmTypeIds(long versionTypeId);
 	
 	/**

@@ -16,11 +16,13 @@ public interface IJob {
 
 	/**
 	 *设置作业编号
+	 *@param jobId
 	 * */
 	public void setJobId(long jobId);
 
 	/**
 	 * 获取作业编号
+	 * @return
 	 * */
 	public long getJobId();
 	/**
@@ -28,6 +30,9 @@ public interface IJob {
 	 * @return
 	 */
 	public String getJobName();
+	/**
+	 * @param jobName
+	 */
 	public void setJobName(String jobName);
 
 	/**
@@ -45,11 +50,18 @@ public interface IJob {
 	 * @return
 	 */
 	public String getDesc();
+	/**
+	 * @param desc
+	 */
 	public void setDesc(String desc);
 	/**
 	 * 获取作业创建时间
+	 * @return
 	 */
 	public Date getCreatedTime();
+	/**
+	 * @param createdTime
+	 */
 	public void setCreatedTime(Date createdTime);
 
 	/**
@@ -58,6 +70,9 @@ public interface IJob {
 	 * @return
 	 */
 	public Date getPlanTime();
+	/**
+	 * @param jobTime
+	 */
 	public void setPlanTime(Date jobTime);
 	/**
 	 * 获得作业开始执行时间
@@ -66,7 +81,7 @@ public interface IJob {
 	public Date getStartTime();
 	/**
 	 * 设置作业开始执行时间
-	 * @param startExecuteTime
+	 * @param startTime
 	 */
 	public void setStartTime(Date startTime);
 	/**
@@ -76,58 +91,76 @@ public interface IJob {
 	public Date getFinishTime();
 	/**
 	 * 设置作业执行完成时间
-	 * @param finishExecuteTime
+	 * @param finishTime
 	 */
 	public void setFinishTime(Date finishTime);
 	/**
 	 * 设置作业类型
+	 * @param jobType
 	 * */
 	public void setJobType(JobType jobType);
 
 	/**
 	 * 获取作业类型
+	 * @return
 	 * */
 	public JobType getJobType();
 
 	/**
 	 * 获取作业状态
+	 * @return
 	 * */
 	public JobStatus getJobStatus();
 
+	/**
+	 * @param jobStatus
+	 */
 	public void setJobStatus(JobStatus jobStatus);
 
+	/**
+	 * @return
+	 */
 	public JobPriority getJobPriority();
 
 	/**
 	 * 设置作业优先级
+	 * @param jobPriority
 	 * */
 	public void setJobPriority(JobPriority jobPriority);
 
 
 	/**
 	 * 添加任务
+	 * @param tasks
 	 * */
 
 	public void addTasks(List<ITask> tasks);
 
+	/**
+	 * @param task
+	 */
 	public void addTask(ITask task);
 
 	/**
 	 * 获取任务列表
+	 * @return
 	 */
-
 	public List<ITask> getTasks();
 	/**
 	 * 获取任务个数
+	 * @return
 	 */
 	public int getTaskSize();
 
     /**
      * 设置开始部署时间
-     * @param deployStartdate
+     * @param deployStartDate
      * @since 0.21
      */
     public void setDeployStartDate(Date deployStartDate);
+    /**
+     * @return
+     */
     public Date getDeployStartDate();
 
     /**
@@ -137,6 +170,9 @@ public interface IJob {
      * @since 0.21
      */
     public void setDeployEndDate(Date deployEndDate);
+    /**
+     * @return
+     */
     public Date getDeployEndDate();
 
     /**
@@ -144,7 +180,13 @@ public interface IJob {
 	 * @param user
 	 */
 	public void setCreateUser(IUser user);
+	/**
+	 * @param userId
+	 */
 	public void setCreateUserId(long userId);
+	/**
+	 * @return
+	 */
 	public IUser getCreateUser();
 
 	/**
@@ -152,6 +194,9 @@ public interface IJob {
 	 * @param cancelPreVer
 	 */
 	public void setCancelPreVer(long cancelPreVer) ;
+	/**
+	 * @return
+	 */
 	public long getCancelPreVer() ;
 
 	/**
@@ -159,6 +204,9 @@ public interface IJob {
 	 * @param rebootUpdate
 	 */
 	public void setRebootUpdate(long rebootUpdate) ;
+	/**
+	 * @return
+	 */
 	public long getRebootUpdate() ;
 	
 	/**
@@ -166,6 +214,9 @@ public interface IJob {
 	 * @return
 	 */
 	public String getServerIp();
+	/**
+	 * @param serverIp
+	 */
 	public void setServerIp(String serverIp);
 	
 	/**
@@ -173,5 +224,8 @@ public interface IJob {
 	 * @return
 	 */
 	public int getDownCounter();
+	/**
+	 * @param downCounter
+	 */
 	public void setDownCounter(int downCounter);
 }

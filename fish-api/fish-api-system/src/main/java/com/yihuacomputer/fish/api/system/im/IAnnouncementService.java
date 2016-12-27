@@ -21,7 +21,7 @@ public interface IAnnouncementService {
     /**
      * 根据主键guid返回公告
      * 
-     * @param guid
+     * @param id
      * @return
      */
     public IAnnouncement get(long id);
@@ -44,14 +44,14 @@ public interface IAnnouncementService {
     /**
      * 删除组织机构
      * 
-     * @param organization
+     * @param announcement
      */
     public void remove(IAnnouncement announcement);
 
     /**
      * 更新组织机构信息
      * 
-     * @param organization
+     * @param announcement
      */
     public void update(IAnnouncement announcement);
 

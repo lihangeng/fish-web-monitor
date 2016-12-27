@@ -17,12 +17,16 @@ public interface IVersionStaticsStautsService {
 	 * 根据版本Id，和当前人所在机构获取版本下发概况信息(图表)
 	 * @param versionId
 	 * @param orgFlag
+	 * @param start
+	 * @param limit
 	 * @return
 	 */
 	List<ChartsInfo> getVersionSummaryInfo(long versionId,String orgFlag,int start,int limit);
 	
 	/**
 	 * 依据bar3d获取版本视图详情
+	 * @param start
+	 * @param limit
 	 * @param filter
 	 * @return
 	 */
@@ -35,9 +39,37 @@ public interface IVersionStaticsStautsService {
 	 */
 	public List<Long> getAtmTypeIdsByVersionId(long versionId);
 	
+	/**
+	 * @param versionId
+	 * @param orgFlag
+	 * @param start
+	 * @param limit
+	 * @return
+	 */
 	public IPageResult<VersionChartsDetailForm> getMatchConditionDeviceSuccess(long versionId,String orgFlag,int start,int limit);
+    /**
+     * @param versionId
+     * @param orgFlag
+     * @param start
+     * @param limit
+     * @return
+     */
     public IPageResult<VersionChartsDetailForm> getMatchConditionDeviceTotal(long versionId,String orgFlag,int start,int limit);
+    /**
+     * @param versionId
+     * @param orgFlag
+     * @param start
+     * @param limit
+     * @return
+     */
     public IPageResult<VersionChartsDetailForm> getMatchConditionDeviceFatal(long versionId,String orgFlag,int start,int limit);
+    /**
+     * @param versionId
+     * @param orgFlag
+     * @param start
+     * @param limit
+     * @return
+     */
     public IPageResult<VersionChartsDetailForm> getMatchConditionDevicePush(long versionId,String orgFlag,int start,int limit);
 
 }

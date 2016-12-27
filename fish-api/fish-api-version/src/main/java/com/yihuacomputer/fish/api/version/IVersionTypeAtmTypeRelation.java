@@ -9,6 +9,9 @@ package com.yihuacomputer.fish.api.version;
  */
 public interface IVersionTypeAtmTypeRelation {
 
+	/**
+	 * @return
+	 */
 	long getId();
 
 	/**
@@ -23,8 +26,14 @@ public interface IVersionTypeAtmTypeRelation {
 	 */
 	long getVersionTypeId();
 
+	/**
+	 * @param atmTypeId
+	 */
 	void setAtmTypeId(long atmTypeId);
 
+	/**
+	 * @param versionTypeId
+	 */
 	void setVersionTypeId(long versionTypeId);
 
 }

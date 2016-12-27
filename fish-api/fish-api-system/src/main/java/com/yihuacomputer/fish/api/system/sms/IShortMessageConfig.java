@@ -1,6 +1,10 @@
 package com.yihuacomputer.fish.api.system.sms;
 
 
+/**
+ * @author YiHua
+ *
+ */
 public interface IShortMessageConfig {
 
 	/**
@@ -27,6 +31,9 @@ public interface IShortMessageConfig {
 	 */
 	String getManufacturerType();
 
+	/**
+	 * @param manufacturerType
+	 */
 	void setManufacturerType(String manufacturerType) ;
 
 	/**
@@ -35,6 +42,9 @@ public interface IShortMessageConfig {
 	 */
 	String getSourceNum();
 
+	/**
+	 * @param sourceNum
+	 */
 	void setSourceNum(String sourceNum) ;
 
 	/**
@@ -43,6 +53,9 @@ public interface IShortMessageConfig {
 	 */
 	String getVersion();
 
+	/**
+	 * @param version
+	 */
 	void setVersion(String version);
 
 	/**
@@ -51,6 +64,9 @@ public interface IShortMessageConfig {
 	 */
 	String getAccount();
 
+	/**
+	 * @param account
+	 */
 	void setAccount(String account);
 	
 	/**
@@ -59,6 +75,9 @@ public interface IShortMessageConfig {
 	 */
 	String getPwd();
 
+	/**
+	 * @param pwd
+	 */
 	void setPwd(String pwd);
 
 	/**
@@ -67,6 +86,9 @@ public interface IShortMessageConfig {
 	 */
 	String getCompaCode();
 
+	/**
+	 * @param compaCode
+	 */
 	void setCompaCode(String compaCode);
 
 	/**
@@ -75,6 +97,9 @@ public interface IShortMessageConfig {
 	 */
 	void setHost(String host);
 
+	/**
+	 * @param port
+	 */
 	void setPort(int port);
 	
 	/**
@@ -83,5 +108,8 @@ public interface IShortMessageConfig {
 	 */
 	String getVerifyCode();
 	
+	/**
+	 * @param verifyCode
+	 */
 	void setVerifyCode(String verifyCode);
 }

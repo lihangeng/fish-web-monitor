@@ -34,6 +34,9 @@ public interface IJobSynchronous {
 	 */
 	public Date getDateTime();
 	
+	/**
+	 * @param dateTime
+	 */
 	public void setDateTime(Date dateTime);
 	
 	/**
@@ -42,6 +45,9 @@ public interface IJobSynchronous {
 	 */
 	public String getServerIp();
 	
+	/**
+	 * @param serverIp
+	 */
 	public void setServerIp(String serverIp);
 	
 }

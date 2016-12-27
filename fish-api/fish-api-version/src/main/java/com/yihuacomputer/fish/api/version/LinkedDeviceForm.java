@@ -2,6 +2,10 @@ package com.yihuacomputer.fish.api.version;
 
 import com.yihuacomputer.fish.api.device.IDevice;
 
+/**
+ * @author YiHua
+ *
+ */
 public class LinkedDeviceForm {
 	private long id;
 	private String code;
@@ -22,6 +26,9 @@ public class LinkedDeviceForm {
 
 	}
 
+	/**
+	 * @param device
+	 */
 	public LinkedDeviceForm(IDevice device) {
 		setId(device.getId());
 		setCode(device.getTerminalId());

@@ -9,6 +9,9 @@ import com.yihuacomputer.fish.api.person.IUser;
  * 版本在业务上由版本类型和版本号唯一确定。
  */
 public interface IVersion {
+	/**
+	 * @return
+	 */
 	public long getId();
 
 	/**
@@ -70,10 +73,13 @@ public interface IVersion {
 
 	/**
 	 * 设置版本执行前执行的脚本名称
-	 * @param execBefor
+	 * @param execBefore
 	 */
 	public void setExecBefore(String execBefore);
 
+	/**
+	 * @return
+	 */
 	public String getExecBefore();
 
 	/**
@@ -81,6 +87,9 @@ public interface IVersion {
 	 * @param execAfter
 	 */
 	public void setExecAfter(String execAfter);
+	/**
+	 * @return
+	 */
 	public String getExecAfter();
 	/**
 	 * 版本存放到ATM上的位置
@@ -132,6 +141,9 @@ public interface IVersion {
 	 */
 	public void setDesc(String desc);
 
+	/**
+	 * @return
+	 */
 	public String getDesc();
 
 	/**
@@ -145,6 +157,9 @@ public interface IVersion {
 	 * @return
 	 */
 	public String getOriginalFileName();
+	/**
+	 * @param originalFileName
+	 */
 	public void setOriginalFileName(String originalFileName);
 	/**
 	 * 判断当前版本在某版本之后
@@ -160,6 +175,9 @@ public interface IVersion {
 	 */
 	public VersionStatus getVersionStatus();
 
+	/**
+	 * @param versionStatus
+	 */
 	public void setVersionStatus(VersionStatus versionStatus);
 	/**
 	 * 是否在ATMC端解压缩
@@ -167,6 +185,9 @@ public interface IVersion {
 	 * @return true 需要解压
 	 */
 	public boolean isUncompress ();
+	/**
+	 * @param uncompress
+	 */
 	public void setUncompress(boolean uncompress);
 	   /**
      * 是否立即重启ATM,软重启
@@ -174,6 +195,9 @@ public interface IVersion {
      */
 	@Deprecated
     public boolean isEagerRestart();
+	/**
+	 * @param eagerRestart
+	 */
 	@Deprecated
     public void setEagerRestart(boolean eagerRestart);
 
@@ -182,7 +206,13 @@ public interface IVersion {
 	 * @param user
 	 */
 	public void setCreateUser(IUser user);
+	/**
+	 * @param userId
+	 */
 	public void setCreateUserId(long userId);
+	/**
+	 * @return
+	 */
 	public IUser getCreateUser();
 
 	/**
@@ -192,6 +222,9 @@ public interface IVersion {
 	 */
 	public String getMd5CheckNum() ;
 
+	/**
+	 * @param md5CheckNum
+	 */
 	public void setMd5CheckNum(String md5CheckNum);
 
 	/**
@@ -200,6 +233,9 @@ public interface IVersion {
 	 */
 	public void setReleaseDate(Date releaseDate);
 
+	/**
+	 * @return
+	 */
 	public Date getReleaseDate();
 	/**
 	 * 获取可比较的版本号字符串信息
@@ -220,7 +256,7 @@ public interface IVersion {
 
 	/**
 	 * 当前版本手工下发次数
-	 * @return
+	 * @param downloadCounter
 	 */
 	public void setDownloadCounter(int downloadCounter);
 }

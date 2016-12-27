@@ -15,28 +15,52 @@ import com.yihuacomputer.fish.api.version.job.task.ITask;
  * @author xuxigang
  *
  */
-/**
- * @author YH
- *
- */
 public interface IVersionService {
+    /**
+     * @return
+     */
     public IVersion make();
 
+    /**
+     * @param id
+     * @return
+     */
     public IVersion getById(long id);
 
+    /**
+     * @param version
+     * @return
+     */
     public IVersion add(IVersion version);
 
     /**
      * 如果更新之前，压缩包有调整，需要自行修改压缩包的MD5值
+     * @param version
      */
     public void update(IVersion version);
 
+    /**
+     * @param version
+     */
     public void delete(IVersion version);
 
+    /**
+     * @param id
+     */
     public void delete(long id);
 
+    /**
+     * @param filter
+     * @return
+     */
     public List<IVersion> list(IFilter filter);
 
+    /**
+     * @param offset
+     * @param limit
+     * @param filter
+     * @return
+     */
     public IPageResult<IVersion> page(int offset, int limit, IFilter filter);
 
     /**
@@ -65,6 +89,7 @@ public interface IVersionService {
      *            任务编号
      * @param ret
      *            下发结果
+     * @param ip
      */
     public void collectUpdateReport(long taskId, String ret, String ip);
 
@@ -81,7 +106,7 @@ public interface IVersionService {
 
     /**
      * 得到下一个版本号
-     *
+     * @param versionTypeId
      * @return
      */
     public String getNextVersionNo(long versionTypeId);
@@ -144,22 +169,24 @@ public interface IVersionService {
      * @param taskId
      * @param ret
      * @param size
+     * @param startTime
+     * @param endTime
      * @return
      */
     public ITask collectUpdateReport(long taskId, String ret, double size, String startTime, String endTime);
 
- /**
- *获取可以更新的版本 
- * @param maybeVersions 所有同类型的版本
- * @param currentVersion 当前版本
- * @return
- */
-public List<IVersion> getUpdateVersion(List<IVersion> maybeVersions,IVersion currentVersion);
-
-/**
- * 将2.1.1.1 版本号转换为字符串 00000002000000010000000100000001
- * @param versionNostr
- * @return
- */
-public String getVersionStrByVersionNo(String versionNostr);
-}
+	 /**
+	 *获取可以更新的版本 
+	 * @param maybeVersions 所有同类型的版本
+	 * @param currentVersion 当前版本
+	 * @return
+	 */
+	public List<IVersion> getUpdateVersion(List<IVersion> maybeVersions,IVersion currentVersion);
+	
+	/**
+	 * 将2.1.1.1 版本号转换为字符串 00000002000000010000000100000001
+	 * @param versionNostr
+	 * @return
+	 */
+	public String getVersionStrByVersionNo(String versionNostr);
+	}

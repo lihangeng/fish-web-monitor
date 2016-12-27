@@ -3,12 +3,17 @@ package com.yihuacomputer.fish.api.system.config;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
 
+/**
+ * @author YiHua
+ *
+ */
 public interface IParamService {
 
 	/**
 	 * 保存参数.
 	 * 
-	 * @param parm
+	 * @param param
+	 * @return
 	 */
 	public IParam add(IParam param);
 
@@ -25,7 +30,7 @@ public interface IParamService {
 	/**
 	 * 获取参数.
 	 * 
-	 * @param parmKey
+	 * @param paramKey
 	 * @return
 	 */
 	public IParam getParam(String paramKey);

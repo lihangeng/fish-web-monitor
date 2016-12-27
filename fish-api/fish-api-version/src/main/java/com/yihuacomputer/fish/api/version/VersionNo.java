@@ -51,6 +51,9 @@ public class VersionNo{
     public VersionNo() {
     }
 
+    /**
+     * @param versionNo
+     */
     public VersionNo(String versionNo) {
         int index = versionNo.indexOf(this.link2);
         String versionNoValue = versionNo;
@@ -79,6 +82,11 @@ public class VersionNo{
         }
     }
     
+    /**
+     * @param versionNo
+     * @param link1
+     * @param link2
+     */
     public VersionNo(String versionNo,String link1 ,String link2){
         int index = versionNo.indexOf(link1);
         String versionNoValue = versionNo;
@@ -227,8 +235,9 @@ public class VersionNo{
         this.link2 = link2;
     }
 
-    /* (non-Javadoc)
-     * @see com.yihuacomputer.fish.api.version.IVersionNo#isBiggerThan(com.yihuacomputer.fish.api.version.VersionNo)
+    /**
+     * @param other
+     * @return
      */
     public boolean isBiggerThan(VersionNo other) {
         if (this.major > other.getMajor()) {

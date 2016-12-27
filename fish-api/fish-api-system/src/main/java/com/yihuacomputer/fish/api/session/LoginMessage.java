@@ -1,6 +1,10 @@
 package com.yihuacomputer.fish.api.session;
 
 
+/**
+ * @author YiHua
+ *
+ */
 public class LoginMessage {
 	private String username;
 	private String sessionID;
@@ -9,6 +13,10 @@ public class LoginMessage {
 	public LoginMessage() {
 		
 	}
+	/**
+	 * @param username
+	 * @param sessionID
+	 */
 	public LoginMessage(String username, String sessionID) {
 		this.username = username;
 		this.sessionID = sessionID;

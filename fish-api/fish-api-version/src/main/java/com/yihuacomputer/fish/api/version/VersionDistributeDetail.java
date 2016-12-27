@@ -1,5 +1,9 @@
 package com.yihuacomputer.fish.api.version;
 
+/**
+ * @author YiHua
+ *
+ */
 public class VersionDistributeDetail {
 	private String terminalId;
 	private String orgName;

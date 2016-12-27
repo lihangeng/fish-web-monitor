@@ -2,6 +2,10 @@ package com.yihuacomputer.fish.api.system.sms;
 
 import java.util.List;
 
+/**
+ * @author YiHua
+ *
+ */
 public interface IShortMessage {
 
 	/**
@@ -10,8 +14,14 @@ public interface IShortMessage {
 	 */
 	public List<String> listMobile();
 	
+	/**
+	 * @param mobile
+	 */
 	public void addMobile(String mobile);
 	
+	/**
+	 * @param mobiles
+	 */
 	public void addMobile(List<String> mobiles);
 	
 	/**
@@ -20,6 +30,9 @@ public interface IShortMessage {
 	 */
 	public String getContent();
 	
+	/**
+	 * @param content
+	 */
 	public void setContent(String content);
 	
 	/**

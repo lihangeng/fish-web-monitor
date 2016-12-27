@@ -10,6 +10,9 @@ package com.yihuacomputer.fish.api.version;
  * 
  */
 public interface IVersionType {
+    /**
+     * @return
+     */
     public long getId();
 
     /**
@@ -19,6 +22,9 @@ public interface IVersionType {
      */
     public void setTypeName(String typeName);
 
+    /**
+     * @return
+     */
     public String getTypeName();
 
     /**
@@ -28,6 +34,9 @@ public interface IVersionType {
      */
     public void setAutoDeploy(boolean autoDeploy);
 
+    /**
+     * @return
+     */
     public boolean isAutoDeploy();
 
     /**
@@ -37,6 +46,9 @@ public interface IVersionType {
      */
     public boolean isSystem();
 
+    /**
+     * @param system
+     */
     public void setSystem(boolean system);
 
     /**
@@ -46,6 +58,9 @@ public interface IVersionType {
      */
     public boolean isDisplay();
 
+    /**
+     * @param display
+     */
     public void setDisplay(boolean display);
 
     /**
@@ -55,6 +70,9 @@ public interface IVersionType {
      */
     public boolean isCustomVersion();
 
+    /**
+     * @param customVersion
+     */
     public void setCustomVersion(boolean customVersion);
 
     /**
@@ -64,6 +82,9 @@ public interface IVersionType {
      */
     public void setDefaultInstallPath(String defaultInstallPath);
 
+    /**
+     * @return
+     */
     public String getDefaultInstallPath();
 
     /**
@@ -73,6 +94,9 @@ public interface IVersionType {
      */
     public void setDesc(String desc);
 
+    /**
+     * @return
+     */
     public String getDesc();
 
      /**

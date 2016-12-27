@@ -1,5 +1,9 @@
 package com.yihuacomputer.fish.api.version;
 
+/**
+ * @author YiHua
+ *
+ */
 public class VersionDistribute {
 	private long versionTypeId;
 	private long versionId;

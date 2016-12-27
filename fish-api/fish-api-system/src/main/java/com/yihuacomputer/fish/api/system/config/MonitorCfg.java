@@ -2,6 +2,10 @@ package com.yihuacomputer.fish.api.system.config;
 
 import com.yihuacomputer.common.FishCfg;
 
+/**
+ * @author YiHua
+ *
+ */
 public class MonitorCfg {
 	/**
 	 * 获取设备离线时间(单位:分钟) 默认时间:30分钟

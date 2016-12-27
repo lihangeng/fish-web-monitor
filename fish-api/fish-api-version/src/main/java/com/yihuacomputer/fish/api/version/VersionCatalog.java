@@ -42,6 +42,10 @@ public enum VersionCatalog {
         return text;
     }
 
+    /**
+     * @param versionCatalog
+     * @return
+     */
     public static boolean isApp(VersionCatalog versionCatalog){
     	if(VersionCatalog.APP.equals(versionCatalog)){
     		return true;
@@ -49,6 +53,10 @@ public enum VersionCatalog {
     	return false;
     }
 
+    /**
+     * @param versionCatalog
+     * @return
+     */
     public static boolean isAdvert(VersionCatalog versionCatalog){
     	if(VersionCatalog.ADVERT.equals(versionCatalog)){
     		return true;
@@ -56,6 +64,10 @@ public enum VersionCatalog {
     	return false;
     }
 
+    /**
+     * @param versionCatalog
+     * @return
+     */
     public static boolean isAgent(VersionCatalog versionCatalog){
     	if(VersionCatalog.V_AGENT.equals(versionCatalog)){
     		return true;

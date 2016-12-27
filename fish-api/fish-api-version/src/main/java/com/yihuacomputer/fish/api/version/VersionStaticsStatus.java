@@ -1,5 +1,9 @@
 package com.yihuacomputer.fish.api.version;
 
+/**
+ * @author YiHua
+ *
+ */
 public enum VersionStaticsStatus {
 	/**
 	 * 设备总台数

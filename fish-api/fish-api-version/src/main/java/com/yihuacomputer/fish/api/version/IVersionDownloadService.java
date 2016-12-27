@@ -15,6 +15,13 @@ import com.yihuacomputer.fish.api.version.job.IJob;
  *
  */
 public interface IVersionDownloadService {
+	/**
+	 * @param start
+	 * @param limit
+	 * @param version
+	 * @param filter
+	 * @return
+	 */
 	public IPageResult<?> pageDownDevices(int start,int limit,IVersion version,IFilter filter);
 	/**
 	 * 分页显示作业已经关联的设备列表
@@ -34,13 +41,27 @@ public interface IVersionDownloadService {
 
 	/**
 	 * 全选设备时查询当前可下发的全部设备列表
+	 * @param start
+	 * @param limit
 	 * @param version
-	 * @param org
+	 * @param outerFilter
 	 * @return
 	 */
 	public IPageResult<Object> getCanPushDevicePagesInfo(int start, int limit,IVersion version,IFilter outerFilter);
+	/**
+	 * @param start
+	 * @param limit
+	 * @param version
+	 * @param outerFilter
+	 * @return
+	 */
 	public IPageResult<LinkedDeviceForm> pageDevices(int start, int limit,IVersion version,IFilter outerFilter);
 
+	/**
+	 * @param job
+	 * @param outerFilter
+	 * @return
+	 */
 	public boolean selectAllDeviceToTask(IJob job,IFilter outerFilter);
 	
 

@@ -1,10 +1,14 @@
 package com.yihuacomputer.fish.api.system.config;
 
+/**
+ * @author YiHua
+ *
+ */
 public interface IParam {
 	
 	/**
 	 * 设置参数key
-	 * @param key
+	 * @param paramKey
 	 */
 	public void setParamKey(String paramKey);
 	
@@ -16,7 +20,7 @@ public interface IParam {
 	
 	/**
 	 * 设置参数值
-	 * @param value
+	 * @param paramValue
 	 */
 	public void setParamValue(String paramValue);
 	
@@ -28,7 +32,7 @@ public interface IParam {
 	
 	/**
 	 * 设置参数参数展示值
-	 * @param value
+	 * @param paramDisplayValue
 	 */
 	public void setParamDisplayValue(String paramDisplayValue);
 	
@@ -50,6 +54,9 @@ public interface IParam {
 	 */
 	public String getDescription();
 	
+	/**
+	 * @return
+	 */
 	public int getClassify();
 
 	/**
@@ -58,15 +65,25 @@ public interface IParam {
 	 */
 	public void setClassify(int classify);
 	
+	/**
+	 * @param id
+	 */
 	public void setId(long id);
 	
+	/**
+	 * @return
+	 */
 	public long getId();
 	
 	
 	/**
      * 参数类别
+     * @return
      */
 	public String getParamType();
 
+	/**
+	 * @param paramType
+	 */
 	public void setParamType(String paramType) ;
 }

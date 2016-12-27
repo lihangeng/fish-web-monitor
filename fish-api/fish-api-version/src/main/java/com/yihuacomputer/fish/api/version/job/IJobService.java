@@ -40,6 +40,7 @@ public interface IJobService {
 	/**
 	 * 增加一个作业信息同时保存任务列表信息
 	 * @param job
+	 * @param fitler
 	 * @return
 	 */
 	
@@ -61,6 +62,10 @@ public interface IJobService {
 	 */
 	public void cascadeDelete(long id);
 
+	/**
+	 * @param filter
+	 * @return
+	 */
 	public List<IJob> list(IFilter filter);
 
 	/**

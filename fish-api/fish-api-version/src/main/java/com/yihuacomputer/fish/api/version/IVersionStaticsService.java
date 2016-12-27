@@ -11,8 +11,15 @@ import com.yihuacomputer.fish.api.person.IOrganization;
  */
 public interface IVersionStaticsService {
 
+    /**
+     * @return
+     */
     public long getDeviceTotal();
     
+    /**
+     * @param org
+     * @return
+     */
     public long getDeviceTotal(IOrganization org);
 
 }
