@@ -23,6 +23,7 @@ public interface ITaskCollection {
 	/**
 	 * 将此队列中移除此任务
 	 * @param task
+	 * @return
 	 */
 	public boolean cancelTask(ITask task);
 }

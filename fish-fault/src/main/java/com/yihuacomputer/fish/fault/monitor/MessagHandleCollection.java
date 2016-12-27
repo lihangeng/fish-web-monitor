@@ -13,6 +13,10 @@ import com.yihuacomputer.fish.api.fault.monitor.IMessagHandleCollection;
 import com.yihuacomputer.fish.api.monitor.xfs.status.IXfsStatus;
 import com.yihuacomputer.fish.api.system.config.IParamService;
 
+/**
+ * @author YiHua
+ *
+ */
 public class MessagHandleCollection implements IMessagHandleCollection{
 
 	private Logger logger = LoggerFactory.getLogger(MessagHandleCollection.class);
@@ -27,6 +31,9 @@ public class MessagHandleCollection implements IMessagHandleCollection{
 
 	private BlockingQueue<IXfsStatus> faultHandleQueue = null;
 
+	/**
+	 * 初始化
+	 */
 	@PostConstruct
 	public void init(){
 		try{
@@ -38,6 +45,7 @@ public class MessagHandleCollection implements IMessagHandleCollection{
 
 	/**
 	 * 获取任务执行队列的使用权
+	 * @return
 	 * */
 	public BlockingQueue<IXfsStatus> getfaultHandleQueue(){
 		if(faultHandleQueue == null){

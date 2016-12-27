@@ -13,6 +13,10 @@ import com.yihuacomputer.fish.api.fault.IFaultCode;
 import com.yihuacomputer.fish.api.fault.IFaultFilter;
 import com.yihuacomputer.fish.api.fault.IFilterCode;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional
 public class FaultFilter implements IFaultFilter {

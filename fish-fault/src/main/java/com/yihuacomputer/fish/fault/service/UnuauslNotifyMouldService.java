@@ -15,6 +15,10 @@ import com.yihuacomputer.fish.api.fault.IUnusualNotifyMould;
 
 import com.yihuacomputer.fish.fault.entity.UnusualNotifyMould;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional
 public class UnuauslNotifyMouldService implements IUnuauslNotifyMouldService{

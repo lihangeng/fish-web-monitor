@@ -23,6 +23,10 @@ import com.yihuacomputer.fish.api.person.IOrganizationService;
 import com.yihuacomputer.fish.atmlog.entity.AtmLogGlobalStatistics;
 import com.yihuacomputer.fish.atmlog.entity.ErrorLogsDeviceInfo;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 public class AtmLogGlobalStatisticsService implements IAtmLogGlobalStatisticsService {
 

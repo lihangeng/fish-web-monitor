@@ -33,6 +33,10 @@ public class BackupRuner implements Runnable{
 
 	private BackupRule rule;
 
+	/**
+	 * @param logService
+	 * @param backupFileCfg
+	 */
 	public BackupRuner(IAtmLogService logService,IBackupFileCfg backupFileCfg){
 		this.logService = logService;
 		this.backupFileCfg = backupFileCfg;

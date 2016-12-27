@@ -57,6 +57,10 @@ public enum TaskStatus {
 		return text;
 	}
 
+	/**
+	 * @param status
+	 * @return
+	 */
 	public static boolean isNoticed(TaskStatus status){
 		if(status.getId() == 2 || status.getId() == 3){
 			return true;
@@ -64,7 +68,11 @@ public enum TaskStatus {
 		return false;
 	}
 
-	//没有下载成功,没有通知成功，新建的任务放入任务队列
+	/**
+	 * 没有下载成功,没有通知成功，新建的任务放入任务队列
+	 * @param status
+	 * @return
+	 */
 	public static boolean canRun(TaskStatus status){
 	    if((status.equals(TaskStatus.DOWNLOADED_FAIL))
 	    		|| (status.equals(TaskStatus.RUN))
@@ -78,6 +86,10 @@ public enum TaskStatus {
 	    return false;
 	}
 
+	/**
+	 * @param taskStatus
+	 * @return
+	 */
 	public static boolean isCancel(TaskStatus taskStatus){
 		 if((taskStatus.equals(TaskStatus.REMOVED))
 	                || (taskStatus.equals(TaskStatus.CANCELED))

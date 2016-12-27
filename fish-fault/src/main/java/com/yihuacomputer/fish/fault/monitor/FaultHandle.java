@@ -22,6 +22,9 @@ public class FaultHandle implements Runnable {
 	public FaultHandle() {
 	}
 
+	/**
+	 * @param xfsStatus
+	 */
 	public FaultHandle(IXfsStatus xfsStatus) {
 		this.xfsStatus = xfsStatus;
 	}

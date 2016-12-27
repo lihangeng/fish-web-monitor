@@ -17,22 +17,51 @@ import com.yihuacomputer.fish.api.version.job.IJob;
  *
  */
 public interface ITaskService {
+    /**
+     * @return
+     */
     public ITask make();
 
+    /**
+     * @param device
+     * @return
+     */
     public ITask make(IDevice device);
 
+    /**
+     * @param deviceId
+     * @return
+     */
     public ITask make(long deviceId);
     
+    /**
+     * @return
+     */
     public IDeviceService getDeviceService();
 
+    /**
+     * @param job
+     */
     public void removeTasks(IJob job);
 
+    /**
+     * @param task
+     */
     public void cancelTask(ITask task);
 
+    /**
+     * @param task
+     */
     public void updateTaskStatus(ITask task);
 
+    /**
+     * @param task
+     */
     public void onlyUpdateTask(ITask task);
 
+    /**
+     * @param tasks
+     */
     public void cancelTasks(List<ITask> tasks);
     /**
      * 根据设备和软件分类创建任务
@@ -44,6 +73,11 @@ public interface ITaskService {
      */
     public ITask make(long deviceId, String versionTypeName);
 
+    /**
+     * @param device
+     * @param versionTypeName
+     * @return
+     */
     public ITask make(IDevice device, String versionTypeName);
 
     /*	*//**
@@ -65,6 +99,10 @@ public interface ITaskService {
      */
     public List<ITask> findTasks(long deviceId);
 
+    /**
+     * @param jobId
+     * @return
+     */
     public List<ITask> findTasksByJobId(long jobId);
 
     /**
@@ -77,25 +115,47 @@ public interface ITaskService {
     public ITask findTask(long deviceId, long versionId);
 
     /**
-     * 根据设备ID，查找失败的任务
-     *
-     * @param deviceId
+     * @param task
      * @return
      */
-    // public List<ITask> findFailTasks(long deviceId);
-
     public ITask addTask(ITask task);
 
+    /**
+     * @param task
+     */
     public void updateTask(ITask task);
 
+    /**
+     * @param task
+     */
     public void removeTask(ITask task);
 
+    /**
+     * @param filter
+     * @return
+     */
     public List<ITask> list(IFilter filter);
 
+    /**
+     * @param start
+     * @param limit
+     * @param filter
+     * @return
+     */
     public IPageResult<ITask> page(int start, int limit, IFilter filter);
 
+    /**
+     * @param deviceId
+     * @param typeName
+     * @param versionNo
+     * @return
+     */
     public List<ITask> findTask(long deviceId, String typeName, String versionNo);
 
+    /**
+     * @param taskId
+     * @return
+     */
     public ITask get(long taskId);
 
     /**
@@ -139,6 +199,11 @@ public interface ITaskService {
      */
     public boolean noticeATM(ITask task);
 
+    /**
+     * @param deviceId
+     * @param versionId
+     * @return
+     */
     public List<ITask> findTaskByDeviceIdAndVersionId(long deviceId, long versionId);
 
     /**
@@ -152,14 +217,14 @@ public interface ITaskService {
     /**
      * 获取下发任务
      *
-     * @param list
+     * @param taskType
      * @return
      */
     public List<ITask> findTaskCount(TaskType taskType);
 
     /**
      * 根据机构条件查询任务列表
-     * @param orgFlag
+     * @param filter
      * @return
      */
     public List<ITask> findOrg(IFilter filter);
@@ -173,8 +238,18 @@ public interface ITaskService {
     */
     public List<ITask> findTaskByDeviceId(long deviceId,VersionCatalog versionCatalog,List<TaskStatus> statusList) ;
 
+    /**
+     * @param start
+     * @param limit
+     * @param filter
+     * @return
+     */
     public IPageResult<Object> pageForRepeat(int start, int limit, IFilter filter);
 
+    /**
+     * @param jobId
+     * @return
+     */
     public List<Object> findTerminalForRepeat(long jobId) ;
     
     /**
@@ -184,7 +259,7 @@ public interface ITaskService {
     public void resetTask(ITask task);
     /**
      * 运行中卡死，手工重置
-     * @param task
+     * @param tasks
      */
     public void resetTasks(List<ITask> tasks);
     

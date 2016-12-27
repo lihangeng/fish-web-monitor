@@ -23,6 +23,10 @@ import com.yihuacomputer.fish.atmlog.entity.AtmCycle;
 import com.yihuacomputer.fish.atmlog.entity.CustomerCycle;
 import com.yihuacomputer.fish.atmlog.entity.TransCycle;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 public class JournalParser {
 	
@@ -67,10 +71,16 @@ public class JournalParser {
 	
 	private Properties pros = null;
 	
+	/**
+	 * 初始化
+	 */
 	public JournalParser(){
 		this.init();
 	}
 	
+	/**
+	 * 初始化
+	 */
 	@PostConstruct
 	public void init(){
 		pros = new Properties();

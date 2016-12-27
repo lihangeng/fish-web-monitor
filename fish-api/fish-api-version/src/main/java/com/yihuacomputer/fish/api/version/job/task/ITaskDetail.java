@@ -13,24 +13,54 @@ import java.util.Date;
  */
 public interface ITaskDetail {
     
+    /**
+     * @return
+     */
     public long getId();
     
+    /**
+     * @return
+     */
     public long getTaskId();
     
+    /**
+     * @param taskId
+     */
     public void setTaskId(long taskId);
     
+    /**
+     * @return
+     */
     public Date getCreatedTime();
     
+    /**
+     * @param createdTime
+     */
     public void setCreatedTime(Date createdTime);
     
+    /**
+     * @return
+     */
     public String getTaskAction();
     
+    /**
+     * @param taskAction
+     */
     public void setTaskAction(String taskAction);
     
+    /**
+     * @return
+     */
     public boolean isSuccess();
     
+    /**
+     * @return
+     */
     public String getReason();
     
+    /**
+     * @param reason
+     */
     public void setReason(String reason);
     
 }

@@ -17,6 +17,10 @@ import com.yihuacomputer.fish.api.fault.NotifyWay;
 import com.yihuacomputer.fish.fault.entity.NotifyMould;
 import com.yihuacomputer.fish.fault.entity.NotifyMouldSet;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional
 public class NotifyMouldService implements INotifyMouldService{

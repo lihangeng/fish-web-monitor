@@ -8,6 +8,10 @@ import com.yihuacomputer.fish.api.device.IDeviceService;
 import com.yihuacomputer.fish.api.relation.IDevicePersonRelation;
 import com.yihuacomputer.fish.fault.entity.CaseFault;
 
+/**
+ * @author YiHua
+ *
+ */
 @Component("caseFaultEntityInjector")
 public class CaseFaultEntityInjector implements IEntityInjector {
 	@Autowired

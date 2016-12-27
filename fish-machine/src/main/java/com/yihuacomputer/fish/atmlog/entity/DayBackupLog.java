@@ -11,6 +11,10 @@ import javax.persistence.Table;
 
 import com.yihuacomputer.fish.api.atmlog.DayBackupResult;
 import com.yihuacomputer.fish.api.atmlog.IDayBackupLog;
+/**
+ * @author YiHua
+ *
+ */
 @Entity
 @Table(name = "ATMC_DAYBACKUP_LOG")
 public class DayBackupLog implements IDayBackupLog,Serializable {

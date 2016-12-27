@@ -28,42 +28,69 @@ import com.yihuacomputer.fish.atmlog.service.db.DayBackupService;
 @Configuration
 public class AtmLogModule {
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public IAtmLogInfoService atmLogInfoService(){
 		return new AtmLogInfoService();
 	}
+	/**
+	 * @return
+	 */
 	@Bean
 	public IAtmLogService atmLogService(){
 		return new AtmLogService();
 	}
+	/**
+	 * @return
+	 */
 	@Bean
 	public IDayBackupService dayBackupService(){
 		return new DayBackupService();
 	}
+	/**
+	 * @return
+	 */
 	@Bean
 	public IAtmLogGlobalStatisticsService atmLogGlobalStatisticsService(){
 		return new AtmLogGlobalStatisticsService();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean(name = "backupAtmLogJob")
 	public IDayBackupExcuter dayBackupExcuter(){
 		return new DayBackupExcuter();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public IBackupFileCfg backupFileCfg(){
 		return new BackupFileCfg();
 	}
+	/**
+	 * @return
+	 */
 	@Bean
 	public IJournalFileService journalFileService(){
 		return new JournalFileService();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public JournalParser journalParser(){
 		return new JournalParser();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public BackupManager backupManager(){
 		return new BackupManager();

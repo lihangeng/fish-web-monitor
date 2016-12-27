@@ -4,6 +4,10 @@ import com.yihuacomputer.fish.api.fault.INotifyMouldSet;
 import com.yihuacomputer.fish.api.monitor.business.RunStatus;
 import com.yihuacomputer.fish.api.monitor.xfs.status.DeviceMod;
 
+/**
+ * @author YiHua
+ *
+ */
 public class NotifyMouldSet implements INotifyMouldSet {
 
 	private String terminalId;

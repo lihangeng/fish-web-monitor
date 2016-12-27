@@ -45,9 +45,11 @@ public class KafkaConsumerManager {
 	@Autowired
 	private ISessionManage sessionManage;
 
+	/**
+	 * 初始化
+	 */
 	@PostConstruct
 	public void init() {
-//		KafkaConsumerConfig.class.
 		threadPool = Executors.newFixedThreadPool(4);
 		loginKafkaConsumer = new LoginKafkaConsumer(this,sessionManage);
 		logoutKafkaConsumer = new LogoutKafkaConsumer(this,sessionManage);
@@ -75,6 +77,9 @@ public class KafkaConsumerManager {
 		this.messagePusher = messagePusher;
 	}
 	
+	/**
+	 * 关闭
+	 */
 	@PreDestroy
 	public void close(){
 		if(loginKafkaConsumer != null){

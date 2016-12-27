@@ -10,6 +10,10 @@ import javax.persistence.Table;
 
 import com.yihuacomputer.fish.api.fault.IVendorCode;
 
+/**
+ * @author YiHua
+ *
+ */
 @Entity
 @Table(name = "CASE_VENDORCODE")
 public class VendorCode implements IVendorCode{

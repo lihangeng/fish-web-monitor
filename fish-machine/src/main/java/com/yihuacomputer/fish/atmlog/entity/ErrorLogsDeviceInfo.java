@@ -4,6 +4,10 @@ import java.io.Serializable;
 
 import com.yihuacomputer.fish.api.atmlog.IErrorLogsDeviceInfo;
 
+/**
+ * @author YiHua
+ *
+ */
 public class ErrorLogsDeviceInfo implements IErrorLogsDeviceInfo,Serializable {
 
 	/**

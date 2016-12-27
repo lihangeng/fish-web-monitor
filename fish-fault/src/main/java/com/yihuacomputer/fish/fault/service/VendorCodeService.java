@@ -14,6 +14,10 @@ import com.yihuacomputer.fish.api.fault.IVendorCodeService;
 import com.yihuacomputer.fish.fault.entity.VendorCode;
 
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional
 public class VendorCodeService implements IVendorCodeService {

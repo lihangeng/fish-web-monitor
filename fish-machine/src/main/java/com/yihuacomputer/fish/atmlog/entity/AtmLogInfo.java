@@ -5,6 +5,10 @@ import java.util.Date;
 
 import com.yihuacomputer.fish.api.atmlog.IAtmLogInfo;
 
+/**
+ * @author YiHua
+ *
+ */
 public class AtmLogInfo implements IAtmLogInfo,Serializable {
 	
 	/**

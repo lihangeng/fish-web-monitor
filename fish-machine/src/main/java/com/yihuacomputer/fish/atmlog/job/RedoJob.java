@@ -20,6 +20,9 @@ public class RedoJob implements Runnable{
 
 	private IAtmLogService atmLogService;
 
+	/**
+	 * @param atmLogService
+	 */
 	public RedoJob(IAtmLogService atmLogService){
 		this.atmLogService = atmLogService;
 	}

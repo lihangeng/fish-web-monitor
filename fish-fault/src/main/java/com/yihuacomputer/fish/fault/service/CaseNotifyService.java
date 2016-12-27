@@ -40,6 +40,10 @@ import com.yihuacomputer.fish.api.relation.IDevicePersonRelation;
 import com.yihuacomputer.fish.fault.entity.CaseNotify;
 import com.yihuacomputer.fish.fault.entity.NotifyContent;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional
 public class CaseNotifyService implements ICaseNotifyService {

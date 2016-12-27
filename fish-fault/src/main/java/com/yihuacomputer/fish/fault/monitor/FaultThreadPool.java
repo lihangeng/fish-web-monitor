@@ -7,12 +7,19 @@ import java.util.concurrent.TimeUnit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * @author YiHua
+ *
+ */
 public class FaultThreadPool {
 
 	private Logger logger = LoggerFactory.getLogger(FaultThreadPool.class);
 
 	private ThreadPoolExecutor faultExecutor;
 
+	/**
+	 * 初始化任务执行线程池
+	 */
 	public FaultThreadPool(){
 		this.init();
 	}
@@ -31,6 +38,9 @@ public class FaultThreadPool {
 		faultExecutor = new ThreadPoolExecutor(30,30,10,TimeUnit.SECONDS,new ArrayBlockingQueue<Runnable>(30),new ThreadPoolExecutor.CallerRunsPolicy());
 	}
 
+	/**
+	 * 关闭
+	 */
 	public void close(){
 		if(faultExecutor!=null){
 			faultExecutor.shutdownNow();
@@ -40,6 +50,7 @@ public class FaultThreadPool {
 
 	/**
 	 * 执行任务
+	 * @param faultHandle
 	 * */
 	public void execute(Runnable faultHandle){
 		faultExecutor.execute(faultHandle);

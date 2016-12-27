@@ -1,6 +1,10 @@
 package com.yihuacomputer.fish.kafka;
 
 
+/**
+ * @author YiHua
+ *
+ */
 public class KafkaConfig {
 	/**公用配置**/
 	/**

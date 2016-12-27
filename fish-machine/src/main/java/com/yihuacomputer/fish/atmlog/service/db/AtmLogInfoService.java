@@ -21,6 +21,10 @@ import com.yihuacomputer.fish.api.person.IOrganization;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
 import com.yihuacomputer.fish.atmlog.entity.AtmLogInfo;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional
 public class AtmLogInfoService implements IAtmLogInfoService {
@@ -82,6 +86,10 @@ public class AtmLogInfoService implements IAtmLogInfoService {
         return f.toString();
     }
 
+	/**
+	 * @param sqlStr
+	 * @return
+	 */
 	@SuppressWarnings("unchecked")
     @Transactional(readOnly=true)
     public int getTotal(String sqlStr) {

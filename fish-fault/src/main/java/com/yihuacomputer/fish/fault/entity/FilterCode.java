@@ -10,6 +10,10 @@ import javax.persistence.Table;
 
 import com.yihuacomputer.fish.api.fault.IFilterCode;
 
+/**
+ * @author YiHua
+ *
+ */
 @Entity
 @Table(name = "CASE_FILTER")
 public class FilterCode implements IFilterCode {

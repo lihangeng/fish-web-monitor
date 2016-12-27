@@ -11,6 +11,10 @@ import com.yihuacomputer.fish.api.fault.monitor.IFaultManager;
 import com.yihuacomputer.fish.api.fault.monitor.IMessagHandleCollection;
 import com.yihuacomputer.fish.api.monitor.xfs.status.IXfsStatus;
 
+/**
+ * @author YiHua
+ *
+ */
 public class FaultManager implements IFaultManager {
 
 	private Logger logger = LoggerFactory.getLogger(FaultManager.class);
@@ -30,6 +34,9 @@ public class FaultManager implements IFaultManager {
 		msgHandleCollection.put(xfsStatus);
 	}
 
+	/**
+	 * 初始化
+	 */
 	@PostConstruct
 	public void init() {
 		this.faultThreadPool = new FaultThreadPool();

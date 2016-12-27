@@ -13,8 +13,14 @@ import com.yihuacomputer.fish.api.version.job.IJob;
  *
  */
 public interface ITask {
+    /**
+     * @return
+     */
     public long getId();
 
+    /**
+     * @param id
+     */
     public void setId(long id);
 
     /**
@@ -165,6 +171,7 @@ public interface ITask {
 
     /**
      * 设置预期的版本
+     * @param exceptVersion
      */
     public void setExceptVersion(String exceptVersion);
 
@@ -175,6 +182,9 @@ public interface ITask {
      */
     public boolean isEagerRestart();
 
+    /**
+     * @param eagerRestart
+     */
     public void setEagerRestart(boolean eagerRestart);
 
     /**
@@ -185,6 +195,9 @@ public interface ITask {
      */
     public void setTaskType(TaskType taskType);
 
+    /**
+     * @return
+     */
     public TaskType getTaskType();
 
     /**
@@ -205,13 +218,23 @@ public interface ITask {
 
     /**
      * 版本下发进度 江苏农信
+     * @return
      * */
     public double getProcess();
 
+    /**
+     * @param process
+     */
     public void setProcess(double process);
 
+    /**
+     * @return
+     */
     public long getDeviceId();
 
+    /**
+     * @param deviceId
+     */
     public void setDeviceId(long deviceId);
 
 
@@ -221,6 +244,9 @@ public interface ITask {
      */
     public void setDownloadStartTime(String downloadStartTime) ;
 
+    /**
+     * @return
+     */
     public String getDownloadStartTime() ;
 
     /**
@@ -229,8 +255,17 @@ public interface ITask {
      */
     public void setDownloadFinishTime(String downloadFinishTime) ;
 
+    /**
+     * @return
+     */
     public String getDownloadFinishTime() ;
+	/**
+	 * @return
+	 */
 	public long getDownloadTime();
 
+	/**
+	 * @param downloadTime
+	 */
 	public void setDownloadTime(long downloadTime) ;
 }

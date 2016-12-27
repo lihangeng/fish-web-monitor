@@ -19,6 +19,10 @@ import com.yihuacomputer.fish.api.atmlog.IBackupRule;
 import com.yihuacomputer.fish.atmlog.entity.AtmLog;
 import com.yihuacomputer.fish.atmlog.rule.BackupRule;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional
 public class AtmLogService implements IAtmLogService{
@@ -83,6 +87,12 @@ public class AtmLogService implements IAtmLogService{
 		return result;
 	}
 
+    /**
+     * @param start
+     * @param limit
+     * @param filter
+     * @return
+     */
     @Transactional(readOnly=true)
 	public IPageResult<?> page(int start, int limit, IFilter filter) {
 		StringBuffer hql = new StringBuffer();

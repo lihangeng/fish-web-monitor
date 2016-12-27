@@ -8,6 +8,10 @@ import com.yihuacomputer.fish.api.atmlog.AtmLogCfg;
 import com.yihuacomputer.fish.api.atmlog.IBackupFileCfg;
 import com.yihuacomputer.fish.api.atmlog.IBackupRule;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 public class BackupFileCfg implements IBackupFileCfg{
 

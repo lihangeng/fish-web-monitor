@@ -1,5 +1,9 @@
 package com.yihuacomputer.fish.api.version.job.task;
 
+/**
+ * @author YiHua
+ *
+ */
 public class AutoUpdateTaskForm {
 
 	private long id;

@@ -34,7 +34,11 @@ public enum JobStatus {
 		return text;
 	}
 
-	//只有新建和计划中的作业在重启系统的时候自动加载到作业队列中
+	/**
+	 * 只有新建和计划中的作业在重启系统的时候自动加载到作业队列中
+	 * @param status
+	 * @return
+	 */
 	public static boolean needLoaded(JobStatus status){
 		if(status.getId() == 0 && status.getId() == 1){
 			return true;

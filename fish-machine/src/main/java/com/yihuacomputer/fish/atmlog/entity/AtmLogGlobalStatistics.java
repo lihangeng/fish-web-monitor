@@ -5,6 +5,10 @@ import java.util.Date;
 
 import com.yihuacomputer.fish.api.atmlog.IAtmLogGlobalStatistics;
 
+/**
+ * @author YiHua
+ *
+ */
 public class AtmLogGlobalStatistics implements IAtmLogGlobalStatistics,Serializable {
 	
 	/**

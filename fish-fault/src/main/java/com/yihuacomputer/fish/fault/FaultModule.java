@@ -35,61 +35,97 @@ import com.yihuacomputer.fish.fault.service.VendorCodeService;
 @Configuration
 public class FaultModule {
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public IVendorCodeService vendorCodeService() {
 		return new VendorCodeService();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public ICaseFaultService caseFaultService() {
 		return new CaseFaultService();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public ICaseNotifyService caseNotifyService() {
 		return new CaseNotifyService();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public IFaultClassifyService faultClassifyService() {
 		return new FaultClassifyService();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public INotifyMouldService notifyMouldService() {
 		return new NotifyMouldService();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public IFaultFilter faultFilter() {
 		return new FaultFilter();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public CaseFaultEntityInjector caseFaultEntityInjector() {
 		return new CaseFaultEntityInjector();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public IUnuauslNotifyMouldService unuauslNotifyMouldService() {
 		return new UnuauslNotifyMouldService();
 	}
 	
+	/**
+	 * @return
+	 */
 	@Bean
 	public IFaultStatisticsService faultStatisticsService(){
 		return new FaultStatisticsService();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public IMessagHandleCollection msgHandleCollection(){
 		return  new MessagHandleCollection();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public IFaultManager faultManager(){
 		return new FaultManager();
 	}
 	
+	/**
+	 * @return
+	 */
 	@Bean
 	public ICaseFaultFlowService caseFaultFlowService(){
 		return new DefaultCaseFaultFlowService();

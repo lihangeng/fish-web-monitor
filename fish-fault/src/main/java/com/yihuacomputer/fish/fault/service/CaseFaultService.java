@@ -23,6 +23,10 @@ import com.yihuacomputer.fish.api.person.IOrganization;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
 import com.yihuacomputer.fish.fault.entity.CaseFault;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional
 public class CaseFaultService implements ICaseFaultService {

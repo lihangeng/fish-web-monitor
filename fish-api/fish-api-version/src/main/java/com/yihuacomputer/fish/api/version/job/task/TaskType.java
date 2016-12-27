@@ -27,6 +27,10 @@ public enum TaskType {
 		return text;
 	}
 
+	/**
+	 * @param id
+	 * @return
+	 */
 	public static TaskType getById(int id){
         for (TaskType each : TaskType.values()){
             if (each.getId() == id){

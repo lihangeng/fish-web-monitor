@@ -13,6 +13,10 @@ import com.yihuacomputer.fish.api.fault.IFaultClassify;
 import com.yihuacomputer.fish.api.fault.IFaultClassifyService;
 import com.yihuacomputer.fish.fault.entity.FaultClassify;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional
 public class FaultClassifyService implements IFaultClassifyService {

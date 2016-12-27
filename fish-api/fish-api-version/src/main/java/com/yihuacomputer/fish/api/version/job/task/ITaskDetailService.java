@@ -14,10 +14,22 @@ import java.util.List;
  */
 public interface ITaskDetailService {
     
+    /**
+     * @param taskId
+     * @return
+     */
     public ITaskDetail make(long taskId);
     
+    /**
+     * @param task
+     * @return
+     */
     public ITaskDetail make(ITask task);
     
+    /**
+     * @param taskId
+     * @return
+     */
     public List<ITaskDetail> findByTaskId(long taskId);
 
 }

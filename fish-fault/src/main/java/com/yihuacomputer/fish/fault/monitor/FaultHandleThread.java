@@ -7,6 +7,10 @@ import com.yihuacomputer.fish.api.fault.IDeviceCaseService;
 import com.yihuacomputer.fish.api.fault.monitor.IMessagHandleCollection;
 import com.yihuacomputer.fish.api.monitor.xfs.status.IXfsStatus;
 
+/**
+ * @author YiHua
+ *
+ */
 public class FaultHandleThread extends Thread{
 
 	private Logger logger = LoggerFactory.getLogger(FaultHandleThread.class);
@@ -17,6 +21,11 @@ public class FaultHandleThread extends Thread{
 
 	private FaultThreadPool faultThreadPool;
 
+	/**
+	 * @param deviceCaseService
+	 * @param msgHandleCollection
+	 * @param faultThreadPool
+	 */
 	public FaultHandleThread(IDeviceCaseService deviceCaseService,IMessagHandleCollection msgHandleCollection,FaultThreadPool faultThreadPool){
 		this.deviceCaseService = deviceCaseService;
 		this.msgHandleCollection = msgHandleCollection;

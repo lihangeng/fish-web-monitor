@@ -2,6 +2,10 @@ package com.yihuacomputer.fish.fault.entity;
 
 import com.yihuacomputer.fish.api.fault.IFaultCode;
 
+/**
+ * @author YiHua
+ *
+ */
 public class FaultCode implements IFaultCode{
 	
 	private String faultCode;

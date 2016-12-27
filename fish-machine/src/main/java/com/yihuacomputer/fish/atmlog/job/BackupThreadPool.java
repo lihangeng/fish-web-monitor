@@ -26,6 +26,9 @@ public class BackupThreadPool{
 	public int getCorePoolSize(){
 		return this.corePoolSize;
 	}
+	/**
+	 * 初始化
+	 */
 	public BackupThreadPool(){
 		init();
 	}
@@ -42,12 +45,16 @@ public class BackupThreadPool{
 		backupExecutor = new ThreadPoolExecutor(corePoolSize,60,10,TimeUnit.SECONDS,this.backupExcuters,new ThreadPoolExecutor.CallerRunsPolicy()); 
 	}
 
+	/**
+	 * 关闭
+	 */
 	public void close(){
 		backupExecutor.shutdownNow();
 		logger.info("File backup thread pool closed!");		
 	}
 	/**
 	 * 执行任务
+	 * @param BackupThreadPool.java
 	 * */
 	public void execute(Runnable task){
 		backupExecutor.execute(task);

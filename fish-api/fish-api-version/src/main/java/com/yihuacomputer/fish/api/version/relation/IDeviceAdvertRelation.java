@@ -8,6 +8,10 @@ import com.yihuacomputer.fish.api.advert.bs.IAdvertGroup;
 import com.yihuacomputer.fish.api.advert.bs.IAdvertGroupDeviceRelation;
 import com.yihuacomputer.fish.api.device.IDevice;
 
+/**
+ * @author YiHua
+ *
+ */
 public interface IDeviceAdvertRelation
 {
    /**
@@ -30,6 +34,8 @@ public interface IDeviceAdvertRelation
      * @param limit
      * @param advertGroup
      * @param filter
+     * @param bankOrgId
+     * @param serOrgId
      * @return
      */
     public IPageResult<IDevice> pageUnlinkDeviceByAdvertGroup(int offset, int limit, IAdvertGroup advertGroup,IFilter filter,String bankOrgId, String serOrgId);
@@ -53,7 +59,7 @@ public interface IDeviceAdvertRelation
     
     /**
      * 根据设备获得该设备的关联广告组
-     * @param device
+     * @param groupId
      * @return
      */
     public List<IAdvertGroup> listAdvertGroupByGroupId(Long groupId);
@@ -61,7 +67,7 @@ public interface IDeviceAdvertRelation
     
     /**
      * 根据设备获得该设备的关联广告组
-     * @param device
+     * @param deviceId
      * @return
      */
     public IAdvertGroupDeviceRelation getDeviceRelation(long deviceId);
@@ -69,7 +75,7 @@ public interface IDeviceAdvertRelation
     
     /**
      * 根据设备Id删除广告组关联
-     * @param device
+     * @param deviceId
      * @return
      */
     public void delete(long deviceId);
