@@ -18,6 +18,10 @@ import com.yihuacomputer.fish.api.device.DevStatus;
 import com.yihuacomputer.fish.api.device.StopType;
 import com.yihuacomputer.fish.api.quittingNotice.IQuittingNotice;
 
+/**
+ * @author YiHua
+ *
+ */
 @Entity
 @Table(name = "DEV_STOP")
 public class QuittingNotice implements IQuittingNotice {
@@ -116,6 +120,9 @@ public class QuittingNotice implements IQuittingNotice {
 		return this.responsibilityName;
 	}
 
+	/**
+	 * @param quittingNotice
+	 */
 	public void update(IQuittingNotice quittingNotice) {
 		setDeviceCode(quittingNotice.getDeviceCode());
 		setOpenTime(quittingNotice.getOpenTime());

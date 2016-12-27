@@ -18,6 +18,10 @@ import com.yihuacomputer.fish.api.openplan.IOpenPlanService;
 import com.yihuacomputer.fish.machine.entity.DeviceOpenPlan;
 import com.yihuacomputer.fish.machine.entity.OpenPlanDetail;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional
 public class OpenPlanService implements IOpenPlanService {

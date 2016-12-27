@@ -25,6 +25,10 @@ public class LoginKafkaConsumer extends KafkaConsumerConfig implements Runnable 
 	private ISessionManage sessionManage;
 
 
+	/**
+	 * @param kafkaConsumerManager
+	 * @param sessionManage
+	 */
 	public LoginKafkaConsumer(KafkaConsumerManager kafkaConsumerManager, ISessionManage sessionManage) {
 		super(kafkaConsumerManager.getKafkaConfig());
 		this.sessionManage = sessionManage;

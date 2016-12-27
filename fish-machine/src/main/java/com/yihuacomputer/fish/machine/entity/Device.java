@@ -154,6 +154,9 @@ public class Device implements IDevice, Serializable {
 	@Column(name = "INSTALL_DATE", length = 10)
 	private Date installDate;
 
+	/**
+	 * 初始化设备参数
+	 */
 	public Device() {
 		this.status = DevStatus.OPEN;
 		this.awayFlag = AwayFlag.LINE;
@@ -161,6 +164,9 @@ public class Device implements IDevice, Serializable {
 		this.installDate = new Date();
 	}
 
+	/**
+	 * @param deviceService
+	 */
 	public Device(IDeviceService deviceService) {
 		this();
 		this.deviceService = deviceService;
@@ -256,6 +262,9 @@ public class Device implements IDevice, Serializable {
 		this.cashboxLimit = cashboxLimit;
 	}
 
+	/**
+	 * @param device
+	 */
 	public void update(IDevice device) {
 		setAddress(device.getAddress());
 		setCashboxLimit(device.getCashboxLimit());

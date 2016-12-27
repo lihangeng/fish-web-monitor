@@ -13,6 +13,9 @@ import com.yihuacomputer.fish.kafka.consumer.KafkaConsumerConfig;
  */
 public class KafkaAloneConsumerConfig extends KafkaConsumerConfig{
 	
+	/**
+	 * @param kafkaConfig
+	 */
 	public KafkaAloneConsumerConfig(KafkaConfig kafkaConfig){
 		super(kafkaConfig);
 	}

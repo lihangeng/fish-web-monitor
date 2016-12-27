@@ -16,6 +16,10 @@ import com.yihuacomputer.fish.api.atm.IAtmCatalog;
 import com.yihuacomputer.fish.api.atm.IAtmCatalogService;
 import com.yihuacomputer.fish.machine.entity.AtmCatalog;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional
 public class AtmCatalogService implements IAtmCatalogService

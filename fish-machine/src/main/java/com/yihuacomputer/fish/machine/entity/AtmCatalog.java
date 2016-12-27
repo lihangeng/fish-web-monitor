@@ -104,6 +104,9 @@ public class AtmCatalog implements IAtmCatalog,Serializable
         this.note = note;
     }
 
+    /**
+     * @param catalog
+     */
     public void update(IAtmCatalog catalog)
     {
         setName(catalog.getName());

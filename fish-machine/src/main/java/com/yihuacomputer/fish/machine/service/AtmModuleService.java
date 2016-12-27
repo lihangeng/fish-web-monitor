@@ -17,6 +17,10 @@ import com.yihuacomputer.fish.api.atm.IAtmModule;
 import com.yihuacomputer.fish.api.atm.IAtmModuleService;
 import com.yihuacomputer.fish.machine.entity.AtmModule;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional
 public class AtmModuleService implements IAtmModuleService {

@@ -23,6 +23,9 @@ public class StatusKafkaConsumer  extends KafkaConsumerConfig implements Runnabl
 	private KafkaConsumerManager kafkaConsumerManager;
 	
 
+	/**
+	 * @param kafkaConsumerManager
+	 */
 	public StatusKafkaConsumer(KafkaConsumerManager kafkaConsumerManager) {
 		super(kafkaConsumerManager.getKafkaConfig());
 		this.kafkaConsumerManager = kafkaConsumerManager;

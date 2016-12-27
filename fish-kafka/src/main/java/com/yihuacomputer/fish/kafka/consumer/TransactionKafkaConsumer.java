@@ -12,16 +12,26 @@ import com.yihuacomputer.fish.kafka.KafkaConfig;
 import com.yihuacomputer.fish.kafka.KafkaConsumerManager;
 import com.yihuacomputer.fish.kafka.TopicType;
 
+/**
+ * @author YiHua
+ *
+ */
 public class TransactionKafkaConsumer extends KafkaConsumerConfig  implements Runnable {
 	private Logger logger = LoggerFactory.getLogger(TransactionKafkaConsumer.class);
 	private KafkaConsumerManager kafkaConsumerManager;
 	
 
+	/**
+	 * @param kafkaConsumerManager
+	 */
 	public TransactionKafkaConsumer(KafkaConsumerManager kafkaConsumerManager) {
 		super(kafkaConsumerManager.getKafkaConfig());
 		this.kafkaConsumerManager = kafkaConsumerManager;
 	}
 
+	/**
+	 * @return
+	 */
 	public KafkaConfig getKafkaConfig() {
 		return kafkaConsumerManager.getKafkaConfig();
 	}

@@ -66,8 +66,8 @@ public class DeviceGroupObj implements Serializable{
     /**
      * 根据指定的分组和设备创建关系实体
      * 
-     * @param master
-     * @param role
+     * @param groupId
+     * @param deviceId
      * @return
      */
     public static DeviceGroupObj make(Long groupId, Long deviceId) {

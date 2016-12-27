@@ -13,6 +13,10 @@ import javax.persistence.Table;
 import com.yihuacomputer.fish.api.openplan.IDevicePlanRelation;
 
 
+/**
+ * @author YiHua
+ *
+ */
 @Entity
 @Table(name = "DEV_OPENPLAN_RELATION")
 public class DevicePlanRelation implements IDevicePlanRelation,Serializable{
@@ -66,8 +70,8 @@ public class DevicePlanRelation implements IDevicePlanRelation,Serializable{
     /**
      * 根据指定的开机方案和设备创建关系实体
      * 
-     * @param master
-     * @param role
+     * @param openPlanId
+     * @param deviceId
      * @return
      */
     public static DevicePlanRelation make(long openPlanId, long deviceId) {

@@ -33,6 +33,9 @@ public class KafkaProducer implements IMqProducer {
 
 	private Producer<String, String> producer;
 
+	/**
+	 * 初始化
+	 */
 	@PostConstruct
 	public void init() {
 		Properties props = new Properties();
@@ -43,6 +46,9 @@ public class KafkaProducer implements IMqProducer {
 		producer = new Producer<String, String>(producerConfig);
 	}
 
+	/**
+	 * 关闭
+	 */
 	@PreDestroy
 	public void close() {
 		producer.close();

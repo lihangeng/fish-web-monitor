@@ -12,6 +12,10 @@ import javax.persistence.Table;
 
 import com.yihuacomputer.fish.api.atm.IAtmModule;
 
+/**
+ * @author YiHua
+ *
+ */
 @Entity
 @Table(name = "DEV_MODULE")
 public class AtmModule implements IAtmModule ,Serializable{
@@ -93,6 +97,9 @@ public class AtmModule implements IAtmModule ,Serializable{
 		return this.note;
 	}
 	
+	/**
+	 * @param module
+	 */
 	public void update(IAtmModule module){
 		setName(module.getName());
 		setNo(module.getNo());

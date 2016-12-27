@@ -56,6 +56,9 @@ public class DeviceService implements IDeviceService {
 	@Autowired
 	private MessageSource messageSource;
 
+	/**
+	 * 设备监听
+	 */
 	public List<IDeviceListener> deviceListeners = new ArrayList<IDeviceListener>();
 
 	@Override
@@ -101,6 +104,9 @@ public class DeviceService implements IDeviceService {
 		remove(device);
 	}
 
+	/**
+	 * @param device
+	 */
 	public void remove(IDevice device) {
 		for (IDeviceListener each : this.deviceListeners) {
 			each.beforeDelete(device);

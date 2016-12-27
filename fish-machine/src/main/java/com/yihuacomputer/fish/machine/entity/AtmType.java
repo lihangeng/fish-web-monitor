@@ -79,6 +79,9 @@ public class AtmType implements IAtmType, Serializable {
 	@Column(name = "TYPE_STATUS", length = 1)
 	private TypeStatus typeStatus;
 
+	/**
+	 * 初始现金标志
+	 */
 	public AtmType() {
 		this.cashtype = CashType.CASH;
 	}

@@ -57,6 +57,9 @@ public class AtmGroup implements IAtmGroup,Serializable {
     {
     }
 
+    /**
+     * @param service
+     */
     public AtmGroup(IAtmGroupService service)
     {
         this.service = service;
@@ -98,6 +101,9 @@ public class AtmGroup implements IAtmGroup,Serializable {
         this.note = note;
     }
 
+    /**
+     * @param atmGroup
+     */
     public void update(IAtmGroup atmGroup)
     {
         setName(atmGroup.getName());

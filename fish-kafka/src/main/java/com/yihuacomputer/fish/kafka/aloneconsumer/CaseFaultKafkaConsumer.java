@@ -13,11 +13,18 @@ import com.yihuacomputer.fish.kafka.KafkaConsumerManager;
 import com.yihuacomputer.fish.kafka.TopicType;
 import com.yihuacomputer.fish.kafka.consumer.LoginKafkaConsumer;
 
+/**
+ * @author YiHua
+ *
+ */
 public class CaseFaultKafkaConsumer extends KafkaAloneConsumerConfig implements Runnable {
 	private Logger logger = LoggerFactory.getLogger(LoginKafkaConsumer.class);
 	private KafkaConsumerManager kafkaConsumerManager;
 	
 
+	/**
+	 * @param kafkaConsumerManager
+	 */
 	public CaseFaultKafkaConsumer(KafkaConsumerManager kafkaConsumerManager) {
 		super(kafkaConsumerManager.getKafkaConfig());
 		this.kafkaConsumerManager = kafkaConsumerManager;

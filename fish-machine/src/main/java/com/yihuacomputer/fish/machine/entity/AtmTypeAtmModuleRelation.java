@@ -12,6 +12,10 @@ import javax.persistence.Table;
 
 import com.yihuacomputer.fish.api.atm.IAtmTypeAtmModuleRelation;
 
+/**
+ * @author YiHua
+ *
+ */
 @Entity
 @Table(name = "DEV_ATMTYPE_MODULE")
 public class AtmTypeAtmModuleRelation implements IAtmTypeAtmModuleRelation,Serializable{

@@ -19,6 +19,10 @@ import com.yihuacomputer.fish.api.atm.IAtmVendor;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.machine.entity.AtmType;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional
 public class AtmTypeService implements IAtmTypeService {

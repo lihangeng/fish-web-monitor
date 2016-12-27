@@ -113,6 +113,12 @@ public class AtmQuittingNoticeService implements IQuittingNoticeService
 	}
 
 
+    /**
+     * @param filter
+     * @param orgId
+     * @param flag
+     * @return
+     */
     @Transactional(readOnly = true)
     public Iterable<IQuittingNotice> list(IFilter filter,String orgId,boolean flag)
     {

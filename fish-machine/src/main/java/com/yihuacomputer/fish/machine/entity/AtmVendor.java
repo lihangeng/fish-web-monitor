@@ -84,11 +84,17 @@ public class AtmVendor implements IAtmVendor,Serializable
     @Column(name = "STATUS")
     private VendorStatus status;
 
+    /**
+     * 初始化状态
+     */
     public AtmVendor()
     {
     	this.status = VendorStatus.SUPPLY;
     }
 
+    /**
+     * @param service
+     */
     public AtmVendor(IAtmBrandService service)
     {
     	this();
@@ -179,6 +185,9 @@ public class AtmVendor implements IAtmVendor,Serializable
         this.status = status;
     }
 
+    /**
+     * @param brand
+     */
     public void update(IAtmVendor brand)
     {
         setAddress(brand.getAddress());

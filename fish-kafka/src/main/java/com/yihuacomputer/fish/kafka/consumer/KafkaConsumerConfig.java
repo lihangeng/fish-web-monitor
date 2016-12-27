@@ -24,6 +24,9 @@ public class KafkaConsumerConfig {
 
 	protected ConsumerConnector consumer;
 	
+	/**
+	 * @param kafkaConfig
+	 */
 	public KafkaConsumerConfig(KafkaConfig kafkaConfig){
 		this.kafkaConfig = kafkaConfig;
 		consumer =  kafka.consumer.Consumer.createJavaConsumerConnector(createConsumerConfig());
@@ -50,6 +53,9 @@ public class KafkaConsumerConfig {
 		return streams;
 	}
 	
+	/**
+	 * 关闭
+	 */
 	public void shutdown() {
 		if (consumer != null) {
 			consumer.shutdown();

@@ -73,39 +73,64 @@ import com.yihuacomputer.fish.monitor.service.UncommonTransService;
 import com.yihuacomputer.fish.monitor.service.XfsChartService;
 import com.yihuacomputer.fish.monitor.service.XfsService;
 
+/**
+ * @author YiHua
+ *
+ */
 @Configuration
 public class MonitorModule {
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public ICollectService collectService() {
 		return new CollectService();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public ICashInitPlanDeviceInfoService cashInitPlanDeviceInfoService(){
 		return new CashInitPlanDeviceInfoService();
 	}
 	
+	/**
+	 * @return
+	 */
 	@Bean
 	public ICashInitUniqueService cashInitUniqueService(){
 		return new CashInitUniqueService();
 	}
 	
+	/**
+	 * @return
+	 */
 	@Bean
 	public ICashInitPlanInfoService cashInitPlanInfoService(){
 		return new CashInitPlanInfoService();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public DeviceOfflineCheck offlineJob() {
 		return new DeviceOfflineCheck();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public IMonitorService monitorService() {
 		return new MonitorService();
 	}
 	
+	/**
+	 * @return
+	 */
 	@Bean
 	public ICashInitRuleService deviceBoxInitRuleService(){
 		return new CashInitRuleService();
@@ -115,136 +140,217 @@ public class MonitorModule {
 //		return new StateCodeService();
 //	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public IBlackListCardService blackListCardService() {
 		return new BlackListCardService();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public ICashInitService cashInitService() {
 		return new CashInitService();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public IFilterService filterService() {
 		return new FilterService();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public IHardwareService hardwareService() {
 		return new HardwareService();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public IHostRetService hostRetService() {
 		return new HostRetService();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public IProcessService processService() {
 		return new ProcessService();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public IRegistService registService() {
 		return new RegistService();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public IRetaincardService retaincardService() {
 		return new RetaincardService();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public IRunInfoService runInfoService() {
 		return new RunInfoService();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public IRuntimeParamService runtimeParamService() {
 		return new RuntimeParamService();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public ISettlementService settlementService() {
 		return new SettlementService();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public ISoftwareService softwareService() {
 		return new SoftwareService();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public ITransactionService transactionService() {
 		return new TransactionService();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public ITransTypeService transTypeService() {
 		return new TransTypeService();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public IXfsService xfsService() {
 		return new XfsService();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public ICounterFeitMoneyService counterFeitMoneyService() {
 		return new CounterFeitMoneyService();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public IUncommonTransService uncommonTransService() {
 		return new UncommonTransService();
 	}
 
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public IXfsChartService xfsChartService() {
 		return new XfsChartService();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public ITransactionViewService transactionViewService() {
 		return new TransactionViewService();
 	}
 	
+	/**
+	 * @return
+	 */
 	@Bean
     public IRemoteCommHistService remoteCommHistService() {
         return new RemoteCommHistService();
     }
 	
+	/**
+	 * @return
+	 */
 	@Bean
     public ITransactionColorService transactionColorService() {
         return new TransactionColorService();
     }
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public IDeviceBoxDetailInfoService deviceBoxDetailInfoService(){
 		return new DeviceBoxDetailInfoService();
 	}
+	/**
+	 * @return
+	 */
 	@Bean
 	public IDeviceBoxInfoService deviceBoxInfoService(){
 		return new DeviceBoxInfoService();
 	}
 	
+	/**
+	 * @return
+	 */
 	@Bean
 	public IMonthDailyTradingVolumeService monthDailyTradingVolumeService(){
 		return new MonthDailyTradingVolumeService();
 	}
 	
+	/**
+	 * @return
+	 */
 	@Bean
 	public IDayTradingVolumeService dayTradingVolumeService(){
 		return new DayTradingVolumeService();
 	}
 	
+	/**
+	 * @return
+	 */
 	@Bean 
 	public IDayTradingVolumeExtractDataService dayTradingVolumeExtractDataService(){
 		return new DayTradingVolumeExtractDataService();
 	}
 	
+	/**
+	 * @return
+	 */
 	@Bean
 	public ICashInitPlanInfoExtractDataService cashInitPlanInfoExtractDataService(){
 		return new CashInitPlanInfoExtractDataService();

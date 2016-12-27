@@ -20,6 +20,10 @@ import com.yihuacomputer.fish.api.person.IUser;
 import com.yihuacomputer.fish.api.person.IUserService;
 import com.yihuacomputer.fish.api.person.OrganizationType;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional(readOnly = true)
 public class ComplexDeviceService implements IComplexDeviceService {

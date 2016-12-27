@@ -121,6 +121,9 @@ public class SysProcess implements IProcess {
 		return "Process [name=" + name + ", user=" + user + ", cpuRate=" + cpuRate + ", memoryRate=" + memoryRate + ", description=" + description + ", date=" + date + "]";
 	}
 
+	/**
+	 * @param process
+	 */
 	public void update(IProcess process) {
 		setName(process.getName());
 		setUser(process.getUser());

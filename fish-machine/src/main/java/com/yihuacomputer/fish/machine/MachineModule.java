@@ -33,73 +33,119 @@ import com.yihuacomputer.fish.machine.service.OpenPlanDeviceRelation;
 import com.yihuacomputer.fish.machine.service.OpenPlanService;
 
 
+/**
+ * @author YiHua
+ *
+ */
 @Configuration
 public class MachineModule {
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public IAtmBrandService atmBrandService() {
 		return new AtmBrandService();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public IAtmCatalogService atmCatalogService() {
 		return new AtmCatalogService();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public IAtmGroupService atmGroupService() {
 		return new AtmGroupService();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public IAtmModuleService atmModuleService() {
 		return new AtmModuleService();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public IAtmMoveService atmMoveService() {
 		return new AtmMoveService();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public IAtmTypeService atmTypeService() {
 		return new AtmTypeService();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public IQuittingNoticeService atmQuittingNoticeService() {
 		return new AtmQuittingNoticeService();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public IComplexDeviceService complexDeviceService() {
 		return new ComplexDeviceService();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public IDeviceGroupRelation deviceGroupRelation() {
 		return new DeviceGroupRelation();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public IDevicePersonRelation devicePersonRelation() {
 		return new DevicePersonRelation();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public IDeviceService deviceService() {
 		return new DeviceService();
 	}
+	/**
+	 * @return
+	 */
 	@Bean
 	public IAtmTypeAtmModuleRelationService atmTypeAtmModuleRelationService(){
 		return new AtmTypeAtmModuleRelationService();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public IOpenPlanDeviceRelation openPlanDeviceRelation(){
 		return new OpenPlanDeviceRelation();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public IOpenPlanService openPlanService(){
 		return new OpenPlanService();

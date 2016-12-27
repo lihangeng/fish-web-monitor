@@ -15,6 +15,10 @@ import com.yihuacomputer.fish.api.atmMove.IAtmMove;
 import com.yihuacomputer.fish.api.atmMove.IAtmMoveService;
 import com.yihuacomputer.fish.machine.entity.AtmMove;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional
 public class AtmMoveService implements IAtmMoveService {

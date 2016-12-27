@@ -16,6 +16,10 @@ import com.yihuacomputer.fish.api.monitor.box.BoxType;
 import com.yihuacomputer.fish.api.monitor.box.IDeviceBoxDetailInfo;
 import com.yihuacomputer.fish.api.monitor.box.IDeviceBoxInfo;
 
+/**
+ * @author YiHua
+ *
+ */
 @Entity
 @Table(name = "DEV_BOX_DETAIL_INFO")
 public class DeviceBoxDetailInfo implements IDeviceBoxDetailInfo {

@@ -16,6 +16,10 @@ import com.yihuacomputer.fish.api.atm.IAtmBrandService;
 import com.yihuacomputer.fish.api.atm.IAtmVendor;
 import com.yihuacomputer.fish.machine.entity.AtmVendor;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional
 public class AtmBrandService implements IAtmBrandService

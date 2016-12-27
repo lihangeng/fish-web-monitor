@@ -29,7 +29,7 @@ public class DeviceInfoUpdateTask {
 	private IDeviceService deviceService;
 
 	/**
-	 * 
+	 * 设备信息更改
 	 */
 	public void deviceInfoUpdate() {
 		try {

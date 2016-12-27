@@ -21,6 +21,10 @@ import com.yihuacomputer.fish.api.person.IOrganization;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
 import com.yihuacomputer.fish.machine.entity.DevicePlanRelation;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional	
 public class OpenPlanDeviceRelation implements IOpenPlanDeviceRelation {

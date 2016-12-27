@@ -39,6 +39,9 @@ public class DeviceCheckService implements IDeviceCheckService {
     @Autowired
     private IQuittingNoticeService quittingNoticeService;
 
+    /**
+     * 设备监听
+     */
     public List<IDeviceListener> deviceListeners = new ArrayList<IDeviceListener>();
 
 	@SuppressWarnings("unchecked")

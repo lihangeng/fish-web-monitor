@@ -14,12 +14,20 @@ import com.yihuacomputer.fish.api.session.LoginMessage;
 import com.yihuacomputer.fish.kafka.KafkaConsumerManager;
 import com.yihuacomputer.fish.kafka.TopicType;
 
+/**
+ * @author YiHua
+ *
+ */
 public class LogoutKafkaConsumer extends KafkaConsumerConfig implements Runnable {
 
 	private Logger logger = LoggerFactory.getLogger(LogoutKafkaConsumer.class);
 	private ISessionManage sessionManage;
 
 
+	/**
+	 * @param kafkaConsumerManager
+	 * @param sessionManage
+	 */
 	public LogoutKafkaConsumer(KafkaConsumerManager kafkaConsumerManager, ISessionManage sessionManage) {
 		super(kafkaConsumerManager.getKafkaConfig());
 		this.sessionManage = sessionManage;

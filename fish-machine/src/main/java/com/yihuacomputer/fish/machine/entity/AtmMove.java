@@ -19,6 +19,10 @@ import javax.persistence.TemporalType;
 import com.yihuacomputer.fish.api.atmMove.IAtmMove;
 import com.yihuacomputer.fish.api.person.IOrganization;
 
+/**
+ * @author YiHua
+ *
+ */
 @Entity
 @Table(name = "DEV_MOVE")
 public class AtmMove implements IAtmMove,Serializable {
@@ -224,6 +228,9 @@ public class AtmMove implements IAtmMove,Serializable {
         return this.targetTerminalId;
     }
 */
+    /**
+     * @param atmMove
+     */
     public void update(IAtmMove atmMove) {
         setAddress(atmMove.getAddress());
         setOrganization(atmMove.getOrganization());

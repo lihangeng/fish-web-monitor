@@ -16,6 +16,10 @@ import com.yihuacomputer.fish.api.atm.IAtmGroup;
 import com.yihuacomputer.fish.api.atm.IAtmGroupService;
 import com.yihuacomputer.fish.machine.entity.AtmGroup;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional
 public class AtmGroupService implements IAtmGroupService
