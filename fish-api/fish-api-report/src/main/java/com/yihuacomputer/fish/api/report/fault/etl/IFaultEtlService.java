@@ -16,7 +16,7 @@ public interface IFaultEtlService {
 	
 	/**
 	 * 获取某月的统计
-	 * @param weekOfYear
+	 * @param month
 	 * @return
 	 */
 	public IFaultMonth getMonth(long month);
@@ -30,7 +30,7 @@ public interface IFaultEtlService {
 	
 	/**
 	 * 获取某月的统计
-	 * @param weekOfYear
+	 * @param month
 	 * @return
 	 */
 	public List<IFaultClassifyMonth> getClassifyMonth(long month);
@@ -44,7 +44,7 @@ public interface IFaultEtlService {
 	
 	/**
 	 * 获取某月的统计
-	 * @param weekOfYear
+	 * @param month
 	 * @return
 	 */
 	public List<IFaultDurationMonth> getDurationMonth(long month);
@@ -86,6 +86,8 @@ public interface IFaultEtlService {
 	
 	/**
 	 * 保存每月故障持续时长数据
+	 * @param faultDurationMonth
+	 * @return
 	 */
 	public IFaultDurationMonth saveByFaultDurationMonth(IFaultDurationMonth faultDurationMonth);
 }

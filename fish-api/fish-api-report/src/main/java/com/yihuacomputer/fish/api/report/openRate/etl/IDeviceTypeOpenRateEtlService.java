@@ -29,11 +29,15 @@ public interface IDeviceTypeOpenRateEtlService {
 	
 	/**
 	 * 保存某周数据
+	 * @param deviceTypeOpenRateWeek
+	 * @return
 	 */
 	IDeviceTypeOpenRateWeek saveByWeek(IDeviceTypeOpenRateWeek deviceTypeOpenRateWeek);
 	
 	/**
 	 * 保存某月数据
+	 * @param deviceTypeOpenRateMonth
+	 * @return
 	 */
 	IDeviceTypeOpenRateMonth saveByMonth(IDeviceTypeOpenRateMonth deviceTypeOpenRateMonth);
 }

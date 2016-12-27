@@ -26,6 +26,7 @@ public interface IFaultWeek {
 	
 	/**
 	 * 获得未关闭的故障数量
+	 * @return
 	 */
 	long getOpenCount();
 	/**
@@ -36,6 +37,7 @@ public interface IFaultWeek {
 	
 	/**
 	 * 获得关闭故障的数量
+	 * @return
 	 */
 	long getCloseCount();
 	

@@ -2,6 +2,10 @@ package com.yihuacomputer.fish.api.report.openRate.etl;
 
 import java.util.Date;
 
+/**
+ * @author YiHua
+ *
+ */
 public interface IDeviceOpenRateExtractDataService {
 
 	/**

@@ -25,25 +25,29 @@ public interface IRetainCardEtlService {
 	
 	/**
 	 * 获取某月的吞卡统计
-	 * @param weekOfYear
+	 * @param month
 	 * @return
 	 */
 	public List<IRetainCardMonth> getMonth(long month);
 	
 	/**
 	 * 获得月总的统计数据
-	 * @param weekOfYear
+	 * @param month
 	 * @return
 	 */
 	public Long [] getMonthTotal(long month);
 	
 	/**
 	 * 保存吞卡每周数据
+	 * @param retainCardWeek
+	 * @return
 	 */
 	public IRetainCardWeek saveByWeek(IRetainCardWeek retainCardWeek);
 	
 	/**
 	 * 保存吞卡每月数据
+	 * @param retainCardMonth
+	 * @return
 	 */
 	public IRetainCardMonth saveByMonth(IRetainCardMonth retainCardMonth);
 }

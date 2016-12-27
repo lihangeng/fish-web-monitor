@@ -1,5 +1,9 @@
 package com.yihuacomputer.fish.api.report.fault;
 
+/**
+ * @author YiHua
+ *
+ */
 public interface IEveryMonthFaultCount {
 
 	/**
@@ -9,6 +13,9 @@ public interface IEveryMonthFaultCount {
 	 */
 	public long getId();
 
+	/**
+	 * @param id
+	 */
 	public void setId(long id);
 
 	/**
@@ -18,6 +25,9 @@ public interface IEveryMonthFaultCount {
 	 */
 	public String getDevMod();
 
+	/**
+	 * @param devMod
+	 */
 	public void setDevMod(String devMod);
 
 	/**
@@ -27,6 +37,9 @@ public interface IEveryMonthFaultCount {
 	 */
 	public String getClassifyId();
 
+	/**
+	 * @param classifyId
+	 */
 	public void setClassifyId(String classifyId);
 
 	/**
@@ -36,6 +49,9 @@ public interface IEveryMonthFaultCount {
 	 */
 	public long getFaultDate();
 
+	/**
+	 * @param faultDate
+	 */
 	public void setFaultDate(long faultDate);
 
 	/**
@@ -45,6 +61,9 @@ public interface IEveryMonthFaultCount {
 	 */
 	public long getFaultCount();
 
+	/**
+	 * @param faultCount
+	 */
 	public void setFaultCount(long faultCount);
 	
 	/**
@@ -54,7 +73,7 @@ public interface IEveryMonthFaultCount {
 	public String getVendorName();
 	/**
 	 * 设备品牌
-	 * @return
+	 * @param vendorName
 	 */
 	public void setVendorName(String vendorName);
 	/**
@@ -64,7 +83,7 @@ public interface IEveryMonthFaultCount {
 	public String getDevType();
 	/**
 	 * 设备型号
-	 * @return
+	 * @param devType
 	 */
 	public void setDevType(String devType);
 	

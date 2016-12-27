@@ -26,6 +26,7 @@ public interface IFaultClassifyWeek {
 	
 	/**
 	 * 获得分类Id
+	 * @return
 	 */
 	String getClassifyId();
 	/**
@@ -47,6 +48,7 @@ public interface IFaultClassifyWeek {
 	
 	/**
 	 * 获得关闭故障的数量
+	 * @return
 	 */
 	long getCount();
 	

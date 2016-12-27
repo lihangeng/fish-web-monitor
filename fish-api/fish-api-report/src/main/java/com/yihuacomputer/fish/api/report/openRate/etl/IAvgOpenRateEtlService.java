@@ -22,7 +22,7 @@ public interface IAvgOpenRateEtlService {
 	
 	/**
 	 * 获得月总的统计数据
-	 * @param weekOfYear
+	 * @param month
 	 * @return
 	 */
 	public Object [] getMonthTotal(long month);
@@ -37,16 +37,22 @@ public interface IAvgOpenRateEtlService {
 	
 	/**
 	 * 保存每日数据
+	 * @param avgDayOpenRate
+	 * @return
 	 */
 	public IAvgDayOpenRate saveByDay(IAvgDayOpenRate avgDayOpenRate);
 	
 	/**
 	 * 保存每周数据
+	 * @param avgWeekOpenRate
+	 * @return
 	 */
 	public IAvgWeekOpenRate saveByWeek(IAvgWeekOpenRate avgWeekOpenRate);
 	
 	/**
 	 * 保存每月数据
+	 * @param avgMonthOpenRate
+	 * @return
 	 */
 	public IAvgMonthOpenRate saveByMonth(IAvgMonthOpenRate avgMonthOpenRate);
 	

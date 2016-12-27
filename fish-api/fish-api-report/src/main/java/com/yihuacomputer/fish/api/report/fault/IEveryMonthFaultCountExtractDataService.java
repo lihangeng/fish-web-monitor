@@ -1,5 +1,9 @@
 package com.yihuacomputer.fish.api.report.fault;
 
+/**
+ * @author YiHua
+ *
+ */
 public interface IEveryMonthFaultCountExtractDataService {
 
 	/**

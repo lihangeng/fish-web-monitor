@@ -13,5 +13,8 @@ public interface IAvgDayOpenRate extends IOpenRateColumn	{
 	 * @return
 	 */
 	long getDate();
+	/**
+	 * @param date
+	 */
 	void setDate(long date);
 }

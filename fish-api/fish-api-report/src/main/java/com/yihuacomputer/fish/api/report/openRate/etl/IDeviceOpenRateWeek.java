@@ -12,6 +12,9 @@ public interface IDeviceOpenRateWeek extends IOpenRateColumn{
 	 * @return
 	 */
 	long getDate();
+	/**
+	 * @param date
+	 */
 	void setDate(long date);
 	
 	/**
@@ -19,12 +22,18 @@ public interface IDeviceOpenRateWeek extends IOpenRateColumn{
 	 * @return
 	 */
 	String getStartDate();
+	/**
+	 * @param startDate
+	 */
 	void setStartDate(String startDate);
 	/**
 	 * 周结束时间yyyyMMdd
 	 * @return
 	 */
 	String getEndDate();
+	/**
+	 * @param endDate
+	 */
 	void setEndDate(String endDate);
 	
 	/**
@@ -32,12 +41,18 @@ public interface IDeviceOpenRateWeek extends IOpenRateColumn{
 	 * @return
 	 */
 	String getTerminalId();
+	/**
+	 * @param terminalId
+	 */
 	void setTerminalId(String terminalId);
 	/**
 	 * 机构编号
 	 * @return
 	 */
 	String getOrgCode();
+	/**
+	 * @param orgCode
+	 */
 	void setOrgCode(String orgCode);
 	
 	/**
@@ -45,6 +60,9 @@ public interface IDeviceOpenRateWeek extends IOpenRateColumn{
 	 * @return
 	 */
 	String getOrgName();
+	/**
+	 * @param orgName
+	 */
 	void setOrgName(String orgName);
 	
 	/**
@@ -52,6 +70,9 @@ public interface IDeviceOpenRateWeek extends IOpenRateColumn{
 	 * @return
 	 */
 	long getTypeId();
+	/**
+	 * @param typeId
+	 */
 	void setTypeId(long typeId);
 	
 	/**
@@ -59,5 +80,8 @@ public interface IDeviceOpenRateWeek extends IOpenRateColumn{
 	 * @return
 	 */
 	String getDevType();
+	/**
+	 * @param devType
+	 */
 	void setDevType(String devType);
 }

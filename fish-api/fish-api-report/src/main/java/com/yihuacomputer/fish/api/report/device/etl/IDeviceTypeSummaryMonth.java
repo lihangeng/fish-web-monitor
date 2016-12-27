@@ -4,8 +4,14 @@ package com.yihuacomputer.fish.api.report.device.etl;
  * @author GQ 设备按型号进行分类月统计(cds6040w,cds6040t...)
  */
 public interface IDeviceTypeSummaryMonth {
+	/**
+	 * @return
+	 */
 	public long getId();
 
+	/**
+	 * @param id
+	 */
 	public void setId(long id);
 
 	/**
@@ -15,6 +21,9 @@ public interface IDeviceTypeSummaryMonth {
 	 */
 	public String getDevType();
 
+	/**
+	 * @param devType
+	 */
 	public void setDevType(String devType);
 
 	/**
@@ -24,6 +33,9 @@ public interface IDeviceTypeSummaryMonth {
 	 */
 	public int getNum();
 
+	/**
+	 * @param num
+	 */
 	public void setNum(int num);
 
 	/**
@@ -33,6 +45,9 @@ public interface IDeviceTypeSummaryMonth {
 	 */
 	public String getDate();
 
+	/**
+	 * @param date
+	 */
 	public void setDate(String date);
 
 	/**
@@ -42,6 +57,9 @@ public interface IDeviceTypeSummaryMonth {
 	 */
 	public int getAddDevNum();
 
+	/**
+	 * @param addDevNum
+	 */
 	public void setAddDevNum(int addDevNum);
 
 	/**
@@ -51,6 +69,9 @@ public interface IDeviceTypeSummaryMonth {
 	 */
 	public int getScrappedDevNum();
 
+	/**
+	 * @param scrappedDevNum
+	 */
 	public void setScrappedDevNum(int scrappedDevNum);
 
 	/**
@@ -60,6 +81,9 @@ public interface IDeviceTypeSummaryMonth {
 	 */
 	public int getAllAddDevNum();
 
+	/**
+	 * @param allAddDevNum
+	 */
 	public void setAllAddDevNum(int allAddDevNum);
 
 	/**
@@ -69,5 +93,8 @@ public interface IDeviceTypeSummaryMonth {
 	 */
 	public int getAllScrappedDevNum();
 
+	/**
+	 * @param allScrappedDevNum
+	 */
 	public void setAllScrappedDevNum(int allScrappedDevNum);
 }

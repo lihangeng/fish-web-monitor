@@ -3,6 +3,10 @@ package com.yihuacomputer.fish.api.report.engine;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author YiHua
+ *
+ */
 public interface IReportParam {
 
 	/**

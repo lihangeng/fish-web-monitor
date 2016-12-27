@@ -1,6 +1,10 @@
 package com.yihuacomputer.fish.api.report.openRate;
 
 
+/**
+ * @author YiHua
+ *
+ */
 public interface IDayOpenRate {
 
     /**
@@ -10,6 +14,9 @@ public interface IDayOpenRate {
      */
     public long getId();
 
+    /**
+     * @param id
+     */
     public void setId(long id);
 
     /**
@@ -19,6 +26,9 @@ public interface IDayOpenRate {
      */
     public String getTerminalId();
 
+    /**
+     * @param terminalId
+     */
     public void setTerminalId(String terminalId);
 
     /**
@@ -28,6 +38,9 @@ public interface IDayOpenRate {
      */
     public String getStatDate();
 
+    /**
+     * @param statDate
+     */
     public void setStatDate(String statDate);
 
     /**
@@ -37,6 +50,9 @@ public interface IDayOpenRate {
      */
     public int getOpenTimes();
 
+    /**
+     * @param openTimes
+     */
     public void setOpenTimes(int openTimes);
 
     /**
@@ -46,6 +62,9 @@ public interface IDayOpenRate {
      */
     public int getHealthyTimeReal();
 
+    /**
+     * @param healthyTimeReal
+     */
     public void setHealthyTimeReal(int healthyTimeReal);
 
     /**
@@ -55,6 +74,9 @@ public interface IDayOpenRate {
      */
     public int getUnknownTimeReal();
 
+    /**
+     * @param unknownTimeReal
+     */
     public void setUnknownTimeReal(int unknownTimeReal);
 
     /**
@@ -64,6 +86,9 @@ public interface IDayOpenRate {
      */
     public int getMaintainTimeReal();
 
+    /**
+     * @param maintainTimeReal
+     */
     public void setMaintainTimeReal(int maintainTimeReal);
 
     /**
@@ -73,6 +98,9 @@ public interface IDayOpenRate {
      */
     public int getFaultTimeReal();
 
+    /**
+     * @param faultTimeReal
+     */
     public void setFaultTimeReal(int faultTimeReal);
 
     /**
@@ -82,6 +110,9 @@ public interface IDayOpenRate {
      */
     public int getAtmpTimeReal();
 
+    /**
+     * @param atmpTimeReal
+     */
     public void setAtmpTimeReal(int atmpTimeReal);
 
     /**
@@ -91,6 +122,9 @@ public interface IDayOpenRate {
      */
     public int getStopTimeReal();
 
+    /**
+     * @param stopTimeReal
+     */
     public void setStopTimeReal(int stopTimeReal);
 
     /**
@@ -100,6 +134,9 @@ public interface IDayOpenRate {
      */
     public String getProgramOpenTime();
 
+    /**
+     * @param programOpenTime
+     */
     public void setProgramOpenTime(String programOpenTime);
 
     /**
@@ -109,6 +146,9 @@ public interface IDayOpenRate {
      */
     public String getProgramCloseTime();
 
+    /**
+     * @param programCloseTime
+     */
     public void setProgramCloseTime(String programCloseTime);
 
     /**
@@ -118,6 +158,9 @@ public interface IDayOpenRate {
      */
     public int getProgramTimes();
 
+    /**
+     * @param programTimes
+     */
     public void setProgramTimes(int programTimes);
 
     /**
@@ -127,23 +170,44 @@ public interface IDayOpenRate {
      */
     public int getProgramTimeReal();
 
+    /**
+     * @param programTimeReal
+     */
     public void setProgramTimeReal(int programTimeReal);
 
 
 
 
 
+	/**
+	 * @return
+	 */
 	public String getOrgName();
 
+	/**
+	 * @param orgName
+	 */
 	public void setOrgName(String orgName);
 
+	/**
+	 * @return
+	 */
 	public String getDevCatalogName();
 
+	/**
+	 * @param devCatalogName
+	 */
 	public void setDevCatalogName(String devCatalogName) ;
 
 
+	/**
+	 * @return
+	 */
 	public double getAvgOpenRate();
 	
+	/**
+	 * @param avgOpenRate
+	 */
 	public void setAvgOpenRate(double avgOpenRate);
 
 	/**
@@ -154,6 +218,9 @@ public interface IDayOpenRate {
 	public String getAwayFlag();
 
 
+	/**
+	 * @param awayFlag
+	 */
 	public void setAwayFlag(String awayFlag) ;
 
 

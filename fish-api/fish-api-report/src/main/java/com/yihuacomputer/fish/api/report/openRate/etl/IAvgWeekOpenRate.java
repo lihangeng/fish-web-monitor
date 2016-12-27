@@ -12,6 +12,9 @@ public interface IAvgWeekOpenRate  extends IOpenRateColumn{
 	 * @return
 	 */
 	long getDate();
+	/**
+	 * @param date
+	 */
 	void setDate(long date);
 	
 	/**
@@ -19,11 +22,17 @@ public interface IAvgWeekOpenRate  extends IOpenRateColumn{
 	 * @return
 	 */
 	String getStartDate();
+	/**
+	 * @param startDate
+	 */
 	void setStartDate(String startDate);
 	/**
 	 * 周结束时间yyyyMMdd
 	 * @return
 	 */
 	String getEndDate();
+	/**
+	 * @param endDate
+	 */
 	void setEndDate(String endDate);
 }

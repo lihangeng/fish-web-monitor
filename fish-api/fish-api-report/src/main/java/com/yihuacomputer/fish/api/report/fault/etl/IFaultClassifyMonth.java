@@ -26,11 +26,12 @@ public interface IFaultClassifyMonth {
 	
 	/**
 	 * 获得分类Id
+	 * @return
 	 */
 	String getClassifyId();
 	/**
 	 * 
-	 * @param openCount
+	 * @param classifyId
 	 */
 	void setClassifyId(String classifyId);
 	
@@ -47,6 +48,7 @@ public interface IFaultClassifyMonth {
 	
 	/**
 	 * 获得关闭故障的数量
+	 * @return
 	 */
 	long getCount();
 	

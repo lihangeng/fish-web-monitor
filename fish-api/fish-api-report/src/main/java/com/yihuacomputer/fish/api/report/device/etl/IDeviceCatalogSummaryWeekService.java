@@ -10,10 +10,30 @@ import com.yihuacomputer.common.IFilter;
  * 设备按分类进行分类周统计(CRS,ATM...)服务
  */
 public interface IDeviceCatalogSummaryWeekService {
+	/**
+	 * @return
+	 */
 	IDeviceCatalogSummaryWeek make();
+	/**
+	 * @param dcsm
+	 * @return
+	 */
 	IDeviceCatalogSummaryWeek update(IDeviceCatalogSummaryWeek dcsm);
+	/**
+	 * @param dcsm
+	 * @return
+	 */
 	IDeviceCatalogSummaryWeek save(IDeviceCatalogSummaryWeek dcsm);
+	/**
+	 * @param filter
+	 * @return
+	 */
 	List<IDeviceCatalogSummaryWeek> list(IFilter filter);
+	/**
+	 * @param catalogName
+	 * @param date
+	 * @return
+	 */
 	IDeviceCatalogSummaryWeek get(String catalogName,String date);
 	/**
 	 * 根据日期得到分类统计信息
@@ -31,6 +51,9 @@ public interface IDeviceCatalogSummaryWeekService {
 	Map<String,List<IDeviceCatalogSummaryWeek>> getWeek(int weekOfYear,int days);
 	/**
 	 * 新增设备和报废设备趋势图
+	 * @param weekOfYear
+	 * @param lastWeek
+	 * @return
 	 */
 	List<IDeviceCatalogSummaryWeek> getAddAndScrp(int weekOfYear,int lastWeek);
 	
