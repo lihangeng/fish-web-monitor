@@ -112,6 +112,9 @@ public class Announcement implements IAnnouncement,Serializable {
     public Announcement() {
     }
 
+    /**
+     * @param service
+     */
     public Announcement(IAnnouncementService service) {
         this.service = service;
     }

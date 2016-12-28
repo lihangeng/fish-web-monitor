@@ -19,6 +19,10 @@ import com.yihuacomputer.fish.report.entity.etl.TransTypeDay;
 import com.yihuacomputer.fish.report.entity.etl.TransTypeMonth;
 import com.yihuacomputer.fish.report.entity.etl.TransTypeWeek;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional
 public class TransTypeExtractDataService implements ITransTypeExtractDataService {

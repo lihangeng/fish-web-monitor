@@ -19,6 +19,10 @@ import com.yihuacomputer.fish.api.report.device.etl.IDeviceTypeSummaryMonthServi
 import com.yihuacomputer.fish.machine.entity.AtmCatalog;
 import com.yihuacomputer.fish.machine.entity.Device;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional
 public class DeviceExtractDataMonthService implements IDeviceExtractDataMonthService {

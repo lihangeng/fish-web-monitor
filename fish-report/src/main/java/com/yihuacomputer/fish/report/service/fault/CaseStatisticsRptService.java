@@ -12,6 +12,10 @@ import com.yihuacomputer.common.IFilterEntry;
 import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.api.report.fault.ICaseStatisticsRptService;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional(readOnly = true)
 public class CaseStatisticsRptService implements ICaseStatisticsRptService {

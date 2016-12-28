@@ -2,6 +2,10 @@ package com.yihuacomputer.fish.report.service.trans;
 
 import com.yihuacomputer.fish.api.report.trans.ISettlementCashInRpt;
 
+/**
+ * @author YiHua
+ *
+ */
 public class SettlementCashInRpt implements ISettlementCashInRpt {
     private String orgCode;
     

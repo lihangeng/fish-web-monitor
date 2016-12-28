@@ -13,6 +13,10 @@ import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.api.report.trans.ISettlementRpt;
 import com.yihuacomputer.fish.api.report.trans.ISettlementRptService;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional(readOnly = true)
 public class SettlementRptService implements ISettlementRptService {

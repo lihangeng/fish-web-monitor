@@ -15,6 +15,10 @@ import com.yihuacomputer.fish.api.report.trans.ITransactionMonths;
 import com.yihuacomputer.fish.api.report.trans.ITransactionMonthsService;
 import com.yihuacomputer.fish.report.entity.TransactionMonths;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional
 public class TransactionMonthsService implements ITransactionMonthsService {

@@ -12,6 +12,10 @@ import com.yihuacomputer.fish.api.report.fault.IEveryMonthFaultCount;
 import com.yihuacomputer.fish.api.report.fault.IEveryMonthFaultCountExtractDataService;
 import com.yihuacomputer.fish.api.report.fault.IEveryMonthFaultCountService;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional
 public class EveryMonthFaultCountExtractDataService implements IEveryMonthFaultCountExtractDataService {

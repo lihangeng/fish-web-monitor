@@ -18,6 +18,10 @@ import com.yihuacomputer.fish.api.report.openRate.etl.IOrgOpenRateWeek;
 import com.yihuacomputer.fish.report.entity.etl.OrgOpenRateMonth;
 import com.yihuacomputer.fish.report.entity.etl.OrgOpenRateWeek;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional
 public class OrgOpenRateExtractDataService implements IOrgOpenRateExtractDataService {

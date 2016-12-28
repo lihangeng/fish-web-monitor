@@ -18,6 +18,10 @@ import com.yihuacomputer.fish.api.report.device.IRetainCardCountRpt;
 import com.yihuacomputer.fish.api.report.device.IRetainCardRpt;
 import com.yihuacomputer.fish.api.report.device.IRetainCardRptService;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional(readOnly = true)
 public class RetainCardRptService implements IRetainCardRptService {

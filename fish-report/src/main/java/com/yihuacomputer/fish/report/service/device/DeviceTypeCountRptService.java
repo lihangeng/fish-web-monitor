@@ -21,6 +21,10 @@ import com.yihuacomputer.fish.api.report.device.IDeviceTypeCountJRpt;
 import com.yihuacomputer.fish.api.report.device.IDeviceTypeCountRpt;
 import com.yihuacomputer.fish.api.report.device.IDeviceTypeCountRptService;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional(readOnly = true)
 public class DeviceTypeCountRptService implements IDeviceTypeCountRptService {

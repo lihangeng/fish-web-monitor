@@ -13,6 +13,10 @@ import com.yihuacomputer.fish.api.report.trans.ITransactionDays;
 import com.yihuacomputer.fish.api.report.trans.ITransactionDaysService;
 import com.yihuacomputer.fish.report.entity.TransactionDays;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional
 public class TransactionDaysService implements ITransactionDaysService {

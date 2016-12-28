@@ -19,6 +19,10 @@ import com.yihuacomputer.fish.report.entity.etl.AvgDayOpenRate;
 import com.yihuacomputer.fish.report.entity.etl.AvgMonthOpenRate;
 import com.yihuacomputer.fish.report.entity.etl.AvgWeekOpenRate;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional
 public class AvgOpenRateExtractDataService implements IAvgOpenRateExtractDataService {

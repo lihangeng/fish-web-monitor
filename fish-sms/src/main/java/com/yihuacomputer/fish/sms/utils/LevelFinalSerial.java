@@ -17,6 +17,10 @@ import gnu.io.SerialPort;
 
 
 
+/**
+ * @author YiHua
+ *
+ */
 public class LevelFinalSerial {
 	
 	private static Logger logger = LoggerFactory.getLogger(LevelFinalSerial.class);
@@ -26,6 +30,9 @@ public class LevelFinalSerial {
 	 */
 	public static final int PACKET_LENGTH = 500;
 
+	/**
+	 * 静态
+	 */
 	public static LevelFinalSerial final_Level;
 
 	SerialPort serialPort;
@@ -79,6 +86,7 @@ public class LevelFinalSerial {
 	}
 
 	/**
+	 * @param portName
 	 * @describe: 初始化串口详细信息
 	 * @return true : 初始化串口成功 false: 初始化串口失败
 	 */
@@ -131,6 +139,7 @@ public class LevelFinalSerial {
 
 	/**
 	 * @describe: 读取串口数据
+	 * @return
 	 */
 	public char[] readPackData() throws Exception {
 		byte[] readBuffer = new byte[PACKET_LENGTH];
@@ -151,6 +160,7 @@ public class LevelFinalSerial {
 	/**
 	 * @throws IOException
 	 * @describe: 向串口写数据 char[] bytes
+	 * @param bytes
 	 */
 	public void writePort(char[] bytes) throws IOException {
 		for (char b : bytes) {
@@ -160,6 +170,7 @@ public class LevelFinalSerial {
 
 	/**
 	 * @describe: 向串口写数据 char bytes
+	 * @param b
 	 */
 	public void writePort(char b) throws IOException {
 		out.write(b);

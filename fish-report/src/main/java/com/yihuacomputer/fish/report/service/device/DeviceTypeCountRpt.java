@@ -2,6 +2,10 @@ package com.yihuacomputer.fish.report.service.device;
 
 import com.yihuacomputer.fish.api.report.device.IDeviceTypeCountRpt;
 
+/**
+ * @author YiHua
+ *
+ */
 public class DeviceTypeCountRpt implements IDeviceTypeCountRpt {
 
 	private String orgName;

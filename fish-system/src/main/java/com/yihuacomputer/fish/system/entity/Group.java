@@ -54,6 +54,9 @@ public class Group implements IGroup,Serializable {
 	public Group(){
 	}
 
+	/**
+	 * @param name
+	 */
 	public Group(String name){
 		this.name = name;
 	}

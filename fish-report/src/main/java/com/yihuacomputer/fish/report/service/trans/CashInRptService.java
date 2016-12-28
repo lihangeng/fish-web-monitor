@@ -13,6 +13,10 @@ import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.api.report.trans.ICashInRpt;
 import com.yihuacomputer.fish.api.report.trans.ICashInRptService;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional(readOnly = true)
 public class CashInRptService implements ICashInRptService {

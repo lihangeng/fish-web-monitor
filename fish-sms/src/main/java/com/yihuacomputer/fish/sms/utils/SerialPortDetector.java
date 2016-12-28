@@ -18,7 +18,13 @@ public class SerialPortDetector {
 	
 	private static Logger logger = LoggerFactory.getLogger(SerialPortDetector.class);
 
+	/**
+	 * 端口
+	 */
 	public static SerialPortDetector sms_serial;
+	/**
+	 * 串口
+	 */
 	public static LevelFinalSerial final_Level;
 
 	//需要设置的参数
@@ -38,7 +44,9 @@ public class SerialPortDetector {
 	// 自动计算--发送间隔
 	int frameInterval; 				// 根据波特率，数据倍率和数据量，自动设置发送间隔
 
-	// 构造方法
+	/**
+	 * 构造方法
+	 */
 	public SerialPortDetector() {
 		final_Level = new LevelFinalSerial();
 		timeOut = 60;						// 延迟时间(毫秒数)
@@ -100,6 +108,7 @@ public class SerialPortDetector {
 
 	/**
 	 * @describe: .读串口命令 - 对发送AT这个指令,返回OK就是成功
+	 * @param portStr
 	 * @return: true:成功 false:失败
 	 */
 	public boolean readByte(String portStr) throws Exception{
@@ -180,6 +189,9 @@ public class SerialPortDetector {
 		return "";
 	}
 
+	/**
+	 * @param args
+	 */
 	public static void main(String args[]){
 		SerialPortDetector.getComPorts();
 	}

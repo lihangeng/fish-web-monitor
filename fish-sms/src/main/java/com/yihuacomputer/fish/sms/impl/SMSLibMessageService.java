@@ -19,6 +19,10 @@ import com.yihuacomputer.fish.sms.utils.DllManager;
 import com.yihuacomputer.fish.sms.utils.SerialPortDetector;
 
 
+/**
+ * @author YiHua
+ *
+ */
 public class SMSLibMessageService implements ISMSLibMessageService {
 
 	private static Logger logger = LoggerFactory.getLogger(SMSLibMessageService.class);
@@ -140,6 +144,10 @@ public class SMSLibMessageService implements ISMSLibMessageService {
 		}
 	}
 
+	/**
+	 * @author YiHua
+	 *
+	 */
 	public class OutboundNotification implements IOutboundMessageNotification {
 		@Override
 		public void process(AGateway gateway, OutboundMessage msg) {
@@ -148,6 +156,10 @@ public class SMSLibMessageService implements ISMSLibMessageService {
 		}
 	}
 
+	/**
+	 * @param telePhoneNums
+	 * @param msg
+	 */
 	public void sendMsg(List<String> telePhoneNums, String msg) {
 		// TODO Auto-generated method stub
 

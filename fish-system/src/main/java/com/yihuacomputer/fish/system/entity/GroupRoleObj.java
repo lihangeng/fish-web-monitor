@@ -37,6 +37,11 @@ public class GroupRoleObj implements Serializable {
 	private Long roleId;
 	
 
+	/**
+	 * @param groupId
+	 * @param roleId
+	 * @return
+	 */
 	public static GroupRoleObj make(Long groupId, Long roleId) {
 		GroupRoleObj obj = new GroupRoleObj();
 		obj.setGroupId(groupId);

@@ -10,6 +10,10 @@ import java.io.InputStream;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * @author YiHua
+ *
+ */
 public class DllManager {
 	
 	private static Logger logger = LoggerFactory.getLogger(DllManager.class);
@@ -54,6 +58,9 @@ public class DllManager {
 		copyDllFile(new File(extractedLibFile.toString()), new File(targetPath + File.separator + libFullName));
 	}
 
+	/**
+	 * @param args
+	 */
 	public static void main(String args[]) {
 		// copyDllFile("")
 	}

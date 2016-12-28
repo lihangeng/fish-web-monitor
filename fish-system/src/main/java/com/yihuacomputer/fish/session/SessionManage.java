@@ -15,6 +15,10 @@ import com.yihuacomputer.fish.api.mq.IMqProducer;
 import com.yihuacomputer.fish.api.session.ISessionManage;
 import com.yihuacomputer.fish.api.session.LoginMessage;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 public class SessionManage implements ISessionManage {
 	

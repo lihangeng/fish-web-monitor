@@ -16,6 +16,10 @@ import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.api.report.device.IDeviceUseCountRpt;
 import com.yihuacomputer.fish.api.report.device.IDeviceUseCountRptService;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional(readOnly = true)
 public class DeviceUseCountRptService implements IDeviceUseCountRptService {

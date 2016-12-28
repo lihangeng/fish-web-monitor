@@ -24,6 +24,10 @@ import com.yihuacomputer.fish.api.report.openRate.IDayOpenRate;
 import com.yihuacomputer.fish.api.report.openRate.IDayOpenRateService;
 import com.yihuacomputer.fish.report.entity.DayOpenRate;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional
 public class DayOpenRateService implements IDayOpenRateService {

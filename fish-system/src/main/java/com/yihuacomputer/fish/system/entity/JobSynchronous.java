@@ -15,6 +15,10 @@ import javax.persistence.TemporalType;
 
 import com.yihuacomputer.fish.api.system.quartz.IJobSynchronous;
 
+/**
+ * @author YiHua
+ *
+ */
 @Entity
 @Table(name = "SM_JOB_SYNCHRON")
 public class JobSynchronous implements IJobSynchronous, Serializable {

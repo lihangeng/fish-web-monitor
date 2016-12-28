@@ -18,6 +18,10 @@ import com.yihuacomputer.fish.api.report.device.etl.IRetainCardWeek;
 import com.yihuacomputer.fish.report.entity.etl.RetainCardMonth;
 import com.yihuacomputer.fish.report.entity.etl.RetainCardWeek;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional
 public class RetainCardExtractDataService implements IRetainCardExtractDataService {

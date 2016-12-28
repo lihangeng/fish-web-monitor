@@ -2,6 +2,10 @@ package com.yihuacomputer.fish.report.service.device;
 
 import com.yihuacomputer.fish.api.report.device.IRetainCardCountRpt;
 
+/**
+ * @author YiHua
+ *
+ */
 public class RetainCardCountRpt implements IRetainCardCountRpt {
 
 	private String terminalId;

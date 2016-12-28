@@ -3,6 +3,10 @@ package com.yihuacomputer.fish.report.service.trans;
 
 import com.yihuacomputer.fish.api.report.trans.ICashInRpt;
 
+/**
+ * @author YiHua
+ *
+ */
 public class CashInRpt implements ICashInRpt{
 
     private String orgName;

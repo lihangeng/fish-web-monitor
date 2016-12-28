@@ -49,111 +49,187 @@ import com.yihuacomputer.fish.system.service.MessageService;
 import com.yihuacomputer.fish.system.service.ParamService;
 import com.yihuacomputer.fish.system.service.ShortMessageService;
 
+/**
+ * @author YiHua
+ *
+ */
 @Configuration
 public class SystemModule {
+	/**
+	 * @return
+	 */
 	@Bean
 	public IAnnouncementService announcementService() {
 		return new AnnouncementService();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public IMessageService messageService() {
 		return new MessageService();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public IParamService paramService() {
 		return new ParamService();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public IShortMessageService shortMessageService() {
 		return new ShortMessageService();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public IJobSynchService jobSynchService() {
 		return new JobSynchService();
 	}
 
+	/**
+	 * @return
+	 */
 	public @Bean IRoleService roleService() {
 		return new RoleService();
 	}
 
+	/**
+	 * @return
+	 */
 	public @Bean IPermissionService permissionService() {
 		return new PermissionService();
 	}
 	
+	/**
+	 * @return
+	 */
 	public @Bean IOrganizationService organizationService() {
 		return new OrganizationService();
 	}
 	
+	/**
+	 * @return
+	 */
 	public @Bean IPersonService personService() {
 		return new PersonService();
 	}
 
+	/**
+	 * @return
+	 */
 	public @Bean IUserService userService() {
 		return new UserService();
 	}
 
+	/**
+	 * @return
+	 */
 	public @Bean IDomainUserService domainUserService() {
 		return new UserService();
 	}
 	
+	/**
+	 * @return
+	 */
 	public @Bean IUserLogService userLogService() {
 		return new UserLogService();
 	}
 
+	/**
+	 * @return
+	 */
 	public @Bean IPersonJobService personJobService() {
 		return new PersonJobService();
 	}
 
+	/**
+	 * @return
+	 */
 	public @Bean IEntityInjector personCoreEntityInjector() {
 		return new PersonCoreEntityInjector();
 	}
 
+	/**
+	 * @return
+	 */
 	public @Bean IGroupService groupService() {
 		return new GroupService();
 	}
 
+	/**
+	 * @return
+	 */
 	public @Bean IEntityInjector permissionEntityInjector() {
 		return new PermissionEntityInjector();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public IRelationService relationService() {
 		return new RelationService();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public IUserRoleRelation userRoleRelation() {
 		return new UserRoleRelation();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public IUserPermissionRelation userPermissionRelation() {
 		return new UserPermissionRelation();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public IRolePermissionRelation rolePermissionRelation() {
 		return new RolePermissionRelation();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public IUserGroupRelation userGroupRelation() {
 		return new UserGroupRelation();
 	}
+	/**
+	 * @return
+	 */
 	@Bean
 	public SrcbDevicePersonRelation srcbDevicePersonRelation() {
 		return new SrcbDevicePersonRelation();
 	}
 	
+	/**
+	 * @return
+	 */
 	@Bean
 	public IQuartzService quartzService() {
 		return new QuartzService();
 	}
 	
+	/**
+	 * @return
+	 */
 	@Bean
 	public ISessionManage sessionManage() {
 		return new SessionManage();

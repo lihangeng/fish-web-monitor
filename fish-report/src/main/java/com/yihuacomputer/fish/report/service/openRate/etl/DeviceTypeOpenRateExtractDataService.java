@@ -18,6 +18,10 @@ import com.yihuacomputer.fish.api.report.openRate.etl.IDeviceTypeOpenRateWeek;
 import com.yihuacomputer.fish.report.entity.etl.DeviceTypeOpenRateMonth;
 import com.yihuacomputer.fish.report.entity.etl.DeviceTypeOpenRateWeek;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional
 public class DeviceTypeOpenRateExtractDataService implements IDeviceTypeOpenRateExtractDataService {

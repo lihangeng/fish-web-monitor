@@ -2,6 +2,10 @@ package com.yihuacomputer.fish.report.service.trans;
 
 import com.yihuacomputer.fish.api.report.trans.ITransResultCountRpt;
 
+/**
+ * @author YiHua
+ *
+ */
 public class TransResultCountRpt implements ITransResultCountRpt {
 
 	private String orgName;

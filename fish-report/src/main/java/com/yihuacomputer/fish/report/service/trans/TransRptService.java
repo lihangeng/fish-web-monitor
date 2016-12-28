@@ -16,6 +16,10 @@ import com.yihuacomputer.fish.api.report.trans.ITransCountRpt;
 import com.yihuacomputer.fish.api.report.trans.ITransResultCountRpt;
 import com.yihuacomputer.fish.api.report.trans.ITransRptService;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 public class TransRptService implements ITransRptService {
 
@@ -26,8 +30,6 @@ public class TransRptService implements ITransRptService {
 	private MessageSource messageSource;
 
 
-
-//    private final String transTipsName = "手续费";
 
     @Override
     public List<ITransCountRpt> listOrgTransCount(IFilter filter) {

@@ -16,6 +16,10 @@ import com.yihuacomputer.fish.api.report.device.etl.IDeviceTypeSummaryWeek;
 import com.yihuacomputer.fish.api.report.device.etl.IDeviceTypeSummaryWeekService;
 import com.yihuacomputer.fish.report.entity.etl.DeviceTypeSummaryWeek;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional
 public class DeviceTypeSummaryWeekService implements IDeviceTypeSummaryWeekService {

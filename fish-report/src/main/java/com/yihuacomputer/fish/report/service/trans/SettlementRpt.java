@@ -2,6 +2,10 @@ package com.yihuacomputer.fish.report.service.trans;
 
 import com.yihuacomputer.fish.api.report.trans.ISettlementRpt;
 
+/**
+ * @author YiHua
+ *
+ */
 public class SettlementRpt implements ISettlementRpt{
     
     private String orgName;

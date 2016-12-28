@@ -6,6 +6,10 @@ import java.util.Date;
 import com.yihuacomputer.fish.api.system.im.IMessage;
 import com.yihuacomputer.fish.api.system.im.IMessageService;
 
+/**
+ * @author YiHua
+ *
+ */
 public class Message implements IMessage, Serializable {
 
 	/**

@@ -25,6 +25,10 @@ import com.yihuacomputer.fish.report.entity.etl.FaultDurationWeek;
 import com.yihuacomputer.fish.report.entity.etl.FaultMonth;
 import com.yihuacomputer.fish.report.entity.etl.FaultWeek;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional
 public class FaultExtractDataService implements IFaultExtractDataService {
@@ -86,6 +90,10 @@ public class FaultExtractDataService implements IFaultExtractDataService {
 		}
 	}
 	
+	/**
+	 * @param month
+	 * @return
+	 */
 	public IFaultMonth exsitFaultMonth(long month){
 		StringBuilder sb = new StringBuilder();
 		sb.append(" from ").append(FaultMonth.class.getSimpleName()).append( " faultMonth where faultMonth.date = ?");
