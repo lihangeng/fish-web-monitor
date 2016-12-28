@@ -8,6 +8,10 @@ import javax.persistence.Enumerated;
 import com.yihuacomputer.fish.api.monitor.xfs.propertise.DeviceProp;
 import com.yihuacomputer.fish.api.monitor.xfs.propertise.IPropUkr;
 
+/**
+ * @author YiHua
+ *
+ */
 @Embeddable
 public class PropUkr implements IPropUkr {
 	
@@ -15,6 +19,9 @@ public class PropUkr implements IPropUkr {
 	@Column(name = "UKR_EXIST",columnDefinition="CHAR",length=1)
 	private DeviceProp ukr;
 	
+	/**
+	 * 初始化
+	 */
 	public PropUkr(){
 		this.ukr = DeviceProp.F;
 	}

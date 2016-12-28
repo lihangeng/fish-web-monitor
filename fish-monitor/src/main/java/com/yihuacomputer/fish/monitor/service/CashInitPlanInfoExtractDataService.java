@@ -37,6 +37,10 @@ import com.yihuacomputer.fish.api.person.OrganizationLevel;
 import com.yihuacomputer.fish.monitor.common.CashInitPlanCfg;
 import com.yihuacomputer.fish.monitor.entity.cashplan.CashInitPlanInfo;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional
 public class CashInitPlanInfoExtractDataService implements ICashInitPlanInfoExtractDataService {

@@ -19,6 +19,10 @@ import com.yihuacomputer.fish.api.monitor.xfs.status.NetStatus;
 import com.yihuacomputer.fish.machine.entity.Device;
 import com.yihuacomputer.fish.monitor.entity.xfs.status.XfsStatus;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional
 public class XfsChartService implements IXfsChartService {

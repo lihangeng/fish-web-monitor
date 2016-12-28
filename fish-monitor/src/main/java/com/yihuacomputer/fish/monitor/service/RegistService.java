@@ -10,6 +10,10 @@ import com.yihuacomputer.fish.api.monitor.business.IDeviceRegister;
 import com.yihuacomputer.fish.api.monitor.business.IRegistService;
 import com.yihuacomputer.fish.monitor.entity.business.DeviceRegister;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional
 public class RegistService implements IRegistService {

@@ -18,6 +18,10 @@ import com.yihuacomputer.fish.api.parameter.IParamPublish;
 import com.yihuacomputer.fish.api.parameter.IParamPublishResult;
 import com.yihuacomputer.fish.api.version.job.JobType;
 
+/**
+ * @author YiHua
+ *
+ */
 @Entity
 @Table(name="PARAM_PUBLISH")
 public class ParamPublish implements IParamPublish {

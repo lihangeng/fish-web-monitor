@@ -32,6 +32,9 @@ public class StatusPin implements IStatusPin ,Serializable {
     @Transient
     private String pinHwCode;
 
+    /**
+     * 初始化
+     */
     public StatusPin() {
         this.pin = DeviceStatus.Unknown;
     }

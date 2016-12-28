@@ -7,6 +7,10 @@ import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.parameter.IParamPublishResult;
 import com.yihuacomputer.fish.api.parameter.IParamPublishResultService;
 
+/**
+ * @author YiHua
+ *
+ */
 public class AtmcParamsJobThread implements Runnable {
 
 	private static Logger logger = LoggerFactory.getLogger(AtmcParamsJobThread.class);
@@ -21,6 +25,10 @@ public class AtmcParamsJobThread implements Runnable {
 
 	}
 
+	/**
+	 * @param result
+	 * @param atmcParamPublishResultService
+	 */
 	public AtmcParamsJobThread(IParamPublishResult result,IParamPublishResultService atmcParamPublishResultService) {
 		this.result = result;
 		this.atmcParamPublishResultService = atmcParamPublishResultService;

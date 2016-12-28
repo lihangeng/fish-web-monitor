@@ -63,6 +63,10 @@ import com.yihuacomputer.fish.monitor.entity.report.DeviceReport;
 import com.yihuacomputer.fish.monitor.mq.MqTransaction;
 import com.yihuacomputer.fish.monitor.mq.MqXfsStatus;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional
 public class CollectService implements ICollectService, IDeviceListener,IMessagePusher{
@@ -259,6 +263,10 @@ public class CollectService implements ICollectService, IDeviceListener,IMessage
 		}
 	}
 
+	/**
+	 * @param xfsStatus
+	 * @return
+	 */
 	public DeviceReport getFullDeviceReport(IXfsStatus xfsStatus) {
 		String terminalId = xfsStatus.getTerminalId();
 		DeviceReport deviceReport = new DeviceReport();
@@ -422,7 +430,7 @@ public class CollectService implements ICollectService, IDeviceListener,IMessage
 
     /**
 	 * 推送交易类信息到WEB页面
-	 * @param message
+	 * @param transaction
 	 */
     public void pushTransToWeb(ITransaction transaction){
     	String terminalId = transaction.getTerminalId();

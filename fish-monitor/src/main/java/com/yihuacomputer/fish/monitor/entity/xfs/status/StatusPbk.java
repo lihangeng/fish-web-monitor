@@ -11,6 +11,10 @@ import javax.persistence.Transient;
 import com.yihuacomputer.fish.api.monitor.xfs.status.DeviceStatus;
 import com.yihuacomputer.fish.api.monitor.xfs.status.IStatusPbk;
 
+/**
+ * @author YiHua
+ *
+ */
 @Embeddable
 public class StatusPbk implements IStatusPbk ,Serializable {
 
@@ -26,6 +30,9 @@ public class StatusPbk implements IStatusPbk ,Serializable {
     @Transient
     private String pbkHwCode;
 
+    /**
+     * 初始化
+     */
     public StatusPbk() {
         this.pbk = DeviceStatus.Unknown;
     }

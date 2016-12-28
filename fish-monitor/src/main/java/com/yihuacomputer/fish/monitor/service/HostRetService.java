@@ -9,6 +9,10 @@ import com.yihuacomputer.fish.api.monitor.business.IHostRet;
 import com.yihuacomputer.fish.api.monitor.business.IHostRetService;
 import com.yihuacomputer.fish.monitor.entity.business.HostRet;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional
 public class HostRetService implements IHostRetService {

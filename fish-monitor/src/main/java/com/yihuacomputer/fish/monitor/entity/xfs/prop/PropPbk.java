@@ -7,6 +7,10 @@ import javax.persistence.Enumerated;
 
 import com.yihuacomputer.fish.api.monitor.xfs.propertise.DeviceProp;
 import com.yihuacomputer.fish.api.monitor.xfs.propertise.IPropPbk;
+/**
+ * @author YiHua
+ *
+ */
 @Embeddable
 public class PropPbk implements IPropPbk {
 	
@@ -14,6 +18,9 @@ public class PropPbk implements IPropPbk {
 	@Column(name = "PBK_EXIST",columnDefinition="CHAR",length=1)
 	private DeviceProp pbk;
 	
+	/**
+	 * 初始化
+	 */
 	public PropPbk(){
 		this.pbk = DeviceProp.F;
 	}

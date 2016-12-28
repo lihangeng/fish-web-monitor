@@ -18,6 +18,10 @@ import com.yihuacomputer.fish.api.person.IOrganization;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
 import com.yihuacomputer.fish.monitor.entity.software.DeviceParam;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional
 public class RuntimeParamService implements IRuntimeParamService {

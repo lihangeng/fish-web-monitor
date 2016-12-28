@@ -7,6 +7,10 @@ import com.yihuacomputer.fish.api.monitor.business.CardType;
 import com.yihuacomputer.fish.api.monitor.business.ITransaction;
 import com.yihuacomputer.fish.monitor.entity.business.Transaction;
 
+/**
+ * @author YiHua
+ *
+ */
 public class MqTransaction  implements Serializable {
 
 
@@ -54,6 +58,9 @@ public class MqTransaction  implements Serializable {
     public MqTransaction() {
     }
 
+    /**
+     * @param transaction
+     */
     public MqTransaction(ITransaction transaction) {
         Transaction trans = (Transaction) transaction;
         this.id = trans.getId();
@@ -77,6 +84,9 @@ public class MqTransaction  implements Serializable {
         setCostTime(trans.getCostTime());
     }
 
+    /**
+     * @return
+     */
     public ITransaction makeTrans() {
         Transaction trans = new Transaction();
         trans.setId(this.id);

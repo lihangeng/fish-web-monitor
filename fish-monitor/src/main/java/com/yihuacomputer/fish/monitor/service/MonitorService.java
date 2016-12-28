@@ -20,6 +20,10 @@ import com.yihuacomputer.fish.api.monitor.report.MonitorUserType;
 import com.yihuacomputer.fish.monitor.entity.report.MonitorUser;
 import com.yihuacomputer.fish.monitor.entity.report.WorkUnit;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 public class MonitorService implements IMonitorService {
 

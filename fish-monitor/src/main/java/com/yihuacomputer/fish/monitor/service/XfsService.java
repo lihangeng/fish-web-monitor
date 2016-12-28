@@ -35,6 +35,10 @@ import com.yihuacomputer.fish.monitor.entity.xfs.status.XfsStatus;
 import com.yihuacomputer.fish.person.service.api.IDomainOrganizationService;
 import com.yihuacomputer.fish.system.entity.Organization;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional
 public class XfsService implements IXfsService {

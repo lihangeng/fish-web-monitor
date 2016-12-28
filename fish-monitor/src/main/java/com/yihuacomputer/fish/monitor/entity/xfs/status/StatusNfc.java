@@ -11,6 +11,10 @@ import javax.persistence.Transient;
 import com.yihuacomputer.fish.api.monitor.xfs.status.DeviceStatus;
 import com.yihuacomputer.fish.api.monitor.xfs.status.IStatusNfc;
 
+/**
+ * @author YiHua
+ *
+ */
 @Embeddable
 public class StatusNfc implements IStatusNfc ,Serializable {
 
@@ -26,6 +30,9 @@ public class StatusNfc implements IStatusNfc ,Serializable {
     @Transient
     private String nfcHwCode;
 
+    /**
+     * 初始化
+     */
     public StatusNfc() {
         this.nfc = DeviceStatus.Unknown;
     }

@@ -7,6 +7,10 @@ import javax.persistence.Enumerated;
 
 import com.yihuacomputer.fish.api.monitor.xfs.propertise.DeviceProp;
 import com.yihuacomputer.fish.api.monitor.xfs.propertise.IPropSiu;
+/**
+ * @author YiHua
+ *
+ */
 @Embeddable
 public class PropSiu implements IPropSiu {
 	
@@ -14,6 +18,9 @@ public class PropSiu implements IPropSiu {
 	@Column(name = "SIU_EXIST",columnDefinition="CHAR",length=1)
 	private DeviceProp siu;
 	
+	/**
+	 * 初始化
+	 */
 	public PropSiu(){
 		this.siu = DeviceProp.F;
 	}

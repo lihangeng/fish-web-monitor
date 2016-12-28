@@ -16,6 +16,10 @@ import com.yihuacomputer.fish.api.person.IOrganization;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
 import com.yihuacomputer.fish.monitor.entity.business.TransactionView;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional
 public class TransactionViewService implements ITransactionViewService {

@@ -17,6 +17,10 @@ import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.api.monitor.volume.IMonthDailyTradingVolume;
 import com.yihuacomputer.fish.api.monitor.volume.IMonthDailyTradingVolumeService;
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional
 public class MonthDailyTradingVolumeService implements IMonthDailyTradingVolumeService {

@@ -16,6 +16,10 @@ import com.yihuacomputer.fish.api.monitor.box.IDeviceBoxDetailInfo;
 import com.yihuacomputer.fish.api.monitor.box.IDeviceBoxDetailInfoService;
 import com.yihuacomputer.fish.monitor.entity.box.DeviceBoxDetailInfo;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional
 public class DeviceBoxDetailInfoService implements IDeviceBoxDetailInfoService {

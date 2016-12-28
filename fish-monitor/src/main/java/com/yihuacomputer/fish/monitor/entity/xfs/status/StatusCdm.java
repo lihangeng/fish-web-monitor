@@ -11,6 +11,10 @@ import javax.persistence.Transient;
 import com.yihuacomputer.fish.api.monitor.xfs.status.DeviceStatus;
 import com.yihuacomputer.fish.api.monitor.xfs.status.IStatusCdm;
 
+/**
+ * @author YiHua
+ *
+ */
 @Embeddable
 public class StatusCdm implements IStatusCdm ,Serializable {
 
@@ -26,6 +30,9 @@ public class StatusCdm implements IStatusCdm ,Serializable {
     @Transient
     private String cdmHwCode;
 
+    /**
+     * 初始化
+     */
     public StatusCdm() {
         this.cdm = DeviceStatus.Unknown;
     }

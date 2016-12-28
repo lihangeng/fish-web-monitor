@@ -10,6 +10,10 @@ import javax.persistence.Enumerated;
 import com.yihuacomputer.fish.api.monitor.xfs.status.DeviceStatus;
 import com.yihuacomputer.fish.api.monitor.xfs.status.IStatusFgp;
 
+/**
+ * @author YiHua
+ *
+ */
 @Embeddable
 public class StatusFgp implements IStatusFgp ,Serializable {
 
@@ -25,6 +29,9 @@ public class StatusFgp implements IStatusFgp ,Serializable {
     @Column(name = "FGP_HW_CODE")
     private String fgpHwCode;
 
+    /**
+     * 初始化
+     */
     public StatusFgp() {
         this.fgp = DeviceStatus.Unknown;
     }

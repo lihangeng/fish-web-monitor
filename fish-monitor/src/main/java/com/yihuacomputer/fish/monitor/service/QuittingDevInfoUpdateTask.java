@@ -21,6 +21,10 @@ import com.yihuacomputer.fish.api.monitor.xfs.status.IXfsStatus;
 import com.yihuacomputer.fish.api.quittingNotice.IQuittingNotice;
 import com.yihuacomputer.fish.api.quittingNotice.IQuittingNoticeService;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional
 public class QuittingDevInfoUpdateTask {
@@ -45,6 +49,9 @@ public class QuittingDevInfoUpdateTask {
 
 
 
+	/**
+	 * 报停设备信息更改
+	 */
 	public void quittingDevInfoUpdate()
 	{
 		StringBuffer hql = new StringBuffer();

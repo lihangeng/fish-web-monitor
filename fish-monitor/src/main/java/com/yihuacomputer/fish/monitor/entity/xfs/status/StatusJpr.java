@@ -11,6 +11,10 @@ import javax.persistence.Transient;
 import com.yihuacomputer.fish.api.monitor.xfs.status.DeviceStatus;
 import com.yihuacomputer.fish.api.monitor.xfs.status.IStatusJpr;
 
+/**
+ * @author YiHua
+ *
+ */
 @Embeddable
 public class StatusJpr implements IStatusJpr  ,Serializable {
 
@@ -26,6 +30,9 @@ public class StatusJpr implements IStatusJpr  ,Serializable {
     @Transient
     private String jprHwCode;
 
+    /**
+     * 初始化
+     */
     public StatusJpr() {
         this.jpr = DeviceStatus.Unknown;
     }

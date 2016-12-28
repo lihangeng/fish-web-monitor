@@ -9,12 +9,19 @@ import com.yihuacomputer.fish.api.monitor.xfs.propertise.IPropBcr;
 
 import javax.persistence.Embeddable;
 
+/**
+ * @author YiHua
+ *
+ */
 @Embeddable
 public class PropBcr implements IPropBcr {
 	@Enumerated(EnumType.STRING)
 	@Column(name = "BCR_EXIST",columnDefinition="CHAR",length=1)
 	private DeviceProp bcr;
 	
+	/**
+	 * 初始化
+	 */
 	public PropBcr(){
 		bcr = DeviceProp.F;
 	}

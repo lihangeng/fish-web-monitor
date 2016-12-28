@@ -16,6 +16,10 @@ import com.yihuacomputer.fish.api.parameter.FileFormat;
 import com.yihuacomputer.fish.api.parameter.IAppSystem;
 
 
+/**
+ * @author YiHua
+ *
+ */
 @Entity
 @Table(name="PARAM_APP_SYSTEM")
 public class AppSystem implements IAppSystem,Serializable {

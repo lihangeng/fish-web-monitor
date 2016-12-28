@@ -7,6 +7,10 @@ import javax.persistence.Enumerated;
 
 import com.yihuacomputer.fish.api.monitor.xfs.propertise.DeviceProp;
 import com.yihuacomputer.fish.api.monitor.xfs.propertise.IPropIdc;
+/**
+ * @author YiHua
+ *
+ */
 @Embeddable
 public class PropIdc implements IPropIdc {
 
@@ -14,6 +18,9 @@ public class PropIdc implements IPropIdc {
 	@Column(name = "IDC_EXIST",columnDefinition="CHAR",length=1)
 	private DeviceProp idc;
 
+	/**
+	 * 初始化
+	 */
 	public PropIdc(){
 		this.idc = DeviceProp.F;
 	}

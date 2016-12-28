@@ -11,6 +11,10 @@ import javax.persistence.Transient;
 import com.yihuacomputer.fish.api.monitor.xfs.status.DeviceStatus;
 import com.yihuacomputer.fish.api.monitor.xfs.status.IStatusUkd;
 
+/**
+ * @author YiHua
+ *
+ */
 @Embeddable
 public class StatusUkd implements IStatusUkd, Serializable {
 
@@ -19,6 +23,9 @@ public class StatusUkd implements IStatusUkd, Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
+    /**
+     * 初始化
+     */
     public StatusUkd(){
     	this.ukd = DeviceStatus.Unknown;
     }

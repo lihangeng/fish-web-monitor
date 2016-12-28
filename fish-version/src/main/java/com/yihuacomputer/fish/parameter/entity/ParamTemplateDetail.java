@@ -43,6 +43,12 @@ public class ParamTemplateDetail implements IParamTemplateDetail, Serializable {
 	@JoinColumn(name = "ELEMENT_ID")
 	private IParamElement paramElement;
 
+	/**
+	 * @param template
+	 * @param emlement
+	 * @param paramValue
+	 * @return
+	 */
 	public static ParamTemplateDetail make(IParamTemplate template,
 			IParamElement emlement,String paramValue) {
 		ParamTemplateDetail obj = new ParamTemplateDetail();

@@ -14,6 +14,10 @@ import com.yihuacomputer.fish.api.person.IOrganization;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
 import com.yihuacomputer.fish.monitor.entity.business.CounterFeitMoney;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional
 public class CounterFeitMoneyService implements ICounterFeitMoneyService {

@@ -13,6 +13,10 @@ import com.yihuacomputer.fish.api.monitor.box.ICashInitPlanInfo;
 import com.yihuacomputer.fish.api.monitor.box.ICashInitPlanInfoService;
 import com.yihuacomputer.fish.monitor.entity.cashplan.CashInitPlanInfo;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional
 public class CashInitPlanInfoService implements ICashInitPlanInfoService {

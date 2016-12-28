@@ -7,6 +7,10 @@ import javax.persistence.Enumerated;
 
 import com.yihuacomputer.fish.api.monitor.xfs.propertise.DeviceProp;
 import com.yihuacomputer.fish.api.monitor.xfs.propertise.IPropFgp;
+/**
+ * @author YiHua
+ *
+ */
 @Embeddable
 public class PropFgp implements IPropFgp {
 
@@ -14,6 +18,9 @@ public class PropFgp implements IPropFgp {
 	@Column(name = "FGP_EXIST",columnDefinition="CHAR",length=1)
 	private DeviceProp fgp;
 
+	/**
+	 * 初始化
+	 */
 	public PropFgp(){
 		this.fgp = DeviceProp.F;
 	}

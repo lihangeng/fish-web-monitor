@@ -16,6 +16,10 @@ import com.yihuacomputer.fish.api.monitor.business.ITransType;
 import com.yihuacomputer.fish.api.monitor.business.ITransTypeService;
 import com.yihuacomputer.fish.monitor.entity.business.TransType;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional
 public class TransTypeService implements ITransTypeService {

@@ -14,6 +14,10 @@ import com.yihuacomputer.fish.api.parameter.IAppSystem;
 import com.yihuacomputer.fish.api.parameter.IAppSystemService;
 import com.yihuacomputer.fish.parameter.entity.AppSystem;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional
 public class AppSystemService implements IAppSystemService {

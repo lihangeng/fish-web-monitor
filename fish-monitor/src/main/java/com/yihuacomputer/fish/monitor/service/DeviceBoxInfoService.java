@@ -24,6 +24,10 @@ import com.yihuacomputer.fish.api.monitor.box.IDeviceBoxInfo;
 import com.yihuacomputer.fish.api.monitor.box.IDeviceBoxInfoService;
 import com.yihuacomputer.fish.monitor.entity.box.DeviceBoxInfo;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional
 public class DeviceBoxInfoService implements IDeviceBoxInfoService,IDeviceListener {
@@ -217,6 +221,9 @@ class HqlQueryStruct{
 	public List<Object> getArgList() {
 		return argList;
 	}
+	/**
+	 * @param arg
+	 */
 	public void addArg(Object arg) {
 		this.argList.add(arg);
 	}

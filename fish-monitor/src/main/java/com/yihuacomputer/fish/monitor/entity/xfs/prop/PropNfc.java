@@ -7,6 +7,10 @@ import javax.persistence.Enumerated;
 
 import com.yihuacomputer.fish.api.monitor.xfs.propertise.DeviceProp;
 import com.yihuacomputer.fish.api.monitor.xfs.propertise.IPropNfc;
+/**
+ * @author YiHua
+ *
+ */
 @Embeddable
 public class PropNfc implements IPropNfc {
 	
@@ -14,6 +18,9 @@ public class PropNfc implements IPropNfc {
 	@Column(name = "NFC_EXIST",columnDefinition="CHAR",length=1)
 	private DeviceProp nfc;
 	
+	/**
+	 * 初始化
+	 */
 	public PropNfc(){
 		this.nfc = DeviceProp.F;
 	}

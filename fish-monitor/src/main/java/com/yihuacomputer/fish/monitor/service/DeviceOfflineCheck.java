@@ -38,6 +38,9 @@ public class DeviceOfflineCheck{
 
 	private int end = 100;
 
+	/**
+	 * 设备离线
+	 */
 	public void deviceOffline() {
 		
 		logger.debug("check atm offline ....");

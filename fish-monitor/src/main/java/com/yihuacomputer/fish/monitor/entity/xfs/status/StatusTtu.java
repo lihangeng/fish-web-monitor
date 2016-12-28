@@ -32,6 +32,9 @@ public class StatusTtu implements IStatusTtu ,Serializable {
     @Transient
     private String ttuHwCode;
 
+    /**
+     * 初始化
+     */
     public StatusTtu() {
         this.ttu = DeviceStatus.Unknown;
     }

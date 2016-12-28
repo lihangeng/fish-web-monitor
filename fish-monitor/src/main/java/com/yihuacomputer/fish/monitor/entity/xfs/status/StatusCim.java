@@ -32,6 +32,9 @@ public class StatusCim implements IStatusCim  ,Serializable {
     @Transient
     private String cimHwCode;
 
+    /**
+     * 初始化
+     */
     public StatusCim() {
         this.cim = DeviceStatus.Unknown;
     }

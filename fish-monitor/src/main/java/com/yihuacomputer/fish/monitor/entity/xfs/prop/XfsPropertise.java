@@ -25,6 +25,10 @@ import com.yihuacomputer.fish.api.monitor.xfs.propertise.IPropUkd;
 import com.yihuacomputer.fish.api.monitor.xfs.propertise.IPropUkr;
 import com.yihuacomputer.fish.api.monitor.xfs.propertise.IXfsPropertise;
 
+/**
+ * @author YiHua
+ *
+ */
 @Entity
 @Table(name = "DEV_XFS_PROPERTISE")
 public class XfsPropertise implements IXfsPropertise {

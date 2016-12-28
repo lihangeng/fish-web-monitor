@@ -7,6 +7,10 @@ import javax.persistence.Enumerated;
 
 import com.yihuacomputer.fish.api.monitor.xfs.propertise.DeviceProp;
 import com.yihuacomputer.fish.api.monitor.xfs.propertise.IPropPin;
+/**
+ * @author YiHua
+ *
+ */
 @Embeddable
 public class PropPin implements IPropPin {
 	
@@ -14,6 +18,9 @@ public class PropPin implements IPropPin {
 	@Column(name = "PIN_EXIST",columnDefinition="CHAR",length=1)
 	private DeviceProp pin;
 	
+	/**
+	 * 初始化
+	 */
 	public PropPin(){
 		this.pin = DeviceProp.F;
 	}

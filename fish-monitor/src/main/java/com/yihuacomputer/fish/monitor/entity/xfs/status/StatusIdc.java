@@ -11,6 +11,10 @@ import javax.persistence.Transient;
 import com.yihuacomputer.fish.api.monitor.xfs.status.DeviceStatus;
 import com.yihuacomputer.fish.api.monitor.xfs.status.IStatusIdc;
 
+/**
+ * @author YiHua
+ *
+ */
 @Embeddable
 public class StatusIdc implements IStatusIdc,Serializable {
 
@@ -29,6 +33,9 @@ public class StatusIdc implements IStatusIdc,Serializable {
     @Transient
     private String idcHwCode;
 
+    /**
+     * 初始化
+     */
     public StatusIdc() {
         this.idc = DeviceStatus.Unknown;
         this.cards = -1;

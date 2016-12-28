@@ -27,6 +27,10 @@ import com.yihuacomputer.fish.monitor.entity.xfs.status.StatusUkd;
 import com.yihuacomputer.fish.monitor.entity.xfs.status.StatusUkr;
 import com.yihuacomputer.fish.monitor.entity.xfs.status.XfsStatus;
 
+/**
+ * @author YiHua
+ *
+ */
 public class MqXfsStatus implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -83,6 +87,9 @@ public class MqXfsStatus implements Serializable {
 
 	private IXfsStatus hisXfsStatus;
 
+	/**
+	 * 初始化
+	 */
 	public MqXfsStatus() {
 		this.boxCurrentCount = -1;
 		this.boxInitCount = -1;
@@ -134,6 +141,9 @@ public class MqXfsStatus implements Serializable {
 		
 	}
 	
+	/**
+	 * @return
+	 */
 	public XfsStatus makeXfsStatus(){
 		XfsStatus xfsStatus = new XfsStatus();
 		xfsStatus.setTerminalId(this.getTerminalId());

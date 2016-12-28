@@ -37,6 +37,10 @@ import com.yihuacomputer.fish.api.system.config.IParam;
 import com.yihuacomputer.fish.api.system.config.IParamService;
 import com.yihuacomputer.fish.machine.entity.Device;
 import com.yihuacomputer.fish.monitor.entity.cashplan.CashInitPlanDeviceInfo;
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional
 public class CashInitPlanDeviceInfoService implements ICashInitPlanDeviceInfoService {

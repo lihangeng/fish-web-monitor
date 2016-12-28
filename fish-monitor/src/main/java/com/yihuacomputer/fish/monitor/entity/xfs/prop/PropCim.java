@@ -7,6 +7,10 @@ import javax.persistence.Enumerated;
 
 import com.yihuacomputer.fish.api.monitor.xfs.propertise.DeviceProp;
 import com.yihuacomputer.fish.api.monitor.xfs.propertise.IPropCim;
+/**
+ * @author YiHua
+ *
+ */
 @Embeddable
 public class PropCim implements IPropCim {
 	
@@ -14,6 +18,9 @@ public class PropCim implements IPropCim {
 	@Column(name = "CIM_EXIST",columnDefinition="CHAR",length=1)
 	private DeviceProp cim;
 	
+	/**
+	 * 初始化
+	 */
 	public PropCim(){
 		this.cim = DeviceProp.F;
 	}

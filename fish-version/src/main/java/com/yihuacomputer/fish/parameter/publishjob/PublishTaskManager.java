@@ -10,6 +10,10 @@ import com.yihuacomputer.fish.api.parameter.IParamPublishResult;
 import com.yihuacomputer.fish.api.parameter.IParamPublishResultService;
 import com.yihuacomputer.fish.parameter.entity.ParamPublishResult;
 
+/**
+ * @author YiHua
+ *
+ */
 public class PublishTaskManager implements Runnable {
 
 	private Logger logger = LoggerFactory.getLogger(PublishTaskManager.class);
@@ -35,6 +39,10 @@ public class PublishTaskManager implements Runnable {
 		}
 	}
 
+	/**
+	 * @param queue
+	 * @param taskExecutor
+	 */
 	public void init(BlockingQueue<IParamPublishResult> queue,ThreadPoolExecutor taskExecutor){
 		this.queue = queue ;
 		this.taskExecutor = taskExecutor ;
@@ -45,6 +53,9 @@ public class PublishTaskManager implements Runnable {
 		this.atmcParamPublishResultService = atmcParamPublishResultService;
 	}
 
+	/**
+	 * @param result
+	 */
 	public void addPublish(ParamPublishResult result ){
 		try {
 			this.queue.put(result);

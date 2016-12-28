@@ -16,6 +16,10 @@ import com.yihuacomputer.fish.api.monitor.business.ICashInit;
 import com.yihuacomputer.fish.api.monitor.business.ICashInitService;
 import com.yihuacomputer.fish.monitor.entity.business.CashInit;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional
 public class CashInitService implements ICashInitService {

@@ -12,6 +12,10 @@ import javax.persistence.Table;
 
 import com.yihuacomputer.fish.api.parameter.IParamTemplateElementRelation;
 
+/**
+ * @author YiHua
+ *
+ */
 @Entity
 @Table(name = "PARAM_TEMPLATE_EMLEMT_RELATION")
 public class ParamTemplateElementRelation implements

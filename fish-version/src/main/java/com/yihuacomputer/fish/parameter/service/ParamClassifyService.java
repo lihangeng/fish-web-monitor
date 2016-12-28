@@ -13,6 +13,10 @@ import com.yihuacomputer.fish.api.parameter.IParamClassify;
 import com.yihuacomputer.fish.api.parameter.IParamClassifyService;
 import com.yihuacomputer.fish.parameter.entity.ParamClassify;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional
 public class ParamClassifyService implements IParamClassifyService {

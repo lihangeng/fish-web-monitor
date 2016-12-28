@@ -1,5 +1,9 @@
 package com.yihuacomputer.fish.monitor.entity.xfs;
 
+/**
+ * @author YiHua
+ *
+ */
 public class StateCode {
 
 	private String code;
@@ -7,6 +11,12 @@ public class StateCode {
 	private String stateDescription;
 	private String solution;
 
+	/**
+	 * @param code
+	 * @param catalog
+	 * @param desc
+	 * @param solution
+	 */
 	public StateCode(String code, String catalog, String desc, String solution) {
 		this.code = code;
 		this.catalog = catalog;

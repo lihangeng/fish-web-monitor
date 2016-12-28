@@ -27,6 +27,10 @@ import com.yihuacomputer.fish.monitor.entity.filter.RunStatusFilter;
 import com.yihuacomputer.fish.monitor.entity.filter.StatusFilter;
 import com.yihuacomputer.fish.monitor.entity.filter.TransationFilter;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional
 public class FilterService implements IFilterService {

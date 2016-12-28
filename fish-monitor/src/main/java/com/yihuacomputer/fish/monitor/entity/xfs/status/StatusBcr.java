@@ -10,6 +10,10 @@ import javax.persistence.Transient;
 
 import com.yihuacomputer.fish.api.monitor.xfs.status.DeviceStatus;
 import com.yihuacomputer.fish.api.monitor.xfs.status.IStatusBcr;
+/**
+ * @author YiHua
+ *
+ */
 @Embeddable
 public class StatusBcr implements IStatusBcr,Serializable{
 private static final long serialVersionUID = 1L;
@@ -24,6 +28,9 @@ private static final long serialVersionUID = 1L;
     @Transient
     private String bcrHwCode;
     
+    /**
+     * 初始化
+     */
     public StatusBcr(){
     	this.bcr = DeviceStatus.Unknown;
     }

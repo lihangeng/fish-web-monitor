@@ -13,6 +13,10 @@ import javax.persistence.Table;
 import com.yihuacomputer.fish.api.parameter.IParamTemplateDeviceRelation;
 
 
+/**
+ * @author YiHua
+ *
+ */
 @Entity
 @Table(name="PARAM_TEMPLATE_DEVICE_RELATION")
 public class ParamTemplateDeviceRelation implements IParamTemplateDeviceRelation,Serializable {
@@ -73,8 +77,8 @@ public class ParamTemplateDeviceRelation implements IParamTemplateDeviceRelation
 	  /**
      * 根据指定的模板和设备创建关系实体
      * 
-     * @param master
-     * @param role
+     * @param templateId
+     * @param deviceId
      * @return
      */
     public static ParamTemplateDeviceRelation make(Long templateId, Long deviceId) {

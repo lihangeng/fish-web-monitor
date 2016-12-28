@@ -7,6 +7,10 @@ import javax.persistence.Enumerated;
 
 import com.yihuacomputer.fish.api.monitor.xfs.propertise.DeviceProp;
 import com.yihuacomputer.fish.api.monitor.xfs.propertise.IPropUkd;
+/**
+ * @author YiHua
+ *
+ */
 @Embeddable
 public class PropUkd implements IPropUkd {
 	
@@ -14,6 +18,9 @@ public class PropUkd implements IPropUkd {
 	@Column(name = "UKD_EXIST",columnDefinition="CHAR",length=1)
 	private DeviceProp ukd;
 	
+	/**
+	 * 初始化
+	 */
 	public PropUkd(){
 		this.ukd = DeviceProp.F;
 	}

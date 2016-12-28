@@ -7,6 +7,10 @@ import javax.persistence.Enumerated;
 
 import com.yihuacomputer.fish.api.monitor.xfs.propertise.DeviceProp;
 import com.yihuacomputer.fish.api.monitor.xfs.propertise.IPropJpr;
+/**
+ * @author YiHua
+ *
+ */
 @Embeddable
 public class PropJpr implements IPropJpr {
 	
@@ -14,6 +18,9 @@ public class PropJpr implements IPropJpr {
 	@Column(name = "JPR_EXIST",columnDefinition="CHAR",length=1)
 	private DeviceProp jpr;
 	
+	/**
+	 * 初始化
+	 */
 	public PropJpr(){
 		this.jpr = DeviceProp.F;
 	}

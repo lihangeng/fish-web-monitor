@@ -21,6 +21,10 @@ import com.yihuacomputer.fish.api.monitor.business.ISettlementService;
 import com.yihuacomputer.fish.monitor.entity.business.CashInit;
 import com.yihuacomputer.fish.monitor.entity.business.Settlement;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional
 public class SettlementService implements ISettlementService {

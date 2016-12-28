@@ -34,6 +34,10 @@ import com.yihuacomputer.fish.api.monitor.xfs.status.IStatusUkr;
 import com.yihuacomputer.fish.api.monitor.xfs.status.IXfsStatus;
 import com.yihuacomputer.fish.api.monitor.xfs.status.NetStatus;
 
+/**
+ * @author YiHua
+ *
+ */
 @Entity
 @Table(name = "DEV_XFS_STATUS")
 public class XfsStatus implements IXfsStatus,Serializable{
@@ -123,6 +127,9 @@ public class XfsStatus implements IXfsStatus,Serializable{
     @Transient
     private IXfsStatus hisXfsStatus ;
 
+    /**
+     * 初始化
+     */
     public XfsStatus() {
         this.boxCurrentCount = -1;
         this.boxInitCount = -1;

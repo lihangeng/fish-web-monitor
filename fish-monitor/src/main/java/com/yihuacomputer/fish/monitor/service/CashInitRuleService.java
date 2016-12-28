@@ -13,6 +13,10 @@ import com.yihuacomputer.fish.api.monitor.box.ICashInitRule;
 import com.yihuacomputer.fish.api.monitor.box.ICashInitRuleService;
 import com.yihuacomputer.fish.monitor.entity.cashplan.CashInitRule;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional
 public class CashInitRuleService implements ICashInitRuleService {

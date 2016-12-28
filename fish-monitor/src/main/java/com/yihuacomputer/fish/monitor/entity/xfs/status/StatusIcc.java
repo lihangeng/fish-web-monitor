@@ -10,6 +10,10 @@ import javax.persistence.Enumerated;
 import com.yihuacomputer.fish.api.monitor.xfs.status.DeviceStatus;
 import com.yihuacomputer.fish.api.monitor.xfs.status.IStatusIcc;
 
+/**
+ * @author YiHua
+ *
+ */
 @Embeddable
 public class StatusIcc implements IStatusIcc  ,Serializable {
 
@@ -31,6 +35,9 @@ public class StatusIcc implements IStatusIcc  ,Serializable {
     @Column(name = "ICC_CAPTURE_BIN_COUNT")
     private int iccCurrCards;
 
+    /**
+     * 初始化
+     */
     public StatusIcc() {
         this.icc = DeviceStatus.Unknown;
         this.cards = -1;

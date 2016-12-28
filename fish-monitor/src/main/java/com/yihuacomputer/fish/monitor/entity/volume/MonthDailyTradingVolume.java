@@ -10,6 +10,10 @@ import javax.persistence.Table;
 
 import com.yihuacomputer.fish.api.monitor.volume.IMonthDailyTradingVolume;
 
+/**
+ * @author YiHua
+ *
+ */
 @Entity
 @Table(name = "DEV_TRADING_VOLUME_MONTH")
 public class MonthDailyTradingVolume implements IMonthDailyTradingVolume {

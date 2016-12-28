@@ -7,6 +7,10 @@ import javax.persistence.Enumerated;
 
 import com.yihuacomputer.fish.api.monitor.xfs.propertise.DeviceProp;
 import com.yihuacomputer.fish.api.monitor.xfs.propertise.IPropCdm;
+/**
+ * @author YiHua
+ *
+ */
 @Embeddable
 public class PropCdm implements IPropCdm {
 
@@ -14,6 +18,9 @@ public class PropCdm implements IPropCdm {
 	@Column(name = "CDM_EXIST",columnDefinition="CHAR",length=1)
 	private DeviceProp cdm;
 	
+	/**
+	 * 初始化
+	 */
 	public PropCdm(){
 		cdm = DeviceProp.F;
 	}

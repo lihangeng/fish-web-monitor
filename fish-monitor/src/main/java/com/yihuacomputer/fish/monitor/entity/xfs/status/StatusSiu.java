@@ -11,6 +11,10 @@ import javax.persistence.Transient;
 import com.yihuacomputer.fish.api.monitor.xfs.status.DeviceStatus;
 import com.yihuacomputer.fish.api.monitor.xfs.status.IStatusSiu;
 
+/**
+ * @author YiHua
+ *
+ */
 @Embeddable
 public class StatusSiu implements IStatusSiu ,Serializable {
 
@@ -26,6 +30,9 @@ public class StatusSiu implements IStatusSiu ,Serializable {
     @Transient
     private String siuHwCode;
 
+    /**
+     * 初始化
+     */
     public StatusSiu() {
         this.siu = DeviceStatus.Unknown;
     }

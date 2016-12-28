@@ -9,6 +9,10 @@ import com.yihuacomputer.fish.api.monitor.xfs.propertise.IPropCam;
 
 import javax.persistence.Embeddable;
 
+/**
+ * @author YiHua
+ *
+ */
 @Embeddable
 public class PropCam implements IPropCam {
 
@@ -16,6 +20,9 @@ public class PropCam implements IPropCam {
 	@Column(name = "CAM_EXIST",columnDefinition="CHAR",length=1)
 	private DeviceProp cam;
 	
+	/**
+	 * 初始化
+	 */
 	public PropCam(){
 		cam = DeviceProp.F;
 	}

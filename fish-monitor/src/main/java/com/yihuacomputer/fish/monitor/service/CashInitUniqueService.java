@@ -18,6 +18,10 @@ import com.yihuacomputer.fish.api.person.IOrganization;
 import com.yihuacomputer.fish.machine.entity.Device;
 import com.yihuacomputer.fish.monitor.entity.cashplan.CashInitUnique;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional
 public class CashInitUniqueService implements ICashInitUniqueService {

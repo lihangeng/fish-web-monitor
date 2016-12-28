@@ -17,6 +17,10 @@ import com.yihuacomputer.fish.api.monitor.business.IUncommonTrans;
 import com.yihuacomputer.fish.api.monitor.business.IUncommonTransService;
 import com.yihuacomputer.fish.monitor.entity.business.UncommonTrans;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional
 public class UncommonTransService implements IUncommonTransService {

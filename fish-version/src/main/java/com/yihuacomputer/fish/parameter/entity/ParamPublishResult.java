@@ -17,6 +17,10 @@ import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.parameter.IParamPublish;
 import com.yihuacomputer.fish.api.parameter.IParamPublishResult;
 import com.yihuacomputer.fish.api.version.job.task.TaskStatus;
+/**
+ * @author YiHua
+ *
+ */
 @Entity
 @Table(name="PARAM_PUBLISH_RESULT")
 public class ParamPublishResult implements IParamPublishResult {

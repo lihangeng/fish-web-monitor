@@ -17,6 +17,10 @@ import com.yihuacomputer.fish.api.parameter.IParamPublishResultService;
 import com.yihuacomputer.fish.api.parameter.IParamPublishResult;
 import com.yihuacomputer.fish.api.system.config.IParamService;
 
+/**
+ * @author YiHua
+ *
+ */
 public class PublishJobManager {
 	private Logger logger = LoggerFactory.getLogger(PublishJobManager.class);
 
@@ -43,6 +47,9 @@ public class PublishJobManager {
 
 	private ThreadPoolExecutor taskExecutor;
 
+	/**
+	 * 初始化
+	 */
 	@PostConstruct
 	public void init(){
 		taskManager = new PublishTaskManager() ;
@@ -74,6 +81,9 @@ public class PublishJobManager {
 		return taskExecutor ;
 	}
 
+	/**
+	 * @param result
+	 */
 	public void addTask(IParamPublishResult result){
 		try {
 			this.queue.put(result) ;

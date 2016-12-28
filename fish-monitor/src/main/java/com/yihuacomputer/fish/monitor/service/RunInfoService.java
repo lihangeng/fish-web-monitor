@@ -14,6 +14,10 @@ import com.yihuacomputer.fish.api.monitor.business.IRunInfo;
 import com.yihuacomputer.fish.api.monitor.business.IRunInfoService;
 import com.yihuacomputer.fish.monitor.entity.business.RunInfo;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional
 public class RunInfoService implements IRunInfoService {

@@ -18,6 +18,10 @@ import com.yihuacomputer.fish.api.monitor.alarm.IProcessService;
 import com.yihuacomputer.fish.monitor.entity.alarm.IllegalProcess;
 import com.yihuacomputer.fish.monitor.entity.alarm.SysProcess;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional
 public class ProcessService implements IProcessService {

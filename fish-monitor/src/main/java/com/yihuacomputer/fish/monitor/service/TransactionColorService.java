@@ -16,6 +16,10 @@ import com.yihuacomputer.fish.api.monitor.business.ITransactionColor;
 import com.yihuacomputer.fish.api.monitor.business.ITransactionColorService;
 import com.yihuacomputer.fish.monitor.entity.business.TransactionColor;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional
 public class TransactionColorService implements ITransactionColorService {

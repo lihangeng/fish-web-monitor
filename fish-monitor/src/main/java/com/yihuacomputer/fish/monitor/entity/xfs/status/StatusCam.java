@@ -10,6 +10,10 @@ import javax.persistence.Transient;
 
 import com.yihuacomputer.fish.api.monitor.xfs.status.DeviceStatus;
 import com.yihuacomputer.fish.api.monitor.xfs.status.IStatusCam;
+/**
+ * @author YiHua
+ *
+ */
 @Embeddable
 public class StatusCam implements IStatusCam, Serializable {
 
@@ -18,6 +22,9 @@ public class StatusCam implements IStatusCam, Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
+    /**
+     * 初始化
+     */
     public StatusCam(){
     	this.cam = DeviceStatus.Unknown;
     }

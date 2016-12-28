@@ -8,6 +8,10 @@ import javax.persistence.Enumerated;
 import com.yihuacomputer.fish.api.monitor.xfs.propertise.DeviceProp;
 import com.yihuacomputer.fish.api.monitor.xfs.propertise.IPropIcc;
 
+/**
+ * @author YiHua
+ *
+ */
 @Embeddable
 public class PropIcc implements IPropIcc {
 
@@ -15,6 +19,9 @@ public class PropIcc implements IPropIcc {
     @Column(name = "ICC_EXIST", columnDefinition = "CHAR", length = 1)
     private DeviceProp icc;
 
+    /**
+     * 初始化
+     */
     public PropIcc() {
         this.icc = DeviceProp.F;
     }

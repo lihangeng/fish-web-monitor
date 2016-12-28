@@ -9,6 +9,10 @@ import com.yihuacomputer.fish.api.monitor.software.ISoftware;
 import com.yihuacomputer.fish.api.monitor.software.ISoftwareService;
 import com.yihuacomputer.fish.monitor.entity.software.Software;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional
 public class SoftwareService implements ISoftwareService{

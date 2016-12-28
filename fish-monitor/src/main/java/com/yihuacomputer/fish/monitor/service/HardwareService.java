@@ -13,6 +13,10 @@ import com.yihuacomputer.fish.monitor.entity.hardware.Frimware;
 import com.yihuacomputer.fish.monitor.entity.hardware.Hardware;
 import com.yihuacomputer.fish.monitor.entity.hardware.Memory;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional
 public class HardwareService implements IHardwareService{

@@ -7,6 +7,10 @@ import javax.persistence.Enumerated;
 
 import com.yihuacomputer.fish.api.monitor.xfs.propertise.DeviceProp;
 import com.yihuacomputer.fish.api.monitor.xfs.propertise.IPropTtu;
+/**
+ * @author YiHua
+ *
+ */
 @Embeddable
 public class PropTtu implements IPropTtu {
 	
@@ -14,6 +18,9 @@ public class PropTtu implements IPropTtu {
 	@Column(name = "TTU_EXIST",columnDefinition="CHAR",length=1)
 	private DeviceProp ttu;
 	
+	/**
+	 * 初始化
+	 */
 	public PropTtu(){
 		this.ttu = DeviceProp.F;
 	}
