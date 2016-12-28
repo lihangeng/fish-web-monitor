@@ -2,6 +2,10 @@ package com.yihuacomputer.fish.monitor.entity.report;
 
 import com.yihuacomputer.fish.api.monitor.report.IStatusMonitorMapOrg;
 
+/**
+ * @author YiHua
+ *
+ */
 public class StatusMonitorMapOrg implements IStatusMonitorMapOrg {
     /**
      * 纬度

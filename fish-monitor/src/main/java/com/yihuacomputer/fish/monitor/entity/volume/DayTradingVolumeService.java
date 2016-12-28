@@ -8,6 +8,10 @@ import com.yihuacomputer.common.annotation.SaveMethodDescrible;
 import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.api.monitor.volume.IDayTradingVolume;
 import com.yihuacomputer.fish.api.monitor.volume.IDayTradingVolumeService;
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional
 public class DayTradingVolumeService implements IDayTradingVolumeService {

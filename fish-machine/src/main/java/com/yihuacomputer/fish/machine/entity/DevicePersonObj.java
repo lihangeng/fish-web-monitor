@@ -65,8 +65,8 @@ public class DevicePersonObj implements Serializable {
     /**
      * 根据指定的人员和设备创建关系实体
      * 
-     * @param master
-     * @param role
+     * @param personId
+     * @param deviceId
      * @return
      */
     public static DevicePersonObj make(Long personId, Long deviceId) {

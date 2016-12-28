@@ -2,6 +2,10 @@ package com.yihuacomputer.fish.monitor.entity.report;
 
 import com.yihuacomputer.fish.api.monitor.report.IRuntimeInfo;
 
+/**
+ * @author YiHua
+ *
+ */
 public class RumtimeInfo implements IRuntimeInfo {
 
 	private String termId;

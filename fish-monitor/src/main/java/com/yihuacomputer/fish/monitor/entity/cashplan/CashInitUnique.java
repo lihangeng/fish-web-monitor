@@ -10,6 +10,10 @@ import javax.persistence.Table;
 
 import com.yihuacomputer.fish.api.monitor.box.ICashInitUnique;
 
+/**
+ * @author YiHua
+ *
+ */
 @Entity
 @Table(name = "ATMC_CASH_INIT_UNIQUE")
 public class CashInitUnique implements ICashInitUnique {

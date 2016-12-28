@@ -26,6 +26,10 @@ import com.yihuacomputer.fish.api.monitor.filter.ReportMedthod;
 import com.yihuacomputer.fish.api.monitor.report.IDeviceReport;
 import com.yihuacomputer.fish.api.monitor.xfs.status.IXfsStatus;
 
+/**
+ * @author YiHua
+ *
+ */
 @Entity
 @Table(name = "SM_STATUS_FILTER")
 public class StatusFilter implements IStatusFilter {

@@ -42,6 +42,9 @@ public class NoteItem implements INoteItem{
 	}
 	
 
+	/**
+	 * @param noteItem
+	 */
 	public NoteItem(INoteItem noteItem) {
 		setSerial(noteItem.getSerial());
 		setNoteCode(noteItem.getNoteCode());

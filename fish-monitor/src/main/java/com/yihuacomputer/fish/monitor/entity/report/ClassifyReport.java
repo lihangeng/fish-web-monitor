@@ -14,6 +14,10 @@ import com.yihuacomputer.fish.api.monitor.xfs.status.BoxStatus;
 import com.yihuacomputer.fish.api.monitor.xfs.status.DeviceStatus;
 import com.yihuacomputer.fish.api.monitor.xfs.status.NetStatus;
 
+/**
+ * @author YiHua
+ *
+ */
 public class ClassifyReport implements IClassifyReport {
 	
 	private static Logger logger = LoggerFactory.getLogger(ClassifyReport.class);

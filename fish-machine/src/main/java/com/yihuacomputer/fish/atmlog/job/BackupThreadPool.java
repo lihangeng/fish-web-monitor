@@ -54,7 +54,8 @@ public class BackupThreadPool{
 	}
 	/**
 	 * 执行任务
-	 * @param BackupThreadPool.java
+	 * @param task 
+	 * BackupThreadPool.java
 	 * */
 	public void execute(Runnable task){
 		backupExecutor.execute(task);

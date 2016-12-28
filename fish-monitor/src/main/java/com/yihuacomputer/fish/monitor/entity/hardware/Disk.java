@@ -14,6 +14,10 @@ import javax.persistence.Table;
 
 import com.yihuacomputer.fish.api.monitor.hardware.IDisk;
 import com.yihuacomputer.fish.api.monitor.hardware.IHardware;
+/**
+ * @author YiHua
+ *
+ */
 @Entity
 @Table(name = "DEV_HARDWARE_DISK")
 public class Disk implements IDisk,Serializable {

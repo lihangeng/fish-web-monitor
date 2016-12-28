@@ -15,7 +15,7 @@ import org.hibernate.type.descriptor.sql.SqlTypeDescriptor;
 public class CustomSybaseASE157Dialect extends SybaseASE157Dialect{
 
     /**
-     * 
+     * 初始化
      */
     public CustomSybaseASE157Dialect(){
         super();

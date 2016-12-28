@@ -15,6 +15,10 @@ import javax.persistence.Transient;
 import com.yihuacomputer.fish.api.monitor.business.CardType;
 import com.yihuacomputer.fish.api.monitor.business.ITransactionView;
 
+/**
+ * @author YiHua
+ *
+ */
 @Entity
 @Table(name = "ATMC_TRANSACTION_VIEW")
 public class TransactionView implements ITransactionView {

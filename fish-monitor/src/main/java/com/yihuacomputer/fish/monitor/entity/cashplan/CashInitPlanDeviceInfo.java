@@ -17,6 +17,10 @@ import com.yihuacomputer.fish.api.monitor.box.BoxInitRuleType;
 import com.yihuacomputer.fish.api.monitor.box.ICashInitPlanDeviceInfo;
 import com.yihuacomputer.fish.api.monitor.box.ICashInitPlanInfo;
 
+/**
+ * @author YiHua
+ *
+ */
 @Entity
 @Table(name = "DEV_CASH_INIT_PLAN_DEVICE")
 public class CashInitPlanDeviceInfo implements ICashInitPlanDeviceInfo {

@@ -14,6 +14,10 @@ import javax.persistence.TemporalType;
 
 import com.yihuacomputer.fish.api.monitor.business.IUncommonTrans;
 
+/**
+ * @author YiHua
+ *
+ */
 @Entity
 @Table(name = "ATMC_UNCOMMON_TRANS")
 public class UncommonTrans implements IUncommonTrans {

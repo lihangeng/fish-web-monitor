@@ -3,6 +3,10 @@ package com.yihuacomputer.fish.monitor.entity.report;
 import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.fish.api.monitor.business.IRetaincard;
 
+/**
+ * @author YiHua
+ *
+ */
 public class RetaincardReport {
 
 	private long id;

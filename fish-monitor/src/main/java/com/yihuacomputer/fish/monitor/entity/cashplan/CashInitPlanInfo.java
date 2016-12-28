@@ -20,6 +20,10 @@ import com.yihuacomputer.fish.api.monitor.box.ICashInitPlanDeviceInfo;
 import com.yihuacomputer.fish.api.monitor.box.ICashInitPlanInfo;
 import com.yihuacomputer.fish.api.person.IOrganization;
 
+/**
+ * @author YiHua
+ *
+ */
 @Entity
 @Table(name = "DEV_CASH_INIT_PLAN")
 public class CashInitPlanInfo implements ICashInitPlanInfo {

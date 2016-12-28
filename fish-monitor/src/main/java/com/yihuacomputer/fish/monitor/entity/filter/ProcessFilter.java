@@ -4,6 +4,10 @@ import java.util.List;
 
 import com.yihuacomputer.fish.api.monitor.filter.IProcessFilter;
 
+/**
+ * @author YiHua
+ *
+ */
 public class ProcessFilter implements IProcessFilter {
 
 	private List<Long> subOrg;

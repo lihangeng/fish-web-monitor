@@ -13,6 +13,10 @@ import com.yihuacomputer.fish.api.monitor.xfs.status.BoxStatus;
 import com.yihuacomputer.fish.api.monitor.xfs.status.DeviceStatus;
 import com.yihuacomputer.fish.api.monitor.xfs.status.NetStatus;
 
+/**
+ * @author YiHua
+ *
+ */
 public class StatusReport implements IStatusReport {
 	
 	private static Logger logger = LoggerFactory.getLogger(StatusReport.class);
@@ -464,6 +468,7 @@ public class StatusReport implements IStatusReport {
      * 格式化设备状态监控页面显示信息
      *
      * @param device
+     * @param messageSourceRef
      * @return
      */
     public void setStatusReport(IDeviceReport device,MessageSource messageSourceRef) {
@@ -538,6 +543,10 @@ public class StatusReport implements IStatusReport {
         }
     }
 
+    /**
+     * @param device
+     * @param messageSourceRef
+     */
     public void setDeviceSign(IDeviceReport device,MessageSource messageSourceRef) {
         this.code = device.getDeviceId();
         this.registerStatus = getEnumI18n(device.getDeviceRegister().getRegStatus().getText(),messageSourceRef);

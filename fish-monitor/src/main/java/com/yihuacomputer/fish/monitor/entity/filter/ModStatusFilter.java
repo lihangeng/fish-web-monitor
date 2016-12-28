@@ -5,6 +5,10 @@ import javax.persistence.Embeddable;
 
 import com.yihuacomputer.fish.api.monitor.filter.IModStatusFilter;
 
+/**
+ * @author YiHua
+ *
+ */
 @Embeddable
 public class ModStatusFilter implements IModStatusFilter {
 	

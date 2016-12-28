@@ -11,6 +11,10 @@ import javax.persistence.Table;
 import com.yihuacomputer.fish.api.monitor.business.IHostRet;
 
 
+/**
+ * @author YiHua
+ *
+ */
 @Entity
 @Table(name = "ATMC_TRANS_HOSTRET")
 public class HostRet implements IHostRet{

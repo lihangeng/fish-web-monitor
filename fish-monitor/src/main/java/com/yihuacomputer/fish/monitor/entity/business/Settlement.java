@@ -15,6 +15,10 @@ import javax.persistence.Table;
 
 import com.yihuacomputer.fish.api.monitor.business.IBoxSettleDetail;
 import com.yihuacomputer.fish.api.monitor.business.ISettlement;
+/**
+ * @author YiHua
+ *
+ */
 @Entity
 @Table(name = "ATMC_SETTLEMENT")
 public class Settlement implements ISettlement {

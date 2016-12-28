@@ -1,6 +1,10 @@
 package com.yihuacomputer.fish.monitor.entity.report;
 
 import com.yihuacomputer.fish.api.monitor.business.CounterFeitMoneyForms;
+/**
+ * @author YiHua
+ *
+ */
 public class CounterFeitMoneyReport {
 	
 	//交易流水号
@@ -126,6 +130,9 @@ public class CounterFeitMoneyReport {
 		this.orgName = orgName;
 		
 	}
+	/**
+	 * @param forms
+	 */
 	public void setCounterFeitMoney(CounterFeitMoneyForms forms){
 		this.setDebitAccount(forms.getDebitAccount());
 		this.setCreditAccount(forms.getCreditAccount());
@@ -143,6 +150,9 @@ public class CounterFeitMoneyReport {
 		this.setOrgName(forms.getOrgName());
 	}
 	
+	/**
+	 * @param forms
+	 */
 	public CounterFeitMoneyReport(CounterFeitMoneyForms forms) {
 		this.setDebitAccount(forms.getDebitAccount());
 		this.setCreditAccount(forms.getCreditAccount());

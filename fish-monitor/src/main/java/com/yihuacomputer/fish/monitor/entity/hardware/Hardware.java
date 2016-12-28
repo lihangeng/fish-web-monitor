@@ -24,6 +24,10 @@ import com.yihuacomputer.fish.api.monitor.hardware.IHardware;
 import com.yihuacomputer.fish.api.monitor.hardware.IMemory;
 
 
+/**
+ * @author YiHua
+ *
+ */
 @Entity
 @Table(name = "DEV_HARDWARE")
 public class Hardware implements IHardware ,Serializable{

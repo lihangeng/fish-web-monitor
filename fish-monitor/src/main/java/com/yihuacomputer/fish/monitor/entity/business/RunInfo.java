@@ -13,6 +13,10 @@ import javax.persistence.Table;
 import com.yihuacomputer.fish.api.monitor.business.IRunInfo;
 import com.yihuacomputer.fish.api.monitor.business.RunStatus;
 
+/**
+ * @author YiHua
+ *
+ */
 @Entity
 @Table(name = "ATMC_STATUS_HIST")
 public class RunInfo implements IRunInfo {

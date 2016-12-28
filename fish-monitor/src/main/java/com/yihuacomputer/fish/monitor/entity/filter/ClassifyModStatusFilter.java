@@ -18,6 +18,10 @@ import com.yihuacomputer.fish.monitor.entity.report.ClassifyReport;
 
 
 
+/**
+ * @author YiHua
+ *
+ */
 public class ClassifyModStatusFilter implements IClassifyModStatusFilter{
 	private String orgId;
 	private String terminalId;

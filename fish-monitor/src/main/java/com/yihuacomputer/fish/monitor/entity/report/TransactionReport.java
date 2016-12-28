@@ -3,6 +3,10 @@ package com.yihuacomputer.fish.monitor.entity.report;
 import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.fish.api.monitor.business.ITransaction;
 
+/**
+ * @author YiHua
+ *
+ */
 public class TransactionReport {
 
     private String transId;// 交易流水号

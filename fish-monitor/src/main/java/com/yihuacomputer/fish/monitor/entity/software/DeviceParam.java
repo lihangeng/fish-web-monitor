@@ -10,6 +10,10 @@ import javax.persistence.Table;
 
 import com.yihuacomputer.fish.api.monitor.software.IDeviceParam;
 
+/**
+ * @author YiHua
+ *
+ */
 @Entity
 @Table(name = "DEV_RUNTIMEPARAM")
 public class DeviceParam implements IDeviceParam {

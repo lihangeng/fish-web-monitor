@@ -18,6 +18,10 @@ import com.yihuacomputer.fish.api.monitor.software.ISoftware;
 import com.yihuacomputer.fish.api.monitor.xfs.status.IXfsStatus;
 import com.yihuacomputer.fish.monitor.entity.business.DeviceRegister;
 
+/**
+ * @author YiHua
+ *
+ */
 public class DeviceReport implements IDeviceReport {
 	private String deviceId;
 	private IDevice device;

@@ -45,6 +45,9 @@ public class BoxSettleDetail implements IBoxSettleDetail {
 
 	}
 
+	/**
+	 * @param iDetail
+	 */
 	public BoxSettleDetail(IBoxSettleDetail iDetail) {
 		setBoxId(iDetail.getBoxId());
 		setBoxCurrency(iDetail.getBoxCurrency());

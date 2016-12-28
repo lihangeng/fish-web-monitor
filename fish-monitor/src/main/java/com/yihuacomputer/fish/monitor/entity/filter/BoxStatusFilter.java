@@ -4,6 +4,10 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 import com.yihuacomputer.fish.api.monitor.filter.IBoxStatusFilter;
+/**
+ * @author YiHua
+ *
+ */
 @Embeddable
 public class BoxStatusFilter implements IBoxStatusFilter {
 	

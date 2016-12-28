@@ -20,6 +20,10 @@ import javax.persistence.TemporalType;
 import com.yihuacomputer.fish.api.monitor.business.ICounterFeitMoney;
 import com.yihuacomputer.fish.api.monitor.business.INoteItem;
 
+/**
+ * @author YiHua
+ *
+ */
 @Entity
 @Table(name = "ATMC_COUNTER_FEIT_MONEY")
 public class CounterFeitMoney implements ICounterFeitMoney {

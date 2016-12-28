@@ -19,6 +19,10 @@ import com.yihuacomputer.fish.api.monitor.report.IMonitorUser;
 import com.yihuacomputer.fish.api.monitor.report.IWorkUnit;
 import com.yihuacomputer.fish.api.monitor.report.MonitorUserType;
 
+/**
+ * @author YiHua
+ *
+ */
 public class MonitorUser implements IMonitorUser {
 
 
@@ -95,6 +99,11 @@ public class MonitorUser implements IMonitorUser {
 	}
 
 
+	/**
+	 * @param deviceId
+	 * @param deviceReport
+	 * @param messageSourceRef
+	 */
 	public void modFilter(String deviceId, IDeviceReport deviceReport,MessageSource messageSourceRef){
 		if (this.userSession.isHandshook() && this.userSession.isConnected()) {
 			IMonitorListener monitorListener = this.monitorService.getMonitorListener();
@@ -130,6 +139,8 @@ public class MonitorUser implements IMonitorUser {
 	/**
 	 * 过滤并状态数据
 	 * @param deviceId
+	 * @param deviceReport
+	 * @param messageSourceRef
 	 */
 	public void statusFilter(String deviceId,IDeviceReport deviceReport,MessageSource messageSourceRef) {
 
@@ -169,6 +180,7 @@ public class MonitorUser implements IMonitorUser {
 	/**
 	 * 过滤交易数据
 	 * @param deviceId
+	 * @param deviceReport
 	 */
 	public void transationFilter(String deviceId,IDeviceReport deviceReport){
 		if(this.userSession.isConnected()){
@@ -184,6 +196,7 @@ public class MonitorUser implements IMonitorUser {
 	/**
 	 * 过滤假币疑问币数据
 	 * @param deviceId
+	 * @param deviceReport
 	 */
 	public void counterFeitMoneyFilter(String deviceId,IDeviceReport deviceReport){
 		if(this.userSession.isConnected()){
@@ -200,6 +213,7 @@ public class MonitorUser implements IMonitorUser {
 	 * 过滤吞卡数据
 	 *
 	 * @param deviceId
+	 * @param deviceReport
 	 */
 	public void retaincardFilter(String deviceId, IDeviceReport deviceReport) {
 		if (this.userSession.isConnected()) {
@@ -231,6 +245,11 @@ public class MonitorUser implements IMonitorUser {
 		}
 	}
 
+	/**
+	 * @param deviceId
+	 * @param deviceReport
+	 * @param messageSourceRef
+	 */
 	public void deviceSign(String deviceId,IDeviceReport deviceReport,MessageSource messageSourceRef){
 		if(this.userSession.isConnected()){
 			IMonitorListener monitorListener = this.monitorService.getMonitorListener();

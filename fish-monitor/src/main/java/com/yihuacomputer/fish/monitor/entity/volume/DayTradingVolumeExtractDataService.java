@@ -14,6 +14,10 @@ import com.yihuacomputer.fish.api.monitor.volume.IDayTradingVolumeService;
 import com.yihuacomputer.fish.monitor.entity.business.TransType;
 import com.yihuacomputer.fish.monitor.entity.business.Transaction;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional
 public class DayTradingVolumeExtractDataService implements IDayTradingVolumeExtractDataService {

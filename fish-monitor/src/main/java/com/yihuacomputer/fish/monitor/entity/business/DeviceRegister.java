@@ -41,6 +41,9 @@ public class DeviceRegister implements IDeviceRegister{
     @Column(name = "REG_STATUS", length = 15)
     private RegStatus regStatus;
 	
+	/**
+	 * 初始化
+	 */
 	public DeviceRegister(){
 		this.signTimes = -1;
 		this.regTimes = -1;

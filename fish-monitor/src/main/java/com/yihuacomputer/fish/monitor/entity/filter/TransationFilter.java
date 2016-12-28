@@ -8,6 +8,10 @@ import com.yihuacomputer.fish.api.monitor.business.CounterFeitMoneyForms;
 import com.yihuacomputer.fish.api.monitor.business.ITransaction;
 import com.yihuacomputer.fish.api.monitor.filter.ITransationFilter;
 
+/**
+ * @author YiHua
+ *
+ */
 public class TransationFilter implements ITransationFilter {
 
     private List<Long> subOrg;

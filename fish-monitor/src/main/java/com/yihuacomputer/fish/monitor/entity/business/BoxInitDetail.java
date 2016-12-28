@@ -45,6 +45,9 @@ public class BoxInitDetail implements IBoxInitDetail {
 	public BoxInitDetail() {
 	}
 
+	/**
+	 * @param detail
+	 */
 	public BoxInitDetail(IBoxInitDetail detail) {
 		setBoxId(detail.getBoxId());
 		setBoxCurrency(detail.getBoxCurrency());

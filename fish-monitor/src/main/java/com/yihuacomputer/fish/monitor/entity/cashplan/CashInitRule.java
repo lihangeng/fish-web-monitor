@@ -13,6 +13,10 @@ import javax.persistence.Table;
 import com.yihuacomputer.fish.api.monitor.box.BoxInitRuleType;
 import com.yihuacomputer.fish.api.monitor.box.ICashInitRule;
 
+/**
+ * @author YiHua
+ *
+ */
 @Entity
 @Table(name = "DEV_CASH_INIT_RULE")
 public class CashInitRule implements ICashInitRule {

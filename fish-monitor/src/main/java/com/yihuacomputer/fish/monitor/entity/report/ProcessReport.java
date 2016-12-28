@@ -73,6 +73,9 @@ public class ProcessReport {
     public void setDate(String date) {
         this.date = date;
     }
+    /**
+     * @param process
+     */
     public ProcessReport(IIllegalProcess process){
 		this.user = process.getUser();
 		this.name = process.getName();

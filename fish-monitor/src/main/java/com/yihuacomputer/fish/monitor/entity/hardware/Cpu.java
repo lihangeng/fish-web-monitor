@@ -15,6 +15,10 @@ import javax.persistence.Table;
 import com.yihuacomputer.fish.api.monitor.hardware.ICpu;
 import com.yihuacomputer.fish.api.monitor.hardware.IHardware;
 
+/**
+ * @author YiHua
+ *
+ */
 @Entity
 @Table(name = "DEV_HARDWARE_CPU")
 public class Cpu implements ICpu,Serializable {

@@ -24,6 +24,10 @@ import com.yihuacomputer.fish.api.monitor.business.IDCardType;
 import com.yihuacomputer.fish.api.monitor.business.IRetaincard;
 import com.yihuacomputer.fish.api.person.IOrganization;
 
+/**
+ * @author YiHua
+ *
+ */
 @Entity
 @Table(name = "ATMC_RETAIN_CARD")
 public class Retaincard implements IRetaincard {

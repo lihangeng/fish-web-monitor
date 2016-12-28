@@ -12,6 +12,10 @@ import com.yihuacomputer.fish.api.monitor.software.ISP;
 import com.yihuacomputer.fish.api.monitor.software.ISoftware;
 
 
+/**
+ * @author YiHua
+ *
+ */
 @Entity
 @Table(name = "DEV_SOFTWARE")
 public class Software implements ISoftware {
