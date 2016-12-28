@@ -11,5 +11,8 @@ import com.yihuacomputer.fish.api.version.IVersionService;
  *
  */
 public interface IDomainVersionService extends IVersionService{
+	/**
+	 * @return
+	 */
 	public IUserService getUserService();
 }

@@ -10,6 +10,10 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+/**
+ * @author YiHua
+ *
+ */
 @Entity
 @Table(name = "SM_USER_PERMISSION")
 public class UserPermissionObj implements Serializable{
@@ -55,6 +59,11 @@ public class UserPermissionObj implements Serializable{
 		this.permissionId = permissionId;
 	}
 	
+	/**
+	 * @param permissionId
+	 * @param userId
+	 * @return
+	 */
 	public static UserPermissionObj make(String permissionId, Long userId){
 		UserPermissionObj obj = new UserPermissionObj();
 		obj.permissionId = permissionId;

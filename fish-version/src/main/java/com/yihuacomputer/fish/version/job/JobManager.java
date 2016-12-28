@@ -33,6 +33,10 @@ import com.yihuacomputer.fish.version.task.TaskManager;
 import com.yihuacomputer.fish.version.task.TaskQueue;
 import com.yihuacomputer.fish.version.task.TaskThreadPool;
 
+/**
+ * @author YiHua
+ *
+ */
 public class JobManager implements IJobManager,IJobManangerStatus {
 
 	private Logger logger = LoggerFactory.getLogger(JobManager.class);
@@ -103,6 +107,9 @@ public class JobManager implements IJobManager,IJobManangerStatus {
 		this.loadDowntimeJobs();
 	}
 
+	/**
+	 * 停止
+	 */
 	@PreDestroy
 	public void stop(){
 		this.taskThreadPool.close();
@@ -115,6 +122,7 @@ public class JobManager implements IJobManager,IJobManangerStatus {
 	}
 	/**
 	 * 作业调度
+	 * @param job
 	 * */
 	public void despatchJob(Job job) {
 		Scheduler scheduler = new Scheduler();

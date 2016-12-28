@@ -12,7 +12,14 @@ import com.yihuacomputer.fish.api.version.job.task.ITaskDetailService;
  */
 public interface IDomainTaskDetailService extends ITaskDetailService {
     
+    /**
+     * @param td
+     * @return
+     */
     ITaskDetail add(ITaskDetail td);
 
+    /**
+     * @param taskId
+     */
     public void deleteByTaskId(long taskId);
 }

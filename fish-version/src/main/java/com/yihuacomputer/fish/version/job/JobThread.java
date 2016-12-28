@@ -31,6 +31,10 @@ public class JobThread implements Runnable {
 	public JobThread() {
 	}
 
+	/**
+	 * @param taskThreadPool
+	 * @param taskQueue
+	 */
 	public void setTaskThreadPool(TaskThreadPool taskThreadPool,TaskQueue taskQueue){
 		this.taskThreadPool = taskThreadPool;
 		this.taskQueue = taskQueue;
@@ -40,6 +44,9 @@ public class JobThread implements Runnable {
 		return taskQueue;
 	}
 
+	/**
+	 * @param job
+	 */
 	public JobThread(Job job) {
 		this.job = job;
 	}
@@ -100,6 +107,7 @@ public class JobThread implements Runnable {
 
 	/**
 	 * 结束任务
+	 * @param devNo
 	 * */
 	public void notifyTask(String devNo) {
 		// this.get

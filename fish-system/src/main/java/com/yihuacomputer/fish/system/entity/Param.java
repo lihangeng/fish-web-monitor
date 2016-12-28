@@ -12,6 +12,10 @@ import javax.persistence.Table;
 
 import com.yihuacomputer.fish.api.system.config.IParam;
 
+/**
+ * @author YiHua
+ *
+ */
 @Entity
 @Table(name = "SM_PARAM")
 public class Param implements IParam,Serializable {

@@ -64,8 +64,8 @@ public class UserRoleObj implements Serializable {
 	/**
 	 * 根据指定的主帐号和角色创建关系实体
 	 * 
-	 * @param master
-	 * @param role
+	 * @param userId
+	 * @param roleId
 	 * @return
 	 */
 	public static UserRoleObj make(Long userId, Long roleId) {

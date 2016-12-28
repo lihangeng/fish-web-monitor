@@ -12,6 +12,10 @@ import javax.persistence.Table;
 
 import com.yihuacomputer.fish.api.version.IVersionTypeAtmTypeRelation;
 
+/**
+ * @author YiHua
+ *
+ */
 @Entity
 @Table(name = "VER_VERSIONTYPE_ATMTYPE")
 public class VersionTypeAtmTypeRelation implements IVersionTypeAtmTypeRelation, Serializable {

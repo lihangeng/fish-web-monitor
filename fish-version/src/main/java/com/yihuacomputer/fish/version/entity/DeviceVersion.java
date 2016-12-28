@@ -73,6 +73,9 @@ public class DeviceVersion implements Serializable, IDeviceVersion {
     @Transient
     private IDomainDeviceVersionService dvService;
 
+    /**
+     * 初始化
+     */
     public DeviceVersion() {
     	Date date = Calendar.getInstance().getTime();
         this.createdTime = date;

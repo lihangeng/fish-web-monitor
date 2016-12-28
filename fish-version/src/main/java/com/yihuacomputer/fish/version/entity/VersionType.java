@@ -65,6 +65,9 @@ public class VersionType implements IVersionType, Serializable {
     @Column(name = "VERSION_CATALOG")
     private VersionCatalog versionCatalog;
 
+    /**
+     * 初始化
+     */
     public VersionType() {
         this.autoDeploy = false;
         this.display = true;
@@ -73,6 +76,9 @@ public class VersionType implements IVersionType, Serializable {
         this.versionCatalog = VersionCatalog.OTHER;
     }
 
+    /**
+     * @param typeName
+     */
     public VersionType(String typeName) {
         this();
         this.typeName = typeName;

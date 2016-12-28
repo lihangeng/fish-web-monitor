@@ -65,8 +65,8 @@ public class RolePermissionObj implements Serializable {
 	/**
 	 * 根据指定的权限和角色创建关系实体
 	 * 
-	 * @param master
-	 * @param role
+	 * @param permissionId
+	 * @param roleId
 	 * @return
 	 */
 	public static RolePermissionObj make(String permissionId, Long roleId) {

@@ -13,6 +13,10 @@ import com.yihuacomputer.fish.api.system.config.IParam;
 import com.yihuacomputer.fish.api.system.config.IParamService;
 import com.yihuacomputer.fish.system.entity.Param;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional
 public class ParamService implements IParamService {

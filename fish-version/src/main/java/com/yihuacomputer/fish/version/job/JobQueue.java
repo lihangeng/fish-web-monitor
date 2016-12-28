@@ -6,6 +6,10 @@ import java.util.List;
 import com.yihuacomputer.fish.api.version.job.JobStatus;
 import com.yihuacomputer.fish.version.entity.Job;
 
+/**
+ * @author YiHua
+ *
+ */
 public class JobQueue {
 
 	private static int jobQueueLength = 50;//默认作业队列中只放50个作业
@@ -26,7 +30,9 @@ public class JobQueue {
 
 	/**
 	 * 从作业队列中获取作业
-	 * */
+	 * @param jobId
+	 * @return
+	 */
 	public Job getJobById(long jobId) {
 		for (Job job : JobQueue.jobQueue) {
 			if (job.getJobId() == jobId) {
@@ -39,6 +45,7 @@ public class JobQueue {
 
 	/**
 	 * 完成一个作业，需要从jobQueue中将响应的队列删除
+	 * @param job
 	 * */
 	public void removeJob(Job job) {
 		if (job != null) {
@@ -48,7 +55,9 @@ public class JobQueue {
 
 	/**
 	 * 向队列中增加一个作业
-	 * */
+	 * @param job
+	 * @return
+	 */
 	public boolean addJob(Job job) {
 		if (this.canAddJob()) {
 			JobQueue.jobQueue.add(job);
@@ -60,7 +69,8 @@ public class JobQueue {
 
 	/**
 	 * 判断能否向作业队列中增加作业
-	 * */
+	 * @return
+	 */
 	public synchronized boolean canAddJob() {
 		if (JobQueue.jobQueueLength > jobQueue.size()) {
 			return true;
@@ -69,6 +79,9 @@ public class JobQueue {
 		}
 	}
 
+	/**
+	 * @return
+	 */
 	public List<Job> list() {
 		return JobQueue.jobQueue;
 	}

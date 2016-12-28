@@ -64,44 +64,72 @@ import com.yihuacomputer.fish.version.service.db.VersionTypeAtmTypeRelationServi
 import com.yihuacomputer.fish.version.service.db.VersionTypeService;
 import com.yihuacomputer.fish.version.task.TaskQueue;
 
+/**
+ * @author YiHua
+ *
+ */
 @Configuration
 public class VersionModule {
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public IVersionTypeAtmTypeRelationService versionTypeAtmTypeRelationService() {
 		return new VersionTypeAtmTypeRelationService();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public IVersionTypeService versionTypeService() {
 		return new VersionTypeService();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public IVersionService versionService() {
 		return new VersionService();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public IUpdateDeployDateHistoryService updateDeployDateHistoryService() {
 		return new UpdateDeployDateHistoryService();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public IDeviceVersionService deviceVersionService() {
 		return new DeviceVersionService();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public IDeviceSoftVersionService deviceSoftVersionService() {
 		return new DeviceSoftVersionService();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public ITaskDetailService taskDetailService() {
 		return new TaskDetailService();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public ITaskService taskService() {
 		return new TaskService();
@@ -116,109 +144,178 @@ public class VersionModule {
 		return  new JobService();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public IVersionStaticsService versionStaticsService(){
 		return new VersionStaticsService();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public IVersionDownloadService versionDownloadService() {
 		return new VersionDownloadService();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public IJobManager jobManager() {
 		return new JobManager();
 	}
+	/**
+	 * @return
+	 */
 	@Bean
 	public VersionEntityInjector versionEntityInjector() {
 		return new VersionEntityInjector();
 	}
-		@Bean
+	
+	/**
+	 * @return
+	 */
+	@Bean
 	public TaskQueue taskQueue(){
 		return new TaskQueue();
 	}
-//	@Bean
-//	public ITaskManager taskMgr(){
-//		return new TaskManager();
-//	}
+	
+	/**
+	 * @return
+	 */
 	@Bean
 	public IVersionStaticsStautsService versionStaticsStautsService(){
 		return new VersionStaticsStatusService();
 	}
+	/**
+	 * @return
+	 */
 	@Bean
 	public IBsAdvertService bsAdvertService(){
 		return new BsAdvertService();
 	}
+	/**
+	 * @return
+	 */
 	@Bean
 	public IAdvertGroupService advertGroupService(){
 		return new AdvertGroupService();
 	}
+	/**
+	 * @return
+	 */
 	@Bean
 	public IAdvertGroupDeviceRelationService advertGroupDeviceRelationService(){
 		return new AdvertGroupDeviceRelationService();
 	}
 	
+	/**
+	 * @return
+	 */
 	@Bean
 	public IDeviceAdvertRelation deviceAdvertRelation(){
 		return new DeviceAdvertRelation();
 	}
 	
+	/**
+	 * @return
+	 */
 	@Bean
 	public IBsAdvertResourceService bsAdvertResourceService(){
 		return new BsAdvertResourceService();
 	}
+	/**
+	 * @return
+	 */
 	@Bean
 	public IAppSystemService AppSystemService(){
 		return new com.yihuacomputer.fish.parameter.service.AppSystemService();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public IParamElementService elementService(){
 		return new ParamElementService();
 	}
 	
 	
+	/**
+	 * @return
+	 */
 	@Bean
 	public IParamTemplateService templateService(){
 		return new ParamTemplateService();
 	}
 	
+	/**
+	 * @return
+	 */
 	@Bean
 	public IParamClassifyService classifyService(){
 		return new ParamClassifyService();
 	}
 	
+	/**
+	 * @return
+	 */
 	@Bean
 	public IParamTemplateDetailService paramTemplateDetailService(){
 		return new ParamTemplateDetailService();
 	}
 	
-	@Bean public IParamDeviceDetailService paramDeviceDetailService(){
+	/**
+	 * @return
+	 */
+	@Bean 
+	public IParamDeviceDetailService paramDeviceDetailService(){
 		return new ParamDeviceDetailService();
 	}
 	
-	@Bean public IParamTemplateDeviceRelationService paramTemplateDeviceRelationService(){
+	/**
+	 * @return
+	 */
+	@Bean 
+	public IParamTemplateDeviceRelationService paramTemplateDeviceRelationService(){
 		return new ParamTemplateDeviceRelationService();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean 
 	public IParamPublishService paramPushService(){
 		return new ParamPublishService();
 	}
 	
+	/**
+	 * @return
+	 */
 	@Bean 
 	public IParamPublishResultService paramPublishResultService(){
 		return new ParamPublishResultService();
 	}
+	/**
+	 * @return
+	 */
 	@Bean
 	public PublishJobManager publishJobManager(){
 		return new PublishJobManager();
 	}
+	/**
+	 * @return
+	 */
 	@Bean
 	public IParamPublishAppResultService paramPublishAppResultService(){
 		return new ParamPublishAppResultService();
 	}
+	/**
+	 * @return
+	 */
 	@Bean
 	public IParamPublishSearchService paramPublishSearchService(){
 		return new ParamPublishSearchService();

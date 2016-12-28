@@ -27,6 +27,10 @@ import com.yihuacomputer.fish.api.version.job.task.ITaskService;
 import com.yihuacomputer.fish.api.version.job.task.TaskStatus;
 import com.yihuacomputer.fish.api.version.job.task.TaskType;
 
+/**
+ * @author YiHua
+ *
+ */
 @Entity
 @Table(name = "VER_TASK")
 public class Task implements ITask {
@@ -95,6 +99,9 @@ public class Task implements ITask {
     @Transient
     private ITaskService taskService;
 
+    /**
+     * 初始化
+     */
     public Task() {
         this.status = TaskStatus.NEW;
         this.taskType = TaskType.MANUAL;

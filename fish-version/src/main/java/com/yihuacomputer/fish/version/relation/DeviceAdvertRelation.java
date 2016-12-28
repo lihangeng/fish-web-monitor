@@ -25,6 +25,10 @@ import com.yihuacomputer.fish.api.person.IOrganization;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
 import com.yihuacomputer.fish.api.version.relation.IDeviceAdvertRelation;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional
 public class DeviceAdvertRelation implements IDeviceAdvertRelation,IDeviceListener{
@@ -160,6 +164,9 @@ public class DeviceAdvertRelation implements IDeviceAdvertRelation,IDeviceListen
 		return null;
 	}
 	
+    /**
+     * 初始化
+     */
     @PostConstruct
     public void init() {
         deviceService.addDeviceListener(this);

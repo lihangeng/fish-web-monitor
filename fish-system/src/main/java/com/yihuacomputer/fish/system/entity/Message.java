@@ -25,6 +25,9 @@ public class Message implements IMessage, Serializable {
 	private String content;
 	
 	
+	/**
+	 * @param service
+	 */
 	public Message(IMessageService service){
 		this.service = service;		
 	}

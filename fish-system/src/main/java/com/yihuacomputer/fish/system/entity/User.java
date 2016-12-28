@@ -131,6 +131,9 @@ public class User implements IUser,Serializable {
 	@Transient
 	private String plainText;
 
+	/**
+	 *初始化 
+	 */
 	public User() {
 	    this.system = false;
         this.userState = UserState.NEW;
@@ -138,6 +141,9 @@ public class User implements IUser,Serializable {
         setPlainText("888888");
 	}
 
+	/**
+	 * @param service
+	 */
 	public User(IDomainUserService service) {
 	    this();
 		this.service = service;

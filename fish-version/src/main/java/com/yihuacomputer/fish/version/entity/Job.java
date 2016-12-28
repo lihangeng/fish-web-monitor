@@ -35,6 +35,10 @@ import com.yihuacomputer.fish.api.version.job.task.ITask;
 import com.yihuacomputer.fish.version.scheduler.Scheduler;
 import com.yihuacomputer.fish.version.service.api.IDomainJobService;
 
+/**
+ * @author YiHua
+ *
+ */
 @Entity
 @Table(name = "VER_JOB")
 public class Job implements IJob, Serializable {
@@ -146,6 +150,9 @@ public class Job implements IJob, Serializable {
     @Transient
     private IDomainJobService jobService;
 
+    /**
+     * 初始化
+     */
     public Job() {
         this.createdTime = new Date();
     }

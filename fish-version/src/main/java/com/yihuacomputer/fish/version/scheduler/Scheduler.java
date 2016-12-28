@@ -31,7 +31,10 @@ public class Scheduler {
 		job.setScheduler(null);//取消关联，让垃圾回收期收走Scheduler
 	}
 	
-	//调度作业
+	/**
+	 * 调度作业
+	 * @param jobPara
+	 */
 	public void schedulerJob(Job jobPara){
 		this.job = jobPara;
 		timer.schedule(new TimerTask(){

@@ -67,10 +67,16 @@ public class Role implements IRole,Serializable {
     public Role() {
     }
 
+    /**
+     * @param service
+     */
     public Role(IDomainRoleService service) {
         this.service = service;
     }
 
+    /**
+     * @param name
+     */
     public Role(String name) {
         this.name = name;
         this.autoRelation = false;

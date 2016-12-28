@@ -11,6 +11,10 @@ import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.api.system.quartz.IQuartzService;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional
 public class QuartzService implements IQuartzService{

@@ -11,5 +11,10 @@ import com.yihuacomputer.fish.api.version.IVersion;
  *
  */
 public interface IDomainDeviceSoftVersionService extends IDeviceSoftVersionService{
+	/**
+	 * @param typeName
+	 * @param versionNo
+	 * @return
+	 */
 	public IVersion findVersion(String typeName, String versionNo);
 }

@@ -29,6 +29,10 @@ public class JobRuner implements Runnable {
 	private TaskThreadPool taskThreadPool;
 	private TaskQueue taskQueue;
 	
+	/**
+	 * @param taskThreadPool
+	 * @param taskQueue
+	 */
 	public void setTaskThreadPool(TaskThreadPool taskThreadPool,TaskQueue taskQueue){
 		this.taskThreadPool = taskThreadPool;
 		this.taskQueue = taskQueue;
@@ -42,6 +46,9 @@ public class JobRuner implements Runnable {
         return this.currentJobThread;
     }
 
+    /**
+     * 初始化
+     */
     public JobRuner() {
 		this.jobRunerState = State.BLOCKED;
 	}
@@ -89,6 +96,9 @@ public class JobRuner implements Runnable {
 			}
 		}		
 	}
+	/**
+	 * 关闭
+	 */
 	public void close(){
 		if(currentThread!=null){
 			currentThread.interrupt();
@@ -129,6 +139,7 @@ public class JobRuner implements Runnable {
 
 	/**
 	 * 暂停作业
+	 * @param job
 	 * */
 	public void suspendJob(Job job) {
 		if (this.currentThread.getName().equals(getThreadName(job))) {
@@ -142,8 +153,8 @@ public class JobRuner implements Runnable {
 
 	/**
 	 * 恢复作业
+	 * @param job
 	 * */
-
 	public void resumeJob(Job job) {
 		job.setJobStatus(JobStatus.READY_RUN);
 		jobService.onlyUpdateJob(job);// 修改在数据库中的状态

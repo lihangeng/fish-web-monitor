@@ -64,6 +64,9 @@ public class NoticeForm {
     public NoticeForm() {
     }
 
+    /**
+     * @param task
+     */
     public NoticeForm(ITask task) {
         IVersion version = task.getVersion();
         this.taskId = task.getId();

@@ -17,6 +17,10 @@ import com.yihuacomputer.fish.api.system.im.IMessageListener;
 import com.yihuacomputer.fish.api.system.im.IMessageService;
 import com.yihuacomputer.fish.system.entity.Message;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional
 public class MessageService implements IMessageService {
@@ -111,6 +115,10 @@ public class MessageService implements IMessageService {
 
 	}
 
+	/**
+	 * @param filter
+	 * @return
+	 */
 	public Iterable<IMessage> list(IFilter filter) {
 		List<IMessage> result = new ArrayList<IMessage>();
 		for (Message each : entities) {

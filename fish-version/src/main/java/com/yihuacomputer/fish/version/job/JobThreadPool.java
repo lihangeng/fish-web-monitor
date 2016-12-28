@@ -8,11 +8,18 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
+/**
+ * @author YiHua
+ *
+ */
 public class JobThreadPool {
 	private Logger logger = LoggerFactory.getLogger(JobThreadPool.class);
 
 	private ThreadPoolExecutor jobThreadPoolExecutor;
 
+	/**
+	 * 初始化
+	 */
 	public JobThreadPool() {
 		init();
 	}
@@ -26,6 +33,9 @@ public class JobThreadPool {
 		return jobThreadPoolExecutor;
 	}
 
+	/**
+	 * 关闭
+	 */
 	public void close(){
 		if(jobThreadPoolExecutor!=null){
 			jobThreadPoolExecutor.shutdownNow();

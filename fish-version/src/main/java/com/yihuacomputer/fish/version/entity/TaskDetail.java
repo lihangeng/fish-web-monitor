@@ -46,6 +46,9 @@ public class TaskDetail implements ITaskDetail {
     @Column(name = "REMARK", nullable = true, length = 40)
     private String reason;
     
+    /**
+     * 初始化
+     */
     public TaskDetail(){
         this.createdTime = new Date();
     }

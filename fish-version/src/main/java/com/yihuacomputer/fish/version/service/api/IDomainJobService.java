@@ -18,6 +18,9 @@ import com.yihuacomputer.fish.version.entity.Job;
  *
  */
 public interface IDomainJobService extends IJobService{
+	/**
+	 * @return
+	 */
 	public ITaskService getTaskService();
 	/**
 	 * 获得需要重新加载的作业
@@ -31,10 +34,21 @@ public interface IDomainJobService extends IJobService{
 	@Override
 	public Job getById(long jobId);
 	
+	/**
+	 * @param job
+	 * @return
+	 */
 	public int getNotRemovedTasks(IJob job);
 	
+	/**
+	 * @param version
+	 * @return
+	 */
 	public int getRelationJobSzie(IVersion version);
 	
+	/**
+	 * @return
+	 */
 	public IUserService getUserService();
 	
 }

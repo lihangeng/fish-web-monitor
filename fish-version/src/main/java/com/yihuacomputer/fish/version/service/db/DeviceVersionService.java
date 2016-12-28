@@ -46,6 +46,7 @@ public class DeviceVersionService implements IDomainDeviceVersionService {
         return dao.saveOrUpdate(dv);
     }
 
+    @Override
     public void saveOrUpdateDeviceVersionForList(long deviceId, long versionId, TaskStatus taskStatus, String reason) {
         List<IDeviceVersion> dvList = this.findDeviceVersionContainsRemovedList(deviceId, versionId);
         if (dvList == null || dvList.isEmpty()) {
@@ -69,6 +70,7 @@ public class DeviceVersionService implements IDomainDeviceVersionService {
         }
     }
 
+    @Override
     @Transactional(readOnly = true)
     public IDeviceVersion findDeviceVersionContainsRemoved(long deviceId, long versionId) {
         return dao
@@ -79,6 +81,7 @@ public class DeviceVersionService implements IDomainDeviceVersionService {
         return dao.findByHQL("from DeviceVersion t where t.deviceId = ? and t.versionId = ?", deviceId, versionId);
     }
 
+    @Override
     @Transactional(readOnly = true)
     public List<IDeviceVersion> findDeviceVersionContainsRemoved(long versionId) {
         return dao.findByHQL("from DeviceVersion t where t.versionId = ?", versionId);
@@ -163,6 +166,7 @@ public class DeviceVersionService implements IDomainDeviceVersionService {
         return Integer.parseInt(object.toString());
     }
 
+    @Override
     public long getSuccess(long versionId) {
         StringBuffer hql = new StringBuffer();
         hql.append("select count(*) from ").append(DeviceVersion.class.getName())
@@ -171,6 +175,7 @@ public class DeviceVersionService implements IDomainDeviceVersionService {
         return Long.parseLong(object.toString());
     }
 
+    @Override
     public long getFail(long versionId) {
         StringBuffer hql = new StringBuffer();
         hql.append("select count(*) from ").append(DeviceVersion.class.getName())

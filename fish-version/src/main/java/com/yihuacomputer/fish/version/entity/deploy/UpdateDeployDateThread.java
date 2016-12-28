@@ -15,6 +15,10 @@ import com.yihuacomputer.fish.api.version.job.NoticeStatus;
 import com.yihuacomputer.fish.api.version.job.task.ITask;
 import com.yihuacomputer.fish.version.notice.NoticeForm;
 
+/**
+ * @author YiHua
+ *
+ */
 public class UpdateDeployDateThread implements Runnable {
 
     private Logger logger = LoggerFactory.getLogger(UpdateDeployDateThread.class);
@@ -27,6 +31,11 @@ public class UpdateDeployDateThread implements Runnable {
 
     private final String path = "/ctr/patch/updateDeployDate";
 
+    /**
+     * @param task
+     * @param deployService
+     * @param deployStartDate
+     */
     public UpdateDeployDateThread(ITask task, IUpdateDeployDateHistoryService deployService, Date deployStartDate) {
         this.task = task;
         this.deployService = deployService;

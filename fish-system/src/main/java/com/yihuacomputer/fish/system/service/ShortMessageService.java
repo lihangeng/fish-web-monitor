@@ -16,6 +16,10 @@ import com.yihuacomputer.fish.api.system.sms.IShortMessage;
 import com.yihuacomputer.fish.api.system.sms.IShortMessageService;
 import com.yihuacomputer.fish.system.entity.ShortMessage;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 public class ShortMessageService implements IShortMessageService {
 
@@ -111,6 +115,10 @@ public class ShortMessageService implements IShortMessageService {
 		return true;
 	}
 
+	/**
+	 * @param args
+	 * @throws Exception
+	 */
 	public static void main(String[] args) throws Exception {
 
 		IShortMessage message = new ShortMessage();

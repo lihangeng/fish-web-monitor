@@ -15,6 +15,10 @@ import com.yihuacomputer.fish.api.system.quartz.IJobSynchService;
 import com.yihuacomputer.fish.api.system.quartz.IJobSynchronous;
 import com.yihuacomputer.fish.system.entity.JobSynchronous;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional
 public class JobSynchService implements IJobSynchService{

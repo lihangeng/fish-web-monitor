@@ -51,6 +51,7 @@ public class DeviceSoftVersionService extends DomainDeviceSoftVersionService imp
 		deviceService.addDeviceListener(this);
 	}
 	
+	@Override
     @Transactional(readOnly = true)
 	public IDeviceSoftVersion get(String terminalId,String typeName){
 		StringBuffer hql = new StringBuffer();
@@ -74,6 +75,7 @@ public class DeviceSoftVersionService extends DomainDeviceSoftVersionService imp
 		dao.delete(id, DeviceSoftVersion.class);
 	}
 	
+	@Override
 	public void delete(IDeviceSoftVersion version) {
 		this.delete(version.getId());
 	}

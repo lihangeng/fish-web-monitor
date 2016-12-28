@@ -7,6 +7,10 @@ import java.util.List;
 import com.yihuacomputer.fish.api.system.sms.IShortMessage;
 import com.yihuacomputer.fish.api.system.sms.IShortMessageService;
 
+/**
+ * @author YiHua
+ *
+ */
 public class ShortMessage implements IShortMessage,Serializable {
 
 	/**
@@ -20,10 +24,16 @@ public class ShortMessage implements IShortMessage,Serializable {
 	
 	private IShortMessageService service;
 
+	/**
+	 * 初始化
+	 */
 	public ShortMessage(){
 		mobiles = new ArrayList<String>();
 	}
 	
+	/**
+	 * @param service
+	 */
 	public ShortMessage(IShortMessageService service) {
 		this.service = service;
 	}

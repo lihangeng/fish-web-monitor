@@ -224,6 +224,9 @@ public class Organization implements IOrganization,Serializable {
 		}
 	}
 
+	/**
+	 * @param organization
+	 */
 	public void copyProperties(IOrganization organization) {
 		setCode(organization.getCode());
 		setName(organization.getName());

@@ -24,6 +24,9 @@ public class VersionStatics implements IVersionStatics {
 
     private long mayBeDownTotal;
 
+    /**
+     * @param version
+     */
     public VersionStatics(IVersion version) {
         this.version = version;
     }

@@ -14,6 +14,10 @@ import com.yihuacomputer.common.exception.NotFoundException;
 import com.yihuacomputer.fish.api.permission.IPermission;
 import com.yihuacomputer.fish.api.permission.IPermissionService;
 
+/**
+ * @author YiHua
+ *
+ */
 @Entity
 @Table(name = "SM_PERMISSION")
 public class Permission implements IPermission ,Serializable{
@@ -78,6 +82,9 @@ public class Permission implements IPermission ,Serializable{
 	@Transient
 	private IPermissionService service;
 
+	/**
+	 * 初始化
+	 */
 	public Permission() {
 	    this.isButton = false;
 	}
@@ -93,6 +100,9 @@ public class Permission implements IPermission ,Serializable{
 	}
 
 
+	/**
+	 * @param id
+	 */
 	public Permission(String id) {
 		this.id = id;
 	}
@@ -175,6 +185,9 @@ public class Permission implements IPermission ,Serializable{
 		this.parentId = permission.getId();
 	}
 
+	/**
+	 * @param permission
+	 */
 	public void copyProperties(IPermission permission) {
 		setCode(permission.getCode());
 		setDescription(permission.getDescription());

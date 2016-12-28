@@ -148,6 +148,9 @@ public class Person implements IPerson,Serializable {
     public Person() {
     }
 
+    /**
+     * @param name
+     */
     public Person(String name) {
         this.name = name;
     }

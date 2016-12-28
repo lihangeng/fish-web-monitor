@@ -60,8 +60,8 @@ public class UserGroupObj implements Serializable{
 
 	/**
 	 * 根据指定的主帐号和用户组实体创建关系实体
-	 * @param master
-	 * @param group
+	 * @param masterId
+	 * @param groupId
 	 * @return
 	 */
 	public static UserGroupObj make(Long masterId,Long groupId){

@@ -84,11 +84,17 @@ public class DeviceSoftVersion implements IDeviceSoftVersion, Serializable {
 	@Transient
 	private IDomainDeviceSoftVersionService dsvService;
 
+	/**
+	 * 初始化
+	 */
 	public DeviceSoftVersion() {
 		this.createdTime = new Date();
 		this.lastUpdatedTime = new Date();
 	}
 
+	/**
+	 * @param dsvService
+	 */
 	public DeviceSoftVersion(IDomainDeviceSoftVersionService dsvService) {
 		this();
 		this.dsvService = dsvService;

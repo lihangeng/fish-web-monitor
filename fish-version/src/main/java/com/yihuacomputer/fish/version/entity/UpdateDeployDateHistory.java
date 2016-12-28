@@ -70,11 +70,17 @@ public class UpdateDeployDateHistory implements IUpdateDeployDateHistory {
     }
 
 
+    /**
+     * 初始化
+     */
     public UpdateDeployDateHistory(){
         this.noticeStatus = NoticeStatus.UNKNOW;
     }
 
 
+    /**
+     * @param task
+     */
     public UpdateDeployDateHistory(ITask task){
         this();
         this.taskId = task.getId();

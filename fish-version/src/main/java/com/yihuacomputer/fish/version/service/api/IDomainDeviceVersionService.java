@@ -10,10 +10,23 @@ import com.yihuacomputer.fish.api.version.IDeviceVersionService;
  *
  */
 public interface IDomainDeviceVersionService extends IDeviceVersionService {
+    /**
+     * @param deviceId
+     * @param versionId
+     * @return
+     */
     public int getRelationTaskSize(long deviceId, long versionId);
 
+    /**
+     * @param versionId
+     * @return
+     */
     public long getSuccess(long versionId);
 
+    /**
+     * @param versionId
+     * @return
+     */
     public long getFail(long versionId);
 
 }

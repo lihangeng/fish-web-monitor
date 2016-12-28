@@ -132,6 +132,9 @@ public class Version implements IVersion, Serializable {
     @Transient
     private MessageSource messageSourceVersion;
 
+    /**
+     * 初始化
+     */
     public Version() {
         this.createdTime = new Date();
         this.autoDown = false;
@@ -140,6 +143,9 @@ public class Version implements IVersion, Serializable {
         this.eagerRestart = false;
     }
 
+    /**
+     * @param versionService
+     */
     public Version(IDomainVersionService versionService) {
         this();
         this.versionService = versionService;
