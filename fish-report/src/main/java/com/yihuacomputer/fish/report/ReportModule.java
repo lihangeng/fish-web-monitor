@@ -42,78 +42,123 @@ import com.yihuacomputer.fish.report.service.fault.FaultRateReportService;
 				  ReportFaultModule.class})
 public class ReportModule {
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public ICaseStatisticsRptService caseStatisticsRptService() {
 		return new CaseStatisticsRptService();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public IEveryMonthFaultCountService everyMonthFaultCountService() {
 		return new EveryMonthFaultCountService();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public IFaultRateReportService faultRateReportService() {
 		return new FaultRateReportService();
 	}
 	
+	/**
+	 * @return
+	 */
 	@Bean
 	public IExportReportService exportReportService() {
 		return new ExportReportService();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public HtmlExporter htmlExporter() {
 		return new HtmlExporter();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public PdfExporter pdfExporter() {
 		return new PdfExporter();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public XlsExporter xlsExporter() {
 		return new XlsExporter();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean(name = "DayETLJob")
 	public EveryDayReportJob everyDayReportJob() {
 		return new EveryDayReportJob();
 	}
 	
+	/**
+	 * @return
+	 */
 	@Bean(name = "WeekETLJob")
 	public EveryWeekReportJob everyWeekReportJob() {
 		return new EveryWeekReportJob();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean(name = "MonthETLJob")
 	public EveryMonthReportJob everyMonthReportJob() {
 		return new EveryMonthReportJob();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean(name = "YearETLJob")
 	public EveryYearReportJob everyYearReportJob() {
 		return new EveryYearReportJob();
 	}
 	
+	/**
+	 * @return
+	 */
 	@Bean
 	public IETLjobService  EtljobService(){
 		return new ETLjobService();
 	}
 	
+	/**
+	 * @return
+	 */
 	@Bean
 	public IETLjobDaysService iDaysService()
 	{
 		return new DayTransBatchService();
 	}
 	
+	/**
+	 * @return
+	 */
 	@Bean
 	public IWeekPdfReportService weekPdfReportService()
 	{
 		return new WeekPdfReportService();
 	}
 	
+	/**
+	 * @return
+	 */
 	@Bean
 	public IMonthPdfReportService monthPdfReportService()
 	{

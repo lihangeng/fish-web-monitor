@@ -8,6 +8,10 @@ import com.yihuacomputer.fish.person.service.api.IDomainUserService;
 import com.yihuacomputer.fish.system.entity.Organization;
 import com.yihuacomputer.fish.system.entity.User;
 
+/**
+ * @author YiHua
+ *
+ */
 public class PersonCoreEntityInjector implements IEntityInjector
 {
     @Autowired

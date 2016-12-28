@@ -10,6 +10,10 @@ import javax.persistence.Table;
 
 import com.yihuacomputer.fish.api.report.device.etl.IDeviceTypeSummaryMonth;
 
+/**
+ * @author YiHua
+ *
+ */
 @Entity
 @Table(name="DEV_TYPE_SUMMARY_MONTH")
 public class DeviceTypeSummaryMonth implements IDeviceTypeSummaryMonth {

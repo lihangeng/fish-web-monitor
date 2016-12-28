@@ -36,56 +36,89 @@ import com.yihuacomputer.fish.report.service.trans.etl.TransTypeExtractDataServi
 @Configuration
 public class ReportTransModule {
 	
+	/**
+	 * @return
+	 */
 	@Bean
 	public ISettlementCashInRptService settlementCashInRptService() {
 		return new SettlementCashInRptService();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public ISettlementRptService settlementRptService() {
 		return new SettlementRptService();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public ITransRptService transRptService() {
 		return new TransRptService();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public ITransactionDaysService transactionDaysService() {
 		return new TransactionDaysService();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public ITransactionMonthsService transactionMonthsService() {
 		return new TransactionMonthsService();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public ITransTypeEtlService transTypeEtlService(){
 		return new TransTypeEtlService();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public ICashInRptService cashInRptService() {
 		return new CashInRptService();
 	}
 	
+	/**
+	 * @return
+	 */
 	@Bean
 	public IDayTradingVolumeService dayTradingVolumeService(){
 		return new DayTradingVolumeService();
 	}
 	
+	/**
+	 * @return
+	 */
 	@Bean
 	public ICashInitPlanInfoService cashInitPlanInfoService(){
 		return new CashInitPlanInfoService();
 	}
 	
+	/**
+	 * @return
+	 */
 	@Bean
 	public ITransTypeExtractDataService transTypeExtractDataService(){
 		return new TransTypeExtractDataService();
 	}
 	
+	/**
+	 * @return
+	 */
 	@Bean
 	public ITransactionDaysExtractDataService transactionDaysExtractDataService(){
 		return new TransactionDaysExtractDataService();

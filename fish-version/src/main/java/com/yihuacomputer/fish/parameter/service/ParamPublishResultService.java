@@ -38,6 +38,10 @@ import com.yihuacomputer.fish.machine.entity.Device;
 import com.yihuacomputer.fish.parameter.entity.ParamPublishResult;
 import com.yihuacomputer.fish.version.notice.NoticeForm;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional
 public class ParamPublishResultService implements IParamPublishResultService {

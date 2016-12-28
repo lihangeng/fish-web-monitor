@@ -2,6 +2,10 @@ package com.yihuacomputer.fish.report.service.device;
 
 import com.yihuacomputer.fish.api.report.device.IDeviceRpt;
 
+/**
+ * @author YiHua
+ *
+ */
 public class DeviceRpt implements IDeviceRpt {
 
 	private String terminalId;

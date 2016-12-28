@@ -9,6 +9,10 @@ import org.springframework.transaction.annotation.Transactional;
 import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.relation.service.base.DomainRelationService;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional(readOnly = true)
 public class RelationService extends DomainRelationService {

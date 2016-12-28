@@ -10,6 +10,10 @@ import javax.persistence.Table;
 
 import com.yihuacomputer.fish.api.report.trans.ITransactionDays;
 
+/**
+ * @author YiHua
+ *
+ */
 @Entity
 @Table(name = "ATMC_TRANSACTION_DAYS ")
 public class TransactionDays implements ITransactionDays {

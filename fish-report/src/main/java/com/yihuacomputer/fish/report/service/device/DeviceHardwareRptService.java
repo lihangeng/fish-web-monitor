@@ -17,6 +17,10 @@ import com.yihuacomputer.fish.api.monitor.hardware.IHardware;
 import com.yihuacomputer.fish.api.report.device.IDeviceHardwareRpt;
 import com.yihuacomputer.fish.api.report.device.IDeviceHardwareRptService;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional(readOnly = true)
 public class DeviceHardwareRptService implements IDeviceHardwareRptService {

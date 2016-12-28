@@ -12,6 +12,10 @@ import com.yihuacomputer.fish.api.parameter.IParamTemplateDetail;
 import com.yihuacomputer.fish.api.parameter.IParamTemplateDetailService;
 import com.yihuacomputer.fish.parameter.entity.ParamTemplateDetail;
 
+/**
+ * @author YiHua
+ *
+ */
 public class ParamTemplateDetailService implements IParamTemplateDetailService {
 
 	@Autowired

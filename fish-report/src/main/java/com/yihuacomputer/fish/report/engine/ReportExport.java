@@ -2,6 +2,10 @@ package com.yihuacomputer.fish.report.engine;
 
 import com.yihuacomputer.fish.api.report.engine.IReportExport;
 
+/**
+ * @author YiHua
+ *
+ */
 public class ReportExport implements IReportExport {
 
 	private boolean isSuccess;

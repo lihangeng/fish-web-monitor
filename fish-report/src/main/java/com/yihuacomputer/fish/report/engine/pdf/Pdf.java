@@ -188,7 +188,6 @@ public class Pdf {
 				cell.setBorderWidthRight(0);
 				cell.setBorderWidthBottom(0.4f);
 			}
-//			cell.setUseAscender(true);
 			cell.setHorizontalAlignment(Element.ALIGN_CENTER); //水平居中
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE); //垂直居中
 			table.addCell(cell); 
@@ -196,9 +195,13 @@ public class Pdf {
 		return table;
 	}
 	
+	/**
+	 * @param table
+	 * @param text
+	 * @param foot
+	 */
 	public void addTableCell(PdfPTable table,String text ,boolean foot){
 		PdfPCell cell = new PdfPCell();
-//		cell.setUseAscender(true);
 		if(foot){
 			cell.setBorderWidthLeft(0.4f);
 			cell.setBorderWidthBottom(0.4f);

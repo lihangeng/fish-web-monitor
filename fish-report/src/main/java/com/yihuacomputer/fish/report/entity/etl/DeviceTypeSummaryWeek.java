@@ -10,6 +10,10 @@ import javax.persistence.Table;
 
 import com.yihuacomputer.fish.api.report.device.etl.IDeviceTypeSummaryWeek;
 
+/**
+ * @author YiHua
+ *
+ */
 @Entity
 @Table(name="DEV_TYPE_SUMMARY_WEEK")
 public class DeviceTypeSummaryWeek implements IDeviceTypeSummaryWeek {

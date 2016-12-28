@@ -108,7 +108,7 @@ public class OrganizationService extends DomainOrganizationService {
     /**
      * 取到当前机构子机构中最小的机构级别
      *
-     * @param id
+     * @param code
      * @return
      */
     public IOrganization getMinOrgLevel(String code) {

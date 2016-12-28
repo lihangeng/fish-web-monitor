@@ -2,6 +2,10 @@ package com.yihuacomputer.fish.report.service.device;
 
 import com.yihuacomputer.fish.api.report.device.IDeviceHardwareRpt;
 
+/**
+ * @author YiHua
+ *
+ */
 public class DeviceHardwareRpt implements IDeviceHardwareRpt {
 
 	private String orgName;

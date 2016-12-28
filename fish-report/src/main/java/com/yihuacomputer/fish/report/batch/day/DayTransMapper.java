@@ -7,6 +7,10 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
 
+/**
+ * @author YiHua
+ *
+ */
 @Component("transRowMapper")
 public class DayTransMapper implements RowMapper<TransactionDays> {
 

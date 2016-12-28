@@ -15,6 +15,10 @@ import com.yihuacomputer.fish.api.person.IUser;
 import com.yihuacomputer.fish.api.relation.IUserPermissionRelation;
 import com.yihuacomputer.fish.system.entity.UserPermissionObj;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional
 public class UserPermissionRelation implements IUserPermissionRelation {

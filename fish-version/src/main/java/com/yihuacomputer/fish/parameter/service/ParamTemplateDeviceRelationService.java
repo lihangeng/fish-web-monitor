@@ -12,6 +12,10 @@ import com.yihuacomputer.fish.api.parameter.IParamTemplateDeviceRelation;
 import com.yihuacomputer.fish.api.parameter.IParamTemplateDeviceRelationService;
 import com.yihuacomputer.fish.parameter.entity.ParamTemplateDeviceRelation;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional
 public class ParamTemplateDeviceRelationService implements IParamTemplateDeviceRelationService {

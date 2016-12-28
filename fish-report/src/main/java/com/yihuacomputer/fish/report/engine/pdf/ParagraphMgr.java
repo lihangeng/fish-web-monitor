@@ -24,6 +24,7 @@ public class ParagraphMgr {
 	 * 
 	 * @param text 文本 
 	 * @param font 字体
+	 * @return
 	 */
 	public ParagraphMgr addChunk(String text,Font font){
 		Chunk chunk = new Chunk(text);
@@ -35,6 +36,7 @@ public class ParagraphMgr {
 	/**
 	 * 使用默认字体
 	 * @param text 文字，
+	 * @return
 	 */
 	public ParagraphMgr addChunk(String text){
 		Chunk chunk = new Chunk(text);

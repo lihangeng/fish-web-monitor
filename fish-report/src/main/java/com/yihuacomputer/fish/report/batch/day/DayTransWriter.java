@@ -10,12 +10,19 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementSetter;
 import org.springframework.stereotype.Component;
 
+/**
+ * @author YiHua
+ *
+ */
 @Component("transWriter")
 public class DayTransWriter implements ItemWriter<TransactionDays> {
 	private static final String SAVE_SQL = "INSERT INTO ATMC_TRANSACTION_DAYS (VENDOR_NAME,DEV_TYPE,TRANS_CODE,CARD_TYPE,TRANS_DATE,TRANS_COUNT,TRANS_AMT,VENDOR_ID,DEV_TYPE_ID) VALUES (?,?,?,?,?,?,?,?,?)";
 	private JdbcTemplate jdbcTemplate;
 	private Logger logger = LoggerFactory.getLogger(DayTransWriter.class);
 
+	/**
+	 * @param days
+	 */
 	public void save(final TransactionDays days) {
 		jdbcTemplate.update(SAVE_SQL, new PreparedStatementSetter() {
 			@Override

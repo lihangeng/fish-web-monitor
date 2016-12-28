@@ -34,51 +34,81 @@ import com.yihuacomputer.fish.report.service.openRate.etl.OrgOpenRateExtractData
 @Configuration
 public class ReportOpenRateModule {
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public IDayOpenRateService dayOpenRateService() {
 		return new DayOpenRateService();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public IDeviceOpenRateService deviceOpenRateService() {
 		return new DeviceOpenRateService();
 	}
 	
+	/**
+	 * @return
+	 */
 	@Bean
 	public IAvgOpenRateEtlService avgOpenRateEtlService(){
 		return new AvgOpenRateEtlService();
 	}
 	
+	/**
+	 * @return
+	 */
 	@Bean
 	public IDeviceOpenRateEtlService deviceOpenRateEtlService(){
 		return new DeviceOpenRateEtlService();
 	}
 	
+	/**
+	 * @return
+	 */
 	@Bean
 	public IDeviceTypeOpenRateEtlService deviceTypeOpenRateEtlService(){
 		return new DeviceTypeOpenRateEtlService();
 	}
 	
+	/**
+	 * @return
+	 */
 	@Bean
 	public IOrgOpenRateEtlService orgOpenRateEtlService(){
 		return new OrgOpenRateEtlService();
 	}
 	
+	/**
+	 * @return
+	 */
 	@Bean
 	public IAvgOpenRateExtractDataService avgOpenRateExtractDataService(){
 		return new AvgOpenRateExtractDataService();
 	}
 	
+	/**
+	 * @return
+	 */
 	@Bean
 	public IDeviceOpenRateExtractDataService deviceOpenRateExtractDataService(){
 		return new DeviceOpenRateExtractDataService();
 	}
 	
+	/**
+	 * @return
+	 */
 	@Bean
 	public IDeviceTypeOpenRateExtractDataService deviceTypeOpenRateExtractDataService(){
 		return new DeviceTypeOpenRateExtractDataService();
 	}
 	
+	/**
+	 * @return
+	 */
 	@Bean
 	public IOrgOpenRateExtractDataService orgOpenRateExtractDataService(){
 		return new OrgOpenRateExtractDataService();

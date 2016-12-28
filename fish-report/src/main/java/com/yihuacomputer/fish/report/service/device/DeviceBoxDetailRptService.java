@@ -15,6 +15,10 @@ import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.api.report.device.IDeviceBoxDetailRpt;
 import com.yihuacomputer.fish.api.report.device.IDeviceBoxDetailRptService;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional(readOnly = true)
 public class DeviceBoxDetailRptService implements IDeviceBoxDetailRptService {

@@ -42,71 +42,113 @@ import com.yihuacomputer.fish.report.service.device.etl.RetainCardExtractDataSer
 @Configuration
 public class ReportDeviceModule {
 	
+	/**
+	 * @return
+	 */
 	@Bean
 	public IDeviceBoxDetailRptService deviceBoxDetailRptService() {
 		return new DeviceBoxDetailRptService();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public IDeviceHardwareRptService deviceHardwareRptService() {
 		return new DeviceHardwareRptService();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public IDeviceRptService deviceRptService() {
 		return new DeviceRptService();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public IDeviceTypeCountRptService deviceTypeCountRptService() {
 		return new DeviceTypeCountRptService();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public IDeviceUseCountRptService deviceUseCountRptService() {
 		return new DeviceUseCountRptService();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public IRetainCardRptService retainCardRptService() {
 		return new RetainCardRptService();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public IRetainCardEtlService retainCardEtlService(){
 		return new RetainCardEtlService();
 	}
 	
+	/**
+	 * @return
+	 */
 	@Bean
 	public IDeviceCatalogSummaryMonthService deviceCatalogSummaryMonthService(){
 		return new DeviceCatalogSummaryMonthService();
 	}
 	
+	/**
+	 * @return
+	 */
 	@Bean
 	public IDeviceCatalogSummaryWeekService deviceCatalogSummaryWeekService(){
 		return new DeviceCatalogSummaryWeekService();
 	}
 	
+	/**
+	 * @return
+	 */
 	@Bean
 	public IDeviceTypeSummaryMonthService deviceTypeSummaryMonthService(){
 		return new DeviceTypeSummaryMonthService();
 	}
 	
+	/**
+	 * @return
+	 */
 	@Bean
 	public IDeviceTypeSummaryWeekService deviceTypeSummaryWeekService(){
 		return new DeviceTypeSummaryWeekService();
 	}
 	
+	/**
+	 * @return
+	 */
 	@Bean
 	public IDeviceExtractDataMonthService deviceExtractDataMonthService(){
 		return new DeviceExtractDataMonthService();
 	}
 	
+	/**
+	 * @return
+	 */
 	@Bean 
 	public IDeviceExtractDataWeekService deviceExtractDataWeekService(){
 		return new DeviceExtractDataWeekService();
 	}
 	
+	/**
+	 * @return
+	 */
 	@Bean
 	public IRetainCardExtractDataService retainCardExtractDataService(){
 		return new RetainCardExtractDataService();

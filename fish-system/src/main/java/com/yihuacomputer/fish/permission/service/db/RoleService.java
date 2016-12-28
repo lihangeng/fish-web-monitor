@@ -23,6 +23,7 @@ import com.yihuacomputer.fish.permission.service.api.IDomainRoleService;
 import com.yihuacomputer.fish.system.entity.Role;
 
 /**
+ * @author YiHua
  *
  */
 @Service
@@ -113,10 +114,10 @@ public class RoleService implements IDomainRoleService {
 	@Override
     @Transactional(readOnly=true)
 	public List<IRole> list(IFilter filter) {
-//		filter.addFilterEntry(FilterFactory.eq("system", false));
 		return dao.findByFilter(filter, IRole.class);
 	}
 
+	@Override
 	public void remove(Role role) {
 		dao.delete(role);
 	}

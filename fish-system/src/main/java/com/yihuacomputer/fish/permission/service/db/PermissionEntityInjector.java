@@ -7,6 +7,10 @@ import com.yihuacomputer.domain.interceptor.IEntityInjector;
 import com.yihuacomputer.fish.api.permission.IPermissionService;
 import com.yihuacomputer.fish.system.entity.Permission;
 
+/**
+ * @author YiHua
+ *
+ */
 @Component("permissionEntityInjector")
 public class PermissionEntityInjector implements IEntityInjector {
 	@Autowired

@@ -5,6 +5,10 @@ import java.util.Map;
 
 import com.yihuacomputer.fish.api.report.engine.IReportParam;
 
+/**
+ * @author YiHua
+ *
+ */
 public class ReportParam implements IReportParam {
 
 	private boolean pdf;

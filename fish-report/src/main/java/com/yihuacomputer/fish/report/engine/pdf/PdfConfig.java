@@ -59,7 +59,9 @@ public class PdfConfig{
 	}
 	/**
 	 * 获取周的第一天和最后一天
-	 * 格式yyyyww
+	 * 格式 yyyyww
+	 * @param date
+	 * @return
 	 */
 	public static String[] getDayByWeek(int date){
 		String[] days=new String[3];

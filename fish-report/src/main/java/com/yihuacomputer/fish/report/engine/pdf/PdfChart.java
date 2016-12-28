@@ -35,8 +35,9 @@ public class PdfChart {
 
 	/**
 	 * 生成折线图
-	 * 
 	 * @param dataset
+	 * @param xVallue
+	 * @param yValue
 	 * @return
 	 */
 	public static JFreeChart generateLineChart(DefaultCategoryDataset dataset,String xVallue,String yValue) {

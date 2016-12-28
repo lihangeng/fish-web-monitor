@@ -15,6 +15,10 @@ import com.yihuacomputer.common.util.PageResult;
 import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.api.report.batch.IETLjobService;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional
 public class ETLjobService implements IETLjobService {

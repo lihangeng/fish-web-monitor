@@ -20,16 +20,25 @@ import com.yihuacomputer.fish.report.service.fault.etl.FaultExtractDataService;
 @Configuration
 public class ReportFaultModule {
 	
+	/**
+	 * @return
+	 */
 	@Bean
 	public IFaultEtlService faultEtlService(){
 		return new FaultEtlService();
 	}
 	
+	/**
+	 * @return
+	 */
 	@Bean
 	public IFaultExtractDataService faultExtractDataService(){
 		return new FaultExtractDataService();
 	}
 	
+	/**
+	 * @return
+	 */
 	@Bean
 	public IEveryMonthFaultCountExtractDataService everyMonthFaultCountExtractDataService(){
 		return new EveryMonthFaultCountExtractDataService();

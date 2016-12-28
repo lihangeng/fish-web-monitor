@@ -10,6 +10,10 @@ import javax.persistence.Table;
 
 import com.yihuacomputer.fish.api.report.fault.IEveryMonthFaultCount;
 
+/**
+ * @author YiHua
+ *
+ */
 @Entity
 @Table(name = "CASE_FAULT_MONTH")
 public class EveryMonthFaultCount implements IEveryMonthFaultCount {

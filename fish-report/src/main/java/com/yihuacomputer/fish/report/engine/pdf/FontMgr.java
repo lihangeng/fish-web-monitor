@@ -18,6 +18,9 @@ import com.itextpdf.text.pdf.BaseFont;
  */
 public class FontMgr {
 	private static Logger logger = LoggerFactory.getLogger(FontMgr.class);
+	/**
+	 * 中文字体
+	 */
 	public static BaseFont chinaFont;
 	
 	public static final AsianFontMapper asianFontMapper = new AsianFontMapper(AsianFontMapper.ChineseSimplifiedFont,AsianFontMapper.ChineseSimplifiedEncoding_H);
@@ -84,6 +87,7 @@ public class FontMgr {
 	 * 
 	 * @param size
 	 * @param style
+	 * @param color
 	 * @return
 	 */
 	public static Font getFont(float size,int style,BaseColor color){

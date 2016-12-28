@@ -12,6 +12,10 @@ import com.yihuacomputer.fish.api.parameter.IParamPublishAppResultService;
 import com.yihuacomputer.fish.parameter.entity.ParamPublishAppResult;
 
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional
 public class ParamPublishAppResultService implements IParamPublishAppResultService {

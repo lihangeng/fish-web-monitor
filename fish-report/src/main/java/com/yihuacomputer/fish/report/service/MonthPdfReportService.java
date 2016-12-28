@@ -315,6 +315,10 @@ public class MonthPdfReportService extends PdfReportService implements IMonthPdf
 		pdf.addChart(devChart, chartWidth, 260);
 	}
 
+	/**
+	 * @param month
+	 * @return
+	 */
 	public DefaultCategoryDataset createDatasetMonth(int month) {
 		DefaultCategoryDataset dataSet = new DefaultCategoryDataset();
 		List<IDeviceCatalogSummaryMonth> list = deviceCatalogSummaryMonthService.getAddAndScrp(month,month-3);

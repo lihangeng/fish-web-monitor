@@ -303,6 +303,10 @@ public class WeekPdfReportService extends PdfReportService implements IWeekPdfRe
 		pdf.addChart(devChart, chartWidth, 260);
 	}
 
+	/**
+	 * @param weekOfYear
+	 * @return
+	 */
 	public DefaultCategoryDataset createDatasetFW(int weekOfYear) {
 		List<IDeviceCatalogSummaryWeek> list = deviceCatalogSummaryWeekService.getAddAndScrp(weekOfYear,weekOfYear-4);
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset();

@@ -11,6 +11,10 @@ import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.api.person.IPerson;
 import com.yihuacomputer.fish.api.person.PersonType;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional
 public class SrcbDevicePersonRelation {
@@ -18,6 +22,12 @@ public class SrcbDevicePersonRelation {
 	@Autowired
 	private IGenericDao dao;
 
+	/**
+	 * @param offset
+	 * @param limit
+	 * @param map
+	 * @return
+	 */
 	@SuppressWarnings("unchecked")
 	public IPageResult<IPerson> selectPage(int offset, int limit, Map<String, String> map) {
 		StringBuffer hql = new StringBuffer();

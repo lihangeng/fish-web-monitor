@@ -14,8 +14,15 @@ import com.yihuacomputer.fish.system.entity.Role;
  */
 public interface IDomainRoleService extends IRoleService{
 
+	/**
+	 * @param role
+	 */
 	public void remove(Role role);
 
+	/**
+	 * @param role
+	 * @return
+	 */
 	public List<IPermission> listPermission(IRole role);
 
 }

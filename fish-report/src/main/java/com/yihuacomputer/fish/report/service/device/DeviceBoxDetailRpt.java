@@ -2,6 +2,10 @@ package com.yihuacomputer.fish.report.service.device;
 
 import com.yihuacomputer.fish.api.report.device.IDeviceBoxDetailRpt;
 
+/**
+ * @author YiHua
+ *
+ */
 public class DeviceBoxDetailRpt implements IDeviceBoxDetailRpt {
 
 	private String deviceNo;

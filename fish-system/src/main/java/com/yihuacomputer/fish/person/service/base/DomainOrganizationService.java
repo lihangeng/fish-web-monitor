@@ -39,6 +39,7 @@ public abstract class DomainOrganizationService implements IDomainOrganizationSe
 		return this.personService;
 	}
 
+	@Override
 	public List<IOrganization> listChildren(String parentOrgId,
 			OrganizationType orgType) {
 		// TODO Auto-generated method stub

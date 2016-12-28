@@ -16,6 +16,9 @@ public class EveryYearReportJob {
 	
 	private static Log logger = LogFactory.getLog(EveryYearReportJob.class);
 
+	/**
+	 * 执行
+	 */
 	public void execute(){
 		
 		logger.debug("year data ETL finished");

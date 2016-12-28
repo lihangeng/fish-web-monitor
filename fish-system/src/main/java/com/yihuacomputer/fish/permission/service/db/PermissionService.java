@@ -22,6 +22,10 @@ import com.yihuacomputer.fish.api.permission.IPermission;
 import com.yihuacomputer.fish.api.permission.IPermissionService;
 import com.yihuacomputer.fish.system.entity.Permission;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional
 public class PermissionService implements IPermissionService {

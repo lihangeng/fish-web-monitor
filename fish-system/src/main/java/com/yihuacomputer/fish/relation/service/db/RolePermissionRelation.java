@@ -76,6 +76,10 @@ public class RolePermissionRelation implements IRolePermissionRelation {
 
     }
 
+    /**
+     * @param role
+     * @return
+     */
     @Transactional(readOnly = true)
     public List<IPermission> listUnlinkedPermissionByRole(IRole role) {
         List<IPermission> all = permissionService.list();

@@ -8,6 +8,10 @@ import com.yihuacomputer.fish.api.person.IUser;
 import com.yihuacomputer.fish.person.service.api.IDomainUserService;
 import com.yihuacomputer.fish.system.entity.User;
 
+/**
+ * @author YiHua
+ *
+ */
 public abstract class DomainUserService implements IDomainUserService {
 
 	@Autowired

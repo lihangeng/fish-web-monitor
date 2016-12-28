@@ -18,6 +18,10 @@ import com.yihuacomputer.fish.api.parameter.IParamElement;
 import com.yihuacomputer.fish.api.parameter.IParamElementService;
 import com.yihuacomputer.fish.parameter.entity.ParamElement;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional
 public class ParamElementService implements IParamElementService {

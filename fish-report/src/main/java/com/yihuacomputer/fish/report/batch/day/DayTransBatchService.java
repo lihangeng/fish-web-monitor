@@ -20,6 +20,10 @@ import org.springframework.stereotype.Service;
 import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.api.report.batch.IETLjobDaysService;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 public class DayTransBatchService implements IETLjobDaysService {
 
@@ -35,6 +39,9 @@ public class DayTransBatchService implements IETLjobDaysService {
 //	@Autowired
 	private JobRepositoryFactoryBean jobRepository;
 	
+	/**
+	 * 交易时间
+	 */
 	public static String tradeTime;
 
 	@Override

@@ -14,8 +14,16 @@ import com.yihuacomputer.fish.api.person.IUser;
  */
 public interface IDomainGroupService extends IGroupService{
 
+	/**
+	 * @param group
+	 * @return
+	 */
 	public List<IUser> listUser(IGroup group);
 
+	/**
+	 * @param group
+	 * @return
+	 */
 	public List<IRole> listRole(IGroup group);
 
 }
