@@ -5,6 +5,10 @@ import java.util.List;
 
 import com.yihuacomputer.fish.api.system.config.IParam;
 
+/**
+ * @author YiHua
+ *
+ */
 public class ParamForm {
 	private long id;
 
@@ -23,6 +27,9 @@ public class ParamForm {
 
 	}
 
+	/**
+	 * @param param
+	 */
 	public ParamForm(IParam param) {
 		setDescription(param.getDescription());
 		setId(param.getId());
@@ -33,6 +40,10 @@ public class ParamForm {
 		setParamDisplayValue(param.getParamDisplayValue());
 	}
 
+	/**
+	 * @param list
+	 * @return
+	 */
 	public static List<ParamForm> convert1(List<IParam> list) {
 		List<ParamForm> result = new ArrayList<ParamForm>();
 		for (IParam item : list) {
@@ -41,6 +52,9 @@ public class ParamForm {
 		return result;
 	}
 
+	/**
+	 * @param param
+	 */
 	public void translate(IParam param) {
 		param.setDescription(getDescription());
 		param.setParamKey(getParamKey());

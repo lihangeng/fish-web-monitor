@@ -76,6 +76,9 @@ public class StatusMonitorController {
 
     /**
      * 初始化设备属性信息
+     * @param deviceId
+     * @param ip
+     * @return
      */
     @RequestMapping(value = "/initProperty", method = RequestMethod.GET)
     public @ResponseBody ModelMap initProperty(@RequestParam String deviceId, @RequestParam String ip) {
@@ -102,6 +105,7 @@ public class StatusMonitorController {
      *
      * @param start
      * @param limit
+     * @param webRequest
      * @param request
      * @return
      */
@@ -125,6 +129,7 @@ public class StatusMonitorController {
      *
      * @param start
      * @param limit
+     * @param webRequest
      * @param request
      * @return
      */
@@ -229,6 +234,11 @@ public class StatusMonitorController {
         return statusFilter;
     }
 
+    /**
+     * @param terminalId
+     * @param mod
+     * @return
+     */
     @SuppressWarnings("incomplete-switch")
     @RequestMapping(value = "/getModeState", method = RequestMethod.GET)
     @ResponseBody

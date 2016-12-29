@@ -30,6 +30,10 @@ import com.yihuacomputer.fish.api.system.config.IParam;
 import com.yihuacomputer.fish.api.system.config.IParamService;
 import com.yihuacomputer.fish.web.machine.form.ParamForm;
 
+/**
+ * @author YiHua
+ *
+ */
 @Controller
 @ClassNameDescrible(describle="userlog.paramController")
 @RequestMapping("/machine/param")
@@ -41,6 +45,12 @@ public class ParamController {
 	@Autowired
 	protected MessageSource messageSource;
 
+	/**
+	 * @param start
+	 * @param limit
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody
 	ModelMap search(@RequestParam int start, @RequestParam int limit,
@@ -61,6 +71,11 @@ public class ParamController {
 		return  messageSource.getMessage(code,null,FishCfg.locale);
 	}
 	
+	/**
+	 * @param id
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	@MethodNameDescrible(describle="userlog.paramController.update",hasReqBodyParam=true,reqBodyClass=ParamForm.class,bodyProperties="paramKey")
 	public @ResponseBody

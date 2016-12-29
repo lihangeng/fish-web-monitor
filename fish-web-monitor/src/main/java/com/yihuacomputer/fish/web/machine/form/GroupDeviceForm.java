@@ -1,5 +1,9 @@
 package com.yihuacomputer.fish.web.machine.form;
 
+/**
+ * @author YiHua
+ *
+ */
 public class GroupDeviceForm {
 	 	private Long id;
 	    private Long groupId;

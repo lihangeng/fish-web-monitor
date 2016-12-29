@@ -11,6 +11,10 @@ import com.yihuacomputer.fish.api.monitor.business.IRunInfo;
 import com.yihuacomputer.fish.api.monitor.report.IRuntimeInfo;
 import com.yihuacomputer.fish.api.monitor.xfs.status.IXfsStatus;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 public class DefaultDeviceCaseService  implements IDeviceCaseService{
 

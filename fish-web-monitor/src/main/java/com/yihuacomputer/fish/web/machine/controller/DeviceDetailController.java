@@ -276,6 +276,9 @@ public class DeviceDetailController
     
     /**
      * 判断用户是否有权限查看设备信息及设备是否存在
+     * @param httpRequest
+     * @param request
+     * @param terminalId
      * @return
      */
     @RequestMapping(value="/querydevice",method = RequestMethod.GET)
@@ -353,8 +356,7 @@ public class DeviceDetailController
 	 *
 	 * @param device
 	 *            接口
-	 * @param isDate
-	 *            是否需要转换日期
+	 * @return
 	 */
 	public DeviceForm toFrom(IDevice device) {
 		DeviceForm deviceForm = new DeviceForm();

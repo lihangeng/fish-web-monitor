@@ -12,6 +12,9 @@ import java.util.Map;
  */
 public class AtmTypeLinkModuleForm {
 
+    /**
+     * 初始化
+     */
     public Map<String, List<String>> typeLink = new HashMap<String, List<String>>();
 
     public AtmTypeLinkModuleForm() {

@@ -3,9 +3,10 @@ package com.yihuacomputer.fish.web.machine.form;
 import com.yihuacomputer.fish.api.openplan.IOpenPlanDetail;
 import com.yihuacomputer.fish.api.openplan.OpenClose;
 import com.yihuacomputer.fish.api.openplan.Week;
-
-
-
+/**
+ * @author YiHua
+ *
+ */
 public class OpenPlanDetailForm {
     
     private long id;
@@ -22,6 +23,9 @@ public class OpenPlanDetailForm {
         
     }
     
+    /**
+     * @param openPlanDetail
+     */
     public OpenPlanDetailForm(IOpenPlanDetail openPlanDetail){
         this.id = openPlanDetail.getId();
         this.week = openPlanDetail.getWeek();

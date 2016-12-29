@@ -19,6 +19,10 @@ import com.yihuacomputer.fish.api.version.IVersionType;
 import com.yihuacomputer.fish.api.version.IVersionTypeService;
 import com.yihuacomputer.fish.api.version.VersionCatalog;
 
+/**
+ * @author YiHua
+ *
+ */
 public class VersionDataLoader {
 
 	@Autowired
@@ -32,6 +36,9 @@ public class VersionDataLoader {
 	@Autowired
 	private IDeviceService deviceService;
 
+	/**
+	 * 初始化
+	 */
 	public void init() {
 		//初始化版本
 		initVersion();
@@ -40,23 +47,18 @@ public class VersionDataLoader {
 		//初始化设备软件分类版本
 		initDeviceSoftVersion();
 		//初始化内置的自动更新作业
-//		IJob job = jobService.make();
-//		job.setJobName("AUTOUPDATEJOB");
-//		job.setJobPriority(JobPriority.GENERAL);
-//		job.setJobStatus(JobStatus.COMPLETE);
-//		job.setJobType(JobType.AUTO_UPDATE);
-//		jobService.cascadeAdd(job);
 	}
 
+	/**
+	 * 初始化设备软件版本
+	 */
 	private void initDeviceSoftVersion() {
 		IDeviceSoftVersion dv = dvService.make();
-//		dv.setDeviceId(1l);
 		dv.setTypeName("YH-ATMC");
 		dv.setVersionNo("0.1");
 		dvService.add(dv);
 
 		dv = dvService.make();
-//		dv.setDeviceId(2l);
 		dv.setTypeName("YH-ATMC");
 		dv.setVersionNo("0.2");
 		dvService.add(dv);

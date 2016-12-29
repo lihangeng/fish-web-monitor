@@ -51,6 +51,9 @@ public class PersonDataLoader {
 	@Autowired
     private IPersonJobService personJobService;
 
+	/**
+	 * 初始化
+	 */
 	public void init(){
 		//初始化组织
 		initOrg();

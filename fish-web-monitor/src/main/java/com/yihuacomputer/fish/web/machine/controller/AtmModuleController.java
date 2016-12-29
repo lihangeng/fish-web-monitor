@@ -21,6 +21,10 @@ import com.yihuacomputer.fish.api.atm.IAtmModule;
 import com.yihuacomputer.fish.api.atm.IAtmModuleService;
 import com.yihuacomputer.fish.web.machine.form.AtmModuleForm;
 
+/**
+ * @author YiHua
+ *
+ */
 @Controller
 @RequestMapping("/machine/atmModule")
 public class AtmModuleController {
@@ -29,6 +33,12 @@ public class AtmModuleController {
 	@Autowired
 	private IAtmModuleService atmModuleService;
 
+	/**
+	 * @param start
+	 * @param limit
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody
 	ModelMap search(@RequestParam int start, @RequestParam int limit, WebRequest request) {
@@ -43,6 +53,12 @@ public class AtmModuleController {
 		return result;
 	}
 
+	/**
+	 * @param start
+	 * @param limit
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.GET, value = "/query")
 	public @ResponseBody
 	ModelMap find(@RequestParam int start, @RequestParam int limit, WebRequest request) {

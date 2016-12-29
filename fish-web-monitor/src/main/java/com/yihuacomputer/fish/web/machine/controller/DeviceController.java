@@ -38,7 +38,6 @@ import com.yihuacomputer.common.util.PageResult;
 import com.yihuacomputer.fish.api.atm.IAtmType;
 import com.yihuacomputer.fish.api.atm.IAtmTypeService;
 import com.yihuacomputer.fish.api.device.AwayFlag;
-import com.yihuacomputer.fish.api.device.DevStatus;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.device.IDeviceService;
 import com.yihuacomputer.fish.api.device.NetType;
@@ -53,6 +52,10 @@ import com.yihuacomputer.fish.web.machine.form.DeviceForm;
 import com.yihuacomputer.fish.web.system.form.PersonForm;
 import com.yihuacomputer.fish.web.util.ExcelViewUtils;
 
+/**
+ * @author YiHua
+ *
+ */
 @Controller
 @RequestMapping("/machine/device")
 @ClassNameDescrible(describle="userlog.deviceController")
@@ -88,6 +91,10 @@ public class DeviceController {
 	@Autowired
 	private IDevicePersonRelation devicePersonRelation;
 
+	/**
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.POST)
 	@MethodNameDescrible(describle="userlog.deviceController.add",hasReqBodyParam=true,reqBodyClass=DeviceForm.class,bodyProperties="terminalId")
 	public @ResponseBody
@@ -121,11 +128,6 @@ public class DeviceController {
 		device.setDevType(atmType);
 		logger.info(request.getInstallDate());
 		request.translate(device);
-		/*if (request.getInstallDate() != null  && !"".equals(request.getInstallDate())&& !request.getInstallDate().equals(DateUtils.getDate(new Date()))) {
-			device.setStatus(DevStatus.UNOPEN);
-		}else{*/
-			device.setStatus(DevStatus.OPEN);
-		/*}*/
 		Map<String, Object> result = validator(request, "add");
 		if ((Boolean) result.get("validator")) {
 			model.put(FishConstant.SUCCESS, false);
@@ -180,7 +182,7 @@ public class DeviceController {
 	 *
 	 * 方法描述 : 根据GUID更新用户
 	 *
-	 * @param guid
+	 * @param id
 	 * @param request
 	 * @return ModelMap<String, Object>
 	 */
@@ -240,6 +242,11 @@ public class DeviceController {
 		return model;
 	}
 	
+	/**
+	 * @param webRequest
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(value = "export", method = RequestMethod.GET)
 	@MethodNameDescrible(describle="userlog.deviceController.export",hasArgs=false)
 	public @ResponseBody
@@ -273,11 +280,12 @@ public class DeviceController {
 
 
 	/**
-	 *
 	 * 根据条件得到设备列表
-	 *
-	 * @param form
-	 * @return ModelMap<String, Object>
+	 * @param start
+	 * @param limit
+	 * @param webRequest
+	 * @param request
+	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody
@@ -299,6 +307,13 @@ public class DeviceController {
 		return result;
 	}
 
+	/**
+	 * @param start
+	 * @param limit
+	 * @param webRequest
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(value = "/findMatch", method = RequestMethod.GET)
 	public @ResponseBody
 	ModelMap searchMatch(@RequestParam int start, @RequestParam int limit, WebRequest webRequest, HttpServletRequest request) {
@@ -323,6 +338,13 @@ public class DeviceController {
 	}
 
 
+	/**
+	 * @param start
+	 * @param limit
+	 * @param organizationID
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(value = "/findByOrg", method = RequestMethod.GET)
 	public @ResponseBody
 	ModelMap findByOrg(@RequestParam int start, @RequestParam int limit, @RequestParam String organizationID,
@@ -350,6 +372,13 @@ public class DeviceController {
 		return result;
 	}
 
+	/**
+	 * @param start
+	 * @param limit
+	 * @param organizationID
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(value = "/findByService", method = RequestMethod.GET)
 	public @ResponseBody
 	ModelMap findByService(@RequestParam int start, @RequestParam int limit, @RequestParam String organizationID,
@@ -370,6 +399,10 @@ public class DeviceController {
 		return result;
 	}
 
+	/**
+	 * @param terminalId
+	 * @return
+	 */
 	@RequestMapping(value = "findByTerminalId", method = RequestMethod.GET)
 	public @ResponseBody
 	ModelMap search(@RequestParam String terminalId) {
@@ -380,6 +413,10 @@ public class DeviceController {
 	}
 
 	
+	/**
+	 * @param list
+	 * @return
+	 */
 	public List<DeviceForm> convert(List<IDevice> list) {
 		List<DeviceForm> result = new ArrayList<DeviceForm>();
 		for (IDevice item : list) {
@@ -434,7 +471,7 @@ public class DeviceController {
 	/**
 	 * 获取所有品牌信息
 	 *
-	 * @param id
+	 * @param request
 	 *            设备的ID
 	 * @return
 	 */

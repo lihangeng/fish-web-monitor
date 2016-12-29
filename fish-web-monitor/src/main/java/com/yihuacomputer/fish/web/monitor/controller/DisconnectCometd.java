@@ -23,11 +23,11 @@ public class DisconnectCometd {
 	@Autowired
 	private IMonitorService monitorService;
 
-	
-    /**
-     * 停止监控，去除监控条件
-     * */
-    
+	/**
+	 * 停止监控，去除监控条件
+	 * @param remote
+	 * @param message
+	 */
 	@org.cometd.annotation.Listener(DEPARTURE_CHANNEL)
 	public void departure(ServerSession remote, ServerMessage.Mutable message) {	
 		this.monitorService.removeMonitorUser(remote.getId(),MonitorUserType.All);

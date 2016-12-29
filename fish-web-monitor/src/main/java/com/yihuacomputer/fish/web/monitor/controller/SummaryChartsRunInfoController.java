@@ -32,6 +32,10 @@ import com.yihuacomputer.fish.api.person.UserSession;
 import com.yihuacomputer.fish.web.monitor.form.StatusMonitorForm;
 import com.yihuacomputer.fish.web.util.FishWebUtils;
 
+/**
+ * @author YiHua
+ *
+ */
 @Controller
 @RequestMapping("/monitor/summaryInfo")
 @ClassNameDescrible(describle="userlog.SummaryChartsRunInfoController")
@@ -51,7 +55,13 @@ public class SummaryChartsRunInfoController {
     	return messageSourceEnum.getMessage(enumText, null, FishCfg.locale);
     }
     
-    //获得状态总览概况
+    /**
+     * 获得状态总览概况
+     * @param start
+     * @param limit
+     * @param request
+     * @return
+     */
     @RequestMapping(value = "/detail", method = RequestMethod.GET)
     public @ResponseBody
     ModelMap detailInfo(@RequestParam int start,@RequestParam int limit,HttpServletRequest request) {
@@ -96,7 +106,11 @@ public class SummaryChartsRunInfoController {
         return model;
     }
 	
-	 //获得状态总览概况
+    /**
+     * 获得状态总览概况
+     * @param request
+     * @return
+     */
     @RequestMapping(value = "/summary", method = RequestMethod.GET)
     public @ResponseBody
     ModelMap summaryInfo(HttpServletRequest request) {
@@ -123,7 +137,11 @@ public class SummaryChartsRunInfoController {
         model.put(FishConstant.SUCCESS, true);
         return model;
     }
-    //运行状态概览
+    /**
+     * 运行状态概览
+     * @param request
+     * @return
+     */
     @RequestMapping(value = "/runSummary", method = RequestMethod.GET)
     public @ResponseBody
     ModelMap runSummaryInfo(HttpServletRequest request) {
@@ -150,7 +168,11 @@ public class SummaryChartsRunInfoController {
         return model;
     }
 
-    //网络状态概览
+    /**
+     * 网络状态概览
+     * @param request
+     * @return
+     */
     @RequestMapping(value = "/netSummary", method = RequestMethod.GET)
     public @ResponseBody
     ModelMap netSummaryInfo(HttpServletRequest request) {
@@ -177,7 +199,11 @@ public class SummaryChartsRunInfoController {
         return model;
     }
 
-    //模块状态概览
+    /**
+     * 模块状态概览
+     * @param request
+     * @return
+     */
     @RequestMapping(value = "/modSummary", method = RequestMethod.GET)
     public @ResponseBody
     ModelMap modSummaryInfo(HttpServletRequest request) {
@@ -204,7 +230,11 @@ public class SummaryChartsRunInfoController {
         return model;
     }
 
-    //钞箱状态概览
+    /**
+     * 钞箱状态概览
+     * @param request
+     * @return
+     */
     @RequestMapping(value = "/boxSummary", method = RequestMethod.GET)
     public @ResponseBody
     ModelMap boxSummaryInfo(HttpServletRequest request) {

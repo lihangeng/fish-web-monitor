@@ -44,6 +44,10 @@ import com.yihuacomputer.fish.web.machine.form.DeviceForm;
 import com.yihuacomputer.fish.web.machine.form.GroupDeviceForm;
 import com.yihuacomputer.fish.web.machine.form.ItemForm;
 
+/**
+ * @author YiHua
+ *
+ */
 @Controller
 @RequestMapping("/machine/atmGroup")
 @ClassNameDescrible(describle="userlog.atmGroupController")
@@ -69,6 +73,12 @@ public class AtmGroupController {
 	@Autowired
 	private IDeviceGroupRelation deviceGroupRelation;
 
+	/**
+	 * @param start
+	 * @param limit
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody
 	ModelMap search(@RequestParam int start, @RequestParam int limit, WebRequest request) {
@@ -83,6 +93,10 @@ public class AtmGroupController {
 		return result;
 	}
 
+	/**
+	 * @param id
+	 * @return
+	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	@MethodNameDescrible(describle="userlog.atmGroupController.delete",hasLogKey=true)
 	public @ResponseBody
@@ -107,6 +121,10 @@ public class AtmGroupController {
 		return result;
 	}
 
+	/**
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.POST)
 	@MethodNameDescrible(describle="userlog.atmGroupController.add",hasReqBodyParam=true,reqBodyClass=AtmGroupForm.class,bodyProperties="name")
 	public @ResponseBody ModelMap add(@RequestBody AtmGroupForm request) {
@@ -132,6 +150,11 @@ public class AtmGroupController {
 		return result;
 	}
 
+	/**
+	 * @param id
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	@MethodNameDescrible(describle="userlog.atmGroupController.update",hasReqBodyParam=true,reqBodyClass=AtmGroupForm.class,bodyProperties="name")
 	public @ResponseBody
@@ -209,11 +232,12 @@ public class AtmGroupController {
 	}
 
 	/**
-	 *
 	 * 根据条件得到组外的设备列表
-	 *
-	 * @param form
-	 * @return ModelMap<String, Object>
+	 * @param start
+	 * @param limit
+	 * @param request
+	 * @param req
+	 * @return
 	 */
 	@RequestMapping(value = "/deviceByGroupAdding", method = RequestMethod.GET)
 	public @ResponseBody
@@ -247,11 +271,12 @@ public class AtmGroupController {
 	}
 
 	/**
-	 *
 	 * 根据条件得到组内的设备列表
-	 *
-	 * @param form
-	 * @return ModelMap<String, Object>
+	 * @param start
+	 * @param limit
+	 * @param request
+	 * @param req
+	 * @return
 	 */
 	@RequestMapping(value = "/deviceByGroup", method = RequestMethod.GET)
 	public @ResponseBody
@@ -380,6 +405,10 @@ public class AtmGroupController {
 		return "page".equals(name) || "start".equals(name) || "limit".equals(name) || "_dc".equals(name);
 	}
 
+	/**
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(value = "/combo", method = RequestMethod.GET)
 	@ResponseBody
 	public ModelMap getDeviceGroup(WebRequest request) {
@@ -396,6 +425,10 @@ public class AtmGroupController {
 		return map;
 	}
 	
+	/**
+	 * @param list
+	 * @return
+	 */
 	public List<DeviceForm> convert(List<IDevice> list) {
 		List<DeviceForm> result = new ArrayList<DeviceForm>();
 		for (IDevice item : list) {
@@ -409,6 +442,7 @@ public class AtmGroupController {
 	 * @param device
 	 *            接口
 	 * @param isDate
+	 * @return
 	 *            是否需要转换日期
 	 */
 	public DeviceForm toFrom(IDevice device) {

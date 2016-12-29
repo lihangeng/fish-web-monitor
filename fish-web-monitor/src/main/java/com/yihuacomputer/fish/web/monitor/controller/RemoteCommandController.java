@@ -67,6 +67,7 @@ public class RemoteCommandController {
      *
      * @param start
      * @param limit
+     * @param webRequest
      * @param request
      * @return
      */
@@ -75,14 +76,8 @@ public class RemoteCommandController {
     public ModelMap search(@RequestParam int start, @RequestParam int limit, WebRequest webRequest,
             HttpServletRequest request) {
         logger.info("/monitor/remoteCommand search");
-
         IFilter filter = request2filter(webRequest, request);
-        
-//        IPageResult<IRemoteCommHist> pageResult = remoteCommHistService.page(start, limit, filter);
-        
         IPageResult<Object> pageResult = remoteCommHistService.pageObj(start, limit, filter);
-        
-        
         ModelMap map = new ModelMap();
         map.addAttribute(FishConstant.SUCCESS, true);
         map.addAttribute("total", pageResult.getTotal());

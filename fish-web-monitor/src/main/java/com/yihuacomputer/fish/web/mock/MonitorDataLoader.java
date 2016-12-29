@@ -7,16 +7,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.yihuacomputer.fish.api.monitor.business.ITransaction;
 import com.yihuacomputer.fish.api.monitor.business.ITransactionService;
 
+/**
+ * @author YiHua
+ *
+ */
 public class MonitorDataLoader {
     @Autowired
     private ITransactionService transService;
 
+    /**
+     * 初始化交易
+     */
     public void init() {
         initTrans();
     }
 
     /**
-     * 
+     * 初始化交易
      */
     private void initTrans() {
         ITransaction tran = null;

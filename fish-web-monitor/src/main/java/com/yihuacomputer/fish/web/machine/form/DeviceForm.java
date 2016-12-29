@@ -13,6 +13,10 @@ import com.yihuacomputer.fish.api.device.NetType;
 import com.yihuacomputer.fish.api.device.SetupType;
 import com.yihuacomputer.fish.api.device.WorkType;
 
+/**
+ * @author YiHua
+ *
+ */
 public class DeviceForm {
 	
 	private static Logger logger = LoggerFactory.getLogger(DeviceForm.class);

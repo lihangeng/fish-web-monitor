@@ -2,13 +2,15 @@ package com.yihuacomputer.fish.web.machine.form;
 
 import com.yihuacomputer.fish.web.version.form.VersionForm;
 
+/**
+ * @author YiHua
+ *
+ */
 public class DeviceDetailVersionForm {
 	
 	private String currentVersion;
 	
 	private VersionForm maxVersion;
-
-//	private List<VersionForm> updateVersion;
 
 	private String lastUpdateTime;
 
@@ -27,14 +29,6 @@ public class DeviceDetailVersionForm {
 	public void setMaxVersion(VersionForm maxVersion) {
 		this.maxVersion = maxVersion;
 	}
-
-//	public List<VersionForm> getUpdateVersion() {
-//		return updateVersion;
-//	}
-//
-//	public void setUpdateVersion(List<VersionForm> updateVersion) {
-//		this.updateVersion = updateVersion;
-//	}
 
 	public String getLastUpdateTime() {
 		return lastUpdateTime;

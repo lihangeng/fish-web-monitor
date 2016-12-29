@@ -24,6 +24,10 @@ import com.yihuacomputer.fish.api.monitor.xfs.status.DeviceStatus;
 import com.yihuacomputer.fish.api.monitor.xfs.status.IXfsStatus;
 import com.yihuacomputer.fish.fault.entity.FaultClassify;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 public class DefaultHwFaultService {
 
@@ -57,6 +61,7 @@ public class DefaultHwFaultService {
 	/**
 	 * 处理模块故障
 	 * @param xfsStatus
+	 * @param hisXfsStatus
 	 */
 	public void handleModFualt(IXfsStatus xfsStatus,IXfsStatus hisXfsStatus){
 		try{

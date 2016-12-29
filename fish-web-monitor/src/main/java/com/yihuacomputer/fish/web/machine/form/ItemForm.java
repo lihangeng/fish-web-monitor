@@ -6,6 +6,10 @@ import java.util.List;
 import com.yihuacomputer.fish.api.atm.IAtmType;
 import com.yihuacomputer.fish.api.atm.IAtmVendor;
 
+/**
+ * @author YiHua
+ *
+ */
 public class ItemForm {
 	
 	private String name;
@@ -17,12 +21,20 @@ public class ItemForm {
 	public ItemForm() {
 		
 	}
+	/**
+	 * @param name
+	 * @param value
+	 */
 	public ItemForm(String name, String value) {
 		this.name = name;
 		this.value = value;
 	}
 	
 	
+	/**
+	 * @param atmVendors
+	 * @return
+	 */
 	public static List<ItemForm> toForms(List<IAtmVendor> atmVendors){
 		List<ItemForm> forms = new ArrayList<ItemForm>();
 		for(IAtmVendor vendor : atmVendors){
@@ -31,6 +43,10 @@ public class ItemForm {
 		}
 		return forms;
 	}
+	/**
+	 * @param atmTypes
+	 * @return
+	 */
 	public static List<ItemForm> toTypeForms(List<IAtmType> atmTypes){
 		List<ItemForm> forms = new ArrayList<ItemForm>();
 		for(IAtmType atmType : atmTypes){

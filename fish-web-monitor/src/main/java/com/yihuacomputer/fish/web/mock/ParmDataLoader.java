@@ -31,6 +31,9 @@ public class ParmDataLoader {
 	@Autowired
 	private IFaultClassifyService faultClassifyService;
 
+	/**
+	 * 初始化
+	 */
 	public void init() {
 		initFishHome();
 		initAtmPort();
@@ -39,7 +42,6 @@ public class ParmDataLoader {
 		initDeviceOffline();
 		initStatusCheckTime();
 		initRegisterSerial();
-//		initMapUrl();
 		initCheckTime();
 		initNotifyMould();
 		parmService.init();

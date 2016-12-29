@@ -16,6 +16,10 @@ import com.yihuacomputer.fish.api.openplan.PlanStateType;
 import com.yihuacomputer.fish.api.openplan.PlanType;
 
 
+/**
+ * @author YiHua
+ *
+ */
 public class ExportOpenPlanForm {
 	
 	private Logger logger = LoggerFactory.getLogger(ExportOpenPlanForm.class);
@@ -62,6 +66,11 @@ public class ExportOpenPlanForm {
 
 	}
 
+	/**
+	 * @param deviceOpenPlan
+	 * @param objDev
+	 * @param planDetails
+	 */
 	public ExportOpenPlanForm(IDeviceOpenPlan deviceOpenPlan, Object objDev[],
 			List<IOpenPlanDetail> planDetails) {
 		this.id = deviceOpenPlan.getId();

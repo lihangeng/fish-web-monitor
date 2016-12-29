@@ -5,6 +5,10 @@ import java.util.List;
 
 import com.yihuacomputer.fish.api.atm.IAtmGroup;
 
+/**
+ * @author YiHua
+ *
+ */
 public class AtmGroupForm {
 	private long id;
 	private String name;
@@ -14,12 +18,19 @@ public class AtmGroupForm {
 		
 	}
 	
+	/**
+	 * @param atmGroup
+	 */
 	public AtmGroupForm(IAtmGroup atmGroup){
 		setId(atmGroup.getId());
 		setName(atmGroup.getName());
 		setNote(atmGroup.getNote());
 	}
 	
+	/**
+	 * @param list
+	 * @return
+	 */
 	public static List<AtmGroupForm> convert(List<IAtmGroup> list) {
 		List<AtmGroupForm> result = new ArrayList<AtmGroupForm>();
 		for(IAtmGroup item : list) {
@@ -28,6 +39,9 @@ public class AtmGroupForm {
 		return result;
 	}
 	
+    /**
+     * @param atmGroup
+     */
     public void translate(IAtmGroup atmGroup) {
     	atmGroup.setId(getId());
     	atmGroup.setName(getName());

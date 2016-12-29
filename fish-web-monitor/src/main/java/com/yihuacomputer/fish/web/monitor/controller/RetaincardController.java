@@ -74,6 +74,10 @@ public class RetaincardController {
 	@Autowired
 	private MessageSource messageSource;
 
+	/**
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.POST)
 	public @ResponseBody
 	@MethodNameDescrible(describle="userlog.RetaincardController.add",hasReqBodyParam=true,reqBodyClass=RetainCardForm.class,bodyProperties="terminalId")
@@ -113,6 +117,13 @@ public class RetaincardController {
 		return result;
 	}
 
+	/**
+	 * @param organizationId
+	 * @param start
+	 * @param limit
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody
 	ModelMap search(@RequestParam long organizationId, @RequestParam int start,
@@ -243,12 +254,10 @@ public class RetaincardController {
 		try {
 			IRetaincard card = retaincardService.get(id);
 			List<Long> orgIdList = orgService.listSubOrgId(organizationId);
-//			List<IOrganization> orgs = EntityUtils.convert(orgList);
 			if (card != null) {
 				if (card.getTreatmentOrganization() == null) {
 					result.addAttribute(FishConstant.SUCCESS, true);
 				} else {
-//					IOrganization org = orgService.get(card.getTreatmentOrganization().getGuid());
 					if (orgIdList.contains(card.getTreatmentOrganization().getId())) {
 						result.addAttribute(FishConstant.SUCCESS, true);
 					} else {
@@ -351,7 +360,7 @@ public class RetaincardController {
 
 	/**
 	 * 卡片移交处理
-	 *
+	 * @param organizationId
 	 * @param orgGuid
 	 * @param id
 	 * @param status
@@ -368,11 +377,6 @@ public class RetaincardController {
 		ModelMap result = new ModelMap();
 		try {
 			IRetaincard card = retaincardService.get(id);
-			// Iterable<IOrganization> orgList =
-			// orgService.list(Long.parseLong(organizationId));
-			// List<IOrganization> orgs = EntityUtils.convert(orgList);
-
-			// if (StringUtils.isEmpty(card.getOrgGuid())) {
 			if (card == null) {
 				result.addAttribute(FishConstant.SUCCESS, false);
 				result.addAttribute("errorMsg", messageSource.getMessage("retaincard.handoverFailNotExist", null, FishCfg.locale));
@@ -381,15 +385,12 @@ public class RetaincardController {
 					card.setTreatmentTime(new Date());
 					card.setTreatmentPeople(treatmentPeople);
 					card.setStatus(CardStatus.getById(status));
-					// card.setOrgGuid(orgGuid);
 					card.setHandOverOrg(orgService.get(orgGuid));
 					retaincardService.update(card);
 					result.addAttribute(FishConstant.SUCCESS, true);
 					result.addAttribute("data", new RetainCardForm(card,
 							orgService, deviceService));
 				} else {
-					// IOrganization org =
-					// orgService.get(card.getHandOverOrg().getGuid());
 					if (card.getHandOverOrg().getGuid().equals(organizationId)) { // 当处理机构与当前登录用户所属的机构一致时才有权限对卡片进行处理
 						card.setTreatmentTime(new Date());
 						card.setTreatmentPeople(treatmentPeople);
@@ -416,10 +417,9 @@ public class RetaincardController {
 
 	/**
 	 * 卡片销毁
-	 *
 	 * @param id
 	 * @param name
-	 *            处理人员
+	 * @param organizationId
 	 * @return
 	 */
 	@MethodNameDescrible(describle="userlog.RetaincardController.update",hasArgs=true,argsContext="id")
@@ -458,28 +458,6 @@ public class RetaincardController {
 	}
 
 	/**
-	 * 判断吞卡日期距当前日期的天数 (吞卡天数大于14天的卡片才能处理)
-	 *
-	 * @param retaincardTime
-	 * @param today
-	 * @return
-	 */
-	/*
-	 * private int getDaysBetween(Date retaincardTime, Date today) {
-	 *
-	 * Calendar d1 = Calendar.getInstance(); d1.setTime(retaincardTime);
-	 *
-	 * Calendar d2 = Calendar.getInstance(); d2.setTime(today);
-	 *
-	 * if (d1.after(d2)) { Calendar swap = d1; d1 = d2; d2 = swap; } int days =
-	 * d2.get(Calendar.DAY_OF_YEAR) - d1.get(Calendar.DAY_OF_YEAR); int y2 =
-	 * d2.get(Calendar.YEAR); if (d1.get(Calendar.YEAR) != y2) { d1 = (Calendar)
-	 * d1.clone(); do { days += d1.getActualMaximum(Calendar.DAY_OF_YEAR);
-	 * d1.add(Calendar.YEAR, 1); } while (d1.get(Calendar.YEAR) != y2); } return
-	 * days; }
-	 */
-
-	/**
 	 * 验证当前登录人员是否能处理卡片
 	 *
 	 * @param id
@@ -501,6 +479,10 @@ public class RetaincardController {
 		}
 		return flag;
 	}
+	/**
+	 * @param list
+	 * @return
+	 */
 	public List<RetainCardForm> convert(List<IRetaincard> list) {
 		List<RetainCardForm> result = new ArrayList<RetainCardForm>();
 		for (IRetaincard item : list) {
@@ -520,7 +502,9 @@ public class RetaincardController {
 	}
 	/**
 	 * 导出吞卡信息 生成Excel
-	 *
+	 * @param wRequest
+	 * @param request
+	 * @param response
 	 * @return
 	 */
 	@MethodNameDescrible(describle="userlog.RetaincardController.poiExcel",hasArgs=false)
@@ -566,11 +550,6 @@ public class RetaincardController {
 				Long.parseLong(orgId), new Filter());
 		for (IRetaincard item : retaincardList) {
 			if ( item.getAccountNo() != null && item.getAccountNo().equals(accountNo)) {
-				// if (item.getStatus().equals(CardStatus.WAIT_RECEIVE) ||
-				// item.getStatus().equals(CardStatus.HAND_OVER)) {
-				// flag = true;
-				// break;
-				// }
 				if (DateUtils.getTimestamp(item.getCardRetainTime()).equals(
 						cardRetainTime)) {
 					flag = true;

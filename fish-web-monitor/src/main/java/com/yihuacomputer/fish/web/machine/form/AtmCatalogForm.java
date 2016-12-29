@@ -5,6 +5,10 @@ import java.util.List;
 
 import com.yihuacomputer.fish.api.atm.IAtmCatalog;
 
+/**
+ * @author YiHua
+ *
+ */
 public class AtmCatalogForm {
 	private long id;
 	private String no;
@@ -15,6 +19,9 @@ public class AtmCatalogForm {
 		
 	}
 	
+	/**
+	 * @param catalog
+	 */
 	public AtmCatalogForm(IAtmCatalog catalog){
 		setId(catalog.getId());
 		setName(catalog.getName());
@@ -22,6 +29,10 @@ public class AtmCatalogForm {
 		setNote(catalog.getNote());
 	}
 	
+	/**
+	 * @param list
+	 * @return
+	 */
 	public static List<AtmCatalogForm> convert(List<IAtmCatalog> list) {
 		List<AtmCatalogForm> result = new ArrayList<AtmCatalogForm>();
 		for(IAtmCatalog item : list) {
@@ -30,6 +41,9 @@ public class AtmCatalogForm {
 		return result;
 	}
 	
+    /**
+     * @param catalog
+     */
     public void translate(IAtmCatalog catalog) {
     	catalog.setId(getId());
     	catalog.setName(getName());

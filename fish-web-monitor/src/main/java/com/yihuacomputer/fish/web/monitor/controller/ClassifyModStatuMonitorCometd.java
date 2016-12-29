@@ -16,6 +16,10 @@ import com.yihuacomputer.fish.api.monitor.report.IMonitorUser;
 import com.yihuacomputer.fish.api.monitor.report.MonitorUserType;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
 
+/**
+ * @author YiHua
+ *
+ */
 @Component
 @org.cometd.annotation.Service("ClassifyModStatusCometdService")
 public class ClassifyModStatuMonitorCometd {
@@ -32,8 +36,9 @@ public class ClassifyModStatuMonitorCometd {
 
 	/**
 	 * 开始监控，将监控条件保存
-	 * */
-
+	 * @param remote
+	 * @param message
+	 */
 	@org.cometd.annotation.Listener(JOIN_CHANNEL)
 	public void join(ServerSession remote, ServerMessage.Mutable message) {
 

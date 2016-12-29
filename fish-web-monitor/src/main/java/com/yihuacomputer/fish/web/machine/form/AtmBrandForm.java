@@ -6,11 +6,13 @@ import java.util.List;
 import com.yihuacomputer.fish.api.atm.IAtmVendor;
 import com.yihuacomputer.fish.api.atm.VendorStatus;
 
+/**
+ * @author YiHua
+ *
+ */
 public class AtmBrandForm {
 
 	private long id;
-
-//	private String no;
 
 	private String name;
 
@@ -28,6 +30,9 @@ public class AtmBrandForm {
 
 	}
 
+	/**
+	 * @param brand
+	 */
 	public AtmBrandForm(IAtmVendor brand) {
 		setId(brand.getId());
 		setAddress(brand.getAddress());
@@ -35,12 +40,13 @@ public class AtmBrandForm {
 		setHotline1(brand.getHotline1());
 		setHotline2(brand.getHotline2());
 		setName(brand.getName());
-//		setNo(brand.getNo());
-		// setStatus(brand.getStatus() == null ? null : brand.getStatus()
-		// .getText());
 		setStatus(brand.getStatus().getId());
 	}
 
+	/**
+	 * @param list
+	 * @return
+	 */
 	public static List<AtmBrandForm> convert(List<IAtmVendor> list) {
 		List<AtmBrandForm> result = new ArrayList<AtmBrandForm>();
 		for (IAtmVendor item : list) {
@@ -49,15 +55,15 @@ public class AtmBrandForm {
 		return result;
 	}
 
+	/**
+	 * @param brand
+	 */
 	public void translate(IAtmVendor brand) {
 		brand.setAddress(getAddress());
 		brand.setCountry(getCountry());
 		brand.setHotline1(getHotline1());
 		brand.setHotline2(getHotline2());
 		brand.setName(getName().trim());
-//		brand.setNo(getNo());
-		// brand.setStatus("1".equals(getStatus()) ? VendorStatus.SUPPLY
-		// : VendorStatus.SERVE);
 		brand.setStatus(VendorStatus.getById(getStatus()));
 	}
 
@@ -68,14 +74,6 @@ public class AtmBrandForm {
 	public void setId(long id) {
 		this.id = id;
 	}
-
-//	public String getNo() {
-//		return no;
-//	}
-//
-//	public void setNo(String no) {
-//		this.no = no;
-//	}
 
 	public String getName() {
 		return name;

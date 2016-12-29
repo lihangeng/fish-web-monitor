@@ -47,8 +47,6 @@ import com.yihuacomputer.fish.monitor.entity.filter.NetStatusFilter;
 import com.yihuacomputer.fish.monitor.entity.filter.RunStatusFilter;
 import com.yihuacomputer.fish.web.monitor.form.MonitorFilterForm;
 
-//import com.yihuacomputer.fish.api.monitor.xfs.IStateCodeService;
-
 /**
  * 订阅条件管理
  *
@@ -85,6 +83,11 @@ public class MonitorFilterController {
 
     /**
      * 获取监控过滤条件
+     * @param start
+     * @param limit
+     * @param userId
+     * @param request
+     * @return
      */
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
@@ -216,8 +219,7 @@ public class MonitorFilterController {
 
     /**
      * 修改
-     * 
-     * @param userId
+     * @param id
      * @param request
      * @return
      */

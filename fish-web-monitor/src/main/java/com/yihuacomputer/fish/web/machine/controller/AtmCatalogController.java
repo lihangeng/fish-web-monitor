@@ -27,6 +27,10 @@ import com.yihuacomputer.fish.api.atm.IAtmCatalog;
 import com.yihuacomputer.fish.api.atm.IAtmCatalogService;
 import com.yihuacomputer.fish.web.machine.form.AtmCatalogForm;
 
+/**
+ * @author YiHua
+ *
+ */
 @Controller
 @RequestMapping("/machine/atmCatalog")
 @ClassNameDescrible(describle="userlog.atmCatalogController")
@@ -39,6 +43,12 @@ public class AtmCatalogController {
 	@Autowired
 	protected MessageSource messageSource;
 
+	/**
+	 * @param start
+	 * @param limit
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody
 	ModelMap search(@RequestParam int start, @RequestParam int limit, WebRequest request) {
@@ -53,6 +63,10 @@ public class AtmCatalogController {
 		return result;
 	}
 
+	/**
+	 * @param id
+	 * @return
+	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	@MethodNameDescrible(describle="userlog.atmCatalogController.delete",hasArgs=false,urlArgs=true)
 	public @ResponseBody
@@ -70,6 +84,10 @@ public class AtmCatalogController {
 		return result;
 	}
 
+	/**
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.POST)
 	@MethodNameDescrible(describle="userlog.atmCatalogController.add",hasReqBodyParam=true,reqBodyClass=AtmCatalogForm.class,bodyProperties="name")
 	public @ResponseBody
@@ -85,6 +103,11 @@ public class AtmCatalogController {
 		return result;
 	}
 
+	/**
+	 * @param id
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	@MethodNameDescrible(describle="userlog.atmCatalogController.update",hasReqBodyParam=true,reqBodyClass=AtmCatalogForm.class,bodyProperties="name")
 	public @ResponseBody
@@ -100,6 +123,11 @@ public class AtmCatalogController {
 		return result;
 	}
 
+	/**
+	 * @param id
+	 * @param no
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.GET, value = "/unique")
 	public @ResponseBody
 	ModelMap unique(@RequestParam String id, @RequestParam String no) {

@@ -19,6 +19,10 @@ import com.yihuacomputer.fish.api.openplan.PlanState;
 import com.yihuacomputer.fish.api.openplan.PlanStateType;
 import com.yihuacomputer.fish.api.openplan.PlanType;
 
+/**
+ * @author YiHua
+ *
+ */
 public class OpenPlanForm {
 	
 	private Logger logger = LoggerFactory.getLogger(OpenPlanForm.class);
@@ -53,6 +57,9 @@ public class OpenPlanForm {
 
 	}
 
+	/**
+	 * @param deviceOpenPlan
+	 */
 	public OpenPlanForm(IDeviceOpenPlan deviceOpenPlan) {
 		this.id = deviceOpenPlan.getId();
 		this.name = deviceOpenPlan.getName();
@@ -108,6 +115,12 @@ public class OpenPlanForm {
 		this.deviceCount = deviceCount;
 	}
 
+	/**
+	 * @param deviceOpenPlan
+	 * @param deviceId
+	 * @param terminalId
+	 * @param deviceCount
+	 */
 	public OpenPlanForm(IDeviceOpenPlan deviceOpenPlan, String deviceId, String terminalId, int deviceCount) {
 		this.id = deviceOpenPlan.getId();
 		this.planStateType = PlanStateType.Enabled.getText();
@@ -149,6 +162,9 @@ public class OpenPlanForm {
 		this.deviceCount = deviceCount;
 	}
 
+	/**
+	 * @return
+	 */
 	public List<OpenPlanDetailForm> getOpenPlanDetails() {
 		List<OpenPlanDetailForm> openPlanDetails = new ArrayList<OpenPlanDetailForm>();
 		if (StringUtils.isNotEmpty(this.openPlanDetailForms)) {

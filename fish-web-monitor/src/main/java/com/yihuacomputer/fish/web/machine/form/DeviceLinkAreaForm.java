@@ -2,6 +2,10 @@ package com.yihuacomputer.fish.web.machine.form;
 
 
 
+/**
+ * @author YiHua
+ *
+ */
 public class DeviceLinkAreaForm {
 	
 	private long id;

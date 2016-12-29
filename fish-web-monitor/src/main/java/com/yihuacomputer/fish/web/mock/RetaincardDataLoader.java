@@ -11,6 +11,10 @@ import com.yihuacomputer.fish.api.monitor.business.IRetaincard;
 import com.yihuacomputer.fish.api.monitor.business.IRetaincardService;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
 
+/**
+ * @author YiHua
+ *
+ */
 public class RetaincardDataLoader {
 
 	@Autowired
@@ -19,16 +23,17 @@ public class RetaincardDataLoader {
 	@Autowired
 	private IOrganizationService orgService;
 
+	/**
+	 * 初始化
+	 */
 	public void init() {
 		IRetaincard card1 = retaincardService.make();
 		card1.setAccountNo("666586985698132458");
 		card1.setCardDistributionBank("农业银行");
-//		card1.setCardDistributionBankGuid("17");
 		card1.setCardType(IDCardType.IDCARD);
 		card1.setCustomerName("张三");
 		card1.setCustomerPapers("326589658741256985");
 		card1.setCustomerPhone("13656589874");
-//		card1.setOrgGuid(orgService.getByCode("yihua").getGuid());
 		card1.setReason("超时");
 		card1.setStatus(CardStatus.ALREADY_RECEIVE);
 		card1.setTerminalId("0001");
@@ -42,8 +47,6 @@ public class RetaincardDataLoader {
 		IRetaincard card2 = retaincardService.make();
 		card2.setAccountNo("666586985698132422");
 		card2.setCardDistributionBank("农业银行新街口支行");
-//		card2.setCardDistributionBankGuid("19");
-//		card2.setOrgGuid(orgService.getByCode("yihua").getGuid());
 		card2.setReason("超时");
 		card2.setStatus(CardStatus.WAIT_RECEIVE);
 		card2.setTerminalId("0004");

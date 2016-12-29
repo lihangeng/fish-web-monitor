@@ -39,6 +39,9 @@ public class DeviceBasicInfoController
 
     private final List<DeviceBasicInfoForm> deviceBasicInfoList = new ArrayList<DeviceBasicInfoForm>();
 
+    /**
+     * 初始化
+     */
     @PostConstruct
     public void init()
     {
@@ -100,7 +103,10 @@ public class DeviceBasicInfoController
     }
     /**
      * 得到设备基本信息
-     * @return ModelMap
+     * @param start
+     * @param limit
+     * @param request
+     * @return
      */
     @RequestMapping(value = "/deviceBasicInfoForm", method = RequestMethod.GET)
     public @ResponseBody

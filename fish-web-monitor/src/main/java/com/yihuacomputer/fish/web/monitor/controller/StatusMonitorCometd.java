@@ -46,8 +46,9 @@ public class StatusMonitorCometd {
 
     /**
      * 开始监控，将监控条件保存
-     * */
-
+     * @param remote
+     * @param message
+     */
     @org.cometd.annotation.Listener(JOIN_CHANNEL)
     public void join(ServerSession remote, ServerMessage.Mutable message) {
 

@@ -7,6 +7,10 @@ import com.yihuacomputer.fish.api.monitor.report.IStatusReport;
 import com.yihuacomputer.fish.web.version.form.DeviceVersionHistory;
 import com.yihuacomputer.fish.web.version.form.VersionForm;
 
+/**
+ * @author YiHua
+ *
+ */
 public class DeviceDetailForm {
 	
 	

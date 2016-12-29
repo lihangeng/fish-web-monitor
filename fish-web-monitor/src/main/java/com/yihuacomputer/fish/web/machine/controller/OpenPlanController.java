@@ -86,6 +86,12 @@ public class OpenPlanController {
 	private IOpenPlanDeviceRelation relationService;
 
 
+	/**
+	 * @param start
+	 * @param limit
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody
 	ModelMap searchOpenPlan(@RequestParam int start, @RequestParam int limit, WebRequest request) {
@@ -153,6 +159,12 @@ public class OpenPlanController {
 	}
 
 
+	/**
+	 * @param start
+	 * @param limit
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(value = "/device", method = RequestMethod.GET)
 	public @ResponseBody
 	ModelMap searchPlanForDevice(@RequestParam int start, @RequestParam int limit, WebRequest request) {
@@ -208,6 +220,12 @@ public class OpenPlanController {
 		return result;
 	}
 
+	/**
+	 * @param start
+	 * @param limit
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(value = "/detailsForDevice", method = RequestMethod.GET)
 	public @ResponseBody
 	ModelMap searchPlanDetailForDevice(@RequestParam int start, @RequestParam int limit, WebRequest request) {
@@ -240,6 +258,13 @@ public class OpenPlanController {
 		return forms;
 	}
 
+	/**
+	 * @param form
+	 * @param webRequest
+	 * @param session
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.POST)
 	@MethodNameDescrible(describle="userlog.openPlanController.add",hasReqBodyParam=true,reqBodyClass=OpenPlanForm.class,bodyProperties="name")
 	public @ResponseBody
@@ -355,7 +380,12 @@ public class OpenPlanController {
 		return result;
 	}
 
-	// 删除方案
+	/**
+	 * 删除方案
+	 * @param id
+	 * @param req
+	 * @return
+	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	@MethodNameDescrible(describle="userlog.openPlanController.delete",hasLogKey=true)
 	public @ResponseBody
@@ -391,11 +421,12 @@ public class OpenPlanController {
 	}
 
 	/**
-	 *
 	 * 根据方案Id获得关联设备列表
-	 *
-	 * @param form
-	 * @return ModelMap<String, Object>
+	 * @param start
+	 * @param limit
+	 * @param request
+	 * @param req
+	 * @return
 	 */
 	@RequestMapping(value = "/linkedDevice", method = RequestMethod.GET)
 	public @ResponseBody
@@ -434,6 +465,13 @@ public class OpenPlanController {
 	}
 
 
+	/**
+	 * @param webRequest
+	 * @param file
+	 * @param response
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(value = "/uploadExcel",method = RequestMethod.POST)
 	public @ResponseBody
 	String upload(WebRequest webRequest, @RequestParam(value = "file") MultipartFile file,
@@ -460,6 +498,13 @@ public class OpenPlanController {
 
 	}
 
+	/**
+	 * @param webRequest
+	 * @param type
+	 * @param response
+	 * @param request
+	 * @throws Exception
+	 */
 	@RequestMapping(value = "delFile", method = RequestMethod.POST)
 	public @ResponseBody
 	void upload(WebRequest webRequest, String type,
@@ -471,6 +516,12 @@ public class OpenPlanController {
 		file.delete();
 	}
 
+	/**
+	 * @param webRequest
+	 * @param request
+	 * @param response
+	 * @throws Exception
+	 */
 	@RequestMapping(value = "/downloadFile", method = RequestMethod.GET)
 	public void download(WebRequest webRequest, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
@@ -541,8 +592,8 @@ public class OpenPlanController {
 
 	/**
 	 * 建立关联关系：
-	 *
-	 * @param request
+	 * @param planId
+	 * @param deviceId
 	 * @return
 	 */
 	@RequestMapping(value = "/link", method = RequestMethod.POST)
@@ -655,6 +706,10 @@ public class OpenPlanController {
 		return false;
 	}
 	
+	/**
+	 * @param list
+	 * @return
+	 */
 	public List<DeviceForm> convert(List<IDevice> list) {
 		List<DeviceForm> result = new ArrayList<DeviceForm>();
 		for (IDevice item : list) {
@@ -667,8 +722,7 @@ public class OpenPlanController {
 	 *
 	 * @param device
 	 *            接口
-	 * @param isDate
-	 *            是否需要转换日期
+	 * @return
 	 */
 	public DeviceForm toFrom(IDevice device) {
 		DeviceForm deviceForm = new DeviceForm();

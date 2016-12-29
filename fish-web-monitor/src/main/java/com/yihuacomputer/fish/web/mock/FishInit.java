@@ -25,6 +25,9 @@ public class FishInit {
 	private ParmDataLoader parmDataLoader;
 	
 	
+	/**
+	 *初始化 
+	 */
 	public void init(){
 		parmDataLoader.init();
 		personDataLoader.init();

@@ -5,6 +5,10 @@ import java.util.List;
 
 import com.yihuacomputer.fish.api.atm.IAtmType;
 
+/**
+ * @author YiHua
+ *
+ */
 public class AtmTypeForm {
 	private long id;
 	/**
@@ -27,6 +31,9 @@ public class AtmTypeForm {
 	public AtmTypeForm() {
 	}
 
+	/**
+	 * @param type
+	 */
 	public AtmTypeForm(IAtmType type) {
 		this.id = type.getId();
 		setCashtype(type.getCashtype() == null ? null : String.valueOf(type.getCashtype().getId()));
@@ -37,6 +44,10 @@ public class AtmTypeForm {
 		setName(type.getName());
 	}
 
+	/**
+	 * @param list
+	 * @return
+	 */
 	public static List<AtmTypeForm> convert(List<IAtmType> list) {
 		List<AtmTypeForm> result = new ArrayList<AtmTypeForm>();
 		for (IAtmType item : list) {

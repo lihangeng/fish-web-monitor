@@ -17,6 +17,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.ServletContextAware;
 
+/**
+ * @author YiHua
+ *
+ */
 @Component
 public class BayeuxInitializer implements DestructionAwareBeanPostProcessor,
 		ServletContextAware {
@@ -54,6 +58,9 @@ public class BayeuxInitializer implements DestructionAwareBeanPostProcessor,
 		processor.deprocessCallbacks(bean);
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean(initMethod = "start", destroyMethod = "stop")
 	public BayeuxServer bayeuxServer() {
 		BayeuxServerImpl bean = new BayeuxServerImpl();

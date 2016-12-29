@@ -45,6 +45,10 @@ import com.yihuacomputer.fish.web.machine.form.AtmCatalogForm;
 import com.yihuacomputer.fish.web.machine.form.AtmTypeForm;
 import com.yihuacomputer.fish.web.machine.form.AtmTypeLinkModuleForm;
 
+/**
+ * @author YiHua
+ *
+ */
 @Controller
 @RequestMapping("/machine/atmType")
 @ClassNameDescrible(describle="userlog.atmTypeController")
@@ -72,6 +76,12 @@ public class AtmTypeController {
     @Autowired
     protected MessageSource messageSource;
 
+    /**
+     * @param start
+     * @param limit
+     * @param request
+     * @return
+     */
     @RequestMapping(method = RequestMethod.GET)
     public @ResponseBody ModelMap search(@RequestParam int start, @RequestParam int limit, WebRequest request) {
         logger.info(String.format("search type : start = %s ,limt = %s ", start, limit));
@@ -102,6 +112,10 @@ public class AtmTypeController {
         return model;
     }
 
+    /**
+     * @param id
+     * @return
+     */
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	@MethodNameDescrible(describle="userlog.atmTypeController.delete",hasLogKey=true)
     public @ResponseBody ModelMap delete(@PathVariable long id) {
@@ -139,6 +153,10 @@ public class AtmTypeController {
         return result;
     }
 
+    /**
+     * @param form
+     * @return
+     */
     @RequestMapping(method = RequestMethod.POST)
 	@MethodNameDescrible(describle="userlog.atmTypeController.add",hasReqBodyParam=true,reqBodyClass=AtmTypeForm.class,bodyProperties="name")
     public @ResponseBody ModelMap add(@RequestBody AtmTypeForm form) {
@@ -179,6 +197,11 @@ public class AtmTypeController {
         return result;
     }
 
+    /**
+     * @param id
+     * @param form
+     * @return
+     */
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	@MethodNameDescrible(describle="userlog.atmTypeController.update",hasReqBodyParam=true,reqBodyClass=AtmTypeForm.class,bodyProperties="name")
     public @ResponseBody ModelMap update(@PathVariable long id, @RequestBody AtmTypeForm form) {
@@ -232,6 +255,9 @@ public class AtmTypeController {
         return result;
     }
 
+    /**
+     * @return
+     */
     @RequestMapping(value = "/queryAtmVendor", method = RequestMethod.GET)
     public @ResponseBody ModelMap queryAtmVendor() {
         logger.info("search AtmType : queryAtmVendor");
@@ -242,6 +268,9 @@ public class AtmTypeController {
         return model;
     }
 
+    /**
+     * @return
+     */
     @RequestMapping(value = "/queryAtmCatalog", method = RequestMethod.GET)
     public @ResponseBody ModelMap queryAtmCatalog() {
         logger.info("search AtmType : queryAtmCatalog");
@@ -252,6 +281,11 @@ public class AtmTypeController {
         return model;
     }
 
+    /**
+     * @param id
+     * @param no
+     * @return
+     */
     @RequestMapping(method = RequestMethod.GET, value = "/unique")
     public @ResponseBody ModelMap unique(@RequestParam String id, @RequestParam String no) {
         logger.info("type no unique checking...");
@@ -261,9 +295,7 @@ public class AtmTypeController {
     }
 
     /**
-     * 加载atm模块信息
-     * 
-     * @param atmModule
+     * @param atmTypeId
      * @return
      */
     @RequestMapping(method = RequestMethod.POST, value = "/atmModule")
@@ -283,6 +315,11 @@ public class AtmTypeController {
 
     }
 
+    /**
+     * @param atmModules
+     * @param checkeds
+     * @return
+     */
     public String toModuleForm(List<IAtmModule> atmModules, List<IAtmModule> checkeds) {
         StringBuffer result = new StringBuffer("");
         int length = atmModules.size();
@@ -320,7 +357,7 @@ public class AtmTypeController {
      * 检查编号唯一性
      *
      * @param id
-     * @param no
+     * @param name
      * @return
      */
     private boolean isExistCode(String id, String name) {
@@ -391,8 +428,6 @@ public class AtmTypeController {
 
             IAtmType at = (IAtmType) objs[0];
             IAtmModule am = (IAtmModule) objs[1];
-            // IAtmTypeAtmModuleRelation ar = (IAtmTypeAtmModuleRelation)
-            // objs[2];
 
             // 已经存在,直接添加
             if (map.containsKey(at.getName())) {

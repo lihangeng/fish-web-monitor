@@ -44,6 +44,9 @@ public class MachineDataLoader {
 	@Autowired
 	private IAtmModuleService atmModuleService;
 
+	/**
+	 * 初始化
+	 */
 	public void init() {
 		// 初始化品牌信息
 		initBrand();
