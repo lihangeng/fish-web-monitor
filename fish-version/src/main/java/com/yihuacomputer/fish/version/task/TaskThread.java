@@ -26,6 +26,9 @@ public class TaskThread implements Runnable {
 	public TaskThread() {
 	}
 
+	/**
+	 * @param task
+	 */
 	public TaskThread(ITask task) {
 		this.task = task;
 	}
@@ -45,6 +48,10 @@ public class TaskThread implements Runnable {
 		this.task = task;
 	}
 
+    /**
+     * @param task
+     * @return
+     */
     public String getState(ITask task) {
         if (task.getStatus().equals(TaskStatus.NEW) || task.getStatus().equals(TaskStatus.RUN)) {
             return getI18n(task.getStatus().getText());

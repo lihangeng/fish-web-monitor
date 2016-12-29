@@ -13,6 +13,10 @@ import com.yihuacomputer.fish.api.system.config.IParamService;
 import com.yihuacomputer.fish.api.version.job.task.ITask;
 import com.yihuacomputer.fish.api.version.job.task.ITaskCollection;
 
+/**
+ * @author YiHua
+ *
+ */
 public class TaskCollection implements ITaskCollection{
 
 	private Logger logger = LoggerFactory.getLogger(TaskCollection.class);
@@ -27,6 +31,9 @@ public class TaskCollection implements ITaskCollection{
 	
 	private BlockingQueue<ITask> taskQueue = null;
 
+	/**
+	 * 初始化
+	 */
 	@PostConstruct
 	public void init(){
 		try{

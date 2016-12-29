@@ -42,7 +42,7 @@ public class DeviceRetaincardController {
 
 	/**
 	 * 接受吞卡信息
-	 * @param runInfo
+	 * @param msg
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.POST)

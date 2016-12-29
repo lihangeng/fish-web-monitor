@@ -47,6 +47,10 @@ public class StatusPropertiesContorller {
 	@Autowired
 	private IXfsService xfsService;
 
+	/**
+	 * @param msg
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.POST)
 	public @ResponseBody ModelMap acceptStatus(@RequestBody StatusPropertiesMsg msg) {
 

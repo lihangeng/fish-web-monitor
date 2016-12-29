@@ -8,6 +8,10 @@ import com.yihuacomputer.fish.api.version.job.task.ITask;
 import com.yihuacomputer.fish.api.version.job.task.ITaskService;
 import com.yihuacomputer.fish.api.version.job.task.TaskStatus;
 
+/**
+ * @author YiHua
+ *
+ */
 public class TaskManager implements Runnable {
 
 	private Logger logger = LoggerFactory.getLogger(TaskManager.class);
@@ -24,6 +28,12 @@ public class TaskManager implements Runnable {
 		return taskService;
 	}
 
+	/**
+	 * @param taskService
+	 * @param taskThreadPool
+	 * @param taskQueue
+	 * @param messageSource
+	 */
 	public void setTaskService(ITaskService taskService,TaskThreadPool taskThreadPool,TaskQueue taskQueue,MessageSource messageSource) {
 		this.taskService = taskService;
 		this.taskThreadPool = taskThreadPool;

@@ -7,6 +7,10 @@ import java.util.concurrent.TimeUnit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * @author YiHua
+ *
+ */
 public class TaskThreadPool {
 
 	private Logger logger = LoggerFactory.getLogger(TaskThreadPool.class);
@@ -15,6 +19,9 @@ public class TaskThreadPool {
 	
 	private TaskQueue taskQueue;
 	
+	/**
+	 * @param taskQueue
+	 */
 	public TaskThreadPool(TaskQueue taskQueue){
 		this.taskQueue = taskQueue;
 		this.init();
@@ -42,6 +49,9 @@ public class TaskThreadPool {
 		taskExecutor = new ThreadPoolExecutor(getCorePoolSize(),getCorePoolSize(),10,TimeUnit.SECONDS,new ArrayBlockingQueue<Runnable>(this.taskQueue.getTaskQueueLength()),new ThreadPoolExecutor.CallerRunsPolicy());
 	}
 	
+	/**
+	 * 关闭
+	 */
 	public void close(){
 		if(taskExecutor!=null){
 			taskExecutor.shutdownNow();
@@ -51,6 +61,7 @@ public class TaskThreadPool {
 	
 	/**
 	 * 执行任务
+	 * @param task
 	 * */
 	public void execute(Runnable task){
 		taskExecutor.execute(task);

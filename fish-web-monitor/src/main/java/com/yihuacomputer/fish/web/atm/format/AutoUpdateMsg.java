@@ -44,6 +44,9 @@ public class AutoUpdateMsg {
         this.autoUpdatePatches = autoUpdatePatches;
     }
 
+    /**
+     * @param patch
+     */
     public void addAutoUpdatePatch(PatchMsg patch) {
         this.autoUpdatePatches.add(patch);
     }
@@ -56,14 +59,24 @@ public class AutoUpdateMsg {
         this.ret = ret;
     }
 
+    /**
+     * @param task
+     */
     public void addTask(TaskMsg task) {
         tasks.add(task);
     }
 
+    /**
+     * @param task
+     */
     public void removeTask(TaskMsg task) {
         tasks.remove(task);
     }
 
+    /**
+     * @param downTypeName
+     * @param downVersionNo
+     */
     public void removeTask(String downTypeName, String downVersionNo) {
         TaskMsg task = findTask(downTypeName, downVersionNo);
         if (task != null) {
@@ -71,6 +84,11 @@ public class AutoUpdateMsg {
         }
     }
 
+    /**
+     * @param downTypeName
+     * @param downVersionNo
+     * @return
+     */
     public TaskMsg findTask(String downTypeName, String downVersionNo) {
         for (TaskMsg task : tasks) {
             if (task.getDownTypeName().equalsIgnoreCase(downTypeName) && task.getDownVersionNo().equalsIgnoreCase(downVersionNo)) {

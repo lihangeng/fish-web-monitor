@@ -15,12 +15,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+/**
+ * @author YiHua
+ *
+ */
 @Controller
 @RequestMapping("/upload")
 public class UploadContrller {
 	
 	private Logger logger = LoggerFactory.getLogger(UploadContrller.class);
 
+    /**
+     * @param file
+     * @param request
+     * @param response
+     */
     @RequestMapping(method = RequestMethod.POST)
     public @ResponseBody
     void upload(@RequestParam(value = "file") MultipartFile file, HttpServletRequest request,HttpServletResponse response) {
@@ -43,6 +52,11 @@ public class UploadContrller {
         }
     }
 
+    /**
+     * @param request
+     * @param response
+     * @return
+     */
     @RequestMapping(value="/task/planReqAct.ebf",method = RequestMethod.GET)
     public @ResponseBody String get(HttpServletRequest request,HttpServletResponse response) {
         String xml = "<root>"+
@@ -80,6 +94,11 @@ public class UploadContrller {
 
     }
 
+    /**
+     * @param request
+     * @param response
+     * @return
+     */
     @RequestMapping(value="/task/planReqAct1.ebf",method = RequestMethod.POST)
     public @ResponseBody String post(HttpServletRequest request,HttpServletResponse response) {
         String xml = "<root>"+

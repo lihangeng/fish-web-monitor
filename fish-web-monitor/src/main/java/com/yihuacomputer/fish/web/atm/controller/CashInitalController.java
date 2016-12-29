@@ -51,7 +51,7 @@ public class CashInitalController {
 	protected MessageSource messageSource;
 	/**
 	 * 采集设备应用加钞信息
-	 * @param runInfo
+	 * @param msg
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.POST)

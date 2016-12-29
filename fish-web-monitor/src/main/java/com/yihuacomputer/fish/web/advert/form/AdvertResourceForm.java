@@ -3,6 +3,10 @@ package com.yihuacomputer.fish.web.advert.form;
 
 import com.yihuacomputer.fish.api.advert.Screen;
 
+/**
+ * @author YiHua
+ *
+ */
 public class AdvertResourceForm {
 	private long id;
 

@@ -35,6 +35,10 @@ public class StatusAliveController {
 	@Autowired
 	private IXfsService xfsService;
 	
+	/**
+	 * @param msg
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.POST)
 	public @ResponseBody ModelMap acceptStatusAlive(@RequestBody StatusKeepAliveMsg msg){
 		

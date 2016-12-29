@@ -21,6 +21,10 @@ import com.yihuacomputer.fish.api.version.IVersionTypeService;
 import com.yihuacomputer.fish.api.version.VersionCfg;
 import com.yihuacomputer.fish.version.entity.VersionType;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional
 public class VersionTypeService implements IVersionTypeService {

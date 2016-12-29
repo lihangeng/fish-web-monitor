@@ -31,7 +31,7 @@ public class SchindlerController {
 
 	/**
 	 * 接收白名单进程下载请求信息
-	 * @param runInfo
+	 * @param schindler
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.POST)

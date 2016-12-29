@@ -33,6 +33,10 @@ public class FileUploadController {
 	 */
 	private Logger logger = LoggerFactory.getLogger(FileUploadController.class);
 
+	/**
+	 * @param fileCfg
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.POST)
 	public @ResponseBody ModelMap uploadFile(@RequestBody HttpFileCfg fileCfg){		
 		ModelMap result = new ModelMap();

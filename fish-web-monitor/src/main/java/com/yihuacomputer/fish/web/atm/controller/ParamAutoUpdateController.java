@@ -55,7 +55,7 @@ public class ParamAutoUpdateController {
 	/**
 	 * 接收参数自动更新请求
 	 *
-	 * @param paramUpdateMsg
+	 * @param msg
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.POST)

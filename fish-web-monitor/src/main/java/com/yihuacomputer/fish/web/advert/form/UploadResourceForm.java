@@ -4,6 +4,10 @@ import java.util.Date;
 
 import com.yihuacomputer.common.util.DateUtils;
 
+/**
+ * @author YiHua
+ *
+ */
 public class UploadResourceForm {
 
 	private String id;
@@ -38,6 +42,12 @@ public class UploadResourceForm {
 
 	private String screen;
 
+	/**
+	 * @param originalFileName
+	 * @param fileName
+	 * @param path
+	 * @param screen
+	 */
 	public UploadResourceForm(String originalFileName, String fileName, String path, String screen) {
 		this.success = true;
 		this.originalFileName = originalFileName;

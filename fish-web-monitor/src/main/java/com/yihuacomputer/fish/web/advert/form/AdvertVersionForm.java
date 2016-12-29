@@ -5,6 +5,10 @@ import java.util.Date;
 import com.yihuacomputer.fish.api.version.IVersion;
 import com.yihuacomputer.fish.api.version.VersionStatus;
 
+/**
+ * @author YiHua
+ *
+ */
 public class AdvertVersionForm {
 	private long id;
 	private Date createdTime;
@@ -18,6 +22,9 @@ public class AdvertVersionForm {
 	public AdvertVersionForm() {
 	}
 
+	/**
+	 * @param version
+	 */
 	public AdvertVersionForm(IVersion version) {
 		if (version != null) {
 			this.exist = true;

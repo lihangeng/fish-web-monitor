@@ -12,6 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.yihuacomputer.fish.api.system.config.IParamService;
 import com.yihuacomputer.fish.api.version.job.task.ITask;
 
+/**
+ * @author YiHua
+ *
+ */
 public class TaskQueue {
 
 	private Logger logger = LoggerFactory.getLogger(TaskQueue.class);
@@ -26,6 +30,9 @@ public class TaskQueue {
 	
 	private BlockingQueue<ITask> taskQueue = null;
 
+	/**
+	 * 初始化
+	 */
 	@PostConstruct
 	public void init(){
 		try{

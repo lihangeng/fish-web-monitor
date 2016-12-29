@@ -49,7 +49,7 @@ public class AppRuntimeParamController {
     /**
      * 增加ATM机运行参数：
      * 
-     * @param request
+     * @param msg
      * @return
      */
     @RequestMapping(method = RequestMethod.POST)
@@ -103,7 +103,7 @@ public class AppRuntimeParamController {
     /**
      * 将参数转换为list格式
      * 
-     * @param id
+     * @param content
      *            数据库id
      * @param terminalId
      *            设备号

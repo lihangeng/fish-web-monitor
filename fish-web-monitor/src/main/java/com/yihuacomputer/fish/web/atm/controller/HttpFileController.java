@@ -42,6 +42,10 @@ public class HttpFileController {
 	
 	private int currentConnect = 0;
 
+	/**
+	 * @param req
+	 * @param resp
+	 */
 	@RequestMapping(method = RequestMethod.POST)
 	public void downloadFile(HttpServletRequest req, HttpServletResponse resp) {
 		int maxConnect = 80;

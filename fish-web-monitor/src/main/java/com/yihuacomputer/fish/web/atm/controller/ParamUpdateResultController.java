@@ -53,7 +53,7 @@ public class ParamUpdateResultController {
 	/**
 	 * 接收参数上报更新状态
 	 *
-	 * @param paramUpdateMsg
+	 * @param msg
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.POST)
@@ -236,6 +236,10 @@ enum AgentRet {
 		return text;
 	}
 
+	/**
+	 * @param agentRet
+	 * @return
+	 */
 	public static boolean isDownFail(AgentRet agentRet) {
 		if (agentRet.name().startsWith("RET41")) {
 			return true;
@@ -243,6 +247,10 @@ enum AgentRet {
 		return false;
 	}
 
+	/**
+	 * @param agentRet
+	 * @return
+	 */
 	public static boolean isDeployFail(AgentRet agentRet) {
 		if (agentRet.name().startsWith("RET52")) {
 			return true;

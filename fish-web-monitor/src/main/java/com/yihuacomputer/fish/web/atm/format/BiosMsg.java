@@ -2,6 +2,10 @@ package com.yihuacomputer.fish.web.atm.format;
 
 import com.yihuacomputer.fish.api.monitor.hardware.IBios;
 
+/**
+ * @author YiHua
+ *
+ */
 public class BiosMsg
 {
     /**
@@ -23,6 +27,9 @@ public class BiosMsg
     {
     }
 
+    /**
+     * @param bios
+     */
     public BiosMsg(IBios bios)
     {
         setBiosReleaseDate(bios.getBiosReleaseDate());

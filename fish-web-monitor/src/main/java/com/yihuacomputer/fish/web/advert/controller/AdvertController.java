@@ -86,6 +86,12 @@ public class AdvertController {
 	private final static long ADVERTBYTESIZE=5242880;
 	private final static long MILLO=1024*1024l;
 
+	/**
+	 * @param start
+	 * @param limit
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
 	public ModelMap searchAdvert(@RequestParam int start, @RequestParam int limit, WebRequest request) {
@@ -101,6 +107,12 @@ public class AdvertController {
 		return result;
 	}
 
+	/**
+	 * @param start
+	 * @param limit
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(value = "/resource", method = RequestMethod.GET)
 	@ResponseBody
 	public ModelMap searchAdvertResource(@RequestParam int start, @RequestParam int limit, WebRequest request) {
@@ -117,6 +129,10 @@ public class AdvertController {
 
 	/**
 	 * 上传广告资源
+	 * @param file
+	 * @param request
+	 * @param response
+	 * @return
 	 */
 	@RequestMapping(value = "/uploadRes", method = RequestMethod.POST)
 	@ResponseBody
@@ -144,6 +160,12 @@ public class AdvertController {
 		}
 	}
 
+	/**
+	 * @param file
+	 * @param request
+	 * @param response
+	 * @return
+	 */
 	@RequestMapping(value = "/uploadRes/screen", method = RequestMethod.POST)
 	@ResponseBody
 	@MethodNameDescrible(describle="userlog.AdvertController.uploadByScreen",hasArgs=false)
@@ -179,6 +201,10 @@ public class AdvertController {
 		}
 	}
 
+	/**
+	 * @param s
+	 * @return
+	 */
 	public boolean containsChinese(String s) {
 		String pattern = "[u4e00-u9fa5]+";
 		Pattern p = Pattern.compile(pattern);
@@ -243,6 +269,10 @@ public class AdvertController {
 		return forms;
 	}
 
+    /**
+     * @param advert
+     * @return
+     */
     public AdvertForm convertToFrom(IAdvert advert) {
     	AdvertForm form = new AdvertForm();
     	form.setId(advert.getId());
@@ -258,6 +288,11 @@ public class AdvertController {
         return form;
     }
     
+    /**
+     * @param form
+     * @param version
+     * @return
+     */
     public AdvertForm setVersion(AdvertForm form,IVersion version) {
     	form.setVersionId(version.getId());
     	form.setVersionType(version.getVersionType().getTypeName());
@@ -279,6 +314,10 @@ public class AdvertController {
 		}
 		return forms;
 	}
+	/**
+	 * @param advRes
+	 * @return
+	 */
 	public AdvertResourceForm convert(IAdvertResource advRes) {
 		AdvertResourceForm form = new AdvertResourceForm();
 		form.setId(advRes.getId());
@@ -516,7 +555,11 @@ public class AdvertController {
 	private String getVersionI18n(String key,Object[] value){
 		return messageSourceVersion.getMessage(key,value, FishCfg.locale);
 	}
-	// 删除广告
+	/**
+	 * 删除广告
+	 * @param id
+	 * @return
+	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	@ResponseBody
 	@MethodNameDescrible(describle="userlog.AdvertController.delete",hasLogKey=true)
@@ -548,6 +591,10 @@ public class AdvertController {
 	    }
 	
 	 
+	/**
+	 * @param id
+	 * @return
+	 */
 	@RequestMapping(value = "/{id}/generateVersion", method = RequestMethod.GET)
 	@ResponseBody
 	public ModelMap generateVersion(@PathVariable long id) {
@@ -563,6 +610,10 @@ public class AdvertController {
 		return result;
 	}
 
+	/**
+	 * @param id
+	 * @return
+	 */
 	@RequestMapping(value = "/version", method = RequestMethod.POST)
 	@ResponseBody
 	public ModelMap getVersion(@RequestParam long id) {
@@ -588,6 +639,7 @@ public class AdvertController {
 	 *
 	 * @param id
 	 *            广告编号
+	 * @param request
 	 * @return
 	 */
 	@RequestMapping(value = "/preview", method = RequestMethod.GET)
@@ -616,6 +668,12 @@ public class AdvertController {
 		}
 	}
 
+	/**
+	 * @param id
+	 * @param screen
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(value = "/preview2", method = RequestMethod.POST)
 	@ResponseBody
 	public String preview2(@RequestParam long id, @RequestParam String screen, HttpServletRequest request) {

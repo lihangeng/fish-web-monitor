@@ -95,6 +95,7 @@ public class VersionService implements IDomainVersionService {
         return dao.get(id, Version.class);
     }
 
+    @Override
     public synchronized IVersion updateDownLoadCounter(IVersion version) {
         int counter = version.getDownloadCounter();
         version.setDownloadCounter(++counter);
@@ -114,6 +115,7 @@ public class VersionService implements IDomainVersionService {
         return entity;
     }
 
+    @Override
     public String getVersionStrByVersionNo(String versionNostr){
     	String versionNoValue = versionNostr;
     	if(versionNoValue == null){
@@ -373,7 +375,8 @@ public class VersionService implements IDomainVersionService {
         }
         return version;
     }
-      
+    
+    @Override
 	public List<IVersion> getUpdateVersion(List<IVersion> maybeVersions, IVersion currentVersion){
     	 List<IVersion>  versions = new ArrayList<IVersion>();
           for (IVersion version : maybeVersions) {
@@ -509,6 +512,7 @@ public class VersionService implements IDomainVersionService {
         return list;
     }
 
+    @Override
     public List<VersionStatusDistribute> getVersionStatusDistribute(IFilter filter) {
         StringBuffer statusHql = new StringBuffer();
         List<Object> hqlArgList = new ArrayList<Object>();
@@ -550,6 +554,7 @@ public class VersionService implements IDomainVersionService {
         return statusDistributeList;
     }
 
+    @Override
     public IPageResult<VersionDistributeDetail> getVersionStatusDistributeDetail(int start, int limit, IFilter filter) {
         StringBuffer statusDetailHql = new StringBuffer();
         List<Object> hqlArgList = new ArrayList<Object>();
@@ -684,6 +689,10 @@ enum AgentRet {
         return text;
     }
 
+    /**
+     * @param agentRet
+     * @return
+     */
     public static boolean isDownFail(AgentRet agentRet) {
         if (agentRet.name().startsWith("RET41")) {
             return true;
@@ -691,6 +700,10 @@ enum AgentRet {
         return false;
     }
 
+    /**
+     * @param agentRet
+     * @return
+     */
     public static boolean isDeployFail(AgentRet agentRet) {
         if (agentRet.name().startsWith("RET52")) {
             return true;

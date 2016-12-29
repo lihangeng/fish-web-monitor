@@ -11,6 +11,10 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.yihuacomputer.common.jackson.JsonUtils;
 
+/**
+ * @author YiHua
+ *
+ */
 public class AdvertForm {
 	
 	private Logger logger = LoggerFactory.getLogger(AdvertForm.class);

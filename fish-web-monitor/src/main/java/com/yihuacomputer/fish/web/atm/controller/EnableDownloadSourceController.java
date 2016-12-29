@@ -25,6 +25,10 @@ import com.yihuacomputer.fish.api.version.job.task.TaskStatus;
 import com.yihuacomputer.fish.web.atm.format.PatchMsg;
 
 
+/**
+ * @author YiHua
+ *
+ */
 @Controller
 @RequestMapping("/msg/getdownloadsource")
 public class EnableDownloadSourceController {

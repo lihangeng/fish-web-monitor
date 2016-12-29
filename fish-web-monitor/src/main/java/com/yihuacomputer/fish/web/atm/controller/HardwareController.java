@@ -51,7 +51,7 @@ public class HardwareController {
 	/**
 	 * 接收系统硬件信息
 	 * 
-	 * @param hardwareMsg
+	 * @param msg
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.POST)

@@ -27,6 +27,10 @@ import com.yihuacomputer.fish.api.monitor.box.IDeviceBoxInfoService;
 import com.yihuacomputer.fish.web.atm.format.BoxDetailReportMsg;
 import com.yihuacomputer.fish.web.atm.format.DeviceBoxReportMsg;
 
+/**
+ * @author YiHua
+ *
+ */
 @Controller
 @RequestMapping("/msg/reportboxdetail")
 public class BoxDetailController {

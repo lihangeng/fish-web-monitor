@@ -52,7 +52,7 @@ public class SettlementController {
 	private ISettlementService settlementService;
 	/**
 	 * 接收设备清机结账信息
-	 * @param runInfo
+	 * @param msg
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.POST)

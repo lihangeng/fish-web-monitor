@@ -42,7 +42,7 @@ public class AppRunInfoController {
 	
 	/**
 	 * 采集设备应用运行状态信息
-	 * @param runInfo
+	 * @param msg
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.POST)

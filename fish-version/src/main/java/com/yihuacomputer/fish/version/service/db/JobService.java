@@ -105,6 +105,7 @@ public class JobService extends DomainJobService {
 		this.userService = userService;
 	}
 
+	@Override
     @Transactional(readOnly = true)
     public List<IJob> findReloadJob() {
         IFilter filter = new Filter();
@@ -222,6 +223,7 @@ public class JobService extends DomainJobService {
         }
     }
 
+    @Override
     public int getRelationJobSzie(IVersion version){
         IFilter filter = new Filter();
         filter.eq("version.id", version.getId());
@@ -324,7 +326,7 @@ public class JobService extends DomainJobService {
 		return list.size() ;
 	}
 	
-
+	@Override
 	public boolean batchCancelTaskByJob(long jobId){
 		IJob job = this.getById(jobId);
 		if(job==null){

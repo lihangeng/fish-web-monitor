@@ -88,6 +88,13 @@ public class VersionDownloadService implements IVersionDownloadService {
         return new PageResult<IDevice>(devices, start, limit);
     }
 
+    /**
+     * @param start
+     * @param limit
+     * @param jobId
+     * @param filter
+     * @return
+     */
     public IPageResult<ITask> pageTasks(int start, int limit, int jobId, IFilter filter) {
         filter.eq("job.jobId", jobId);
         return taskService.page(start, limit, filter);

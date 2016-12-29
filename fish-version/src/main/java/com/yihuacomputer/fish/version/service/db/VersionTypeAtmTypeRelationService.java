@@ -13,6 +13,10 @@ import com.yihuacomputer.fish.api.version.IVersionService;
 import com.yihuacomputer.fish.api.version.IVersionTypeAtmTypeRelationService;
 import com.yihuacomputer.fish.version.entity.VersionTypeAtmTypeRelation;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional
 public class VersionTypeAtmTypeRelationService implements IVersionTypeAtmTypeRelationService{

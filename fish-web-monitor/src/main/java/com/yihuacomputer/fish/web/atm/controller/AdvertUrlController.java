@@ -34,6 +34,10 @@ import com.yihuacomputer.fish.api.advert.bs.IBsAdvertService;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.device.IDeviceService;
 
+/**
+ * @author YiHua
+ *
+ */
 @Controller
 @RequestMapping("/msg/advertUrl")
 public class AdvertUrlController {
@@ -47,6 +51,10 @@ public class AdvertUrlController {
 	@Autowired
 	private IAdvertGroupDeviceRelationService advertGroupDeviceRelationService;
 	
+	/**
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody String reciveMsg(HttpServletRequest request) {
 		ModelMap result = new ModelMap();

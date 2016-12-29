@@ -10,10 +10,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 
+/**
+ * @author YiHua
+ *
+ */
 @Controller
 @RequestMapping("/msg/testQuartz")
 public class quartzTestController {
 
+	/**
+	 * @param request
+	 * @return
+	 */
 	@Autowired
 
 	@RequestMapping(method = RequestMethod.GET)

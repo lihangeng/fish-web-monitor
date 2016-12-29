@@ -13,6 +13,10 @@ import com.yihuacomputer.fish.api.version.job.task.ITaskService;
 import com.yihuacomputer.fish.version.entity.TaskDetail;
 import com.yihuacomputer.fish.version.service.api.IDomainTaskDetailService;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional
 public class TaskDetailService implements IDomainTaskDetailService {
@@ -37,10 +41,12 @@ public class TaskDetailService implements IDomainTaskDetailService {
         return td;
     }
 
+    @Override
     public ITaskDetail add(ITaskDetail td) {
         return dao.save(td);
     }
 
+    @Override
     public void deleteByTaskId(long taskId) {
         dao.batchUpdate("delete TaskDetail t where t.taskId = ?", taskId);
     }

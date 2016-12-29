@@ -19,6 +19,10 @@ import com.yihuacomputer.fish.api.version.job.IUpdateDeployDateHistoryService;
 import com.yihuacomputer.fish.api.version.job.task.ITask;
 import com.yihuacomputer.fish.version.entity.UpdateDeployDateHistory;
 
+/**
+ * @author YiHua
+ *
+ */
 @Service
 @Transactional
 public class UpdateDeployDateHistoryService implements IUpdateDeployDateHistoryService{
