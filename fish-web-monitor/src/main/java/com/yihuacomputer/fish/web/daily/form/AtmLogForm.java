@@ -6,6 +6,10 @@ import java.util.List;
 import com.yihuacomputer.fish.api.atmlog.BackupResult;
 import com.yihuacomputer.fish.api.atmlog.IAtmLog;
 
+/**
+ * @author YiHua
+ *
+ */
 public class AtmLogForm {
 	
 	private long id;
@@ -20,6 +24,14 @@ public class AtmLogForm {
 	}
 
 
+	/**
+	 * @param id
+	 * @param terminalId
+	 * @param dateTime
+	 * @param lastDoDate
+	 * @param size
+	 * @param backupResult
+	 */
 	public AtmLogForm(long id, String terminalId, String dateTime, String lastDoDate,long  size,
 			BackupResult backupResult) {
 		this.id = id;
@@ -30,6 +42,10 @@ public class AtmLogForm {
 		this.backupResult = backupResult;
 	}
 	
+	/**
+	 * @param atmLogs
+	 * @return
+	 */
 	public static List<AtmLogForm> toForms(List<IAtmLog> atmLogs){
 		List<AtmLogForm> forms = new ArrayList<AtmLogForm>();
 		for(IAtmLog atmLog : atmLogs){

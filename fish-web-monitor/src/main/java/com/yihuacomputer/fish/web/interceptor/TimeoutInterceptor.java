@@ -67,6 +67,9 @@ public class TimeoutInterceptor extends HandlerInterceptorAdapter {
         return false;
 	}
 
+	/**
+	 * 忽略的请求
+	 */
 	public void init(){
 		ignoreUrls.add("/api/data/");
 		ignoreUrls.add("/api/msg/");

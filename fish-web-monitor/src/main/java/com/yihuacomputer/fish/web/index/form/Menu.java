@@ -5,6 +5,10 @@ import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
 
+/**
+ * @author YiHua
+ *
+ */
 public class Menu {
 	private String text;
 	private String cls;
@@ -13,11 +17,20 @@ public class Menu {
 
 	public Menu(){}
 
+	/**
+	 * @param text
+	 * @param cls
+	 * @param action
+	 */
 	public Menu(String text,String cls,String action){
 		this(text,cls);
 		this.action = action;
 	}
 
+	/**
+	 * @param text
+	 * @param cls
+	 */
 	public Menu(String text,String cls){
 		this.text = text;
 		this.cls = cls;
@@ -43,10 +56,18 @@ public class Menu {
 		return this.cls;
 	}
 
+	/**
+	 * @param menu
+	 */
 	public void addSubMenu(Menu menu){
 		this.menu.add(menu);
 	}
 
+	/**
+	 * @param text
+	 * @param cls
+	 * @param action
+	 */
 	public void addSubMenu(String text,String cls,String action){
 		this.menu.add(new Menu(text,cls,action));
 	}
@@ -59,6 +80,9 @@ public class Menu {
 		this.menu = menu;
 	}
 
+	/**
+	 * @return
+	 */
 	public String toConfig(){
 		if(StringUtils.isEmpty(this.getText())){
 			return null;

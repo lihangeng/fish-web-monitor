@@ -10,6 +10,10 @@ import com.yihuacomputer.fish.api.fault.ICaseFault;
 import com.yihuacomputer.fish.api.monitor.xfs.status.DeviceMod;
 import com.yihuacomputer.fish.api.person.IPerson;
 
+/**
+ * @author YiHua
+ *
+ */
 public class CaseFaultForm {
 
 	private long id;
@@ -59,6 +63,9 @@ public class CaseFaultForm {
 
 	}
 
+	/**
+	 * @param caseFault
+	 */
 	public CaseFaultForm(ICaseFault caseFault){
 		this.id = caseFault.getId();
 		this.terminalId = caseFault.getTerminalId();

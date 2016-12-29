@@ -1,5 +1,9 @@
 package com.yihuacomputer.fish.web.daily.form;
 
+/**
+ * @author YiHua
+ *
+ */
 public class AtmLogTotal {
     private String cashInId;
 

@@ -7,6 +7,10 @@ import com.yihuacomputer.fish.api.permission.IPermission;
 import com.yihuacomputer.fish.api.person.IUser;
 import com.yihuacomputer.fish.api.person.IOrganization;
 
+/**
+ * @author YiHua
+ *
+ */
 public class LoginUserForm {
 
 	private String id;
@@ -17,6 +21,10 @@ public class LoginUserForm {
 	private boolean isNew;
 	private List<String> permissions = new ArrayList<String>();
 	
+	/**
+	 * @param master
+	 * @param permissions
+	 */
 	public LoginUserForm(IUser master,List<IPermission> permissions) {
 		this.id = master.getCode();
 		this.name = master.getName();

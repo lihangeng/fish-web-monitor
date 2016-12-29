@@ -34,6 +34,10 @@ import com.yihuacomputer.fish.api.person.IUserLogService;
 import com.yihuacomputer.fish.api.person.UserSession;
 import com.yihuacomputer.fish.web.util.FishWebUtils;
 
+/**
+ * @author YiHua
+ *
+ */
 @Aspect
 public class UserLogAopAspect {
 
@@ -45,18 +49,31 @@ public class UserLogAopAspect {
 
 	private final Logger logger = org.slf4j.LoggerFactory.getLogger(UserLogAopAspect.class);
 
+	/**
+	 * 切点
+	 */
 	@Pointcut("@within(com.yihuacomputer.common.annotation.ClassNameDescrible)")
 	public void controller() {
 	}
 
+	/**
+	 * 切点
+	 */
 	@Pointcut("execution(* *(..))")
 	public void methodPointcut() {
 	}
 
+	/**
+	 * 切点
+	 */
 	@Pointcut("@annotation(com.yihuacomputer.common.annotation.MethodNameDescrible)")
 	public void requestMapping() {
 	}
 
+	/**
+	 * @param joinPoint
+	 * @throws Throwable
+	 */
 	@Before("controller() && methodPointcut() && requestMapping()")
 	public void aroundControllerMethod(JoinPoint joinPoint) throws Throwable {
 	}
@@ -237,6 +254,11 @@ public class UserLogAopAspect {
 		return sra.getRequest();
 	}
 
+	/**
+	 * @param pjp
+	 * @return
+	 * @throws Throwable
+	 */
 	@Around("controller() && methodPointcut() && requestMapping()")
 	public Object doAround(ProceedingJoinPoint pjp) throws Throwable {
 		long time = System.currentTimeMillis();
@@ -294,6 +316,11 @@ public class UserLogAopAspect {
 		 return obj;
 	}
 
+	/**
+	 * 记录拦截异常
+	 * @param jp
+	 * @param ex
+	 */
 	@AfterThrowing(pointcut = "controller() && methodPointcut() && requestMapping()", throwing = "ex")
 	public void doThrowing(JoinPoint jp, Throwable ex) {
 		logger.error("method " + jp.getTarget().getClass().getName() + "." + jp.getSignature().getName() + " throw exception");

@@ -95,6 +95,9 @@ public class ScreenForm {
 	public ScreenForm() {
 	}
 
+	/**
+	 * @param screen
+	 */
 	public ScreenForm(ScreenForm screen) {
 		setMonitorType(screen.getMonitorType());
 		setFileName(screen.getFileName());

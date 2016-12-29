@@ -40,6 +40,10 @@ import com.yihuacomputer.fish.api.session.ISessionManage;
 import com.yihuacomputer.fish.web.index.form.LoginBackForm;
 import com.yihuacomputer.fish.web.util.FishWebUtils;
 
+/**
+ * @author YiHua
+ *
+ */
 @Controller
 @RequestMapping("/login")
 @ClassNameDescrible(describle = "userlog.LoginController")
@@ -67,6 +71,12 @@ public class LoginController {
 
 	/**
 	 * 登录并验证用户
+	 * @param username
+	 * @param password
+	 * @param session
+	 * @param request
+	 * @param webrequest
+	 * @return
 	 */
 	@MethodNameDescrible(describle = "userlog.LoginController.login", hasArgs = true, argsContext = "username")
 	@RequestMapping(method = RequestMethod.POST)
@@ -152,6 +162,12 @@ public class LoginController {
 
 	/**
 	 * 验证用户和密码是否正确
+	 * @param code
+	 * @param password
+	 * @param session
+	 * @param request
+	 * @param webrequest
+	 * @return
 	 */
 	@RequestMapping(value = "/check", method = RequestMethod.POST)
 	public @ResponseBody ModelMap check(@RequestParam String code, @RequestParam String password, HttpSession session, HttpServletRequest request, WebRequest webrequest) {
@@ -170,9 +186,9 @@ public class LoginController {
 
 	/**
 	 * 验证后修改密码：
-	 *
 	 * @param username
 	 * @param password
+	 * @param newPassword
 	 * @param session
 	 * @param request
 	 * @param webrequest
@@ -279,6 +295,9 @@ class TreeMenu {
 	private boolean leaf = true;
 	private boolean treeNode = true;
 
+	/**
+	 * @param permission
+	 */
 	public TreeMenu(IPermission permission) {
 		this.id = permission.getId();
 		this.code = permission.getCode();

@@ -3,6 +3,10 @@ package com.yihuacomputer.fish.web.daily.form;
 import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.fish.api.atmlog.IAtmLogInfo;
 
+/**
+ * @author YiHua
+ *
+ */
 public class AtmLogInfoForm {
 
 	private long id ;
@@ -23,6 +27,9 @@ public class AtmLogInfoForm {
 
 	}
 
+	/**
+	 * @param atmLogInfo
+	 */
 	public AtmLogInfoForm(IAtmLogInfo atmLogInfo){
 		this.orgId = String.valueOf(atmLogInfo.getId());
 		this.backupDate = DateUtils.getDate(atmLogInfo.getBackupDate());

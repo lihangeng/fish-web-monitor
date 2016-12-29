@@ -3,6 +3,10 @@ import java.util.List;
 
 import com.yihuacomputer.fish.web.monitor.form.HardwareVersion;
 
+/**
+ * @author YiHua
+ *
+ */
 public class RuntimeInfoForm {
 
 	private long id;

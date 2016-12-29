@@ -1,5 +1,9 @@
 package com.yihuacomputer.fish.web.command.format;
 
+/**
+ * @author YiHua
+ *
+ */
 public class RemoteCommand {
     private long id;
 

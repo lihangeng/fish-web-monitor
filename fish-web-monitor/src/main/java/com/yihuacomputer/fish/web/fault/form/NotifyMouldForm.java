@@ -2,6 +2,10 @@ package com.yihuacomputer.fish.web.fault.form;
 
 import com.yihuacomputer.fish.api.fault.INotifyMould;
 
+/**
+ * @author YiHua
+ *
+ */
 public class NotifyMouldForm {
 
 	private long id;
@@ -68,6 +72,9 @@ public class NotifyMouldForm {
 		this.classifyName = classifyName;
 	}
 
+	/**
+	 * @param notifyMould
+	 */
 	public NotifyMouldForm(INotifyMould notifyMould) {
 		setId(notifyMould.getId());
 		setNotifyType(notifyMould.getNotifyType() == null ? null : String.valueOf(notifyMould.getNotifyType().getId()));

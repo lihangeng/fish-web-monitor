@@ -19,21 +19,37 @@ import com.yihuacomputer.common.annotation.SaveMethodDescrible;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.domain.dao.IGenericDao;
 
+/**
+ * @author YiHua
+ *
+ */
 @Aspect
 public class EntitySaveInterceptor {
 	
 	@Autowired
     private IGenericDao dao;
 	
+	/**
+	 * 切点
+	 */
 	@Pointcut("@within(org.springframework.stereotype.Service)")
 	public void service() {
 	}
 	
+	/**
+	 * 切点
+	 */
 	@Pointcut("@annotation(com.yihuacomputer.common.annotation.SaveMethodDescrible)")
 	public void save() {
 	}
 	
 
+	/**
+	 * 拦截方法
+	 * @param joinPoint
+	 * @return
+	 * @throws Throwable
+	 */
 	@Around("service() && save()")
 	public Object aroundControllerMethod(ProceedingJoinPoint joinPoint) throws Throwable {
 		Method aopMethod = getPointCutMethod(joinPoint);

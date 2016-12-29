@@ -1,6 +1,10 @@
 package com.yihuacomputer.fish.web.daily.form;
 import java.util.List;
 
+/**
+ * @author YiHua
+ *
+ */
 public class RuntimeInfoListForm {
 
 	private List<RuntimeInfoForm> runtimeInfoList;

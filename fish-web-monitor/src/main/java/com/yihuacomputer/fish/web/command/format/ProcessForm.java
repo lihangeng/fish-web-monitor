@@ -35,6 +35,9 @@ public class ProcessForm {
 
 	}
 
+	/**
+	 * @param processForm
+	 */
 	public ProcessForm(ProcessForm processForm) {
 		setName(processForm.getName());
 		setUser(processForm.getUser());
@@ -83,6 +86,10 @@ public class ProcessForm {
 		this.description = description;
 	}
 
+	/**
+	 * @param list
+	 * @return
+	 */
 	public static List<ProcessForm> convert(List<ProcessForm> list) {
 		List<ProcessForm> result = new ArrayList<ProcessForm>();
 		for (ProcessForm item : list) {

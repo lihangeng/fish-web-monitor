@@ -40,6 +40,10 @@ import com.yihuacomputer.fish.web.daily.form.RuntimeVersionForm;
 import com.yihuacomputer.fish.web.monitor.form.HardwareVersion;
 import com.yihuacomputer.fish.web.monitor.form.RuntimeInfoMsg;
 
+/**
+ * @author YiHua
+ *
+ */
 @Controller
 @RequestMapping("/machine/runtimeInfo")
 public class RuntimeInfoController {
@@ -53,6 +57,15 @@ public class RuntimeInfoController {
 	@Autowired
 	protected MessageSource messageSource;
 
+	/**
+	 * @param ip
+	 * @param terminalId
+	 * @param startDate
+	 * @param endDate
+	 * @param request
+	 * @param response
+	 * @return
+	 */
 	@RequestMapping(value = "/exportFromDate/check", method = RequestMethod.POST)
 	public @ResponseBody
 	ModelMap exportFormDateCheck(@RequestParam String ip, @RequestParam String terminalId, @RequestParam String startDate, @RequestParam String endDate,
@@ -131,14 +144,11 @@ public class RuntimeInfoController {
 				HSSFCell hardWarecell = hardwarerow.createCell(0);
 				hardWarecell.setCellValue(messageSource.getMessage("runtimeInfo.date", null, FishCfg.locale));
 				hardWarecell.setCellStyle(style);
-//				Region region = new Region(0, (short) 0, 1, (short) 0);
-//				hardWare.addMergedRegion(region);
 				hardWare.addMergedRegion(new CellRangeAddress(0,1,0,0));
 
 				hardWarecell = hardwarerow.createCell(1);
 				hardWarecell.setCellValue(messageSource.getMessage("runtimeInfo.hardWare", null, FishCfg.locale));
 				hardWarecell.setCellStyle(style);
-//				hardWare.addMergedRegion(new Region(0, (short) 1, 0, (short) 4));
 				hardWare.addMergedRegion(new CellRangeAddress(0,0,1,4));
 
 				HSSFRow hardWareInfoRow = hardWare.createRow(1);
@@ -164,13 +174,11 @@ public class RuntimeInfoController {
 				HSSFCell softWareCell = softWareRow.createCell(0);
 				softWareCell.setCellValue(messageSource.getMessage("runtimeInfo.date", null, FishCfg.locale));
 				softWareCell.setCellStyle(style);
-//				softWare.addMergedRegion(new Region(0, (short) 0, 1, (short) 0));
 				softWare.addMergedRegion(new CellRangeAddress(0,1,0,0));
 
 				softWareCell = softWareRow.createCell(1);
 				softWareCell.setCellValue(messageSource.getMessage("runtimeInfo.softWare", null, FishCfg.locale));
 				softWareCell.setCellStyle(style);
-//				softWare.addMergedRegion(new Region(0, (short) 1, 0, (short) 2));
 				softWare.addMergedRegion(new CellRangeAddress(0,0,1,2));
 
 				HSSFRow softWareInfoRow = softWare.createRow(1);
@@ -264,15 +272,12 @@ public class RuntimeInfoController {
 				HSSFCell hardWarecell = hardwarerow.createCell(0);
 				hardWarecell.setCellValue(messageSource.getMessage("runtimeInfo.date", null, FishCfg.locale));
 				hardWarecell.setCellStyle(style);
-//				Region region = new Region(0, (short) 0, 1, (short) 0);
-//				hardWare.addMergedRegion(region);
 				CellRangeAddress region = new CellRangeAddress(0, 1, 0, 0);
 				hardWare.addMergedRegion(region);
 
 				hardWarecell = hardwarerow.createCell(1);
 				hardWarecell.setCellValue(messageSource.getMessage("runtimeInfo.hardWare", null, FishCfg.locale));
 				hardWarecell.setCellStyle(style);
-//				hardWare.addMergedRegion(new Region(0, (short) 1, 0, (short) 4));
 				hardWare.addMergedRegion(new CellRangeAddress(0,0,1,4));
 
 				HSSFRow hardWareInfoRow = hardWare.createRow(1);
@@ -298,13 +303,11 @@ public class RuntimeInfoController {
 				HSSFCell softWareCell = softWareRow.createCell(0);
 				softWareCell.setCellValue(messageSource.getMessage("runtimeInfo.date", null, FishCfg.locale));
 				softWareCell.setCellStyle(style);
-//				softWare.addMergedRegion(new Region(0, (short) 0, 1, (short) 0));
 				softWare.addMergedRegion(new CellRangeAddress(0,1,0,0));
 
 				softWareCell = softWareRow.createCell(1);
 				softWareCell.setCellValue(messageSource.getMessage("runtimeInfo.softWare", null, FishCfg.locale));
 				softWareCell.setCellStyle(style);
-//				softWare.addMergedRegion(new Region(0, (short) 1, 0, (short) 2));
 				softWare.addMergedRegion(new CellRangeAddress(0,0,1,2));
 
 				HSSFRow softWareInfoRow = softWare.createRow(1);
@@ -346,7 +349,6 @@ public class RuntimeInfoController {
 								hardWareInfoRow = hardWare.createRow(j + 2);
 								if (j == 0) {
 									hardWareInfoRow.createCell(0).setCellValue(list.get(i).getDate());
-//									hardWare.addMergedRegion(new Region(j + 2, (short) 0, j + 2 + hardWareList.size() - 1, (short) 0));
 									hardWare.addMergedRegion(new CellRangeAddress(j + 2, j + 2 + hardWareList.size() - 1, 0, 0));
 								}
 								hardWareInfoRow.createCell(1).setCellValue(hardWareList.get(j).getDevice());
@@ -365,7 +367,6 @@ public class RuntimeInfoController {
 								softWareInfoRow = softWare.createRow(n + 2);
 								if (n == 0) {
 									softWareInfoRow.createCell(0).setCellValue(list.get(i).getDate());
-//									softWare.addMergedRegion(new Region(n + 2, (short) 0, n + 2 + runtimeVersionList.size() - 1, (short) 0));
 									softWare.addMergedRegion(new CellRangeAddress(n + 2, n + 2 + runtimeVersionList.size() - 1, 0, 0));
 								}
 								softWareInfoRow.createCell(1).setCellValue(runtimeVersionList.get(n).getName());
@@ -386,7 +387,6 @@ public class RuntimeInfoController {
 								hardWareInfoRow = hardWare.createRow(m);
 								if (j == 0) {
 									hardWareInfoRow.createCell(0).setCellValue(list.get(i).getDate());
-//									hardWare.addMergedRegion(new Region(m, (short) 0, m + hardWareList.size() - 1, (short) 0));
 									hardWare.addMergedRegion(new CellRangeAddress(m, m + hardWareList.size() - 1, 0, 0 ));
 								}
 								hardWareInfoRow.createCell(1).setCellValue(hardWareList.get(j).getDevice());
@@ -405,7 +405,6 @@ public class RuntimeInfoController {
 								softWareInfoRow = softWare.createRow(k);
 								if (n == 0) {
 									softWareInfoRow.createCell(0).setCellValue(list.get(i).getDate());
-//									softWare.addMergedRegion(new Region(k, (short) 0, k + runtimeVersionList.size() - 1, (short) 0));
 									softWare.addMergedRegion(new CellRangeAddress(k, k + runtimeVersionList.size() - 1, 0, 0));
 								}
 								softWareInfoRow.createCell(1).setCellValue(runtimeVersionList.get(n).getName());
@@ -417,8 +416,6 @@ public class RuntimeInfoController {
 					}
 
 				}
-				// String name = "RuntimeInfo" + "_" + date + "_" + limit +
-				// terminalId + ".xls";
 				String time = DateUtils.getTime(new Date()).replace(":", "");
 				String name = FishCfg.getTempDir() + System.getProperty("file.separator") + "RuntimeInfo" + "_" + startDate + "_" + endDate + "_" + terminalId + "_" + time + ".xls";
 				fout = new FileOutputStream(name);
@@ -451,7 +448,6 @@ public class RuntimeInfoController {
 	}
 
 	private int getLimit(String endDate, String startDate) {
-	    /*Calendar d1 = Calendar.getInstance();*/
 	    Date start = DateUtils.getDate(startDate);
 	    Date end = DateUtils.getDate(endDate);
 	    long times = end.getTime() - start.getTime();
@@ -459,6 +455,12 @@ public class RuntimeInfoController {
         return diff.intValue();
     }
 
+    /**
+     * @param path
+     * @param request
+     * @param response
+     * @return
+     */
     @RequestMapping(value = "/exportFromDate/download", method = RequestMethod.GET)
 	public @ResponseBody
 	ModelMap exportFormDateDownload(@RequestParam String path, HttpServletRequest request, HttpServletResponse response) {
@@ -467,6 +469,13 @@ public class RuntimeInfoController {
 		return null;
 	}
 
+	/**
+	 * @param ip
+	 * @param terminalId
+	 * @param request
+	 * @param response
+	 * @return
+	 */
 	@RequestMapping(value = "/exportLast30/check", method = RequestMethod.POST)
 	public @ResponseBody
 	ModelMap exportLast30Check(@RequestParam String ip, @RequestParam String terminalId, HttpServletRequest request, HttpServletResponse response) {
@@ -569,8 +578,6 @@ public class RuntimeInfoController {
 				} catch (Exception e) {
 					logger.error(String.format("[%s]", e));
 				}
-				// File file = new File(name);
-				// this.download(file, response, "gb2312", "application/x-xls");
 				result.addAttribute(FishConstant.SUCCESS, true);
 				result.addAttribute("path", name);
 				return result;
@@ -862,20 +869,11 @@ public class RuntimeInfoController {
 		response.setContentType(contentType);
 		response.setHeader("Content-disposition", "attachment;filename=" + file.getName());
 
-		// response.setHeader("charset", "UTF-8");
-
-		// OutputStream os = null;
 		InputStream is = null;
-		// InputStreamReader isr = null;
-		// OutputStreamWriter osw = null;
 		ServletOutputStream out = null;
 		try {
 			is = new FileInputStream(file);
-			// osw = new OutputStreamWriter(os, encoding);
-
 			out = response.getOutputStream();
-			// os = response.getOutputStream();
-
 			int len = 0;
 			byte[] buffer = new byte[1024];
 			while ((len = is.read(buffer)) != -1) {

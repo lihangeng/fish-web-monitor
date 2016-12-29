@@ -8,6 +8,10 @@ import com.yihuacomputer.fish.api.fault.ICaseNotify;
 import com.yihuacomputer.fish.api.fault.NotifyWay;
 import com.yihuacomputer.fish.api.person.IPerson;
 
+/**
+ * @author YiHua
+ *
+ */
 public class CaseNotifyForm {
 	
 	private long id; 
@@ -43,6 +47,9 @@ public class CaseNotifyForm {
 		
 	}
 	
+	/**
+	 * @param caseNotify
+	 */
 	public CaseNotifyForm(ICaseNotify caseNotify){
 		this.id = caseNotify.getId();
 		this.terminalId = caseNotify.getTerminalId();

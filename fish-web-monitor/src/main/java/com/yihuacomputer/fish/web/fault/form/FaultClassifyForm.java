@@ -2,6 +2,10 @@ package com.yihuacomputer.fish.web.fault.form;
 
 import com.yihuacomputer.fish.api.fault.IFaultClassify;
 
+/**
+ * @author YiHua
+ *
+ */
 public class FaultClassifyForm {
 
 	private String id;
@@ -78,6 +82,9 @@ public class FaultClassifyForm {
 		
 	}
 
+	/**
+	 * @param faultClassify
+	 */
 	public FaultClassifyForm(IFaultClassify faultClassify) {
 		setId(faultClassify.getId());
 		setClassifyName(faultClassify.getClassifyName());

@@ -79,8 +79,9 @@ public class DeviceModuleStatusController {
 
     /**
      * 请求设置基本信息状态
-     *
-     * @return ModelMap
+     * @param deviceId
+     * @param ip
+     * @return
      */
     @RequestMapping(value = "/deviceModuleStatusForm/initStatus", method = RequestMethod.GET)
     public @ResponseBody

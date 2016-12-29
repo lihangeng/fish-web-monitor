@@ -48,10 +48,17 @@ public class SoftAndHardwareInfoController {
     @Autowired
     private IHardwareService hardwareService;
 
+    /**
+     * 初始化
+     */
     @PostConstruct
     public void init() {
     }
 
+    /**
+     * @param terminalId
+     * @return
+     */
     @RequestMapping(value = "/info", method = RequestMethod.GET)
     public @ResponseBody
     ModelMap softAndHardwareInfo(@RequestParam String terminalId) {
@@ -68,6 +75,9 @@ public class SoftAndHardwareInfoController {
 
     /**
      * 获取硬件版本信息
+     * @param terminalId
+     * @param ip
+     * @return
      */
     @RequestMapping(value = "/initHardware", method = RequestMethod.GET)
     public @ResponseBody

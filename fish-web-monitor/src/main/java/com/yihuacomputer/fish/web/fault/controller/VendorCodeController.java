@@ -47,6 +47,10 @@ import com.yihuacomputer.fish.api.fault.IVendorCodeService;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
 import com.yihuacomputer.fish.web.fault.form.VendorCodeForm;
 
+/**
+ * @author YiHua
+ *
+ */
 @Controller
 @RequestMapping("/case/vendorCode")
 @ClassNameDescrible(describle="userlog.vendorCodeController")
@@ -62,6 +66,12 @@ public class VendorCodeController {
 	@Autowired
 	protected MessageSource messageSource;
 	
+	/**
+	 * @param start
+	 * @param limit
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody
 	ModelMap search(@RequestParam int start, @RequestParam int limit, WebRequest request) {
@@ -295,8 +305,12 @@ public class VendorCodeController {
 		return "page".equals(name) || "start".equals(name) || "limit".equals(name) || "_dc".equals(name);
 	}
 
-	 /**
+    /**
      * 下载文件到浏览器端：
+     * @param fileName
+     * @param request
+     * @param response
+     * @throws Exception
      */
     @RequestMapping(value = "/downloadFile",method = RequestMethod.GET)
 	@MethodNameDescrible(describle="userlog.vendorCodeController.download",hasArgs=true,argsContext="fileName")

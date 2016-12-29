@@ -15,12 +15,21 @@ import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.fish.api.person.UserSession;
 import com.yihuacomputer.fish.api.session.ISessionManage;
 
+/**
+ * @author YiHua
+ *
+ */
 @Controller
 @RequestMapping("/logout")
 public class LogoutController {
 	@Autowired
 	private ISessionManage sessionManage;
 
+	/**
+	 * @param request
+	 * @param response
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.POST)
 	public @ResponseBody ModelMap logout(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession(false);

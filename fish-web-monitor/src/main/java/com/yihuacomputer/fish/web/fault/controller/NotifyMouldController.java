@@ -29,6 +29,10 @@ import com.yihuacomputer.fish.api.fault.NotifyType;
 import com.yihuacomputer.fish.api.fault.NotifyWay;
 import com.yihuacomputer.fish.web.fault.form.NotifyMouldForm;
 
+/**
+ * @author YiHua
+ *
+ */
 @Controller
 @RequestMapping("/case/notifyMould")
 @ClassNameDescrible(describle="userlog.notifyMouldController")
@@ -43,6 +47,12 @@ public class NotifyMouldController
     @Autowired
 	protected MessageSource messageSource;
 
+    /**
+     * @param start
+     * @param limit
+     * @param request
+     * @return
+     */
     @RequestMapping(method = RequestMethod.GET)
     public @ResponseBody
     ModelMap search(@RequestParam int start, @RequestParam int limit, WebRequest request)
@@ -63,6 +73,11 @@ public class NotifyMouldController
         return result;
     }
 
+    /**
+     * @param id
+     * @param request
+     * @return
+     */
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	@MethodNameDescrible(describle="userlog.notifyMouldController.update",hasReqBodyParam=true,reqBodyClass=NotifyMouldForm.class,bodyProperties="classifyName")
     public @ResponseBody

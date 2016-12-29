@@ -12,6 +12,10 @@ import com.yihuacomputer.fish.api.atmlog.DayBackupResult;
 import com.yihuacomputer.fish.api.atmlog.IAtmLogInfo;
 import com.yihuacomputer.fish.api.atmlog.IDayBackupLog;
 
+/**
+ * @author YiHua
+ *
+ */
 public class DayBackupLogForm {
 
 	private String date;
@@ -28,6 +32,13 @@ public class DayBackupLogForm {
 	}
 
 
+	/**
+	 * @param date
+	 * @param result
+	 * @param doTime
+	 * @param endTime
+	 * @param deviceCount
+	 */
 	public DayBackupLogForm(String date, DayBackupResult result, String doTime,
 			String endTime, int deviceCount) {
 		this.date = date;
@@ -37,6 +48,11 @@ public class DayBackupLogForm {
 		this.deviceCount = deviceCount;
 	}
 
+	/**
+	 * @param dayBackupLogs
+	 * @param getBackUpInfo
+	 * @return
+	 */
 	public static  List<DayBackupLogForm> toForms(List<IDayBackupLog> dayBackupLogs, Map<String,IAtmLogInfo>getBackUpInfo){
 		List<DayBackupLogForm> forms = new ArrayList<DayBackupLogForm>();
 		for(IDayBackupLog log : dayBackupLogs){
@@ -60,6 +76,10 @@ public class DayBackupLogForm {
 		return forms;
 	}
 	
+	/**
+	 * @param strDate
+	 * @return
+	 */
 	public static String getLastDay(String strDate)
 	{
 		Date date = DateUtils.getDate(strDate);

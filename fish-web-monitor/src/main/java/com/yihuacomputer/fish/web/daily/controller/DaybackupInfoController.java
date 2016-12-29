@@ -54,6 +54,10 @@ import com.yihuacomputer.fish.api.person.UserSession;
 import com.yihuacomputer.fish.web.daily.form.DayBackupLogForm;
 import com.yihuacomputer.fish.web.util.FishWebUtils;
 
+/**
+ * @author YiHua
+ *
+ */
 @Controller
 @RequestMapping("/machine/atmLogInfo")
 @ClassNameDescrible(describle="userlog.DaybackupInfoController")
@@ -80,6 +84,12 @@ public class DaybackupInfoController {
 	
 	private Logger logger = LoggerFactory.getLogger(DaybackupInfoController.class);
 
+	/**
+	 * @param start
+	 * @param limit
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(value = "/getDayBackup", method = RequestMethod.GET)
 	public @ResponseBody
 	ModelMap getDayBackup(@RequestParam int start, @RequestParam int limit, WebRequest request) {
@@ -107,6 +117,10 @@ public class DaybackupInfoController {
 		return map;
 	}
 
+	/**
+	 * @param request
+	 * @return
+	 */
 	@MethodNameDescrible(describle="userlog.DaybackupInfoController.dayBackupExcuter",hasArgs=true,argsContext="date")
 	@RequestMapping(value = "/dayBackupExcuter", method = RequestMethod.POST)
 	public @ResponseBody
@@ -123,37 +137,12 @@ public class DaybackupInfoController {
 		return map;
 	}
 
-/*	@RequestMapping(method = RequestMethod.GET)
-	public @ResponseBody
-	ModelMap search(@RequestParam int start, @RequestParam int limit, WebRequest request, HttpSession session) {
-		logger.info(String.format("search atmLogInfo : start = %s ,limt = %s ", start, limit));
-
-		UserSession user = (UserSession) session.getAttribute(FishWebUtils.USER);
-		long orgId = user.getOrgId();
-
-		IFilter filter = request2filter(request);
-
-		ModelMap result = new ModelMap();
-
-
-		result.addAttribute(FishConstant.SUCCESS, true);
-		result.addAttribute("total", page.getTotal());
-		result.addAttribute("data", getAtmLogInfoForms(page.list()));
-
-		return result;
-	}
-
-	private List<AtmLogInfoForm> getAtmLogInfoForms(List<IAtmLogInfo> lists) {
-		List<AtmLogInfoForm> forms = new ArrayList<AtmLogInfoForm>();
-		long i = 1;
-		for (IAtmLogInfo info : lists) {
-			AtmLogInfoForm form = new AtmLogInfoForm(info);
-			form.setId(i++);
-			forms.add(form);
-		}
-		return forms;
-	}*/
-
+	/**
+	 * @param wRequest
+	 * @param request
+	 * @param response
+	 * @return
+	 */
 	@RequestMapping(value = "/poiExcel", method = RequestMethod.GET)
 	public @ResponseBody
 	ModelMap poiExcel(WebRequest wRequest, HttpServletRequest request, HttpServletResponse response) {
@@ -220,6 +209,13 @@ public class DaybackupInfoController {
 		return null;
 	}
 
+	/**
+	 * @param backupDate
+	 * @param orgId
+	 * @param request
+	 * @param response
+	 * @return
+	 */
 	@RequestMapping(value = "/errorPoiExcel", method = RequestMethod.GET)
 	public @ResponseBody
 	ModelMap errorPoiExcel(String backupDate, long orgId, HttpServletRequest request, HttpServletResponse response) {
@@ -292,6 +288,13 @@ public class DaybackupInfoController {
 		return null;
 	}
 
+	/**
+	 * @param backupDate
+	 * @param orgId
+	 * @param request
+	 * @param response
+	 * @return
+	 */
 	@RequestMapping(value = "/successPoiExcel", method = RequestMethod.GET)
 	public @ResponseBody
 	ModelMap successPoiExcel(String backupDate, long orgId, HttpServletRequest request, HttpServletResponse response) {

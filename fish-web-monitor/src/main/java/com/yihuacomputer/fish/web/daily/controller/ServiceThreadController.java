@@ -14,6 +14,10 @@ import com.yihuacomputer.fish.api.version.job.IJobManangerStatus;
 import com.yihuacomputer.fish.web.daily.form.ServiceThreadForm;
 
 
+/**
+ * @author YiHua
+ *
+ */
 @Controller
 @RequestMapping("/service/thread")
 public class ServiceThreadController {
@@ -31,7 +35,7 @@ public class ServiceThreadController {
      * 
      * 根据条件得到线程状态列表
      * 
-     * @param form
+     * @param request
      * @return ModelMap<String, Object>
      */
     @RequestMapping(method = RequestMethod.GET)

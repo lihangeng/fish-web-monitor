@@ -21,6 +21,10 @@ import com.yihuacomputer.fish.api.fault.IFaultStatisticsService;
 import com.yihuacomputer.fish.api.monitor.business.IRetaincardService;
 import com.yihuacomputer.fish.web.index.form.ChartForm;
 
+/**
+ * @author YiHua
+ *
+ */
 @Controller
 @RequestMapping("/index")
 public class IndexController {
@@ -32,6 +36,11 @@ public class IndexController {
 	@Autowired
 	private IRetaincardService retainCardService;
 
+	/**
+	 * @param wReq
+	 * @param req
+	 * @return
+	 */
 	@RequestMapping(value = "faultTrendByDay", method = RequestMethod.GET)
 	@ResponseBody
 	public ModelMap faultTrendByDay(WebRequest wReq, HttpServletRequest req) {
@@ -68,6 +77,11 @@ public class IndexController {
 		return result;
 	}
 
+	/**
+	 * @param wReq
+	 * @param req
+	 * @return
+	 */
 	@RequestMapping(value = "retainCardByDay", method = RequestMethod.GET)
 	@ResponseBody
 	public ModelMap retainCardByDay(WebRequest wReq, HttpServletRequest req) {

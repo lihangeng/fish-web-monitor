@@ -28,6 +28,10 @@ import com.yihuacomputer.fish.machine.service.DevicePersonRelation;
 import com.yihuacomputer.fish.web.fault.form.CaseNotifyForm;
 import com.yihuacomputer.fish.web.util.FishWebUtils;
 
+/**
+ * @author YiHua
+ *
+ */
 @Controller
 @RequestMapping("/case/caseNotify")
 public class CaseNotifyController

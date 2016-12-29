@@ -30,6 +30,10 @@ import com.yihuacomputer.fish.api.person.IOrganization;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
 import com.yihuacomputer.fish.web.daily.form.AtmMoveForm;
 
+/**
+ * @author YiHua
+ *
+ */
 @Controller
 @RequestMapping("/machine/atmMove")
 public class AtmMoveController {

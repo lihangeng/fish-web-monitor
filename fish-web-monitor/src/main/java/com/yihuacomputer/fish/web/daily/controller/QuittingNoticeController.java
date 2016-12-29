@@ -43,6 +43,10 @@ import com.yihuacomputer.fish.api.quittingNotice.IQuittingNotice;
 import com.yihuacomputer.fish.api.quittingNotice.IQuittingNoticeService;
 import com.yihuacomputer.fish.web.daily.form.QuittingNoticeForm;
 
+/**
+ * @author YiHua
+ *
+ */
 @Controller
 @RequestMapping("/machine/quittingNotice")
 @ClassNameDescrible(describle="userlog.quittingNoticeController")
@@ -73,7 +77,7 @@ public class QuittingNoticeController {
 	/**
 	 * 增加一条设备报停记录：
 	 *
-	 * @param request
+	 * @param form
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.POST)
@@ -217,7 +221,7 @@ public class QuittingNoticeController {
 	 * 更具ID对一条设备报停记录更新：
 	 *
 	 * @param id
-	 * @param request
+	 * @param form
 	 * @return
 	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)

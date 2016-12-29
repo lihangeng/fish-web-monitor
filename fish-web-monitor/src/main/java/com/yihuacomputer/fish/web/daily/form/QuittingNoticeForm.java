@@ -8,6 +8,10 @@ import com.yihuacomputer.fish.api.device.DevStatus;
 import com.yihuacomputer.fish.api.device.StopType;
 import com.yihuacomputer.fish.api.quittingNotice.IQuittingNotice;
 
+/**
+ * @author YiHua
+ *
+ */
 public class QuittingNoticeForm
 {
     private long id;
@@ -22,6 +26,9 @@ public class QuittingNoticeForm
     
     public QuittingNoticeForm(){};
     
+    /**
+     * @param quittingNotice
+     */
     public QuittingNoticeForm(IQuittingNotice quittingNotice) {
         setId(quittingNotice.getId());
         setDeviceCode(quittingNotice.getDeviceCode());
@@ -34,6 +41,9 @@ public class QuittingNoticeForm
         setDevStatus(quittingNotice.getDevStatus());
     }
     
+    /**
+     * @param quittingNotice
+     */
     public void translate(IQuittingNotice quittingNotice) {
         quittingNotice.setId(getId());
         quittingNotice.setDeviceCode(getDeviceCode());
@@ -45,6 +55,10 @@ public class QuittingNoticeForm
         quittingNotice.setStopType(StopType.getById((quittingNotice.getStopType().getId())));
     }
 
+    /**
+     * @param list
+     * @return
+     */
     public static List<QuittingNoticeForm> convert(List<IQuittingNotice> list) {
         List<QuittingNoticeForm> result = new ArrayList<QuittingNoticeForm>();
         for(IQuittingNotice item : list) {

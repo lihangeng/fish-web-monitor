@@ -29,6 +29,10 @@ import com.yihuacomputer.fish.api.fault.NotifyWay;
 import com.yihuacomputer.fish.api.fault.ResponsorType;
 import com.yihuacomputer.fish.web.fault.form.FaultClassifyForm;
 
+/**
+ * @author YiHua
+ *
+ */
 @Controller
 @RequestMapping("/case/faultClassify")
 @ClassNameDescrible(describle="userlog.faultClassifyController")
@@ -44,6 +48,12 @@ public class FaultClassifyController
     @Autowired
 	protected MessageSource messageSource;
 
+    /**
+     * @param start
+     * @param limit
+     * @param request
+     * @return
+     */
     @RequestMapping(method = RequestMethod.GET)
     public @ResponseBody
     ModelMap search(@RequestParam int start, @RequestParam int limit,
@@ -68,6 +78,11 @@ public class FaultClassifyController
         return result;
     }
 
+    /**
+     * @param id
+     * @param request
+     * @return
+     */
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	@MethodNameDescrible(describle="userlog.faultClassifyController.update",hasReqBodyParam=true,reqBodyClass=FaultClassifyForm.class,bodyProperties="classifyName")
     public @ResponseBody

@@ -2,6 +2,10 @@ package com.yihuacomputer.fish.web.daily.form;
 
 import java.lang.Thread.State;
 
+/**
+ * @author YiHua
+ *
+ */
 public class ServiceThreadForm {
 
     /**

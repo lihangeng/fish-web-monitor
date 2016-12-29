@@ -7,6 +7,10 @@ import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.fish.api.atmMove.IAtmMove;
 import com.yihuacomputer.fish.api.person.IPerson;
 
+/**
+ * @author YiHua
+ *
+ */
 public class AtmMoveForm {
     private long id;
 
@@ -49,6 +53,9 @@ public class AtmMoveForm {
 	public AtmMoveForm() {
     };
 
+    /**
+     * @param atmMove
+     */
     public AtmMoveForm(IAtmMove atmMove) {
         this.id = atmMove.getId();
         this.address = atmMove.getAddress();
@@ -69,6 +76,9 @@ public class AtmMoveForm {
         }
     }
 
+    /**
+     * @param atmMove
+     */
     public void translate(IAtmMove atmMove) {
         atmMove.setId(getId());
         atmMove.setAddress(getAddress());
@@ -92,6 +102,10 @@ public class AtmMoveForm {
         this.orgId = orgId;
     }
 
+    /**
+     * @param list
+     * @return
+     */
     public static List<AtmMoveForm> convert(List<IAtmMove> list) {
         List<AtmMoveForm> result = new ArrayList<AtmMoveForm>();
         for (IAtmMove item : list) {

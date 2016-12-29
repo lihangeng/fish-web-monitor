@@ -6,6 +6,10 @@ import java.util.List;
 import com.yihuacomputer.fish.api.fault.IVendorCode;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
 
+/**
+ * @author YiHua
+ *
+ */
 public class VendorCodeForm {
 
 	private long id;
@@ -82,6 +86,10 @@ public class VendorCodeForm {
 		this.vendorName = vendorName;
 	}
 
+	/**
+	 * @param vendorCode
+	 * @param organizationService
+	 */
 	public VendorCodeForm(IVendorCode vendorCode, IOrganizationService organizationService){
 		setId(vendorCode.getId());
 		setVendor(vendorCode.getVendor());
@@ -91,6 +99,11 @@ public class VendorCodeForm {
 		setSolution(vendorCode.getSolution());
 	}
 
+	/**
+	 * @param list
+	 * @param organizationService
+	 * @return
+	 */
 	public static List<VendorCodeForm> convert(List<IVendorCode> list, IOrganizationService organizationService){
 		List<VendorCodeForm> result = new ArrayList<VendorCodeForm>();
 		for(IVendorCode item : list){

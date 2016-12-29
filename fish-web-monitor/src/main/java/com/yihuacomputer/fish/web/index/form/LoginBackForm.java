@@ -1,5 +1,9 @@
 package com.yihuacomputer.fish.web.index.form;
 
+/**
+ * @author YiHua
+ *
+ */
 public class LoginBackForm
 {
     private String userId;

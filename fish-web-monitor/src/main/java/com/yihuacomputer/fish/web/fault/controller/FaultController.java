@@ -42,6 +42,10 @@ import com.yihuacomputer.fish.web.fault.form.CaseFaultForm;
 import com.yihuacomputer.fish.web.util.ExcelViewUtils;
 import com.yihuacomputer.fish.web.util.FishWebUtils;
 
+/**
+ * @author YiHua
+ *
+ */
 @Controller
 @RequestMapping("/case/caseFault")
 @ClassNameDescrible(describle="userlog.faultController")
@@ -116,8 +120,8 @@ public class FaultController
     /**
      * 根据条件得到故障列表
      *
-     * @param start
-     * @param limit
+     * @param faultId
+     * @param req
      * @param request
      * @return
      */
@@ -133,6 +137,10 @@ public class FaultController
         return result;
     }
 
+    /**
+     * @param list
+     * @return
+     */
     public List<CaseFaultForm> convert(List<ICaseFault> list) {
 		List<CaseFaultForm> result = new ArrayList<CaseFaultForm>();
 		for (ICaseFault item : list) {
@@ -180,6 +188,12 @@ public class FaultController
 		}
 		return result;
 	}
+    /**
+     * @param request
+     * @param req
+     * @param response
+     * @return
+     */
     @RequestMapping(value = "/export", method = RequestMethod.GET)
 	@MethodNameDescrible(describle="userlog.faultController.export",hasArgs=false)
     public @ResponseBody
@@ -239,6 +253,11 @@ public class FaultController
     	return messageSourceEnum.getMessage(enumText, null, FishCfg.locale);
     }
 
+    /**
+     * @param id
+     * @param request
+     * @return
+     */
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	@MethodNameDescrible(describle="userlog.faultController.update",hasReqBodyParam=true,reqBodyClass=CaseFaultForm.class,bodyProperties="terminalId")
     public @ResponseBody
@@ -267,6 +286,10 @@ public class FaultController
     }
     
     
+    /**
+     * @param list
+     * @return
+     */
     public String listPersonName(List<IPerson> list){
     	StringBuffer sb = new StringBuffer();
     	for(int i=0;i<list.size();i++){

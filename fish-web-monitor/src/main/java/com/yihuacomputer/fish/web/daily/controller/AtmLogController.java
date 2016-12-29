@@ -62,6 +62,10 @@ import com.yihuacomputer.fish.api.system.config.MonitorCfg;
 import com.yihuacomputer.fish.web.daily.form.AtmLogForm;
 import com.yihuacomputer.fish.web.daily.form.AtmLogTotal;
 
+/**
+ * @author YiHua
+ *
+ */
 @Controller
 @RequestMapping("/machine/atmLog")
 @ClassNameDescrible(describle="userlog.AtmLogController")
@@ -87,6 +91,13 @@ public class AtmLogController {
 	private Logger logger = LoggerFactory.getLogger(AtmLogController.class);
 
 
+	/**
+	 * @param start
+	 * @param limit
+	 * @param request
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping(value = "/getBackup", method = RequestMethod.GET)
 	public @ResponseBody
 	ModelMap getBackup(@RequestParam int start, @RequestParam int limit, WebRequest request, HttpSession session) {
@@ -119,6 +130,15 @@ public class AtmLogController {
 		return map;
 	}
 
+	/**
+	 * @param backupDate
+	 * @param orgId
+	 * @param start
+	 * @param limit
+	 * @param request
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping(value = "/getErrorDayBackup", method = RequestMethod.GET)
 	public @ResponseBody
 	ModelMap searchErrorDayBackup(@RequestParam String backupDate, @RequestParam String orgId, @RequestParam int start,
@@ -133,6 +153,14 @@ public class AtmLogController {
 		return result;
 	}
 
+	/**
+	 * @param backupDate
+	 * @param orgId
+	 * @param start
+	 * @param limit
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(value = "/getSuccessDayBackup", method = RequestMethod.GET)
 	public @ResponseBody
 	ModelMap searchSuccessDayBackup(@RequestParam String backupDate, @RequestParam String orgId,
@@ -225,8 +253,9 @@ public class AtmLogController {
 
 	/**
 	 * 文件上传：
-	 *
 	 * @param file
+	 * @param request
+	 * @param response
 	 * @return
 	 */
 	@RequestMapping(value = "/uploade", method = RequestMethod.POST)
@@ -256,7 +285,8 @@ public class AtmLogController {
 
 	/**
 	 * 导出吞卡信息 生成Excel
-	 *
+	 * @param request
+	 * @param response
 	 * @return
 	 */
 	@RequestMapping(value = "/poiExcel", method = RequestMethod.GET)
@@ -404,7 +434,7 @@ public class AtmLogController {
 	/**
 	 * 下载文件
 	 *
-	 * @param file
+	 * @param path
 	 *            文件
 	 * @param response
 	 *            请求响应
@@ -451,9 +481,10 @@ public class AtmLogController {
 	
 	   /**
      * 下载备份失败的文件到服务端：
-     * @param requestName
-     * @param requestPath
-     * @param request
+     * @param terminalId
+	 * @param dateTime
+	 * @param flag
+	 * @param request
      * @return
      */
 	@RequestMapping(value = "/fileDownError",method = RequestMethod.POST)

@@ -24,6 +24,10 @@ public class SoftAndHardwareInfoForm
     {
     }
 
+    /**
+     * @param hardware
+     * @param software
+     */
     public SoftAndHardwareInfoForm(IHardware hardware, ISoftware software)
     {
         toHardware(hardware);
@@ -33,7 +37,7 @@ public class SoftAndHardwareInfoForm
     /**
      * 将IHardware接口信息转换为HardwareMsg
      * 
-     * @param hardware
+     * @param iHardware
      *            接口
      */
     public void toHardware(IHardware iHardware)
@@ -44,39 +48,12 @@ public class SoftAndHardwareInfoForm
         hardware.setBios(iHardware.getBios() == null ? new BiosMsg()
                 : new BiosMsg(iHardware.getBios()));
 
-        // CpuMsg cpuMsg = new CpuMsg();
-        // cpuMsg.setCacheSize(111L);
-        // cpuMsg.setCombined("xxxx");
-        // cpuMsg.setFrequency(111);
-        // cpuMsg.setIdle("xxxx");
-        // cpuMsg.setSys("xxxx");
-        // cpuMsg.setTotalCores(12);
-        // cpuMsg.setUser("xxxx");
-        // cpuMsg.setVendor("xxxxx");
-        //
-        // List<CpuMsg> cpuMsgList = new ArrayList<CpuMsg>();
-        // cpuMsgList.add(cpuMsg);
-        // hardware.setCpu(cpuMsgList);
-
         // 取出cpu信息
         hardware.setCpu(iHardware.getCpu() == null ? null : CpuMsg
                 .convert(iHardware.getCpu()));
 
         hardware.setDiskMem(iHardware.getDiskMem());
 
-        // hardware.setFrimware(new FrimwareMsg());
-
-        // DiskMsg diskMsg = new DiskMsg();
-        // diskMsg.setFileSys("xxxx");
-        // diskMsg.setFreeSize(111L);
-        // diskMsg.setLabel("xxxx");
-        // diskMsg.setLabelAndname("xxxx");
-        // diskMsg.setMemo("xxxx");
-        // diskMsg.setName("xxxx");
-        // diskMsg.setTotalSize(12L);
-        // List<DiskMsg> diskMsgList = new ArrayList<DiskMsg>();
-        // diskMsgList.add(diskMsg);
-        // hardware.setHardDisk(diskMsgList);
         // 取出磁盘信息
         hardware.setHardDisk(iHardware.getHardDisk() == null ? null : DiskMsg
                 .convert(iHardware.getHardDisk()));
@@ -90,7 +67,7 @@ public class SoftAndHardwareInfoForm
     /**
      * 将ISoftware接口信息转换为SoftwareForm
      * 
-     * @param software
+     * @param iSoftware
      */
     public void toSoftware(ISoftware iSoftware)
     {

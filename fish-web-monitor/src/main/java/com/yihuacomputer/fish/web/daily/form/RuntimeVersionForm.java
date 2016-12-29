@@ -1,4 +1,8 @@
 package com.yihuacomputer.fish.web.daily.form;
+/**
+ * @author YiHua
+ *
+ */
 public class RuntimeVersionForm {
 
 	/**
@@ -15,6 +19,9 @@ public class RuntimeVersionForm {
 	public RuntimeVersionForm() {
 	}
 
+	/**
+	 * @param form
+	 */
 	public RuntimeVersionForm(RuntimeVersionForm form) {
 		setName(form.getName());
 		setVersion(form.getVersion());

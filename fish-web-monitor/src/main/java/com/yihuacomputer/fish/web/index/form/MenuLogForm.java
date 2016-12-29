@@ -6,6 +6,10 @@ import java.util.List;
 import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.fish.api.log.IMenuLog;
 
+/**
+ * @author YiHua
+ *
+ */
 public class MenuLogForm {
 	private long id;
 	private String code;
@@ -19,6 +23,9 @@ public class MenuLogForm {
 	public MenuLogForm() {
 	}
 
+	/**
+	 * @param menuLog
+	 */
 	public MenuLogForm(IMenuLog menuLog) {
 		id = menuLog.getId();
 		code = menuLog.getCode();
@@ -30,6 +37,10 @@ public class MenuLogForm {
 		sessionId = menuLog.getSessionId();
 	}
 
+	/**
+	 * @param resources
+	 * @return
+	 */
 	public static List<MenuLogForm> convert(List<IMenuLog> resources) {
 		List<MenuLogForm> result = new ArrayList<MenuLogForm>();
 		for (IMenuLog resource : resources) {

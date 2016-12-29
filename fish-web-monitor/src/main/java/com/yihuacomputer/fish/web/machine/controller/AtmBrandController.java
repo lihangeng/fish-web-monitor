@@ -36,6 +36,10 @@ import com.yihuacomputer.fish.web.machine.form.AtmBrandForm;
 import com.yihuacomputer.fish.web.machine.form.AtmTypeForm;
 import com.yihuacomputer.fish.web.machine.form.ItemForm;
 
+/**
+ * @author YiHua
+ *
+ */
 @Controller
 @RequestMapping("/machine/atmBrand")
 @ClassNameDescrible(describle="userlog.atmBrandController")
@@ -50,6 +54,12 @@ public class AtmBrandController {
 	@Autowired
 	private IAtmTypeService atmTypeService;
 
+	/**
+	 * @param start
+	 * @param limit
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody ModelMap search(@RequestParam int start, @RequestParam int limit, WebRequest request) {
 		logger.info(String.format("search brand : start = %s ,limt = %s ", start, limit));
@@ -64,6 +74,10 @@ public class AtmBrandController {
 		return result;
 	}
 
+	/**
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(value = "/getTypeItem", method = RequestMethod.GET)
 	public @ResponseBody ModelMap getTypeItem(WebRequest request) {
 		ModelMap map = new ModelMap();
@@ -88,6 +102,10 @@ public class AtmBrandController {
 		return map;
 	}
 
+	/**
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(value = "/getTypeItem2", method = RequestMethod.GET)
 	public @ResponseBody ModelMap getTypeItem2(WebRequest request) {
 		ModelMap map = new ModelMap();
@@ -113,6 +131,10 @@ public class AtmBrandController {
 		return map;
 	}
 
+	/**
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(value = "/getBrandItem", method = RequestMethod.GET)
 	public @ResponseBody ModelMap getBrandItem(WebRequest request) {
 		ModelMap map = new ModelMap();
@@ -130,6 +152,10 @@ public class AtmBrandController {
 		return map;
 	}
 
+	/**
+	 * @param id
+	 * @return
+	 */
 	@RequestMapping(value = "/deleteQuery", method = RequestMethod.GET)
 	public @ResponseBody ModelMap deleteQuery(@RequestParam long id) {
 		logger.info("query atmBrand : atmBrand.id" + id);
@@ -144,6 +170,10 @@ public class AtmBrandController {
 		return result;
 	}
 
+	/**
+	 * @param id
+	 * @return
+	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	@MethodNameDescrible(describle="userlog.atmBrandController.delete",hasLogKey=true)
 	public @ResponseBody ModelMap delete(@PathVariable long id) {
@@ -166,6 +196,10 @@ public class AtmBrandController {
 		return result;
 	}
 
+	/**
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.POST)
 	@MethodNameDescrible(describle="userlog.atmBrandController.add",hasReqBodyParam=true,reqBodyClass=AtmBrandForm.class,bodyProperties="name")
 	public @ResponseBody ModelMap add(@RequestBody AtmBrandForm request) {
@@ -185,6 +219,11 @@ public class AtmBrandController {
 		return result;
 	}
 
+	/**
+	 * @param id
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	@MethodNameDescrible(describle="userlog.atmBrandController.update",hasReqBodyParam=true,reqBodyClass=AtmBrandForm.class,bodyProperties="name")
 	public @ResponseBody ModelMap update(@PathVariable long id, @RequestBody AtmBrandForm request) {
@@ -273,7 +312,7 @@ public class AtmBrandController {
 
 	/**
 	 * 下拉框的联动 根据设备品牌查找设备型号
-	 *
+	 * @param devVendorId
 	 * @return
 	 */
 	@RequestMapping(value = "/queryTypeByAtmVendor", method = RequestMethod.GET)

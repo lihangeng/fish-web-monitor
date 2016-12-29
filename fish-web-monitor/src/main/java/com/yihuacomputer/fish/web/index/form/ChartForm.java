@@ -16,6 +16,10 @@ public class ChartForm {
 		
 	}
 	
+	/**
+	 * @param month
+	 * @param data1
+	 */
 	public ChartForm(String month,String data1){
 		this.month = month;
 		this.data1 = data1;
