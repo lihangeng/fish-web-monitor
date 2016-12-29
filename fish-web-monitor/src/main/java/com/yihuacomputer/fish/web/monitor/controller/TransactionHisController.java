@@ -32,6 +32,10 @@ import com.yihuacomputer.fish.web.monitor.form.TransTypeForm;
 import com.yihuacomputer.fish.web.monitor.form.TransactionForm;
 import com.yihuacomputer.fish.web.util.FishWebUtils;
 
+/**
+ * @author YiHua
+ *
+ */
 @Controller
 @RequestMapping("/msg/transaction")
 @ClassNameDescrible(describle="userlog.TransactionHisController")
@@ -52,7 +56,10 @@ public class TransactionHisController {
 	@Autowired
 	public ITransactionViewService transactionViewService ;
 
-    //获得交易类型
+    /**
+     *获得交易类型
+     * @return
+     */
     @RequestMapping(value = "/queryTransType", method = RequestMethod.GET)
     public @ResponseBody
     ModelMap queryAtmType() {
@@ -62,7 +69,10 @@ public class TransactionHisController {
         return model;
     }
 
-    //获得交易主机返回码
+    /**
+     *获得交易主机返回码
+     * @return
+     */
     @RequestMapping(value = "/queryHostRet", method = RequestMethod.GET)
     public @ResponseBody
     ModelMap queryHostRet() {
@@ -74,7 +84,10 @@ public class TransactionHisController {
 
     /**
      * 查询历史交易信息
-     *
+     * @param start
+     * @param limit
+     * @param webRequest
+     * @param request
      * @return
      */
     @RequestMapping(method = RequestMethod.GET)

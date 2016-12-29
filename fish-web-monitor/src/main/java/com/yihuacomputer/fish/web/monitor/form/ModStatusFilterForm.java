@@ -2,6 +2,10 @@ package com.yihuacomputer.fish.web.monitor.form;
 
 import com.yihuacomputer.fish.api.monitor.filter.IModStatusFilter;
 
+/**
+ * @author YiHua
+ *
+ */
 public class ModStatusFilterForm {
 
     private boolean mod_all;
@@ -19,6 +23,9 @@ public class ModStatusFilterForm {
     public ModStatusFilterForm() {
     }
 
+    /**
+     * @param modStatusFilter
+     */
     public ModStatusFilterForm(IModStatusFilter modStatusFilter) {
         setMod_all(modStatusFilter.isAll());
         setMod_fatal(modStatusFilter.isFatal());

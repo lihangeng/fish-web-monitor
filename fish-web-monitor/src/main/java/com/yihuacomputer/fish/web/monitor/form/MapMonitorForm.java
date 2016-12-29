@@ -75,6 +75,9 @@ public class MapMonitorForm {
 
     }
 
+    /**
+     * @param mapOrg
+     */
     public MapMonitorForm(IStatusMonitorMapOrg mapOrg) {
         setAddress(mapOrg.getAddress());
         setCode(mapOrg.getCode());
@@ -89,6 +92,10 @@ public class MapMonitorForm {
         setZoom(mapOrg.getZoom());
     }
 
+    /**
+     * @param list
+     * @return
+     */
     public static List<MapMonitorForm> convert(List<IStatusMonitorMapOrg> list) {
         List<MapMonitorForm> result = new ArrayList<MapMonitorForm>();
         for (IStatusMonitorMapOrg item : list) {

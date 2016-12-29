@@ -29,6 +29,9 @@ public class BoxStatusFilterForm {
     public BoxStatusFilterForm() {
     }
 
+    /**
+     * @param boxStatusFilter
+     */
     public BoxStatusFilterForm(IBoxStatusFilter boxStatusFilter) {
         setBox_all(boxStatusFilter.isAll());
         setBox_empty(boxStatusFilter.isEmpty());

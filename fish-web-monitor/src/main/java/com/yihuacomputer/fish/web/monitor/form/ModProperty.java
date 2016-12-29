@@ -2,6 +2,10 @@ package com.yihuacomputer.fish.web.monitor.form;
 
 import com.yihuacomputer.fish.web.atm.format.PropertiseMsg;
 
+/**
+ * @author YiHua
+ *
+ */
 public class ModProperty {
     private PropertyCdm cdm;
 

@@ -1,5 +1,9 @@
 package com.yihuacomputer.fish.web.parameter.form;
 
+/**
+ * @author YiHua
+ *
+ */
 public class ParamTemplateDeviceform
 {
     private Long id;

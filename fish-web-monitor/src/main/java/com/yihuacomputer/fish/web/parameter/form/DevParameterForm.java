@@ -2,6 +2,10 @@ package com.yihuacomputer.fish.web.parameter.form;
 
 import com.yihuacomputer.fish.api.device.IDevice;
 
+/**
+ * @author YiHua
+ *
+ */
 public class DevParameterForm {
 	private long id;
 
@@ -99,6 +103,9 @@ public class DevParameterForm {
 	public DevParameterForm(){
 		
 	}
+	/**
+	 * @param device
+	 */
 	public DevParameterForm(IDevice device){
 		this.id=device.getId();
 		this.terminalId=device.getTerminalId();

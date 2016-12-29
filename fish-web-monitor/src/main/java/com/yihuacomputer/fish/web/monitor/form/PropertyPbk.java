@@ -1,5 +1,9 @@
 package com.yihuacomputer.fish.web.monitor.form;
 
+/**
+ * @author YiHua
+ *
+ */
 public class PropertyPbk {
     /**
      * 是否具有退纸能力

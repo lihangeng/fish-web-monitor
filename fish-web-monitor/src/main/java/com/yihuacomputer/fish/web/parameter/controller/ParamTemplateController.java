@@ -92,6 +92,12 @@ public class ParamTemplateController {
 	private IOrganizationService orgService;
 
 
+	/**
+	 * @param start
+	 * @param limit
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody ModelMap search(@RequestParam int start,
 			@RequestParam int limit, WebRequest request) {
@@ -109,6 +115,10 @@ public class ParamTemplateController {
 		return result;
 	}
 
+	/**
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.POST)
 	@MethodNameDescrible(describle="userlog.ParamTemplateController.add",hasReqBodyParam=true,reqBodyClass=ParamTemplateForm.class,bodyProperties="name")
 	public @ResponseBody ModelMap add(@RequestBody ParamTemplateForm request) {
@@ -137,6 +147,10 @@ public class ParamTemplateController {
 		return result;
 	}
 
+	/**
+	 * @param id
+	 * @return
+	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	@MethodNameDescrible(describle="userlog.ParamTemplateController.delete",hasLogKey=true)
 	public @ResponseBody ModelMap delete(@PathVariable long id) {
@@ -292,9 +306,14 @@ public class ParamTemplateController {
 	}
 
 	/**
-	 *
-	 * @param form
-	 * @return ModelMap<String, Object>
+	 * @param start
+	 * @param limit
+	 * @param flag
+	 * @param guid
+	 * @param organizationId
+	 * @param request
+	 * @param req
+	 * @return
 	 */
 	@RequestMapping(value = "/linkedDevice", method = RequestMethod.GET)
 	public @ResponseBody ModelMap searchLinkedDevice(@RequestParam int start,
@@ -401,7 +420,11 @@ public class ParamTemplateController {
 
 	/**
 	 * 获得该模板下的已关联参数
-	 *
+	 * @param start
+	 * @param limit
+	 * @param id
+	 * @param flag
+	 * @param appSystem
 	 * @return
 	 */
 	@RequestMapping(value = "/addedParam", method = RequestMethod.GET)
@@ -438,7 +461,12 @@ public class ParamTemplateController {
 
 	/**
 	 * 获得该模板下的可关联参数
-	 *
+	 * @param start
+	 * @param limit
+	 * @param id
+	 * @param flag
+	 * @param appSystem
+	 * @param req
 	 * @return
 	 */
 	@RequestMapping(value = "/addingParam", method = RequestMethod.GET)
@@ -453,8 +481,6 @@ public class ParamTemplateController {
 			IFilter filter  = new Filter();
 			filter.eq("paramBelongs.id", appSystem);
 			list =  paramElementService.list(filter);
-//			List<IParamElement> element =templateService.listParam2(id,flag);
-//			list.removeAll(element);
 			result.addAttribute(FishConstant.SUCCESS, true);
 			result.addAttribute(FishConstant.DATA, convert(list));
 		}else{
@@ -471,6 +497,9 @@ public class ParamTemplateController {
 
 	/**
 	 * 将设备当前所有参数覆盖为模板的参数
+	 * @param templateId
+	 * @param request
+	 * @return
 	 */
 	@MethodNameDescrible(describle="userlog.ParamTemplateController.issue",hasLogKey=true)
 	@RequestMapping(value = "/issueParam", method = RequestMethod.POST)
@@ -536,7 +565,9 @@ public class ParamTemplateController {
 
 	/**
 	 * 获得该模板下的详细信息
-	 *
+	 * @param start
+	 * @param limit
+	 * @param id
 	 * @return
 	 */
 	@RequestMapping(value = "/templateDetail", method = RequestMethod.GET)
@@ -588,6 +619,10 @@ public class ParamTemplateController {
 		return filter;
 	}
 
+	/**
+	 * @param resources
+	 * @return
+	 */
 	public List<ParamElementForm> convert(List<IParamElement> resources) {
 		List<ParamElementForm> result = new ArrayList<ParamElementForm>();
 		for (IParamElement resource : resources) {
@@ -596,6 +631,10 @@ public class ParamTemplateController {
 		return result;
 	}
 
+	/**
+	 * @param resources
+	 * @return
+	 */
 	public List<ParamTempDetailForm> convertDetail(
 			List<IParamTemplateDetail> resources) {
 		List<ParamTempDetailForm> result = new ArrayList<ParamTempDetailForm>();
@@ -621,6 +660,10 @@ public class ParamTemplateController {
 		return messageSource.getMessage(code, null, code, FishCfg.locale);
 	}
 	
+	/**
+	 * @param list
+	 * @return
+	 */
 	public List<DeviceForm> convertDevice(List<IDevice> list) {
 		List<DeviceForm> result = new ArrayList<DeviceForm>();
 		for (IDevice item : list) {
@@ -633,8 +676,7 @@ public class ParamTemplateController {
 	 *
 	 * @param device
 	 *            接口
-	 * @param isDate
-	 *            是否需要转换日期
+	 * @return
 	 */
 	public DeviceForm toFrom(IDevice device) {
 		DeviceForm deviceForm = new DeviceForm();

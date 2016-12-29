@@ -6,6 +6,10 @@ import java.util.List;
 import com.yihuacomputer.fish.api.monitor.business.ITransType;
 
 
+/**
+ * @author YiHua
+ *
+ */
 public class TransTypeForm {
 
 	private long id;
@@ -19,12 +23,19 @@ public class TransTypeForm {
 		
 	}
 	
+	/**
+	 * @param tansType
+	 */
 	public TransTypeForm(ITransType tansType){
 		this.id = tansType.getId();
 		this.transCode = tansType.getTransCode();
 		this.codeDesc = tansType.getCodeDesc();
 	}
 	
+	/**
+	 * @param list
+	 * @return
+	 */
 	public static List<TransTypeForm> convert(List<ITransType> list) {
 		List<TransTypeForm> result = new ArrayList<TransTypeForm>();
 		for (ITransType item : list) {

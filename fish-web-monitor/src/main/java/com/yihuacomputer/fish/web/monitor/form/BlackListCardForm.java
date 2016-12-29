@@ -9,6 +9,10 @@ import java.util.List;
 import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.fish.api.monitor.business.IBlackListCard;
 
+/**
+ * @author YiHua
+ *
+ */
 public class BlackListCardForm {
     private long id;
 
@@ -23,6 +27,9 @@ public class BlackListCardForm {
     public BlackListCardForm() {
     }
 
+    /**
+     * @param ann
+     */
     public BlackListCardForm(IBlackListCard ann) {
         id = ann.getId();
         Date date = ann.getAddDate();
@@ -78,6 +85,11 @@ public class BlackListCardForm {
         this.organization = organization;
     }
 
+    /**
+     * @param text
+     * @param format
+     * @return
+     */
     public static Date parsedate(String text, String format) {
         try {
             return new SimpleDateFormat(format).parse(text);

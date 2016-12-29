@@ -44,6 +44,9 @@ public class SchindleralarmForm
         
     }
     
+    /**
+     * @param illegalProcess
+     */
     public SchindleralarmForm(IIllegalProcess illegalProcess) {
         setId(illegalProcess.getId());
         setTerminalId(illegalProcess.getTerminalId());
@@ -54,6 +57,9 @@ public class SchindleralarmForm
         setDate(illegalProcess.getDate());
     }
     
+    /**
+     * @param illegalProcess
+     */
     public void translate(IIllegalProcess illegalProcess) {
        illegalProcess.setCpuRate(getCpuRate());
        illegalProcess.setId(getId());
@@ -64,6 +70,10 @@ public class SchindleralarmForm
        illegalProcess.setDate(getDate());
     }
 
+    /**
+     * @param list
+     * @return
+     */
     public static List<SchindleralarmForm> convert(List<IIllegalProcess> list) {
         List<SchindleralarmForm> result = new ArrayList<SchindleralarmForm>();
         for(IIllegalProcess item : list) {

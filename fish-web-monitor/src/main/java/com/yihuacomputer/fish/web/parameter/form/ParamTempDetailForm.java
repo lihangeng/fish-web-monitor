@@ -12,6 +12,10 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.yihuacomputer.common.jackson.JsonUtils;
 import com.yihuacomputer.fish.api.parameter.IParamTemplateDetail;
 
+/**
+ * @author YiHua
+ *
+ */
 public class ParamTempDetailForm {
 	
 	private static Logger logger = LoggerFactory.getLogger(ParamTempDetailForm.class);
@@ -31,6 +35,9 @@ public class ParamTempDetailForm {
 
 	}
 
+	/**
+	 * @param detail
+	 */
 	public ParamTempDetailForm(IParamTemplateDetail detail) {
 		setId(detail.getId());
 		setTemplateId(detail.getTemplate().getId());
@@ -44,6 +51,9 @@ public class ParamTempDetailForm {
 	}
 
 
+	/**
+	 * @return
+	 */
 	public List<ParamTempDetailForm> getParamTempDetailForm() {
 		List<ParamTempDetailForm> tempDetailForm = new ArrayList<ParamTempDetailForm>();
 		if (StringUtils.isNotEmpty(this.resources)) {

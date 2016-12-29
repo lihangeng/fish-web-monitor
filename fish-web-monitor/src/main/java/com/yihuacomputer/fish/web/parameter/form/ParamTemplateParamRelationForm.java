@@ -1,7 +1,9 @@
 package com.yihuacomputer.fish.web.parameter.form;
 
-
-
+/**
+ * @author YiHua
+ *
+ */
 public class ParamTemplateParamRelationForm {
 	private long id;
 	private String paramId;
@@ -10,9 +12,6 @@ public class ParamTemplateParamRelationForm {
 	public ParamTemplateParamRelationForm(){
 
 	}
-
-
-
 	public long getId(){
 		return id;
 	}

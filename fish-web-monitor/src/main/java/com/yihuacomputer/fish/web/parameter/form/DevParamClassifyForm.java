@@ -2,6 +2,10 @@ package com.yihuacomputer.fish.web.parameter.form;
 
 import com.yihuacomputer.fish.api.parameter.IParamTemplateDetail;
 
+/**
+ * @author YiHua
+ *
+ */
 public class DevParamClassifyForm {
 
 	private long id;
@@ -48,6 +52,9 @@ public class DevParamClassifyForm {
 
 	}
 
+	/**
+	 * @param paramDetail
+	 */
 	public DevParamClassifyForm(IParamTemplateDetail paramDetail) {
 		this.id = paramDetail.getId();
 		this.paramName = paramDetail.getParamElement().getParamName();

@@ -110,6 +110,11 @@ public class RetainCardForm {
 
 	}
 
+	/**
+	 * @param retaincard
+	 * @param orgService
+	 * @param deviceService
+	 */
 	public RetainCardForm(IRetaincard retaincard, IOrganizationService orgService, IDeviceService deviceService) {
 		this.setId(retaincard.getId());
 		this.setAccountNo(retaincard.getAccountNo());
@@ -144,6 +149,9 @@ public class RetainCardForm {
 		this.setCardRetainType(retaincard.getCardRetainType() == null ? null : String.valueOf(retaincard.getCardRetainType().getId()));
 	}
 
+	/**
+	 * @param retaincard
+	 */
 	public void translate(IRetaincard retaincard) {
 		retaincard.setAccountNo(getAccountNo());
 		retaincard.setReason(getReason());

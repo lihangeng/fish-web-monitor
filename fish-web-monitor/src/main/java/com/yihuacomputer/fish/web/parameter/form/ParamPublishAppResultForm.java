@@ -2,6 +2,10 @@ package com.yihuacomputer.fish.web.parameter.form;
 
 import com.yihuacomputer.fish.api.parameter.IParamPublishAppResult;
 
+/**
+ * @author YiHua
+ *
+ */
 public class ParamPublishAppResultForm {
 
 	private String appSystem;
@@ -34,6 +38,9 @@ public class ParamPublishAppResultForm {
 		this.reason = reason;
 	}
 
+	/**
+	 * @param ppar
+	 */
 	public ParamPublishAppResultForm(IParamPublishAppResult ppar) {
 		this.appSystem = ppar.getAppSystem().getName();
 		if(ppar !=null){

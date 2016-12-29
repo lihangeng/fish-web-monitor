@@ -7,6 +7,10 @@ import java.util.List;
 import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.fish.api.monitor.business.ITransactionColor;
 
+/**
+ * @author YiHua
+ *
+ */
 public class TransactionColorForm {
 	private long id;
 
@@ -71,6 +75,9 @@ public class TransactionColorForm {
 
 	}
 
+	/**
+	 * @param transactionColor
+	 */
 	public TransactionColorForm(ITransactionColor transactionColor) {
 		setId(transactionColor.getId());
 		setHostRet(transactionColor.getHostRet());
@@ -88,6 +95,9 @@ public class TransactionColorForm {
 
 	}
 
+	/**
+	 * @param transactionColor
+	 */
 	public void translate(ITransactionColor transactionColor) {
 		transactionColor.setHostRet(getHostRet());
 		transactionColor.setBackgroundColor(getBackgroundColor());
@@ -103,6 +113,10 @@ public class TransactionColorForm {
 		transactionColor.setLocalRetDes(getLocalRetDes());
 	}
 
+	/**
+	 * @param listColor
+	 * @return
+	 */
 	public static List<TransactionColorForm> convert(List<ITransactionColor> listColor) {
 
 		List<TransactionColorForm> result = new ArrayList<TransactionColorForm>();

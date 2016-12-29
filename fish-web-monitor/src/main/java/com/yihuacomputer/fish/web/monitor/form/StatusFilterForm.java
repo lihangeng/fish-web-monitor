@@ -6,6 +6,10 @@ import com.yihuacomputer.fish.api.monitor.filter.INetStatusFilter;
 import com.yihuacomputer.fish.api.monitor.filter.IRunStatusFilter;
 import com.yihuacomputer.fish.api.monitor.filter.IStatusFilter;
 
+/**
+ * @author YiHua
+ *
+ */
 public class StatusFilterForm {
 	
 	private String userId;
@@ -56,6 +60,10 @@ public class StatusFilterForm {
 	}
 	
 	
+	/**
+	 * @param statusFilter
+	 * @return
+	 */
 	public static StatusFilterForm toForm(IStatusFilter statusFilter){
 		StatusFilterForm result = new StatusFilterForm();
 		result.setUserId(statusFilter.getUserId());

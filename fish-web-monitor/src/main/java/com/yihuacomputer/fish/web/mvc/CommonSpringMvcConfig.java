@@ -49,6 +49,9 @@ public abstract class CommonSpringMvcConfig extends WebMvcConfigurerAdapter {
 		configurer.enable();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public CommonsMultipartResolver multipartResolver() {
 		CommonsMultipartResolver cmr = new CommonsMultipartResolver();
@@ -57,6 +60,9 @@ public abstract class CommonSpringMvcConfig extends WebMvcConfigurerAdapter {
 		return cmr;
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public ObjectMapper objectMapper() {
 		ObjectMapper objectMapper = new ObjectMapper();
@@ -65,6 +71,9 @@ public abstract class CommonSpringMvcConfig extends WebMvcConfigurerAdapter {
 		return objectMapper;
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter() {
 		MappingJackson2HttpMessageConverter jackson2 = new MappingJackson2HttpMessageConverter();
@@ -72,17 +81,9 @@ public abstract class CommonSpringMvcConfig extends WebMvcConfigurerAdapter {
 		return jackson2;
 	}
 
-	// @Bean
-	// public RequestMappingHandlerAdapter requestMappingHandlerAdapter(){
-	// RequestMappingHandlerAdapter reqeustMapping = new
-	// RequestMappingHandlerAdapter();
-	// StringHttpMessageConverter httpMessageConverter = new
-	// StringHttpMessageConverter();
-	// reqeustMapping.getMessageConverters().add(httpMessageConverter);
-	// reqeustMapping.getMessageConverters().add(mappingJackson2HttpMessageConverter());
-	// return reqeustMapping;
-	// }
-
+	/**
+	 * @return
+	 */
 	@Bean
 	public OpenSessionInViewInterceptor openSessionInViewInterceptor() {
 		OpenSessionInViewInterceptor osii = new OpenSessionInViewInterceptor();

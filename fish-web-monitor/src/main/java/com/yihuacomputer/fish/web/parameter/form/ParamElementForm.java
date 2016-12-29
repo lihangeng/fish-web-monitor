@@ -7,6 +7,10 @@ import java.util.List;
 import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.fish.api.parameter.IParamElement;
 
+/**
+ * @author YiHua
+ *
+ */
 public class ParamElementForm {
 	private long id;
 	private String paramName;
@@ -26,6 +30,9 @@ public class ParamElementForm {
 
 	}
 
+	/**
+	 * @param element
+	 */
 	public ParamElementForm(IParamElement element){
 		setId(element.getId());
 		setParamName(element.getParamName());
@@ -48,6 +55,10 @@ public class ParamElementForm {
 	}
 
 
+	/**
+	 * @param list
+	 * @return
+	 */
 	public static List<ParamElementForm> convert(List<IParamElement> list) {
 		List<ParamElementForm> result=new ArrayList<ParamElementForm>();
 		for(IParamElement item:list){
@@ -56,6 +67,10 @@ public class ParamElementForm {
 		return result;
 	}
 
+	/**
+	 * @param string
+	 * @return
+	 */
 	public Date nullDate(String string) {
 		if (string == null || "".equals(string)) {
 			return null;

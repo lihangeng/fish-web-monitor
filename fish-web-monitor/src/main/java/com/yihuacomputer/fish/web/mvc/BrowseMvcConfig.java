@@ -25,6 +25,9 @@ public class BrowseMvcConfig extends CommonSpringMvcConfig {
 		registry.addInterceptor(userLogInterceptor());
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public TimeoutInterceptor timeoutInterceptor(){
 		TimeoutInterceptor timeoutInterceptor = new TimeoutInterceptor();
@@ -32,11 +35,17 @@ public class BrowseMvcConfig extends CommonSpringMvcConfig {
 		return timeoutInterceptor;
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public UserLogInterceptor userLogInterceptor(){
 		return new UserLogInterceptor();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public InternalResourceViewResolver getInternalResourceViewResolver() {
 		InternalResourceViewResolver resolver = new InternalResourceViewResolver();

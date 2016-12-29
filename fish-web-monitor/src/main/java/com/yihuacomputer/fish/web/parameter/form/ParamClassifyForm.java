@@ -2,6 +2,10 @@ package com.yihuacomputer.fish.web.parameter.form;
 
 import com.yihuacomputer.fish.api.parameter.IParamClassify;
 
+/**
+ * @author YiHua
+ *
+ */
 public class ParamClassifyForm {
 	private long id;
 	private String name;
@@ -11,6 +15,9 @@ public class ParamClassifyForm {
 
 	}
 
+	/**
+	 * @param classify
+	 */
 	public ParamClassifyForm(IParamClassify classify) {
 		setId(classify.getId());
 		setName(classify.getName());

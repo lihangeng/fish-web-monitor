@@ -1,4 +1,8 @@
 package com.yihuacomputer.fish.web.monitor.form;
+/**
+ * @author YiHua
+ *
+ */
 public class HardwareVersion {
 
 	private String device;
@@ -12,6 +16,9 @@ public class HardwareVersion {
 	public HardwareVersion() {
 	}
 
+	/**
+	 * @param version
+	 */
 	public HardwareVersion(HardwareVersion version) {
 		setDevice(version.getDevice());
 		setDriverVersion(version.getDriverVersion());

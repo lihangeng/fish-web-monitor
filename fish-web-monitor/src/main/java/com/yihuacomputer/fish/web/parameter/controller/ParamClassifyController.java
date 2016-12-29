@@ -31,6 +31,10 @@ import com.yihuacomputer.fish.api.parameter.IParamElement;
 import com.yihuacomputer.fish.api.parameter.IParamElementService;
 import com.yihuacomputer.fish.web.parameter.form.ParamClassifyForm;
 
+/**
+ * @author YiHua
+ *
+ */
 @Controller
 @ClassNameDescrible(describle="userlog.ParamClassifyController")
 @RequestMapping("/parameter/classify")
@@ -47,6 +51,12 @@ public class ParamClassifyController {
 	@Autowired
 	private MessageSource messageSource;
 
+	/**
+	 * @param start
+	 * @param limit
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody ModelMap search(@RequestParam int start,@RequestParam int limit, WebRequest request) {
 		logger.info(String.format("search param template : start = %s ,limit = %s ",start, limit));
@@ -59,6 +69,10 @@ public class ParamClassifyController {
 		return result;
 	}
 
+	/**
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(method=RequestMethod.POST)
 	@MethodNameDescrible(describle="userlog.ParamClassifyController.add",hasReqBodyParam=true,reqBodyClass=ParamClassifyForm.class,bodyProperties="name")
 	public @ResponseBody
@@ -79,6 +93,10 @@ public class ParamClassifyController {
 		return result;
 	}
 
+	/**
+	 * @param id
+	 * @return
+	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	@MethodNameDescrible(describle="userlog.ParamClassifyController.delete",hasLogKey=true)
 	public @ResponseBody
@@ -111,6 +129,11 @@ public class ParamClassifyController {
 		return result;
 	}
 
+	/**
+	 * @param id
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	@MethodNameDescrible(describle="userlog.ParamClassifyController.update",hasReqBodyParam=true,reqBodyClass=ParamClassifyForm.class,bodyProperties="name")
 	public @ResponseBody
@@ -169,6 +192,10 @@ public class ParamClassifyController {
 		}
 	}
 
+	/**
+	 * @param list
+	 * @return
+	 */
 	public List<ParamClassifyForm> convert(List<IParamClassify> list) {
 		List<ParamClassifyForm> result = new ArrayList<ParamClassifyForm>();
 		for (IParamClassify item : list) {
@@ -177,6 +204,10 @@ public class ParamClassifyController {
 		return result;
 	}
 
+	/**
+	 * @param classify
+	 * @param request
+	 */
 	public void translate(IParamClassify classify, ParamClassifyForm request) {
 		classify.setName(request.getName());
 		classify.setRemark(request.getRemark());

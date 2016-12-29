@@ -57,6 +57,10 @@ import com.yihuacomputer.fish.web.parameter.form.DevParameterForm;
 import com.yihuacomputer.fish.web.parameter.form.ParamClassifyForm;
 import com.yihuacomputer.fish.web.parameter.form.ParamDownloadMonitorForm;
 
+/**
+ * @author YiHua
+ *
+ */
 @Controller
 @RequestMapping("/parameter/devParameter")
 @ClassNameDescrible(describle="userlog.DevParameterController")
@@ -93,6 +97,13 @@ public class DevParameterController {
 	@Autowired
 	private IParamPublishService paramPushService;
 
+	/**
+	 * @param start
+	 * @param limit
+	 * @param request
+	 * @param webRequest
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody ModelMap search(@RequestParam int start, @RequestParam int limit, HttpServletRequest request, WebRequest webRequest) {
 		logger.info("search device information");
@@ -147,6 +158,11 @@ public class DevParameterController {
 		return result;
 	}
 
+	/**
+	 * @param request
+	 * @param webRequest
+	 * @return
+	 */
 	@RequestMapping(value = "/getAppData", method = RequestMethod.GET)
 	public @ResponseBody ModelMap getAppData(HttpServletRequest request, WebRequest webRequest) {
 		logger.info("search appSystem information");
@@ -161,6 +177,8 @@ public class DevParameterController {
 
 	/**
 	 * 数据格式转换
+	 * @param appSystem
+	 * @return
 	 */
 	private List<AppSystemForm> toForm(List<IAppSystem> appSystem) {
 		List<AppSystemForm> lists = new ArrayList<AppSystemForm>();
@@ -173,6 +191,9 @@ public class DevParameterController {
 
 	/**
 	 * 根据设备号查询设备参数
+	 * @param request
+	 * @param webRequest
+	 * @return
 	 */
 	@RequestMapping(value = "/paramInfo", method = RequestMethod.GET)
 	public @ResponseBody ModelMap searchParam(HttpServletRequest request, WebRequest webRequest) {
@@ -273,6 +294,11 @@ public class DevParameterController {
 
 	/**
 	 * 参数分类查询
+	 * @param start
+	 * @param limit
+	 * @param request
+	 * @param webRequest
+	 * @return
 	 */
 	@RequestMapping(value = "/devParamClassify", method = RequestMethod.GET)
 	public @ResponseBody ModelMap searchClassfigy(int start, int limit, HttpServletRequest request, WebRequest webRequest) {
@@ -295,7 +321,11 @@ public class DevParameterController {
 	}
 
 	/**
-	 * @PathVariable long id, 更改设备参数
+	 * 更改设备参数
+	 * @param id
+	 * @param paramForm
+	 * @param request
+	 * @return
 	 */
 	@RequestMapping(value = "/paramInfo/{id}", method = RequestMethod.PUT)
 	@MethodNameDescrible(describle="userlog.DevParameterController.update",hasReqBodyParam=true,reqBodyClass=DeviceParam.class,bodyProperties="terminalId")
@@ -351,6 +381,9 @@ public class DevParameterController {
 
 	/**
 	 * 下发设备参数
+	 * @param arrayId
+	 * @param request
+	 * @return
 	 */
 	@RequestMapping(value = "/paramInfo/release", method = RequestMethod.POST)
 	@MethodNameDescrible(describle="userlog.DevParameterController.releaseParam")

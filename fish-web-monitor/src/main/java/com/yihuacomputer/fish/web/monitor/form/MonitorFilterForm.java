@@ -10,8 +10,14 @@ import com.yihuacomputer.fish.api.person.IOrganization;
 
 public class MonitorFilterForm {
 
+    /**
+     * ID
+     */
     public long id;
 
+    /**
+     *订阅条件名称 
+     */
     public String filterName;
 
     /**
@@ -92,6 +98,9 @@ public class MonitorFilterForm {
     public MonitorFilterForm() {
     }
 
+    /**
+     * @param statusFilter
+     */
     public MonitorFilterForm(IStatusFilter statusFilter) {
         this.userId = statusFilter.getUserId();
         this.orgId = statusFilter.getOrgId();
@@ -111,6 +120,12 @@ public class MonitorFilterForm {
 
     }
 
+    /**
+     * @param statusFilter
+     * @param org
+     * @param type
+     * @param group
+     */
     public MonitorFilterForm(IStatusFilter statusFilter, IOrganization org, IAtmType type, IAtmGroup group) {
         this.userId = statusFilter.getUserId();
         this.orgId = statusFilter.getOrgId();
@@ -133,6 +148,10 @@ public class MonitorFilterForm {
 
     }
 
+    /**
+     * @param list
+     * @return
+     */
     public static List<MonitorFilterForm> convert(List<IStatusFilter> list) {
         List<MonitorFilterForm> result = new ArrayList<MonitorFilterForm>();
         for (IStatusFilter filter : list) {
@@ -141,6 +160,10 @@ public class MonitorFilterForm {
         return result;
     }
 
+    /**
+     * @param list
+     * @return
+     */
     public static List<MonitorFilterForm> convertObj(List<Object> list) {
         List<MonitorFilterForm> result = new ArrayList<MonitorFilterForm>();
         for (Object obj : list) {

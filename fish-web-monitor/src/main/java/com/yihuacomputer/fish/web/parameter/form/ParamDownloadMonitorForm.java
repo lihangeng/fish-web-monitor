@@ -3,15 +3,15 @@ package com.yihuacomputer.fish.web.parameter.form;
 import com.yihuacomputer.fish.api.parameter.IParamPublish;
 
 public class ParamDownloadMonitorForm {
-	public long id;
+	private long id;
 	
-	public String date;
+	private String date;
 	
-	public long publisher;
+	private long publisher;
 	
 	private String templateName;
 	
-	public String publisherName;
+	private String publisherName;
 
 	public long getId() {
 		return id;
@@ -49,6 +49,9 @@ public class ParamDownloadMonitorForm {
 		
 	}
 	
+	/**
+	 * @param paramPublish
+	 */
 	public ParamDownloadMonitorForm(IParamPublish paramPublish) {
 		this.id = paramPublish.getId();
 		this.date = paramPublish.getDate();

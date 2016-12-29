@@ -95,6 +95,10 @@ public class StatusMonitorForm {
 
     private String longtitude;
 
+    /**
+     * @param list
+     * @return
+     */
     public static List<StatusMonitorForm> convert(List<IStatusReport> list) {
         List<StatusMonitorForm> result = new ArrayList<StatusMonitorForm>();
         for (IStatusReport item : list) {
@@ -103,6 +107,9 @@ public class StatusMonitorForm {
         return result;
     }
     public StatusMonitorForm(){}
+    /**
+     * @param statusReport
+     */
     public StatusMonitorForm(IStatusReport statusReport) {
         this.id = statusReport.getId();
         this.code = statusReport.getCode();
@@ -112,7 +119,6 @@ public class StatusMonitorForm {
         this.insideOutside = statusReport.getInsideOutside();
         this.ip = statusReport.getIp();
         this.address = statusReport.getAddress();
-//        this.appRelease = statusReport.getAppRelease() == null ? "未知" : statusReport.getAppRelease();
         this.appRelease = statusReport.getAppRelease();
         this.registerStatus = statusReport.getRegisterStatus();
         this.runStatus = statusReport.getRunStatus();

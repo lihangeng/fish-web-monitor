@@ -3,6 +3,10 @@ package com.yihuacomputer.fish.web.parameter.form;
 import com.yihuacomputer.fish.api.parameter.FileFormat;
 import com.yihuacomputer.fish.api.parameter.IAppSystem;
 
+/**
+ * @author YiHua
+ *
+ */
 public class AppSystemForm {
 	private long id;
 	
@@ -20,6 +24,9 @@ public class AppSystemForm {
 		
 	}
 	
+	/**
+	 * @param appSystem
+	 */
 	public AppSystemForm(IAppSystem appSystem){
 		this.id=appSystem.getId();
 		this.name=appSystem.getName();
@@ -78,6 +85,9 @@ public class AppSystemForm {
 		this.remark = remark;
 	}
 	
+	/**
+	 * @param appSystem
+	 */
 	public void translate(IAppSystem appSystem){
 		appSystem.setName(getName());
 		appSystem.setConfigName(getConfigName());

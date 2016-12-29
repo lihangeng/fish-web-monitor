@@ -29,6 +29,9 @@ public class ProcessForm
         
     }
     
+    /**
+     * @param process
+     */
     public ProcessForm(IProcess process) {
         setId(process.getId());
         setName(process.getName());
@@ -39,6 +42,9 @@ public class ProcessForm
         setDate(process.getDate());
     }
     
+    /**
+     * @param process
+     */
     public void translate(IProcess process) {
        process.setCpuRate(getCpuRate());
        process.setDescription(getDescription());
@@ -48,6 +54,10 @@ public class ProcessForm
        process.setDate(getDate());
     }
 
+    /**
+     * @param list
+     * @return
+     */
     public static List<ProcessForm> convert(List<IProcess> list) {
         List<ProcessForm> result = new ArrayList<ProcessForm>();
         for(IProcess item : list) {

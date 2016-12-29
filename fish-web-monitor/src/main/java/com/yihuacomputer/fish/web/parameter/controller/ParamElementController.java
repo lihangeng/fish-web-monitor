@@ -51,6 +51,10 @@ import com.yihuacomputer.fish.web.parameter.form.AppSystemForm;
 import com.yihuacomputer.fish.web.parameter.form.ParamClassifyForm;
 import com.yihuacomputer.fish.web.parameter.form.ParamElementForm;
 
+/**
+ * @author YiHua
+ *
+ */
 @Controller
 @RequestMapping("/parameter/element")
 @ClassNameDescrible(describle="userlog.ParamElementController")
@@ -71,6 +75,12 @@ public class ParamElementController {
     protected MessageSource messageSource;
 
 
+	/**
+	 * @param start
+	 * @param limit
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody
 	ModelMap search(@RequestParam int start, @RequestParam int limit, WebRequest request){
@@ -91,6 +101,10 @@ public class ParamElementController {
 
 	}
 
+	/**
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(method=RequestMethod.POST)
 	@MethodNameDescrible(describle="userlog.ParamElementController.add",hasReqBodyParam=true,reqBodyClass=ParamElementForm.class,bodyProperties="paramName")
 	public @ResponseBody
@@ -123,6 +137,11 @@ public class ParamElementController {
 		return result;
 	}
 
+	/**
+	 * @param id
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	@MethodNameDescrible(describle="userlog.ParamElementController.update",hasReqBodyParam=true,reqBodyClass=ParamElementForm.class,bodyProperties="paramName")
 	public @ResponseBody
@@ -156,6 +175,9 @@ public class ParamElementController {
 		return result;
 	}
 
+	/**
+	 * @return
+	 */
 	@RequestMapping(value = "/elementClassify", method = RequestMethod.GET)
     public @ResponseBody ModelMap queryElementClassify() {
         logger.info("search element : queryClassify");
@@ -166,6 +188,9 @@ public class ParamElementController {
         return model;
     }
 
+   /**
+	 * @return
+	 */
    @RequestMapping(value= "/queryAppsystemRadioGroup",method=RequestMethod.GET)
    public @ResponseBody ModelMap queryAppSystem1(){
 	   logger.info("search appSystem : queryAppSystem");
@@ -175,6 +200,9 @@ public class ParamElementController {
 	return model;
    }
 
+   /**
+	 * @return
+	 */
    @RequestMapping(value= "/queryAppsystem",method=RequestMethod.GET)
    public @ResponseBody ModelMap queryAppSystem2(){
 	   logger.info("search appSystem : queryAppSystem");
@@ -186,7 +214,13 @@ public class ParamElementController {
    }
 
 
-   @RequestMapping(method = RequestMethod.POST, value = "/import")
+    /**
+     * @param appSystem
+     * @param request
+     * @param response
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.POST, value = "/import")
 	@MethodNameDescrible(describle="userlog.ParamElementController.importFile",hasFaceParam=true,faceParam="appSystemName")
 	public @ResponseBody
 	String importFile(@RequestParam long appSystem, HttpServletRequest request, HttpServletResponse response) {
@@ -341,13 +375,22 @@ public class ParamElementController {
 		return "page".equals(name) || "start".equals(name) || "limit".equals(name) || "_dc".equals(name);
 	}
 
+	/**
+	 * @param list
+	 * @return
+	 */
 	public static List<ParamClassifyForm> convert1(List<IParamClassify> list) {
-	List<ParamClassifyForm> result = new ArrayList<ParamClassifyForm>();
-	for (IParamClassify item : list) {
-		result.add(new ParamClassifyForm(item));
+		List<ParamClassifyForm> result = new ArrayList<ParamClassifyForm>();
+		for (IParamClassify item : list) {
+			result.add(new ParamClassifyForm(item));
+		}
+		return result;
 	}
-	return result;
-}
+	
+	/**
+	 * @param list
+	 * @return
+	 */
 	public static List<AppSystemForm> convert2(List<IAppSystem> list){
 
 		List<AppSystemForm> result=new ArrayList<AppSystemForm>();

@@ -38,6 +38,10 @@ import com.yihuacomputer.fish.person.service.base.DomainUserService;
 import com.yihuacomputer.fish.web.parameter.form.ParamDownloadMonitorForm;
 import com.yihuacomputer.fish.web.parameter.form.ParamPublishAppResultForm;
 
+/**
+ * @author YiHua
+ *
+ */
 @Controller
 @RequestMapping("/parameter/downloadMonitor")
 @ClassNameDescrible(describle="userlog.ParamDownloadMonitorController")
@@ -100,11 +104,7 @@ public class ParamDownloadMonitorController {
 				} else if("finishTime".equals(name)){
 					String value=request.getParameter(name);
 					filter.le("date", value+" 23:59:59");
-				}/* else if(name.equals("publisher")){
-					String value=request.getParameter(name);
-					long publish=userService.get(value).getId();
-					filter.eq("publisher", publish);
-				}*/
+				}
 			}
 		}
 
@@ -134,8 +134,12 @@ public class ParamDownloadMonitorController {
 	
 	/**
 	 * 查询参数下发task信息
+	 * @param start
+	 * @param limit
+	 * @param request
+	 * @param webRequest
+	 * @return
 	 */
-	
 	@RequestMapping(value="/task",method=RequestMethod.GET)
 	public @ResponseBody ModelMap TaskSearch(@RequestParam int start,@RequestParam int limit,HttpServletRequest request,WebRequest webRequest){
 		logger.info("search parameter download task information");
@@ -170,15 +174,18 @@ public class ParamDownloadMonitorController {
 				}else if ("terminalId".equals(name)) {
 					String value = request.getParameter(name).trim();
 					filter.like("device.terminalId", value);
-				} /*else if(name.equals("downloadStartTime")){
-					filter.eq("downloadStartTime", request.getParameter(name));
-				}*/
+				}
 			}
 		}
 
 		return filter;
 	}
 	
+	/**
+	 * @param req
+	 * @param webRequest
+	 * @return
+	 */
 	@RequestMapping(value="/task/status",method=RequestMethod.GET)
 	public @ResponseBody ModelMap searchStatus(HttpServletRequest req,WebRequest webRequest){
 		logger.info("search publish result status");
@@ -193,6 +200,12 @@ public class ParamDownloadMonitorController {
 		return result;
 	}
 	
+	/**
+	 * @param jobId
+	 * @param request
+	 * @param wRequest
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.GET, value = "/searchNextJob")
 	public @ResponseBody ModelMap searchJobInfo(@RequestParam long jobId, HttpServletRequest request, WebRequest wRequest) {
 		ModelMap result = new ModelMap();

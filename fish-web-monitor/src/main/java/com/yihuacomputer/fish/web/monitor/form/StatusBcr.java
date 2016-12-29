@@ -3,6 +3,10 @@ package com.yihuacomputer.fish.web.monitor.form;
 import com.yihuacomputer.fish.api.monitor.xfs.status.DeviceStatus;
 
 
+/**
+ * @author YiHua
+ *
+ */
 public class StatusBcr {
 	/**
      * 获取硬件主状态

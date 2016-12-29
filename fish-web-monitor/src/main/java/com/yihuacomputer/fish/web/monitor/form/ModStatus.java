@@ -1,6 +1,10 @@
 package com.yihuacomputer.fish.web.monitor.form;
 
 
+/**
+ * @author YiHua
+ *
+ */
 public class ModStatus {
     private StatusCdm cdm;
 

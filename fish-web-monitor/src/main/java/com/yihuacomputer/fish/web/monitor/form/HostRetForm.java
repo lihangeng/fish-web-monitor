@@ -5,6 +5,10 @@ import java.util.List;
 
 import com.yihuacomputer.fish.api.monitor.business.IHostRet;
 
+/**
+ * @author YiHua
+ *
+ */
 public class HostRetForm {
 
     private long id;
@@ -18,12 +22,19 @@ public class HostRetForm {
 
     }
 
+    /**
+     * @param hostRet
+     */
     public HostRetForm(IHostRet hostRet){
         this.id = hostRet.getId();
         this.hostRet = hostRet.getCode();
         this.name = hostRet.getName();
     }
 
+    /**
+     * @param list
+     * @return
+     */
     public static List<HostRetForm> convert(List<IHostRet> list) {
         List<HostRetForm> result = new ArrayList<HostRetForm>();
         for (IHostRet item : list) {

@@ -2,6 +2,10 @@ package com.yihuacomputer.fish.web.monitor.form;
 
 import com.yihuacomputer.fish.api.monitor.filter.INetStatusFilter;
 
+/**
+ * @author YiHua
+ *
+ */
 public class NetStatusFilterForm {
 
     private boolean net_all;
@@ -17,6 +21,9 @@ public class NetStatusFilterForm {
     public NetStatusFilterForm() {
     }
 
+    /**
+     * @param netStatusFilter
+     */
     public NetStatusFilterForm(INetStatusFilter netStatusFilter) {
         setNet_all(netStatusFilter.isAll());
         setNet_fatal(netStatusFilter.isFatal());

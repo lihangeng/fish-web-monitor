@@ -32,6 +32,10 @@ import com.yihuacomputer.fish.api.person.UserSession;
 import com.yihuacomputer.fish.web.monitor.form.TransactionColorForm;
 import com.yihuacomputer.fish.web.util.FishWebUtils;
 
+/**
+ * @author YiHua
+ *
+ */
 @Controller
 @RequestMapping("/monitor/transaction/color")
 @ClassNameDescrible(describle="userlog.TransactionColorController")
@@ -45,6 +49,11 @@ public class TransactionColorController {
 
     private Logger logger = LoggerFactory.getLogger(TransactionColorController.class);
 
+    /**
+     * @param form
+     * @param request
+     * @return
+     */
     @RequestMapping(method = RequestMethod.POST)
 	@MethodNameDescrible(describle="userlog.TransactionColorController.add",hasReqBodyParam=true,reqBodyClass=TransactionColorForm.class,bodyProperties="hostRet")
     public @ResponseBody ModelMap add(@RequestBody TransactionColorForm form, HttpServletRequest request) {
@@ -102,6 +111,10 @@ public class TransactionColorController {
         return false;
     }
 
+    /**
+     * @param id
+     * @return
+     */
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	@MethodNameDescrible(describle="userlog.TransactionColorController.delete",hasLogKey=true)
     public @ResponseBody ModelMap delete(@PathVariable long id) {
@@ -128,6 +141,11 @@ public class TransactionColorController {
         return result;
     }
 
+    /**
+     * @param id
+     * @param request
+     * @return
+     */
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	@MethodNameDescrible(describle="userlog.TransactionColorController.update",hasReqBodyParam=true,reqBodyClass=TransactionColorForm.class,bodyProperties="hostRet")
     public @ResponseBody ModelMap update(@PathVariable long id, @RequestBody TransactionColorForm request) {
@@ -172,6 +190,11 @@ public class TransactionColorController {
         return model;
     }
 
+    /**
+     * @param webRequest
+     * @param request
+     * @return
+     */
     @RequestMapping(value = "list", method = RequestMethod.GET)
     public @ResponseBody ModelMap list(WebRequest webRequest, HttpServletRequest request) {
 
@@ -187,6 +210,13 @@ public class TransactionColorController {
         return result;
     }
 
+    /**
+     * @param start
+     * @param limit
+     * @param webRequest
+     * @param request
+     * @return
+     */
     @RequestMapping(method = RequestMethod.GET)
     public @ResponseBody ModelMap search(@RequestParam int start, @RequestParam int limit, WebRequest webRequest,
             HttpServletRequest request) {
@@ -202,6 +232,13 @@ public class TransactionColorController {
         return result;
     }
 
+    /**
+     * @param webRequest
+     * @param request
+     * @param localRet
+     * @param hostRet
+     * @return
+     */
     @RequestMapping(value = "/describe", method = RequestMethod.POST)
     public @ResponseBody ModelMap Describe(WebRequest webRequest, HttpServletRequest request,
             @RequestParam String localRet, @RequestParam String hostRet) {

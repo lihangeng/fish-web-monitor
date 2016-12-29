@@ -2,6 +2,10 @@ package com.yihuacomputer.fish.web.monitor.form;
 
 import com.yihuacomputer.fish.api.monitor.filter.IRunStatusFilter;
 
+/**
+ * @author YiHua
+ *
+ */
 public class RunStatusFilterForm {
 
     private boolean run_all;
@@ -37,6 +41,9 @@ public class RunStatusFilterForm {
     public RunStatusFilterForm() {
     }
 
+    /**
+     * @param runStatusFilter
+     */
     public RunStatusFilterForm(IRunStatusFilter runStatusFilter) {
         setRun_all(runStatusFilter.isAll());
         setRun_customer(runStatusFilter.isCustomer());

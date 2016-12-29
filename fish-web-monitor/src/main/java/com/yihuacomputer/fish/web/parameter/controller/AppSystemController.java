@@ -33,6 +33,10 @@ import com.yihuacomputer.fish.api.parameter.IAppSystemService;
 import com.yihuacomputer.fish.web.parameter.form.AppSystemForm;
 
 
+/**
+ * @author YiHua
+ *
+ */
 @Controller
 @RequestMapping("/parameter/appSystem")
 @ClassNameDescrible(describle="userlog.AppSystemController")
@@ -45,6 +49,13 @@ public class AppSystemController {
 	@Autowired
 	private MessageSource messageSource;
 
+	/**
+	 * @param start
+	 * @param limit
+	 * @param request
+	 * @param webRequest
+	 * @return
+	 */
 	@RequestMapping(method=RequestMethod.GET)
 	public @ResponseBody ModelMap search(@RequestParam int start,@RequestParam int limit,HttpServletRequest request,WebRequest webRequest){
 		logger.info("search appSystem");
@@ -59,6 +70,8 @@ public class AppSystemController {
 
 	/**
 	 * 数据格式转换
+	 * @param appSystem
+	 * @return
 	 */
 	private List<AppSystemForm> toForm(List<IAppSystem> appSystem){
 			List<AppSystemForm> lists=new ArrayList<AppSystemForm>();
@@ -69,9 +82,13 @@ public class AppSystemController {
 			return lists;
 	}
 
+	/**
+	 * @param id
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(value="/{id}",method=RequestMethod.PUT)
 	@MethodNameDescrible(describle="userlog.AppSystemController.update",hasReqBodyParam=true,reqBodyClass=AppSystemForm.class,bodyProperties="name")
-
 	public @ResponseBody
 	ModelMap update(@PathVariable long id,@RequestBody AppSystemForm request){
 		logger.info("update appSystem:appSystem.id="+id);

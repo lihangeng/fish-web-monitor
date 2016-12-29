@@ -7,6 +7,10 @@ import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.fish.api.monitor.business.ITransaction;
 import com.yihuacomputer.fish.api.monitor.business.ITransactionView;
 
+/**
+ * @author YiHua
+ *
+ */
 public class TransactionForm {
 
 	private String termId;
@@ -34,6 +38,9 @@ public class TransactionForm {
 	public TransactionForm() {
 	}
 
+	/**
+	 * @param itrans
+	 */
 	public TransactionForm(ITransaction itrans) {
 		setTermId(itrans.getTerminalId());
 		setTransId(itrans.getTransId());
@@ -48,6 +55,9 @@ public class TransactionForm {
 		setTipFee(itrans.getTipFee());
 	}
 
+	/**
+	 * @param itrans
+	 */
 	public TransactionForm(ITransactionView itrans) {
 		setTermId(itrans.getTerminalId());
 		setTransId(itrans.getTransId());
@@ -62,6 +72,10 @@ public class TransactionForm {
 		setTipFee(itrans.getTipFee());
 	}
 
+	/**
+	 * @param list
+	 * @return
+	 */
 	public static List<TransactionForm> convert(List<ITransaction> list) {
 		List<TransactionForm> result = new ArrayList<TransactionForm>();
 		for (ITransaction item : list) {
@@ -69,6 +83,10 @@ public class TransactionForm {
 		}
 		return result;
 	}
+	/**
+	 * @param list
+	 * @return
+	 */
 	public static List<TransactionForm> convertView(List<ITransactionView> list) {
 		List<TransactionForm> result = new ArrayList<TransactionForm>();
 		for (ITransactionView item : list) {

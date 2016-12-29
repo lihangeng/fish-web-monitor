@@ -5,6 +5,10 @@ import java.util.List;
 
 import com.yihuacomputer.fish.api.monitor.software.IDeviceParam;
 
+/**
+ * @author YiHua
+ *
+ */
 public class DeviceParamForm {
     private long id;
 
@@ -25,6 +29,9 @@ public class DeviceParamForm {
     public DeviceParamForm() {
     }
 
+    /**
+     * @param config
+     */
     public DeviceParamForm(IDeviceParam config) {
         this.id = config.getId();
         this.terminalId = config.getTerminalId();
@@ -35,6 +42,9 @@ public class DeviceParamForm {
         this.label = config.getLabel();
     }
 
+    /**
+     * @param config
+     */
     public void translate(IDeviceParam config) {
         config.setTerminalId(this.terminalId);
         config.setKey(this.key);
@@ -44,6 +54,10 @@ public class DeviceParamForm {
         config.setLabel(this.label);
     }
 
+    /**
+     * @param configs
+     * @return
+     */
     public static List<DeviceParamForm> convert(List<IDeviceParam> configs) {
         List<DeviceParamForm> result = new ArrayList<DeviceParamForm>();
         for (IDeviceParam config : configs) {
