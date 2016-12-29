@@ -65,7 +65,7 @@ public class PermissionController {
 	 *
 	 * 方法描述 : 增加权限
 	 *
-	 * @param form
+	 * @param request
 	 * @return ModelMap<String, Object>
 	 */
 	@MethodNameDescrible(describle="userlog.PermissionController.add",hasArgs=false)
@@ -108,7 +108,7 @@ public class PermissionController {
 	 *
 	 * 根据CODE删除权限
 	 *
-	 * @param id
+	 * @param code
 	 * @return ModelMap<String, Object>
 	 */
 	@MethodNameDescrible(describle="userlog.PermissionController.delete",hasArgs=false,urlArgs=true)
@@ -148,11 +148,11 @@ public class PermissionController {
 	}
 
 	/**
-	 *
 	 * 根据条件得到权限
-	 *
-	 * @param form
-	 * @return ModelMap<String, Object>
+	 * @param start
+	 * @param limit
+	 * @param request
+	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody
@@ -187,6 +187,10 @@ public class PermissionController {
 
 	}
 
+	/**
+	 * @param node
+	 * @return
+	 */
 	@RequestMapping(value = "/tree", method = RequestMethod.GET)
 	public @ResponseBody
 	List<PermissionTreeForm> tree(@RequestParam String node) {
@@ -194,6 +198,10 @@ public class PermissionController {
 		return convert(data);
 	}
 
+	/**
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(value = "/checkedTree", method = RequestMethod.GET)
 	public @ResponseBody
 	List<PermissionCheckedTreeForm> checkedTree(WebRequest request) {
@@ -217,6 +225,10 @@ public class PermissionController {
 	}
 	
 	
+	/**
+	 * @param data
+	 * @return
+	 */
 	public List<PermissionTreeForm> convert(Iterable<IPermission> data) {
 		List<PermissionTreeForm> result = new ArrayList<PermissionTreeForm>();
 		String desc = messageSource.getMessage("login.remark", null, FishCfg.locale);

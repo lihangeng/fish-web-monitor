@@ -27,6 +27,10 @@ import com.yihuacomputer.fish.api.atm.IAtmTypeService;
 import com.yihuacomputer.fish.api.report.fault.FaultRateReport;
 import com.yihuacomputer.fish.api.report.fault.IFaultRateReportService;
 
+/**
+ * @author YiHua
+ *
+ */
 @Controller
 @RequestMapping(value = "/report/faultRate")
 @ClassNameDescrible(describle="userlog.FaultRateReportController")

@@ -1,6 +1,10 @@
 package com.yihuacomputer.fish.web.report.form;
 
 
+/**
+ * @author YiHua
+ *
+ */
 public class BrandForm {
 
 	private String brandName;
@@ -13,16 +17,20 @@ public class BrandForm {
 
 	public BrandForm(){
 
-
 	}
 
+	/**
+	 * @param brandName
+	 * @param fault
+	 * @param trade
+	 * @param rate
+	 */
 	public BrandForm(String brandName,int fault,int trade, double rate){
 
 		this.brandName=brandName;
 		this.fault=fault;
 		this.trade=trade;
 		this.rate=rate;
-
 	}
 
 	public String getBrandName() {
@@ -56,12 +64,5 @@ public class BrandForm {
 	public void setRate(double rate) {
 		this.rate = rate;
 	}
-
-
-
-
-
-
-
 
 }

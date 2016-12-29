@@ -128,11 +128,9 @@ public class OrganizationController {
 	}
 
 	/**
-	 *
 	 * 根据ID删除机构
-	 *
-	 * @param id
-	 * @return Map<String, Object>
+	 * @param guid
+	 * @return
 	 */
 	@MethodNameDescrible(describle="userlog.OrganizationController.delete",hasLogKey=true)
 	@SuppressWarnings("incomplete-switch")
@@ -176,12 +174,11 @@ public class OrganizationController {
 	}
 
 	/**
-	 *
 	 * 根据ID更新机构信息
-	 *
-	 * @param id
+	 * @param guid
 	 * @param form
-	 * @return Map<String, Object>
+	 * @param req
+	 * @return
 	 */
 	@MethodNameDescrible(describle="userlog.OrganizationController.update",hasReqBodyParam=true,reqBodyClass=OrganizationForm.class,bodyProperties="name")
 	@RequestMapping(value = "/{guid}", method = RequestMethod.PUT)
@@ -251,12 +248,12 @@ public class OrganizationController {
 	}
 
 	/**
-	 *
 	 * 组织迁移
-	 *
-	 * @param id
-	 * @param form
-	 * @return Map<String, Object>
+	 * @param guid
+	 * @param parentId
+	 * @param request
+	 * @param webrequest
+	 * @return
 	 */
 	@MethodNameDescrible(describle="userlog.OrganizationController.move",hasLogKey=true)
 	@RequestMapping(value = "/move", method = RequestMethod.POST)
@@ -293,8 +290,8 @@ public class OrganizationController {
 
 	/**
 	 * 根据Id获得组织机构：
-	 *
 	 * @param guid
+	 * @param req
 	 * @return
 	 */
 	@RequestMapping(value = "/{guid}", method = RequestMethod.GET)
@@ -312,11 +309,12 @@ public class OrganizationController {
 	}
 
 	/**
-	 *
 	 * 根据条件得到机构列表
-	 *
-	 * @param form
-	 * @return Map<String,Object>
+	 * @param start
+	 * @param limit
+	 * @param request
+	 * @param req
+	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody ModelMap search(@RequestParam int start, @RequestParam int limit, WebRequest request, HttpServletRequest req) {
@@ -367,6 +365,10 @@ public class OrganizationController {
 
 	/**
 	 * 获得机构树：
+	 * @param node
+	 * @param request
+	 * @param httpRequest
+	 * @return
 	 */
 	@RequestMapping(value = "/tree", method = RequestMethod.GET)
 	public @ResponseBody List<OrganizationTreeForm> treeByType(@RequestParam String node, WebRequest request, HttpServletRequest httpRequest) {
@@ -407,6 +409,7 @@ public class OrganizationController {
 	 *
 	 * @param id
 	 * @param code
+	 * @param type
 	 * @return true 存在，false不存在
 	 */
 	private boolean isExistCode(String id, String code, String type) {
@@ -451,7 +454,7 @@ public class OrganizationController {
 	/**
 	 * 获取地市级银行信息
 	 *
-	 *
+	 * @return
 	 */
 	@RequestMapping(value = "/queryServiceObject", method = RequestMethod.GET)
 	public @ResponseBody ModelMap queryServiceObject() {
@@ -490,6 +493,11 @@ public class OrganizationController {
 		return false;
 	}
 
+	/**
+	 * @param request
+	 * @param req
+	 * @return
+	 */
 	@RequestMapping(value = "/queryMatching", method = RequestMethod.GET)
 	@MethodNameDescrible(describle = "模糊匹配", argsContext = "name", hasArgs = false)
 	public @ResponseBody ModelMap queryMatching(WebRequest request, HttpServletRequest req) {

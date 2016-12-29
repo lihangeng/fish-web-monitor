@@ -37,6 +37,10 @@ import com.yihuacomputer.fish.api.report.engine.IReportExport;
 import com.yihuacomputer.fish.report.engine.ReportParam;
 import com.yihuacomputer.fish.web.report.form.ReportTitle;
 
+/**
+ * @author YiHua
+ *
+ */
 @Controller
 @RequestMapping(value = "/report")
 @ClassNameDescrible(describle="userlog.DeviceTypeCountReportController")
@@ -66,6 +70,11 @@ public class DeviceTypeCountReportController {
 	private MessageSource messageSource;
 	
 	
+    /**
+     * @param request
+     * @param rq
+     * @return
+     */
     @RequestMapping(value = "/deviceTypeCount", method = RequestMethod.GET)
     public @ResponseBody
     ModelMap deviceTypeCount(WebRequest request, HttpServletRequest rq) {
@@ -83,6 +92,11 @@ public class DeviceTypeCountReportController {
         return result;
     }
 	
+    /**
+     * @param request
+     * @param rq
+     * @return
+     */
     @RequestMapping(value = "/jdeviceTypeCount", method = RequestMethod.GET)
     public @ResponseBody
     ModelMap deviceTypeCountJReport(WebRequest request, HttpServletRequest rq) {

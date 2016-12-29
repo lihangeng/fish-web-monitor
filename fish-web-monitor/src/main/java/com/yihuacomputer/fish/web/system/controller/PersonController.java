@@ -109,11 +109,15 @@ public class PersonController {
     }
 
     /**
-     *
      * 根据人员Id获得关联设备列表
-     *
-     * @param form
-     * @return ModelMap<String, Object>
+     * @param start
+     * @param limit
+     * @param flag
+     * @param guid
+     * @param organizationId
+     * @param request
+     * @param req
+     * @return
      */
     @RequestMapping(value = "/linkdeDevice", method = RequestMethod.GET)
     public @ResponseBody
@@ -244,6 +248,10 @@ public class PersonController {
     }
     
     
+    /**
+     * @param terminalId
+     * @return
+     */
     @RequestMapping(value = "/showOrgManger", method = RequestMethod.GET)
     public @ResponseBody
     ModelMap showOrgManger(@RequestParam String terminalId) {
@@ -367,7 +375,7 @@ public class PersonController {
      *
      * 根据GUID删除用户
      *
-     * @param guid
+     * @param id
      * @return ModelMap<String, Object>
      */
     @MethodNameDescrible(describle="userlog.PersonController.delete",hasLogKey=true)
@@ -420,8 +428,8 @@ public class PersonController {
      *
      * 方法描述 : 根据GUID更新用户
      *
-     * @param guid
-     * @param request
+     * @param id
+     * @param form
      * @return ModelMap<String, Object>
      */
 	@MethodNameDescrible(describle="userlog.PersonController.update",hasLogKey=true)
@@ -522,15 +530,6 @@ public class PersonController {
         // 登陆人员类型（银行为0，维护商为1）
         OrganizationType orgType = userSession.getOrgType();
         String perType = null;
-        // 如果单击机构树节点，深度查询该机构树节点机构以及下属机构下的人员信息
-//        if (request.getParameter("selectedNode") != null && !request.getParameter("selectedNode").isEmpty()) {
-//            IPageResult<IPerson> pageResult = service.page(start, limit, request.getParameter("selectedNode"));
-//            result.addAttribute(FishConstant.SUCCESS, true);
-//            result.addAttribute("total", pageResult.getTotal());
-//            result.addAttribute("data", PersonForm.convert(pageResult.list()));
-//            return result;
-//        }
-
         // 单击查询按钮，带入查询条件：
         IFilter filter = new Filter();
         Iterator<String> iterator = request.getParameterNames();
@@ -616,11 +615,11 @@ public class PersonController {
     }
 
     /**
-     *
      * 根据条件得到用户列表
-     *
-     * @param form
-     * @return ModelMap<String, Object>
+     * @param start
+     * @param limit
+     * @param request
+     * @return
      */
     @RequestMapping(value = "/lookup/unlink", method = RequestMethod.GET)
     public @ResponseBody
@@ -660,11 +659,11 @@ public class PersonController {
     }
 
     /**
-     *
      * 根据条件得到用户列表
-     *
-     * @param form
-     * @return ModelMap<String, Object>
+     * @param start
+     * @param limit
+     * @param selectedNode
+     * @return
      */
     @RequestMapping(value = "/lookup/org", method = RequestMethod.GET)
     public @ResponseBody
@@ -683,6 +682,7 @@ public class PersonController {
 	 * @param start
 	 * @param limit
 	 * @param request
+	 * @param req
 	 * @return
 	 */
 	@RequestMapping(value = "/selectPerson", method = RequestMethod.GET)
@@ -758,6 +758,13 @@ public class PersonController {
         return model;
     }
     
+	/**
+	 * @param terminalId
+	 * @param personId
+	 * @param type
+	 * @param personType
+	 * @return
+	 */
 	@RequestMapping(value = "/devicePerson", method = RequestMethod.POST)
 //    @MethodNameDescrible(describle="userlog.PersonController.unlink",hasLogKey=true)
 	public @ResponseBody
@@ -801,6 +808,10 @@ public class PersonController {
 		return messageSource.getMessage(code, null, code, FishCfg.locale);
 	}
 	
+	/**
+	 * @param list
+	 * @return
+	 */
 	public List<DeviceForm> convertDevice(List<IDevice> list) {
 		List<DeviceForm> result = new ArrayList<DeviceForm>();
 		for (IDevice item : list) {
@@ -813,8 +824,7 @@ public class PersonController {
 	 *
 	 * @param device
 	 *            接口
-	 * @param isDate
-	 *            是否需要转换日期
+	 * @return
 	 */
 	public DeviceForm toFrom(IDevice device) {
 		DeviceForm deviceForm = new DeviceForm();

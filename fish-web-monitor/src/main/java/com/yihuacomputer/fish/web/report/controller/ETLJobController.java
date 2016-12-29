@@ -38,6 +38,10 @@ import com.yihuacomputer.fish.api.report.batch.IETLjobService;
 import com.yihuacomputer.fish.web.report.form.JobCountForm;
 import com.yihuacomputer.fish.web.report.form.JobForm;
 
+/**
+ * @author YiHua
+ *
+ */
 @Controller
 @RequestMapping("/report/ETLJob")
 @ClassNameDescrible(describle="userlog.ETLJobController")
@@ -58,8 +62,10 @@ public class ETLJobController {
 
 	/**
 	 * 分页查询
-	 * 
+	 * @param start
+	 * @param limit
 	 * @param request
+	 * @param req
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.GET)
@@ -96,8 +102,9 @@ public class ETLJobController {
 
 	/**
 	 * 失败job重做
-	 *
+	 * @param id
 	 * @param tradeTime
+	 * @param jobName
 	 * @param request
 	 * @param webrequest
 	 * @return
@@ -107,12 +114,10 @@ public class ETLJobController {
 		ModelMap result = new ModelMap();
 		try {
 			if ("Month_Trans_job".equals(jobName)) {
-//				eService.reStartMonthOpera(tradeTime);
 				eService.deteleMonthOpera(tradeTime);
 				iMonthService.extractDate(tradeTime);
 			} else {
 				eService.deteleDayOpera(tradeTime);
-//				eService.reStartMonthOpera(tradeTime);
 				iDaysService.extractDate(tradeTime);
 			}
 		} catch (Exception e) {
@@ -127,10 +132,10 @@ public class ETLJobController {
 
 	/**
 	 * 得到错误提示
-	 *
-	 * @param tradeTime
+	 * @param id
+	 * @param webRequest
 	 * @param request
-	 * @param webrequest
+	 * @param response
 	 * @return
 	 */
 	@RequestMapping(value = "/getErrorMsg", method = RequestMethod.POST)

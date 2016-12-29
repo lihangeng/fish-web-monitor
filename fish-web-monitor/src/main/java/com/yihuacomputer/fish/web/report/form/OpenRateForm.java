@@ -6,6 +6,10 @@ import java.util.List;
 
 import com.yihuacomputer.fish.api.report.openRate.IDayOpenRate;
 
+/**
+ * @author YiHua
+ *
+ */
 public class OpenRateForm {
 
 	private DecimalFormat doubleFormat = new DecimalFormat("0.00");
@@ -54,32 +58,10 @@ public class OpenRateForm {
 	public OpenRateForm() {
 	}
 
-//	public OpenRateForm(IDayOpenRate iOpenRate) {
-//
-//		setAtmpTimeReal(timeFormat(iOpenRate.getAtmpTimeReal()));
-//		setFaultTimeReal(timeFormat(iOpenRate.getFaultTimeReal()));
-//		setHealthyTimeReal(timeFormat(iOpenRate.getHealthyTimeReal()));
-//		setId(iOpenRate.getId());
-//		setMaintainTimeReal(timeFormat(iOpenRate.getMaintainTimeReal()));
-//		setOpenTimes(timeFormat(iOpenRate.getOpenTimes()));
-//		setStatDate(iOpenRate.getStatDate());
-//		setStopTimeReal(timeFormat(iOpenRate.getStopTimeReal()));
-//		setTerminalId(iOpenRate.getTerminalId());
-//		setUnknownTimeReal(timeFormat(iOpenRate.getUnknownTimeReal()));
-//		setDevCatalogName(iOpenRate.getDevCatalogName());
-//        setOrgName(iOpenRate.getOrgName());
-//		if (iOpenRate.getHealthyTimeReal() == 0
-//				|| iOpenRate.getOpenTimes() == 0) {
-//			setOpenRate(0.00);
-//		} else {
-//			String value = doubleFormat.format(iOpenRate.getHealthyTimeReal()
-//					* 1.0 / iOpenRate.getOpenTimes() * 100);
-//			setOpenRate(Double.valueOf(value));
-//		}
-//	
-//	}
-	
-	   public OpenRateForm(IDayOpenRate iOpenRate) {
+	   /**
+	 * @param iOpenRate
+	 */
+	public OpenRateForm(IDayOpenRate iOpenRate) {
 
 	        setAtmpTimeReal(getTimes(iOpenRate.getAtmpTimeReal()));
 	        setFaultTimeReal(getTimes(iOpenRate.getFaultTimeReal()));
@@ -117,6 +99,10 @@ public class OpenRateForm {
 	    	return sb.toString();
 	    }
 
+	/**
+	 * @param target
+	 * @return
+	 */
 	public static List<OpenRateForm> convert(List<IDayOpenRate> target) {
 		List<OpenRateForm> result = new ArrayList<OpenRateForm>();
 

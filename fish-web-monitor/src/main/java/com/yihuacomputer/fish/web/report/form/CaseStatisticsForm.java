@@ -16,14 +16,15 @@ public class CaseStatisticsForm {
 
 	}
 
-
+	/**
+	 * @param angle
+	 * @param total
+	 */
 	public CaseStatisticsForm(String angle, String total) {
 		super();
 		this.angle = angle;
 		this.total = total;
 	}
-
-
 
 	public String getAngle() {
 		return angle;

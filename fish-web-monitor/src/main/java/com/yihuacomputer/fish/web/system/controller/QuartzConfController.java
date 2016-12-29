@@ -55,13 +55,12 @@ public class QuartzConfController {
 	@Autowired
 	protected MessageSource messageSource;
 
-
 	/**
-	 *
 	 * 根据条件得到JOB列表
-	 *
-	 * @param form
-	 * @return ModelMap<String, Object>
+	 * @param start
+	 * @param limit
+	 * @param request
+	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody
@@ -91,14 +90,12 @@ public class QuartzConfController {
 		return result;
 	}
 	
-	
-	
 	/**
-	 *
 	 * 暂停job
-	 *
-	 * @param form
-	 * @return ModelMap<String, Object>
+	 * @param jobName
+	 * @param jobGroup
+	 * @param request
+	 * @return
 	 */
 	@MethodNameDescrible(describle="userlog.QuartzConfController.pauseJob",hasArgs=true,argsContext="jobName")
 	@RequestMapping(value = "/pauseJob", method = RequestMethod.GET)
@@ -119,13 +116,12 @@ public class QuartzConfController {
 		return result;
 	}
 	
-	
 	/**
-	 *
 	 * 恢复job
-	 *
-	 * @param form
-	 * @return ModelMap<String, Object>
+	 * @param jobName
+	 * @param jobGroup
+	 * @param request
+	 * @return
 	 */
 	@MethodNameDescrible(describle="userlog.QuartzConfController.resumeJob",hasArgs=true,argsContext="jobName")
 	@RequestMapping(value = "/resumeJob", method = RequestMethod.GET)
@@ -145,14 +141,12 @@ public class QuartzConfController {
 		return result;
 	}
 	
-	
-	
 	/**
-	 *
 	 * 删除job
-	 *
-	 * @param form
-	 * @return ModelMap<String, Object>
+	 * @param jobName
+	 * @param jobGroup
+	 * @param request
+	 * @return
 	 */
 	@MethodNameDescrible(describle="userlog.QuartzConfController.deleteJob",hasArgs=true,argsContext="jobName")
 	@RequestMapping(value = "/deleteJob", method = RequestMethod.GET)
@@ -182,6 +176,8 @@ public class QuartzConfController {
 	 * 立即执行job
 	 *
 	 * @param form
+	 * @param jobGroup
+	 * @param request
 	 * @return ModelMap<String, Object>
 	 */
 	@MethodNameDescrible(describle="userlog.QuartzConfController.executeJob",hasArgs=true,argsContext="jobName")
@@ -212,10 +208,9 @@ public class QuartzConfController {
 	
 	
 	/**
-	 *
 	 * 修改job的Cron表达式
-	 *
-	 * @param form
+	 * @param id
+	 * @param request
 	 * @return ModelMap<String, Object>
 	 */
 	@MethodNameDescrible(describle="userlog.QuartzConfController.updateJob",hasReqBodyParam=true,reqBodyClass=QuartzConfForm.class,bodyProperties="jobName")

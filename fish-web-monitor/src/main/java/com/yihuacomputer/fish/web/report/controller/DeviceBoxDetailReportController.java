@@ -40,6 +40,10 @@ import com.yihuacomputer.fish.api.report.engine.IReportExport;
 import com.yihuacomputer.fish.report.engine.ReportParam;
 import com.yihuacomputer.fish.web.report.form.ReportTitle;
 
+/**
+ * @author YiHua
+ *
+ */
 @Controller
 @RequestMapping(value = "/report")
 public class DeviceBoxDetailReportController {
@@ -67,6 +71,11 @@ public class DeviceBoxDetailReportController {
     @Autowired
 	private MessageSource messageSource;
 
+    /**
+     * @param request
+     * @param req
+     * @return
+     */
     @RequestMapping(value = "/deviceBox", method = RequestMethod.GET)
     public @ResponseBody
     ModelMap searchDeviceBoxDetail(WebRequest request, HttpServletRequest req) {
@@ -175,6 +184,11 @@ public class DeviceBoxDetailReportController {
 
     /**
      * 下载文件到浏览器端：
+     * @param path
+     * @param reportTitle
+     * @param request
+     * @param response
+     * @throws Exception
      */
     @RequestMapping(value = "/deviceBox/downloadFile", method = RequestMethod.GET)
     public void download(@RequestParam String path, @RequestParam ReportTitle reportTitle, HttpServletRequest request,

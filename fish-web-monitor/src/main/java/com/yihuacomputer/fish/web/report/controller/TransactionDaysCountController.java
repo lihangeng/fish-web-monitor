@@ -27,6 +27,10 @@ import com.yihuacomputer.fish.api.person.IOrganizationService;
 import com.yihuacomputer.fish.api.person.UserSession;
 import com.yihuacomputer.fish.web.index.form.ChartForm;
 
+/**
+ * @author YiHua
+ *
+ */
 @Controller
 @RequestMapping("/report/transactionDaysCount")
 @ClassNameDescrible(describle="userlog.TransactionDaysCountController")
@@ -39,6 +43,11 @@ public class TransactionDaysCountController {
 	@Autowired
 	private IOrganizationService orgService;
 
+	/**
+	 * @param wReq
+	 * @param req
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
 	public ModelMap search(WebRequest wReq, HttpServletRequest req) {
@@ -77,6 +86,11 @@ public class TransactionDaysCountController {
 	}
 	
 	
+	/**
+	 * @param wReq
+	 * @param req
+	 * @return
+	 */
 	@RequestMapping(value="/hour",method = RequestMethod.GET)
 	@ResponseBody
 	public ModelMap searchHour(WebRequest wReq, HttpServletRequest req) {

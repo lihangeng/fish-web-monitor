@@ -5,6 +5,10 @@ import java.util.List;
 
 import com.yihuacomputer.fish.api.person.IOrganization;
 
+/**
+ * @author YiHua
+ *
+ */
 public class OpenRateTreeForm {
 
     private String id;
@@ -18,6 +22,9 @@ public class OpenRateTreeForm {
     public OpenRateTreeForm() {
     }
 
+    /**
+     * @param organization
+     */
     public OpenRateTreeForm(IOrganization organization) {
         id = organization.getGuid();
         cls = organization.getCode();
@@ -25,6 +32,10 @@ public class OpenRateTreeForm {
         leaf = !(organization.listChildren().iterator().hasNext());
     }
     
+    /**
+     * @param target
+     * @return
+     */
     public static List<OpenRateTreeForm> convert(List<IOrganization> target) {
         List<OpenRateTreeForm> result = new ArrayList<OpenRateTreeForm>();
 

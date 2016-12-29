@@ -78,6 +78,13 @@ public class OpenRateController {
      */
     private Logger logger = LoggerFactory.getLogger(OpenRateController.class);
 
+    /**
+     * @param start
+     * @param limit
+     * @param webRequest
+     * @param request
+     * @return
+     */
     @RequestMapping(value = "deviceOpenRate", method = RequestMethod.GET)
     public @ResponseBody
     ModelMap searchDevice(@RequestParam int start, @RequestParam int limit, WebRequest webRequest,
@@ -92,7 +99,6 @@ public class OpenRateController {
         String awayFlag=request.getParameter("awayFlag");
         String compare=request.getParameter("compare");
         String openRate=request.getParameter("openrate");
-//        String avgType=request.getParameter("avgType");
         IFilter filter = request2filter(webRequest, "rate.statDate");
         if(null!=terminate&&!terminate.isEmpty()){
         	filter.like("rate.terminalId", terminate+"%");
@@ -133,6 +139,13 @@ public class OpenRateController {
         return result;
     }
 
+    /**
+     * @param start
+     * @param limit
+     * @param webRequest
+     * @param request
+     * @return
+     */
     @RequestMapping(value = "typeOpenRate", method = RequestMethod.GET)
     public @ResponseBody
     ModelMap searchType(@RequestParam int start, @RequestParam int limit, WebRequest webRequest,
@@ -163,6 +176,12 @@ public class OpenRateController {
     }
 
     
+    /**
+     * @param node
+     * @param webRequest
+     * @param request
+     * @return
+     */
     @RequestMapping(value = "orgOpenRate", method = RequestMethod.GET)
     public @ResponseBody
     ModelMap searchOrg(@RequestParam String node, WebRequest webRequest, HttpServletRequest request) {
@@ -205,6 +224,7 @@ public class OpenRateController {
      * @param webRequest
      * @param request
      * @param response
+     * @return
      */
 	@MethodNameDescrible(describle="userlog.OpenRateController.exportDevice",hasArgs=false)
     @RequestMapping(value = "device/importStat", method = RequestMethod.GET)
@@ -285,6 +305,7 @@ public class OpenRateController {
 	 * @param webRequest
 	 * @param request
 	 * @param response
+	 * @return
 	 */
 	@MethodNameDescrible(describle="userlog.OpenRateController.exportType",hasArgs=false)
     @RequestMapping(value = "type/importStat", method = RequestMethod.GET)
@@ -325,6 +346,7 @@ public class OpenRateController {
      * @param webRequest
      * @param request
      * @param response
+     * @return
      */
     @MethodNameDescrible(describle="userlog.OpenRateController.exportOrg",hasArgs=false)
     @RequestMapping(value = "org/importStat", method = RequestMethod.GET)

@@ -1,5 +1,9 @@
 package com.yihuacomputer.fish.web.report.form;
 
+/**
+ * @author YiHua
+ *
+ */
 public class JobCountForm {
 	private int id;
 	private String tradeTime;

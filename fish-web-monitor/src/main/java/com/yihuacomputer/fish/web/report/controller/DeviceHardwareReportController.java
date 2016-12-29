@@ -40,6 +40,10 @@ import com.yihuacomputer.fish.api.report.engine.IReportExport;
 import com.yihuacomputer.fish.report.engine.ReportParam;
 import com.yihuacomputer.fish.web.report.form.ReportTitle;
 
+/**
+ * @author YiHua
+ *
+ */
 @Controller
 @RequestMapping(value = "/report")
 public class DeviceHardwareReportController {
@@ -67,6 +71,12 @@ public class DeviceHardwareReportController {
     	}
     	return messageSourceEnum.getMessage(enumText, null, FishCfg.locale);
     }
+    /**
+     * @param request
+     * @param rq
+     * @param response
+     * @return
+     */
     @RequestMapping(value = "/deviceHardware", method = RequestMethod.GET)
     public @ResponseBody
     ModelMap searchDeviceHardware(WebRequest request, HttpServletRequest rq, HttpServletResponse response) {
@@ -157,6 +167,11 @@ public class DeviceHardwareReportController {
 
     /**
      * 下载文件到浏览器端：
+     * @param path
+     * @param reportTitle
+     * @param request
+     * @param response
+     * @throws Exception
      */
     @RequestMapping(value = "/deviceHardware/downloadFile", method = RequestMethod.GET)
     public void download(@RequestParam String path, @RequestParam ReportTitle reportTitle, HttpServletRequest request,

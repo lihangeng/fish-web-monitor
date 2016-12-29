@@ -28,6 +28,10 @@ import com.yihuacomputer.fish.api.person.UserSession;
 import com.yihuacomputer.fish.api.report.fault.ICaseStatisticsRptService;
 import com.yihuacomputer.fish.web.report.form.CaseStatisticsForm;
 
+/**
+ * @author YiHua
+ *
+ */
 @Controller
 @RequestMapping("/report/caseStatisticsReport")
 @ClassNameDescrible(describle="userlog.CaseStatisticsReportController")
@@ -42,6 +46,11 @@ public class CaseStatisticsReportController {
 	@Autowired
 	private MessageSource messageSource;
 
+	/**
+	 * @param wReq
+	 * @param req
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
 	public ModelMap search(WebRequest wReq, HttpServletRequest req) {
@@ -73,8 +82,8 @@ public class CaseStatisticsReportController {
 
 	/**
 	 * 查询条件
-	 *
 	 * @param request
+	 * @param rq
 	 * @return
 	 */
 	private IFilter request2filter(WebRequest request, HttpServletRequest rq) {

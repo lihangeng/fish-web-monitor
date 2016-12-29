@@ -1,5 +1,9 @@
 package com.yihuacomputer.fish.web.report.form;
 
+/**
+ * @author YiHua
+ *
+ */
 public class ModuleForm {
 
 	private String moduleName;
@@ -14,6 +18,12 @@ public class ModuleForm {
 
 	}
 
+	/**
+	 * @param moduleName
+	 * @param fault
+	 * @param trade
+	 * @param rate
+	 */
 	public ModuleForm(String moduleName,int fault,int trade,double rate){
 
 		this.moduleName=moduleName;

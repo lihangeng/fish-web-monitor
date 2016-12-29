@@ -43,26 +43,41 @@ import com.yihuacomputer.fish.web.mock.service.DefaultHwFaultService;
 @EnableAspectJAutoProxy
 public class FishWebMonitorModuleConfig {
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public DefaultHwFaultService hwFaultService() {
 		return new DefaultHwFaultService();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public IDeviceCaseService deviceCaseService() {
 		return new DefaultDeviceCaseService();
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean
 	public INotifyContentService notifyContentService(){
 		return new NotifyContentService() ;
 	}
 
+	/**
+	 * @return
+	 */
 	@Bean(initMethod="init")
 	public SystemService systemService(){
 		return new SystemService();
 	}
 	
+	/**
+	 * @return
+	 */
 	@Bean
     public EntitySaveInterceptor serviceAspect(){
         return new EntitySaveInterceptor();

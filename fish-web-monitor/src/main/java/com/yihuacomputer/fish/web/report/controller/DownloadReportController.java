@@ -43,9 +43,14 @@ public class DownloadReportController {
     	}
     	return messageSourceEnum.getMessage(enumText, null, FishCfg.locale);
     }
-	/**
-	 * 下载文件到浏览器端：
-	 */
+    /**
+     * 下载文件到浏览器端：
+     * @param path
+     * @param reportTitle
+     * @param request
+     * @param response
+     * @throws Exception
+     */
     @MethodNameDescrible(describle="userlog.DownloadReportController.Download",hasArgs=true,argsContext="title")
 	@RequestMapping(method = RequestMethod.GET)
 	public void download(@RequestParam String path, @RequestParam ReportTitle reportTitle, HttpServletRequest request,

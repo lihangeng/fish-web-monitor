@@ -14,6 +14,10 @@ import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.device.SetupType;
 import com.yihuacomputer.fish.api.device.WorkType;
 
+/**
+ * @author YiHua
+ *
+ */
 public class LinkDeviceForm {
 	
 	private static Logger logger = LoggerFactory.getLogger(LinkDeviceForm.class);
@@ -121,8 +125,7 @@ public class LinkDeviceForm {
 	 * 
 	 * @param device
 	 *            接口
-	 * @param isDate
-	 *            是否需要转换日期
+	 * @return
 	 */
 	public LinkDeviceForm(IDevice device) {
 		setAddress(device.getAddress());

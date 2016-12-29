@@ -35,6 +35,10 @@ import com.yihuacomputer.fish.report.engine.pdf.PdfConfig;
 import com.yihuacomputer.fish.web.report.form.RunAnalysisComparator;
 import com.yihuacomputer.fish.web.report.form.RunAnalysisReportForm;
 
+/**
+ * @author YiHua
+ *
+ */
 @Controller
 @RequestMapping("/report/runAnalysisReport")
 @ClassNameDescrible(describle = "userlog.RunAnalysisReportContorller")
@@ -42,6 +46,13 @@ public class RunAnalysisReportContorller {
 
 	private Logger logger = LoggerFactory.getLogger(RunAnalysisReportContorller.class);
 
+	/**
+	 * @param start
+	 * @param limit
+	 * @param request
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody ModelMap getBackup(@RequestParam int start, @RequestParam int limit, WebRequest request, HttpSession session) {
 		ModelMap map = new ModelMap();

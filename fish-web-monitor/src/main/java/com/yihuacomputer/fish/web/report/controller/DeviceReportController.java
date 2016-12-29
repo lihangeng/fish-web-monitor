@@ -41,6 +41,10 @@ import com.yihuacomputer.fish.api.report.engine.IReportExport;
 import com.yihuacomputer.fish.report.engine.ReportParam;
 import com.yihuacomputer.fish.web.report.form.ReportTitle;
 
+/**
+ * @author YiHua
+ *
+ */
 @Controller
 @RequestMapping(value = "/report")
 public class DeviceReportController {
@@ -68,6 +72,11 @@ public class DeviceReportController {
     @Autowired
 	private MessageSource messageSource;
 
+    /**
+     * @param request
+     * @param rq
+     * @return
+     */
     @RequestMapping(value = "/device", method = RequestMethod.GET)
     public @ResponseBody
     ModelMap deviceTypeCount(WebRequest request, HttpServletRequest rq) {
@@ -152,6 +161,11 @@ public class DeviceReportController {
 
     /**
      * 下载文件到浏览器端：
+     * @param path
+     * @param reportTitle
+     * @param request
+     * @param response
+     * @throws Exception
      */
     @RequestMapping(value = "/device/downloadFile", method = RequestMethod.GET)
     public void download(@RequestParam String path, @RequestParam ReportTitle reportTitle, HttpServletRequest request,
@@ -227,6 +241,9 @@ public class DeviceReportController {
         return "page".equals(name) || "start".equals(name) || "limit".equals(name) || "_dc".equals(name);
     }
 
+    /**
+     * @param args
+     */
     public static void main(String[] args) {
         System.out.println("10".concat("%"));
     }

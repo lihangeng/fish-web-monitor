@@ -2,6 +2,10 @@ package com.yihuacomputer.fish.web.report.form;
 
 import java.util.Comparator;
 
+/**
+ * @author YiHua
+ *
+ */
 public class RunAnalysisComparator implements Comparator<RunAnalysisReportForm> {
 
 	@Override

@@ -37,13 +37,9 @@ public class GroupController {
 	private IOrganizationService organizationService;
 
 	/**
-	 *
-	 * 方法描述 : 增加组
-	 *
-	 * @param form
-	 * @return ModelMap<String, Object>
+	 * @param request
+	 * @return
 	 */
-
 	@RequestMapping(method = RequestMethod.POST)
 	public @ResponseBody
 	ModelMap add(@RequestBody GroupRequest request) {
@@ -99,11 +95,11 @@ public class GroupController {
 	}
 
 	/**
-	 *
 	 * 根据条件得到数据库列表
-	 *
-	 * @param form
-	 * @return ModelMap<String, Object>
+	 * @param start
+	 * @param limit
+	 * @param request
+	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody
@@ -133,12 +129,11 @@ public class GroupController {
 	}
 
 	/**
-	 *
 	 * 方法描述 : 验证name的唯一性
-	 *
 	 * @param name
-	 * @param form
-	 * @return Map<String, Object>
+	 * @param id
+	 * @param organizationCode
+	 * @return
 	 */
 	@RequestMapping(value = "/unique", method = RequestMethod.GET)
 	public @ResponseBody

@@ -1,5 +1,9 @@
 package com.yihuacomputer.fish.web.report.form;
 
+/**
+ * @author YiHua
+ *
+ */
 public class TypeForm {
 
 	private String typeName;
@@ -14,6 +18,12 @@ public class TypeForm {
 
 	}
 
+	/**
+	 * @param typeName
+	 * @param fault
+	 * @param trade
+	 * @param rate
+	 */
 	public TypeForm(String typeName,int fault,int trade,double rate){
 
 		this.typeName=typeName;

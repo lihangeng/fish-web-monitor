@@ -1,5 +1,9 @@
 package com.yihuacomputer.fish.web.report.form;
 
+/**
+ * @author YiHua
+ *
+ */
 public enum ReportTitle {
 	/**
 	 * 钞箱余额报表

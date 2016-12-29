@@ -36,6 +36,9 @@ import com.yihuacomputer.fish.web.mvc.BrowseMvcConfig;
 basePackageClasses = {})
 @EnableAspectJAutoProxy
 public class FishWebMonitorMvcConfig extends BrowseMvcConfig {
+	/**
+	 * @return
+	 */
 	@Bean
     public UserLogAopAspect controllerAspect(){
         return new UserLogAopAspect();

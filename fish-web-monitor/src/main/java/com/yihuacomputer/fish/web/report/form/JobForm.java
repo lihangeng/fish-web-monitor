@@ -1,5 +1,9 @@
 package com.yihuacomputer.fish.web.report.form;
 
+/**
+ * @author YiHua
+ *
+ */
 public class JobForm {
 	private int id;
 	private String jobName;
