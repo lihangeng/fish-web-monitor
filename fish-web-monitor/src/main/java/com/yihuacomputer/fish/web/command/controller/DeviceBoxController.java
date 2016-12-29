@@ -19,6 +19,10 @@ import com.yihuacomputer.fish.api.system.config.MonitorCfg;
 import com.yihuacomputer.fish.web.command.format.CashBoxDetail;
 import com.yihuacomputer.fish.web.command.format.DeviceBoxMsg;
 
+/**
+ * @author YiHua
+ *
+ */
 @Controller
 @RequestMapping("agent/boxdetail")
 public class DeviceBoxController {

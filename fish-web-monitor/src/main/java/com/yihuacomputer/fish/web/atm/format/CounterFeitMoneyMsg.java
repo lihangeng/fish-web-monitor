@@ -4,6 +4,10 @@ import java.util.List;
 
 import com.yihuacomputer.fish.monitor.entity.business.NoteItem;
 
+/**
+ * @author YiHua
+ *
+ */
 public class CounterFeitMoneyMsg {
 
 	private String termId;

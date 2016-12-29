@@ -5,6 +5,10 @@ import java.util.List;
 
 import com.yihuacomputer.fish.api.monitor.hardware.ICpu;
 
+/**
+ * @author YiHua
+ *
+ */
 public class CpuMsg
 {
     /**
@@ -56,6 +60,9 @@ public class CpuMsg
     {
     }
 
+    /**
+     * @param cpu
+     */
     public CpuMsg(ICpu cpu)
     {
         setFrequency(cpu.getFrequency());
@@ -68,6 +75,10 @@ public class CpuMsg
         setIdle(cpu.getIdle());
         setCombined(cpu.getCombined());
     }
+    /**
+     * @param list
+     * @return
+     */
     public static List<CpuMsg> convert(List<ICpu> list)
     {
         List<CpuMsg> result = new ArrayList<CpuMsg>();
@@ -168,6 +179,9 @@ public class CpuMsg
         this.combined = combined;
     }
 
+    /**
+     * @param cpu
+     */
     public void toCpu(ICpu cpu)
     {
         cpu.setCacheSize(this.cacheSize);

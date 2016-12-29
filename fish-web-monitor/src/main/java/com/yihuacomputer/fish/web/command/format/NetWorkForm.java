@@ -43,6 +43,9 @@ public class NetWorkForm {
 
 	}
 
+	/**
+	 * @param netWorkForm
+	 */
 	public NetWorkForm(NetWorkForm netWorkForm) {
 		setConenctRate(netWorkForm.getConenctRate());
 		setLinkedRate(netWorkForm.getLinkedRate());
@@ -127,6 +130,10 @@ public class NetWorkForm {
 		this.continued = continued;
 	}
 
+	/**
+	 * @param list
+	 * @return
+	 */
 	public static List<NetWorkForm> convert(List<NetWorkForm> list) {
 		List<NetWorkForm> result = new ArrayList<NetWorkForm>();
 		for (NetWorkForm item : list) {

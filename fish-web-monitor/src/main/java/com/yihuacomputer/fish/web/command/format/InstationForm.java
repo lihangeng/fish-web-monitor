@@ -41,6 +41,9 @@ public class InstationForm {
 
 	}
 
+	/**
+	 * @param instationForm
+	 */
 	public InstationForm(InstationForm instationForm) {
 		setProgramName(instationForm.getProgramName());
 		setPublisher(instationForm.getPublisher());
@@ -125,6 +128,10 @@ public class InstationForm {
 		return this.installDate;
 	}
 
+	/**
+	 * @param list
+	 * @return
+	 */
 	public static List<InstationForm> convert(List<InstationForm> list) {
 		List<InstationForm> result = new ArrayList<InstationForm>();
 		for (InstationForm item : list) {

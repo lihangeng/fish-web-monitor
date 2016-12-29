@@ -9,6 +9,10 @@ import com.yihuacomputer.fish.api.monitor.business.CommandResult;
 import com.yihuacomputer.fish.api.monitor.business.IRemoteCommHist;
 import com.yihuacomputer.fish.api.monitor.business.IRemoteCommHistService;
 
+/**
+ * @author YiHua
+ *
+ */
 public class RemoteCommandRunnable implements Runnable {
 	
 	private static Logger logger = LoggerFactory.getLogger(RemoteCommandRunnable.class);
@@ -26,6 +30,13 @@ public class RemoteCommandRunnable implements Runnable {
     public RemoteCommandRunnable() {
     }
 
+    /**
+     * @param url
+     * @param param
+     * @param method
+     * @param id
+     * @param remoteCommHistService
+     */
     public RemoteCommandRunnable(String url, Object param, String method, long id,
             IRemoteCommHistService remoteCommHistService) {
         this.url = url;

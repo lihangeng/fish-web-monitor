@@ -33,6 +33,12 @@ public class InstationController {
 	private MessageSource messageSource;
 	private Logger logger = LoggerFactory.getLogger(InstationController.class);
 
+	/**
+	 * @param start
+	 * @param limit
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody
 	ModelMap searchInstation(@RequestParam int start, @RequestParam int limit, WebRequest request) {

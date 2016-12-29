@@ -2,6 +2,10 @@ package com.yihuacomputer.fish.web.command.format;
 
 import com.yihuacomputer.common.http.HttpFileRet;
 
+/**
+ * @author YiHua
+ *
+ */
 public class BandWidthForm {
 
     private long downLoadTime;

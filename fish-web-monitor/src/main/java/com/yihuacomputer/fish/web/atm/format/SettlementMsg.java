@@ -41,6 +41,9 @@ public class SettlementMsg {
     public SettlementMsg() {
     }
 
+    /**
+     * @param settlement
+     */
     public SettlementMsg(ISettlement settlement) {
         setTermId(settlement.getTerminalId());
         setUuId(settlement.getUuId());
@@ -62,6 +65,10 @@ public class SettlementMsg {
         setTransactionAmt(settlement.getTransactionAmt());
     }
 
+    /**
+     * @param settlementList
+     * @return
+     */
     public static List<SettlementMsg> convert(List<ISettlement> settlementList) {
         List<SettlementMsg> result = new ArrayList<SettlementMsg>();
         for (ISettlement iSettlement : settlementList) {

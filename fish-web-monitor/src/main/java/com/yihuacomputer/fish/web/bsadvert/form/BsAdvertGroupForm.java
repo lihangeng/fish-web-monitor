@@ -5,6 +5,10 @@ import com.yihuacomputer.fish.api.advert.bs.IAdvertGroup;
 
 
 
+/**
+ * @author YiHua
+ *
+ */
 public class BsAdvertGroupForm {
 
 	private long id;
@@ -97,6 +101,9 @@ public class BsAdvertGroupForm {
 		this.activedAdv = activedAdv;
 	}
 
+	/**
+	 * @param advertGroup
+	 */
 	public void translate(IAdvertGroup advertGroup){
 		
 		int groupType = getGroupType();

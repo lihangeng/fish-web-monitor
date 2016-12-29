@@ -2,6 +2,10 @@ package com.yihuacomputer.fish.web.atm.format;
 
 import java.util.List;
 
+/**
+ * @author YiHua
+ *
+ */
 public class DeviceBoxReportMsg {
 	private String termianlId;
 	private List<BoxDetailReportMsg> boxdetailList;

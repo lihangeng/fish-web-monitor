@@ -37,6 +37,9 @@ public class AtmVersionForm {
 
     }
 
+    /**
+     * @param atmVersionForm
+     */
     public AtmVersionForm(AtmVersionForm atmVersionForm) {
         setAtmcVersion(atmVersionForm.getAtmcVersion());
         setAgentVersion(atmVersionForm.getAgentVersion());

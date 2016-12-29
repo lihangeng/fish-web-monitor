@@ -11,19 +11,46 @@ import java.util.List;
  */
 public class DiskForm {
 
+	/**
+	 * 标签
+	 */
 	public String label;
+	/**
+	 * 名称
+	 */
 	public String name;
+	/**
+	 * 标签名称
+	 */
 	public String labelAndname;
+	/**
+	 * 磁盘大小
+	 */
 	public long totalSize;
+	/**
+	 * 可用大小
+	 */
 	public long freeSize;
+	/**
+	 * 文件系统
+	 */
 	public String fileSys;
+	/**
+	 * 内存
+	 */
 	public String memo;
+	/**
+	 * 路径
+	 */
 	private String path;
 
 	public DiskForm() {
 
 	}
 
+	/**
+	 * @param diskForm
+	 */
 	public DiskForm(DiskForm diskForm) {
 
 		setFileSys(diskForm.getFileSys());
@@ -107,6 +134,10 @@ public class DiskForm {
 		return this.labelAndname;
 	}
 
+	/**
+	 * @param list
+	 * @return
+	 */
 	public static List<DiskForm> convert(List<DiskForm> list) {
 		List<DiskForm> result = new ArrayList<DiskForm>();
 		for (DiskForm item : list) {

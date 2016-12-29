@@ -2,6 +2,10 @@ package com.yihuacomputer.fish.web.command.format;
 
 import java.util.List;
 
+/**
+ * @author YiHua
+ *
+ */
 public class CrownMsgList {
 	private List<CrownMsg> crownList;
 

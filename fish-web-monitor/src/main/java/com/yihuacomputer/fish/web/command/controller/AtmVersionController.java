@@ -28,6 +28,10 @@ import com.yihuacomputer.fish.api.version.IVersionTypeService;
 import com.yihuacomputer.fish.web.atm.format.SimpleVersion;
 import com.yihuacomputer.fish.web.command.format.AtmVersionForm;
 
+/**
+ * @author YiHua
+ *
+ */
 @Controller
 @RequestMapping("agent/atmVersion")
 public class AtmVersionController {
@@ -46,6 +50,11 @@ public class AtmVersionController {
     @Autowired
     private IDeviceService deviceService;
 
+    /**
+     * @param terminalId
+     * @param ip
+     * @return
+     */
     @RequestMapping(value = "/versioninfo", method = RequestMethod.POST)
     public @ResponseBody ModelMap searchInstation(@RequestParam String terminalId, @RequestParam String ip) {
         logger.info("get application version : " + ip);

@@ -55,6 +55,13 @@ public class CashInitPlanController {
 	@Autowired
 	private ICashInitPlanDeviceInfoService cashInitPlanDeviceInfoService;
 	
+	/**
+	 * @param limit
+	 * @param start
+	 * @param request
+	 * @param webRequest
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody ModelMap searchCashInitPlanList(@RequestParam int limit, @RequestParam int start, HttpServletRequest request, WebRequest webRequest) {
 		logger.info("search CashInit Plan Info List");
@@ -78,6 +85,11 @@ public class CashInitPlanController {
 		return result;
 	}
 	
+	/**
+	 * @param request
+	 * @param webRequest
+	 * @return
+	 */
 	@RequestMapping(value="/nextCashInitPlanId",method = RequestMethod.POST)
 	public @ResponseBody ModelMap nextCashInitPlanId(HttpServletRequest request, WebRequest webRequest) {
 		logger.info("search nextCashInitPlanId");
@@ -108,6 +120,11 @@ public class CashInitPlanController {
 		return result;
 	}
 	
+	/**
+	 * @param request
+	 * @param webRequest
+	 * @return
+	 */
 	@RequestMapping(value="/prefCashInitPlanId",method = RequestMethod.POST)
 	public @ResponseBody ModelMap prefCashInitPlanId(HttpServletRequest request, WebRequest webRequest) {
 		logger.info("search nextCashInitPlanId");

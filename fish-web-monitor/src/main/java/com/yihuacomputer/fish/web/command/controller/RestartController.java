@@ -56,6 +56,14 @@ public class RestartController {
     @Autowired
     private IRemoteCommHistService remoteCommHistService;
 
+    /**
+     * @param terminalId
+     * @param restartType
+     * @param ip
+     * @param webRequest
+     * @param request
+     * @return
+     */
     @MethodNameDescrible(describle="userlog.RestartController.reboot",hasArgs=true,argsContext="terminalId")
     @RequestMapping(value = "/reboot", method = RequestMethod.POST)
     public @ResponseBody ModelMap restart(@RequestParam String terminalId, @RequestParam CommandLevel restartType,
@@ -101,73 +109,14 @@ public class RestartController {
         return result;
     }
 
-    // @RequestMapping(value = "/reboot", method = RequestMethod.POST)
-    // public @ResponseBody
-    // ModelMap restart(@RequestParam String terminalId, @RequestParam
-    // CommandLevel restartType, @RequestParam String ip,
-    // WebRequest request) {
-    //
-    // IRunInfo runInfo = runInfoService.make();
-    // runInfo.setTerminalId(terminalId);
-    //
-    // ModelMap result = new ModelMap();
-    // String url = MonitorCfg.getHttpUrl(ip) + "/ctr/reboot";
-    //
-    // RestartParamForm restartParamForm = new RestartParamForm();
-    // restartParamForm.setRestartType(restartType);
-    // try {
-    // RestartForm restartForm = (RestartForm) HttpProxy.httpPost(url,
-    // restartParamForm, RestartForm.class, 5000);
-    // String appRet = restartForm.getAppRet();
-    // result.put(FishConstant.SUCCESS, true);
-    // result.addAttribute("appRet", appRet);
-    //
-    // // 设置运行状态为重启
-    // runInfo.setRunStatus(RunStatus.ReBoot);
-    // collectService.collectATMCRunInfo(terminalId, runInfo);
-    // }
-    // catch (Exception e) {
-    // result.put(FishConstant.SUCCESS, false);
-    // result.addAttribute("appRet", MonitorResponseCode.FAILURE);
-    // }
-    //
-    //
-    // return result;
-    // }
-
-    // @RequestMapping(value = "/normalReboot", method = RequestMethod.POST)
-    // public @ResponseBody ModelMap normalRestart(@RequestParam String
-    // terminalId,
-    // @RequestParam CommandLevel restartType, @RequestParam String ip,
-    // WebRequest request) {
-    //
-    // IRunInfo runInfo = runInfoService.make();
-    // runInfo.setTerminalId(terminalId);
-    //
-    // ModelMap result = new ModelMap();
-    // String url = MonitorCfg.getHttpUrl(ip) + "/ctr/normalReboot";
-    //
-    // RestartParamForm restartParamForm = new RestartParamForm();
-    // restartParamForm.setRestartType(restartType);
-    // try {
-    // RestartForm restartForm = (RestartForm) HttpProxy.httpPost(url,
-    // restartParamForm, RestartForm.class, 5000);
-    // String appRet = restartForm.getAppRet();
-    // result.put(FishConstant.SUCCESS, true);
-    // result.addAttribute("appRet", appRet);
-    //
-    // // 设置运行状态为重启
-    // runInfo.setRunStatus(RunStatus.ReBoot);
-    // collectService.collectATMCRunInfo(terminalId, runInfo);
-    // }
-    // catch (Exception e) {
-    // result.put(FishConstant.SUCCESS, false);
-    // result.addAttribute("appRet", MonitorResponseCode.FAILURE);
-    // }
-    //
-    // return result;
-    // }
-
+    /**
+     * @param terminalId
+     * @param restartType
+     * @param ip
+     * @param webRequest
+     * @param request
+     * @return
+     */
     @MethodNameDescrible(describle="userlog.RestartController.normalReboot",hasArgs=true,argsContext="terminalId")
     @RequestMapping(value = "/normalReboot", method = RequestMethod.POST)
     public @ResponseBody ModelMap normalRestart(@RequestParam String terminalId,

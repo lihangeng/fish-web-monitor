@@ -1,5 +1,9 @@
 package com.yihuacomputer.fish.web.atm.format;
 
+/**
+ * @author YiHua
+ *
+ */
 public class TaskMsg {
     private long taskId;
 
@@ -11,6 +15,9 @@ public class TaskMsg {
     
     private String downUrl;
     
+    /**
+     * 初始化部署状态
+     */
     public TaskMsg(){
         this.deployStatus = DeployStatus.UNCHECK;
     }
@@ -23,6 +30,12 @@ public class TaskMsg {
 		this.downUrl = downUrl;
 	}
 
+	/**
+	 * @param taskId
+	 * @param downTypeName
+	 * @param downVersionNo
+	 * @param downUrl
+	 */
 	public TaskMsg(long taskId,String downTypeName,String downVersionNo,String downUrl){
         this();
         this.taskId = taskId;

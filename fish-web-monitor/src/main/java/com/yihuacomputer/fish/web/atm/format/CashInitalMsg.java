@@ -27,6 +27,9 @@ public class CashInitalMsg {
     public CashInitalMsg() {
     }
 
+    /**
+     * @param cashInit
+     */
     public CashInitalMsg(ICashInit cashInit) {
         // 初始化加钞信息
         setTermId(cashInit.getTerminalId());
@@ -44,6 +47,10 @@ public class CashInitalMsg {
         setBoxDetail(detailList);
     }
 
+    /**
+     * @param cashInitList
+     * @return
+     */
     public static List<CashInitalMsg> convert(List<ICashInit> cashInitList) {
         List<CashInitalMsg> result = new ArrayList<CashInitalMsg>();
         for (ICashInit init : cashInitList) {

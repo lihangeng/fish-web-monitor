@@ -1,5 +1,9 @@
 package com.yihuacomputer.fish.web.atm.format;
 
+/**
+ * @author YiHua
+ *
+ */
 public class SimpleVersion {
     private String typeName;
 
@@ -8,6 +12,10 @@ public class SimpleVersion {
     public SimpleVersion() {
     }
 
+    /**
+     * @param typeName
+     * @param versionNo
+     */
     public SimpleVersion(String typeName, String versionNo) {
         this.typeName = typeName;
         this.versionNo = versionNo;

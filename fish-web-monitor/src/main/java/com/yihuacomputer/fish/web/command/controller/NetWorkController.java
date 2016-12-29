@@ -37,6 +37,10 @@ public class NetWorkController {
      */
     public static String FILENAME_TEST = "NetWorkTest.T";
 
+    /**
+     * @param ip
+     * @return
+     */
     @RequestMapping(value = "/getNetWork", method = RequestMethod.POST)
     public @ResponseBody
     ModelMap searchNetWork(@RequestParam String ip) {
@@ -62,6 +66,10 @@ public class NetWorkController {
         return result;
     }
 
+    /**
+     * @param ip
+     * @return
+     */
     @RequestMapping(value = "/bandwidth", method = RequestMethod.POST)
     public @ResponseBody
     ModelMap netWorkBandwidth(@RequestParam String ip) {
@@ -126,6 +134,9 @@ public class NetWorkController {
         }
     }
 
+    /**
+     * @param args
+     */
     public static void main(String[] args) {
         System.out.println(FishCfg.getTempDir());
 

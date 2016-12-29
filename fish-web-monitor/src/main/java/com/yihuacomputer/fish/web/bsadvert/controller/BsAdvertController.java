@@ -63,6 +63,10 @@ import com.yihuacomputer.fish.web.bsadvert.form.BsAdvertScreenForm;
 import com.yihuacomputer.fish.web.bsadvert.form.BsUploadResourceForm;
 import com.yihuacomputer.fish.web.util.FishWebUtils;
 
+/**
+ * @author YiHua
+ *
+ */
 @Controller
 @RequestMapping("bsadvert/advert")
 @ClassNameDescrible(describle="userlog.BsAdvertController")
@@ -133,6 +137,12 @@ public class BsAdvertController {
 		return result;
 	}
 
+	/**
+	 * @param id
+	 * @param request
+	 * @param webRequest
+	 * @return
+	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	@MethodNameDescrible(describle="userlog.BsAdvertController.delete",hasLogKey=true)
 	public @ResponseBody ModelMap deleteBsAdvert(@PathVariable long id, HttpServletRequest request, WebRequest webRequest) {
@@ -163,6 +173,7 @@ public class BsAdvertController {
 	/**
 	 * 激活广告
 	 * 
+	 * @param advertId
 	 * @param request
 	 * @param webRequest
 	 * @return
@@ -571,6 +582,11 @@ public class BsAdvertController {
 		ZipUtils.delFolder(getAdvertSourcePath(advert));
 	}
 
+	/**
+	 * @param id
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(value = "/deleteResource")
 	@MethodNameDescrible(describle="userlog.BsAdvertController.delete",hasArgs=true,argsContext="id")
 	public @ResponseBody ModelMap deleteResource(@RequestParam long id, HttpServletRequest request) {

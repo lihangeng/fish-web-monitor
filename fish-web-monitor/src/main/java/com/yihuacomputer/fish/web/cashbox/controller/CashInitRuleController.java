@@ -46,6 +46,13 @@ public class CashInitRuleController {
 	@Autowired
 	private MessageSource messageSource;
 
+	/**
+	 * @param limit
+	 * @param start
+	 * @param request
+	 * @param webRequest
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody ModelMap seachCashBoxInitRuleList(@RequestParam int limit, @RequestParam int start, HttpServletRequest request, WebRequest webRequest) {
 		logger.info("search CashBox Info List");
@@ -71,7 +78,7 @@ public class CashInitRuleController {
 	 *
 	 * 方法描述 : 根据ID更新设备钞箱信息
 	 *
-	 * @param guid
+	 * @param id
 	 * @param request
 	 * @return ModelMap<String, Object>
 	 */

@@ -13,6 +13,10 @@ import com.yihuacomputer.common.jackson.JsonUtils;
 
 
 
+/**
+ * @author YiHua
+ *
+ */
 public class BsAdvertForm {
 	
 	private Logger logger = LoggerFactory.getLogger(BsAdvertForm.class);

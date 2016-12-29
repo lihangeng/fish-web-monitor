@@ -1,6 +1,10 @@
 package com.yihuacomputer.fish.web.command.format;
 
 
+/**
+ * @author YiHua
+ *
+ */
 public class DownFileForm
 {
     private String termId;

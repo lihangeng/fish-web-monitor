@@ -1,5 +1,9 @@
 package com.yihuacomputer.fish.web.command.format;
 
+/**
+ * @author YiHua
+ *
+ */
 public enum FileSysOperatorType {
 	/**
 	 * 新建文件夹
@@ -23,6 +27,10 @@ public enum FileSysOperatorType {
 		this.id = id;
 		this.text = text;
 	}
+	/**
+	 * @param id
+	 * @return
+	 */
 	public static FileSysOperatorType getById(int id){
 		FileSysOperatorType[] fileSOTs = FileSysOperatorType.values();
 		for(FileSysOperatorType fSOT:fileSOTs){

@@ -32,6 +32,10 @@ public class CheckATMController {
 	@Autowired
 	private MessageSource messageSource;
 
+	/**
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody
 	ModelMap searchCheckInfo(WebRequest request) {

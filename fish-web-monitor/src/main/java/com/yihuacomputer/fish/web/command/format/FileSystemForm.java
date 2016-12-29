@@ -9,18 +9,42 @@ import java.util.List;
  *
  */
 public class FileSystemForm {
+	/**
+	 * 磁盘名称
+	 */
 	public String diskName;
+	/**
+	 * 路径
+	 */
 	public String path;
+	/**
+	 * 名称
+	 */
 	public String name;
+	/**
+	 * 类型
+	 */
 	public FileType type;
+	/**
+	 * 创建时间
+	 */
 	public String createdTime;
+	/**
+	 * 最后修改时间
+	 */
 	public String lastTime;
+	/**
+	 * 大小
+	 */
 	public long size;
 
 	public FileSystemForm() {
 
 	}
 
+	/**
+	 * @param fileSystemForm
+	 */
 	public FileSystemForm(FileSystemForm fileSystemForm) {
 
 		setName(fileSystemForm.getName());
@@ -88,6 +112,10 @@ public class FileSystemForm {
 		this.size = size;
 	}
 
+	/**
+	 * @param list
+	 * @return
+	 */
 	public static List<FileSystemForm> convert(List<FileSystemForm> list) {
 		List<FileSystemForm> result = new ArrayList<FileSystemForm>();
 		for (FileSystemForm item : list) {

@@ -35,6 +35,13 @@ public class FileSysController {
 	@Autowired
 	private MessageSource messageSource;
 
+	/**
+	 * @param path
+	 * @param file
+	 * @param ip
+	 * @param isDirectory
+	 * @return
+	 */
 	@RequestMapping(value="/mkFileSys",method = RequestMethod.POST)
     public @ResponseBody ModelMap mkFileSys(@RequestParam String path, @RequestParam String file,@RequestParam String ip,@RequestParam String isDirectory)
     {
@@ -62,6 +69,12 @@ public class FileSysController {
     }
 
 
+	/**
+	 * @param path
+	 * @param file
+	 * @param ip
+	 * @return
+	 */
 	@RequestMapping(value="/deleteFile",method = RequestMethod.POST)
     public @ResponseBody ModelMap deleteFile(@RequestParam String path, @RequestParam String file,@RequestParam String ip)
     {
@@ -84,6 +97,12 @@ public class FileSysController {
     }
 
 
+	/**
+	 * @param path
+	 * @param file
+	 * @param ip
+	 * @return
+	 */
 	@RequestMapping(value="/execFile",method = RequestMethod.POST)
     public @ResponseBody ModelMap execFile(@RequestParam String path, @RequestParam String file,@RequestParam String ip)
     {

@@ -58,6 +58,13 @@ public class DeviceCashBoxInfoController {
 	@Autowired
 	private IOrganizationService orgService;
 	
+	/**
+	 * @param limit
+	 * @param start
+	 * @param request
+	 * @param webRequest
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody ModelMap seachCashBoxInfoList(@RequestParam int limit, @RequestParam int start, HttpServletRequest request, WebRequest webRequest) {
 		logger.info("search CashBox Info List");
@@ -80,7 +87,7 @@ public class DeviceCashBoxInfoController {
 	 *
 	 * 方法描述 : 根据ID更新设备钞箱信息
 	 *
-	 * @param guid
+	 * @param id
 	 * @param request
 	 * @return ModelMap<String, Object>
 	 */
@@ -116,6 +123,11 @@ public class DeviceCashBoxInfoController {
 		model.addAttribute(FishConstant.DATA,convert(deviceBoxInfo));
 		return model;
 	}
+	/**
+	 * @param request
+	 * @param webRequest
+	 * @return
+	 */
 	@RequestMapping(value = "/synchronizedBoxLimit", method = RequestMethod.POST)
 	@MethodNameDescrible(describle="userlog.CashBoxController.synchronizedBoxLimit",hasLogKey=true )
 	public @ResponseBody 

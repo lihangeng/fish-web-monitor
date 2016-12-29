@@ -5,6 +5,10 @@ import java.util.List;
 
 import com.yihuacomputer.fish.api.monitor.hardware.IDisk;
 
+/**
+ * @author YiHua
+ *
+ */
 public class DiskMsg
 {
 
@@ -48,6 +52,9 @@ public class DiskMsg
 
     }
 
+    /**
+     * @param disk
+     */
     public DiskMsg(IDisk disk)
     {
         setLabel(disk.getLabel());
@@ -59,6 +66,10 @@ public class DiskMsg
         setLabelAndname(disk.getLabelAndname());
     }
 
+    /**
+     * @param list
+     * @return
+     */
     public static List<DiskMsg> convert(List<IDisk> list)
     {
         List<DiskMsg> result = new ArrayList<DiskMsg>();
@@ -69,6 +80,9 @@ public class DiskMsg
         return result;
     }
     
+    /**
+     * @param disk
+     */
     public void toDisk(IDisk disk)
     {
         disk.setFileSys(this.fileSys);

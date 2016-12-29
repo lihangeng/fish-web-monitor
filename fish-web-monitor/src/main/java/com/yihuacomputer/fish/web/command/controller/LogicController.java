@@ -29,6 +29,10 @@ import com.yihuacomputer.fish.api.system.config.MonitorCfg;
 import com.yihuacomputer.fish.web.command.format.RemoteCommand;
 import com.yihuacomputer.fish.web.util.FishWebUtils;
 
+/**
+ * @author YiHua
+ *
+ */
 @ClassNameDescrible(describle="userlog.LogicController")
 @Controller
 @RequestMapping("/agent/logic")
@@ -39,6 +43,13 @@ public class LogicController {
     @Autowired
     private IRemoteCommHistService remoteCommHistService;
 
+    /**
+     * @param terminalId
+     * @param ip
+     * @param webRequest
+     * @param request
+     * @return
+     */
     @MethodNameDescrible(describle="userlog.LogicController.open",hasArgs=true,argsContext="terminalId")
     @RequestMapping(method = RequestMethod.POST, value = "/open")
     public @ResponseBody ModelMap logicOpen(@RequestParam String terminalId, @RequestParam String ip,
@@ -61,10 +72,6 @@ public class LogicController {
         RemoteCommand rc = new RemoteCommand();
         rc.setId(hist.getId());
 
-//        Runnable runnable = new RemoteCommandRunnable(url, null, "POST", hist.getId(), remoteCommHistService);
-//        Thread thread = new Thread(runnable);
-//        thread.start();
-
         try {
 
             HttpProxy.httpPost(url, rc, null, 5000);
@@ -83,6 +90,13 @@ public class LogicController {
         return result;
     }
 
+    /**
+     * @param terminalId
+     * @param ip
+     * @param webRequest
+     * @param request
+     * @return
+     */
     @MethodNameDescrible(describle="userlog.LogicController.close",hasArgs=true,argsContext="terminalId")
     @RequestMapping(method = RequestMethod.POST, value = "/close")
     public @ResponseBody ModelMap logicClose(@RequestParam String terminalId, @RequestParam String ip,
@@ -104,12 +118,6 @@ public class LogicController {
         RemoteCommand rc = new RemoteCommand();
         rc.setId(hist.getId());
 
-//        Runnable runnable = new RemoteCommandRunnable(url, null, "POST", hist.getId(), remoteCommHistService);
-//        Thread thread = new Thread(runnable);
-//        thread.start();
-//
-//        result.put(FishConstant.SUCCESS, true);
-        
         try {
 
             HttpProxy.httpPost(url, rc, null, 5000);
@@ -128,6 +136,13 @@ public class LogicController {
 
     }
 
+    /**
+     * @param terminalId
+     * @param ip
+     * @param webRequest
+     * @param request
+     * @return
+     */
     @MethodNameDescrible(describle="userlog.LogicController.reset",hasArgs=true,argsContext="terminalId")
     @RequestMapping(method = RequestMethod.POST, value = "/reset")
     public @ResponseBody ModelMap reset(@RequestParam String terminalId, @RequestParam String ip,
@@ -149,12 +164,6 @@ public class LogicController {
         RemoteCommand rc = new RemoteCommand();
         rc.setId(hist.getId());
 
-//        Runnable runnable = new RemoteCommandRunnable(url, rc, "POST", hist.getId(), remoteCommHistService);
-//        Thread thread = new Thread(runnable);
-//        thread.start();
-//
-//        result.put(FishConstant.SUCCESS, true);
-        
         try {
 
             HttpProxy.httpPost(url, rc, null, 5000);

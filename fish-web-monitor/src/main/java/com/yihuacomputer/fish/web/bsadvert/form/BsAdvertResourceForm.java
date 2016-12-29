@@ -2,6 +2,10 @@ package com.yihuacomputer.fish.web.bsadvert.form;
 
 import com.yihuacomputer.fish.api.advert.Screen;
 
+/**
+ * @author YiHua
+ *
+ */
 public class BsAdvertResourceForm {
 	
 	private long id;

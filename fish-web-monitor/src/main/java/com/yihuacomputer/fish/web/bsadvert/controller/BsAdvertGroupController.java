@@ -56,6 +56,10 @@ import com.yihuacomputer.fish.web.bsadvert.form.BsAdvertGroupForm;
 import com.yihuacomputer.fish.web.machine.form.DeviceForm;
 import com.yihuacomputer.fish.web.util.FishWebUtils;
 
+/**
+ * @author YiHua
+ *
+ */
 @Controller
 @RequestMapping("bsadvert/advertgroup")
 @ClassNameDescrible(describle="userlog.bsAdvertGroupController")
@@ -89,6 +93,13 @@ public class BsAdvertGroupController {
 	@Autowired
 	private MessageSource messageSourceVersion;
 
+	/**
+	 * @param limit
+	 * @param start
+	 * @param request
+	 * @param webRequest
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody ModelMap getAdvertGroup(@RequestParam int limit, @RequestParam int start, HttpServletRequest request, WebRequest webRequest) {
 		logger.info("search bsAdvert group ");
@@ -112,6 +123,11 @@ public class BsAdvertGroupController {
 		return messageSourceEnum.getMessage(enumText, null, FishCfg.locale);
 	}
 
+	/**
+	 * @param request
+	 * @param webRequest
+	 * @return
+	 */
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public @ResponseBody ModelMap getAdvertGroupList(HttpServletRequest request, WebRequest webRequest) {
 		logger.info("search bsAdvert group list");
@@ -126,6 +142,10 @@ public class BsAdvertGroupController {
 		return result;
 	}
 
+	/**
+	 * @param groupList
+	 * @return
+	 */
 	public List<BsAdvertGroupForm> convert(List<Object> groupList) {
 		List<BsAdvertGroupForm> bsGroupList = new ArrayList<BsAdvertGroupForm>();
 		for (Object object : groupList) {
@@ -149,6 +169,11 @@ public class BsAdvertGroupController {
 		return bsGroupList;
 	}
 
+	/**
+	 * @param request
+	 * @param httpRequest
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.POST)
 	@MethodNameDescrible(describle="userlog.bsAdvertGroupController.add",hasReqBodyParam=true,reqBodyClass=BsAdvertGroupForm.class,bodyProperties="groupName")
 	public @ResponseBody ModelMap add(@RequestBody BsAdvertGroupForm request, HttpServletRequest httpRequest) {
@@ -199,6 +224,11 @@ public class BsAdvertGroupController {
 		return result;
 	}
 
+	/**
+	 * @param id
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	@MethodNameDescrible(describle="userlog.bsAdvertGroupController.update",hasReqBodyParam=true,reqBodyClass=BsAdvertGroupForm.class,bodyProperties="groupName")
 	public @ResponseBody ModelMap update(@PathVariable long id, @RequestBody BsAdvertGroupForm request) {
@@ -239,6 +269,10 @@ public class BsAdvertGroupController {
 		return result;
 	}
 
+	/**
+	 * @param id
+	 * @return
+	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	@MethodNameDescrible(describle="userlog.bsAdvertGroupController.delete",hasLogKey=true)
 	public @ResponseBody ModelMap delete(@PathVariable long id) {
@@ -337,11 +371,15 @@ public class BsAdvertGroupController {
 	}
 
 	/**
-	 *
 	 * 根据广告组Id获得关联设备列表
-	 *
-	 * @param form
-	 * @return ModelMap<String, Object>
+	 * @param start
+	 * @param limit
+	 * @param flag
+	 * @param guid
+	 * @param organizationId
+	 * @param request
+	 * @param req
+	 * @return
 	 */
 	@RequestMapping(value = "/linkedDevice", method = RequestMethod.GET)
 	public @ResponseBody ModelMap searchLinkedDevice(@RequestParam int start, @RequestParam int limit, @RequestParam int flag, @RequestParam String guid, @RequestParam String organizationId, WebRequest request, HttpServletRequest req) {
@@ -428,6 +466,12 @@ public class BsAdvertGroupController {
 		return filter;
 	}
 
+	/**
+	 * @param advertGroupId
+	 * @param request
+	 * @param webRequest
+	 * @return
+	 */
 	@RequestMapping(value = "/actived", method = RequestMethod.POST)
 	public @ResponseBody ModelMap activedBsAdvert(@RequestParam long advertGroupId, HttpServletRequest request, WebRequest webRequest) {
 
@@ -490,6 +534,10 @@ public class BsAdvertGroupController {
 		return messageSourceVersion.getMessage(key, value, FishCfg.locale);
 	}
 	
+	/**
+	 * @param list
+	 * @return
+	 */
 	public List<DeviceForm> convertDevice(List<IDevice> list) {
 		List<DeviceForm> result = new ArrayList<DeviceForm>();
 		for (IDevice item : list) {
@@ -504,6 +552,7 @@ public class BsAdvertGroupController {
 	 *            接口
 	 * @param isDate
 	 *            是否需要转换日期
+	 * @return
 	 */
 	public DeviceForm toFrom(IDevice device) {
 		DeviceForm deviceForm = new DeviceForm();

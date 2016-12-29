@@ -69,6 +69,12 @@ public class ExploerController
 	@Autowired
 	private MessageSource messageSource;
 	
+    /**
+     * @param start
+     * @param limit
+     * @param request
+     * @return
+     */
     @RequestMapping(method = RequestMethod.GET)
     public @ResponseBody
     ModelMap searchDisk(@RequestParam int start, @RequestParam int limit,
@@ -84,13 +90,12 @@ public class ExploerController
 
     /**
      * 通过URL请求获得Agent所采集的ATM的文件系统信息：
-     *
+     * @param path
      * @param start
      * @param limit
      * @param request
      * @return
      */
-
     @RequestMapping(method = RequestMethod.GET, value = "/fileSystem")
     public @ResponseBody
     ModelMap searchFileSystem(@RequestParam String path,
@@ -118,9 +123,8 @@ public class ExploerController
 
     /**
      * 下载文件到服务端：
-     * @param requestName
      * @param requestPath
-     * @param request
+     * @param ip
      * @return
      */
     @MethodNameDescrible(describle="userlog.ExploerController.Download")
@@ -163,6 +167,14 @@ public class ExploerController
     }
     
     
+    /**
+     * @param requestName
+     * @param requestPath
+     * @param ip
+     * @param flag
+     * @param request
+     * @return
+     */
     @MethodNameDescrible(describle="userlog.ExploerController.Download")
     @RequestMapping(value = "/download",method = RequestMethod.POST)
     public @ResponseBody
@@ -220,10 +232,13 @@ public class ExploerController
         return result;
     }
     
-    
-
     /**
      * 下载文件到浏览器端：
+     * @param path
+     * @param fileName
+     * @param request
+     * @param response
+     * @throws Exception
      */
     @MethodNameDescrible(describle="userlog.ExploerController.Download")
     @RequestMapping(value = "/downloadFile",method = RequestMethod.GET)
@@ -275,8 +290,11 @@ public class ExploerController
      * 文件上传：
      * @param file
      * @param desPath
+     * @param flag
+     * @param ip
      * @param request
      * @param model
+     * @param response
      * @return
      */
     @MethodNameDescrible(describle="userlog.ExploerController.Upload")

@@ -1,5 +1,9 @@
 package com.yihuacomputer.fish.web.command.format;
 
+/**
+ * @author YiHua
+ *
+ */
 public class CrownMsg {
 	private String terminalId;
 	private String dateTime;
@@ -16,6 +20,14 @@ public class CrownMsg {
 	public CrownMsg() {
 	}
 
+	/**
+	 * @param terminalId
+	 * @param dateTime
+	 * @param transId
+	 * @param transAccount
+	 * @param crownId
+	 * @param currency
+	 */
 	public CrownMsg(String terminalId, String dateTime, String transId, String transAccount, String crownId,
 			String currency) {
 		this.terminalId = terminalId;

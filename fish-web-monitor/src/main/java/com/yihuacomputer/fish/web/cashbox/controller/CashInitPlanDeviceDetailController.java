@@ -66,6 +66,13 @@ public class CashInitPlanDeviceDetailController {
 	@Autowired
 	private IDeviceBoxInfoService deviceBoxInfoService;
 
+	/**
+	 * @param limit
+	 * @param start
+	 * @param request
+	 * @param webRequest
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody ModelMap seachCashInitPlanDeviceInfoList(@RequestParam int limit, @RequestParam int start, HttpServletRequest request, WebRequest webRequest) {
 		logger.info("search CashInit Plan detail Info List");
@@ -85,12 +92,10 @@ public class CashInitPlanDeviceDetailController {
 	
 	
 	/**
-	 *
 	 * 根据条件得到设备列表
-	 *
-	 * @param form
-	 * @return ModelMap<String, Object>
-	 * @throws Exception
+	 * @param webRequest
+	 * @param request
+	 * @return
 	 */
 	@RequestMapping(value = "export", method = RequestMethod.GET)
 	@MethodNameDescrible(describle="userlog.deviceController.export",hasArgs=false)
@@ -248,7 +253,7 @@ public class CashInitPlanDeviceDetailController {
 	 *
 	 * 方法描述 : 根据ID更新设备钞箱信息
 	 *
-	 * @param guid
+	 * @param id
 	 * @param request
 	 * @return ModelMap<String, Object>
 	 */

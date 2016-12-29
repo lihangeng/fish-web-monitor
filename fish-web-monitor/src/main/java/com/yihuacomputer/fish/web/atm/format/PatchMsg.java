@@ -13,6 +13,9 @@ public class PatchMsg extends NoticeForm{
 
     public PatchMsg(){}
 
+    /**
+     * @param task
+     */
     public PatchMsg(ITask task) {
       super(task);
     }

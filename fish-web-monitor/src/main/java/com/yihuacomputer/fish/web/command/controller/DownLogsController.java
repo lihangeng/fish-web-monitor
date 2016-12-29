@@ -50,9 +50,8 @@ public class DownLogsController {
 	private MessageSource messageSource;
     /**
      * 下载文件到服务端：
-     *
-     * @param requestName
-     * @param requestPath
+     * @param ip
+     * @param code
      * @param request
      * @return
      */
@@ -123,6 +122,11 @@ public class DownLogsController {
 
     /**
      * 下载文件到浏览器端：
+     * @param path
+     * @param fileName
+     * @param request
+     * @param response
+     * @throws Exception
      */
     @RequestMapping(value = "/downloadFile", method = RequestMethod.GET)
     public void download(@RequestParam String path, @RequestParam String fileName, HttpServletRequest request, HttpServletResponse response) throws Exception {

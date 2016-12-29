@@ -1,5 +1,9 @@
 package com.yihuacomputer.fish.web.bsadvert.form;
 
+/**
+ * @author YiHua
+ *
+ */
 public class BsAdvertGroupDeviceForm
 {
     private Long id;

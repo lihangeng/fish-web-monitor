@@ -220,6 +220,12 @@ public class ScreenShotController {
 	     }
 
 
+	/**
+	 * @param path
+	 * @param request
+	 * @param response
+	 * @throws Exception
+	 */
 	@RequestMapping(method = RequestMethod.GET, value = "/downloadScreen")
 	public @ResponseBody
 	void downloadScreen(@RequestParam String path, HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -231,12 +237,11 @@ public class ScreenShotController {
 
 	/**
 	 * 开始录制屏幕
-	 *
-	 * @param monitorType
-	 *            屏幕类型
+	 * @param monitorType	屏幕类型
+	 * @param terminalId
+	 * @param userId
 	 * @param request
-	 *            请求对象
-	 * @return　
+	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.GET, value = "/startCamera")
 	public @ResponseBody
@@ -280,11 +285,11 @@ public class ScreenShotController {
 
 	/**
 	 * 停止屏幕录制
-	 *
 	 * @param monitorType
-	 *            屏幕类型
+	 * @param terminalId
+	 * @param userId
+	 * @param code
 	 * @param request
-	 *            请求对象
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.GET, value = "/stopCamera")
@@ -314,6 +319,14 @@ public class ScreenShotController {
 		return result;
 	}
 
+	/**
+	 * @param userId
+	 * @param terminalId
+	 * @param start
+	 * @param limit
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.GET, value = "/query")
 	public @ResponseBody
 	ModelMap search(@RequestParam String userId, @RequestParam String terminalId, @RequestParam int start, @RequestParam int limit, WebRequest request) {
@@ -341,21 +354,10 @@ public class ScreenShotController {
 		return resultList;
 	}
 
-	// @RequestMapping(method = RequestMethod.GET, value = "/screenQuery")
-	// public @ResponseBody
-	// ModelMap searchScreen(@RequestParam int start, @RequestParam int limit,
-	// WebRequest request) {
-	// logger.info(String.format("search()"));
-	// ModelMap result = new ModelMap();
-	// result.addAttribute(FishConstant.SUCCESS, true);
-	// result.addAttribute("data", saveFormList);
-	// return result;
-	// }
-
 	/**
 	 * 下载
 	 *
-	 * @param monitorType
+	 * @param code
 	 *            屏幕类型
 	 * @param request
 	 *            请求对象
@@ -404,6 +406,11 @@ public class ScreenShotController {
 		}
 	}
 
+	/**
+	 * @param userId
+	 * @param terminalId
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.GET, value = "/removeAvi")
 	public @ResponseBody
 	ModelMap removeAvi(@RequestParam String userId, @RequestParam String terminalId) {
@@ -422,18 +429,13 @@ public class ScreenShotController {
 
 	/**
 	 * 下载
-	 *
-	 * @param monitorType
-	 *            屏幕类型
+	 * @param code
 	 * @param request
-	 *            请求对象
-	 * @return
+	 * @param response
 	 */
 	@RequestMapping(method = RequestMethod.GET, value = "/download")
 	public @ResponseBody
 	void downloadAvi(@RequestParam String code, HttpServletRequest request, HttpServletResponse response) {
-		// ModelMap result = new ModelMap();
-
 		ScreenForm screenForm = cameraMap.get(code);
 
 		if (screenForm == null) {
@@ -450,10 +452,6 @@ public class ScreenShotController {
 
 			download(file, response, "gb2312", "video/avi");
 		}
-		
-
-		// result.put(FishConstant.SUCCESS, true);
-		// return result;
 	}
 
 	/**
@@ -472,21 +470,11 @@ public class ScreenShotController {
 		response.setCharacterEncoding(encoding);
 		response.setContentType(contentType);
 		response.setHeader("Content-disposition", "attachment;filename=" + file.getName());
-
-		// response.setHeader("charset", "UTF-8");
-
-		// OutputStream os = null;
 		InputStream is = null;
-		// InputStreamReader isr = null;
-		// OutputStreamWriter osw = null;
 		ServletOutputStream out = null;
 		try {
 			is = new FileInputStream(file);
-			// osw = new OutputStreamWriter(os, encoding);
-
 			out = response.getOutputStream();
-			// os = response.getOutputStream();
-
 			int len = 0;
 			byte[] buffer = new byte[1024];
 			while ((len = is.read(buffer)) != -1) {

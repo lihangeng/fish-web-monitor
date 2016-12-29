@@ -1,5 +1,9 @@
 package com.yihuacomputer.fish.web.atm.format;
 
+/**
+ * @author YiHua
+ *
+ */
 public class RemoteCommandResult {
     private long id;
 

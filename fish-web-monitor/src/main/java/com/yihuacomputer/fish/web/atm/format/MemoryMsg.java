@@ -2,6 +2,10 @@ package com.yihuacomputer.fish.web.atm.format;
 
 import com.yihuacomputer.fish.api.monitor.hardware.IMemory;
 
+/**
+ * @author YiHua
+ *
+ */
 public class MemoryMsg
 {
     /**
@@ -28,6 +32,9 @@ public class MemoryMsg
     {
     }
 
+    /**
+     * @param memory
+     */
     public MemoryMsg(IMemory memory)
     {
         setMemorySize(memory.getMemorySize());
@@ -36,6 +43,9 @@ public class MemoryMsg
         setUsedPercent(memory.getUsedPercent());
     }
 
+    /**
+     * @param memory
+     */
     public void toMemory(IMemory memory)
     {
         memory.setFree(this.free);
