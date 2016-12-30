@@ -18,6 +18,10 @@ import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.domain.util.DBType;
 
+/**
+ * @author YiHua
+ *
+ */
 @Controller
 @RequestMapping("/register")
 public class RegisterController {
@@ -30,6 +34,12 @@ public class RegisterController {
 	@Autowired
 	private MessageSource messageSource;
     
+    /**
+     * @param session
+     * @param request
+     * @param webrequest
+     * @return
+     */
     @RequestMapping(value = "/isRegister",method = RequestMethod.POST)
     public @ResponseBody
     ModelMap isRegister(HttpSession session, HttpServletRequest request, WebRequest webrequest) {

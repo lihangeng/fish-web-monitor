@@ -5,6 +5,10 @@ import java.util.List;
 
 import com.yihuacomputer.fish.api.person.IOrganization;
 
+/**
+ * @author YiHua
+ *
+ */
 public class MasterManagedOrgForm {
 
 		private String id;
@@ -16,6 +20,10 @@ public class MasterManagedOrgForm {
 			
 		}
 		
+		/**
+		 * @param organization
+		 * @param checked
+		 */
 		public MasterManagedOrgForm(IOrganization organization,boolean checked) {
 			id = organization.getCode();
 			this.checked = checked;
@@ -23,6 +31,10 @@ public class MasterManagedOrgForm {
 			leaf = !(organization.listChildren().iterator().hasNext());
 		}
 		
+		/**
+		 * @param data
+		 * @return
+		 */
 		public static List<OrganizationTreeForm> convert(Iterable<IOrganization> data) {
 			List<OrganizationTreeForm> result = new ArrayList<OrganizationTreeForm>();
 			for(IOrganization item : data) {

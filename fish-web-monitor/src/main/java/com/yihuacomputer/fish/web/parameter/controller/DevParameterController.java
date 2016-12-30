@@ -150,6 +150,10 @@ public class DevParameterController {
 		return "page".equals(name) || "start".equals(name) || "limit".equals(name) || "_dc".equals(name);
 	}
 
+	/**
+	 * @param list
+	 * @return
+	 */
 	public List<DevParameterForm> convert(List<IDevice> list) {
 		List<DevParameterForm> result = new ArrayList<DevParameterForm>();
 		for (IDevice item : list) {

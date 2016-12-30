@@ -179,6 +179,10 @@ public class LinkDeviceForm {
 		device.setWorkType(nullObject(getWorkType(), WorkType.class));
 	}
 
+	/**
+	 * @param list
+	 * @return
+	 */
 	public static List<LinkDeviceForm> convert(List<IDevice> list) {
 		List<LinkDeviceForm> result = new ArrayList<LinkDeviceForm>();
 		for (IDevice item : list) {

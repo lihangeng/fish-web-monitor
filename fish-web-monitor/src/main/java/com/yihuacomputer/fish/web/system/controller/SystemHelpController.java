@@ -33,9 +33,13 @@ public class SystemHelpController
 {
 	private Logger logger = LoggerFactory.getLogger(DownloadReportController.class);
 	
-    /**
-     * 下载文件到浏览器端：
-     */
+	/**
+	 * 下载文件到浏览器端：
+	 * @param fileName
+	 * @param request
+	 * @param response
+	 * @throws Exception
+	 */
 	@MethodNameDescrible(describle="userlog.SystemHelpController.download",hasArgs=true,argsContext="fileName")
     @RequestMapping(value = "/downloadFile",method = RequestMethod.GET)
     public void download(@RequestParam String fileName,HttpServletRequest request,HttpServletResponse response) throws Exception {

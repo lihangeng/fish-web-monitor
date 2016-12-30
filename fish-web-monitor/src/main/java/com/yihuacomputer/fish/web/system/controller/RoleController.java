@@ -37,8 +37,7 @@ import com.yihuacomputer.fish.api.relation.IUserRoleRelation;
 import com.yihuacomputer.fish.web.system.form.RoleForm;
 
 /**
- *
- *
+ * @author YiHua
  *
  */
 @Controller
@@ -159,12 +158,10 @@ public class RoleController {
 	}
 
 	/**
-	 *
 	 * 方法描述 : 根据ID更新角色
-	 *
 	 * @param id
-	 * @param request
-	 * @return ModelMap<String, Object>
+	 * @param form
+	 * @return
 	 */
 	@MethodNameDescrible(describle="userlog.RoleController.update",hasReqBodyParam=true,reqBodyClass=RoleForm.class,bodyProperties="name")
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
@@ -293,11 +290,11 @@ public class RoleController {
 	}
 
 	/**
-	 *
 	 * 角色列表页面
-	 *
-	 * @param
-	 * @return ModelMap<String, Object>
+	 * @param start
+	 * @param limit
+	 * @param request
+	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody
@@ -312,20 +309,12 @@ public class RoleController {
 		return result;
 	}
 
-	/*
-	 * private IFilter getFilter(WebRequest request) { IFilter filter = new
-	 * Filter(); String type = request.getParameter("type"); if
-	 * (StringUtils.isNotEmpty(type)) {
-	 * filter.addFilterEntry(FilterFactory.eq("type", RoleType.getById(new
-	 * Integer(type)))); } return filter; }
-	 */
-
 	/**
-	 *
 	 * 角色--权限页面的角色显示
-	 *
-	 * @param form
-	 * @return ModelMap<String, Object>
+	 * @param start
+	 * @param limit
+	 * @param request
+	 * @return
 	 */
 	@RequestMapping(value = "/permission", method = RequestMethod.GET)
 	public @ResponseBody
@@ -360,11 +349,11 @@ public class RoleController {
 	}
 
 	/**
-	 *
 	 * 角色--资源页面的角色显示
-	 *
-	 * @param form
-	 * @return ModelMap<String, Object>
+	 * @param start
+	 * @param limit
+	 * @param request
+	 * @return
 	 */
 	@RequestMapping(value = "/access", method = RequestMethod.GET)
 	public @ResponseBody
@@ -375,12 +364,11 @@ public class RoleController {
 	}
 
 	/**
-	 *
 	 * 方法描述 : 验证角色name的唯一性
-	 *
 	 * @param name
-	 * @param form
-	 * @return Map<String, Object>
+	 * @param id
+	 * @param organizationCode
+	 * @return
 	 */
 	@RequestMapping(value = "/unique", method = RequestMethod.GET)
 	public @ResponseBody
@@ -433,6 +421,10 @@ public class RoleController {
 		return result;
 	}
 
+	/**
+	 * @param id
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.GET, value = "/isSystemRole")
 	public @ResponseBody
 	ModelMap isSystemRole(@RequestParam long id) {

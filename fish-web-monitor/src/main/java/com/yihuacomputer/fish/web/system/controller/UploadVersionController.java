@@ -15,12 +15,22 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.yihuacomputer.common.FishConstant;
 
+/**
+ * @author YiHua
+ *
+ */
 @Controller
 @RequestMapping("/agent")
 public class UploadVersionController {
 
     private Logger logger = org.slf4j.LoggerFactory.getLogger(UploadVersionController.class);
     
+	/**
+	 * @param file
+	 * @param request
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "/uploadVersion",method = RequestMethod.POST)
 	public @ResponseBody ModelMap upload(@RequestParam(value = "file",required=false)MultipartFile file, HttpServletRequest request, ModelMap model) {
 
@@ -41,8 +51,6 @@ public class UploadVersionController {
 			map.put(FishConstant.SUCCESS, false);
 			logger.info(String.format("[%s]", e));
 		}
-//		model.addAttribute("fileUrl", request.getContextPath() + "/upload/" + fileName);
-
 		return map;
 	}
 

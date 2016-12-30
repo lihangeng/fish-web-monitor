@@ -5,6 +5,10 @@ import java.util.List;
 
 import com.yihuacomputer.fish.api.permission.IPermission;
 
+/**
+ * @author YiHua
+ *
+ */
 public class PermissionCheckedTreeForm {
 
 	private String id;
@@ -17,20 +21,27 @@ public class PermissionCheckedTreeForm {
 
 	}
 
+	/**
+	 * @param permission
+	 * @param permissions
+	 */
 	public  PermissionCheckedTreeForm(IPermission permission,List<IPermission> permissions) {
 		if(permissions != null)
 		{
 		id = permission.getCode();
 		text = permission.getDescription();
 		this.checked = permissions.contains(permission);
-//		if(this.checked){
-			this.expanded = true;
-//		}
+		this.expanded = true;
 		leaf = !(permission.listChildren().iterator().hasNext());
 		}
 
 	}
 
+	/**
+	 * @param data
+	 * @param permissions
+	 * @return
+	 */
 	public static List<PermissionCheckedTreeForm> convert(Iterable<IPermission> data,List<IPermission> permissions) {
 		List<PermissionCheckedTreeForm> result = new ArrayList<PermissionCheckedTreeForm>();
 		if(permissions != null)

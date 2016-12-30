@@ -2,6 +2,10 @@ package com.yihuacomputer.fish.web.system.form;
 
 import com.yihuacomputer.fish.api.permission.IPermission;
 
+/**
+ * @author YiHua
+ *
+ */
 public class MenuTreeForm {
 
 	private String id;
@@ -16,6 +20,9 @@ public class MenuTreeForm {
 
 	}
 
+	/**
+	 * @param permission
+	 */
 	public MenuTreeForm(IPermission permission) {
 		this.id = permission.getId();
 		this.text = permission.getDescription();

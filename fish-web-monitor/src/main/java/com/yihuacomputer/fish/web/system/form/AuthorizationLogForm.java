@@ -6,6 +6,10 @@ import java.util.List;
 import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.fish.api.log.IAuthorizationLog;
 
+/**
+ * @author YiHua
+ *
+ */
 public class AuthorizationLogForm {
 	private long id;
 	private String authorizeeCode;
@@ -21,6 +25,9 @@ public class AuthorizationLogForm {
 	public AuthorizationLogForm() {
 	}
 
+	/**
+	 * @param authorizationLog
+	 */
 	public AuthorizationLogForm(IAuthorizationLog authorizationLog) {
 		id = authorizationLog.getId();
 		authorizeeCode = authorizationLog.getAuthorizeeCode();
@@ -34,6 +41,10 @@ public class AuthorizationLogForm {
 		type = authorizationLog.getType();
 	}
 
+	/**
+	 * @param resources
+	 * @return
+	 */
 	public static List<AuthorizationLogForm> convert(
 			List<IAuthorizationLog> resources) {
 		List<AuthorizationLogForm> result = new ArrayList<AuthorizationLogForm>();

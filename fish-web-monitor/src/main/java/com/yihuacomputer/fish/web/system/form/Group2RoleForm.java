@@ -5,6 +5,10 @@ import java.util.List;
 
 import com.yihuacomputer.fish.api.permission.IRole;
 
+/**
+ * @author YiHua
+ *
+ */
 public class Group2RoleForm {
 	
 	private long id;
@@ -24,14 +28,20 @@ public class Group2RoleForm {
 	public Group2RoleForm(){
 		
 	}
-	// TODO 暂时无引用此处的form 国际化不做处理 role.getType().getText();
+	//暂时无引用此处的form 国际化不做处理 role.getType().getText();
+	/**
+	 * @param role
+	 */
 	public Group2RoleForm(IRole role){
 		this.id = role.getId();
 		this.name = role.getName();
 		this.type = role.getType().getText();
-		//TODO
 	}
 	
+	/**
+	 * @param roles
+	 * @return
+	 */
 	public static List<Group2RoleForm> toForm(List<IRole> roles){
 		List<Group2RoleForm> result = new ArrayList<Group2RoleForm>();
 		for(IRole role : roles){

@@ -393,8 +393,7 @@ public class ParamTemplateController {
 
 	/**
 	 * 解除关联关系：
-	 *
-	 * @param groupId
+	 * @param templateId
 	 * @param deviceId
 	 * @return
 	 */

@@ -5,6 +5,10 @@ import java.util.List;
 
 import com.yihuacomputer.fish.api.atm.IAtmModule;
 
+/**
+ * @author YiHua
+ *
+ */
 public class AtmModuleForm {
 	private long id;
 	private String no;
@@ -15,6 +19,9 @@ public class AtmModuleForm {
 		
 	}
 	
+	/**
+	 * @param module
+	 */
 	public AtmModuleForm(IAtmModule module){
 		setId(module.getId());
 		setName(module.getName());
@@ -22,6 +29,9 @@ public class AtmModuleForm {
 		setNo(module.getNo());
 	}
 	
+	/**
+	 * @param module
+	 */
 	public void translate(IAtmModule module){
 		module.setId(getId());
 		module.setName(getName());
@@ -29,6 +39,10 @@ public class AtmModuleForm {
 		module.setNote(getNote());
 	}
 	
+	/**
+	 * @param list
+	 * @return
+	 */
 	public static List<AtmModuleForm> convert(List<IAtmModule> list) {
 		List<AtmModuleForm> result = new ArrayList<AtmModuleForm>();
 		for(IAtmModule item : list) {

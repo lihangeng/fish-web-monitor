@@ -8,6 +8,10 @@ import com.yihuacomputer.fish.api.atm.IAtmType;
 import com.yihuacomputer.fish.api.monitor.filter.IStatusFilter;
 import com.yihuacomputer.fish.api.person.IOrganization;
 
+/**
+ * @author YiHua
+ *
+ */
 public class MonitorFilterForm {
 
     /**

@@ -25,8 +25,10 @@ import com.yihuacomputer.common.util.SystemRegisterUtil;
 import com.yihuacomputer.fish.api.system.config.IParam;
 import com.yihuacomputer.fish.api.system.config.IParamService;
 
-
-
+/**
+ * @author YiHua
+ *
+ */
 @Controller
 @RequestMapping("/system/register")
 @ClassNameDescrible(describle="userlog.SystemRegisterController")
@@ -40,6 +42,10 @@ public class SystemRegisterController {
 	
 	private Logger logger = LoggerFactory.getLogger(SystemRegisterController.class);
 	
+	/**
+	 * @param request
+	 * @return
+	 */
 	@MethodNameDescrible(describle="userlog.SystemRegisterController.register",hasArgs=false)
 	@RequestMapping(method=RequestMethod.POST)
 	public @ResponseBody ModelMap register(WebRequest request){
@@ -92,6 +98,10 @@ public class SystemRegisterController {
 		return map;
 	}
 
+	/**
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(method=RequestMethod.GET)
 	public @ResponseBody ModelMap getHardWareInfo(HttpServletRequest request){
 		ModelMap map = new ModelMap();
@@ -100,12 +110,13 @@ public class SystemRegisterController {
 		return map;
 	}
 
+	/**
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(value="/getInfo",method=RequestMethod.GET)
 	public @ResponseBody ModelMap getSystemRegisterInfo(HttpServletRequest request){
 		ModelMap map = new ModelMap();
-		//String sn = new NetInfo().getMac();
-//		String key = SystemRegisterUtil.getRegSn();
-//		key = key.replaceAll("\\W", "");
 		IParam serialParam = paramService.getParam("register_serial");
 		if(serialParam == null){
 			map.addAttribute(FishConstant.SUCCESS, false);

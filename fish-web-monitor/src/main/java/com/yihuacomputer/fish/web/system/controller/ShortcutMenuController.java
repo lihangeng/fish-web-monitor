@@ -30,6 +30,10 @@ import com.yihuacomputer.fish.web.system.form.MenuTreeForm;
 import com.yihuacomputer.fish.web.system.form.ShortcutMenuCheckedTreeForm;
 import com.yihuacomputer.fish.web.util.FishWebUtils;
 
+/**
+ * @author YiHua
+ *
+ */
 @Controller
 @RequestMapping("/shortcutMenu")
 public class ShortcutMenuController {
@@ -43,6 +47,11 @@ public class ShortcutMenuController {
 
 	private Logger logger = org.slf4j.LoggerFactory.getLogger(PermissionController.class);
 
+	/**
+	 * @param request
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping(value = "/checkedTree", method = RequestMethod.GET)
 	public @ResponseBody
 	List<ShortcutMenuCheckedTreeForm> checkedTree(WebRequest request, HttpSession session) {
@@ -62,7 +71,6 @@ public class ShortcutMenuController {
 				return o1.getId().compareTo(o2.getId());
 			}
 		});
-//		List<IPermission> permissions = this.getPermissionsByUser(user);
 
 		List<IPermission> permissions = userPermissionRelation.listPermissionsByUser(id);
 		List<IPermission> list = new ArrayList<IPermission>();
@@ -79,6 +87,11 @@ public class ShortcutMenuController {
 		return ShortcutMenuCheckedTreeForm.convert(list, permissionList);
 	}
 
+	/**
+	 * @param permissions
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping(value = "/editShortcutMenu", method = RequestMethod.GET)
 	public @ResponseBody
 	ModelMap edit(@RequestParam String permissions, HttpSession session) {
@@ -135,6 +148,10 @@ public class ShortcutMenuController {
 
 	/**
 	 * 列出user下面的权限
+	 * @param request
+	 * @param node
+	 * @param session
+	 * @return
 	 */
 	@RequestMapping(value = "/listShortcutMenu", method = RequestMethod.GET)
 	public @ResponseBody

@@ -38,10 +38,9 @@ public class GroupForm {
 	}
 
 	/**
-	 * 
 	 * 方法描述 : 增加
-	 * 
 	 * @param service
+	 * @param organizationService
 	 */
 	public void add(IGroupService service, IOrganizationService organizationService) {
 		IGroup group = service.make(name);

@@ -116,6 +116,9 @@ public class UserController {
 
 	/**
 	 * 删除账户角色
+	 * @param userId
+	 * @param roleId
+	 * @return
 	 */
 	@MethodNameDescrible(describle="userlog.UserController.deleteRole",hasLogKey=true)
 	@RequestMapping(value = "/removeRole", method = RequestMethod.POST)
@@ -236,12 +239,10 @@ public class UserController {
 	}
 
 	/**
-	 *
 	 * 方法描述 : 根据ID更新账号
-	 *
-	 * @param guid
-	 * @param request
-	 * @return ModelMap<String, Object>
+	 * @param id
+	 * @param form
+	 * @return
 	 */
 	@MethodNameDescrible(describle="userlog.UserController.update",hasReqBodyParam=true,reqBodyClass=UserForm.class,bodyProperties="code")
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
@@ -277,8 +278,8 @@ public class UserController {
 
 	/**
 	 * 验证后修改密码：
-	 *
 	 * @param username
+	 * @param newPassword
 	 * @param request
 	 * @param webrequest
 	 * @return
@@ -339,11 +340,12 @@ public class UserController {
 	}
 
 	/**
-	 *
 	 * 根据条件得到账号列表
-	 *
-	 * @param form
-	 * @return ModelMap<String, Object>
+	 * @param start
+	 * @param limit
+	 * @param request
+	 * @param req
+	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody
@@ -444,12 +446,10 @@ public class UserController {
 	}
 
 	/**
-	 *
 	 * 方法描述 : 验证code的唯一性
-	 *
-	 * @param name
-	 * @param form
-	 * @return Map<String, Object>
+	 * @param id
+	 * @param code
+	 * @return
 	 */
 	@RequestMapping(value = "/unique", method = RequestMethod.GET)
 	public @ResponseBody

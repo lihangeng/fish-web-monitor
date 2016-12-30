@@ -559,8 +559,7 @@ public class OpenPlanController {
 	}
 	/**
 	 * 解除关联关系：
-	 *
-	 * @param personId
+	 * @param planId
 	 * @param deviceId
 	 * @return
 	 */

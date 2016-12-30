@@ -844,6 +844,12 @@ public class RuntimeInfoController {
 		}
 	}
 
+	/**
+	 * @param path
+	 * @param request
+	 * @param response
+	 * @return
+	 */
 	@RequestMapping(value = "/exportLast30/download", method = RequestMethod.GET)
 	public @ResponseBody
 	ModelMap exportLast30Download(@RequestParam String path, HttpServletRequest request, HttpServletResponse response) {

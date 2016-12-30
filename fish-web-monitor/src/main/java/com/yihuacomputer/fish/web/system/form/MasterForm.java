@@ -44,6 +44,9 @@ public class MasterForm {
 	public MasterForm() {
 	}
 
+	/**
+	 * @param master
+	 */
 	public MasterForm(IUser master){
 		this.id=master.getId();
 		this.code=master.getCode();
@@ -180,16 +183,11 @@ public class MasterForm {
 	}
 
 	/**
-	 *
 	 * 方法描述 : 增加
-	 *
 	 * @param service
-	 * @param masterRoleRelation
+	 * @param userService
 	 * @param roleService
-	 * @param passwordRuleService
-	 * @param fortressSlaveService
-	 * @param slaveService
-	 * @param applicationService
+	 * @param masterRoleRelation
 	 */
 	public void add(IUserService service,IPersonService userService, IRoleService roleService, IUserRoleRelation masterRoleRelation){
 		IUser master = service.make();
@@ -218,13 +216,10 @@ public class MasterForm {
 	}
 
 	/**
-	 *
 	 * 方法描述 : 更新
-	 *
 	 * @param service
-	 * @param passwordRuleService
+	 * @param userService
 	 */
-
 	public void update(IUserService service,IPersonService userService){
 	    IUser master = service.get(id);
         master.setCode(code);

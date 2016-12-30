@@ -2,6 +2,10 @@ package com.yihuacomputer.fish.web.system.form;
 
 import com.yihuacomputer.fish.api.person.IOrganization;
 
+/**
+ * @author YiHua
+ *
+ */
 public class OrganizationTreeForm {
 
 	private String id;
@@ -13,12 +17,14 @@ public class OrganizationTreeForm {
 	public OrganizationTreeForm() {
 	}
 
+	/**
+	 * @param organization
+	 */
 	public OrganizationTreeForm(IOrganization organization) {
 		id = organization.getGuid();
 		cls = organization.getCode();
 		text = organization.getName();
 		leaf = organization.isLeaf();
-		//orgLevel = organization.getOrganizationLevel().getId();
 	}
 
 	public String getId() {

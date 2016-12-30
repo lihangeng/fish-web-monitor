@@ -5,6 +5,10 @@ import java.util.List;
 
 import com.yihuacomputer.fish.api.person.IOrganization;
 
+/**
+ * @author YiHua
+ *
+ */
 public class OrganizationForm {
     private long id;
 
@@ -118,6 +122,9 @@ public class OrganizationForm {
 		}
 		return displayName;
 	}
+    /**
+     * @param organization
+     */
     public void translate(IOrganization organization) {
         organization.setGuid(getGuid());
         organization.setName(getName());

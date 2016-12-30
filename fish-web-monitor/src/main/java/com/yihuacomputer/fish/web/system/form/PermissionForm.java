@@ -68,6 +68,9 @@ public class PermissionForm {
 	}
 
 	
+	/**
+	 * @param permission
+	 */
 	public PermissionForm(IPermission permission) {
 		id = permission.getId();
 		code = permission.getCode();

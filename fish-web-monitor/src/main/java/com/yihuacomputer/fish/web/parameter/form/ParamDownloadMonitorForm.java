@@ -2,6 +2,10 @@ package com.yihuacomputer.fish.web.parameter.form;
 
 import com.yihuacomputer.fish.api.parameter.IParamPublish;
 
+/**
+ * @author YiHua
+ *
+ */
 public class ParamDownloadMonitorForm {
 	private long id;
 	

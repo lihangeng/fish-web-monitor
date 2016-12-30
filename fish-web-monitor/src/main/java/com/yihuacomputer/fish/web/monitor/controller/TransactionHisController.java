@@ -53,6 +53,9 @@ public class TransactionHisController {
 	@Autowired
 	private MessageSource messageSource;
 
+	/**
+	 * 交易
+	 */
 	@Autowired
 	public ITransactionViewService transactionViewService ;
 

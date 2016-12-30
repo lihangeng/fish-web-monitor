@@ -51,11 +51,12 @@ public class UserLogController {
 	}
 
 	/**
-	 *
 	 * 根据条件得到用户日志列表
-	 *
-	 * @param form
-	 * @return Map<String,Object>
+	 * @param start
+	 * @param limit
+	 * @param request
+	 * @param req
+	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody

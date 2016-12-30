@@ -169,16 +169,12 @@ public class QuartzConfController {
 	}
 	
 	
-	
-	
 	/**
-	 *
 	 * 立即执行job
-	 *
-	 * @param form
+	 * @param jobName
 	 * @param jobGroup
 	 * @param request
-	 * @return ModelMap<String, Object>
+	 * @return
 	 */
 	@MethodNameDescrible(describle="userlog.QuartzConfController.executeJob",hasArgs=true,argsContext="jobName")
 	@RequestMapping(value = "/executeJob", method = RequestMethod.GET)

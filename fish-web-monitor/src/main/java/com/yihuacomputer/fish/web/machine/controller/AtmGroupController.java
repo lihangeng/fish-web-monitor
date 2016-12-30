@@ -213,8 +213,7 @@ public class AtmGroupController {
 
 	/**
 	 * 解除关联关系：
-	 *
-	 * @param personId
+	 * @param groupId
 	 * @param deviceId
 	 * @return
 	 */

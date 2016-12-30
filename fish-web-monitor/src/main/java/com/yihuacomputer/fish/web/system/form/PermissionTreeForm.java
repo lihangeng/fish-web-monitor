@@ -21,6 +21,9 @@ public class PermissionTreeForm {
 
 	}
 
+	/**
+	 * @param permission
+	 */
 	public PermissionTreeForm(IPermission permission) {
 		id = permission.getCode();
 		text = permission.getDescription();
@@ -28,6 +31,10 @@ public class PermissionTreeForm {
 		leaf = !(permission.listChildren().iterator().hasNext());
 	}
 
+	/**
+	 * @param data
+	 * @return
+	 */
 	public static List<PermissionTreeForm> convert(Iterable<IPermission> data) {
 		List<PermissionTreeForm> result = new ArrayList<PermissionTreeForm>();
 		for (IPermission item : data) {
