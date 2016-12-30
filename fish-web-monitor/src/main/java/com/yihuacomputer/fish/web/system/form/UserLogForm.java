@@ -58,6 +58,9 @@ public class UserLogForm {
 	public UserLogForm() {
     }
 
+    /**
+     * @param userLog
+     */
     public UserLogForm(IUserLog userLog) {
         this.id = userLog.getId();
         this.operContent = userLog.getOperContent();

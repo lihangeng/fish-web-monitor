@@ -1,5 +1,9 @@
 package com.yihuacomputer.fish.web.system.form;
 
+/**
+ * @author YiHua
+ *
+ */
 public class ShortcutMenuForm {
 
 	private String id;
@@ -11,9 +15,6 @@ public class ShortcutMenuForm {
 	public ShortcutMenuForm() {
 
 	}
-	
-	
-
 
 	public String getId() {
 		return id;

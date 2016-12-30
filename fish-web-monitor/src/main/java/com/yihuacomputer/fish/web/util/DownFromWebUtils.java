@@ -12,10 +12,20 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
+/**
+ * @author YiHua
+ *
+ */
 public class DownFromWebUtils {
 	
 	private static Logger logger = LoggerFactory.getLogger(DownFromWebUtils.class);
 
+    /**
+     * @param request
+     * @param name
+     * @return
+     * @throws Exception
+     */
     public static String getFileName(HttpServletRequest request, String name) throws Exception {
         if (request.getHeader("User-Agent").toUpperCase().indexOf("MSIE") > 0) {
             // IE浏览器
@@ -26,6 +36,12 @@ public class DownFromWebUtils {
         }
     }
 
+    /**
+     * @param file
+     * @param request
+     * @param response
+     * @throws Exception
+     */
     public static void download(File file, HttpServletRequest request, HttpServletResponse response) throws Exception {
         response.setHeader("Content-Disposition", "attachment; filename=\"" + getFileName(request, file.getName()) + "\"");
         response.addHeader("Content-Length", "" + file.length());

@@ -67,6 +67,9 @@ public class PersonForm {
     public PersonForm() {
     }
 
+    /**
+     * @param person
+     */
     public PersonForm(IPerson person) {
         guid = person.getGuid();
         name = person.getName();
@@ -190,6 +193,11 @@ public class PersonForm {
         this.gender = gender;
     }
 
+    /**
+     * @param text
+     * @param format
+     * @return
+     */
     public static Date parsedate(String text, String format) {
         try {
             return new SimpleDateFormat(format).parse(text);

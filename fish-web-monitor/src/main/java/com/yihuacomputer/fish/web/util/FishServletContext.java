@@ -4,6 +4,10 @@ import javax.servlet.ServletContext;
 
 import org.springframework.web.context.ServletContextAware;
 
+/**
+ * @author YiHua
+ *
+ */
 public class FishServletContext implements ServletContextAware{
 
     private ServletContext servletContext; 

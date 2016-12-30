@@ -14,7 +14,13 @@ import com.yihuacomputer.fish.api.permission.RoleType;
  */
 public class SimpleRoleForm {
     
+	/**
+	 * ID
+	 */
 	public long id;
+	/**
+	 * 名称
+	 */
 	public String Name;
 	private RoleType roleType;
 
@@ -22,8 +28,8 @@ public class SimpleRoleForm {
 	}
 	
 	/**
-	 * 
-	 * @param group
+	 * @param role
+	 * @return 
 	 */
 	public SimpleRoleForm(IRole role) {
 		id = role.getId();
@@ -36,7 +42,7 @@ public class SimpleRoleForm {
 	 * 
 	 * 方法描述 : 转换
 	 * 
-	 * @param resources
+	 * @param roles
 	 * @return List
 	 */
 

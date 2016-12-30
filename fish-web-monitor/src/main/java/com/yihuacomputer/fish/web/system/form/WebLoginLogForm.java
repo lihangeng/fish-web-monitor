@@ -27,6 +27,9 @@ public class WebLoginLogForm {
 		
 	}
 	
+	/**
+	 * @param webLoginLog
+	 */
 	public WebLoginLogForm(IWebLoginLog webLoginLog) {
 		this.id  = webLoginLog.getId();
 		clientIp = webLoginLog.getClientIp().toString();

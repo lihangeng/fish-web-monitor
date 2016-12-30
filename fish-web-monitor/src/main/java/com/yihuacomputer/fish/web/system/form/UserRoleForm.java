@@ -1,6 +1,10 @@
 package com.yihuacomputer.fish.web.system.form;
 
 
+/**
+ * @author YiHua
+ *
+ */
 public class UserRoleForm
 {
     private Long id;

@@ -6,12 +6,14 @@ import java.util.List;
 import com.yihuacomputer.fish.api.permission.IGroup;
 import com.yihuacomputer.fish.api.person.IOrganization;
 
+/**
+ * @author YiHua
+ *
+ */
 public class User2GroupForm {
 	
 	private long id;
 	private String name;
-	//先不参与操作
-//	private IOrganization organization;
 	
 	private String orgCode = "";
 	private String orgName = "";
@@ -21,6 +23,9 @@ public class User2GroupForm {
 		
 	}
 	
+	/**
+	 * @param group
+	 */
 	public User2GroupForm(IGroup group){
 		this.id = group.getId();
 		this.name = group.getName();
@@ -29,14 +34,14 @@ public class User2GroupForm {
 		if(organization != null){
 			this.orgCode = organization.getCode();
 			this.orgName = organization.getName();
-//			IUser user = organization.getManager();
-//			if(user != null){
-//				this.userName = user.getName();
-//			}
 		}
 	}
 	
 	
+	/**
+	 * @param groups
+	 * @return
+	 */
 	public static List<User2GroupForm> toForm(List<IGroup> groups){
 		List<User2GroupForm> forms = new ArrayList<User2GroupForm>();
 		for(IGroup group : groups){

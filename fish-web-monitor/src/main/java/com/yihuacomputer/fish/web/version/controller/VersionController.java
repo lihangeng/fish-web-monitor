@@ -120,6 +120,13 @@ public class VersionController {
 		return result;
 	}
 
+	/**
+	 * @param start
+	 * @param limit
+	 * @param wReq
+	 * @param req
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
 	public ModelMap search(@RequestParam int start, @RequestParam int limit, WebRequest wReq, HttpServletRequest req) {
@@ -137,7 +144,14 @@ public class VersionController {
 		return result;
 	}
 
-	// 下载文件
+	/**
+	 * 下载文件
+	 * @param typeName
+	 * @param fileName
+	 * @param request
+	 * @param response
+	 * @throws Exception
+	 */
 	@RequestMapping(value = "/download", method = RequestMethod.GET)
 	public void download(@RequestParam String typeName, @RequestParam String fileName, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		logger.info(String.format("down version.file is [%s_%s]", typeName, fileName));
@@ -150,10 +164,9 @@ public class VersionController {
 
 	/**
 	 * 上传版本文件
-	 *
 	 * @param file
 	 * @param request
-	 * @param model
+	 * @param response
 	 * @return
 	 */
 	@MethodNameDescrible(describle="userlog.VersionController.upload",hasFaceParam=true,faceParam="fileName")
@@ -211,7 +224,12 @@ public class VersionController {
 		return "{'success':true,'serverPath':'" + fileName + "'}";
 	}
 
-	// 增加,
+	/**
+	 *增加
+	 * @param form
+	 * @param request
+	 * @return
+	 */
 	@SuppressWarnings("deprecation")
 	@RequestMapping(method = RequestMethod.POST)
 	@MethodNameDescrible(describle="userlog.VersionController.add",hasReqBodyParam=true,reqBodyClass=VersionForm.class,bodyProperties="versionNo")
@@ -268,7 +286,12 @@ public class VersionController {
 		return result;
 	}
 
-	// 修改版本信息
+	/**
+	 * 修改版本信息
+	 * @param id
+	 * @param form
+	 * @return
+	 */
 	@SuppressWarnings("deprecation")
 	@MethodNameDescrible(describle="userlog.VersionController.update",hasReqBodyParam=true,reqBodyClass=VersionForm.class,bodyProperties="versionNo")
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
@@ -311,7 +334,11 @@ public class VersionController {
 		return result;
 	}
 
-	// 删除
+	/**
+	 * 删除
+	 * @param id
+	 * @return
+	 */
 	@MethodNameDescrible(describle="userlog.VersionController.delete",hasLogKey=true)
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public @ResponseBody ModelMap delete(@PathVariable long id) {

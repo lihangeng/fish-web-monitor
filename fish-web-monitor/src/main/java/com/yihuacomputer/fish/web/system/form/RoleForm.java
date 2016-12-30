@@ -14,7 +14,6 @@ public class RoleForm {
 
 	private long id;
 	private String name;
-	// private String type;
 	private String description;
 	private String permissions;
 	private boolean system;
@@ -22,6 +21,9 @@ public class RoleForm {
 	public RoleForm() {
 	}
 
+	/**
+	 * @param role
+	 */
 	public RoleForm(IRole role) {
 		this.id = role.getId();
 		this.name = role.getName();
@@ -32,6 +34,8 @@ public class RoleForm {
 
 	/**
 	 * 转换
+	 * @param resources
+	 * @return
 	 */
 	public static List<RoleForm> convert(List<IRole> resources) {
 		List<RoleForm> result = new ArrayList<RoleForm>();

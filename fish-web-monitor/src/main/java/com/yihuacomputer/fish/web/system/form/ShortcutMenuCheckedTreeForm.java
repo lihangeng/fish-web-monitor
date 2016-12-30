@@ -5,6 +5,10 @@ import java.util.List;
 
 import com.yihuacomputer.fish.api.permission.IPermission;
 
+/**
+ * @author YiHua
+ *
+ */
 public class ShortcutMenuCheckedTreeForm {
 
 	private String id;
@@ -17,6 +21,10 @@ public class ShortcutMenuCheckedTreeForm {
 
 	}
 
+	/**
+	 * @param permission
+	 * @param permissions
+	 */
 	public ShortcutMenuCheckedTreeForm(IPermission permission,List<IPermission> permissions) {
 		id = permission.getCode();
 		text = permission.getDescription();
@@ -42,6 +50,11 @@ public class ShortcutMenuCheckedTreeForm {
 		return false;
 	}
 
+	/**
+	 * @param data
+	 * @param permissions
+	 * @return
+	 */
 	public static List<ShortcutMenuCheckedTreeForm> convert(Iterable<IPermission> data,List<IPermission> permissions) {
 		List<ShortcutMenuCheckedTreeForm> result = new ArrayList<ShortcutMenuCheckedTreeForm>();
 		for (IPermission item : data) {

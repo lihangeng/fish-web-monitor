@@ -32,6 +32,9 @@ public class ClearFileService {
     @Autowired
     private IJobSynchService jobSynchService;
 
+    /**
+     * 清除临时文件
+     */
     public void clearFile(){
     	log.info("clear temp file ....");
     	if(!jobSynchService.getJobRunPriviledge(jobId)){

@@ -117,6 +117,12 @@ public class VersionDownloadController {
 	@Autowired
 	private MessageSource messageVersionSource;
 
+	/**
+	 * @param jobId
+	 * @param request
+	 * @param wRequest
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.GET, value = "/searchJobDetailInfo")
 	public @ResponseBody ModelMap searchJobDetailInfo(@RequestParam long jobId, HttpServletRequest request, WebRequest wRequest) {
 		ModelMap result = new ModelMap();
@@ -166,6 +172,12 @@ public class VersionDownloadController {
 		return result;
 	}
 
+	/**
+	 * @param start
+	 * @param limit
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody ModelMap search(@RequestParam int start, @RequestParam int limit, WebRequest request) {
 		logger.info(String.format("search job : start = %s ,limit = %s ", start, limit));
@@ -179,6 +191,11 @@ public class VersionDownloadController {
 		return result;
 	}
 
+	/**
+	 * @param jobId
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(value = "/getJobInfo", method = RequestMethod.POST)
 	public @ResponseBody ModelMap getJobInfo(@RequestParam long jobId, HttpServletRequest request) {
 		IJob job = jobService.getById(jobId);
@@ -193,7 +210,12 @@ public class VersionDownloadController {
 		return result;
 	}
 
-	// 增加
+	/**
+	 * 增加
+	 * @param form
+	 * @param request
+	 * @return
+	 */
 	@MethodNameDescrible(describle="userlog.VersionDownloadController.add",hasLogKey=true)
 	@RequestMapping(method = RequestMethod.POST)
 	public @ResponseBody ModelMap add(@RequestBody JobForm form, HttpServletRequest request) {
@@ -279,7 +301,11 @@ public class VersionDownloadController {
 		return result;
 	}
 
-	// 撤销作业
+	/**
+	 * 撤销作业
+	 * @param id
+	 * @return
+	 */
 	@MethodNameDescrible(describle="userlog.VersionDownloadController.delete",hasLogKey=true)
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public @ResponseBody ModelMap delete(@PathVariable long id) {
@@ -327,6 +353,10 @@ public class VersionDownloadController {
 		return false;
 	}
 
+	/**
+	 * @param id
+	 * @return
+	 */
 	@MethodNameDescrible(describle="userlog.VersionDownloadController.resetTaskStatus",hasLogKey=true)
 	@RequestMapping(value = "/resetTaskStatus", method = RequestMethod.POST)
 	public @ResponseBody ModelMap resetTaskStatus(@RequestParam long id) {
@@ -350,6 +380,12 @@ public class VersionDownloadController {
 		return result;
 	}
 
+	/**
+	 * @param job
+	 * @param devVersionCount
+	 * @param repeatDevVersionCount
+	 * @return
+	 */
 	public JobForm convertWithIntArgs(IJob job, int devVersionCount, int repeatDevVersionCount) {
 		JobForm jobForm = convert(job);
 		jobForm.setExtraBody("&nbsp;&nbsp; " + getI18N("version.download.jobType") + getEnumI18n(job.getJobType().getText()) + "&nbsp;&nbsp; "
@@ -359,6 +395,10 @@ public class VersionDownloadController {
 		return jobForm;
 	}
 
+	/**
+	 * @param job
+	 * @return
+	 */
 	public JobForm convert(IJob job) {
 		JobForm jobForm = new JobForm();
 		jobForm.setId(Long.valueOf(job.getJobId()));
@@ -452,9 +492,10 @@ public class VersionDownloadController {
 
 	/**
 	 * 还可以关联到作业的设备列表
-	 *
 	 * @param start
 	 * @param limit
+	 * @param versionId
+	 * @param webRequest
 	 * @param request
 	 * @return
 	 */
@@ -513,7 +554,13 @@ public class VersionDownloadController {
 		return filter;
 	}
 
-	// 根据jobId获得下面的任务列表
+	/**
+	 * 根据jobId获得下面的任务列表
+	 * @param start
+	 * @param limit
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(value = "/task", method = RequestMethod.GET)
 	public @ResponseBody ModelMap task(@RequestParam int start, @RequestParam int limit, WebRequest request) {
 		IFilter filter = getTaskFilter(request);
@@ -615,9 +662,11 @@ public class VersionDownloadController {
 	}
 
 	/**
-	 *
 	 * 根据条件生成升级报告
-	 *
+	 * @param webRequest
+	 * @param request
+	 * @param response
+	 * @throws Exception
 	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@RequestMapping(value = "exportToExcel", method = RequestMethod.GET)
@@ -631,8 +680,6 @@ public class VersionDownloadController {
 		IFilter filter = new Filter();
 		filter.eq("job.jobId", Long.valueOf(jobId));
 		filter.order("deviceId");
-		// filter.addFilterEntry(FilterFactory.ne("status",
-		// TaskStatus.REMOVED));
 		List<ITask> tasks = taskService.list(filter);
 
 		Excel excel = new Excel();
@@ -686,7 +733,7 @@ public class VersionDownloadController {
 
 	/**
 	 * 撤销一个任务
-	 *
+	 * @param jobId
 	 * @param taskId
 	 * @return
 	 */
@@ -706,6 +753,11 @@ public class VersionDownloadController {
 		return result;
 	}
 
+	/**
+	 * @param jobId
+	 * @param taskId
+	 * @return
+	 */
 	@RequestMapping(value = "/task/deepCancel", method = RequestMethod.POST)
 	public @ResponseBody ModelMap deepCancelTask(@RequestParam long jobId, @RequestParam long taskId) {
 		logger.info(" deep cancel task: task.id = " + taskId);
@@ -721,6 +773,10 @@ public class VersionDownloadController {
 		return result;
 	}
 
+	/**
+	 * @param taskId
+	 * @return
+	 */
 	@RequestMapping(value = "/task/reDistribute", method = RequestMethod.POST)
 	public @ResponseBody ModelMap reDistribute(@RequestParam long taskId) {
 		logger.info(" reDistribute task: task.id = " + taskId);
@@ -806,6 +862,10 @@ public class VersionDownloadController {
 		return form;
 	}
 
+	/**
+	 * @param task
+	 * @return
+	 */
 	public String getState(ITask task) {
 		if (task.getStatus().equals(TaskStatus.NEW) || task.getStatus().equals(TaskStatus.RUN)) {
 			return getEnumI18n(task.getStatus().getText());
@@ -883,6 +943,12 @@ public class VersionDownloadController {
 		return result;
 	}
 
+	/**
+	 * @param jobId
+	 * @param deployStartDate
+	 * @param deployEndDate
+	 * @return
+	 */
 	@RequestMapping(value = "/updateDeployDate", method = RequestMethod.POST)
 	public @ResponseBody ModelMap update(@RequestParam long jobId, @RequestParam String deployStartDate, @RequestParam String deployEndDate) {
 		logger.info(" updateDeployDate  : jobId.id = " + jobId);
@@ -903,6 +969,12 @@ public class VersionDownloadController {
 		return result;
 	}
 
+	/**
+	 * @param start
+	 * @param limit
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(value = "/queryUpdateDeployDateHist", method = RequestMethod.GET)
 	public @ResponseBody ModelMap searchUpdateDeployDateHist(@RequestParam int start, @RequestParam int limit, WebRequest request) {
 		logger.info(String.format("search job : start = %s ,limit = %s ", start, limit));
@@ -916,6 +988,11 @@ public class VersionDownloadController {
 		return result;
 	}
 
+	/**
+	 * @param list
+	 * @param start
+	 * @return
+	 */
 	public List<UpdateDeployDateHistoryForm> toUpdateDeployDateHistoryForm(List<IUpdateDeployDateHistory> list, int start) {
 		List<UpdateDeployDateHistoryForm> result = new ArrayList<UpdateDeployDateHistoryForm>();
 
@@ -935,6 +1012,11 @@ public class VersionDownloadController {
 		return result;
 	}
 
+	/**
+	 * @param updateDeployDateHistoryId
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(value = "/reNoticeApp", method = RequestMethod.GET)
 	public @ResponseBody ModelMap reNoticeApp(@RequestParam long updateDeployDateHistoryId, WebRequest request) {
 		logger.info(String.format("reNoticeApp job : updateDeployDateHistoryId = %s  ", updateDeployDateHistoryId));

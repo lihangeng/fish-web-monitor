@@ -5,6 +5,10 @@ import java.util.List;
 
 import com.yihuacomputer.fish.api.person.IPersonJob;
 
+/**
+ * @author YiHua
+ *
+ */
 public class PersonJobForm {
     /**
      * ID,自增长
@@ -30,6 +34,9 @@ public class PersonJobForm {
 
     }
 
+    /**
+     * @param personJob
+     */
     public PersonJobForm(IPersonJob personJob) {
         id = personJob.getId();
         code = personJob.getCode();

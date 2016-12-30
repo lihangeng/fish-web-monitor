@@ -1,6 +1,10 @@
 package com.yihuacomputer.fish.web.system.form;
 
 
+/**
+ * @author YiHua
+ *
+ */
 public class QuartzConfForm {
 	private String triggerName;
 	private String triggerGroup = "DEFAULT";
@@ -21,6 +25,9 @@ public class QuartzConfForm {
 		return triggerState;
 	}
 
+	/**
+	 * @param triggerState
+	 */
 	public void setTriggerState(String triggerState) {
 		this.triggerState = triggerState;
 	}

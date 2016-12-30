@@ -31,6 +31,9 @@ public class HttpMessageConverter extends  AbstractHttpMessageConverter<String> 
 
 	private final List<Charset> availableCharsets;
 
+	/**
+	 * 初始化
+	 */
 	public HttpMessageConverter() {
 		super(new MediaType("text", "plain", DEFAULT_CHARSET), MediaType.ALL);
 		this.availableCharsets = new ArrayList<Charset>(Charset.availableCharsets().values());

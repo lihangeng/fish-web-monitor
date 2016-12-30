@@ -31,6 +31,9 @@ public class UserForm
     public UserForm() {
     }
     
+    /**
+     * @param user
+     */
     public UserForm(IUser user){
         this.id = user.getId();
         this.code = user.getCode();

@@ -19,6 +19,11 @@ public class Role2PermissionTreeForm {
 		
 	}
 	
+	/**
+	 * @param permission
+	 * @param checked
+	 * @param disabled
+	 */
 	public Role2PermissionTreeForm(IPermission permission, boolean checked,boolean disabled) {
 		id = permission.getCode();
 		this.checked = checked;
@@ -27,14 +32,6 @@ public class Role2PermissionTreeForm {
 		leaf = !(permission.listChildren().iterator().hasNext());
 	}
 	
-//	public static List<Role2PermissionTreeForm> convert(Iterable<IPermission> data, IRolePermissionRelation relation) {
-//		List<Role2PermissionTreeForm> result = new ArrayList<Role2PermissionTreeForm>();
-//		for(IPermission item : data) {
-//			result.add(new Role2PermissionTreeForm(item));
-//		}
-//		return result;
-//	}
-
 	public boolean isDisabled() {
 		return disabled;
 	}

@@ -23,6 +23,10 @@ import com.yihuacomputer.fish.api.person.IOrganizationService;
 import com.yihuacomputer.fish.api.person.IPersonService;
 import com.yihuacomputer.fish.api.relation.IDevicePersonRelation;
 
+/**
+ * @author YiHua
+ *
+ */
 @Controller
 @RequestMapping("/dateImport")
 public class OrgAndDeviceImportController {
@@ -47,10 +51,19 @@ public class OrgAndDeviceImportController {
 	@Autowired
 	private IOrganizationService orgService;
 
+	/**
+	 * 初始化
+	 */
 	@PostConstruct
 	public void init() {
 	}
 
+	/**
+	 * @param webRequest
+	 * @param request
+	 * @param response
+	 * @throws Exception
+	 */
 	@RequestMapping(value = "temp", method = RequestMethod.GET)
 	public void export(WebRequest webRequest, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String type = request.getParameter("type");
@@ -97,6 +110,13 @@ public class OrgAndDeviceImportController {
 	}
 
 
+	/**
+	 * @param webRequest
+	 * @param type
+	 * @param response
+	 * @param request
+	 * @throws Exception
+	 */
 	@RequestMapping(value = "delFile", method = RequestMethod.POST)
 	public @ResponseBody
 	void upload(WebRequest webRequest, String type, HttpServletResponse response, HttpServletRequest request) throws Exception {
@@ -112,6 +132,12 @@ public class OrgAndDeviceImportController {
 		
 	}
 
+	/**
+	 * @param webRequest
+	 * @param request
+	 * @param response
+	 * @throws Exception
+	 */
 	@RequestMapping(value = "/downloadFile", method = RequestMethod.GET)
 	public void download(WebRequest webRequest, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String path = request.getSession().getServletContext().getRealPath("resources/file/deviceCode.xls");
