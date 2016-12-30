@@ -2,6 +2,10 @@ package com.yihuacomputer.fish.web.version.form;
 
 import com.yihuacomputer.fish.api.version.IVersionType;
 
+/**
+ * @author YiHua
+ *
+ */
 public class VersionTypeTreeForm {
     private long id;
 
@@ -14,6 +18,9 @@ public class VersionTypeTreeForm {
     public VersionTypeTreeForm() {
     }
 
+    /**
+     * @param type
+     */
     public VersionTypeTreeForm(IVersionType type) {
         this.id = type.getId();
         this.text = type.getTypeName();

@@ -11,6 +11,10 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * @author YiHua
+ *
+ */
 @SuppressWarnings("rawtypes")
 public class Excel {
 	
@@ -27,6 +31,10 @@ public class Excel {
     public Excel() {
     }
 
+    /**
+     * @param fileName
+     * @param sheetName
+     */
     public void export(String fileName, String sheetName) {
         HSSFWorkbook workBook = new HSSFWorkbook();
         HSSFSheet sheet = workBook.createSheet(sheetName);

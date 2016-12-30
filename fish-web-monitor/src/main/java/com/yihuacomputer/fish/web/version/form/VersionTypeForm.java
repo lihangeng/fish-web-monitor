@@ -35,6 +35,9 @@ public class VersionTypeForm {
     public VersionTypeForm() {
     }
 
+	/**
+	 * @param type
+	 */
 	public VersionTypeForm(IVersionType type) {
         this.id = type.getId();
         this.typeName = type.getTypeName();

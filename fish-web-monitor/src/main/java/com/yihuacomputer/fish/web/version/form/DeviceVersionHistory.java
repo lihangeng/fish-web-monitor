@@ -2,6 +2,10 @@ package com.yihuacomputer.fish.web.version.form;
 
 import java.util.Date;
 
+/**
+ * @author YiHua
+ *
+ */
 public class DeviceVersionHistory {
     private long id;
 

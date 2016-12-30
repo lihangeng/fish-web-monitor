@@ -16,6 +16,10 @@ public class BaseForm {
 
 	public BaseForm(){}
 	
+	/**
+	 * @param id
+	 * @param name
+	 */
 	public BaseForm(long id, String name){
 		this.id = id;
 		this.name = name;

@@ -2,6 +2,10 @@ package com.yihuacomputer.fish.web.version.form;
 
 import com.yihuacomputer.fish.api.device.IDevice;
 
+/**
+ * @author YiHua
+ *
+ */
 public class VersionDeviceForm {
     private long id;
 
@@ -22,6 +26,9 @@ public class VersionDeviceForm {
     public VersionDeviceForm() {
     }
 
+    /**
+     * @param device
+     */
     public VersionDeviceForm(IDevice device) {
         this.id = device.getId();
         this.terminalId = device.getTerminalId();

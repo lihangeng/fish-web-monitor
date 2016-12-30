@@ -63,6 +63,12 @@ public class VersionTypeController {
     @Autowired
     private MessageSource messageSourceVersion;
 
+	/**
+	 * @param start
+	 * @param limit
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody ModelMap search(@RequestParam int start, @RequestParam int limit, WebRequest request) {
 		logger.info(String.format("search versionType : start = %s ,limt = %s ", start, limit));
@@ -107,7 +113,6 @@ public class VersionTypeController {
 
     		String tips = messageSourceVersion.getMessage("versionType.addSameVersionType", null, FishCfg.locale);
 		    result.addAttribute(FishConstant.ERROR_MSG,String.format(tips,typeName));
-//		    result.addAttribute(FishConstant.ERROR_MSG,String.format("增加失败,软件分类[%s]已存在",typeName));
 		    return result;
 		}
 
@@ -141,7 +146,6 @@ public class VersionTypeController {
 		{
 			result.addAttribute(FishConstant.SUCCESS,false);
     		String tips = messageSourceVersion.getMessage("versionType.versionTypeNotExist", null, FishCfg.locale);
-//			result.addAttribute("errorMsg","更改的记录不存在，请刷新后操作");
 			result.addAttribute(FishConstant.ERROR_MSG,tips);
 			return result;
 		}
@@ -149,6 +153,11 @@ public class VersionTypeController {
         return result;
     }
 
+	/**
+	 * @param id
+	 * @param form
+	 * @return
+	 */
 	@MethodNameDescrible(describle="userlog.VersionTypeController.update",hasReqBodyParam=true,reqBodyClass=VersionTypeForm.class,bodyProperties="typeName")
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	public @ResponseBody ModelMap update(@PathVariable long id,@RequestBody VersionTypeForm form) {

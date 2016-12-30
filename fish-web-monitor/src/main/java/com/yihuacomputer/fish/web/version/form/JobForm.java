@@ -6,6 +6,10 @@ import com.yihuacomputer.fish.api.version.job.JobPriority;
 import com.yihuacomputer.fish.api.version.job.JobStatus;
 import com.yihuacomputer.fish.api.version.job.JobType;
 
+/**
+ * @author YiHua
+ *
+ */
 public class JobForm {
 	private long id;
 

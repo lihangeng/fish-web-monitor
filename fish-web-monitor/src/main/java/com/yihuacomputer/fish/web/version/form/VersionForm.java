@@ -7,6 +7,10 @@ import com.yihuacomputer.fish.api.version.IVersion;
 import com.yihuacomputer.fish.api.version.VersionCfg;
 import com.yihuacomputer.fish.api.version.VersionStatus;
 
+/**
+ * @author YiHua
+ *
+ */
 public class VersionForm {
 	private long id;
 
@@ -44,18 +48,6 @@ public class VersionForm {
 	
 	private int downLoadCounter;
 
-	/*private long deviceTotal;
-
-	private long mayBeDownTotal;
-
-	private long downedTotal;
-
-	private long successTotal;
-
-	private long failTotal;
-
-	private long unDownTotal;*/
-
 	private String userName;
 
 	private String execBefore;
@@ -67,6 +59,9 @@ public class VersionForm {
 	public VersionForm() {
 	}
 
+	/**
+	 * @param version
+	 */
 	@SuppressWarnings("deprecation")
 	public VersionForm(IVersion version) {
 		this.id = version.getId();

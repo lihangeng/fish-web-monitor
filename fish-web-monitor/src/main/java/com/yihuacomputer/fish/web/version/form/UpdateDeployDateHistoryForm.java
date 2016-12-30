@@ -5,6 +5,10 @@ import java.util.Date;
 import com.yihuacomputer.fish.api.version.job.IUpdateDeployDateHistory;
 import com.yihuacomputer.fish.api.version.job.NoticeStatus;
 
+/**
+ * @author YiHua
+ *
+ */
 public class UpdateDeployDateHistoryForm {
     private long id;
 
@@ -52,6 +56,9 @@ public class UpdateDeployDateHistoryForm {
 
     }
 
+    /**
+     * @param form
+     */
     public UpdateDeployDateHistoryForm(IUpdateDeployDateHistory form) {
         setId(form.getId());
         setJobId(form.getJobId());

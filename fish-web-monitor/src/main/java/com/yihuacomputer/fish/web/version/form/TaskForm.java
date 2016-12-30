@@ -1,6 +1,10 @@
 package com.yihuacomputer.fish.web.version.form;
 
 
+/**
+ * @author YiHua
+ *
+ */
 public class TaskForm {
     private long id;
 
