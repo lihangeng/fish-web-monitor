@@ -16,7 +16,6 @@ import com.yihuacomputer.fish.api.report.device.etl.IDeviceCatalogSummaryMonthSe
 import com.yihuacomputer.fish.api.report.device.etl.IDeviceExtractDataMonthService;
 import com.yihuacomputer.fish.api.report.device.etl.IDeviceTypeSummaryMonth;
 import com.yihuacomputer.fish.api.report.device.etl.IDeviceTypeSummaryMonthService;
-import com.yihuacomputer.fish.machine.entity.AtmCatalog;
 import com.yihuacomputer.fish.machine.entity.Device;
 
 /**
@@ -59,19 +58,19 @@ public class DeviceExtractDataMonthService implements IDeviceExtractDataMonthSer
 //			String dateStr = DateUtils.getDate(fromDate).substring(0,7);
 		Map<String,IDeviceCatalogSummaryMonth> lastInfoMap = deviceCatalogSummaryMonthService.get(lastDate);
 		StringBuffer hqlSb = new StringBuffer();
-		hqlSb.append("select device.devType.devCatalog,count(device.id), ");
+		hqlSb.append("select device.devType.devCatalog.name,count(device.id), ");
 		hqlSb.append("sum(case when device.installDate>=? then 1 else 0 end)  ");
 		hqlSb.append("from ").append(Device.class.getSimpleName());
 		hqlSb.append(" device  where device.installDate<? group by device.devType.devCatalog.name ");
 		List<Object> list = dao.findByHQL(hqlSb.toString(), new Object[]{fromDate,toDate});
 		for(Object objectResult:list){
 			Object[] objects = (Object[])objectResult;
-			AtmCatalog atmlog = (AtmCatalog)objects[0];
+			String atmlogName = (String)objects[0];
 			int  all = Integer.parseInt(String.valueOf(objects[1]));
 			int  news = Integer.parseInt(String.valueOf(objects[2]));
-			IDeviceCatalogSummaryMonth idcsm = lastInfoMap.get(atmlog.getName());
+			IDeviceCatalogSummaryMonth idcsm = lastInfoMap.get(atmlogName);
 			IDeviceCatalogSummaryMonth idcsmNew = deviceCatalogSummaryMonthService.make();
-			idcsmNew.setCatalog(atmlog.getName());
+			idcsmNew.setCatalog(atmlogName);
 			idcsmNew.setAddDevNum(news);
 			idcsmNew.setAllAddDevNum(idcsm==null?news:idcsm.getAllAddDevNum()+news);
 			idcsmNew.setAllScrappedDevNum(0);
