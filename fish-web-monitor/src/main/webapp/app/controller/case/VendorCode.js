@@ -62,8 +62,8 @@ Ext.define('Eway.controller.case.VendorCode',{
 					Eway.alert(EwayLocale.cases.exportFaultInfo);
 				},
 				failure :function(form, action){
-					Eway.alert(action.result.content);
 					Ext.Msg.hide();
+					Eway.alert(action.result.content);
 				},
 				scope :this
 			});
